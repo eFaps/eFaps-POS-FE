@@ -1,7 +1,10 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    {{ title }}!
   </h1>
 </div>
-<app-producttable></app-producttable>
+<div class="container">
+  <div class="col-sm-8 col-sm-offset-2">
+    <router-outlet></router-outlet>
+  </div>
+</div>
