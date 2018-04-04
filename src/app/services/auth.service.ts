@@ -17,8 +17,7 @@ export class AuthService {
 
   login(username: string, password: string): Observable<boolean> {
     const href = this.config.baseUrl + '/authenticate';
-
-    return this.http.post(href, JSON.stringify({ username: username, password: password }))
+    return this.http.post(href, { userName: username, password: password })
       .pipe(map((response: any) => {
         const token = response.token;
         if (token) {

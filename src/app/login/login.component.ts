@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { AuthService } from '../services/index';
 
@@ -9,9 +10,13 @@ import { AuthService } from '../services/index';
 })
 
 export class LoginComponent implements OnInit {
-  model: any = {};
   loading = false;
   error = '';
+
+    loginForm = new FormGroup ({
+      userName: new FormControl(),
+      password: new FormControl()
+    });
 
   constructor(
     private router: Router,
@@ -24,7 +29,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loading = true;
-    this.authService.login(this.model.username, this.model.password)
+    this.authService.login(this.loginForm.value.userName, this.loginForm.value.password)
       .subscribe(result => {
         if (result === true) {
           this.router.navigate(['/']);
