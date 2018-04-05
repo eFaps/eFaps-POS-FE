@@ -13,16 +13,16 @@ import { MaterialModule } from './material/material.module';
 import { AuthService, ConfigService, JwtInterceptor, PosService, ProductService } from './services/index';
 import { AuthGuard } from './auth.guard';
 import { routes } from './app.routes';
-import { SalesComponent } from './sales/sales.component';
-import { ProductgridComponent } from './sales/productgrid/productgrid.component';
-import { TicketComponent } from './sales/ticket/ticket.component';
+import { PosComponent } from './pos/pos.component';
+import { ProductgridComponent } from './pos/productgrid/productgrid.component';
+import { TicketComponent } from './pos/ticket/ticket.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProducttableComponent,
     LoginComponent,
-    SalesComponent,
+    PosComponent,
     ProductgridComponent,
     TicketComponent
   ],
