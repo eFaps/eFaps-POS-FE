@@ -14,7 +14,6 @@ import { AuthService, ConfigService, JwtInterceptor, ProductService } from './se
 import { AuthGuard } from './auth.guard';
 import { routes } from './app.routes';
 import { SalesComponent } from './sales/sales.component';
-import { ProductcardComponent } from './sales/productcard/productcard.component';
 import { ProductgridComponent } from './sales/productgrid/productgrid.component';
 
 @NgModule({
@@ -23,7 +22,6 @@ import { ProductgridComponent } from './sales/productgrid/productgrid.component'
     ProducttableComponent,
     LoginComponent,
     SalesComponent,
-    ProductcardComponent,
     ProductgridComponent
   ],
   imports: [

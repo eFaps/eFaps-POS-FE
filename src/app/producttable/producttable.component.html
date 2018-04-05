@@ -1,10 +1,6 @@
 
 <div class="example-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource">
-
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-
     <ng-container matColumnDef="sku">
       <mat-header-cell *matHeaderCellDef> Codigo </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.sku}} </mat-cell>

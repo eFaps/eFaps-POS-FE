@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product, ProductService } from '../../services/index'
 
 @Component({
   selector: 'app-productgrid',
@@ -6,19 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./productgrid.component.css']
 })
 export class ProductgridComponent implements OnInit {
-  columns = 4;
-  tiles = [
-      {text: 'One', header: 'demo', color: 'lightblue'},
-      {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-      {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-      {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
-      {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
-      {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
-      {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
-    ];
-  constructor() { }
+  products = [];
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
+    this.productService.getProducts()
+      .subscribe(data => this.products = data);
   }
 
+  select(_product: Product) {
+    console.log(_product.sku);
+  }
 }
