@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-import { ConfigService } from './index';
+import { ConfigService } from './config.service';
 
 @Injectable()
 export class ProductService {
@@ -15,7 +15,6 @@ export class ProductService {
        const requestUrl = `${href}`;
        return this.http.get<Product[]>(requestUrl);
     }
-
 }
 
 export interface Product {

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
+import * as jwtDecode from 'jwt-decode';
 
 import { ConfigService } from './config.service';
 
@@ -13,7 +14,6 @@ export class AuthService {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.token = currentUser && currentUser.token;
   }
-
 
   login(username: string, password: string): Observable<boolean> {
     const href = this.config.baseUrl + '/authenticate';
@@ -36,5 +36,29 @@ export class AuthService {
     // clear token remove user from local storage to log user out
     this.token = null;
     localStorage.removeItem('currentUser');
+  }
+
+  getToken(): string {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    return currentUser && currentUser.token;
+  }
+
+  getTokenExpirationDate(token: string): Date {
+    const decoded = jwtDecode(token);
+
+    if (decoded.exp === undefined) { return null; }
+
+    const date = new Date(0);
+    date.setUTCSeconds(decoded.exp);
+    return date;
+  }
+
+  isTokenExpired(token?: string): boolean {
+    if (!token) { token = this.getToken(); }
+    if (!token) { return true; }
+
+    const date = this.getTokenExpirationDate(token);
+    if (date === undefined) { return false; }
+    return !(date.valueOf() > new Date().valueOf());
   }
 }
