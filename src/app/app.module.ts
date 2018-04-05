@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ProducttableComponent } from './producttable/producttable.component';
 import { MaterialModule } from './material/material.module';
-import { AuthService, ConfigService, ProductService } from './services/index';
+import { AuthService, ConfigService, JwtInterceptor, ProductService } from './services/index';
 import { AuthGuard } from './auth.guard';
 import { routes } from './app.routes';
 
@@ -35,7 +35,12 @@ import { routes } from './app.routes';
       useFactory: (configService: ConfigService) => function() { return configService.load(); },
       deps: [ConfigService],
       multi: true,
-    }
+    },
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: JwtInterceptor,
+        multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })
