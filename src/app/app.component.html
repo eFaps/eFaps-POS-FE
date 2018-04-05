@@ -1,10 +1,13 @@
-<div style="text-align:center">
-  <h1>
-    {{ title }}!
-  </h1>
-</div>
-<div class="container">
-  <div class="col-sm-8 col-sm-offset-2">
-    <router-outlet></router-outlet>
-  </div>
-</div>
+<mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+    <h2 class="example-app-name">POS</h2>
+  </mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav [mode]="(screenWidth > 840) ? 'side' : 'over'">
+    <div class="sidenav-header">
+      <a routerLink="/"><h5>Hello world!</h5></a>
+    </div>
+  </mat-sidenav>
+  <router-outlet></router-outlet>
+
+</mat-sidenav-container>
