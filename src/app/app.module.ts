@@ -12,12 +12,14 @@ import { MaterialModule } from './material/material.module';
 import { AuthService, ConfigService, JwtInterceptor, ProductService } from './services/index';
 import { AuthGuard } from './auth.guard';
 import { routes } from './app.routes';
+import { SalesComponent } from './sales/sales.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProducttableComponent,
-    LoginComponent
+    LoginComponent,
+    SalesComponent
   ],
   imports: [
     BrowserModule,

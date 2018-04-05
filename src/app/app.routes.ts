@@ -3,14 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { ProducttableComponent } from './producttable/producttable.component';
+import { SalesComponent } from './sales/sales.component';
 import { AuthGuard } from './auth.guard';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
-    { path: '', component: ProducttableComponent, canActivate: [AuthGuard] },
+    { path: 'products', component: ProducttableComponent, canActivate: [AuthGuard] },
+    { path: 'sales', component: SalesComponent, canActivate: [AuthGuard] },
 
     // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: 'sales' }
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(appRoutes);
