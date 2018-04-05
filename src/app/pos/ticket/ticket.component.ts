@@ -9,9 +9,9 @@ import { PosService, Item } from '../../services/index';
   styleUrls: ['./ticket.component.css']
 })
 export class TicketComponent implements OnInit {
-    displayedColumns = ['productOid', 'description'];
+    displayedColumns = ['productOid', 'productDesc'];
     dataSource = new MatTableDataSource();
-    
+
 
   constructor(private ticketSync: PosService) { }
 

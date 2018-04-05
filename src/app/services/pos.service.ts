@@ -17,7 +17,6 @@ export class PosService {
 
 
 export interface Item {
-
   productOid: string;
-
+  productDesc: string;
 }
