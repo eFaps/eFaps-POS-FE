@@ -10,11 +10,12 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ProducttableComponent } from './producttable/producttable.component';
 import { MaterialModule } from './material/material.module';
-import { AuthService, ConfigService, JwtInterceptor, ProductService } from './services/index';
+import { AuthService, ConfigService, JwtInterceptor, PosService, ProductService } from './services/index';
 import { AuthGuard } from './auth.guard';
 import { routes } from './app.routes';
 import { SalesComponent } from './sales/sales.component';
 import { ProductgridComponent } from './sales/productgrid/productgrid.component';
+import { TicketComponent } from './sales/ticket/ticket.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProductgridComponent } from './sales/productgrid/productgrid.component'
     ProducttableComponent,
     LoginComponent,
     SalesComponent,
-    ProductgridComponent
+    ProductgridComponent,
+    TicketComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ import { ProductgridComponent } from './sales/productgrid/productgrid.component'
     AuthGuard,
     AuthService,
     ProductService,
+    PosService,
     ConfigService,
     {
       provide: APP_INITIALIZER,

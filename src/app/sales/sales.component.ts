@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PosService, Item } from '../services/index'
 
 @Component({
   selector: 'app-sales',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sales.component.css']
 })
 export class SalesComponent implements OnInit {
-
-  constructor() { }
+  ticket: Item[];
+  
+  constructor(private ticketSync: PosService) { }
 
   ngOnInit() {
+    this.ticketSync.currentTicket.subscribe(data => this.ticket = data);
   }
 
 }

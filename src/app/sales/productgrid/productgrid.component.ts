@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product, ProductService } from '../../services/index'
+import { Product, ProductService, PosService, Item } from '../../services/index'
 
 @Component({
   selector: 'app-productgrid',
@@ -8,14 +8,21 @@ import { Product, ProductService } from '../../services/index'
 })
 export class ProductgridComponent implements OnInit {
   products = [];
-  constructor(private productService: ProductService) { }
+  ticket: Item[];
+  constructor(private productService: ProductService, private ticketSync: PosService) { }
 
   ngOnInit() {
     this.productService.getProducts()
       .subscribe(data => this.products = data);
+    this.ticketSync.currentTicket.subscribe(data => this.ticket = data);
   }
 
   select(_product: Product) {
-    console.log(_product.sku);
+    this.ticket.push({ productOid: _product.oid });
+    this.syncTicket();
   }
+
+  syncTicket() {
+    this.ticketSync.changeTicket(this.ticket);
+    }
 }
