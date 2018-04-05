@@ -4,6 +4,7 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -13,18 +14,23 @@ import { AuthService, ConfigService, JwtInterceptor, ProductService } from './se
 import { AuthGuard } from './auth.guard';
 import { routes } from './app.routes';
 import { SalesComponent } from './sales/sales.component';
+import { ProductcardComponent } from './sales/productcard/productcard.component';
+import { ProductgridComponent } from './sales/productgrid/productgrid.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProducttableComponent,
     LoginComponent,
-    SalesComponent
+    SalesComponent,
+    ProductcardComponent,
+    ProductgridComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     ReactiveFormsModule,
     MaterialModule,
     routes
