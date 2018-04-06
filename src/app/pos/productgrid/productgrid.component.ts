@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product, ProductService, PosService, Item } from '../../services/index'
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-productgrid',
@@ -24,5 +26,5 @@ export class ProductgridComponent implements OnInit {
 
   syncTicket() {
     this.ticketSync.changeTicket(this.ticket);
-    }
+  }
 }
