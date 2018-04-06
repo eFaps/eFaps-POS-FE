@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatKeyboardService } from '@ngx-material-keyboard/core';
 
 import { AuthService, UserService, User } from '../services/index';
 
@@ -16,9 +18,11 @@ export class LoginComponent implements OnInit {
   loading = false;
   error = '';
   hiddenUser = true;
+  virtKeyboard = false;
 
   constructor(
     private router: Router,
+    private keyboardService: MatKeyboardService,
     private userService: UserService,
     private authService: AuthService,
     private fb: FormBuilder) { }
@@ -58,5 +62,9 @@ export class LoginComponent implements OnInit {
 
   toggleUser() {
       this.hiddenUser = !this.hiddenUser;
+  }
+
+  toggleVirtKeyboard(_toggle: MatSlideToggleChange) {
+      this.virtKeyboard = !this.virtKeyboard;
   }
 }

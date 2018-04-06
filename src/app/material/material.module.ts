@@ -6,7 +6,10 @@ import { MatButtonToggleModule,
     MatIconModule,
     MatTableModule,
     MatSidenavModule,
+    MatSlideToggleModule,
     MatToolbarModule } from '@angular/material';
+
+import { MatKeyboardModule } from '@ngx-material-keyboard/core';
 
 @NgModule({
   imports: [
@@ -15,8 +18,10 @@ import { MatButtonToggleModule,
     MatGridListModule,
     MatIconModule,
     MatSidenavModule,
+    MatSlideToggleModule,
     MatTableModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatKeyboardModule
   ],
   exports: [
     MatButtonToggleModule,
@@ -24,8 +29,10 @@ import { MatButtonToggleModule,
     MatGridListModule,
     MatIconModule,
     MatSidenavModule,
+    MatSlideToggleModule,
     MatTableModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatKeyboardModule
   ]
 })
 export class MaterialModule { }

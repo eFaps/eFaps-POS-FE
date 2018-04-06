@@ -23,6 +23,7 @@ import { PosComponent } from './pos/pos.component';
 import { ProductgridComponent } from './pos/productgrid/productgrid.component';
 import { TicketComponent } from './pos/ticket/ticket.component';
 import { SecurePipe } from './services/secure.pipe';
+import { VirtKeyboardDirective } from './services/virt-keyboard.directive';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SecurePipe } from './services/secure.pipe';
     PosComponent,
     ProductgridComponent,
     TicketComponent,
-    SecurePipe
+    SecurePipe,
+    VirtKeyboardDirective
   ],
   imports: [
     BrowserModule,
