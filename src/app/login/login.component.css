@@ -1,0 +1,11 @@
+.pos-usergrid {
+  width: 800px;
+}
+
+.pos-usercard {
+    width: 160px;
+}
+
+.pos-usercard .mat-card-content {
+    text-align: center;
+}

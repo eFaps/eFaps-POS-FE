@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ProducttableComponent } from './producttable/producttable.component';
 import { MaterialModule } from './material/material.module';
-import { AuthService, ConfigService, JwtInterceptor, PosService, ProductService } from './services/index';
+import { AuthService, ConfigService, JwtInterceptor, PosService, ProductService, UserService } from './services/index';
 import { AuthGuard } from './auth.guard';
 import { routes } from './app.routes';
 import { PosComponent } from './pos/pos.component';
@@ -40,6 +40,7 @@ import { TicketComponent } from './pos/ticket/ticket.component';
     AuthService,
     ProductService,
     PosService,
+    UserService,
     ConfigService,
     {
       provide: APP_INITIALIZER,
