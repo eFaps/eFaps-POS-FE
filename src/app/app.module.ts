@@ -16,14 +16,16 @@ import { AuthService,
     JwtInterceptor,
     PosService,
     ProductService,
-    UserService } from './services/index';
-import { AuthGuard } from './auth.guard';
+    UserService,
+    WorkspaceService } from './services/index';
+import { AuthGuard, WorkspaceGuard } from './guards/index';
 import { routes } from './app.routes';
 import { PosComponent } from './pos/pos.component';
 import { ProductgridComponent } from './pos/productgrid/productgrid.component';
 import { TicketComponent } from './pos/ticket/ticket.component';
 import { SecurePipe } from './services/secure.pipe';
 import { VirtKeyboardDirective } from './services/virt-keyboard.directive';
+import { WorkspaceComponent } from './workspace/workspace.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { VirtKeyboardDirective } from './services/virt-keyboard.directive';
     ProductgridComponent,
     TicketComponent,
     SecurePipe,
-    VirtKeyboardDirective
+    VirtKeyboardDirective,
+    WorkspaceComponent
   ],
   imports: [
     BrowserModule,
@@ -47,12 +50,14 @@ import { VirtKeyboardDirective } from './services/virt-keyboard.directive';
   ],
   providers: [
     AuthGuard,
+    WorkspaceGuard,
     AuthService,
     ProductService,
     PosService,
     UserService,
     ImageService,
     ConfigService,
+    WorkspaceService,
     {
       provide: APP_INITIALIZER,
       useFactory: (configService: ConfigService) => function() { return configService.load(); },

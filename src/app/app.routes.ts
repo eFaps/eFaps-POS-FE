@@ -4,12 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { ProducttableComponent } from './producttable/producttable.component';
 import { PosComponent } from './pos/pos.component';
-import { AuthGuard } from './auth.guard';
+import { WorkspaceComponent } from './workspace/workspace.component';
+import { AuthGuard, WorkspaceGuard } from './guards/index';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
-    { path: 'products', component: ProducttableComponent, canActivate: [AuthGuard] },
-    { path: 'pos', component: PosComponent, canActivate: [AuthGuard] },
+    { path: 'products', component: ProducttableComponent, canActivate: [AuthGuard, WorkspaceGuard] },
+    { path: 'pos', component: PosComponent, canActivate: [AuthGuard, WorkspaceGuard] },
+    { path: 'workspaces', component: WorkspaceComponent, canActivate: [AuthGuard] },
 
     // otherwise redirect to home
     { path: '**', redirectTo: 'pos' }

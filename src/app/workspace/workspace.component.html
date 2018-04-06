@@ -1,0 +1,10 @@
+<div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px" class="pos-productgrid">
+  <mat-card class="pos-ws-card" (click)="select(ws)" *ngFor="let ws of workspaces">
+    <mat-card-header>
+      <mat-card-title>{{ws.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      {{ws.name}}
+    </mat-card-content>
+  </mat-card>
+</div>

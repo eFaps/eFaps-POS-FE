@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { WorkspaceService } from './services/index';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app';
   screenWidth: number;
-  constructor() {
+  
+  constructor(private workspaceService: WorkspaceService) {
     this.screenWidth = window.innerWidth;
     window.onresize = () => {
       this.screenWidth = window.innerWidth;

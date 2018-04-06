@@ -4,4 +4,5 @@ export * from './product.service';
 export * from './jwt.interceptor';
 export * from './pos.service';
 export * from './user.service';
-export * from './image.service';
+export * from './image.service'
+export * from './workspace.service';
