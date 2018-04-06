@@ -1,5 +1,7 @@
 .pos-usergrid {
   width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .pos-usercard {
@@ -8,4 +10,10 @@
 
 .pos-usercard .mat-card-content {
     text-align: center;
+}
+
+.pos-card-selected {
+    border-color: grey;
+    border-style: solid;
+    border-width: 2px;
 }

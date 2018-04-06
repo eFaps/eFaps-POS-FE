@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService, UserService, User } from '../services/index';
 
@@ -11,27 +11,33 @@ import { AuthService, UserService, User } from '../services/index';
 })
 
 export class LoginComponent implements OnInit {
-
+  loginForm: FormGroup;
   users: User[] = [];
   loading = false;
   error = '';
-
-  loginForm = new FormGroup({
-    userName: new FormControl(),
-    password: new FormControl()
-  });
+  hiddenUser = true;
 
   constructor(
     private router: Router,
     private userService: UserService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.createForm();
     // reset login status
     this.authService.logout();
     this.userService.getUsers()
       .subscribe(data => this.users = data);
   }
+
+  createForm() {
+    this.loginForm = this.fb.group({
+      userName: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
+
 
   login() {
     this.loading = true;
@@ -44,5 +50,13 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         }
       });
+  }
+
+  select(_user: User) {
+    this.loginForm.patchValue({userName: _user.username});
+  }
+
+  toggleUser() {
+      this.hiddenUser = !this.hiddenUser;
   }
 }

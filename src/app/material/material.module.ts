@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatCardModule,
+import { MatButtonToggleModule,
+    MatCardModule,
     MatGridListModule,
     MatIconModule,
     MatTableModule,
@@ -9,6 +10,7 @@ import { MatCardModule,
 
 @NgModule({
   imports: [
+    MatButtonToggleModule,
     MatCardModule,
     MatGridListModule,
     MatIconModule,
@@ -17,6 +19,7 @@ import { MatCardModule,
     MatToolbarModule
   ],
   exports: [
+    MatButtonToggleModule,
     MatCardModule,
     MatGridListModule,
     MatIconModule,
