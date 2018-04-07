@@ -16,6 +16,14 @@ export class PosService {
   private ticketSource = new BehaviorSubject<Item[]>(this.ticket);
   currentTicket = this.ticketSource.asObservable();
 
+  private netTotal = 0;
+  private netTotalSource = new BehaviorSubject<number>(this.netTotal);
+  currentNetTotal = this.netTotalSource.asObservable();
+
+  private crossTotal = 0;
+  private crossTotalSource = new BehaviorSubject<number>(this.crossTotal);
+  currentCrossTotal = this.crossTotalSource.asObservable();
+
   private currentPos: Pos;
 
   constructor(private http: HttpClient, private config: ConfigService,
@@ -39,6 +47,7 @@ export class PosService {
 
   changeTicket(_ticket: Item[]) {
     this.calculateItems(_ticket);
+    this.calculateTotals(_ticket);
     this.ticketSource.next(_ticket);
   }
 
@@ -46,6 +55,17 @@ export class PosService {
     _ticket.forEach(function(_item: Item) {
       _item.price = (_item.unitPrice * _item.quantity);
     });
+  }
+
+  calculateTotals(_ticket: Item[]) {
+      let net = 0;
+      let cross = 0;
+      _ticket.forEach(function(_item: Item) {
+        net += _item.price;
+        cross += _item.price;
+      });
+      this.netTotalSource.next(cross);
+      this.crossTotalSource.next(cross);
   }
 }
 

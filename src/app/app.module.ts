@@ -26,6 +26,7 @@ import { TicketComponent } from './pos/ticket/ticket.component';
 import { SecurePipe } from './services/secure.pipe';
 import { VirtKeyboardDirective } from './services/virt-keyboard.directive';
 import { WorkspaceComponent } from './workspace/workspace.component';
+import { TotalsComponent } from './pos/totals/totals.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { WorkspaceComponent } from './workspace/workspace.component';
     TicketComponent,
     SecurePipe,
     VirtKeyboardDirective,
-    WorkspaceComponent
+    WorkspaceComponent,
+    TotalsComponent
   ],
   imports: [
     BrowserModule,
