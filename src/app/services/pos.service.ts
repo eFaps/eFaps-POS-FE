@@ -46,6 +46,9 @@ export class PosService {
 export interface Item {
   productOid: string;
   productDesc: string;
+  quantity: number;
+  unitPrice: number;
+  price: number;
 }
 
 export interface Pos {

@@ -20,7 +20,12 @@ export class ProductgridComponent implements OnInit {
   }
 
   select(_product: Product) {
-    this.ticket.push({ productOid: _product.oid, productDesc: _product.description });
+    this.ticket.push({
+        productOid: _product.oid,
+        productDesc: _product.description,
+        quantity: 1,
+        unitPrice: 0,
+        price: 0 });
     this.syncTicket();
   }
 

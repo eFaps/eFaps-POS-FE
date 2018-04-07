@@ -1,12 +1,19 @@
-<div class="example-container mat-elevation-z8">
+<div class="pos-ticket-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource">
-    <ng-container matColumnDef="productOid">
-      <mat-header-cell *matHeaderCellDef> Codigo </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.productOid}} </mat-cell>
+    <ng-container matColumnDef="quantity">
+      <mat-header-cell *matHeaderCellDef> C. </mat-header-cell>
+      <mat-cell *matCellDef="let item"> {{item.quantity}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="productDesc">
       <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.productDesc}} </mat-cell>
+      <mat-cell *matCellDef="let item"> {{item.productDesc}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="modify">
+      <mat-header-cell *matHeaderCellDef> Modificar </mat-header-cell>
+      <mat-cell *matCellDef="let item">
+        <mat-icon (click)="addOne(item)" class="del">control_point</mat-icon>
+        <mat-icon (click)="subtractOne(item)" class="del">indeterminate_check_box</mat-icon>
+      </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

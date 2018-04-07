@@ -9,14 +9,38 @@ import { PosService, Item } from '../../services/index';
   styleUrls: ['./ticket.component.css']
 })
 export class TicketComponent implements OnInit {
-    displayedColumns = ['productOid', 'productDesc'];
-    dataSource = new MatTableDataSource();
+  displayedColumns = ['quantity', 'productDesc', 'modify'];
+  dataSource = new MatTableDataSource<Item>();
 
 
   constructor(private ticketSync: PosService) { }
 
   ngOnInit() {
-      this.ticketSync.currentTicket.subscribe(data => this.dataSource.data = data);
+    this.ticketSync.currentTicket.subscribe(_data => this.dataSource.data = _data);
+  }
+
+  addOne(_item: Item) {
+    _item.quantity = _item.quantity + 1;
+    this.syncTicket();
+  }
+
+  subtractOne(_item: Item) {
+    _item.quantity = _item.quantity - 1;
+    if (_item.quantity < 1) {
+        const ticket = this.dataSource.data;
+      if (ticket.includes(_item)) {
+        const index = ticket.indexOf(_item);
+        if (index > -1) {
+          ticket[ticket.indexOf(_item)].quantity = 1;
+          ticket.splice(index, 1);
+        }
+      }
+    }
+    this.syncTicket();
+  }
+
+  syncTicket() {
+    this.ticketSync.changeTicket(this.dataSource.data);
   }
 
 }
