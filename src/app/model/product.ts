@@ -5,4 +5,5 @@ export interface Product {
     imageOid: string;
     netPrice: number;
     crossPrice: number;
+    categoryOids: string[];
 }

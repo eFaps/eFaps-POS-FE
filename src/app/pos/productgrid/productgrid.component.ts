@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService, PosService } from '../../services/index';
-import { Product, Item } from '../../model/index';
+import { Product, Item, PosCategory } from '../../model/index';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { switchMap } from 'rxjs/operators';
 
@@ -10,13 +10,13 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./productgrid.component.css']
 })
 export class ProductgridComponent implements OnInit {
-  products = [];
+  categories = [];
   ticket: Item[];
   constructor(private productService: ProductService, private ticketSync: PosService) { }
 
   ngOnInit() {
-    this.productService.getProducts()
-      .subscribe(data => this.products = data);
+    this.productService.getPosCategories()
+      .subscribe(data => this.categories = data);
     this.ticketSync.currentTicket.subscribe(data => this.ticket = data);
   }
 

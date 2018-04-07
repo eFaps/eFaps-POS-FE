@@ -4,6 +4,7 @@ import { MatButtonToggleModule,
     MatCardModule,
     MatGridListModule,
     MatIconModule,
+    MatTabsModule,
     MatTableModule,
     MatSidenavModule,
     MatSlideToggleModule,
@@ -19,6 +20,7 @@ import { MatKeyboardModule } from '@ngx-material-keyboard/core';
     MatIconModule,
     MatSidenavModule,
     MatSlideToggleModule,
+    MatTabsModule,
     MatTableModule,
     MatToolbarModule,
     MatKeyboardModule
@@ -30,6 +32,7 @@ import { MatKeyboardModule } from '@ngx-material-keyboard/core';
     MatIconModule,
     MatSidenavModule,
     MatSlideToggleModule,
+    MatTabsModule,
     MatTableModule,
     MatToolbarModule,
     MatKeyboardModule

@@ -1,12 +1,16 @@
-<div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px" class="pos-productgrid">
-  <mat-card class="pos-card" (click)="select(product)" *ngFor="let product of products">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{product.sku}}</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image [src]="product.imageOid|secure" alt="{{product.description}}">
-    <mat-card-content>
-      {{product.description}}
-    </mat-card-content>
-  </mat-card>
-</div>
+<mat-tab-group>
+  <mat-tab *ngFor="let category of categories; let i = index" label="{{categories[i].name}}">
+    <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px" class="pos-productgrid">
+      <mat-card class="pos-card" (click)="select(product)" *ngFor="let product of category.products">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{product.sku}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image [src]="product.imageOid|secure" alt="{{product.description}}">
+        <mat-card-content>
+          {{product.description}}
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-tab>
+</mat-tab-group>
