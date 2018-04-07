@@ -38,7 +38,14 @@ export class PosService {
   }
 
   changeTicket(_ticket: Item[]) {
+    this.calculateItems(_ticket);
     this.ticketSource.next(_ticket);
+  }
+
+  calculateItems(_ticket: Item[]) {
+    _ticket.forEach(function(_item: Item) {
+      _item.price = (_item.unitPrice * _item.quantity);
+    });
   }
 }
 

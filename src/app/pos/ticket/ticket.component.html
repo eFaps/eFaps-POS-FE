@@ -8,6 +8,14 @@
       <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
       <mat-cell *matCellDef="let item"> {{item.productDesc}} </mat-cell>
     </ng-container>
+    <ng-container matColumnDef="unitPrice">
+      <mat-header-cell *matHeaderCellDef> P.U. </mat-header-cell>
+      <mat-cell *matCellDef="let item"> {{item.unitPrice}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
+      <mat-cell *matCellDef="let item"> {{item.price}} </mat-cell>
+    </ng-container>
     <ng-container matColumnDef="modify">
       <mat-header-cell *matHeaderCellDef> Modificar </mat-header-cell>
       <mat-cell *matCellDef="let item">

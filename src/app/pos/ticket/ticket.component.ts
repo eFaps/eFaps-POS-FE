@@ -9,7 +9,7 @@ import { PosService, Item } from '../../services/index';
   styleUrls: ['./ticket.component.css']
 })
 export class TicketComponent implements OnInit {
-  displayedColumns = ['quantity', 'productDesc', 'modify'];
+  displayedColumns = ['quantity', 'productDesc', 'unitPrice', 'price', 'modify'];
   dataSource = new MatTableDataSource<Item>();
 
 
@@ -42,5 +42,4 @@ export class TicketComponent implements OnInit {
   syncTicket() {
     this.ticketSync.changeTicket(this.dataSource.data);
   }
-
 }

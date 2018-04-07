@@ -24,8 +24,8 @@ export class ProductgridComponent implements OnInit {
         productOid: _product.oid,
         productDesc: _product.description,
         quantity: 1,
-        unitPrice: 0,
-        price: 0 });
+        unitPrice: _product.crossPrice,
+        price: _product.crossPrice });
     this.syncTicket();
   }
 
