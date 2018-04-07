@@ -6,6 +6,7 @@ import { Subscriber } from 'rxjs/Subscriber';
 import { map } from 'rxjs/operators';
 
 import { ConfigService } from './config.service';
+import { Product } from '../model/index';
 
 @Injectable()
 export class ProductService {
@@ -17,13 +18,4 @@ export class ProductService {
     const requestUrl = `${href}`;
     return this.http.get<Product[]>(requestUrl);
   }
-}
-
-export interface Product {
-  oid: string;
-  sku: string;
-  description: string;
-  imageOid: string;
-  netPrice: number;
-  crossPrice: number;
 }

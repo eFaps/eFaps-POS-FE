@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { ConfigService } from './config.service';
+import { User } from '../model/index';
 
 @Injectable()
 export class UserService {
@@ -14,10 +15,4 @@ export class UserService {
        const requestUrl = `${href}`;
        return this.http.get<User[]>(requestUrl);
     }
-}
-
-export interface User {
-  username: string;
-  firstName: string;
-  surName: string;
 }

@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 
 import { ConfigService } from './config.service';
 import { WorkspaceService } from './workspace.service';
+import { Item, Pos, Product } from '../model/index';
 
 @Injectable()
 export class PosService {
@@ -67,18 +68,4 @@ export class PosService {
       this.netTotalSource.next(cross);
       this.crossTotalSource.next(cross);
   }
-}
-
-
-export interface Item {
-  productOid: string;
-  productDesc: string;
-  quantity: number;
-  unitPrice: number;
-  price: number;
-}
-
-export interface Pos {
-  oid: string;
-  name: string;
 }

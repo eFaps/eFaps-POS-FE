@@ -7,6 +7,7 @@ import { Subscriber } from 'rxjs/Subscriber';
 import { map } from 'rxjs/operators';
 
 import { ConfigService } from './config.service';
+import { Workspace } from '../model/index';
 
 @Injectable()
 export class WorkspaceService {
@@ -35,12 +36,6 @@ export class WorkspaceService {
       ws.posOid = _workspace.posOid;
       this.currentSource.next(ws);
   }
-}
-
-export interface Workspace {
-  oid: string;
-  name: string;
-  posOid: string;
 }
 
 export class CurrentWorkspace {
