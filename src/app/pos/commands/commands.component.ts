@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material';
+
+import { ReceiptDialogComponent } from '../receipt-dialog/receipt-dialog.component';
 import { PosService } from '../../services/index'
 
 @Component({
@@ -8,12 +11,17 @@ import { PosService } from '../../services/index'
 })
 export class CommandsComponent implements OnInit {
 
-  constructor(private posService: PosService) { }
+  constructor(private posService: PosService, private dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
   register() {
-    this.posService.register();
+    this.posService.register().subscribe(_receipt => {
+      const dialogRef = this.dialog.open(ReceiptDialogComponent, {
+        width: '450px',
+        data: { receipt: _receipt }
+      });
+    });
   }
 }

@@ -10,15 +10,17 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ProducttableComponent } from './producttable/producttable.component';
 import { MaterialModule } from './material/material.module';
-import { AuthService,
-    ConfigService,
-    DocumentService,
-    ImageService,
-    JwtInterceptor,
-    PosService,
-    ProductService,
-    UserService,
-    WorkspaceService } from './services/index';
+import {
+  AuthService,
+  ConfigService,
+  DocumentService,
+  ImageService,
+  JwtInterceptor,
+  PosService,
+  ProductService,
+  UserService,
+  WorkspaceService
+} from './services/index';
 import { AuthGuard, WorkspaceGuard } from './guards/index';
 import { routes } from './app.routes';
 import { PosComponent } from './pos/pos.component';
@@ -29,6 +31,7 @@ import { VirtKeyboardDirective } from './services/virt-keyboard.directive';
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { TotalsComponent } from './pos/totals/totals.component';
 import { CommandsComponent } from './pos/commands/commands.component';
+import { ReceiptDialogComponent } from './pos/receipt-dialog/receipt-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,8 @@ import { CommandsComponent } from './pos/commands/commands.component';
     VirtKeyboardDirective,
     WorkspaceComponent,
     TotalsComponent,
-    CommandsComponent
+    CommandsComponent,
+    ReceiptDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +80,7 @@ import { CommandsComponent } from './pos/commands/commands.component';
       multi: true
     },
   ],
+  entryComponents: [ReceiptDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
