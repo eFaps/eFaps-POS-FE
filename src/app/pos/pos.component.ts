@@ -10,9 +10,9 @@ import { Item } from '../model/index';
 export class PosComponent implements OnInit {
   ticket: Item[];
 
-  constructor(private ticketSync: PosService) { }
+  constructor(private posService: PosService) { }
 
   ngOnInit() {
-    this.ticketSync.currentTicket.subscribe(data => this.ticket = data);
+    this.posService.currentTicket.subscribe(data => this.ticket = data);
   }
 }

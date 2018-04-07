@@ -7,6 +7,7 @@ import { Subscriber } from 'rxjs/Subscriber';
 import { map } from 'rxjs/operators';
 
 import { ConfigService } from './config.service';
+import { DocumentService } from './document.service';
 import { WorkspaceService } from './workspace.service';
 import { Item, Pos, Product } from '../model/index';
 
@@ -28,7 +29,8 @@ export class PosService {
   private currentPos: Pos;
 
   constructor(private http: HttpClient, private config: ConfigService,
-    private workspaceService: WorkspaceService) {
+    private workspaceService: WorkspaceService,
+    private documentService: DocumentService) {
 
     this.workspaceService.currentWorkspace.subscribe(_data => {
       if (_data) {
@@ -59,13 +61,20 @@ export class PosService {
   }
 
   calculateTotals(_ticket: Item[]) {
-      let net = 0;
-      let cross = 0;
-      _ticket.forEach(function(_item: Item) {
-        net += _item.price;
-        cross += _item.price;
-      });
-      this.netTotalSource.next(cross);
-      this.crossTotalSource.next(cross);
+    let net = 0;
+    let cross = 0;
+    _ticket.forEach(function(_item: Item) {
+      net += _item.price;
+      cross += _item.price;
+    });
+    this.netTotalSource.next(cross);
+    this.crossTotalSource.next(cross);
+  }
+
+  register() {
+    this.documentService.createReceipt({
+        oid: null,
+        number: null
+    }).subscribe();
   }
 }

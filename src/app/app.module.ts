@@ -12,6 +12,7 @@ import { ProducttableComponent } from './producttable/producttable.component';
 import { MaterialModule } from './material/material.module';
 import { AuthService,
     ConfigService,
+    DocumentService,
     ImageService,
     JwtInterceptor,
     PosService,
@@ -27,6 +28,7 @@ import { SecurePipe } from './services/secure.pipe';
 import { VirtKeyboardDirective } from './services/virt-keyboard.directive';
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { TotalsComponent } from './pos/totals/totals.component';
+import { CommandsComponent } from './pos/commands/commands.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { TotalsComponent } from './pos/totals/totals.component';
     SecurePipe,
     VirtKeyboardDirective,
     WorkspaceComponent,
-    TotalsComponent
+    TotalsComponent,
+    CommandsComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { TotalsComponent } from './pos/totals/totals.component';
     AuthGuard,
     WorkspaceGuard,
     AuthService,
+    DocumentService,
     ProductService,
     PosService,
     UserService,
