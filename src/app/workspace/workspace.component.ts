@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Workspace, WorkspaceService } from '../services/index';
+import { WorkspaceService } from '../services/index';
+import { Workspace } from '../model/index';
 import { Router } from '@angular/router';
 
 @Component({

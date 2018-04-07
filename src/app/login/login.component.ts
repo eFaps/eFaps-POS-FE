@@ -4,7 +4,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatKeyboardService } from '@ngx-material-keyboard/core';
 
-import { AuthService, UserService, User } from '../services/index';
+import { AuthService, UserService } from '../services/index';
+import { User } from '../model/index';
 
 @Component({
   moduleId: module.id,

@@ -54,7 +54,7 @@ export class PosService {
 
   calculateItems(_ticket: Item[]) {
     _ticket.forEach(function(_item: Item) {
-      _item.price = (_item.unitPrice * _item.quantity);
+      _item.price = (_item.product.crossPrice * _item.quantity);
     });
   }
 

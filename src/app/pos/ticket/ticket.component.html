@@ -6,11 +6,11 @@
     </ng-container>
     <ng-container matColumnDef="productDesc">
       <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.productDesc}} </mat-cell>
+      <mat-cell *matCellDef="let item"> {{item.product.description}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="unitPrice">
       <mat-header-cell *matHeaderCellDef> P.U. </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.unitPrice | number:'1.2-2'}} </mat-cell>
+      <mat-cell *matCellDef="let item"> {{item.product.crossPrice | number:'1.2-2'}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="price">
       <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>

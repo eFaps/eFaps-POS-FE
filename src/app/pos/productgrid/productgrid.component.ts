@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product, ProductService, PosService, Item } from '../../services/index'
+import { ProductService, PosService } from '../../services/index';
+import { Product, Item } from '../../model/index';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { switchMap } from 'rxjs/operators';
 
@@ -21,11 +22,9 @@ export class ProductgridComponent implements OnInit {
 
   select(_product: Product) {
     this.ticket.push({
-        productOid: _product.oid,
-        productDesc: _product.description,
+        product: _product,
         quantity: 1,
-        unitPrice: _product.crossPrice,
-        price: _product.crossPrice });
+        price: 0 });
     this.syncTicket();
   }
 

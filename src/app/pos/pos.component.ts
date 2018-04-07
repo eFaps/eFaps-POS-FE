@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PosService, Item } from '../services/index'
+import { PosService } from '../services/index'
+import { Item } from '../model/index';
 
 @Component({
   selector: 'app-pos',

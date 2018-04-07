@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { MatTableDataSource } from '@angular/material';
 
-import { PosService, Item } from '../../services/index';
+import { PosService } from '../../services/index';
+import { Item } from '../../model/index';
 
 @Component({
   selector: 'app-ticket',
