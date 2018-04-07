@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatKeyboardService } from '@ngx-material-keyboard/core';
 
-import { AuthService, UserService } from '../services/index';
+import { AuthService, UserService, WorkspaceService } from '../services/index';
 import { User } from '../model/index';
 
 @Component({
@@ -26,12 +26,14 @@ export class LoginComponent implements OnInit {
     private keyboardService: MatKeyboardService,
     private userService: UserService,
     private authService: AuthService,
+    private workspaceService: WorkspaceService,
     private fb: FormBuilder) { }
 
   ngOnInit() {
     this.createForm();
     // reset login status
     this.authService.logout();
+    this.workspaceService.logout();
     this.userService.getUsers()
       .subscribe(data => this.users = data);
   }

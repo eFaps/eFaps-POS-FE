@@ -43,6 +43,11 @@ export class AuthService {
     return currentUser && currentUser.token;
   }
 
+  getCurrentUsername(): string {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    return currentUser && currentUser.username;
+  }
+
   getTokenExpirationDate(token: string): Date {
     const decoded = jwtDecode(token);
 

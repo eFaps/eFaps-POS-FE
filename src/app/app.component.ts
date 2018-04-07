@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
     this.workspaceService.currentWorkspace.subscribe(data => {
       if (data) {
         this.workspace = data.name;
+      } else {
+        this.workspace = "";
       }
     });
   }
