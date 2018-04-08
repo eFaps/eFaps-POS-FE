@@ -7,3 +7,4 @@ export * from './pos.service';
 export * from './user.service';
 export * from './image.service'
 export * from './workspace.service';
+export * from './error.interceptor';

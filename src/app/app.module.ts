@@ -14,6 +14,7 @@ import {
   AuthService,
   ConfigService,
   DocumentService,
+  ErrorInterceptor,
   ImageService,
   JwtInterceptor,
   PosService,
@@ -77,6 +78,11 @@ import { ReceiptDialogComponent } from './pos/receipt-dialog/receipt-dialog.comp
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true
     },
   ],
