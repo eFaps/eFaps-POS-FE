@@ -23,7 +23,7 @@ export class CommandsComponent implements OnInit {
       const dialogRef = this.dialog.open(OrderDialogComponent, {
         width: '450px',
         disableClose: true,
-        data: { receipt: _order }
+        data: { order: _order }
       });
       dialogRef.afterClosed().subscribe(_result => {
         this.router.navigate(['/payment']);

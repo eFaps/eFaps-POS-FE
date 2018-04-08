@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Order No: {{data.receipt.number}}</h1>
+<h1 mat-dialog-title>Order No: {{data.order.number}}</h1>
 <div mat-dialog-content>
   <p>
     receipt-dialog works!
@@ -6,5 +6,5 @@
 </div>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>OK</button>
-  <button mat-raised-button [mat-dialog-close]="data.receipt">Checkout</button>
+  <button mat-raised-button [mat-dialog-close]="data.order">Checkout</button>
 </mat-dialog-actions>

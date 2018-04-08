@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 import { ConfigService } from './config.service';
 import { DocumentService } from './document.service';
 import { WorkspaceService } from './workspace.service';
-import { Item, Order, Pos, Product, Receipt } from '../model/index';
+import { DocItem, Item, Order, Pos, Product, Receipt } from '../model/index';
 
 @Injectable()
 export class PosService {
@@ -41,6 +41,7 @@ export class PosService {
         }
       }
     });
+    this.currentTicket.subscribe(_ticket => this.ticket = _ticket);
   }
 
   public getPos(_oid: string): Observable<Pos> {
@@ -73,8 +74,11 @@ export class PosService {
 
   order(): Observable<Order> {
     return this.documentService.createOrder({
-        oid: null,
-        number: null
+      oid: null,
+      number: null,
+      items: this.ticket.map((_item, _index) => <DocItem> {
+          index: _index
+      }),
     });
   }
 }
