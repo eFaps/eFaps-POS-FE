@@ -20,7 +20,12 @@ export class CommandsComponent implements OnInit {
     this.posService.order().subscribe(_order => {
       const dialogRef = this.dialog.open(OrderDialogComponent, {
         width: '450px',
+        disableClose: true,
         data: { receipt: _order }
+      });
+      dialogRef.afterClosed().subscribe(_result => {
+        console.log(_result);
+
       });
     });
   }

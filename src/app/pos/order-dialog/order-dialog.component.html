@@ -1,6 +1,10 @@
-<h1 mat-dialog-title>Hi {{data.receipt.number}}</h1>
+<h1 mat-dialog-title>Order No: {{data.receipt.number}}</h1>
 <div mat-dialog-content>
-<p>
-  receipt-dialog works!
-</p>
+  <p>
+    receipt-dialog works!
+  </p>
 </div>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>OK</button>
+  <button mat-raised-button [mat-dialog-close]="data.receipt">Checkout</button>
+</mat-dialog-actions>
