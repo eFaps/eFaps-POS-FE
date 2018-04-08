@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 import { forkJoin } from 'rxjs/observable/forkJoin';
 
 import { ConfigService } from './config.service';
-import { Receipt } from '../model/index';
+import { Order, Receipt } from '../model/index';
 
 @Injectable()
 export class DocumentService {
@@ -18,4 +18,10 @@ export class DocumentService {
      const url = `${this.config.baseUrl}/documents/receipts`;
      return this.http.post<Receipt>(url, _receipt);
    }
+
+   public createOrder(_order: Order): Observable<Order> {
+     const url = `${this.config.baseUrl}/documents/orders`;
+     return this.http.post<Order>(url, _order);
+   }
+
 }

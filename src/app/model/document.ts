@@ -3,6 +3,10 @@ export interface Document {
     number: string;
 }
 
+export interface Order extends Document {
+
+}
+
 export interface Receipt extends Document {
 
 }

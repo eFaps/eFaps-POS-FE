@@ -32,7 +32,7 @@ import { VirtKeyboardDirective } from './services/virt-keyboard.directive';
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { TotalsComponent } from './pos/totals/totals.component';
 import { CommandsComponent } from './pos/commands/commands.component';
-import { ReceiptDialogComponent } from './pos/receipt-dialog/receipt-dialog.component';
+import { OrderDialogComponent } from './pos/order-dialog/order-dialog.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +47,7 @@ import { ReceiptDialogComponent } from './pos/receipt-dialog/receipt-dialog.comp
     WorkspaceComponent,
     TotalsComponent,
     CommandsComponent,
-    ReceiptDialogComponent
+    OrderDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +86,7 @@ import { ReceiptDialogComponent } from './pos/receipt-dialog/receipt-dialog.comp
       multi: true
     },
   ],
-  entryComponents: [ReceiptDialogComponent],
+  entryComponents: [OrderDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

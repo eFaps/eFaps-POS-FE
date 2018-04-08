@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 import { ConfigService } from './config.service';
 import { DocumentService } from './document.service';
 import { WorkspaceService } from './workspace.service';
-import { Item, Pos, Product, Receipt } from '../model/index';
+import { Item, Order, Pos, Product, Receipt } from '../model/index';
 
 @Injectable()
 export class PosService {
@@ -71,8 +71,8 @@ export class PosService {
     this.crossTotalSource.next(cross);
   }
 
-  register(): Observable<Receipt> {
-    return this.documentService.createReceipt({
+  order(): Observable<Order> {
+    return this.documentService.createOrder({
         oid: null,
         number: null
     });
