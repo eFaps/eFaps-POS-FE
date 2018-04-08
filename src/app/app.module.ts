@@ -17,6 +17,7 @@ import {
   ErrorInterceptor,
   ImageService,
   JwtInterceptor,
+  PaymentService,
   PosService,
   ProductService,
   UserService,
@@ -34,6 +35,7 @@ import { TotalsComponent } from './pos/totals/totals.component';
 import { CommandsComponent } from './pos/commands/commands.component';
 import { OrderDialogComponent } from './pos/order-dialog/order-dialog.component';
 import { PaymentComponent } from './payment/payment.component';
+import { DocumentComponent } from './payment/document/document.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { PaymentComponent } from './payment/payment.component';
     TotalsComponent,
     CommandsComponent,
     OrderDialogComponent,
-    PaymentComponent
+    PaymentComponent,
+    DocumentComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +68,7 @@ import { PaymentComponent } from './payment/payment.component';
     WorkspaceGuard,
     AuthService,
     DocumentService,
+    PaymentService,
     ProductService,
     PosService,
     UserService,
