@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
+import { Router } from '@angular/router';
 
 import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 import { PosService } from '../../services/index'
@@ -11,7 +12,8 @@ import { PosService } from '../../services/index'
 })
 export class CommandsComponent implements OnInit {
 
-  constructor(private posService: PosService, private dialog: MatDialog) { }
+  constructor(private router: Router, private posService: PosService,
+      private dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -24,8 +26,7 @@ export class CommandsComponent implements OnInit {
         data: { receipt: _order }
       });
       dialogRef.afterClosed().subscribe(_result => {
-        console.log(_result);
-
+        this.router.navigate(['/payment']);
       });
     });
   }

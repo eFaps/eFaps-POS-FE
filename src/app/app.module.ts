@@ -33,6 +33,7 @@ import { WorkspaceComponent } from './workspace/workspace.component';
 import { TotalsComponent } from './pos/totals/totals.component';
 import { CommandsComponent } from './pos/commands/commands.component';
 import { OrderDialogComponent } from './pos/order-dialog/order-dialog.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { OrderDialogComponent } from './pos/order-dialog/order-dialog.component'
     WorkspaceComponent,
     TotalsComponent,
     CommandsComponent,
-    OrderDialogComponent
+    OrderDialogComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
