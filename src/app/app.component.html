@@ -5,10 +5,28 @@
   </mat-toolbar>
   <mat-sidenav-container class="pos-sidenav">
     <mat-sidenav #sidenav [mode]="(screenWidth > 840) ? 'side' : 'over'">
-      <a routerLink="/pos"><h5>POS</h5></a>
-      <a routerLink="/products"><h5>Productos</h5></a>
-      <a routerLink="/workspaces"><h5>workspaces</h5></a>
-      <a routerLink="/login"><h5>login</h5></a>
+      <mat-list>
+        <mat-list-item>
+          <button routerLink="/pos">
+          <mat-icon aria-label="POS" class="posIcon-36">shop</mat-icon>
+            </button>
+        </mat-list-item>
+        <mat-list-item>
+          <button routerLink="/products">
+            <mat-icon aria-label="POS" class="posIcon-36">store</mat-icon>
+          </button>
+        </mat-list-item>
+        <mat-list-item>
+          <button routerLink="/workspaces">
+              <mat-icon aria-label="POS" class="posIcon-36">devices</mat-icon>
+          </button>
+        </mat-list-item>
+        <mat-list-item>
+          <button routerLink="/login">
+              <mat-icon aria-label="POS" class="posIcon-36">bubble_chart</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet></router-outlet>

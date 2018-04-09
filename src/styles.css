@@ -9,3 +9,12 @@
     height: 48px;
     width: 48px;
 }
+
+.posIcon-36 {
+    font-size: 36px;
+}
+
+.posIcon-36.mat-icon {
+    height: 36px;
+    width: 36px;
+}
