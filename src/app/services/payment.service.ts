@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscriber } from 'rxjs/Subscriber';
 import { map } from 'rxjs/operators';
 
-import { Document } from '../model/index';
+import { Document, Payment } from '../model/index';
 
 @Injectable()
 export class PaymentService {
@@ -14,11 +14,19 @@ export class PaymentService {
   private documentSource = new BehaviorSubject<Document>(this.document);
   currentDocument = this.documentSource.asObservable();
 
+  private payments: Payment[] = [];
+  private paymentsSource = new BehaviorSubject<Payment[]>(this.payments);
+  currentPayments = this.paymentsSource.asObservable();
+
   constructor() {
 
   }
 
-  changeDocument(_doc: Document) {
+  updateDocument(_doc: Document) {
     this.documentSource.next(_doc);
+  }
+
+  updatePayments(_payments: Payment[]) {
+    this.paymentsSource.next(_payments);
   }
 }

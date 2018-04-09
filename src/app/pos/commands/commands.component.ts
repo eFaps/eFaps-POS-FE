@@ -27,7 +27,7 @@ export class CommandsComponent implements OnInit {
         data: { order: _order }
       });
       dialogRef.afterClosed().subscribe(_result => {
-        this.paymentService.changeDocument(_result);
+        this.paymentService.updateDocument(_result);
         this.router.navigate(['/payment']);
       });
     });

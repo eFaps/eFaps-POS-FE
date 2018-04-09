@@ -9,6 +9,7 @@ import { CashComponent } from './cash/cash.component';
 import { DocumentComponent } from './document/document.component';
 
 import { SharedModule } from '../shared/shared.module';
+import { FreeComponent } from './free/free.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     CashComponent,
     DocumentComponent,
-    PaymentComponent
+    PaymentComponent,
+    FreeComponent
   ]
 })
 export class PaymentModule { }
