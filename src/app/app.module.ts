@@ -34,9 +34,9 @@ import { WorkspaceComponent } from './workspace/workspace.component';
 import { TotalsComponent } from './pos/totals/totals.component';
 import { CommandsComponent } from './pos/commands/commands.component';
 import { OrderDialogComponent } from './pos/order-dialog/order-dialog.component';
-import { PaymentComponent } from './payment/payment.component';
-import { DocumentComponent } from './payment/document/document.component';
-import { KeypadComponent } from './payment/keypad/keypad.component';
+import { PaymentModule } from './payment/payment.module';
+import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -51,10 +51,7 @@ import { KeypadComponent } from './payment/keypad/keypad.component';
     WorkspaceComponent,
     TotalsComponent,
     CommandsComponent,
-    OrderDialogComponent,
-    PaymentComponent,
-    DocumentComponent,
-    KeypadComponent
+    OrderDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +61,9 @@ import { KeypadComponent } from './payment/keypad/keypad.component';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    routes
+    routes,
+    PaymentModule,
+    SharedModule
   ],
   providers: [
     AuthGuard,

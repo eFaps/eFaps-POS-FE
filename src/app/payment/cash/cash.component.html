@@ -1,0 +1,7 @@
+<form class="payment-form" [formGroup]="paymentForm">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Monto" type="number" formControlName="amount" class="right-align">
+     <span matPrefix>$&nbsp;</span>
+  </mat-form-field>
+</form>
+<app-keypad></app-keypad>
