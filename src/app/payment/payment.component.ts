@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { PaymentService } from '../services/index';
-import { Document, PaymentType } from '../model/index';
+import { Document, Payment, PaymentType } from '../model/index';
 
 @Component({
   selector: 'app-payment',
@@ -12,12 +12,13 @@ import { Document, PaymentType } from '../model/index';
 export class PaymentComponent implements OnInit {
 
   document: Document;
-
+  payments: Payment[];
 
   constructor(private paymentService: PaymentService, private fb: FormBuilder) {}
 
 
   ngOnInit() {
     this.paymentService.currentDocument.subscribe(_doc => this.document = _doc);
+    this.paymentService.currentPayments.subscribe(_payments => this.payments = _payments);
   }
 }

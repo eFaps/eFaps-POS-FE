@@ -1,11 +1,20 @@
 <div fxLayout="row">
-  <app-document></app-document>
-  <mat-tab-group>
-    <mat-tab label="Cash">
+  <div>
+    <app-document></app-document>
+  </div>
+  <div>
+    <mat-tab-group>
+      <mat-tab label="Cash">
         <app-cash></app-cash>
-    </mat-tab>
-    <mat-tab label="Free">
+      </mat-tab>
+      <mat-tab label="Free">
         <app-free></app-free>
-    </mat-tab>
-  </mat-tab-group>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <div>
+    <mat-list dense>
+      <mat-list-item *ngFor="let payment of payments"> {{payment.type}} </mat-list-item>
+    </mat-list>
+  </div>
 </div>
