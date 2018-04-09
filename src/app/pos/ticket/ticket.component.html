@@ -17,10 +17,14 @@
       <mat-cell *matCellDef="let item"> {{item.price | number:'1.2-2'}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="modify">
-      <mat-header-cell *matHeaderCellDef fxFlex="100px"> Modificar </mat-header-cell>
-      <mat-cell *matCellDef="let item" fxFlex="100px">
-          <mat-icon (click)="addOne(item)" class="posIcon-48">control_point</mat-icon>
-          <mat-icon (click)="subtractOne(item)" class="posIcon-48">indeterminate_check_box</mat-icon>
+      <mat-header-cell *matHeaderCellDef fxFlex="120px"> Modificar </mat-header-cell>
+      <mat-cell *matCellDef="let item" fxFlex="120px">
+        <button (click)="addOne(item)">
+            <mat-icon  class="posIcon-36">control_point</mat-icon>
+          </button>
+        <button (click)="subtractOne(item)">
+          <mat-icon  class="posIcon-36">indeterminate_check_box</mat-icon>
+      </button>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
