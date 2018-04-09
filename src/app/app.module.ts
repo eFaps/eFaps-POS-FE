@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
@@ -36,6 +36,7 @@ import { CommandsComponent } from './pos/commands/commands.component';
 import { OrderDialogComponent } from './pos/order-dialog/order-dialog.component';
 import { PaymentComponent } from './payment/payment.component';
 import { DocumentComponent } from './payment/document/document.component';
+import { KeypadComponent } from './payment/keypad/keypad.component';
 
 @NgModule({
   declarations: [
@@ -52,13 +53,15 @@ import { DocumentComponent } from './payment/document/document.component';
     CommandsComponent,
     OrderDialogComponent,
     PaymentComponent,
-    DocumentComponent
+    DocumentComponent,
+    KeypadComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    FormsModule,
     ReactiveFormsModule,
     MaterialModule,
     routes
