@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+
 import { WorkspaceService } from './services/index';
 
 @Component({
@@ -10,7 +12,8 @@ export class AppComponent implements OnInit {
   title = 'app';
   screenWidth: number;
   workspace: string;
-  constructor(private workspaceService: WorkspaceService) {
+  constructor(public translate: TranslateService, private workspaceService: WorkspaceService) {
+    translate.use(workspaceService.getLanguage());
     this.screenWidth = window.innerWidth;
     window.onresize = () => {
       this.screenWidth = window.innerWidth;
@@ -22,7 +25,7 @@ export class AppComponent implements OnInit {
       if (data) {
         this.workspace = data.name;
       } else {
-        this.workspace = "";
+        this.workspace = '';
       }
     });
   }

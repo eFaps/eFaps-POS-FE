@@ -18,7 +18,9 @@ export class PaymentComponent implements OnInit {
   docType: DocumentType = DocumentType.RECEIPT;
   docTypes: string[] = EnumValues.getNames(DocumentType);
 
-  constructor(private paymentService: PaymentService, private fb: FormBuilder) { }
+  constructor(private paymentService: PaymentService,
+      private fb: FormBuilder) {
+  }
 
 
   ngOnInit() {
@@ -28,6 +30,6 @@ export class PaymentComponent implements OnInit {
   }
 
   createDocument() {
-      console.log(this.docType);
+    console.log(this.docType);
   }
 }

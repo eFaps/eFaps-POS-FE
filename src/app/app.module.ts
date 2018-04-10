@@ -1,10 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -37,6 +40,10 @@ import { OrderDialogComponent } from './pos/order-dialog/order-dialog.component'
 import { PaymentModule } from './payment/payment.module';
 import { SharedModule } from './shared/shared.module';
 
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
+
 
 @NgModule({
   declarations: [
@@ -63,7 +70,14 @@ import { SharedModule } from './shared/shared.module';
     MaterialModule,
     routes,
     PaymentModule,
-    SharedModule
+    SharedModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     AuthGuard,
@@ -92,9 +106,13 @@ import { SharedModule } from './shared/shared.module';
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi: true
-    },
+    }
   ],
-  entryComponents: [OrderDialogComponent],
-  bootstrap: [AppComponent]
+  entryComponents: [
+      OrderDialogComponent
+  ],
+  bootstrap: [
+      AppComponent
+  ]
 })
 export class AppModule { }

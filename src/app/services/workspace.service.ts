@@ -68,6 +68,10 @@ export class WorkspaceService {
     workspaces[this.auth.getCurrentUsername()] = _oid;
     localStorage.setItem('workspaces', JSON.stringify(workspaces));
   }
+
+  public getLanguage() {
+      return 'es';
+  }
 }
 
 export class CurrentWorkspace {
