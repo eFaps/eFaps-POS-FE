@@ -12,6 +12,10 @@ export interface Receipt extends Document {
 
 }
 
+export interface Invoice extends Document {
+
+}
+
 export interface DocItem {
   index: number;
 }

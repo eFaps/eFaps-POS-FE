@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef } from '@angular/material';
+
 import { EnumValues } from 'enum-values';
 
-import { PaymentService } from '../services/index';
+import { DocumentService, PaymentService } from '../services/index';
 import { Document, DocumentType, Payment, PaymentType } from '../model/index';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-payment',
@@ -18,8 +22,9 @@ export class PaymentComponent implements OnInit {
   docType: DocumentType = DocumentType.RECEIPT;
   docTypes: string[] = EnumValues.getNames(DocumentType);
 
-  constructor(private paymentService: PaymentService,
-      private fb: FormBuilder) {
+  constructor(private router: Router, private paymentService: PaymentService,
+    private documentService: DocumentService, private dialog: MatDialog,
+    private fb: FormBuilder) {
   }
 
 
@@ -30,6 +35,20 @@ export class PaymentComponent implements OnInit {
   }
 
   createDocument() {
-    console.log(this.docType);
+    switch (this.docType) {
+      case DocumentType.INVOICE:
+        this.documentService.createInvoice(this.document)
+          .subscribe(_invoice => this.router.navigate(['/pos']));
+        break;
+      case DocumentType.RECEIPT:
+        this.documentService.createReceipt(this.document)
+          .subscribe(_receipt => this.router.navigate(['/pos']));
+         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+            width: '450px',
+            disableClose: false,
+            data: {  }
+          });
+        break;
+    }
   }
 }

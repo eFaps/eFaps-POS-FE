@@ -36,6 +36,7 @@ import { VirtKeyboardDirective } from './services/virt-keyboard.directive';
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { TotalsComponent } from './pos/totals/totals.component';
 import { CommandsComponent } from './pos/commands/commands.component';
+import { ConfirmDialogComponent } from './payment/confirm-dialog/confirm-dialog.component';
 import { OrderDialogComponent } from './pos/order-dialog/order-dialog.component';
 import { PaymentModule } from './payment/payment.module';
 import { SharedModule } from './shared/shared.module';
@@ -109,6 +110,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     }
   ],
   entryComponents: [
+      ConfirmDialogComponent,
       OrderDialogComponent
   ],
   bootstrap: [

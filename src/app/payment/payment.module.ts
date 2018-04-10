@@ -11,6 +11,7 @@ import { DocumentComponent } from './document/document.component';
 
 import { SharedModule } from '../shared/shared.module';
 import { FreeComponent } from './free/free.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { FreeComponent } from './free/free.component';
     CashComponent,
     DocumentComponent,
     PaymentComponent,
-    FreeComponent
+    FreeComponent,
+    ConfirmDialogComponent
   ]
 })
 export class PaymentModule { }
