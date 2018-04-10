@@ -5,4 +5,5 @@ export enum PaymentType {
 
 export interface Payment {
     type: PaymentType;
+    amount: number;
 }

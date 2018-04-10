@@ -26,7 +26,8 @@ export class CashComponent implements OnInit {
 
   addPayment() {
       this.payments.push({
-          type: PaymentType.CASH
+          type: PaymentType.CASH,
+          amount: this.paymentForm.value.amount
       });
       this.paymentService.updatePayments(this.payments);
   }
