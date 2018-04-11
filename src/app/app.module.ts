@@ -39,6 +39,7 @@ import { CommandsComponent } from './pos/commands/commands.component';
 import { ConfirmDialogComponent } from './payment/confirm-dialog/confirm-dialog.component';
 import { OrderDialogComponent } from './pos/order-dialog/order-dialog.component';
 import { PaymentModule } from './payment/payment.module';
+import { OrdersModule } from './orders/orders.module';
 import { SharedModule } from './shared/shared.module';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -71,6 +72,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MaterialModule,
     routes,
     PaymentModule,
+    OrdersModule,
     SharedModule,
     TranslateModule.forRoot({
       loader: {

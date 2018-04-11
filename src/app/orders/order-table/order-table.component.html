@@ -1,0 +1,11 @@
+<div class="pos-order-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="number">
+      <mat-header-cell *matHeaderCellDef> Co </mat-header-cell>
+      <mat-cell *matCellDef="let item"> {{item.number}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

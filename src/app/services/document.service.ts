@@ -28,4 +28,9 @@ export class DocumentService {
      const url = `${this.config.baseUrl}/documents/invoices`;
      return this.http.post<Invoice>(url, _invoice);
    }
+
+   public getOrders(): Observable<Order[]> {
+     const url = `${this.config.baseUrl}/documents/orders`;
+     return this.http.get<Order[]>(url);
+   }
 }
