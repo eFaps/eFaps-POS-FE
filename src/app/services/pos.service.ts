@@ -103,7 +103,7 @@ export class PosService {
       oid: null,
       number: null,
       items: this.ticket.map((_item, _index) => <DocItem>{
-        index: _index
+        index: _index + 1
       }),
       status: DocStatus.OPEN
     });

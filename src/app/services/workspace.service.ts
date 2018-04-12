@@ -13,8 +13,8 @@ import { Workspace } from '../model/index';
 @Injectable()
 export class WorkspaceService {
 
-  private current: CurrentWorkspace;
-  private currentSource = new BehaviorSubject<CurrentWorkspace>(this.current);
+  private current: Workspace;
+  private currentSource = new BehaviorSubject<Workspace>(this.current);
   currentWorkspace = this.currentSource.asObservable();
 
   constructor(private http: HttpClient, private auth: AuthService,
@@ -50,10 +50,7 @@ export class WorkspaceService {
   }
 
   public setCurrent(_workspace: Workspace) {
-    const ws = new CurrentWorkspace();
-    ws.name = _workspace.name;
-    ws.posOid = _workspace.posOid;
-    this.currentSource.next(ws);
+    this.currentSource.next(_workspace);
     this.storeCurrentWorkspace(_workspace.oid);
   }
 
@@ -72,9 +69,4 @@ export class WorkspaceService {
   public getLanguage() {
       return 'es';
   }
-}
-
-export class CurrentWorkspace {
-  name: string;
-  posOid: string;
 }
