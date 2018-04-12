@@ -10,7 +10,7 @@ import { Order } from '../../model/index';
   styleUrls: ['./order-table.component.css']
 })
 export class OrderTableComponent implements OnInit {
-  displayedColumns = ['number'];
+  displayedColumns = ['number', 'status'];
   dataSource = new MatTableDataSource<Order>();
 
   constructor(private documentService: DocumentService) { }

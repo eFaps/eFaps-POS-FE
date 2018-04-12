@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 import { ConfigService } from './config.service';
 import { DocumentService } from './document.service';
 import { WorkspaceService } from './workspace.service';
-import { DocItem, Item, Order, Pos, Product, Receipt } from '../model/index';
+import { DocItem, DocStatus, Item, Order, Pos, Product, Receipt } from '../model/index';
 
 @Injectable()
 export class PosService {
@@ -79,6 +79,7 @@ export class PosService {
       items: this.ticket.map((_item, _index) => <DocItem> {
           index: _index
       }),
+      status: DocStatus.OPEN;
     });
   }
 }

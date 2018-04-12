@@ -26,9 +26,12 @@ export class CommandsComponent implements OnInit {
         disableClose: true,
         data: { order: _order }
       });
+      this.posService.changeTicket([]);
       dialogRef.afterClosed().subscribe(_result => {
-        this.paymentService.updateDocument(_result);
-        this.router.navigate(['/payment']);
+        if (_result) {
+          this.paymentService.updateDocument(_result);
+          this.router.navigate(['/payment']);
+        }
       });
     });
   }

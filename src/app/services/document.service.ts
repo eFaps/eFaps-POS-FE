@@ -24,6 +24,11 @@ export class DocumentService {
      return this.http.post<Order>(url, _order);
    }
 
+   public updateOrder(_order: Order): Observable<Order> {
+     const url = `${this.config.baseUrl}/documents/orders/${_order.id}`;
+     return this.http.put<Order>(url, _order);
+   }
+
    public createInvoice(_invoice: Order): Observable<Invoice> {
      const url = `${this.config.baseUrl}/documents/invoices`;
      return this.http.post<Invoice>(url, _invoice);

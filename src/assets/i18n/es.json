@@ -1,4 +1,7 @@
 {
   "RECEIPT": "Boleta",
-  "INVOICE": "Factura"
+  "INVOICE": "Factura",
+  "OPEN": "Pendiente",
+  "CLOSED": "Cerrado",
+  "CANCELED": "Anulado"
 }

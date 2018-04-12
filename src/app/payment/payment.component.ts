@@ -6,7 +6,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { EnumValues } from 'enum-values';
 
 import { DocumentService, PaymentService } from '../services/index';
-import { Document, DocumentType, Payment, PaymentType } from '../model/index';
+import { Document, DocStatus, DocumentType, Payment, PaymentType } from '../model/index';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -41,13 +41,22 @@ export class PaymentComponent implements OnInit {
           .subscribe(_invoice => this.router.navigate(['/pos']));
         break;
       case DocumentType.RECEIPT:
-        this.documentService.createReceipt(this.document)
+        this.documentService.updateOrder(Object.assign(this.document, { status: DocStatus.CLOSED })).subscribe();
+        const receipt = {
+          id: null,
+          oid: null,
+          number: null,
+          items: this.document.items,
+          status: DocStatus.OPEN
+        };
+
+        this.documentService.createReceipt(receipt)
           .subscribe(_receipt => this.router.navigate(['/pos']));
-         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-            width: '450px',
-            disableClose: false,
-            data: {  }
-          });
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+          width: '450px',
+          disableClose: false,
+          data: {}
+        });
         break;
     }
   }
