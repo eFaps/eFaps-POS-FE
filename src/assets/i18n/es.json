@@ -3,5 +3,7 @@
   "INVOICE": "Factura",
   "OPEN": "Pendiente",
   "CLOSED": "Cerrado",
-  "CANCELED": "Anulado"
+  "CANCELED": "Anulado",
+  "PASSWORD": "Clave",
+  "USER": "Usuario"
 }

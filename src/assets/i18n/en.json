@@ -1,4 +1,6 @@
 {
   "RECEIPT": "Receipt",
-  "INVOICE": "Invoice"
+  "INVOICE": "Invoice",
+  "PASSWORD": "Password",
+  "USER": "User"
 }

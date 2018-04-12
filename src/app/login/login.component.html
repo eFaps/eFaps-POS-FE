@@ -7,19 +7,23 @@
       </mat-card-content>
     </mat-card>
   </div>
-  <mat-button-toggle [value]="hiddenUser" (change)="toggleUser()">Toggle me!</mat-button-toggle>
-  <div class="col-md-6 col-md-offset-3">
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
-      <div class="form-group" [hidden]="hiddenUser">
-        <label class="center-block">Name:<input class="form-control" formControlName="userName" [appVirtKeyboard]></label>
-      </div>
-      <div class="form-group">
-        <label class="center-block">Password:<input type="password" class="form-control" formControlName="password" [appVirtKeyboard] [activateKeyboard]="virtKeyboard"></label>
-      </div>
-      <button type="submit" class="btn btn-success" mat-raised-button color="primary" >Login</button>
-    </form>
-  </div>
 </div>
+<div class="inputForm">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <span [hidden]="hiddenUser">
+          <mat-form-field class="example-full-width">
+              <input placeholder="{{'USER' | translate}}" class="form-control" matInput formControlName="userName" [appVirtKeyboard]>
+          </mat-form-field>
+      </span>
+    <mat-form-field class="example-full-width">
+      <input placeholder="{{'PASSWORD' | translate}}" type="password" class="form-control" matInput formControlName="password" [appVirtKeyboard] [activateKeyboard]="virtKeyboard">
+    </mat-form-field>
+    <button type="submit" class="btn btn-success" mat-raised-button color="primary">Login</button>
+  </form>
+</div>
+<div class="config">
 <mat-slide-toggle [checked]="virtKeyboard" (change)="toggleVirtKeyboard($event)">
   Virtual Keyboard
 </mat-slide-toggle>
+<mat-button-toggle [value]="hiddenUser" (change)="toggleUser()">Toggle me!</mat-button-toggle>
+</div>
