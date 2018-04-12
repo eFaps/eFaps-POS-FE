@@ -41,6 +41,7 @@ import { OrderDialogComponent } from './pos/order-dialog/order-dialog.component'
 import { PaymentModule } from './payment/payment.module';
 import { OrdersModule } from './orders/orders.module';
 import { SharedModule } from './shared/shared.module';
+import { PosModule } from './pos/pos.module';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -74,6 +75,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PaymentModule,
     OrdersModule,
     SharedModule,
+    PosModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

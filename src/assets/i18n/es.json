@@ -5,5 +5,10 @@
   "CLOSED": "Cerrado",
   "CANCELED": "Anulado",
   "PASSWORD": "Clave",
-  "USER": "Usuario"
+  "USER": "Usuario",
+
+  "CMD": {
+    "UPDATEORDER": "Actualizar {{number}}"
+  }
+
 }

@@ -1,13 +1,20 @@
 <div class="pos-order-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource">
-
     <ng-container matColumnDef="number">
       <mat-header-cell *matHeaderCellDef> No </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.number}} </mat-cell>
+      <mat-cell *matCellDef="let order"> {{order.number}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef> Estatus </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.status | translate}} </mat-cell>
+      <mat-cell *matCellDef="let order"> {{order.status | translate}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="cmd">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let order">
+        <button (click)="pos(order)" *ngIf="order.status===DocStatus[DocStatus.OPEN]">
+          <mat-icon  class="posIcon-36">shop</mat-icon>
+        </button>
+      </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

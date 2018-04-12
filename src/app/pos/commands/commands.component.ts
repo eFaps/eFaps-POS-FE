@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 import { PaymentService, PosService } from '../../services/index'
+import { Order } from '../../model/index'
 
 @Component({
   selector: 'app-commands',
@@ -11,22 +12,25 @@ import { PaymentService, PosService } from '../../services/index'
   styleUrls: ['./commands.component.css']
 })
 export class CommandsComponent implements OnInit {
+  currentOrder: Order;
 
-  constructor(private router: Router, private posService: PosService,
+  constructor(private router: Router,
+    private posService: PosService,
     private paymentService: PaymentService,
     private dialog: MatDialog) { }
 
   ngOnInit() {
+    this.posService.currentOrder.subscribe(_order => this.currentOrder = _order);
   }
 
-  order() {
-    this.posService.order().subscribe(_order => {
+  createOrder() {
+    this.posService.createOrder().subscribe(_order => {
       const dialogRef = this.dialog.open(OrderDialogComponent, {
         width: '450px',
         disableClose: true,
         data: { order: _order }
       });
-      this.posService.changeTicket([]);
+      this.posService.reset();
       dialogRef.afterClosed().subscribe(_result => {
         if (_result) {
           this.paymentService.updateDocument(_result);
@@ -34,5 +38,26 @@ export class CommandsComponent implements OnInit {
         }
       });
     });
+  }
+
+  hasOrder(): boolean {
+    return (this.currentOrder) ? true : false;
+  }
+
+  updateOrder() {
+      this.posService.updateOrder(this.currentOrder).subscribe(_order => {
+        const dialogRef = this.dialog.open(OrderDialogComponent, {
+          width: '450px',
+          disableClose: true,
+          data: { order: _order }
+        });
+        this.posService.reset();
+        dialogRef.afterClosed().subscribe(_result => {
+          if (_result) {
+            this.paymentService.updateDocument(_result);
+            this.router.navigate(['/payment']);
+          }
+        });
+      });
   }
 }

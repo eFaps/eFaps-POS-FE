@@ -14,6 +14,10 @@ import { DocItem, DocStatus, Item, Order, Pos, Product, Receipt } from '../model
 @Injectable()
 export class PosService {
 
+  private order: Order;
+  private orderSource = new BehaviorSubject<Order>(this.order);
+  currentOrder = this.orderSource.asObservable();
+
   private ticket: Item[] = [];
   private ticketSource = new BehaviorSubject<Item[]>(this.ticket);
   currentTicket = this.ticketSource.asObservable();
@@ -49,6 +53,27 @@ export class PosService {
     return this.http.get<Pos>(url);
   }
 
+  changeOrder(_order: Order) {
+    this.orderSource.next(_order);
+    const items: Item[] = [];
+    _order.items.forEach(_item => {
+      items.push({
+        product: {
+          oid: null,
+          sku: null,
+          description: null,
+          imageOid: null,
+          netPrice: null,
+          crossPrice: null,
+          categoryOids: []
+        },
+        quantity: 1,
+        price: 0
+      });
+    });
+    this.changeTicket(items);
+  }
+
   changeTicket(_ticket: Item[]) {
     this.calculateItems(_ticket);
     this.calculateTotals(_ticket);
@@ -72,14 +97,24 @@ export class PosService {
     this.crossTotalSource.next(cross);
   }
 
-  order(): Observable<Order> {
+  createOrder(): Observable<Order> {
     return this.documentService.createOrder({
+      id: null,
       oid: null,
       number: null,
-      items: this.ticket.map((_item, _index) => <DocItem> {
-          index: _index
+      items: this.ticket.map((_item, _index) => <DocItem>{
+        index: _index
       }),
-      status: DocStatus.OPEN;
+      status: DocStatus.OPEN
     });
+  }
+
+  updateOrder(_order: Order): Observable<Order> {
+    return this.documentService.updateOrder(_order);
+  }
+
+  reset() {
+    this.changeTicket([]);
+    this.orderSource.next(null);
   }
 }

@@ -1,3 +1,4 @@
 <p>
-  <button mat-raised-button color="primary" (click)="order()">Order</button>
+  <button mat-raised-button color="primary" (click)="createOrder()"  *ngIf="!hasOrder()">Order</button>
+  <button mat-raised-button color="primary" (click)="updateOrder()"  *ngIf="hasOrder()" translate [translateParams]="{number: 'currentOrder.number'}">{{ 'CMD.UPDATEORDER' | translate: currentOrder}}</button>
 </p>
