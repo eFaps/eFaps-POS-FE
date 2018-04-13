@@ -1,3 +1,5 @@
+import { Payment } from './payment';
+
 export interface Document {
   id: string;
   oid: string;
@@ -6,15 +8,19 @@ export interface Document {
   status: DocStatus;
 }
 
+export interface Payable extends Document {
+    payments: Payment[];
+}
+
 export interface Order extends Document {
 
 }
 
-export interface Receipt extends Document {
+export interface Receipt extends Payable {
 
 }
 
-export interface Invoice extends Document {
+export interface Invoice extends Payable {
 
 }
 

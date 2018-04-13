@@ -47,7 +47,8 @@ export class PaymentComponent implements OnInit {
           oid: null,
           number: null,
           items: this.document.items,
-          status: DocStatus.OPEN
+          status: DocStatus.OPEN,
+          payments: this.payments
         };
 
         this.documentService.createReceipt(receipt)
