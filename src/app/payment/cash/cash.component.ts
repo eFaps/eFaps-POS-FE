@@ -25,11 +25,16 @@ export class CashComponent implements OnInit {
   }
 
   addPayment() {
-      this.payments.push({
-          type: PaymentType.CASH,
-          amount: this.paymentForm.value.amount
-      });
-      this.paymentService.updatePayments(this.payments);
+    this.payments.push({
+      type: PaymentType.CASH,
+      amount: this.paymentForm.value.amount
+    });
+    this.paymentService.updatePayments(this.payments);
+    this.paymentForm.setValue({ 'amount': 0 });
   }
 
+  setNumber(_number: string) {
+      const amount = '' + this.paymentForm.value.amount + _number;
+      this.paymentForm.patchValue({ 'amount': amount });
+  }
 }

@@ -42,4 +42,10 @@ export class PaymentService {
     });
     this.totalSource.next(total);
   }
+
+  reset() {
+      this.paymentsSource.next([]);
+      this.documentSource.next(null);
+      this.totalSource.next(0);
+  }
 }

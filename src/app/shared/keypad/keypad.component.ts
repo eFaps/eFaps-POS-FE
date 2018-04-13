@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-keypad',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./keypad.component.css']
 })
 export class KeypadComponent implements OnInit {
+  @Output() number = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+
+  clickBtn(_number: string) {
+    this.number.emit(_number);
+  }
 }

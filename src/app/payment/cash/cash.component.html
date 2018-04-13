@@ -4,5 +4,5 @@
      <span matPrefix>$&nbsp;</span>
   </mat-form-field>
 </form>
-<app-keypad></app-keypad>
+<app-keypad (number)="setNumber($event)"></app-keypad>
 <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="addPayment()">Add Pago</button>

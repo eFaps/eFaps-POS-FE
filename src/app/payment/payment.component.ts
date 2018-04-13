@@ -58,6 +58,7 @@ export class PaymentComponent implements OnInit {
           disableClose: false,
           data: {}
         });
+        this.paymentService.reset();
         break;
     }
   }
