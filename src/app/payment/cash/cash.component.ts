@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, LOCALE_ID, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { PaymentService } from '../../services/index';
@@ -10,11 +10,11 @@ import { Payment, PaymentType } from '../../model/index';
   styleUrls: ['./cash.component.css']
 })
 export class CashComponent implements OnInit {
-
   paymentForm: FormGroup;
   payments: Payment[];
 
-  constructor(private paymentService: PaymentService, private fb: FormBuilder) { }
+  constructor(private paymentService: PaymentService, private fb: FormBuilder) {
+  }
 
 
   ngOnInit() {
@@ -34,7 +34,23 @@ export class CashComponent implements OnInit {
   }
 
   setNumber(_number: string) {
-      const amount = '' + this.paymentForm.value.amount + _number;
-      this.paymentForm.patchValue({ 'amount': amount });
+    let amount: string;
+    switch (_number) {
+      case 'clear':
+        amount = '0';
+        break;
+      default:
+        amount = '' + this.paymentForm.value.amount + _number;
+        break;
+    }
+    amount = amount.replace(/\./g, '').replace(/^0+/, '');
+    if (amount.length > 2) {
+        amount = amount.substr(0, amount.length - 2) + '.' + amount.substr(-2, 2);
+    } else if (amount.length === 1) {
+        amount = '0.0' + amount;
+    } else {
+        amount = '0.' + amount;
+    }
+    this.paymentForm.patchValue({ 'amount': amount });
   }
 }
