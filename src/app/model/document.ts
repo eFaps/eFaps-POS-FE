@@ -1,4 +1,5 @@
 import { Payment } from './payment';
+import { Product } from './product';
 
 export interface Document {
   id: string;
@@ -26,7 +27,14 @@ export interface Invoice extends Payable {
 
 export interface DocItem {
   index: number;
+  product: Product;
+  quantity: number;
+  netPrice: number;
+  netUnitPrice: number;
+  crossPrice: number;
+  crossUnitPrice: number;
 }
+
 
 export enum DocumentType {
   RECEIPT,

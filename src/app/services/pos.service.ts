@@ -56,65 +56,73 @@ export class PosService {
   changeOrder(_order: Order) {
     this.orderSource.next(_order);
     const items: Item[] = [];
-    _order.items.forEach(_item => {
+    _order.items.sort((a, b) => (a < b ? -1 : 1)).forEach(_item => {
       items.push({
-        product: {
-          oid: null,
-          sku: null,
-          description: null,
-          imageOid: null,
-          netPrice: null,
-          crossPrice: null,
-          categoryOids: []
-        },
-        quantity: 1,
-        price: 0
+        product: _item.product,
+        quantity: _item.quantity,
+        price: _item.crossPrice
       });
     });
-    this.changeTicket(items);
+this.changeTicket(items);
   }
 
-  changeTicket(_ticket: Item[]) {
-    this.calculateItems(_ticket);
-    this.calculateTotals(_ticket);
-    this.ticketSource.next(_ticket);
-  }
+changeTicket(_ticket: Item[]) {
+  this.calculateItems(_ticket);
+  this.calculateTotals(_ticket);
+  this.ticketSource.next(_ticket);
+}
 
-  calculateItems(_ticket: Item[]) {
-    _ticket.forEach(function(_item: Item) {
-      _item.price = (_item.product.crossPrice * _item.quantity);
-    });
-  }
+calculateItems(_ticket: Item[]) {
+  _ticket.forEach(function(_item: Item) {
+    _item.price = (_item.product.crossPrice * _item.quantity);
+  });
+}
 
-  calculateTotals(_ticket: Item[]) {
-    let net = 0;
-    let cross = 0;
-    _ticket.forEach(function(_item: Item) {
-      net += _item.price;
-      cross += _item.price;
-    });
-    this.netTotalSource.next(cross);
-    this.crossTotalSource.next(cross);
-  }
+calculateTotals(_ticket: Item[]) {
+  let net = 0;
+  let cross = 0;
+  _ticket.forEach(function(_item: Item) {
+    net += _item.price;
+    cross += _item.price;
+  });
+  this.netTotalSource.next(cross);
+  this.crossTotalSource.next(cross);
+}
 
-  createOrder(): Observable<Order> {
-    return this.documentService.createOrder({
-      id: null,
-      oid: null,
-      number: null,
-      items: this.ticket.map((_item, _index) => <DocItem>{
-        index: _index + 1
-      }),
-      status: DocStatus.OPEN
-    });
-  }
+createOrder(): Observable < Order > {
+  return this.documentService.createOrder({
+    id: null,
+    oid: null,
+    number: null,
+    items: this.ticket.map((_item, _index) => <DocItem>{
+      index: _index + 1,
+      product: _item.product,
+      quantity: _item.quantity,
+      netPrice: _item.price,
+      netUnitPrice: _item.price,
+      crossPrice: _item.price,
+      crossUnitPrice: _item.price,
+    }),
+    status: DocStatus.OPEN
+  });
+}
 
-  updateOrder(_order: Order): Observable<Order> {
-    return this.documentService.updateOrder(_order);
-  }
+updateOrder(_order: Order): Observable < Order > {
+  return this.documentService.updateOrder(Object.assign(_order, {
+    items: this.ticket.map((_item, _index) => <DocItem>{
+      index: _index + 1,
+      product: _item.product,
+      quantity: _item.quantity,
+      netPrice: _item.price,
+      netUnitPrice: _item.price,
+      crossPrice: _item.price,
+      crossUnitPrice: _item.price,
+    }),
+  }));
+}
 
-  reset() {
-    this.changeTicket([]);
-    this.orderSource.next(null);
-  }
+reset() {
+  this.changeTicket([]);
+  this.orderSource.next(null);
+}
 }
