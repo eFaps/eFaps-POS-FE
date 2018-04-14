@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatSort } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { DocumentService, PosService } from '../../services/index';
@@ -14,6 +14,7 @@ export class OrderTableComponent implements OnInit {
   DocStatus = DocStatus;
   displayedColumns = ['number', 'status', 'cmd'];
   dataSource = new MatTableDataSource<Order>();
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private router: Router,
     private documentService: DocumentService,
@@ -22,6 +23,7 @@ export class OrderTableComponent implements OnInit {
   ngOnInit() {
     this.documentService.getOrders().subscribe(_orders => {
       this.dataSource.data = _orders;
+      this.dataSource.sort = this.sort;
     });
   }
 
