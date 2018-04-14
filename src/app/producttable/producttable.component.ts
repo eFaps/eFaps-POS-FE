@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatSort } from '@angular/material';
 import { ProductService } from '../services/index';
 import { Product } from '../model/index';
 
@@ -11,11 +11,15 @@ import { Product } from '../model/index';
 export class ProducttableComponent implements OnInit {
   displayedColumns = ['sku', 'description'];
   dataSource = new MatTableDataSource();
+ @ViewChild(MatSort) sort: MatSort;
 
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
       this.productService.getProducts()
-        .subscribe(data => this.dataSource.data = data);
+        .subscribe(data => {
+            this.dataSource.data = data;
+            this.dataSource.sort = this.sort;
+        });
   }
 }

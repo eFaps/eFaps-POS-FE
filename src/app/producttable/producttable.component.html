@@ -1,12 +1,12 @@
 
 <div class="example-container mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource">
+  <mat-table #table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="sku">
-      <mat-header-cell *matHeaderCellDef> Codigo </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.sku}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="description">
-      <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

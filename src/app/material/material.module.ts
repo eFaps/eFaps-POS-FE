@@ -16,6 +16,7 @@ import {
   MatTableModule,
   MatSidenavModule,
   MatSlideToggleModule,
+  MatSortModule,
   MatToolbarModule
 } from '@angular/material';
 
@@ -36,6 +37,7 @@ import { MatKeyboardModule } from '@ngx-material-keyboard/core';
     MatRadioModule,
     MatSidenavModule,
     MatSlideToggleModule,
+    MatSortModule,
     MatTabsModule,
     MatTableModule,
     MatToolbarModule,
@@ -55,6 +57,7 @@ import { MatKeyboardModule } from '@ngx-material-keyboard/core';
     MatRadioModule,
     MatSidenavModule,
     MatSlideToggleModule,
+    MatSortModule,
     MatTabsModule,
     MatTableModule,
     MatToolbarModule,
