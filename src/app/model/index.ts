@@ -1,6 +1,7 @@
 export * from './category';
 export * from './document';
 export * from './item';
+export * from './tax';
 export * from './payment';
 export * from './pos';
 export * from './product';

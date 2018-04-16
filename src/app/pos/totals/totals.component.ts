@@ -10,12 +10,13 @@ import { PosService } from '../../services/index';
 export class TotalsComponent implements OnInit {
 
   net: number;
+  taxes: Map<string, number>;
   cross: number;
   constructor(private posService: PosService) { }
 
   ngOnInit() {
       this.posService.currentNetTotal.subscribe(_data => this.net = _data);
+      this.posService.currentTaxes.subscribe(_data => this.taxes = _data);
       this.posService.currentCrossTotal.subscribe(_data => this.cross = _data);
   }
-
 }

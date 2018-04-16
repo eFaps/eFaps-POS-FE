@@ -1,3 +1,17 @@
-<p>
-  {{net | number:'1.2-2'}} {{cross | number:'1.2-2'}}
-</p>
+<mat-list>
+  <mat-list-item class="amount">
+    <div matLine>
+     Op. Gravada: {{net | number:'1.2-2'}}
+    </div>
+  </mat-list-item>
+  <mat-list-item class="amount" *ngFor="let tax of taxes.entries()">
+    <div matLine>
+      {{tax[0] | translate}}: {{tax[1] | number:'1.2-2'}}
+    </div>
+  </mat-list-item>
+  <mat-list-item class="amount">
+    <div matLine>
+      Total: {{cross | number:'1.2-2'}}
+    </div>
+  </mat-list-item>
+</mat-list>

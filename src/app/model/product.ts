@@ -1,3 +1,5 @@
+import { Tax } from './tax';
+
 export interface Product {
     oid: string;
     sku: string;
@@ -6,4 +8,5 @@ export interface Product {
     netPrice: number;
     crossPrice: number;
     categoryOids: string[];
+    taxes: Tax[];
 }
