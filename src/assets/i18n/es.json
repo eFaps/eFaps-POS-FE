@@ -9,6 +9,6 @@
 
   "CMD": {
     "UPDATEORDER": "Actualizar {{number}}"
-  }
-
+  },
+  "VAT": "I.G.V."
 }
