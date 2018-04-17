@@ -1,8 +1,24 @@
-<form class="payment-form" [formGroup]="paymentForm">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Monto" type="number" formControlName="amount" class="right-align">
-     <span matPrefix>$&nbsp;</span>
-  </mat-form-field>
-</form>
-<app-keypad (number)="setNumber($event)"></app-keypad>
-<button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="addPayment()">Add Pago</button>
+<div fxLayout="row">
+  <div fxLayout="column">
+    <form class="payment-form" [formGroup]="paymentForm">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Monto" type="text" formControlName="amount" class="right-align">
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+    </form>
+    <app-keypad (number)="setNumber($event)"></app-keypad>
+  </div>
+  <div class="btn-group" fxLayout="column">
+    <button type="button" mat-raised-button (click)="addNumber(0.5)">0.50</button>
+    <button type="button" mat-raised-button (click)="addNumber(1)">1</button>
+    <button type="button" mat-raised-button (click)="addNumber(2)">2</button>
+    <button type="button" mat-raised-button (click)="addNumber(5)">5</button>
+  </div>
+  <div class="btn-group" fxLayout="column">
+    <button type="button" mat-raised-button (click)="addNumber(10)">10</button>
+    <button type="button" mat-raised-button (click)="addNumber(20)">20</button>
+    <button type="button" mat-raised-button (click)="addNumber(50)">50</button>
+    <button type="button" mat-raised-button (click)="addNumber(100)">100</button>
+  </div>
+  <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="addPayment()">Add Pago</button>
+</div>
