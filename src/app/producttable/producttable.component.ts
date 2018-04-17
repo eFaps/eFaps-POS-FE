@@ -11,7 +11,7 @@ import { Product } from '../model/index';
 export class ProducttableComponent implements OnInit {
   displayedColumns = ['sku', 'description'];
   dataSource = new MatTableDataSource();
- @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private productService: ProductService) { }
 

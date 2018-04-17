@@ -1,32 +1,25 @@
-<h3 mat-subheader>{{document.number}}</h3>
+<h3 mat-subheader>{{document.number}} {{document.netTotal}} {{document.crossTotal}} </h3>
 <div class="pos-doc-container mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource">
+  <mat-table #table [dataSource]="dataSource" matSort matSortActive="index" matSortDirection="asc">
       <ng-container matColumnDef="index">
-        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
         <mat-cell *matCellDef="let item"> {{item.index}} </mat-cell>
       </ng-container>
     <ng-container matColumnDef="quantity">
-      <mat-header-cell *matHeaderCellDef> C. </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> C. </mat-header-cell>
       <mat-cell *matCellDef="let item"> {{item.quantity}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="productDesc">
       <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
       <mat-cell *matCellDef="let item"> {{item.product.description}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="unitPrice">
+    <ng-container matColumnDef="crossUnitPrice">
       <mat-header-cell *matHeaderCellDef> P.U. </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.product.crossPrice | number:'1.2-2'}} </mat-cell>
+      <mat-cell *matCellDef="let item"> {{item.crossUnitPrice| number:'1.2-2'}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="price">
-      <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.price | number:'1.2-2'}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="modify">
-      <mat-header-cell *matHeaderCellDef fxFlex="100px"> Modificar </mat-header-cell>
-      <mat-cell *matCellDef="let item" fxFlex="100px">
-          <mat-icon (click)="addOne(item)" class="posIcon-48">control_point</mat-icon>
-          <mat-icon (click)="subtractOne(item)" class="posIcon-48">indeterminate_check_box</mat-icon>
-      </mat-cell>
+    <ng-container matColumnDef="crossPrice">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Precio </mat-header-cell>
+      <mat-cell *matCellDef="let item"> {{item.crossPrice | number:'1.2-2'}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

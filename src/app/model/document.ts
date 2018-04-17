@@ -1,5 +1,6 @@
 import { Payment } from './payment';
 import { Product } from './product';
+import { TaxEntry } from './tax';
 
 export interface Document {
   id: string;
@@ -7,6 +8,9 @@ export interface Document {
   number: string;
   items: DocItem[];
   status: DocStatus;
+  netTotal: number;
+  crossTotal: number;
+  taxes: TaxEntry[];
 }
 
 export interface Payable extends Document {
@@ -33,6 +37,7 @@ export interface DocItem {
   netUnitPrice: number;
   crossPrice: number;
   crossUnitPrice: number;
+  taxes: TaxEntry[];
 }
 
 

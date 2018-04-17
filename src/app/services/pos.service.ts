@@ -9,7 +9,17 @@ import { map } from 'rxjs/operators';
 import { ConfigService } from './config.service';
 import { DocumentService } from './document.service';
 import { WorkspaceService } from './workspace.service';
-import { DocItem, DocStatus, Item, Order, Pos, Product, Receipt, Tax } from '../model/index';
+import {
+  DocItem,
+  DocStatus,
+  Item,
+  Order,
+  Pos,
+  Product,
+  Receipt,
+  Tax,
+  TaxEntry
+} from '../model/index';
 
 @Injectable()
 export class PosService {
@@ -50,6 +60,8 @@ export class PosService {
       }
     });
     this.currentTicket.subscribe(_ticket => this.ticket = _ticket);
+    this.currentNetTotal.subscribe(_netTotal => this.netTotal = _netTotal);
+    this.currentCrossTotal.subscribe(_crossTotal => this.crossTotal = _crossTotal);
   }
 
   public getPos(_oid: string): Observable<Pos> {
@@ -76,25 +88,26 @@ export class PosService {
     this.ticketSource.next(_ticket);
   }
 
-  calculateItems(_ticket: Item[]) {
+  private calculateItems(_ticket: Item[]) {
     _ticket.forEach((_item: Item) => {
       _item.price = (_item.product.crossPrice * _item.quantity);
     });
   }
 
-  calculateTotals(_ticket: Item[]) {
+  private calculateTotals(_ticket: Item[]) {
     let net = 0;
     let cross = 0;
     const taxes = new Map<string, number>();
     _ticket.forEach((_item: Item) => {
-      net += _item.price;
+      const itemNet = _item.product.netPrice * _item.quantity;
+      net += itemNet;
       _item.product.taxes.forEach((_tax: Tax) => {
-        const tax = _item.price * (_tax.percent / 100);
+        const tax = itemNet * (_tax.percent / 100);
         if (!taxes.has(_tax.name)) {
           taxes.set(_tax.name, 0);
         }
         taxes.set(_tax.name, taxes.get(_tax.name) + tax);
-        cross += _item.price + tax;
+        cross += itemNet + tax;
       });
     });
     this.netTotalSource.next(net);
@@ -107,30 +120,67 @@ export class PosService {
       id: null,
       oid: null,
       number: null,
-      items: this.ticket.map((_item, _index) => <DocItem>{
-        index: _index + 1,
-        product: _item.product,
-        quantity: _item.quantity,
-        netPrice: _item.price,
-        netUnitPrice: _item.price,
-        crossPrice: _item.price,
-        crossUnitPrice: _item.price,
-      }),
-      status: DocStatus.OPEN
+      items: this.getDocItems(),
+      status: DocStatus.OPEN,
+      netTotal: this.netTotal,
+      crossTotal: this.crossTotal,
+      taxes: this.getTaxEntries()
     });
+  }
+
+  private getDocItems(): DocItem[] {
+    return this.ticket.map((_item, _index) => <DocItem>{
+      index: _index + 1,
+      product: _item.product,
+      quantity: _item.quantity,
+      netUnitPrice: _item.product.netPrice,
+      netPrice: _item.product.netPrice * _item.quantity,
+      crossUnitPrice: _item.product.crossPrice,
+      crossPrice: _item.price,
+      taxes: this.getItemTaxEntries(_item)
+    });
+  }
+
+  private getItemTaxEntries(_item: Item): TaxEntry[] {
+    const entries: TaxEntry[] = [];
+    _item.product.taxes.forEach((_tax: Tax) => {
+      const tax = _item.price * (_tax.percent / 100);
+      entries.push({
+        tax: _tax,
+        amount: tax
+      });
+    });
+    return entries;
+  }
+
+  private getTaxEntries(): TaxEntry[] {
+    const taxEntries: TaxEntry[] = [];
+    const taxValues: Map<string, number> = new Map();
+    const taxes: Map<string, Tax> = new Map();
+    this.getDocItems().forEach(_item => {
+      _item.taxes.forEach(_taxEntry => {
+        if (!taxValues.has(_taxEntry.tax.name)) {
+          taxValues.set(_taxEntry.tax.name, _taxEntry.amount);
+        }
+        taxValues.set(_taxEntry.tax.name, taxValues.get(_taxEntry.tax.name) + _taxEntry.amount);
+        taxes.set(_taxEntry.tax.name, _taxEntry.tax);
+      });
+    });
+    taxValues.forEach((_value, _key) => {
+        taxEntries.push({
+            tax: taxes.get(_key),
+            amount: _value
+        });
+    });
+    return taxEntries;
   }
 
   updateOrder(_order: Order): Observable<Order> {
     return this.documentService.updateOrder(Object.assign(_order, {
-      items: this.ticket.map((_item, _index) => <DocItem>{
-        index: _index + 1,
-        product: _item.product,
-        quantity: _item.quantity,
-        netPrice: _item.price,
-        netUnitPrice: _item.price,
-        crossPrice: _item.price,
-        crossUnitPrice: _item.price,
-      }),
+      items: this.getDocItems(),
+      netTotal: this.netTotal,
+      crossTotal: this.crossTotal,
+      taxes: this.getTaxEntries()
     }));
   }
 
