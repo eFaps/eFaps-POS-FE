@@ -25,12 +25,15 @@ export class CashComponent implements OnInit {
   }
 
   addPayment() {
-    this.payments.push({
-      type: PaymentType.CASH,
-      amount: this.paymentForm.value.amount
-    });
-    this.paymentService.updatePayments(this.payments);
-    this.paymentForm.setValue({ 'amount': 0 });
+    const amount = Number(this.paymentForm.value.amount);
+    if (amount > 0) {
+      this.payments.push({
+        type: PaymentType.CASH,
+        amount: Number(this.paymentForm.value.amount)
+      });
+      this.paymentService.updatePayments(this.payments);
+      this.paymentForm.setValue({ 'amount': 0 });
+    }
   }
 
   setNumber(_number: string) {
@@ -45,11 +48,11 @@ export class CashComponent implements OnInit {
     }
     amount = amount.replace(/\./g, '').replace(/^0+/, '');
     if (amount.length > 2) {
-        amount = amount.substr(0, amount.length - 2) + '.' + amount.substr(-2, 2);
+      amount = amount.substr(0, amount.length - 2) + '.' + amount.substr(-2, 2);
     } else if (amount.length === 1) {
-        amount = '0.0' + amount;
+      amount = '0.0' + amount;
     } else {
-        amount = '0.' + amount;
+      amount = '0.' + amount;
     }
     this.paymentForm.patchValue({ 'amount': amount });
   }

@@ -18,7 +18,8 @@ export class PaymentComponent implements OnInit {
   DocumentType = DocumentType;
   document: Document;
   payments: Payment[];
-  total: number;
+  total = 0;
+  change = 0;
   docType: DocumentType = DocumentType.RECEIPT;
   docTypes: string[] = EnumValues.getNames(DocumentType);
 
@@ -31,7 +32,10 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {
     this.paymentService.currentDocument.subscribe(_doc => this.document = _doc);
     this.paymentService.currentPayments.subscribe(_payments => this.payments = _payments);
-    this.paymentService.currentTotal.subscribe(_total => this.total = _total);
+    this.paymentService.currentTotal.subscribe(_total => {
+        this.total = _total;
+        this.change = this.document.crossTotal - _total;
+    });
   }
 
   createDocument() {
