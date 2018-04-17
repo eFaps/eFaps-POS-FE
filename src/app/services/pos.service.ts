@@ -9,7 +9,17 @@ import { map } from 'rxjs/operators';
 import { ConfigService } from './config.service';
 import { DocumentService } from './document.service';
 import { WorkspaceService } from './workspace.service';
-import { DocItem, DocStatus, Item, Order, Pos, Product, Receipt, Tax } from '../model/index';
+import {
+  DocItem,
+  DocStatus,
+  Item,
+  Order,
+  Pos,
+  Product,
+  Receipt,
+  Tax,
+  TaxEntry
+} from '../model/index';
 
 @Injectable()
 export class PosService {
@@ -87,14 +97,15 @@ export class PosService {
     let cross = 0;
     const taxes = new Map<string, number>();
     _ticket.forEach((_item: Item) => {
-      net += _item.price;
+      const itemNet = _item.product.netPrice * _item.quantity;
+      net += itemNet;
       _item.product.taxes.forEach((_tax: Tax) => {
-        const tax = _item.price * (_tax.percent / 100);
+        const tax = itemNet * (_tax.percent / 100);
         if (!taxes.has(_tax.name)) {
           taxes.set(_tax.name, 0);
         }
         taxes.set(_tax.name, taxes.get(_tax.name) + tax);
-        cross += _item.price + tax;
+        cross += itemNet + tax;
       });
     });
     this.netTotalSource.next(net);
@@ -111,13 +122,26 @@ export class PosService {
         index: _index + 1,
         product: _item.product,
         quantity: _item.quantity,
-        netPrice: _item.price,
-        netUnitPrice: _item.price,
+        netUnitPrice: _item.product.netPrice,
+        netPrice: _item.product.netPrice * _item.quantity,
+        crossUnitPrice: _item.product.crossPrice,
         crossPrice: _item.price,
-        crossUnitPrice: _item.price,
+        taxes: this.getTaxEntries(_item)
       }),
       status: DocStatus.OPEN
     });
+  }
+
+  getTaxEntries(_item: Item): TaxEntry[] {
+    const entries: TaxEntry[] = [];
+    _item.product.taxes.forEach((_tax: Tax) => {
+      const tax = _item.price * (_tax.percent / 100);
+      entries.push({
+        tax: _tax,
+        amount: tax
+      });
+    });
+    return entries;
   }
 
   updateOrder(_order: Order): Observable<Order> {
@@ -126,10 +150,11 @@ export class PosService {
         index: _index + 1,
         product: _item.product,
         quantity: _item.quantity,
-        netPrice: _item.price,
-        netUnitPrice: _item.price,
+        netUnitPrice: _item.product.netPrice,
+        netPrice: _item.product.netPrice * _item.quantity,
+        crossUnitPrice: _item.product.crossPrice,
         crossPrice: _item.price,
-        crossUnitPrice: _item.price,
+        taxes: this.getTaxEntries(_item)
       }),
     }));
   }

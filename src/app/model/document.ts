@@ -1,5 +1,6 @@
 import { Payment } from './payment';
 import { Product } from './product';
+import { TaxEntry } from './tax';
 
 export interface Document {
   id: string;
@@ -33,6 +34,7 @@ export interface DocItem {
   netUnitPrice: number;
   crossPrice: number;
   crossUnitPrice: number;
+  taxes: TaxEntry[];
 }
 
 
