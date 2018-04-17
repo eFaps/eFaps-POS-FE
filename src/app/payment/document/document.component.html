@@ -1,4 +1,4 @@
-<h3 mat-subheader>{{document.number}}</h3>
+<h3 mat-subheader>{{document.number}} {{document.netTotal}} {{document.crossTotal}} </h3>
 <div class="pos-doc-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource" matSort matSortActive="index" matSortDirection="asc">
       <ng-container matColumnDef="index">

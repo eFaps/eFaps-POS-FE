@@ -8,6 +8,9 @@ export interface Document {
   number: string;
   items: DocItem[];
   status: DocStatus;
+  netTotal: number;
+  crossTotal: number;
+  taxes: TaxEntry[];
 }
 
 export interface Payable extends Document {

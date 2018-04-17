@@ -48,7 +48,10 @@ export class PaymentComponent implements OnInit {
           number: null,
           items: this.document.items,
           status: DocStatus.OPEN,
-          payments: this.payments
+          payments: this.payments,
+          netTotal: this.document.netTotal,
+          crossTotal: this.document.crossTotal,
+          taxes: this.document.taxes
         };
 
         this.documentService.createReceipt(receipt)
