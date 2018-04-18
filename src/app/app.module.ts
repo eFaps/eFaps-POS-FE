@@ -1,18 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule, APP_INITIALIZER } from '@angular/core';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
-
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { ProducttableComponent } from './producttable/producttable.component';
-import { MaterialModule } from './material/material.module';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { AuthGuard, WorkspaceGuard } from './guards/index';
 import {
   AuthService,
   ConfigService,
@@ -24,24 +11,38 @@ import {
   PosService,
   ProductService,
   UserService,
+  UtilsService,
   WorkspaceService
 } from './services/index';
-import { AuthGuard, WorkspaceGuard } from './guards/index';
-import { routes } from './app.routes';
-import { PosComponent } from './pos/pos.component';
-import { ProductgridComponent } from './pos/productgrid/productgrid.component';
-import { TicketComponent } from './pos/ticket/ticket.component';
-import { SecurePipe } from './services/secure.pipe';
-import { VirtKeyboardDirective } from './services/virt-keyboard.directive';
-import { WorkspaceComponent } from './workspace/workspace.component';
-import { TotalsComponent } from './pos/totals/totals.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 import { CommandsComponent } from './pos/commands/commands.component';
 import { ConfirmDialogComponent } from './payment/confirm-dialog/confirm-dialog.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { LoginComponent } from './login/login.component';
+import { MaterialModule } from './material/material.module';
 import { OrderDialogComponent } from './pos/order-dialog/order-dialog.component';
-import { PaymentModule } from './payment/payment.module';
 import { OrdersModule } from './orders/orders.module';
-import { SharedModule } from './shared/shared.module';
+import { PaymentModule } from './payment/payment.module';
+import { PosComponent } from './pos/pos.component';
 import { PosModule } from './pos/pos.module';
+import { ProductgridComponent } from './pos/productgrid/productgrid.component';
+import { ProducttableComponent } from './producttable/producttable.component';
+import { SameHeightDirective } from './services/same-height.directive';
+import { SecurePipe } from './services/secure.pipe';
+import { SharedModule } from './shared/shared.module';
+import { TicketComponent } from './pos/ticket/ticket.component';
+import { TotalsComponent } from './pos/totals/totals.component';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { VirtKeyboardDirective } from './services/virt-keyboard.directive';
+import { WorkspaceComponent } from './workspace/workspace.component';
+import { routes } from './app.routes';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -61,7 +62,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     WorkspaceComponent,
     TotalsComponent,
     CommandsComponent,
-    OrderDialogComponent
+    OrderDialogComponent,
+    SameHeightDirective
   ],
   imports: [
     BrowserModule,
@@ -92,6 +94,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PaymentService,
     ProductService,
     PosService,
+    UtilsService,
     UserService,
     ImageService,
     ConfigService,

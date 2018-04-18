@@ -1,7 +1,11 @@
 .pos-productgrid {
     width: 1000px;
 }
+
 .pos-card {
     width: 180px;
     margin-bottom: 10px;
+}
+.mat-card-image {
+    object-fit: contain
 }

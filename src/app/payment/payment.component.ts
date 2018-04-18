@@ -16,6 +16,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 })
 export class PaymentComponent implements OnInit {
   DocumentType = DocumentType;
+  PaymentType = PaymentType;
   document: Document;
   payments: Payment[];
   total = 0;
@@ -33,8 +34,8 @@ export class PaymentComponent implements OnInit {
     this.paymentService.currentDocument.subscribe(_doc => this.document = _doc);
     this.paymentService.currentPayments.subscribe(_payments => this.payments = _payments);
     this.paymentService.currentTotal.subscribe(_total => {
-        this.total = _total;
-        this.change = this.document.crossTotal - _total;
+      this.total = _total;
+      this.change = this.document ? this.document.crossTotal - _total : _total;
     });
   }
 
@@ -68,5 +69,13 @@ export class PaymentComponent implements OnInit {
         this.paymentService.reset();
         break;
     }
+  }
+
+  delPayment(_payment: Payment) {
+    const index: number = this.payments.indexOf(_payment);
+    if (index !== -1) {
+      this.payments.splice(index, 1);
+    }
+    this.paymentService.updatePayments(this.payments);
   }
 }

@@ -1,14 +1,8 @@
 import { Component, OnInit, LOCALE_ID, Inject } from '@angular/core';
-import { getLocaleNumberFormat, NumberFormatStyle, registerLocaleData } from '@angular/common';
-import localeEs from '@angular/common/locales/es';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import * as parseDecimalNumber from 'parse-decimal-number';
-
-import { PaymentService } from '../../services/index';
+import { PaymentService, UtilsService } from '../../services/index';
 import { Payment, PaymentType } from '../../model/index';
-
-registerLocaleData(localeEs);
 
 @Component({
   selector: 'app-cash',
@@ -19,7 +13,7 @@ export class CashComponent implements OnInit {
   paymentForm: FormGroup;
   payments: Payment[];
 
-  constructor(private paymentService: PaymentService,
+  constructor(private paymentService: PaymentService, private utilsService: UtilsService,
     private fb: FormBuilder) {
   }
 
@@ -40,6 +34,7 @@ export class CashComponent implements OnInit {
       });
       this.paymentService.updatePayments(this.payments);
       this.paymentForm.setValue({ 'amount': 0 });
+      this.setNumber('0');
     }
   }
 
@@ -61,18 +56,15 @@ export class CashComponent implements OnInit {
     } else {
       amount = '0.' + amount;
     }
-    const customSeparators = { thousands: ',', decimal: '.' };
-    const amountNum = parseDecimalNumber(amount, customSeparators);
-    const amountStr = amountNum.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+    const amountNum = this.utilsService.parse(amount);
+    const amountStr = this.utilsService.toString(amountNum);
     this.paymentForm.patchValue({ 'amount': amountStr });
   }
 
   addNumber(_number: number) {
-    console.log(getLocaleNumberFormat('es-MX', NumberFormatStyle.Decimal);
-    const customSeparators = { thousands: ',', decimal: '.' };
-    const amount = parseDecimalNumber(this.paymentForm.value.amount, customSeparators) + _number;
-    const amountStr = amount.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    console.log(amountStr);
+    const amount = this.utilsService.parse(this.paymentForm.value.amount) + _number;
+    const amountStr = this.utilsService.toString(amount);
     this.paymentForm.patchValue({ 'amount': amountStr });
   }
 }
