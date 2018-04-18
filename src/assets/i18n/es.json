@@ -10,5 +10,7 @@
   "CMD": {
     "UPDATEORDER": "Actualizar {{number}}"
   },
-  "VAT": "I.G.V."
+  "VAT": "I.G.V.",
+  "CASH": "efectivo",
+  "FREE": "gratis"
 }
