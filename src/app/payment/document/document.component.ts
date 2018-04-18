@@ -22,7 +22,7 @@ export class DocumentComponent implements OnInit {
     this.paymentService.currentDocument.subscribe(_doc => {
       if (_doc) {
         this.document = _doc;
-        this.dataSource.data = _doc.items.sort((a, b) => (a < b ? -1 : 1));
+        this.dataSource.data = _doc.items.sort((a, b) => (a.index < b.index ? -1 : 1));
         this.dataSource.sort = this.sort;
       } else {
         this.router.navigate(['/pos']);
