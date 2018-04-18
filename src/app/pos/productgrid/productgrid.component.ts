@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService, PosService } from '../../services/index';
-import { Product, Item, PosCategory } from '../../model/index';
+import { Item, PosCategory, Product } from '../../model/index';
+import { PosService, ProductService } from '../../services/index';
+
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { switchMap } from 'rxjs/operators';
 
@@ -16,8 +17,8 @@ export class ProductgridComponent implements OnInit {
 
   ngOnInit() {
     this.productService.getPosCategories()
-      .subscribe(data => this.categories = data);
-    this.ticketSync.currentTicket.subscribe(data => this.ticket = data);
+      .subscribe(_categories => this.categories = _categories);
+    this.ticketSync.currentTicket.subscribe(_ticket => this.ticket = _ticket);
   }
 
   select(_product: Product) {
