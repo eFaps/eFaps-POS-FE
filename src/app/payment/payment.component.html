@@ -1,18 +1,20 @@
 <div fxLayout="row">
-  <mat-radio-group class="example-radio-group" [(ngModel)]="docType">
-    <mat-radio-button class="example-radio-button" *ngFor="let type of docTypes; let idx = index" [value]="DocumentType[type]">
-      {{type | translate}}
-    </mat-radio-button>
-  </mat-radio-group>
+  <div>
+    <mat-radio-group class="example-radio-group" [(ngModel)]="docType">
+      <mat-radio-button class="example-radio-button" *ngFor="let type of docTypes; let idx = index" [value]="DocumentType[type]">
+        {{type | translate}}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
   <div>
     <app-document></app-document>
   </div>
   <div>
     <mat-tab-group>
-      <mat-tab label="Cash">
+      <mat-tab label="{{'CASH' | translate}}">
         <app-cash></app-cash>
       </mat-tab>
-      <mat-tab label="Free">
+      <mat-tab label="{{'FREE' | translate}}">
         <app-free></app-free>
       </mat-tab>
     </mat-tab-group>
