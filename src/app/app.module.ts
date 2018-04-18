@@ -23,6 +23,7 @@ import {
   PaymentService,
   PosService,
   ProductService,
+  UtilsService,
   UserService,
   WorkspaceService
 } from './services/index';
@@ -92,6 +93,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PaymentService,
     ProductService,
     PosService,
+    UtilsService,
     UserService,
     ImageService,
     ConfigService,
