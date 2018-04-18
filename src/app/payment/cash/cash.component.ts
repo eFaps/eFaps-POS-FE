@@ -34,6 +34,7 @@ export class CashComponent implements OnInit {
       });
       this.paymentService.updatePayments(this.payments);
       this.paymentForm.setValue({ 'amount': 0 });
+      this.setNumber('0');
     }
   }
 
