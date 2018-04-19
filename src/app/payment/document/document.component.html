@@ -1,4 +1,4 @@
-<h3 mat-subheader>{{document.number}} {{document.netTotal}} {{document.crossTotal}} </h3>
+<h3 mat-subheader>{{document.number}}</h3>
 <div class="pos-doc-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource" matSort matSortActive="index" matSortDirection="asc">
       <ng-container matColumnDef="index">
@@ -25,3 +25,20 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 </div>
+<mat-list>
+  <mat-list-item class="amount">
+    <div matLine>
+     Op. Gravada: {{net | number:'1.2-2'}}
+    </div>
+  </mat-list-item>
+  <mat-list-item class="amount" *ngFor="let taxEntry of taxesEntries">
+    <div matLine>
+      {{taxEntry.tax.name | translate}}: {{taxEntry.amount | number:'1.2-2'}}
+    </div>
+  </mat-list-item>
+  <mat-list-item class="amount">
+    <div matLine>
+      Total: {{cross | number:'1.2-2'}}
+    </div>
+  </mat-list-item>
+</mat-list>
