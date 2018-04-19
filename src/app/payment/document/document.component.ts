@@ -3,7 +3,7 @@ import { MatTableDataSource, MatSort } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { PaymentService } from '../../services/index';
-import { Document, DocItem } from '../../model/index';
+import { Document, DocItem, Tax, TaxEntry } from '../../model/index';
 
 @Component({
   selector: 'app-document',
@@ -15,6 +15,10 @@ export class DocumentComponent implements OnInit {
   dataSource = new MatTableDataSource<DocItem>();
   document: Document;
   @ViewChild(MatSort) sort: MatSort;
+  net: number;
+  cross: number;
+  taxesEntries: TaxEntry[];
+
 
   constructor(private router: Router, private paymentService: PaymentService) { }
 
@@ -22,12 +26,14 @@ export class DocumentComponent implements OnInit {
     this.paymentService.currentDocument.subscribe(_doc => {
       if (_doc) {
         this.document = _doc;
-        this.dataSource.data = _doc.items.sort((a, b) => (a < b ? -1 : 1));
+        this.dataSource.data = _doc.items.sort((a, b) => (a.index < b.index ? -1 : 1));
         this.dataSource.sort = this.sort;
+        this.net = _doc.netTotal;
+        this.cross = _doc.crossTotal;
+        this.taxesEntries = _doc.taxes;
       } else {
         this.router.navigate(['/pos']);
       }
     });
   }
-
 }
