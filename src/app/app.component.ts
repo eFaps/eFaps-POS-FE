@@ -16,7 +16,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   workspace: string;
   constructor(private cdRef: ChangeDetectorRef, public translate: TranslateService,
     private workspaceService: WorkspaceService,
-    private auth: AuthService) {
+    public auth: AuthService) {
     translate.use(workspaceService.getLanguage());
     this.screenWidth = window.innerWidth;
     window.onresize = () => {
