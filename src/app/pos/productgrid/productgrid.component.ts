@@ -8,7 +8,7 @@ import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-productgrid',
   templateUrl: './productgrid.component.html',
-  styleUrls: ['./productgrid.component.css']
+  styleUrls: ['./productgrid.component.scss']
 })
 export class ProductgridComponent implements OnInit {
   categories = [];

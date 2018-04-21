@@ -3,6 +3,7 @@ import { Product } from './product';
 import { TaxEntry } from './tax';
 
 export interface Document {
+  type?: 'ORDER' | 'RECEIPT' | 'INVOICE';
   id: string;
   oid: string;
   number: string;

@@ -153,7 +153,8 @@ export class PosService {
   private getItemTaxEntries(_item: Item): TaxEntry[] {
     const entries: TaxEntry[] = [];
     _item.product.taxes.forEach((_tax: Tax) => {
-      const tax = _item.price * (_tax.percent / 100);
+      const netPrice = _item.product.netPrice * _item.quantity;
+      const tax = netPrice * (_tax.percent / 100);
       entries.push({
         tax: _tax,
         amount: tax
@@ -169,7 +170,7 @@ export class PosService {
     this.getDocItems().forEach(_item => {
       _item.taxes.forEach(_taxEntry => {
         if (!taxValues.has(_taxEntry.tax.name)) {
-          taxValues.set(_taxEntry.tax.name, _taxEntry.amount);
+          taxValues.set(_taxEntry.tax.name, 0);
         }
         taxValues.set(_taxEntry.tax.name, taxValues.get(_taxEntry.tax.name) + _taxEntry.amount);
         taxes.set(_taxEntry.tax.name, _taxEntry.tax);

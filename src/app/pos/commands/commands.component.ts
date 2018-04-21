@@ -9,7 +9,7 @@ import { Order } from '../../model/index'
 @Component({
   selector: 'app-commands',
   templateUrl: './commands.component.html',
-  styleUrls: ['./commands.component.css']
+  styleUrls: ['./commands.component.scss']
 })
 export class CommandsComponent implements OnInit {
   currentOrder: Order;
@@ -25,10 +25,11 @@ export class CommandsComponent implements OnInit {
 
   createOrder() {
     this.posService.createOrder().subscribe(_order => {
+      const order =  Object.assign({ type: 'ORDER' }, _order);
       const dialogRef = this.dialog.open(OrderDialogComponent, {
         width: '450px',
         disableClose: true,
-        data: { order: _order }
+        data: { order: order }
       });
       this.posService.reset();
       dialogRef.afterClosed().subscribe(_result => {
@@ -46,10 +47,11 @@ export class CommandsComponent implements OnInit {
 
   updateOrder() {
       this.posService.updateOrder(this.currentOrder).subscribe(_order => {
+        const order =  Object.assign({ type: 'ORDER' }, _order);
         const dialogRef = this.dialog.open(OrderDialogComponent, {
           width: '450px',
           disableClose: true,
-          data: { order: _order }
+          data: { order: order }
         });
         this.posService.reset();
         dialogRef.afterClosed().subscribe(_result => {

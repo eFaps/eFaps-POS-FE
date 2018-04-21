@@ -6,6 +6,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { MaterialModule } from '../material/material.module';
 import { PosCurrencyPipe } from '../services/index';
+import { DocumentComponent } from './document/document.component';
 import { KeypadComponent } from './keypad/keypad.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -20,10 +21,12 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TranslateModule
   ],
   declarations: [
+    DocumentComponent,
     KeypadComponent,
     PosCurrencyPipe
   ],
   exports: [
+    DocumentComponent,
     KeypadComponent,
     TranslateModule,
     PosCurrencyPipe

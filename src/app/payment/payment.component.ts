@@ -12,7 +12,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.css']
+  styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
   DocumentType = DocumentType;
