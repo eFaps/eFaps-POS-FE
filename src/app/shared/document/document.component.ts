@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { Document, DocItem, Tax, TaxEntry } from '../../model/index';
+import { Document, DocItem, Tax, TaxEntry, Order } from '../../model/index';
 
 @Component({
   selector: 'app-document',

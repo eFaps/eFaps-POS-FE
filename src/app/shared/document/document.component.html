@@ -1,44 +1,46 @@
-<h3 mat-subheader>{{document.number}}</h3>
-<div class="pos-doc-container mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource" matSort matSortActive="index" matSortDirection="asc">
+<div class="mat-typography">
+  <h3>{{this.document.type | translate}}: {{document.number}}</h3>
+  <div class="pos-doc-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource" matSort matSortActive="index" matSortDirection="asc">
       <ng-container matColumnDef="index">
         <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
         <mat-cell *matCellDef="let item"> {{item.index}} </mat-cell>
       </ng-container>
-    <ng-container matColumnDef="quantity">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> C. </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.quantity}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="productDesc">
-      <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.product.description}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="crossUnitPrice">
-      <mat-header-cell *matHeaderCellDef> P.U. </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.crossUnitPrice | posCurrency:document.currency}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="crossPrice">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Precio </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.crossPrice | posCurrency:document.currency}} </mat-cell>
-    </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+      <ng-container matColumnDef="quantity">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> C. </mat-header-cell>
+        <mat-cell *matCellDef="let item"> {{item.quantity}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="productDesc">
+        <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
+        <mat-cell *matCellDef="let item"> {{item.product.description}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="crossUnitPrice">
+        <mat-header-cell *matHeaderCellDef> P.U. </mat-header-cell>
+        <mat-cell *matCellDef="let item"> {{item.crossUnitPrice | posCurrency:document.currency}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="crossPrice">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Precio </mat-header-cell>
+        <mat-cell *matCellDef="let item"> {{item.crossPrice | posCurrency:document.currency}} </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+  <mat-list>
+    <mat-list-item class="amount">
+      <div matLine>
+        Op. Gravada: {{document.netTotal | posCurrency:document.currency}}
+      </div>
+    </mat-list-item>
+    <mat-list-item class="amount" *ngFor="let taxEntry of document.taxes">
+      <div matLine>
+        {{taxEntry.tax.name | translate}}: {{taxEntry.amount | posCurrency:document.currency}}
+      </div>
+    </mat-list-item>
+    <mat-list-item class="amount">
+      <div matLine>
+        Total: {{document.crossTotal | posCurrency:document.currency}}
+      </div>
+    </mat-list-item>
+  </mat-list>
 </div>
-<mat-list>
-  <mat-list-item class="amount">
-    <div matLine>
-     Op. Gravada: {{document.netTotal | posCurrency:document.currency}}
-    </div>
-  </mat-list-item>
-  <mat-list-item class="amount" *ngFor="let taxEntry of document.taxes">
-    <div matLine>
-      {{taxEntry.tax.name | translate}}: {{taxEntry.amount | posCurrency:document.currency}}
-    </div>
-  </mat-list-item>
-  <mat-list-item class="amount">
-    <div matLine>
-      Total: {{document.crossTotal | posCurrency:document.currency}}
-    </div>
-  </mat-list-item>
-</mat-list>
