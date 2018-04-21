@@ -1,13 +1,14 @@
-import { ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { AdminGuard, AuthGuard, WorkspaceGuard } from './guards/index';
+import { RouterModule, Routes } from '@angular/router';
 
+import { AdminComponent } from './admin/admin/admin.component';
 import { LoginComponent } from './login/login.component';
-import { ProducttableComponent } from './producttable/producttable.component';
+import { ModuleWithProviders } from '@angular/core';
+import { OrderTableComponent } from './orders/order-table/order-table.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PosComponent } from './pos/pos.component';
+import { ProducttableComponent } from './producttable/producttable.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
-import { AuthGuard, WorkspaceGuard } from './guards/index';
-import { OrderTableComponent } from './orders/order-table/order-table.component';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -16,6 +17,7 @@ const appRoutes: Routes = [
     { path: 'workspaces', component: WorkspaceComponent, canActivate: [AuthGuard] },
     { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard] },
     { path: 'orders', component: OrderTableComponent, canActivate: [AuthGuard] },
+    { path: 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminGuard] },
 
     // otherwise redirect to home
     { path: '**', redirectTo: 'pos' }

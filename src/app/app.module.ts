@@ -1,5 +1,5 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { AuthGuard, WorkspaceGuard } from './guards/index';
+import { AdminGuard, AuthGuard, WorkspaceGuard } from './guards/index';
 import {
   AuthService,
   ConfigService,
@@ -19,6 +19,7 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
+import { AdminModule } from './admin/admin.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
@@ -74,6 +75,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ReactiveFormsModule,
     MaterialModule,
     routes,
+    AdminModule,
     PaymentModule,
     OrdersModule,
     SharedModule,
@@ -87,6 +89,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     })
   ],
   providers: [
+    AdminGuard,
     AuthGuard,
     WorkspaceGuard,
     AuthService,
