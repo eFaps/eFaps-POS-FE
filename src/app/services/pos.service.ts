@@ -69,6 +69,7 @@ export class PosService {
     this.currentTicket.subscribe(_ticket => this.ticket = _ticket);
     this.currentNetTotal.subscribe(_netTotal => this.netTotal = _netTotal);
     this.currentCrossTotal.subscribe(_crossTotal => this.crossTotal = _crossTotal);
+    this.currentCurrency.subscribe(_currency => this.currency = _currency);
   }
 
   public getPos(_oid: string): Observable<Pos> {
@@ -127,6 +128,7 @@ export class PosService {
       id: null,
       oid: null,
       number: null,
+      currency: this.currency,
       items: this.getDocItems(),
       status: DocStatus.OPEN,
       netTotal: this.netTotal,

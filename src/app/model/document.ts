@@ -6,6 +6,7 @@ export interface Document {
   id: string;
   oid: string;
   number: string;
+  currency: string;
   items: DocItem[];
   status: DocStatus;
   netTotal: number;

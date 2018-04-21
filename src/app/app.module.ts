@@ -34,7 +34,6 @@ import {
   JwtInterceptor,
   PaymentService,
   PosService,
-  PosCurrencyPipe,
   ProductService,
   UserService,
   UtilsService,
@@ -65,8 +64,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TotalsComponent,
     CommandsComponent,
     OrderDialogComponent,
-    SameHeightDirective,
-    PosCurrencyPipe
+    SameHeightDirective
   ],
   imports: [
     BrowserModule,
