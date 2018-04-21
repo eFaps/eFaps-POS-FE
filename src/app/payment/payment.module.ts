@@ -7,7 +7,6 @@ import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
 import { CashComponent } from './cash/cash.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { DocumentComponent } from './document/document.component';
 import { FreeComponent } from './free/free.component';
 import { PaymentComponent } from './payment.component';
 
@@ -22,7 +21,6 @@ import { PaymentComponent } from './payment.component';
   ],
   declarations: [
     CashComponent,
-    DocumentComponent,
     PaymentComponent,
     FreeComponent,
     ConfirmDialogComponent
