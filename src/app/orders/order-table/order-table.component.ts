@@ -8,7 +8,7 @@ import { DocStatus, Order } from '../../model/index';
 @Component({
   selector: 'app-order-table',
   templateUrl: './order-table.component.html',
-  styleUrls: ['./order-table.component.css']
+  styleUrls: ['./order-table.component.scss']
 })
 export class OrderTableComponent implements OnInit {
   DocStatus = DocStatus;

@@ -7,7 +7,7 @@ import { Document, DocItem, Tax, TaxEntry } from '../../model/index';
 @Component({
   selector: 'app-document',
   templateUrl: './document.component.html',
-  styleUrls: ['./document.component.css']
+  styleUrls: ['./document.component.scss']
 })
 export class DocumentComponent implements OnInit {
   displayedColumns = ['index', 'quantity', 'productDesc', 'crossUnitPrice', 'crossPrice'];

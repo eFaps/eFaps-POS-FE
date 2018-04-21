@@ -6,7 +6,7 @@ import { PosService } from '../services/index'
 @Component({
   selector: 'app-pos',
   templateUrl: './pos.component.html',
-  styleUrls: ['./pos.component.css']
+  styleUrls: ['./pos.component.scss']
 })
 export class PosComponent implements OnInit {
   ticket: Item[];

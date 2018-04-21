@@ -9,7 +9,7 @@ import { Order } from '../../model/index'
 @Component({
   selector: 'app-commands',
   templateUrl: './commands.component.html',
-  styleUrls: ['./commands.component.css']
+  styleUrls: ['./commands.component.scss']
 })
 export class CommandsComponent implements OnInit {
   currentOrder: Order;

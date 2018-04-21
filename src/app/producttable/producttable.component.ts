@@ -6,7 +6,7 @@ import { Product } from '../model/index';
 @Component({
   selector: 'app-producttable',
   templateUrl: './producttable.component.html',
-  styleUrls: ['./producttable.component.css']
+  styleUrls: ['./producttable.component.scss']
 })
 export class ProducttableComponent implements OnInit {
   displayedColumns = ['sku', 'description'];

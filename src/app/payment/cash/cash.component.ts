@@ -7,7 +7,7 @@ import { Payment, PaymentType } from '../../model/index';
 @Component({
   selector: 'app-cash',
   templateUrl: './cash.component.html',
-  styleUrls: ['./cash.component.css']
+  styleUrls: ['./cash.component.scss']
 })
 export class CashComponent implements OnInit {
   paymentForm: FormGroup;

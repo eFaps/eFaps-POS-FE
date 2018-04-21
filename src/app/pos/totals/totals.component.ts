@@ -5,7 +5,7 @@ import { PosService } from '../../services/index';
 @Component({
   selector: 'app-totals',
   templateUrl: './totals.component.html',
-  styleUrls: ['./totals.component.css']
+  styleUrls: ['./totals.component.scss']
 })
 export class TotalsComponent implements OnInit {
 
