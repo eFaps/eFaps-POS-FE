@@ -5,6 +5,7 @@ export * from './error.interceptor';
 export * from './image.service';
 export * from './jwt.interceptor';
 export * from './payment.service';
+export * from './pos-currency.pipe';
 export * from './pos.service';
 export * from './product.service';
 export * from './user.service';

@@ -10,16 +10,19 @@ import { PosService } from '../../services/index';
 export class TotalsComponent implements OnInit {
 
   net: number;
-  taxes: Map<string, number>;
-  taxesEntries: IterableIterator<[string, number]>;
+  taxesEntries: [string, number][];
   cross: number;
-  constructor(private posService: PosService) { }
+  currentCurrency: string;
+
+  constructor(private posService: PosService) {
+
+  }
 
   ngOnInit() {
+    this.posService.currentCurrency.subscribe(_data => this.currentCurrency = _data);
     this.posService.currentNetTotal.subscribe(_data => this.net = _data);
     this.posService.currentTaxes.subscribe(_data => {
-        this.taxes = _data;
-        this.taxesEntries = _data.entries();
+      this.taxesEntries = Array.from(_data.entries());
     });
     this.posService.currentCrossTotal.subscribe(_data => this.cross = _data);
   }

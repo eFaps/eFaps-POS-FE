@@ -1,17 +1,17 @@
 <mat-list>
   <mat-list-item class="amount">
     <div matLine>
-     Op. Gravada: {{net | number:'1.2-2'}}
+     Op. Gravada: {{net | posCurrency:currentCurrency}}
     </div>
   </mat-list-item>
   <mat-list-item class="amount" *ngFor="let tax of taxesEntries">
     <div matLine>
-      {{tax[0] | translate}}: {{tax[1] | number:'1.2-2'}}
+      {{tax[0] | translate}}: {{tax[1] | posCurrency:currentCurrency}}
     </div>
   </mat-list-item>
   <mat-list-item class="amount">
     <div matLine>
-      Total: {{cross | number:'1.2-2'}}
+      Total: {{cross | posCurrency:currentCurrency}}
     </div>
   </mat-list-item>
 </mat-list>
