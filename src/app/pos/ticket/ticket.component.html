@@ -10,11 +10,11 @@
     </ng-container>
     <ng-container matColumnDef="unitPrice">
       <mat-header-cell *matHeaderCellDef> P.U. </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.product.crossPrice | number:'1.2-2'}} </mat-cell>
+      <mat-cell *matCellDef="let item"> {{item.product.crossPrice | posCurrency:currentCurrency}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="price">
       <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.price | number:'1.2-2'}} </mat-cell>
+      <mat-cell *matCellDef="let item"> {{item.price | posCurrency:currentCurrency}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="modify">
       <mat-header-cell *matHeaderCellDef fxFlex="120px"> Modificar </mat-header-cell>

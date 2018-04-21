@@ -44,6 +44,10 @@ export class PosService {
   private crossTotalSource = new BehaviorSubject<number>(this.crossTotal);
   currentCrossTotal = this.crossTotalSource.asObservable();
 
+  private currency = 'USD';
+  private currencySource = new BehaviorSubject<string>(this.currency);
+  currentCurrency = this.currencySource.asObservable();
+
   private currentPos: Pos;
 
   constructor(private http: HttpClient, private config: ConfigService,
@@ -54,7 +58,10 @@ export class PosService {
       if (_data) {
         if (!(this.currentPos && this.currentPos.oid === _data.posOid)) {
           this.getPos(_data.posOid)
-            .subscribe(_pos => this.currentPos = _pos);
+            .subscribe(_pos =>  {
+                this.currentPos = _pos;
+                this.currencySource.next(_pos.currency);
+             });
           this.changeTicket([]);
         }
       }
@@ -62,6 +69,7 @@ export class PosService {
     this.currentTicket.subscribe(_ticket => this.ticket = _ticket);
     this.currentNetTotal.subscribe(_netTotal => this.netTotal = _netTotal);
     this.currentCrossTotal.subscribe(_crossTotal => this.crossTotal = _crossTotal);
+    this.currentCurrency.subscribe(_currency => this.currency = _currency);
   }
 
   public getPos(_oid: string): Observable<Pos> {
@@ -120,6 +128,7 @@ export class PosService {
       id: null,
       oid: null,
       number: null,
+      currency: this.currency,
       items: this.getDocItems(),
       status: DocStatus.OPEN,
       netTotal: this.netTotal,

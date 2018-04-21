@@ -51,6 +51,7 @@ export class PaymentComponent implements OnInit {
           id: null,
           oid: null,
           number: null,
+          currency: this.document.currency,
           items: this.document.items,
           status: DocStatus.OPEN,
           payments: this.payments,

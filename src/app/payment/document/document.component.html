@@ -15,11 +15,11 @@
     </ng-container>
     <ng-container matColumnDef="crossUnitPrice">
       <mat-header-cell *matHeaderCellDef> P.U. </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.crossUnitPrice| number:'1.2-2'}} </mat-cell>
+      <mat-cell *matCellDef="let item"> {{item.crossUnitPrice | posCurrency:document.currency}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="crossPrice">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Precio </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.crossPrice | number:'1.2-2'}} </mat-cell>
+      <mat-cell *matCellDef="let item"> {{item.crossPrice | posCurrency:document.currency}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
@@ -28,17 +28,17 @@
 <mat-list>
   <mat-list-item class="amount">
     <div matLine>
-     Op. Gravada: {{net | number:'1.2-2'}}
+     Op. Gravada: {{net | posCurrency:document.currency}}
     </div>
   </mat-list-item>
   <mat-list-item class="amount" *ngFor="let taxEntry of taxesEntries">
     <div matLine>
-      {{taxEntry.tax.name | translate}}: {{taxEntry.amount | number:'1.2-2'}}
+      {{taxEntry.tax.name | translate}}: {{taxEntry.amount | posCurrency:document.currency}}
     </div>
   </mat-list-item>
   <mat-list-item class="amount">
     <div matLine>
-      Total: {{cross | number:'1.2-2'}}
+      Total: {{cross | posCurrency:document.currency}}
     </div>
   </mat-list-item>
 </mat-list>

@@ -44,6 +44,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "^6.0.106",
     "codelyzer": "^4.0.1",
+    "import-sort-style-module": "^4.2.0",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.0",
@@ -55,5 +56,15 @@
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
     "typescript": "2.6.2"
+  },
+  "importSort": {
+    ".js, .jsx, .es6, .es": {
+      "parser": "babylon",
+      "style": "eslint"
+    },
+    ".ts, .tsx": {
+      "parser": "typescript",
+      "style": "module"
+    }
   }
 }

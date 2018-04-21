@@ -1,18 +1,18 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { Injectable } from '@angular/core';
+import * as jwtDecode from 'jwt-decode';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
-import * as jwtDecode from 'jwt-decode';
 
+import { Roles } from '../model/index';
 import { ConfigService } from './config.service';
 
 @Injectable()
 export class AuthService {
-  public token: string;
+  public currentUser: any;
+
   constructor(private http: HttpClient, private config: ConfigService) {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.token = currentUser && currentUser.token;
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   login(username: string, password: string): Observable<boolean> {
@@ -21,9 +21,8 @@ export class AuthService {
       .pipe(map((response: any) => {
         const token = response.token;
         if (token) {
-          this.token = token;
-          // store username and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
+          this.currentUser = { username: username, token: token };
+          localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
           return true;
         } else {
           return false;
@@ -33,23 +32,20 @@ export class AuthService {
   }
 
   logout(): void {
-    // clear token remove user from local storage to log user out
-    this.token = null;
+    this.currentUser = null;
     localStorage.removeItem('currentUser');
   }
 
   getToken(): string {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    return currentUser && currentUser.token;
+    return this.currentUser && this.currentUser.token;
   }
 
   getCurrentUsername(): string {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    return currentUser && currentUser.username;
+    return this.currentUser && this.currentUser.username;
   }
 
-  getTokenExpirationDate(token: string): Date {
-    const decoded = jwtDecode(token);
+  getTokenExpirationDate(_token: string): Date {
+    const decoded = jwtDecode(_token);
 
     if (decoded.exp === undefined) { return null; }
 
@@ -58,12 +54,21 @@ export class AuthService {
     return date;
   }
 
-  isTokenExpired(token?: string): boolean {
-    if (!token) { token = this.getToken(); }
-    if (!token) { return true; }
+  isTokenExpired(_token?: string): boolean {
+    if (!_token) { _token = this.getToken(); }
+    if (!_token) { return true; }
 
-    const date = this.getTokenExpirationDate(token);
+    const date = this.getTokenExpirationDate(_token);
     if (date === undefined) { return false; }
     return !(date.valueOf() > new Date().valueOf());
+  }
+
+  hasRole(_role: Roles) {
+    if (this.isTokenExpired()) {
+        return false;
+    }
+    const decoded = jwtDecode(this.getToken());
+    const roles: string[] = decoded.roles;
+    return roles.find(x => x === Roles[_role]) ? true : false;
   }
 }

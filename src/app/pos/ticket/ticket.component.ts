@@ -13,12 +13,13 @@ import { Item } from '../../model/index';
 export class TicketComponent implements OnInit {
   displayedColumns = ['quantity', 'productDesc', 'unitPrice', 'price', 'modify'];
   dataSource = new MatTableDataSource<Item>();
+  currentCurrency = '';
 
-
-  constructor(private ticketSync: PosService) { }
+  constructor(private posService: PosService) { }
 
   ngOnInit() {
-    this.ticketSync.currentTicket.subscribe(_data => this.dataSource.data = _data);
+    this.posService.currentTicket.subscribe(_data => this.dataSource.data = _data);
+    this.posService.currentCurrency.subscribe(_data => this.currentCurrency = _data);
   }
 
   addOne(_item: Item) {
@@ -42,6 +43,6 @@ export class TicketComponent implements OnInit {
   }
 
   syncTicket() {
-    this.ticketSync.changeTicket(this.dataSource.data);
+    this.posService.changeTicket(this.dataSource.data);
   }
 }
