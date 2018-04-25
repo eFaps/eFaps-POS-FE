@@ -1,5 +1,5 @@
-<div fxLayout="row">
-  <div fxLayout="column">
+<div fxLayout="row" fxLayoutGap="20px">
+  <div fxLayout="column" fxFlex="30">
     <mat-radio-group class="example-radio-group" [(ngModel)]="docType">
       <mat-radio-button class="example-radio-button" *ngFor="let type of docTypes; let idx = index" [value]="DocumentType[type]">
         {{type | translate}}
@@ -7,7 +7,7 @@
     </mat-radio-group>
      <app-document [document]='document'></app-document>
   </div>
-  <div>
+  <div fxFlex>
     <mat-tab-group>
       <mat-tab label="{{'CASH' | translate}}">
         <app-cash></app-cash>
@@ -17,7 +17,7 @@
       </mat-tab>
     </mat-tab-group>
   </div>
-  <div>
+  <div fxFlex="30">
     <mat-list dense>
       <mat-list-item *ngFor="let payment of payments">
         <span matLine>{{PaymentType[payment.type] | translate}} {{payment.amount}}</span>

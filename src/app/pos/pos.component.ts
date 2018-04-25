@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener,  ElementRef } from '@angular/core';
 
 import { Item } from '../model/index';
 import { PosService } from '../services/index'

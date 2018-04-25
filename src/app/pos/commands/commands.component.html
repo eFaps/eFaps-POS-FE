@@ -1,4 +1,4 @@
-<p>
+<div  class="footer" [ngClass]="{'sticky': isSticky()}">
   <button mat-raised-button color="primary" (click)="createOrder()"  *ngIf="!hasOrder()">Order</button>
   <button mat-raised-button color="primary" (click)="updateOrder()"  *ngIf="hasOrder()" translate [translateParams]="{number: 'currentOrder.number'}">{{ 'CMD.UPDATEORDER' | translate: currentOrder}}</button>
-</p>
+</div>

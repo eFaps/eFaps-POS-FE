@@ -1,0 +1,9 @@
+.footer {
+  background-color: #e6e3e38f;
+  width: 100%;
+
+  &.sticky {
+    position: absolute;
+    bottom: 25px;
+  }
+}
