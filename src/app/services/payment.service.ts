@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
-import { Subscriber } from 'rxjs/Subscriber';
 import { map } from 'rxjs/operators';
+import { Subscriber } from 'rxjs/Subscriber';
 
 import { Document, Payment } from '../model/index';
+import { PosService } from './pos.service';
 
 @Injectable()
 export class PaymentService {
@@ -22,8 +22,14 @@ export class PaymentService {
   private totalSource = new BehaviorSubject<number>(this.total);
   currentTotal = this.totalSource.asObservable();
 
-  constructor() {
+  currency: string;
 
+  constructor(private posService: PosService) {
+    this.posService.currentCurrency.subscribe(_data => {
+      if (_data) {
+        this.currency = _data;
+      }
+    });
   }
 
   updateDocument(_doc: Document) {
@@ -44,8 +50,8 @@ export class PaymentService {
   }
 
   reset() {
-      this.paymentsSource.next([]);
-      this.documentSource.next(null);
-      this.totalSource.next(0);
+    this.paymentsSource.next([]);
+    this.documentSource.next(null);
+    this.totalSource.next(0);
   }
 }

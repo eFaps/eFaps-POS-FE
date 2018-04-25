@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 
@@ -17,7 +17,8 @@ export class CommandsComponent implements OnInit {
   constructor(private router: Router,
     private posService: PosService,
     private paymentService: PaymentService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private el: ElementRef) { }
 
   ngOnInit() {
     this.posService.currentOrder.subscribe(_order => this.currentOrder = _order);
@@ -62,4 +63,9 @@ export class CommandsComponent implements OnInit {
         });
       });
   }
+
+
+    isSticky()  {
+        return this.el.nativeElement.offsetTop - window.innerHeight + 100 > 0;
+    }
 }

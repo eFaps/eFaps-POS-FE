@@ -12,9 +12,11 @@ import { Payment, PaymentType } from '../../model/index';
 export class CashComponent implements OnInit {
   paymentForm: FormGroup;
   payments: Payment[];
+  currency: string;
 
   constructor(private paymentService: PaymentService, private utilsService: UtilsService,
     private fb: FormBuilder) {
+    this.currency = utilsService.getCurrencySymbol('PEN');
   }
 
 

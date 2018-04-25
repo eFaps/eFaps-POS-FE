@@ -2,9 +2,11 @@
   <div class="productgrid" [ngStyle]="{'height.px': screenHeight - 64 }">
     <app-productgrid></app-productgrid>
   </div>
-  <div class='ticket' [ngStyle]="{'height.px': screenHeight - 64 }">
-    <app-ticket></app-ticket>
-    <app-totals></app-totals>
+  <div class='ticket' [ngStyle]="{'height.px': screenHeight - 64 - 6}">
+    <div>
+      <app-ticket></app-ticket>
+      <app-totals></app-totals>
+    </div>
     <app-commands></app-commands>
   </div>
 </div>
