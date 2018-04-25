@@ -7,11 +7,15 @@
   "CANCELED": "Anulado",
   "PASSWORD": "Clave",
   "USER": "Usuario",
-
   "CMD": {
     "UPDATEORDER": "Actualizar {{number}}"
   },
   "VAT": "I.G.V.",
   "CASH": "Efectivo",
-  "FREE": "Gratis"
+  "FREE": "Gratis",
+  "PAYMENT": {
+      "TOTAL": "Total",
+      "CHANGE": "Cambio"
+  }
+
 }

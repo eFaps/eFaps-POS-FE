@@ -5,7 +5,7 @@
         {{type | translate}}
       </mat-radio-button>
     </mat-radio-group>
-     <app-document [document]='document'></app-document>
+    <app-document [document]='document'></app-document>
   </div>
   <div fxFlex>
     <mat-tab-group>
@@ -26,7 +26,12 @@
         </button>
       </mat-list-item>
     </mat-list>
-    {{total}} {{change}}
-    <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="createDocument()">Finalizar</button>
+    <div class="mat-typography">
+        <div>{{'PAYMENT.TOTAL' | translate }}: {{total | posCurrency:paymentService.currency}}</div>
+        <div>{{'PAYMENT.CHANGE' | translate }}: {{change | posCurrency:paymentService.currency}}</div>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="createDocument()">Finalizar</button>
+    </div>
   </div>
 </div>
