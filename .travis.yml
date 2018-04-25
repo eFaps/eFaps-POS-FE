@@ -7,7 +7,7 @@ cache:
     - "node_modules"
 
 install:
-  - npm run build
+  - npm install
 
 scripts:
-  test: "vows --spec"
+  test: npm run build
