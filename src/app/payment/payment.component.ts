@@ -35,7 +35,7 @@ export class PaymentComponent implements OnInit {
     this.paymentService.currentPayments.subscribe(_payments => this.payments = _payments);
     this.paymentService.currentTotal.subscribe(_total => {
       this.total = _total;
-      this.change = this.document ? this.document.crossTotal - _total : _total;
+      this.change = this.document ? _total - this.document.crossTotal : _total;
     });
   }
 
