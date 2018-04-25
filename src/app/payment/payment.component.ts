@@ -24,7 +24,7 @@ export class PaymentComponent implements OnInit {
   docType: DocumentType = DocumentType.RECEIPT;
   docTypes: string[] = EnumValues.getNames(DocumentType);
 
-  constructor(private router: Router, private paymentService: PaymentService,
+  constructor(private router: Router, public paymentService: PaymentService,
     private documentService: DocumentService, private dialog: MatDialog,
     private fb: FormBuilder) {
   }
