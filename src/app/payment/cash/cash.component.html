@@ -3,7 +3,7 @@
     <form class="payment-form" [formGroup]="paymentForm">
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Monto" type="text" formControlName="amount" class="right-align">
-        <span matPrefix>$&nbsp;</span>
+        <span matPrefix>{{currency}}&nbsp;</span>
       </mat-form-field>
     </form>
     <app-keypad (number)="setNumber($event)"></app-keypad>
@@ -20,5 +20,5 @@
     <button type="button" mat-raised-button (click)="addNumber(50)">50</button>
     <button type="button" mat-raised-button (click)="addNumber(100)">100</button>
   </div>
-  <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="addPayment()">Add Pago</button>
 </div>
+<button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="addPayment()">Add Pago</button>
