@@ -1,7 +1,7 @@
 <mat-tab-group appSameHeight="mat-card-image">
   <mat-tab *ngFor="let category of categories; let i = index" label="{{categories[i].name}}">
     <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px" class="pos-productgrid">
-      <mat-card class="pos-card" (click)="select(product)" *ngFor="let product of category.products" >
+      <mat-card class="pos-card" [ngClass.xs]="pos-card-xs" (click)="select(product)" *ngFor="let product of category.products" >
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>{{product.sku}}</mat-card-title>
