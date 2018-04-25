@@ -1,6 +1,7 @@
 $ticketWith: 450px;
 
 .ticket {
+    overflow-y: auto;
     width: $ticketWith;
 }
 .productgrid {
