@@ -26,6 +26,7 @@ import { TicketComponent } from './pos/ticket/ticket.component';
 import { TotalsComponent } from './pos/totals/totals.component';
 import { ProducttableComponent } from './producttable/producttable.component';
 import {
+  AdminService,
   AuthService,
   ConfigService,
   DocumentService,
@@ -93,6 +94,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AdminGuard,
     AuthGuard,
     WorkspaceGuard,
+    AdminService,
     AuthService,
     DocumentService,
     PaymentService,
