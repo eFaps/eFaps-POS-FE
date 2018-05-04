@@ -1,5 +1,6 @@
 # Pos
 
+[![Build Status](https://travis-ci.org/eFaps/eFaps-POS-FE.svg?branch=master)](https://travis-ci.org/eFaps/eFaps-POS-FE)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b2c6ff1530a348e6a58ea406f11f1b91)](https://app.codacy.com/app/eFaps/eFaps-POS-FE?utm_source=github.com&utm_medium=referral&utm_content=eFaps/eFaps-POS-FE&utm_campaign=badger)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
