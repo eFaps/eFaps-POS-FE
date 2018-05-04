@@ -12,7 +12,7 @@ import { DocStatus, Order } from '../../model/index';
 })
 export class OrderTableComponent implements OnInit {
   DocStatus = DocStatus;
-  displayedColumns = ['number', 'status', 'cmd'];
+  displayedColumns = ['number', 'date', 'total', 'status', 'cmd'];
   dataSource = new MatTableDataSource<Order>();
   @ViewChild(MatSort) sort: MatSort;
 

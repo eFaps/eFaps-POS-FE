@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../../services/index';
 
 @Component({
   selector: 'app-admin',
@@ -7,13 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(private adminService: AdminService) { }
 
   ngOnInit() {
   }
 
   reload() {
-      console.log('reload');
+    this.adminService.reload().subscribe();
   }
-
 }
