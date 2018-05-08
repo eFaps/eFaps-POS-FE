@@ -17,7 +17,11 @@ export class DocumentService {
 
   constructor(private http: HttpClient, private config: ConfigService,
     private workspaceService: WorkspaceService) {
-    workspaceService.currentWorkspace.subscribe(_ws => { if (_ws) { this.wsoid = _ws.oid; } });
+    workspaceService.currentWorkspace.subscribe(_ws => {
+      if (_ws) {
+        this.wsoid = _ws.oid; 
+      }
+    });
   }
 
   public createReceipt(_receipt: Order): Observable<Receipt> {
