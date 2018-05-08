@@ -1,4 +1,5 @@
 export * from './category';
+export * from './contact';
 export * from './document';
 export * from './item';
 export * from './tax';
