@@ -2,5 +2,6 @@
   "RECEIPT": "Receipt",
   "INVOICE": "Invoice",
   "PASSWORD": "Password",
-  "USER": "User"
+  "USER": "User",
+  "WAIT": "Please Wait..."
 }

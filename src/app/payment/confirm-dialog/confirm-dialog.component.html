@@ -1,9 +1,4 @@
-<h1 mat-dialog-title>Order No: </h1>
-<div mat-dialog-content>
-  <p>
-    Archivado
-  </p>
-</div>
+<h1 mat-dialog-title>{{DocumentType[data.docType] | translate }}: {{data.document.number}}</h1>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>OK</button>
 </mat-dialog-actions>

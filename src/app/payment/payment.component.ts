@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material';
-
+import { Router } from '@angular/router';
 import { EnumValues } from 'enum-values';
+import { Subscription } from 'rxjs/Subscription';
 
+import { DocStatus, Document, DocumentType, Payment, PaymentType } from '../model/index';
 import { DocumentService, PaymentService } from '../services/index';
-import { Document, DocStatus, DocumentType, Payment, PaymentType } from '../model/index';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -23,6 +23,7 @@ export class PaymentComponent implements OnInit {
   change = 0;
   docType: DocumentType = DocumentType.RECEIPT;
   docTypes: string[] = EnumValues.getNames(DocumentType);
+  busy: Subscription;
 
   constructor(private router: Router, public paymentService: PaymentService,
     private documentService: DocumentService, private dialog: MatDialog,
@@ -60,14 +61,19 @@ export class PaymentComponent implements OnInit {
           taxes: this.document.taxes
         };
 
-        this.documentService.createReceipt(receipt)
-          .subscribe(_receipt => this.router.navigate(['/pos']));
-        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-          width: '450px',
-          disableClose: false,
-          data: {}
-        });
-        this.paymentService.reset();
+        this.busy = this.documentService.createReceipt(receipt)
+          .subscribe(_receipt => {
+              this.router.navigate(['/pos']);
+              const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+                width: '450px',
+                disableClose: false,
+                data: {
+                    document: _receipt,
+                    docType: DocumentType.RECEIPT
+                }
+              });
+              this.paymentService.reset();
+          });
         break;
     }
   }

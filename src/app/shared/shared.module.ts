@@ -3,6 +3,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { NgBusyModule } from 'ng-busy';
 
 import { MaterialModule } from '../material/material.module';
 import { PosCurrencyPipe } from '../services/index';
@@ -18,7 +19,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CommonModule,
     HttpClientModule,
     MaterialModule,
-    TranslateModule
+    TranslateModule,
+    NgBusyModule
   ],
   declarations: [
     DocumentComponent,
@@ -29,7 +31,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DocumentComponent,
     KeypadComponent,
     TranslateModule,
-    PosCurrencyPipe
+    PosCurrencyPipe,
+    NgBusyModule
   ]
 })
 export class SharedModule { }
