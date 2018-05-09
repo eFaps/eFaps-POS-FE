@@ -1,5 +1,19 @@
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
-@import 'ng-busy/src/style/busy.css';
+//@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '../node_modules/@angular/material/theming';
+//@import '../node_modules/ng-busy/src/style/busy.css';
+
+@include mat-core();
+
+$primary: mat-palette($mat-indigo);
+$accent:  mat-palette($mat-pink, A200, A100, A400);
+$theme: mat-light-theme($primary, $accent);
+
+@mixin material-docs-app-theme($theme) {
+}
+
+@include angular-material-theme($theme);
+@include material-docs-app-theme($theme);
+
 
 .posIcon-48 {
     font-size: 48px;

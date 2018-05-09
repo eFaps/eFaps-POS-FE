@@ -26,12 +26,33 @@
                 "output": "/"
               }
             ],
-            "styles": [
-              "src/styles.scss"
+            "styles": [{
+                "input": "src/styles.scss"
+              },
+              {
+                "input": "src/assets/pink-bluegrey.css",
+                "lazy": true,
+                "bundleName": "pink-bluegrey"
+              },
+              {
+                "input": "src/assets/deeppurple-amber.css",
+                "lazy": true,
+                "bundleName": "deeppurple-amber"
+              },
+              {
+                "input": "src/assets/indigo-pink.css",
+                "lazy": true,
+                "bundleName": "indigo-pink"
+              },
+              {
+                "input": "src/assets/purple-green.css",
+                "lazy": true,
+                "bundleName": "purple-green"
+              }
             ],
             "stylePreprocessorOptions": {
               "includePaths": ["./", "./themes"]
-          },
+            },
             "scripts": [
               "node_modules/hammerjs/hammer.min.js"
             ]
@@ -81,8 +102,29 @@
             "scripts": [
               "node_modules/hammerjs/hammer.min.js"
             ],
-            "styles": [
-              "src/styles.scss"
+            "styles": [{
+                "input": "src/styles.scss"
+              },
+              {
+                "input": "src/assets/pink-bluegrey.css",
+                "lazy": true,
+                "bundleName": "pink-bluegrey"
+              },
+              {
+                "input": "src/assets/deeppurple-amber.css",
+                "lazy": true,
+                "bundleName": "deeppurple-amber"
+              },
+              {
+                "input": "src/assets/indigo-pink.css",
+                "lazy": true,
+                "bundleName": "indigo-pink"
+              },
+              {
+                "input": "src/assets/purple-green.css",
+                "lazy": true,
+                "bundleName": "purple-green"
+              }
             ],
             "assets": [{
                 "glob": "**/*",

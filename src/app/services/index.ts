@@ -12,3 +12,5 @@ export * from './product.service';
 export * from './user.service';
 export * from './utils.service';
 export * from './workspace.service';
+export * from './theme-storage.service';
+export * from './style-manager.service';

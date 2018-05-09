@@ -2,6 +2,7 @@
   <mat-toolbar color="primary" class="example-toolbar">
     <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
     <h2 class="example-app-name">POS - {{workspace}}</h2>
+    <app-theme-picker></app-theme-picker>
   </mat-toolbar>
   <mat-sidenav-container class="pos-sidenav">
     <mat-sidenav #sidenav [mode]="(screenWidth > 840) ? 'side' : 'over'">
