@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { Subscriber } from 'rxjs/Subscriber';
 import { map } from 'rxjs/operators';
+import 'rxjs/add/operator/toPromise';
 
 import { AuthService } from './auth.service';
 import { ConfigService } from './config.service';
@@ -30,19 +31,28 @@ export class WorkspaceService {
     return this.http.get<Workspace>(url);
   }
 
-  public hasCurrent(): boolean {
+  public hasCurrent(): Promise<boolean> {
     if (this.currentSource.getValue()) {
-      return true;
+      return new Promise<boolean>(resolve => resolve(true));
     }
     const workspacesStr = localStorage.getItem('workspaces');
     if (workspacesStr) {
       const workspaceOid = JSON.parse(workspacesStr)[this.auth.getCurrentUsername()];
       if (workspaceOid) {
-        this.getWorkspace(workspaceOid).subscribe(_ws => this.setCurrent(_ws));
-        return true;
+        return new Promise<boolean>(resolve => {
+            this.getWorkspace(workspaceOid).subscribe(
+                _ws => {
+                    this.setCurrent(_ws);
+                    resolve(true);
+                },
+                _error => {
+                    resolve(false);
+                }
+            );
+        });
       }
     }
-    return false;
+     return new Promise<boolean>(resolve => resolve(false));
   }
 
   public logout() {

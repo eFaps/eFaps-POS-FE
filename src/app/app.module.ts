@@ -11,6 +11,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AdminModule } from './admin/admin.module';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
+import { ContactsModule } from './contacts/contacts.module';
 import { AdminGuard, AuthGuard, WorkspaceGuard } from './guards/index';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from './material/material.module';
@@ -46,7 +47,6 @@ import { VirtKeyboardDirective } from './services/virt-keyboard.directive';
 import { SharedModule } from './shared/shared.module';
 import { WorkspaceComponent } from './workspace/workspace.component';
 
-
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
@@ -78,6 +78,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MaterialModule,
     routes,
     AdminModule,
+    ContactsModule,
     PaymentModule,
     OrdersModule,
     SharedModule,

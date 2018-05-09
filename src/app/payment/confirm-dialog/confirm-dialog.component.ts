@@ -1,5 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
+
+import { DocumentType } from '../../model/index';
 
 @Component({
   selector: 'app-confirm-dialog',
@@ -7,6 +9,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./confirm-dialog.component.scss']
 })
 export class ConfirmDialogComponent implements OnInit {
+  DocumentType = DocumentType;
 
   constructor(public dialogRef: MatDialogRef<ConfirmDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }

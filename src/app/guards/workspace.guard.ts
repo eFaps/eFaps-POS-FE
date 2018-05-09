@@ -12,10 +12,15 @@ export class WorkspaceGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.workspaceService.hasCurrent()) {
-        this.router.navigate(['/workspaces']);
-        return false;
-    }
-    return true;
+    return new Promise<boolean> (resolve => {
+         this.workspaceService.hasCurrent().then(_ret => {
+             if (_ret) {
+                 resolve(true);
+              } else {
+                  this.router.navigate(['/workspaces']);
+                  resolve(false);
+              }
+          });
+      });
   }
 }
