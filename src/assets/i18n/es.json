@@ -2,6 +2,7 @@
   "ORDER": "Orden",
   "RECEIPT": "Boleta",
   "INVOICE": "Factura",
+  "TICKET": "Ticket",
   "OPEN": "Pendiente",
   "CLOSED": "Cerrado",
   "CANCELED": "Anulado",

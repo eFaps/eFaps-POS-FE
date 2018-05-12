@@ -1,6 +1,7 @@
 {
   "RECEIPT": "Receipt",
   "INVOICE": "Invoice",
+  "TICKET": "Ticket",
   "PASSWORD": "Password",
   "USER": "User",
   "WAIT": "Please Wait..."

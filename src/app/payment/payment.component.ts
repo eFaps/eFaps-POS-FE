@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
-import { EnumValues } from 'enum-values';
+import { EnumValues, EnumValueType } from 'enum-values';
 import { Subscription } from 'rxjs/Subscription';
 
 import { DocStatus, Document, DocumentType, Payment, PaymentType } from '../model/index';
-import { DocumentService, PaymentService } from '../services/index';
+import { DocumentService, PaymentService, WorkspaceService } from '../services/index';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -22,10 +22,11 @@ export class PaymentComponent implements OnInit {
   total = 0;
   change = 0;
   docType: DocumentType = DocumentType.RECEIPT;
-  docTypes: string[] = EnumValues.getNames(DocumentType);
+  docTypes: string[] = [];
   busy: Subscription;
 
-  constructor(private router: Router, public paymentService: PaymentService,
+  constructor(private router: Router, private workspaceService: WorkspaceService,
+      public paymentService: PaymentService,
     private documentService: DocumentService, private dialog: MatDialog,
     private fb: FormBuilder) {
   }
@@ -37,6 +38,12 @@ export class PaymentComponent implements OnInit {
     this.paymentService.currentTotal.subscribe(_total => {
       this.total = _total;
       this.change = this.document ? _total - this.document.crossTotal : _total;
+    });
+    this.workspaceService.currentWorkspace.subscribe(_data => {
+        this.docTypes = [];
+        _data.docTypes.forEach((_value) => {
+            this.docTypes.push(_value.toString());
+        });
     });
   }
 

@@ -45,7 +45,8 @@ export interface DocItem {
 
 export enum DocumentType {
   RECEIPT,
-  INVOICE
+  INVOICE,
+  TICKET
 }
 
 export enum DocStatus {
