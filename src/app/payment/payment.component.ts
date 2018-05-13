@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
-import { EnumValues, EnumValueType } from 'enum-values';
+import { EnumValues } from 'enum-values';
 import { Subscription } from 'rxjs/Subscription';
 
 import { DocStatus, Document, DocumentType, Payment, PaymentType } from '../model/index';
