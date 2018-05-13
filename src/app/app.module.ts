@@ -30,6 +30,7 @@ import {
   AdminService,
   AuthService,
   ConfigService,
+  ContactService,
   DocumentService,
   ErrorInterceptor,
   ImageService,
@@ -46,6 +47,7 @@ import { SecurePipe } from './services/secure.pipe';
 import { VirtKeyboardDirective } from './services/virt-keyboard.directive';
 import { SharedModule } from './shared/shared.module';
 import { WorkspaceComponent } from './workspace/workspace.component';
+import { ThemePickerComponent } from './theme-picker/theme-picker.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -66,7 +68,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TotalsComponent,
     CommandsComponent,
     OrderDialogComponent,
-    SameHeightDirective
+    SameHeightDirective,
+    ThemePickerComponent
   ],
   imports: [
     BrowserModule,
@@ -97,6 +100,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     WorkspaceGuard,
     AdminService,
     AuthService,
+    ContactService,
     DocumentService,
     PaymentService,
     ProductService,

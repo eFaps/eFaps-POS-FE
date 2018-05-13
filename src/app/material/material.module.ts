@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import {
   MatButtonModule,
   MatButtonToggleModule,
@@ -11,57 +11,59 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
+  MatMenuModule,
   MatRadioModule,
-  MatTabsModule,
-  MatTableModule,
   MatSidenavModule,
   MatSlideToggleModule,
   MatSortModule,
+  MatTableModule,
+  MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
-
 import { MatKeyboardModule } from '@ngx-material-keyboard/core';
 
 @NgModule({
   imports: [
-    MatDialogModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
+    MatDialogModule,
     MatDividerModule,
     MatFormFieldModule,
     MatGridListModule,
     MatIconModule,
     MatInputModule,
+    MatKeyboardModule,
     MatListModule,
+    MatMenuModule,
     MatRadioModule,
     MatSidenavModule,
     MatSlideToggleModule,
     MatSortModule,
-    MatTabsModule,
     MatTableModule,
-    MatToolbarModule,
-    MatKeyboardModule
+    MatTabsModule,
+    MatToolbarModule
   ],
   exports: [
-    MatDialogModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
+    MatDialogModule,
     MatDividerModule,
     MatFormFieldModule,
     MatGridListModule,
     MatIconModule,
     MatInputModule,
+    MatKeyboardModule,
     MatListModule,
+    MatMenuModule,
     MatRadioModule,
     MatSidenavModule,
     MatSlideToggleModule,
     MatSortModule,
-    MatTabsModule,
     MatTableModule,
-    MatToolbarModule,
-    MatKeyboardModule
+    MatTabsModule,
+    MatToolbarModule
   ]
 })
 export class MaterialModule { }

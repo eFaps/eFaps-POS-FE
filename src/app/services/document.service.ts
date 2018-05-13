@@ -9,7 +9,7 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
 import { ConfigService } from './config.service';
 import { WorkspaceService } from './workspace.service';
 
-import { Invoice, Order, Receipt } from '../model/index';
+import { Invoice, Order, Receipt, Ticket } from '../model/index';
 
 @Injectable()
 export class DocumentService {
@@ -19,7 +19,7 @@ export class DocumentService {
     private workspaceService: WorkspaceService) {
     workspaceService.currentWorkspace.subscribe(_ws => {
       if (_ws) {
-        this.wsoid = _ws.oid; 
+        this.wsoid = _ws.oid;
       }
     });
   }
@@ -27,6 +27,16 @@ export class DocumentService {
   public createReceipt(_receipt: Order): Observable<Receipt> {
     const url = `${this.config.baseUrl}/workspaces/${this.wsoid}/documents/receipts`;
     return this.http.post<Receipt>(url, _receipt);
+  }
+
+  public createInvoice(_invoice: Order): Observable<Receipt> {
+    const url = `${this.config.baseUrl}/workspaces/${this.wsoid}/documents/invoices`;
+    return this.http.post<Invoice>(url, _invoice);
+  }
+
+  public createTicket(_ticket: Order): Observable<Receipt> {
+    const url = `${this.config.baseUrl}/workspaces/${this.wsoid}/documents/tickets`;
+    return this.http.post<Ticket>(url, _ticket);
   }
 
   public createOrder(_order: Order): Observable<Order> {
@@ -37,11 +47,6 @@ export class DocumentService {
   public updateOrder(_order: Order): Observable<Order> {
     const url = `${this.config.baseUrl}/documents/orders/${_order.id}`;
     return this.http.put<Order>(url, _order);
-  }
-
-  public createInvoice(_invoice: Order): Observable<Invoice> {
-    const url = `${this.config.baseUrl}/workspaces/${this.wsoid}/documents/invoices`;
-    return this.http.post<Invoice>(url, _invoice);
   }
 
   public getOrders(): Observable<Order[]> {

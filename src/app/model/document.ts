@@ -31,6 +31,10 @@ export interface Invoice extends Payable {
 
 }
 
+export interface Ticket extends Payable {
+
+}
+
 export interface DocItem {
   index: number;
   product: Product;
@@ -45,7 +49,8 @@ export interface DocItem {
 
 export enum DocumentType {
   RECEIPT,
-  INVOICE
+  INVOICE,
+  TICKET
 }
 
 export enum DocStatus {

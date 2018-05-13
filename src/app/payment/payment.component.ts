@@ -6,7 +6,7 @@ import { EnumValues } from 'enum-values';
 import { Subscription } from 'rxjs/Subscription';
 
 import { DocStatus, Document, DocumentType, Payment, PaymentType } from '../model/index';
-import { DocumentService, PaymentService } from '../services/index';
+import { DocumentService, PaymentService, WorkspaceService } from '../services/index';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -22,10 +22,11 @@ export class PaymentComponent implements OnInit {
   total = 0;
   change = 0;
   docType: DocumentType = DocumentType.RECEIPT;
-  docTypes: string[] = EnumValues.getNames(DocumentType);
+  docTypes: string[] = [];
   busy: Subscription;
 
-  constructor(private router: Router, public paymentService: PaymentService,
+  constructor(private router: Router, private workspaceService: WorkspaceService,
+    public paymentService: PaymentService,
     private documentService: DocumentService, private dialog: MatDialog,
     private fb: FormBuilder) {
   }
@@ -38,41 +39,75 @@ export class PaymentComponent implements OnInit {
       this.total = _total;
       this.change = this.document ? _total - this.document.crossTotal : _total;
     });
+    this.workspaceService.currentWorkspace.subscribe(_data => {
+      this.docTypes = [];
+      _data.docTypes.forEach((_value) => {
+        this.docTypes.push(_value.toString());
+      });
+    });
   }
 
   createDocument() {
-    switch (this.docType) {
-      case DocumentType.INVOICE:
-        this.documentService.createInvoice(this.document)
-          .subscribe(_invoice => this.router.navigate(['/pos']));
-        break;
-      case DocumentType.RECEIPT:
-        this.documentService.updateOrder(Object.assign(this.document, { status: DocStatus.CLOSED })).subscribe();
-        const receipt = {
-          id: null,
-          oid: null,
-          number: null,
-          currency: this.document.currency,
-          items: this.document.items,
-          status: DocStatus.OPEN,
-          payments: this.payments,
-          netTotal: this.document.netTotal,
-          crossTotal: this.document.crossTotal,
-          taxes: this.document.taxes
-        };
+    const document = {
+      id: null,
+      oid: null,
+      number: null,
+      currency: this.document.currency,
+      items: this.document.items,
+      status: DocStatus.OPEN,
+      payments: this.payments,
+      netTotal: this.document.netTotal,
+      crossTotal: this.document.crossTotal,
+      taxes: this.document.taxes
+    };
 
-        this.busy = this.documentService.createReceipt(receipt)
+    switch (this.docType) {
+      case DocumentType.RECEIPT:
+        this.busy = this.documentService.createReceipt(document)
           .subscribe(_receipt => {
-              this.router.navigate(['/pos']);
-              const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-                width: '450px',
-                disableClose: false,
-                data: {
-                    document: _receipt,
-                    docType: DocumentType.RECEIPT
-                }
-              });
-              this.paymentService.reset();
+            this.documentService.updateOrder(Object.assign(this.document, { status: DocStatus.CLOSED })).subscribe();
+            this.router.navigate(['/pos']);
+            const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+              width: '450px',
+              disableClose: false,
+              data: {
+                document: _receipt,
+                docType: DocumentType.RECEIPT
+              }
+            });
+            this.paymentService.reset();
+          });
+        break;
+      case DocumentType.INVOICE:
+        this.busy = this.documentService.createInvoice(document)
+          .subscribe(_receipt => {
+            this.documentService.updateOrder(Object.assign(this.document, { status: DocStatus.CLOSED })).subscribe();
+            this.router.navigate(['/pos']);
+            const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+              width: '450px',
+              disableClose: false,
+              data: {
+                document: _receipt,
+                docType: DocumentType.INVOICE
+              }
+            });
+            this.paymentService.reset();
+          });
+        break;
+      case DocumentType.TICKET:
+        this.busy = this.documentService.createTicket(document)
+          .subscribe(_receipt => {
+            this.documentService.updateOrder(Object.assign(this.document, { status: DocStatus.CLOSED })).subscribe();
+            this.router.navigate(['/pos']);
+            const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+              width: '450px',
+              disableClose: false,
+              data: {
+                document: _receipt,
+                docType: DocumentType.TICKET
+              }
+            });
+            this.paymentService.reset();
           });
         break;
     }
