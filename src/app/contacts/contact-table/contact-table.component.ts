@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { Contact } from '../../model/index';
+import { ContactService } from '../../services/index'
 
 @Component({
   selector: 'app-contact-table',
@@ -12,9 +13,15 @@ export class ContactTableComponent implements OnInit {
     dataSource = new MatTableDataSource<Contact>();
     @ViewChild(MatSort) sort: MatSort;
 
-  constructor() { }
+  constructor(private contactService: ContactService) { }
 
-  ngOnInit() {
-  }
+
+    ngOnInit() {
+        this.contactService.getContacts()
+          .subscribe(data => {
+              this.dataSource.data = data;
+              this.dataSource.sort = this.sort;
+          });
+    }
 
 }
