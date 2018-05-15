@@ -72,10 +72,15 @@ export class PosService {
     this.currentCurrency.subscribe(_currency => this.currency = _currency);
   }
 
+  public getPoss(): Observable<Pos[]> {
+    const url = `${this.config.baseUrl}/poss`;
+    return this.http.get<Pos[]>(url);
+  }
   public getPos(_oid: string): Observable<Pos> {
     const url = `${this.config.baseUrl}/poss/${_oid}`;
     return this.http.get<Pos>(url);
   }
+
 
   changeOrder(_order: Order) {
     this.orderSource.next(_order);
