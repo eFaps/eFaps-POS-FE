@@ -6,5 +6,5 @@
 </div>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>OK</button>
-  <button mat-raised-button [mat-dialog-close]="data.order">Checkout</button>
+  <button mat-raised-button [mat-dialog-close]="data.order" *ngIf="allowPayment">Checkout</button>
 </mat-dialog-actions>

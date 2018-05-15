@@ -1,5 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
+
+import { WorkspaceService } from '../../services/index';
 
 @Component({
   selector: 'app-order-dialog',
@@ -7,13 +9,17 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./order-dialog.component.scss']
 })
 export class OrderDialogComponent implements OnInit {
+  allowPayment: boolean;
+  constructor(private workspaceService: WorkspaceService,
+    public dialogRef: MatDialogRef<OrderDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-    constructor(public dialogRef: MatDialogRef<OrderDialogComponent>,
-      @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-
-    ngOnInit() {
-    }
+  ngOnInit() {
+      this.workspaceService.currentWorkspace.subscribe(_data => {
+        this.allowPayment = _data.docTypes && _data.docTypes.length > 0;
+      });
+  }
 
 
 }
