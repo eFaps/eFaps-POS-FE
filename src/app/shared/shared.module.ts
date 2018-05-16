@@ -11,6 +11,7 @@ import { PosCurrencyPipe } from '../services/index';
 import { ContactComponent } from './contact/contact.component';
 import { DocumentComponent } from './document/document.component';
 import { KeypadComponent } from './keypad/keypad.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -30,15 +31,20 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DocumentComponent,
     KeypadComponent,
     PosCurrencyPipe,
-    ContactComponent
+    ContactComponent,
+    ConfirmDialogComponent
   ],
   exports: [
+    ConfirmDialogComponent,
     ContactComponent,
     DocumentComponent,
     KeypadComponent,
-    TranslateModule,
+    NgBusyModule,
     PosCurrencyPipe,
-    NgBusyModule
+    TranslateModule
+  ],
+  entryComponents: [
+    ConfirmDialogComponent 
   ]
 })
 export class SharedModule { }

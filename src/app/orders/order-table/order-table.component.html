@@ -23,6 +23,9 @@
         <button (click)="pos(order)" *ngIf="order.status===DocStatus[DocStatus.OPEN]">
           <mat-icon  class="posIcon-36">shop</mat-icon>
         </button>
+        <button (click)="delete(order)" *ngIf="isAdmin && order.status===DocStatus[DocStatus.OPEN]">
+          <mat-icon  class="posIcon-36">delete</mat-icon>
+        </button>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

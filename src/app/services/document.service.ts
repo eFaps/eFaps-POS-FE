@@ -49,6 +49,11 @@ export class DocumentService {
     return this.http.put<Order>(url, _order);
   }
 
+  public deleteOrder(_order: Order): Observable<void> {
+    const url = `${this.config.baseUrl}/documents/orders/${_order.id}`;
+    return this.http.delete<void>(url);
+  }
+
   public getOrders(): Observable<Order[]> {
     const url = `${this.config.baseUrl}/documents/orders`;
     return this.http.get<Order[]>(url);
