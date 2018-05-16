@@ -24,17 +24,17 @@ export class DocumentService {
     });
   }
 
-  public createReceipt(_receipt: Order): Observable<Receipt> {
+  public createReceipt(_receipt: Receipt): Observable<Receipt> {
     const url = `${this.config.baseUrl}/workspaces/${this.wsoid}/documents/receipts`;
     return this.http.post<Receipt>(url, _receipt);
   }
 
-  public createInvoice(_invoice: Order): Observable<Receipt> {
+  public createInvoice(_invoice: Invoice): Observable<Receipt> {
     const url = `${this.config.baseUrl}/workspaces/${this.wsoid}/documents/invoices`;
     return this.http.post<Invoice>(url, _invoice);
   }
 
-  public createTicket(_ticket: Order): Observable<Receipt> {
+  public createTicket(_ticket: Ticket): Observable<Receipt> {
     const url = `${this.config.baseUrl}/workspaces/${this.wsoid}/documents/tickets`;
     return this.http.post<Ticket>(url, _ticket);
   }
