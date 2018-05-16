@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
+  MatAutocompleteModule,
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
@@ -24,6 +25,7 @@ import { MatKeyboardModule } from '@ngx-material-keyboard/core';
 
 @NgModule({
   imports: [
+    MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
@@ -45,6 +47,7 @@ import { MatKeyboardModule } from '@ngx-material-keyboard/core';
     MatToolbarModule
   ],
   exports: [
+    MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
