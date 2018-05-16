@@ -13,6 +13,7 @@ export interface Document {
   netTotal: number;
   crossTotal: number;
   taxes: TaxEntry[];
+  contactOid: string;
 }
 
 export interface Payable extends Document {

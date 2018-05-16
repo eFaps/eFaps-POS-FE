@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { EnumValues } from 'enum-values';
 import { Subscription } from 'rxjs/Subscription';
 
-import { DocStatus, Document, DocumentType, Payment, PaymentType } from '../model/index';
+import { Contact, DocStatus, Document, DocumentType, Payment, PaymentType } from '../model/index';
 import { DocumentService, PaymentService, WorkspaceService } from '../services/index';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
@@ -24,6 +24,7 @@ export class PaymentComponent implements OnInit {
   docType: DocumentType = DocumentType.RECEIPT;
   docTypes: string[] = [];
   busy: Subscription;
+  contact: Contact;
 
   constructor(private router: Router, private workspaceService: WorkspaceService,
     public paymentService: PaymentService,
@@ -58,7 +59,8 @@ export class PaymentComponent implements OnInit {
       payments: this.payments,
       netTotal: this.document.netTotal,
       crossTotal: this.document.crossTotal,
-      taxes: this.document.taxes
+      taxes: this.document.taxes,
+      contactOid: this.contact ? this.contact.oid : null
     };
 
     switch (this.docType) {
@@ -119,5 +121,9 @@ export class PaymentComponent implements OnInit {
       this.payments.splice(index, 1);
     }
     this.paymentService.updatePayments(this.payments);
+  }
+
+  selectContact(_contact: Contact) {
+    this.contact = _contact;
   }
 }

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { ContactService } from '../../services/index';
-
-import { Contact } from '../../model/index';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
+
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+
+import { Contact } from '../../model/index';
+import { ContactService } from '../../services/index';
 
 @Component({
   selector: 'app-contact',
@@ -16,6 +17,7 @@ export class ContactComponent implements OnInit {
   searchControl: FormControl = new FormControl();
   searchResult = [];
   nameSearch = false;
+  @Output() contactSelected = new EventEmitter<Contact>();
 
   constructor(private contactService: ContactService) { }
 
@@ -35,5 +37,9 @@ export class ContactComponent implements OnInit {
 
   displayFn(_contact?: Contact): string | undefined {
     return _contact ? _contact.name : undefined;
+  }
+
+  selectContact(_event) {
+    this.contactSelected.emit(_event.option.value);
   }
 }
