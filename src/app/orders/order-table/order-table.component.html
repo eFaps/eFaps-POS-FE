@@ -1,5 +1,5 @@
 <div class="pos-order-container mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource" matSort>
+  <mat-table #table [dataSource]="dataSource" matSort matSortActive="status" matSortDirection="desc">
     <ng-container matColumnDef="number">
       <mat-header-cell *matHeaderCellDef mat-sort-header> No </mat-header-cell>
       <mat-cell *matCellDef="let order"> {{order.number}} </mat-cell>
