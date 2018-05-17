@@ -9,30 +9,33 @@
     <app-document [document]='document'></app-document>
   </div>
   <div fxFlex>
-    <mat-tab-group>
-      <mat-tab label="{{'CASH' | translate}}">
-        <app-cash></app-cash>
-      </mat-tab>
-      <mat-tab label="{{'FREE' | translate}}">
-        <app-free></app-free>
-      </mat-tab>
-    </mat-tab-group>
-  </div>
-  <div fxFlex="30">
-    <mat-list dense>
-      <mat-list-item *ngFor="let payment of payments">
-        <span matLine>{{PaymentType[payment.type] | translate}} {{payment.amount}}</span>
-        <button mat-icon-button (click)="delPayment(payment)">
+    <div class="paymentsTypes">
+      <mat-tab-group>
+        <mat-tab label="{{'CASH' | translate}}">
+          <app-cash></app-cash>
+        </mat-tab>
+        <mat-tab label="{{'FREE' | translate}}">
+          <app-free></app-free>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="paymentsRegistered">
+      <mat-list dense>
+        <mat-list-item *ngFor="let payment of payments">
+          <span matLine>{{PaymentType[payment.type] | translate}} {{payment.amount}}</span>
+          <button mat-icon-button (click)="delPayment(payment)">
           <mat-icon>highlight_off</mat-icon>
         </button>
-      </mat-list-item>
-    </mat-list>
-    <div class="mat-typography">
+        </mat-list-item>
+      </mat-list>
+      <div class="mat-typography">
         <div>{{'PAYMENT.TOTAL' | translate }}: {{total | posCurrency:paymentService.currency}}</div>
         <div [ngClass]="{'negative': change < 0}">{{'PAYMENT.CHANGE' | translate }}: {{change | posCurrency:paymentService.currency}}</div>
-    </div>
-    <div>
-      <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="createDocument()">Finalizar</button>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="createDocument()">Finalizar</button>
+      </div>
     </div>
   </div>
 </div>
