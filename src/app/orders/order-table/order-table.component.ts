@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { DocStatus, Order, Roles } from '../../model/index';
@@ -15,6 +15,7 @@ export class OrderTableComponent implements OnInit {
   DocStatus = DocStatus;
   displayedColumns = ['number', 'date', 'total', 'status', 'cmd'];
   dataSource = new MatTableDataSource<Order>();
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   isAdmin = false;
   constructor(private router: Router,
@@ -29,6 +30,7 @@ export class OrderTableComponent implements OnInit {
     this.documentService.getOrders().subscribe(_orders => {
       this.dataSource.data = _orders;
       this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     });
   }
 
