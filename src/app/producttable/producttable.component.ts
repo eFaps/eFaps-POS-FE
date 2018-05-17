@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort } from '@angular/material';
-import { ProductService } from '../services/index';
+import { MatSort, MatTableDataSource } from '@angular/material';
+
 import { Product } from '../model/index';
+import { ProductService } from '../services/index';
 
 @Component({
   selector: 'app-producttable',
@@ -16,10 +17,16 @@ export class ProducttableComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-      this.productService.getProducts()
-        .subscribe(data => {
-            this.dataSource.data = data;
-            this.dataSource.sort = this.sort;
-        });
+    this.productService.getProducts()
+      .subscribe(data => {
+        this.dataSource.data = data;
+        this.dataSource.sort = this.sort;
+      });
+  }
+  
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
   }
 }
