@@ -16,7 +16,7 @@ export class OrderTableComponent implements OnInit {
   displayedColumns = ['number', 'date', 'total', 'status', 'cmd'];
   dataSource = new MatTableDataSource<Order>();
   @ViewChild(MatSort) sort: MatSort;
-  isAdmin: false;
+  isAdmin = false;
   constructor(private router: Router,
     private authService: AuthService,
     private documentService: DocumentService,
