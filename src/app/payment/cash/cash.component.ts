@@ -28,11 +28,11 @@ export class CashComponent implements OnInit {
   }
 
   addPayment() {
-    const amount = Number(this.paymentForm.value.amount);
+    const amount = this.utilsService.parse(this.paymentForm.value.amount);
     if (amount > 0) {
       this.payments.push({
         type: PaymentType.CASH,
-        amount: Number(this.paymentForm.value.amount)
+        amount: amount
       });
       this.paymentService.updatePayments(this.payments);
       this.paymentForm.setValue({ 'amount': 0 });
