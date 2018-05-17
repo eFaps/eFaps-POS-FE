@@ -14,7 +14,7 @@ export class CashComponent implements OnInit {
   payments: Payment[];
   currency: string;
 
-  constructor(private paymentService: PaymentService, private utilsService: UtilsService,
+  constructor(protected paymentService: PaymentService, protected utilsService: UtilsService,
     private fb: FormBuilder) {
     this.currency = utilsService.getCurrencySymbol('PEN');
   }

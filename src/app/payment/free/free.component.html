@@ -1,3 +1,8 @@
-<p>
-  free works!
-</p>
+<form class="payment-form" [formGroup]="paymentForm">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Monto" type="text" formControlName="amount" class="right-align">
+    <span matPrefix>{{currency}}&nbsp;</span>
+  </mat-form-field>
+</form>
+<app-keypad (number)="setNumber($event)"></app-keypad>
+<button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="addPayment()">Add Pago</button>
