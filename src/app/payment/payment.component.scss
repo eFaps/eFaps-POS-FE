@@ -3,15 +3,29 @@
 }
 
 .docType-radio-group {
-    padding: 5px;
+  padding: 5px;
 }
+
 .docType-radio-button {
-    margin: 5px;
+  margin: 5px;
 }
+
 .negative {
-    color: red;
+  color: red;
 }
-.paymentsTypes,
-.paymentsRegistered  {
-    padding: 5px;
+
+.paymentsRegistered,
+.paymentsTypes {
+  padding: 5px;
+}
+
+.createDocument button {
+  top: 50%;
+  position: relative;
+  transform: translateY(-50%);
+}
+
+.payTotal h1 {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
