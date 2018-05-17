@@ -18,5 +18,14 @@
       "TOTAL": "Total",
       "CHANGE": "Cambio"
   },
-  "WAIT": "Un momento..."
+  "WAIT": "Un momento...",
+  "MENU": {
+      "POS": "Registrar Ordenes",
+      "PRODUCTS": "Productos",
+      "ORDERS": "Ordenes",
+      "CONTACTS": "Clientes",
+      "WORKSPACES": "Entornos",
+      "ADMIN": "Admin",
+      "LOGIN": "Login/Logout"
+  }
 }

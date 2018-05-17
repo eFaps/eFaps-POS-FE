@@ -19,7 +19,8 @@ import {
   MatSortModule,
   MatTableModule,
   MatTabsModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatTooltipModule
 } from '@angular/material';
 import { MatKeyboardModule } from '@ngx-material-keyboard/core';
 
@@ -44,7 +45,8 @@ import { MatKeyboardModule } from '@ngx-material-keyboard/core';
     MatSortModule,
     MatTableModule,
     MatTabsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTooltipModule
   ],
   exports: [
     MatAutocompleteModule,
@@ -66,7 +68,8 @@ import { MatKeyboardModule } from '@ngx-material-keyboard/core';
     MatSortModule,
     MatTableModule,
     MatTabsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTooltipModule
   ]
 })
 export class MaterialModule { }

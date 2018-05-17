@@ -10,38 +10,38 @@
     <mat-sidenav #sidenav [mode]="(screenWidth > 840) ? 'side' : 'over'">
       <mat-list>
         <mat-list-item>
-          <button routerLink="/pos">
-          <mat-icon aria-label="POS" class="posIcon-36">shop</mat-icon>
-            </button>
-        </mat-list-item>
-        <mat-list-item>
-          <button routerLink="/products">
-            <mat-icon aria-label="POS" class="posIcon-36">store</mat-icon>
+          <button routerLink="/pos" matTooltip="{{'MENU.POS' | translate}}" matTooltipPosition="right">
+              <mat-icon aria-label="POS" class="posIcon-36">shop</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item>
-          <button routerLink="/orders">
+          <button routerLink="/products" matTooltip="{{'MENU.PRODUCTS' | translate}}" matTooltipPosition="right">
+            <mat-icon aria-label="products" class="posIcon-36">store</mat-icon>
+          </button>
+        </mat-list-item>
+        <mat-list-item>
+          <button routerLink="/orders" matTooltip="{{'MENU.ORDERS' | translate}}" matTooltipPosition="right">
             <mat-icon aria-label="Orders" class="posIcon-36">dns</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item>
-          <button routerLink="/contacts">
+          <button routerLink="/contacts" matTooltip="{{'MENU.CONTACTS' | translate}}" matTooltipPosition="right">
             <mat-icon aria-label="Contacts" class="posIcon-36">contacts</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item>
-          <button routerLink="/workspaces">
+          <button routerLink="/workspaces" matTooltip="{{'MENU.WORKSPACES' | translate}}" matTooltipPosition="right">
               <mat-icon aria-label="Workspaces" class="posIcon-36">devices</mat-icon>
           </button>
         </mat-list-item>
-        <mat-list-item *ngIf="auth.hasRole(Roles['ADMIN'])">
+        <mat-list-item *ngIf="auth.hasRole(Roles['ADMIN'])" matTooltip="{{'MENU.ADMIN' | translate}}" matTooltipPosition="right">
           <button routerLink="/admin">
               <mat-icon aria-label="Admin" class="posIcon-36">build</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item>
-          <button routerLink="/login">
-              <mat-icon aria-label="POS" class="posIcon-36">bubble_chart</mat-icon>
+          <button routerLink="/login" matTooltip="{{'MENU.LOGIN' | translate}}" matTooltipPosition="right">
+              <mat-icon aria-label="login" class="posIcon-36">bubble_chart</mat-icon>
           </button>
         </mat-list-item>
       </mat-list>
