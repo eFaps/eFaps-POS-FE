@@ -50,6 +50,13 @@ export class PaymentComponent implements OnInit {
   }
 
   createDocument() {
+    if (this.change !== 0) {
+      this.payments.push({
+        type: PaymentType.CHANGE,
+        amount: this.change
+      });
+    }
+
     const document = {
       id: null,
       oid: null,
@@ -97,16 +104,16 @@ export class PaymentComponent implements OnInit {
   }
 
   showConfirm(_document: Document, docType: DocumentType) {
-      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-        width: '450px',
-        disableClose: false,
-        data: {
-          document: _document,
-          docType: docType,
-          change: this.change,
-          currency: this.paymentService.currency
-        }
-      });
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '450px',
+      disableClose: false,
+      data: {
+        document: _document,
+        docType: docType,
+        change: this.change,
+        currency: this.paymentService.currency
+      }
+    });
   }
 
   delPayment(_payment: Payment) {
