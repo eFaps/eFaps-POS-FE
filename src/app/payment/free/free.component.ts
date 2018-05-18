@@ -1,25 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { CashComponent } from '../cash/cash.component';
+import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+
 import { Payment, PaymentType } from '../../model/index';
+import { PaymentService, UtilsService } from '../../services/index';
+import { PaymentForm } from '../payment-form';
 
 @Component({
   selector: 'app-free',
   templateUrl: './free.component.html',
   styleUrls: ['./free.component.scss']
 })
-export class FreeComponent extends CashComponent {
+export class FreeComponent extends PaymentForm {
 
-    addPayment() {
-      const amount = this.utilsService.parse(this.paymentForm.value.amount);
-      if (amount > 0) {
-        this.payments.push({
-          type: PaymentType.FREE,
-          amount: amount
-        });
-        this.paymentService.updatePayments(this.payments);
-        this.paymentForm.setValue({ 'amount': 0 });
-        this.setNumber('0');
-      }
-    }
+  constructor(paymentService: PaymentService, utilsService: UtilsService,
+    fb: FormBuilder) {
+    super(paymentService, utilsService, fb);
+  }
 
+  getPaymentType(): PaymentType {
+    return PaymentType.FREE;
+  }
 }
