@@ -3,6 +3,13 @@
 }
 
 mat-grid-list {
-  width: 250px;
+  width: 295px;
   transform: translateY(50%);
+}
+
+.payment-form {
+  & mat-form-field {
+    width: 120px;
+    margin-right: 15px;
+  }
 }

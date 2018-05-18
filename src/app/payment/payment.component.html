@@ -13,10 +13,10 @@
     <div class="paymentsTypes">
       <mat-tab-group>
         <mat-tab label="{{'CASH' | translate}}">
-          <app-cash></app-cash>
+          <app-cash [change]="change"></app-cash>
         </mat-tab>
         <mat-tab label="{{'FREE' | translate}}">
-          <app-free></app-free>
+          <app-free [change]="change"></app-free>
         </mat-tab>
       </mat-tab-group>
     </div>

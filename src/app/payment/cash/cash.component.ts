@@ -1,4 +1,4 @@
-import { Component, OnInit, LOCALE_ID, Inject } from '@angular/core';
+import { Component, OnInit, LOCALE_ID, Inject, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { PaymentService, UtilsService } from '../../services/index';
@@ -13,6 +13,7 @@ export class CashComponent implements OnInit {
   paymentForm: FormGroup;
   payments: Payment[];
   currency: string;
+  @Input() change: number;
 
   constructor(protected paymentService: PaymentService, protected utilsService: UtilsService,
     private fb: FormBuilder) {
@@ -68,5 +69,12 @@ export class CashComponent implements OnInit {
     const amount = this.utilsService.parse(this.paymentForm.value.amount) + _number;
     const amountStr = this.utilsService.toString(amount);
     this.paymentForm.patchValue({ 'amount': amountStr });
+  }
+
+  setChange() {
+    if (this.change < 0) {
+        const amountStr = this.utilsService.toString(-this.change);
+        this.paymentForm.patchValue({ 'amount': amountStr });
+    }
   }
 }

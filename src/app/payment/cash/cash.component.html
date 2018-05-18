@@ -1,10 +1,11 @@
 <div fxLayout="row">
   <div fxLayout="column">
     <form class="payment-form" [formGroup]="paymentForm">
-      <mat-form-field class="example-full-width">
+      <mat-form-field>
         <input matInput placeholder="Monto" type="text" formControlName="amount" class="right-align">
         <span matPrefix>{{currency}}&nbsp;</span>
       </mat-form-field>
+      <button type="button" mat-raised-button (click)="setChange()">{{'<<'}}</button>
     </form>
     <app-keypad (number)="setNumber($event)"></app-keypad>
   </div>
