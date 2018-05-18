@@ -68,53 +68,45 @@ export class PaymentComponent implements OnInit {
     switch (this.docType) {
       case DocumentType.RECEIPT:
         this.busy = this.documentService.createReceipt(document)
-          .subscribe(_receipt => {
+          .subscribe(_doc => {
             this.documentService.updateOrder(Object.assign(this.document, { status: DocStatus.CLOSED })).subscribe();
             this.router.navigate(['/pos']);
-            const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-              width: '450px',
-              disableClose: false,
-              data: {
-                document: _receipt,
-                docType: DocumentType.RECEIPT
-              }
-            });
+            this.showConfirm(_doc, DocumentType.RECEIPT);
             this.paymentService.reset();
           });
         break;
       case DocumentType.INVOICE:
         this.busy = this.documentService.createInvoice(document)
-          .subscribe(_receipt => {
+          .subscribe(_doc => {
             this.documentService.updateOrder(Object.assign(this.document, { status: DocStatus.CLOSED })).subscribe();
             this.router.navigate(['/pos']);
-            const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-              width: '450px',
-              disableClose: false,
-              data: {
-                document: _receipt,
-                docType: DocumentType.INVOICE
-              }
-            });
+            this.showConfirm(_doc, DocumentType.INVOICE);
             this.paymentService.reset();
           });
         break;
       case DocumentType.TICKET:
         this.busy = this.documentService.createTicket(document)
-          .subscribe(_receipt => {
+          .subscribe(_doc => {
             this.documentService.updateOrder(Object.assign(this.document, { status: DocStatus.CLOSED })).subscribe();
             this.router.navigate(['/pos']);
-            const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-              width: '450px',
-              disableClose: false,
-              data: {
-                document: _receipt,
-                docType: DocumentType.TICKET
-              }
-            });
+            this.showConfirm(_doc, DocumentType.TICKET);
             this.paymentService.reset();
           });
         break;
     }
+  }
+
+  showConfirm(_document: Document, docType: DocumentType) {
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        width: '450px',
+        disableClose: false,
+        data: {
+          document: _document,
+          docType: docType,
+          change: this.change,
+          currency: this.paymentService.currency
+        }
+      });
   }
 
   delPayment(_payment: Payment) {
