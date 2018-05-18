@@ -11,6 +11,9 @@ import { PaymentForm } from '../payment-form';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent extends PaymentForm {
+  PaymentType = PaymentType;
+  paymentTypes = [ PaymentType.DEBITCARD, PaymentType.CREDITCARD ];
+  paymentType: PaymentType = PaymentType.DEBITCARD;
 
   constructor(paymentService: PaymentService, utilsService: UtilsService,
     fb: FormBuilder) {
@@ -18,7 +21,6 @@ export class CardComponent extends PaymentForm {
   }
 
   getPaymentType(): PaymentType {
-    return PaymentType.CARD;
+    return this.paymentType;
   }
-
 }

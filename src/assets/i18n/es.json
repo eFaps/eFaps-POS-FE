@@ -17,7 +17,9 @@
       "CHANGE": "Cambio",
       "CASH": "Efectivo",
       "FREE": "Gratis",
-      "CARD": "Tarjeta"
+      "CARD": "Tarjeta",
+      "DEBITCARD": "Tarjeta de debito",
+      "CREDITCARD": "Tarjeta de credito"
   },
   "WAIT": "Un momento...",
   "MENU": {

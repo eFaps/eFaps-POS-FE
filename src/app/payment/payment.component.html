@@ -27,7 +27,7 @@
     <div class="paymentsRegistered">
       <mat-list dense>
         <mat-list-item *ngFor="let payment of payments">
-          <span matLine>{{PaymentType[payment.type] | translate}} {{payment.amount}}</span>
+          <span matLine>{{('PAYMENT.' + PaymentType[payment.type]) | translate}} {{payment.amount}}</span>
           <button mat-icon-button (click)="delPayment(payment)">
                 <mat-icon>highlight_off</mat-icon>
             </button>
