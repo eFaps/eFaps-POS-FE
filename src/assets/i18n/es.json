@@ -12,11 +12,12 @@
     "UPDATEORDER": "Actualizar {{number}}"
   },
   "VAT": "I.G.V.",
-  "CASH": "Efectivo",
-  "FREE": "Gratis",
   "PAYMENT": {
       "TOTAL": "Total",
-      "CHANGE": "Cambio"
+      "CHANGE": "Cambio",
+      "CASH": "Efectivo",
+      "FREE": "Gratis",
+      "CARD": "Tarjeta"
   },
   "WAIT": "Un momento...",
   "MENU": {

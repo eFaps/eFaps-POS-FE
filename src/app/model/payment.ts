@@ -1,6 +1,7 @@
 export enum PaymentType {
     CASH,
-    FREE
+    FREE,
+    CARD
 }
 
 export interface Payment {

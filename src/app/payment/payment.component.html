@@ -12,11 +12,14 @@
   <div fxFlex>
     <div class="paymentsTypes">
       <mat-tab-group>
-        <mat-tab label="{{'CASH' | translate}}">
+        <mat-tab label="{{'PAYMENT.CASH' | translate}}">
           <app-cash [change]="change"></app-cash>
         </mat-tab>
-        <mat-tab label="{{'FREE' | translate}}">
+        <mat-tab label="{{'PAYMENT.FREE' | translate}}">
           <app-free [change]="change"></app-free>
+        </mat-tab>
+        <mat-tab label="{{'PAYMENT.CARD' | translate}}">
+          <app-card [change]="change"></app-card>
         </mat-tab>
       </mat-tab-group>
     </div>

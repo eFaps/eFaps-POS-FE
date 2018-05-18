@@ -9,6 +9,7 @@ import { CashComponent } from './cash/cash.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { FreeComponent } from './free/free.component';
 import { PaymentComponent } from './payment.component';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { PaymentComponent } from './payment.component';
     CashComponent,
     PaymentComponent,
     FreeComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    CardComponent
   ]
 })
 export class PaymentModule { }
