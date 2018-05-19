@@ -5,11 +5,11 @@ import { Payment, PaymentType } from '../model/index';
 import { PaymentService, UtilsService } from '../services/index';
 
 export abstract class PaymentForm implements OnInit {
-  protected paymentForm: FormGroup;
+  public paymentForm: FormGroup;
   protected payments: Payment[];
   @Input()
   protected change: number;
-  protected currency: string;
+  public currency: string;
 
   constructor(protected paymentService: PaymentService, protected utilsService: UtilsService,
     protected fb: FormBuilder) {

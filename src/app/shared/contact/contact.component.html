@@ -7,7 +7,7 @@
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
-  <mat-slide-toggle [checked]="nameSearch" (change)="setNameSearch($event)">
+  <mat-slide-toggle [checked]="nameSearch" (change)="setNameSearch()">
     {{nameSearch ? 'Buscar por Nombre' : 'Buscar por RUC' }}
   </mat-slide-toggle>
 </form>
