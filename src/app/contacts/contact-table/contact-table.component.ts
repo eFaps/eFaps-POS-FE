@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatDialog } from '@angular/material';
 import { Contact } from '../../model/index';
 import { ContactService } from '../../services/index';
@@ -14,8 +14,8 @@ export class ContactTableComponent implements OnInit {
   dataSource = new MatTableDataSource<Contact>();
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private contactService: ContactService, private dialog: MatDialog) { }
-
+  constructor(private contactService: ContactService, private dialog: MatDialog,
+    private changeDetectorRefs: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.contactService.getContacts()
@@ -26,9 +26,15 @@ export class ContactTableComponent implements OnInit {
   }
 
   createContact() {
-    this.dialog.open(CreateContactDialogComponent, {
+    const dialogRef = this.dialog.open(CreateContactDialogComponent, {
       width: '450px'
     });
+    dialogRef.afterClosed().subscribe(_result => {
+      if (_result) {
+        this.dataSource = new MatTableDataSource<Contact>();
+        this.ngOnInit();
+        this.changeDetectorRefs.detectChanges();
+      }
+    });
   }
-
 }

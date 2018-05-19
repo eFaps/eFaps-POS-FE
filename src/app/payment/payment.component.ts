@@ -68,7 +68,7 @@ export class PaymentComponent implements OnInit {
       netTotal: this.document.netTotal,
       crossTotal: this.document.crossTotal,
       taxes: this.document.taxes,
-      contactOid: this.contact ? this.contact.oid : null,
+      contactOid: this.contact ? (this.contact.oid ? this.contact.oid : this.contact.id) : null,
       posOid: this.posOid
     };
 

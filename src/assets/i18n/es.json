@@ -9,7 +9,7 @@
   "PASSWORD": "Clave",
   "USER": "Usuario",
   "CMD": {
-    "UPDATEORDER": "Actualizar {{number}}"
+      "UPDATEORDER": "Actualizar {{number}}"
   },
   "VAT": "I.G.V.",
   "PAYMENT": {
@@ -30,5 +30,14 @@
       "WORKSPACES": "Entornos",
       "ADMIN": "Admin",
       "LOGIN": "Login/Logout"
+  },
+  "CONTACTS": {
+      "CREATETITLE": "Registrar nuevo Cliente",
+      "TAXNUMBER" : "R.U.C.",
+      "NAME": "Nombre"
+  },
+  "CMD": {
+      "CANCEL": "Cancelar",
+      "CREATE": "Registrar"
   }
 }

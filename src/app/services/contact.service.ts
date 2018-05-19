@@ -24,4 +24,10 @@ export class ContactService {
         .set('nameSearch', _nameSearch.toString());
     return this.http.get<Contact[]>(requestUrl, { params: params });
   }
+
+  public createContact(_contact: Contact): Observable<Contact> {
+    const href = this.config.baseUrl + '/contacts';
+    const requestUrl = `${href}`;
+    return this.http.post<Contact>(requestUrl, _contact);
+  }
 }
