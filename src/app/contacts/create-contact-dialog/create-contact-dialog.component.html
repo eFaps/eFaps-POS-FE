@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Create Contact</h1>
+<mat-dialog-content>
+  <form [formGroup]="contactForm">
+    <mat-form-field>
+      <input matInput placeholder="R.U.C." formControlName="taxNumber">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Nombre" formControlName="name">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button type="submit" [disabled]="contactForm.invalid">Add</button>
+  <button mat-button type="button" mat-dialog-close>Cancel</button>
+</mat-dialog-actions>
