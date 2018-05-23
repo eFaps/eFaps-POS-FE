@@ -9,20 +9,22 @@ import { OrderTableComponent } from './orders/order-table/order-table.component'
 import { PaymentComponent } from './payment/payment.component';
 import { PosComponent } from './pos/pos.component';
 import { ProducttableComponent } from './producttable/producttable.component';
+import { SpotPickerComponent } from './spots/spot-picker/spot-picker.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
 
 const appRoutes: Routes = [
-    { path: 'login', component: LoginComponent },
-    { path: 'products', component: ProducttableComponent, canActivate: [AuthGuard, WorkspaceGuard] },
-    { path: 'pos', component: PosComponent, canActivate: [AuthGuard, WorkspaceGuard] },
-    { path: 'workspaces', component: WorkspaceComponent, canActivate: [AuthGuard] },
-    { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard] },
-    { path: 'orders', component: OrderTableComponent, canActivate: [AuthGuard] },
-    { path: 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminGuard] },
-    { path: 'contacts', component: ContactTableComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'products', component: ProducttableComponent, canActivate: [AuthGuard, WorkspaceGuard] },
+  { path: 'pos', component: PosComponent, canActivate: [AuthGuard, WorkspaceGuard] },
+  { path: 'workspaces', component: WorkspaceComponent, canActivate: [AuthGuard] },
+  { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard] },
+  { path: 'orders', component: OrderTableComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'contacts', component: ContactTableComponent, canActivate: [AuthGuard] },
+  { path: 'spots', component: SpotPickerComponent, canActivate: [AuthGuard] },
 
-    // otherwise redirect to home
-    { path: '**', redirectTo: 'pos' }
+  // otherwise redirect to home
+  { path: '**', redirectTo: 'pos' }
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(appRoutes);

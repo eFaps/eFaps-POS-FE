@@ -1,6 +1,7 @@
 import { Payment } from './payment';
 import { Product } from './product';
 import { TaxEntry } from './tax';
+import { Spot } from './spot';
 
 export interface Document {
   type?: 'ORDER' | 'RECEIPT' | 'INVOICE';
@@ -18,11 +19,11 @@ export interface Document {
 }
 
 export interface Payable extends Document {
-    payments: Payment[];
+  payments: Payment[];
 }
 
 export interface Order extends Document {
-
+  spot?: Spot;
 }
 
 export interface Receipt extends Payable {

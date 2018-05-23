@@ -46,8 +46,9 @@ import { SameHeightDirective } from './services/same-height.directive';
 import { SecurePipe } from './services/secure.pipe';
 import { VirtKeyboardDirective } from './services/virt-keyboard.directive';
 import { SharedModule } from './shared/shared.module';
-import { WorkspaceComponent } from './workspace/workspace.component';
+import { SpotsModule } from './spots/spots.module';
 import { ThemePickerComponent } from './theme-picker/theme-picker.component';
+import { WorkspaceComponent } from './workspace/workspace.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -85,6 +86,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PaymentModule,
     OrdersModule,
     SharedModule,
+    SpotsModule,
     PosModule,
     TranslateModule.forRoot({
       loader: {
