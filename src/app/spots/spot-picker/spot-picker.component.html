@@ -1,5 +1,5 @@
 <div fxLayout="row wrap" fxLayoutAlign="start" class="spotsContainer">
   <div *ngFor="let spot of spots">
-    <button mat-fab color="primary" (click)="selectSpot(spot)">{{spot.label}}</button>
+    <button mat-fab color="{{spot.order ? 'accent' : 'primary'}}" (click)="selectSpot(spot)">{{spot.label}}</button>
   </div>
 </div>
