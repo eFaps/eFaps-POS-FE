@@ -44,7 +44,7 @@ export class PosService {
   private crossTotalSource = new BehaviorSubject<number>(this.crossTotal);
   currentCrossTotal = this.crossTotalSource.asObservable();
 
-  private currency = 'USD';
+  public currency = 'USD';
   private currencySource = new BehaviorSubject<string>(this.currency);
   currentCurrency = this.currencySource.asObservable();
 

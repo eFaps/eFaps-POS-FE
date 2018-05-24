@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Spot } from '../../model/index';
-import { WorkspaceService, SpotService } from '../../services/index';
 import { Router } from '@angular/router';
+
+import { Spot, DocStatus, Document } from '../../model/index';
+import { DocumentService, PosService, SpotService, WorkspaceService } from '../../services/index';
 
 @Component({
   selector: 'app-spot-picker',
@@ -9,21 +10,41 @@ import { Router } from '@angular/router';
   styleUrls: ['./spot-picker.component.scss']
 })
 export class SpotPickerComponent implements OnInit {
-  spots: Spot[];
+  spots: Spot[] = [];
 
   constructor(private router: Router,
-      private workspaceService: WorkspaceService,
-      private spotService: SpotService) { }
+    private posService: PosService,
+    private documentService: DocumentService,
+    private workspaceService: WorkspaceService,
+    private spotService: SpotService) { }
 
   ngOnInit() {
-    this.spots = [];
-    for (let i = 0; i < 20; i++) {
-      this.spots.push({ name: '' + (i + 1) });
-    }
+    this.spotService.getSpots().subscribe(_spots => {
+      this.spots = _spots;
+    });
   }
 
   selectSpot(_spot: Spot) {
-    console.log(_spot);
-    this.router.navigate(['/pos']);
+    if (_spot.order) {
+      this.posService.changeOrder(_spot.order);
+      this.router.navigate(['/pos']);
+    } else {
+      const order = {
+        id: null,
+        oid: null,
+        number: null,
+        currency: this.posService.currency,
+        items: [],
+        status: DocStatus.OPEN,
+        netTotal: 0,
+        crossTotal: 0,
+        taxes: [],
+        spot: _spot
+      };
+      this.documentService.createOrder(order).subscribe(_order => {
+        this.posService.changeOrder(_order);
+        this.router.navigate(['/pos']);
+      });
+    }
   }
 }

@@ -1,3 +1,7 @@
+import { Order } from './document';
+
 export interface Spot {
-  name: string;
+  id: string;
+  label: string;
+  order?: Order;
 }

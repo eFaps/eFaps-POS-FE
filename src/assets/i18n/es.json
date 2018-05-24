@@ -8,9 +8,6 @@
   "CANCELED": "Anulado",
   "PASSWORD": "Clave",
   "USER": "Usuario",
-  "CMD": {
-      "UPDATEORDER": "Actualizar {{number}}"
-  },
   "VAT": "I.G.V.",
   "PAYMENT": {
       "TOTAL": "Total",
@@ -39,6 +36,7 @@
   },
   "CMD": {
       "CANCEL": "Cancelar",
-      "CREATE": "Registrar"
+      "CREATE": "Registrar",
+      "UPDATEORDER": "Actualizar {{number}}"
   }
 }

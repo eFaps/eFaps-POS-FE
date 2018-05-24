@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscriber } from 'rxjs/Subscriber';
@@ -57,5 +57,11 @@ export class DocumentService {
   public getOrders(): Observable<Order[]> {
     const url = `${this.config.baseUrl}/documents/orders`;
     return this.http.get<Order[]>(url);
+  }
+
+  public getOrders4Spots(): Observable<Order[]> {
+    const url = `${this.config.baseUrl}/documents/orders`;
+    const params = new HttpParams().set('spot', 'true');
+    return this.http.get<Order[]>(url, { params: params });
   }
 }
