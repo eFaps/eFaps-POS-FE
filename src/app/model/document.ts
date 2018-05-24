@@ -4,7 +4,7 @@ import { TaxEntry } from './tax';
 import { Spot } from './spot';
 
 export interface Document {
-  type?: 'ORDER' | 'RECEIPT' | 'INVOICE';
+  type?: 'ORDER' | 'RECEIPT' | 'INVOICE' | 'TICKET';
   id: string;
   oid: string;
   number: string;

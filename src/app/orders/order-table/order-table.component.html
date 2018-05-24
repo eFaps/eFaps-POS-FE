@@ -16,7 +16,10 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header> Total </mat-header-cell>
       <mat-cell *matCellDef="let order"> {{order.crossTotal | posCurrency:order.currency}} </mat-cell>
     </ng-container>
-
+    <ng-container matColumnDef="spot">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Spot </mat-header-cell>
+      <mat-cell *matCellDef="let order"> {{order.spot ?  order.spot.name : '-'}} </mat-cell>
+    </ng-container>
     <ng-container matColumnDef="cmd">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let order">

@@ -3,7 +3,7 @@ import { MatPaginator, MatDialog, MatSort, MatTableDataSource } from '@angular/m
 import { Router } from '@angular/router';
 
 import { DocStatus, Order, Roles } from '../../model/index';
-import { AuthService, DocumentService, PosService } from '../../services/index';
+import { AuthService, DocumentService, PosService, WorkspaceService } from '../../services/index';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component'
 
 @Component({
@@ -13,19 +13,24 @@ import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dial
 })
 export class OrderTableComponent implements OnInit {
   DocStatus = DocStatus;
-  displayedColumns = ['number', 'date', 'total', 'status', 'cmd'];
+  displayedColumns = [];
   dataSource = new MatTableDataSource<Order>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   isAdmin = false;
+
   constructor(private router: Router,
     private authService: AuthService,
     private documentService: DocumentService,
     private posService: PosService,
+    private workspaceService: WorkspaceService,
     private dialog: MatDialog,
     private changeDetectorRefs: ChangeDetectorRef) { }
 
   ngOnInit() {
+    this.displayedColumns = this.workspaceService.activateSpots()
+        ? ['number', 'date', 'total', 'status', 'spot', 'cmd']
+        : ['number', 'date', 'total', 'status', 'cmd'];
     this.isAdmin = this.authService.hasRole(Roles.ADMIN);
     this.documentService.getOrders().subscribe(_orders => {
       this.dataSource.data = _orders;
