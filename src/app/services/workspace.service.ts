@@ -40,19 +40,19 @@ export class WorkspaceService {
       const workspaceOid = JSON.parse(workspacesStr)[this.auth.getCurrentUsername()];
       if (workspaceOid) {
         return new Promise<boolean>(resolve => {
-            this.getWorkspace(workspaceOid).subscribe(
-                _ws => {
-                    this.setCurrent(_ws);
-                    resolve(true);
-                },
-                _error => {
-                    resolve(false);
-                }
-            );
+          this.getWorkspace(workspaceOid).subscribe(
+            _ws => {
+              this.setCurrent(_ws);
+              resolve(true);
+            },
+            _error => {
+              resolve(false);
+            }
+          );
         });
       }
     }
-     return new Promise<boolean>(resolve => resolve(false));
+    return new Promise<boolean>(resolve => resolve(false));
   }
 
   public logout() {
@@ -77,6 +77,10 @@ export class WorkspaceService {
   }
 
   public getLanguage() {
-      return 'es';
+    return 'es';
+  }
+
+  public activateSpots() {
+    return true;
   }
 }

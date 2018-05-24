@@ -10,6 +10,7 @@ export * from './payment.service';
 export * from './pos-currency.pipe';
 export * from './pos.service';
 export * from './product.service';
+export * from './spot.service';
 export * from './style-manager.service';
 export * from './theme-storage.service';
 export * from './user.service';
