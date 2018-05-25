@@ -9,11 +9,11 @@ import 'rxjs/add/operator/toPromise';
 
 import { AuthService } from './auth.service';
 import { ConfigService } from './config.service';
-import { Workspace } from '../model/index';
+import { SpotConfig, Workspace } from '../model/index';
 
 @Injectable()
 export class WorkspaceService {
-
+  SpotConfig = SpotConfig;
   private current: Workspace;
   private currentSource = new BehaviorSubject<Workspace>(this.current);
   currentWorkspace = this.currentSource.asObservable();
@@ -60,6 +60,7 @@ export class WorkspaceService {
   }
 
   public setCurrent(_workspace: Workspace) {
+    this.current = _workspace;
     this.currentSource.next(_workspace);
     this.storeCurrentWorkspace(_workspace.oid);
   }
@@ -80,7 +81,9 @@ export class WorkspaceService {
     return 'es';
   }
 
-  public activateSpots() {
-    return true;
+  public showSpots() {
+    return this.current
+        && this.current.spotConfig
+        && SpotConfig[this.current.spotConfig] === SpotConfig.BASIC;
   }
 }

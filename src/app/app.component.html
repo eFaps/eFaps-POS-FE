@@ -24,7 +24,7 @@
             <mat-icon aria-label="Orders" class="posIcon-36">dns</mat-icon>
           </button>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item *ngIf="spots">
           <button routerLink="/spots" matTooltip="{{'MENU.SPOTS' | translate}}" matTooltipPosition="right">
               <mat-icon aria-label="Spots" class="posIcon-36">place</mat-icon>
           </button>

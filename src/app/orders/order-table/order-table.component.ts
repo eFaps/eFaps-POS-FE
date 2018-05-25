@@ -28,7 +28,7 @@ export class OrderTableComponent implements OnInit {
     private changeDetectorRefs: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.displayedColumns = this.workspaceService.activateSpots()
+    this.displayedColumns = this.workspaceService.showSpots()
         ? ['number', 'date', 'total', 'status', 'spot', 'cmd']
         : ['number', 'date', 'total', 'status', 'cmd'];
     this.isAdmin = this.authService.hasRole(Roles.ADMIN);

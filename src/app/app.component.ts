@@ -1,7 +1,7 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
-import { Roles } from './model/index'
+import { Roles } from './model/index';
 import { AuthService, WorkspaceService } from './services/index';
 
 @Component({
@@ -14,6 +14,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
   title = 'app';
   screenWidth: number;
   workspace: string;
+  spots = false;
+
   constructor(private cdRef: ChangeDetectorRef, public translate: TranslateService,
     private workspaceService: WorkspaceService,
     public auth: AuthService) {
@@ -28,15 +30,15 @@ export class AppComponent implements OnInit, AfterViewChecked {
     this.workspaceService.currentWorkspace.subscribe(data => {
       if (data) {
         this.workspace = data.name;
+        this.spots = this.workspaceService.showSpots();
       } else {
         this.workspace = '';
+        this.spots = false;
       }
     });
   }
 
   ngAfterViewChecked() {
-
     this.cdRef.detectChanges();
-
   }
 }
