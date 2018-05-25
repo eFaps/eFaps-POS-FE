@@ -84,6 +84,6 @@ export class WorkspaceService {
   public showSpots() {
     return this.current
         && this.current.spotConfig
-        && SpotConfig[this.current.spotConfig] === SpotConfig.BASIC;
+        && this.current.spotConfig === SpotConfig.BASIC;
   }
 }

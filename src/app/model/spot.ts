@@ -1,8 +1,8 @@
 import { Order } from './document';
 
 export enum SpotConfig {
-    NONE,
-    BASIC,
+    NONE = 'NONE',
+    BASIC = 'BASIC',
 }
 
 export interface Spot {
