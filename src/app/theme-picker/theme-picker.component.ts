@@ -24,7 +24,7 @@ export class ThemePickerComponent {
       accent: '#E91E63',
       href: 'indigo-pink.css',
       isDark: false,
-      isDefault: true,
+      isDefault: false,
     },
     {
       primary: '#E91E63',

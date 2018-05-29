@@ -1,11 +1,32 @@
-.pos-card {
-    width: 180px;
-    margin-bottom: 5px;
+@mixin productgrid-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  button {
+    color: mat-color($foreground, text);
+    background-color: mat-color($background, card);
+  }
 }
 
-.pos-card-lt-md {
-    width: 100px;
+
+.pos-card {
+  width: 180px;
+  margin-bottom: 5px;
 }
+
+.pos-card-tablet {
+  width: 120px;
+
+  &.mat-card {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  & .mat-card-title {
+    margin-bottom: 5px;
+  }
+}
+
 .mat-card-image {
-    object-fit: contain
+  object-fit: contain;
 }
