@@ -7,18 +7,18 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class ConfigService {
   public baseUrl: string;
-  constructor(private http: HttpClient) {
+  public socketUrl: string;
 
-  }
+  constructor(private http: HttpClient) { }
 
   load(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get('assets/config.json')
         .subscribe((envResponse: any) => {
           this.baseUrl = envResponse.baseUrl;
+          this.socketUrl = envResponse.socketUrl;
           resolve(true);
         });
     });
-
   }
 }

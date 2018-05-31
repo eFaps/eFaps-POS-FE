@@ -6,10 +6,14 @@ import { map } from 'rxjs/operators';
 
 import { Roles } from '../model/index';
 import { ConfigService } from './config.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class AuthService {
   public currentUser: any;
+
+  private eventSource = new BehaviorSubject<string>('');
+  currentEvent = this.eventSource.asObservable();
 
   constructor(private http: HttpClient, private config: ConfigService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -34,6 +38,7 @@ export class AuthService {
   logout(): void {
     this.currentUser = null;
     localStorage.removeItem('currentUser');
+    this.eventSource.next('logout');
   }
 
   getToken(): string {

@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { StompRService } from '@stomp/ng2-stompjs';
 
 import { AdminModule } from './admin/admin.module';
 import { AppComponent } from './app.component';
@@ -35,6 +36,7 @@ import {
   ErrorInterceptor,
   ImageService,
   JwtInterceptor,
+  MsgService,
   PaymentService,
   PosService,
   ProductService,
@@ -53,7 +55,6 @@ import { WorkspaceComponent } from './workspace/workspace.component';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
-
 
 @NgModule({
   declarations: [
@@ -104,6 +105,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AuthService,
     ContactService,
     DocumentService,
+    MsgService,
     PaymentService,
     ProductService,
     PosService,
@@ -111,6 +113,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     UserService,
     ImageService,
     ConfigService,
+    StompRService,
     WorkspaceService,
     {
       provide: APP_INITIALIZER,

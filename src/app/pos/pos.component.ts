@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener,  ElementRef } from '@angular/core';
 
 import { Item } from '../model/index';
-import { PosService } from '../services/index'
+import { MsgService, PosService } from '../services/index'
 
 @Component({
   selector: 'app-pos',
@@ -13,11 +13,12 @@ export class PosComponent implements OnInit {
   screenHeight: number;
   screenWidth: number;
 
-  constructor(private posService: PosService) { }
+  constructor(private posService: PosService, private msgService: MsgService) { }
 
   ngOnInit() {
     this.posService.currentTicket.subscribe(data => this.ticket = data);
     this.onResize();
+    this.msgService.init();
   }
 
   @HostListener('window:resize', ['$event'])

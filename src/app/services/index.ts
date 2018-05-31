@@ -6,6 +6,7 @@ export * from './document.service';
 export * from './error.interceptor';
 export * from './image.service';
 export * from './jwt.interceptor';
+export * from './msg.service';
 export * from './payment.service';
 export * from './pos-currency.pipe';
 export * from './pos.service';
