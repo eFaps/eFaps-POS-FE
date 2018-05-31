@@ -36,7 +36,17 @@ export class MsgService {
 
   disconnect() {
     if (this.stompService.connected()) {
-        this.stompService.disconnect();
+      this.stompService.disconnect();
     }
+  }
+
+  publishStartEditOrder(orderId: string) {
+    this.init();
+    this.stompService.publish('/app/orders/start.edit', orderId);
+  }
+
+  publishFinishEditOrder(orderId: string) {
+    this.init();
+    this.stompService.publish('/app/orders/finish.edit', orderId);
   }
 }
