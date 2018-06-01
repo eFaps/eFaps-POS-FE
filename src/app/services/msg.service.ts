@@ -10,6 +10,8 @@ import { ConfigService } from './config.service';
 })
 export class MsgService {
 
+  ordersEdited = new Set();
+
   constructor(private configService: ConfigService, private stompService: StompRService,
     private authService: AuthService) {
     this.authService.currentEvent.subscribe(() => {
@@ -31,6 +33,17 @@ export class MsgService {
       };
       this.stompService.config = stompConfig;
       this.stompService.initAndConnect();
+      this.stompService.subscribe('/app/orders/start.edit').subscribe(message => {
+        JSON.parse(message.body).forEach(orderId => {
+          this.ordersEdited.add(orderId);
+        });
+      });
+      this.stompService.subscribe('/topic/orders/start.edit').subscribe(message => {
+        this.ordersEdited.add(message.body);
+      });
+      this.stompService.subscribe('/topic/orders/finish.edit').subscribe(message => {
+        this.ordersEdited.delete(message.body);
+      });
     }
   }
 
