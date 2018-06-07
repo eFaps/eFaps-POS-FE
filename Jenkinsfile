@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        withNPM(npmrcConfig: 'npmrc-build')) {
+        withNPM(npmrcConfig: 'npmrc-build') {
           sh 'npm install'
         }
       }
