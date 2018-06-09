@@ -38,5 +38,9 @@
       "CANCEL": "Cancelar",
       "CREATE": "Registrar",
       "UPDATEORDER": "Actualizar {{number}}"
+  },
+  "LOGIN": {
+    "INVALIDFORM": "Seleciona un usario y ingresa el clave",
+    "401": "Usuario o clave incorrecto"
   }
 }

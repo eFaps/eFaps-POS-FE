@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { Router } from '@angular/router';
 import { MatKeyboardService } from '@ngx-material-keyboard/core';
-
-import { AuthService, UserService, WorkspaceService } from '../services/index';
+import { TranslateService } from '@ngx-translate/core';
 import { User } from '../model/index';
+import { AuthService, UserService, WorkspaceService } from '../services/index';
 
 @Component({
   moduleId: module.id,
@@ -17,7 +18,6 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   users: User[] = [];
   loading = false;
-  error = '';
   hiddenUser = true;
   virtKeyboard = false;
 
@@ -27,7 +27,9 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private workspaceService: WorkspaceService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar,
+    private translateService: TranslateService) { }
 
   ngOnInit() {
     this.createForm();
@@ -47,27 +49,41 @@ export class LoginComponent implements OnInit {
 
 
   login() {
-    this.loading = true;
-    this.authService.login(this.loginForm.value.userName, this.loginForm.value.password)
-      .subscribe(result => {
-        if (result === true) {
-          this.router.navigate(['/']);
-        } else {
-          this.error = 'Username or password is incorrect';
-          this.loading = false;
-        }
+    if (this.loginForm.status === 'INVALID') {
+      this.snackBar.open(this.translateService.instant('LOGIN.INVALIDFORM'), '', {
+        duration: 3000
       });
+    } else {
+      this.loading = true;
+      this.authService.login(this.loginForm.value.userName, this.loginForm.value.password)
+        .subscribe((result) => {
+          if (result === true) {
+            this.router.navigate(['/']);
+          } else {
+            this.snackBar.open(this.translateService.instant('LOGIN.401'), '', {
+                duration: 3000
+            });
+            this.loading = false;
+          }
+        }, error => {
+          if (error.status && error.status === 401) {
+            this.snackBar.open(this.translateService.instant('LOGIN.401'), '', {
+                duration: 3000
+            });
+          }
+        });
+    }
   }
 
   select(_user: User) {
-    this.loginForm.patchValue({userName: _user.username});
+    this.loginForm.patchValue({ userName: _user.username });
   }
 
   toggleUser() {
-      this.hiddenUser = !this.hiddenUser;
+    this.hiddenUser = !this.hiddenUser;
   }
 
   toggleVirtKeyboard(_toggle: MatSlideToggleChange) {
-      this.virtKeyboard = !this.virtKeyboard;
+    this.virtKeyboard = !this.virtKeyboard;
   }
 }
