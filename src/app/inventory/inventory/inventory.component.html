@@ -1,5 +1,5 @@
 <mat-tab-group>
   <mat-tab *ngFor="let warehouse of warehouses; let i = index" label="{{warehouses[i].name}}">
-    demo
+    <app-inventory-table [warehouse]="warehouse"></app-inventory-table>
   </mat-tab>
 </mat-tab-group>

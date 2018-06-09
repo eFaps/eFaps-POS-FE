@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { Warehouse } from '../model/index';
+import { InventoryEntry, Warehouse } from '../model/index';
 import { ConfigService } from './config.service';
 
 @Injectable({
@@ -19,4 +19,9 @@ export class InventoryService {
     return this.http.get<Warehouse[]>(requestUrl);
   }
 
+
+  public getInventory(_warehouseOid: string): Observable<InventoryEntry[]> {
+    const requestUrl = `${this.config.baseUrl}/inventory/${_warehouseOid}`;
+    return this.http.get<InventoryEntry[]>(requestUrl);
+  }
 }

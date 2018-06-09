@@ -1,6 +1,7 @@
 export * from './category';
 export * from './contact';
 export * from './document';
+export * from './inventory-entry';
 export * from './item';
 export * from './payment';
 export * from './pos';

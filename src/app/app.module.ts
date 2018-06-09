@@ -53,6 +53,7 @@ import { SharedModule } from './shared/shared.module';
 import { SpotsModule } from './spots/spots.module';
 import { ThemePickerComponent } from './theme-picker/theme-picker.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
+import { InventoryTableComponent } from './inventories/inventory-table/inventory-table.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -71,7 +72,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CommandsComponent,
     OrderDialogComponent,
     SameHeightDirective,
-    ThemePickerComponent
+    ThemePickerComponent,
+    InventoryTableComponent
   ],
   imports: [
     BrowserModule,
