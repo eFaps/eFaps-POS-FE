@@ -17,4 +17,12 @@ export class AdminService {
     const url = `${this.config.baseUrl}/admin/sync`;
     return this.http.get(url);
   }
+
+  version(): Observable<string> {
+    const url = `${this.config.baseUrl}/admin/version`;
+    return this.http.get(url, {
+      observe: 'response',
+      responseType: 'text'
+    }).map(req => req.body);
+  }
 }

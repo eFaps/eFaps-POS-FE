@@ -1,3 +1,10 @@
-<div class="adminpage">
-  <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="reload()">Reload</button>
+<div class="adminpage" fxLayout='row' fxLayoutGap="20px">
+  <div>
+    <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="reload()">Reload</button>
+  </div>
+  <div class="mat-elevation-z3 versions">
+    <h1>Versions:</h1>
+    <p>Frontend: {{ versions.FE }}</p>
+    <p>Backend: {{ versions.BE }}</p>
+  </div>
 </div>
