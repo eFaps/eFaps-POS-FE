@@ -24,6 +24,7 @@
       "PRODUCTS": "Productos",
       "ORDERS": "Ordenes",
       "SPOTS": "Mesas",
+      "INVENTORY" : "Stock",
       "CONTACTS": "Clientes",
       "WORKSPACES": "Entornos",
       "ADMIN": "Admin",

@@ -13,6 +13,8 @@ import { AdminModule } from './admin/admin.module';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { ContactsModule } from './contacts/contacts.module';
+import { InventoryModule } from './inventory/inventory.module';
+
 import { ProductsModule } from './products/products.module';
 import { AdminGuard, AuthGuard, WorkspaceGuard } from './guards/index';
 import { LoginComponent } from './login/login.component';
@@ -82,6 +84,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     routes,
     AdminModule,
     ContactsModule,
+    InventoryModule,
     PaymentModule,
     OrdersModule,
     SharedModule,
