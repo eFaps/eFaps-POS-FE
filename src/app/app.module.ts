@@ -13,6 +13,7 @@ import { AdminModule } from './admin/admin.module';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { ContactsModule } from './contacts/contacts.module';
+import { ProductsModule } from './products/products.module';
 import { AdminGuard, AuthGuard, WorkspaceGuard } from './guards/index';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from './material/material.module';
@@ -26,7 +27,6 @@ import { PosModule } from './pos/pos.module';
 import { ProductgridComponent } from './pos/productgrid/productgrid.component';
 import { TicketComponent } from './pos/ticket/ticket.component';
 import { TotalsComponent } from './pos/totals/totals.component';
-import { ProducttableComponent } from './producttable/producttable.component';
 import {
   AdminService,
   AuthService,
@@ -59,7 +59,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    ProducttableComponent,
     LoginComponent,
     PosComponent,
     ProductgridComponent,
@@ -89,6 +88,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SharedModule,
     SpotsModule,
     PosModule,
+    ProductsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

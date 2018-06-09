@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatTableDataSource } from '@angular/material';
 
-import { Product } from '../model/index';
-import { ProductService } from '../services/index';
+import { Product } from '../../model/index';
+import { ProductService } from '../../services/index';
 
 @Component({
   selector: 'app-producttable',
@@ -23,7 +23,7 @@ export class ProducttableComponent implements OnInit {
         this.dataSource.sort = this.sort;
       });
   }
-  
+
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();

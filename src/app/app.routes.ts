@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { OrderTableComponent } from './orders/order-table/order-table.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PosComponent } from './pos/pos.component';
-import { ProducttableComponent } from './producttable/producttable.component';
+import { ProducttableComponent } from './products/producttable/producttable.component';
 import { SpotPickerComponent } from './spots/spot-picker/spot-picker.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
 
