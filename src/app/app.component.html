@@ -29,7 +29,7 @@
               <mat-icon aria-label="Spots" class="posIcon-36">place</mat-icon>
           </button>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item *ngIf="inventory">
           <button routerLink="/inventory" matTooltip="{{'MENU.INVENTORY' | translate}}" matTooltipPosition="right">
             <mat-icon aria-label="inventory" class="posIcon-36">domain</mat-icon>
           </button>

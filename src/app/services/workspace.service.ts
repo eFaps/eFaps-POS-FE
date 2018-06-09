@@ -86,4 +86,10 @@ export class WorkspaceService {
         && this.current.spotConfig
         && this.current.spotConfig === SpotConfig.BASIC;
   }
+
+  public showInventory() {
+    return this.current
+        && this.current.workspaceOid
+        && this.current.workspaceOid.length > 0;
+  }
 }

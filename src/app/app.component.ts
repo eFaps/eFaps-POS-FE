@@ -15,6 +15,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   screenWidth: number;
   workspace: string;
   spots = false;
+  inventory = false;
 
   constructor(private cdRef: ChangeDetectorRef, public translate: TranslateService,
     private workspaceService: WorkspaceService,
@@ -31,9 +32,11 @@ export class AppComponent implements OnInit, AfterViewChecked {
       if (data) {
         this.workspace = data.name;
         this.spots = this.workspaceService.showSpots();
+        this.inventory = this.workspaceService.showInventory();
       } else {
         this.workspace = '';
         this.spots = false;
+        this.inventory = false;
       }
     });
   }
