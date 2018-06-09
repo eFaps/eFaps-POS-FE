@@ -8,4 +8,5 @@ export * from './product';
 export * from './spot';
 export * from './tax';
 export * from './user';
+export * from './warehouse';
 export * from './workspace';
