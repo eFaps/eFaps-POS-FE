@@ -89,7 +89,7 @@ export class WorkspaceService {
 
   public showInventory() {
     return this.current
-        && this.current.workspaceOid
-        && this.current.workspaceOid.length > 0;
+        && this.current.warehouseOid
+        && this.current.warehouseOid.length > 0;
   }
 }
