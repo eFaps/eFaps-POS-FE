@@ -7,5 +7,5 @@ export interface Workspace {
   posOid: string;
   docTypes: DocumentType[];
   spotConfig: SpotConfig;
-  workspaceOid?: string;
+  workspaceOid: string;
 }
