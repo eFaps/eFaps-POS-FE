@@ -1,12 +1,12 @@
 {
   "name": "pos",
-  "version": "0.0.0",
+  "version": "0.8.0",
   "license": "Apache 2.0",
   "scripts": {
     "ng": "ng",
     "start": "npm run build-css && ng serve --proxy-config proxy.conf.json --host 0.0.0.0",
-    "build": "npm run build-css && ng build --aot --source-map false",
-    "test": "npm run build-css && ng build --prod",
+    "build": "node ./buildutil.js && npm run build-css && ng build --aot --source-map false",
+    "test": "node ./buildutil.js && npm run build-css && ng build --prod",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "demo": "node-sass --help",
@@ -60,6 +60,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "node-sass": "^4.9.0",
     "protractor": "~5.1.2",
+    "replace-in-file": "^3.4.0",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
     "typescript": ">2.7.0 <2.8.0"
