@@ -45,7 +45,7 @@ import {
   WorkspaceService
 } from './services/index';
 import { SameHeightDirective } from './services/same-height.directive';
-import { SecurePipe } from './services/secure.pipe';
+
 import { VirtKeyboardDirective } from './services/virt-keyboard.directive';
 import { SharedModule } from './shared/shared.module';
 import { SpotsModule } from './spots/spots.module';
@@ -63,7 +63,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PosComponent,
     ProductgridComponent,
     TicketComponent,
-    SecurePipe,
     VirtKeyboardDirective,
     WorkspaceComponent,
     TotalsComponent,

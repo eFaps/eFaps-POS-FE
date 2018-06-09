@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort, MatTableDataSource } from '@angular/material';
+import { MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 
 import { Product } from '../../model/index';
 import { ProductService } from '../../services/index';
+import { ProductComponent } from '../product/product.component';
 
 @Component({
   selector: 'app-producttable',
@@ -10,11 +11,12 @@ import { ProductService } from '../../services/index';
   styleUrls: ['./producttable.component.scss']
 })
 export class ProducttableComponent implements OnInit {
-  displayedColumns = ['sku', 'description'];
+  displayedColumns = ['sku', 'description', 'cmd'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.productService.getProducts()
@@ -24,9 +26,15 @@ export class ProducttableComponent implements OnInit {
       });
   }
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim();
-    filterValue = filterValue.toLowerCase();
-    this.dataSource.filter = filterValue;
+  applyFilter(_filterValue: string) {
+    _filterValue = _filterValue.trim();
+    _filterValue = _filterValue.toLowerCase();
+    this.dataSource.filter = _filterValue;
+  }
+
+  show(_product: Product) {
+    const dialogRef = this.dialog.open(ProductComponent, {
+      data: _product,
+    });
   }
 }

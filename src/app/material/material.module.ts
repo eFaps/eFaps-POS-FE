@@ -14,6 +14,7 @@ import {
   MatListModule,
   MatMenuModule,
   MatPaginatorModule,
+  MatProgressSpinnerModule,
   MatRadioModule,
   MatSidenavModule,
   MatSlideToggleModule,
@@ -24,7 +25,6 @@ import {
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
-import { MatKeyboardModule } from '@ngx-material-keyboard/core';
 
 @NgModule({
   imports: [
@@ -38,10 +38,10 @@ import { MatKeyboardModule } from '@ngx-material-keyboard/core';
     MatGridListModule,
     MatIconModule,
     MatInputModule,
-    MatKeyboardModule,
     MatListModule,
     MatMenuModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule,
     MatRadioModule,
     MatSidenavModule,
     MatSlideToggleModule,
@@ -63,10 +63,10 @@ import { MatKeyboardModule } from '@ngx-material-keyboard/core';
     MatGridListModule,
     MatIconModule,
     MatInputModule,
-    MatKeyboardModule,
     MatListModule,
     MatMenuModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule,
     MatRadioModule,
     MatSidenavModule,
     MatSlideToggleModule,

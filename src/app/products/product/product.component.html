@@ -1,0 +1,29 @@
+<div fxLayout='row' fxLayoutGap="20px">
+  <mat-spinner *ngIf="loading"></mat-spinner>
+  <div>
+    <img [src]="product?.imageOid | secure" alt="{{product?.description}}">
+  </div>
+  <div>
+    <p>
+      <span class="property">Codigo:</span><span *ngIf="!loading">{{product.sku}}</span>
+    </p>
+    <p>
+      <span class="property">Descripcion:</span><span *ngIf="!loading">{{product.description}}</span>
+    </p>
+    <p>
+      <span class="property">Precio Neto:</span><span *ngIf="!loading"> {{ product.netPrice | posCurrency:currentCurrency}}</span>
+
+    </p>
+    <p>
+      <span class="property">Precio Bruto:</span><span *ngIf="!loading">{{ product.crossPrice | posCurrency:currentCurrency}}</span>
+    </p>
+    <p>
+      <span class="property">Categories:</span>
+      <mat-list dense>
+        <mat-list-item *ngFor="let category of categories">
+          <span matLine>{{category}}</span>
+        </mat-list-item>
+      </mat-list>
+    </p>
+  </div>
+</div>
