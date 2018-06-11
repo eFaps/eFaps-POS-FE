@@ -13,15 +13,22 @@ export class InventoryService {
   constructor(private config: ConfigService,
     private http: HttpClient) { }
 
-
   public getWarehouses(): Observable<Warehouse[]> {
     const requestUrl = `${this.config.baseUrl}/inventory/warehouses`;
     return this.http.get<Warehouse[]>(requestUrl);
   }
 
-
   public getInventory(_warehouseOid: string): Observable<InventoryEntry[]> {
-    const requestUrl = `${this.config.baseUrl}/inventory/${_warehouseOid}`;
-    return this.http.get<InventoryEntry[]>(requestUrl);
+    const requestUrl = `${this.config.baseUrl}/inventory`;
+    const params = new HttpParams()
+      .set('warehouseOid', _warehouseOid);
+    return this.http.get<InventoryEntry[]>(requestUrl, { params: params });
+  }
+
+  public getInventory4Product(_productOid: string): Observable<InventoryEntry[]> {
+    const requestUrl = `${this.config.baseUrl}/inventory`;
+    const params = new HttpParams()
+      .set('productOid', _productOid);
+    return this.http.get<InventoryEntry[]>(requestUrl, { params: params });
   }
 }
