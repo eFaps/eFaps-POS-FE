@@ -5,8 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "npm run build-css && ng serve --proxy-config proxy.conf.json --host 0.0.0.0",
-    "build": "node ./buildutil.js && npm run build-css && ng build --aot --source-map false",
-    "test": "node ./buildutil.js && npm run build-css && ng build --prod",
+    "build": "node ./buildutil.js && npm run build-css && ng build --prod",
+    "test": "node ./buildutil.js && npm run build-css && ng build --aot --source-map false",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "demo": "node-sass --help",
