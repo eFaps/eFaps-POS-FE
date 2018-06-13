@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ImageComponent implements OnInit {
   imageUrl: any;
+  loaded = false;
 
   constructor(private dialogRef: MatDialogRef<ImageComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any) { }
@@ -17,8 +18,9 @@ export class ImageComponent implements OnInit {
     const t = this;
     this.data.subscribe(image => {
       const reader = new FileReader();
-      reader.addEventListener('load', function () {
+      reader.addEventListener('load', () => {
         t.imageUrl = reader.result;
+        this.loaded = true;
       }, false);
       reader.readAsDataURL(image);
     });
