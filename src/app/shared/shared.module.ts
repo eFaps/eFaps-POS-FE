@@ -13,6 +13,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { ContactComponent } from './contact/contact.component';
 import { DocumentComponent } from './document/document.component';
 import { KeypadComponent } from './keypad/keypad.component';
+import { ImageComponent } from './image/image.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -33,14 +34,17 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ConfirmDialogComponent,
     ContactComponent,
     DocumentComponent,
+    ImageComponent,
     KeypadComponent,
     PosCurrencyPipe,
-    SecurePipe
+    SecurePipe,
+    ImageComponent
   ],
   exports: [
     ConfirmDialogComponent,
     ContactComponent,
     DocumentComponent,
+    ImageComponent,
     KeypadComponent,
     MatKeyboardModule,
     NgBusyModule,
@@ -49,7 +53,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TranslateModule
   ],
   entryComponents: [
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    ImageComponent
   ]
 })
 export class SharedModule { }

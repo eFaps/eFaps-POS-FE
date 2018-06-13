@@ -23,6 +23,9 @@
     <ng-container matColumnDef="cmd">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let order">
+        <button (click)="print(order)">
+          <mat-icon  class="posIcon-36">print</mat-icon>
+        </button>
         <button (click)="pos(order)" *ngIf="order.status===DocStatus[DocStatus.OPEN]">
           <mat-icon  class="posIcon-36">shop</mat-icon>
         </button>

@@ -1,10 +1,17 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatDialog, MatSort, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { DocStatus, Order, Roles } from '../../model/index';
-import { AuthService, DocumentService, PosService, WorkspaceService } from '../../services/index';
-import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component'
+import {
+  AuthService,
+  DocumentService,
+  PosService,
+  PrintService,
+  WorkspaceService
+} from '../../services/index';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
+import { ImageComponent } from '../../shared/image/image.component';
 
 @Component({
   selector: 'app-order-table',
@@ -24,6 +31,7 @@ export class OrderTableComponent implements OnInit {
     private documentService: DocumentService,
     private posService: PosService,
     private workspaceService: WorkspaceService,
+    private printService: PrintService,
     private dialog: MatDialog,
     private changeDetectorRefs: ChangeDetectorRef) { }
 
@@ -58,6 +66,12 @@ export class OrderTableComponent implements OnInit {
           this.changeDetectorRefs.detectChanges();
         });
       }
+    });
+  }
+
+  print(_order: Order) {
+    const dialogRef = this.dialog.open(ImageComponent, {
+      data: this.printService.printPreview(_order)
     });
   }
 }
