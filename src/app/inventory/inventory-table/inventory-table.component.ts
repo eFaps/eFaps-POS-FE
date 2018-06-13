@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 
-import { Warehouse } from '../../model/index';
+import { InventoryEntry, Warehouse } from '../../model/index';
 import { InventoryService } from '../../services/index';
 
 @Component({
@@ -23,8 +23,29 @@ export class InventoryTableComponent implements OnInit {
         .subscribe(data => {
           this.dataSource.data = data;
           this.dataSource.sort = this.sort;
+          this.dataSource.filterPredicate = this.filterPredicate;
+          this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
         });
     }
+  }
+
+  sortingDataAccessor(_entry: InventoryEntry, _sortHeaderId: string) {
+    switch (_sortHeaderId) {
+      case 'quantity':
+        return _entry.quantity;
+      case 'sku':
+        return _entry.product.sku;
+      case 'description':
+        return _entry.product.description;
+      default:
+    }
+    return '';
+  }
+
+  filterPredicate(_entry: InventoryEntry, _filter: string) {
+    const dataStr = _entry.quantity + ' ' + _entry.product.sku.toLowerCase()
+      + ' ' + _entry.product.description.toLowerCase();
+    return dataStr.indexOf(_filter) !== -1;
   }
 
   applyFilter(_filterValue: string) {
