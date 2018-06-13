@@ -7,11 +7,9 @@ import {
   AuthService,
   DocumentService,
   PosService,
-  PrintService,
   WorkspaceService
 } from '../../services/index';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
-import { ImageComponent } from '../../shared/image/image.component';
 
 @Component({
   selector: 'app-order-table',
@@ -31,7 +29,6 @@ export class OrderTableComponent implements OnInit {
     private documentService: DocumentService,
     private posService: PosService,
     private workspaceService: WorkspaceService,
-    private printService: PrintService,
     private dialog: MatDialog,
     private changeDetectorRefs: ChangeDetectorRef) { }
 
@@ -66,12 +63,6 @@ export class OrderTableComponent implements OnInit {
           this.changeDetectorRefs.detectChanges();
         });
       }
-    });
-  }
-
-  print(_order: Order) {
-    const dialogRef = this.dialog.open(ImageComponent, {
-      data: this.printService.printPreview(_order)
     });
   }
 }

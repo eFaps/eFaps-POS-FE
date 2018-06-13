@@ -3,7 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { Order } from '../../model/index';
-import { PaymentService, PosService, WorkspaceService } from '../../services/index';
+import { PaymentService, PosService, PrintService, WorkspaceService } from '../../services/index';
 import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 
 @Component({

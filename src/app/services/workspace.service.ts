@@ -92,4 +92,6 @@ export class WorkspaceService {
         && this.current.warehouseOid
         && this.current.warehouseOid.length > 0;
   }
+
+  
 }
