@@ -15,7 +15,7 @@ export interface Document {
   crossTotal: number;
   taxes: TaxEntry[];
   contactOid?: string;
-  posOid?: string;
+  workspaceOid?: string;
 }
 
 export interface Payable extends Document {

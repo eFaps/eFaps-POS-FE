@@ -25,11 +25,14 @@ export class PaymentComponent implements OnInit {
   docTypes: string[] = [];
   busy: Subscription;
   contact: Contact;
-  posOid: string;
+  workspaceOid: string;
 
-  constructor(private router: Router, private workspaceService: WorkspaceService,
-    public paymentService: PaymentService, private documentService: DocumentService,
-    private dialog: MatDialog, private fb: FormBuilder) {
+  constructor(private router: Router,
+    private workspaceService: WorkspaceService,
+    public paymentService: PaymentService,
+    private documentService: DocumentService,
+    private dialog: MatDialog,
+    private fb: FormBuilder) {
   }
 
 
@@ -41,7 +44,7 @@ export class PaymentComponent implements OnInit {
       this.change = this.document ? _total - this.document.crossTotal : _total;
     });
     this.workspaceService.currentWorkspace.subscribe(_data => {
-      this.posOid = _data.posOid;
+      this.workspaceOid = _data.oid;
       this.docTypes = [];
       _data.docTypes.forEach((_value) => {
         this.docTypes.push(_value.toString());
@@ -69,7 +72,7 @@ export class PaymentComponent implements OnInit {
       crossTotal: this.document.crossTotal,
       taxes: this.document.taxes,
       contactOid: this.contact ? (this.contact.oid ? this.contact.oid : this.contact.id) : null,
-      posOid: this.posOid
+      workspaceOid: this.workspaceOid
     };
 
     switch (this.docType) {
