@@ -93,5 +93,7 @@ export class WorkspaceService {
         && this.current.warehouseOid.length > 0;
   }
 
-  
+  public getSpotSize():  number {
+    return 20;
+  }
 }
