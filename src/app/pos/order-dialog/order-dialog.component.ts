@@ -26,7 +26,7 @@ export class OrderDialogComponent implements OnInit {
 
   print() {
     const dialogRef = this.dialog.open(ImageComponent, {
-      data: this.printService.printPreview(this.data.order)
+      data: this.printService.printJobPreview(this.data.order)
     });
   }
 }

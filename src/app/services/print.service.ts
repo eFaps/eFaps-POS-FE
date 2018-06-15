@@ -17,4 +17,9 @@ export class PrintService {
     const requestUrl = `${this.config.baseUrl}/documents/orders/${_order.id}/printpreview`;
     return this.http.get(requestUrl, { responseType: 'blob' });
   }
+
+  printJobPreview(_order: Order): Observable<any> {
+    const requestUrl = `${this.config.baseUrl}/documents/orders/${_order.id}/jobs`;
+    return this.http.get(requestUrl, { responseType: 'blob' });
+  }
 }
