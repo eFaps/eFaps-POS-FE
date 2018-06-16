@@ -10,6 +10,7 @@ import { PrintService } from '../../services/index';
 export class PrintDialogComponent implements OnInit {
   previewUrls: any[] = [];
   loaded = false;
+  showEmptyMsg = false;
 
   constructor(private printService: PrintService,
     private dialogRef: MatDialogRef<PrintDialogComponent>,
@@ -17,19 +18,24 @@ export class PrintDialogComponent implements OnInit {
 
   ngOnInit() {
     const t = this;
-    this.data.subscribe(printResponses => {
-      printResponses.forEach(printResponse => {
-        if (printResponse.printer.type === 'PREVIEW') {
-          this.printService.getPreview(printResponse.key).subscribe(preview => {
-            const reader = new FileReader();
-            reader.addEventListener('load', () => {
-              t.previewUrls.push(reader.result);
-              t.loaded = true;
-            }, false);
-            reader.readAsDataURL(preview);
-          });
-        }
-      });
+    this.data.subscribe(_printResponses => {
+      if (_printResponses.length < 1) {
+        t.loaded = true;
+        t.showEmptyMsg = true;
+      } else {
+        _printResponses.forEach(_printResponse => {
+          if (_printResponse.printer.type === 'PREVIEW') {
+            this.printService.getPreview(_printResponse.key).subscribe(preview => {
+              const reader = new FileReader();
+              reader.addEventListener('load', () => {
+                t.previewUrls.push(reader.result);
+                t.loaded = true;
+              }, false);
+              reader.readAsDataURL(preview);
+            });
+          }
+        });
+      }
     });
   }
 }

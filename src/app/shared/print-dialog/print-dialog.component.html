@@ -1,4 +1,5 @@
 <mat-dialog-content>
   <mat-spinner *ngIf="!loaded"></mat-spinner>
-    <img [src]="url" *ngFor="let url of previewUrls; let i = index">
+  <h2 *ngIf="showEmptyMsg">No se impremi nada</h2>
+  <img [src]="url" *ngFor="let url of previewUrls; let i = index">
 </mat-dialog-content>
