@@ -14,6 +14,7 @@ import { ContactComponent } from './contact/contact.component';
 import { DocumentComponent } from './document/document.component';
 import { KeypadComponent } from './keypad/keypad.component';
 import { ImageComponent } from './image/image.component';
+import { PrintDialogComponent } from './print-dialog/print-dialog.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -38,7 +39,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     KeypadComponent,
     PosCurrencyPipe,
     SecurePipe,
-    ImageComponent
+    ImageComponent,
+    PrintDialogComponent
   ],
   exports: [
     ConfirmDialogComponent,
@@ -54,7 +56,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   ],
   entryComponents: [
     ConfirmDialogComponent,
-    ImageComponent
+    ImageComponent,
+    PrintDialogComponent
   ]
 })
 export class SharedModule { }

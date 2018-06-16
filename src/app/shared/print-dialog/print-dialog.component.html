@@ -1,0 +1,4 @@
+<mat-dialog-content>
+  <mat-spinner *ngIf="!loaded"></mat-spinner>
+    <img [src]="url" *ngFor="let url of previewUrls; let i = index">
+</mat-dialog-content>

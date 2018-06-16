@@ -5,6 +5,8 @@ export * from './inventory-entry';
 export * from './item';
 export * from './payment';
 export * from './pos';
+export * from './print-response';
+export * from './printer';
 export * from './product';
 export * from './spot';
 export * from './tax';

@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
 
 import { PrintService, WorkspaceService } from '../../services/index';
-import { ImageComponent } from '../../shared/image/image.component';
+import { PrintDialogComponent } from '../../shared/print-dialog/print-dialog.component';
 
 @Component({
   selector: 'app-order-dialog',
@@ -25,8 +25,8 @@ export class OrderDialogComponent implements OnInit {
   }
 
   print() {
-    const dialogRef = this.dialog.open(ImageComponent, {
-      data: this.printService.printJobPreview(this.data.order)
+    const dialogRef = this.dialog.open(PrintDialogComponent, {
+      data: this.printService.printJobs(this.data.order)
     });
   }
 }
