@@ -44,8 +44,8 @@ export class CommandsComponent implements OnInit {
         disableClose: true,
         data: { order: order }
       });
-      this.posService.reset();
       dialogRef.afterClosed().subscribe(_result => {
+        this.posService.reset();
         if (_result) {
           this.paymentService.updateDocument(_result);
           this.router.navigate(['/payment']);
