@@ -8,4 +8,11 @@ export interface Workspace {
   docTypes: DocumentType[];
   spotConfig: SpotConfig;
   warehouseOid: string;
+  printCmds: PrintCmd[];
+}
+
+export interface PrintCmd {
+  printerOid: string;
+  target: 'JOB';
+  targetOid: string;
 }

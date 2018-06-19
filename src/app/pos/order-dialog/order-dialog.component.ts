@@ -11,6 +11,8 @@ import { PrintDialogComponent } from '../../shared/print-dialog/print-dialog.com
 })
 export class OrderDialogComponent implements OnInit {
   allowPayment: boolean;
+  allowPrintJobs: boolean;
+
   constructor(private workspaceService: WorkspaceService,
     private printService: PrintService,
     private dialog: MatDialog,
@@ -21,10 +23,11 @@ export class OrderDialogComponent implements OnInit {
   ngOnInit() {
     this.workspaceService.currentWorkspace.subscribe(_data => {
       this.allowPayment = _data.docTypes && _data.docTypes.length > 0;
+      this.allowPrintJobs = _data.printCmds.some(x => x.target === 'JOB');
     });
   }
 
-  print() {
+  printJobs() {
     const dialogRef = this.dialog.open(PrintDialogComponent, {
       data: this.printService.printJobs(this.data.order)
     });
