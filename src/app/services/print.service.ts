@@ -13,9 +13,10 @@ export class PrintService {
   constructor(private http: HttpClient,
     private config: ConfigService) { }
 
-  printJobs(_order: Order): Observable<PrintResponse[]> {
+  printJobs(_workspaceOid: string, _order: Order): Observable<PrintResponse[]> {
     const requestUrl = `${this.config.baseUrl}/print/jobs`;
-    const params = new HttpParams().set('documentId', _order.id);
+    const params = new HttpParams().set('documentId', _order.id)
+      .set('workspaceOid', _workspaceOid);
     return this.http.post<PrintResponse[]>(requestUrl, null, { params: params });
   }
 
