@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Item, PosCategory, Product } from '../../model/index';
-import { PosService, ProductService } from '../../services/index';
-
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { switchMap } from 'rxjs/operators';
+
+import { Item, PosCategory, Product } from '../../model/index';
+import { PosService, ProductService } from '../../services/index';
+import { MatTabChangeEvent } from '@angular/material';
 
 @Component({
   selector: 'app-productgrid',
@@ -13,6 +14,8 @@ import { switchMap } from 'rxjs/operators';
 export class ProductgridComponent implements OnInit {
   categories = [];
   ticket: Item[];
+  shownTabs = [0];
+
   constructor(private productService: ProductService, private ticketSync: PosService) { }
 
   ngOnInit() {
@@ -23,13 +26,20 @@ export class ProductgridComponent implements OnInit {
 
   select(_product: Product) {
     this.ticket.push({
-        product: _product,
-        quantity: 1,
-        price: 0 });
+      product: _product,
+      quantity: 1,
+      price: 0
+    });
     this.syncTicket();
   }
 
   syncTicket() {
     this.ticketSync.changeTicket(this.ticket);
+  }
+
+  tabChanged(_tabChangeEvent: MatTabChangeEvent): void {
+    if (!this.shownTabs.includes( _tabChangeEvent.index)) {
+      this.shownTabs.push(_tabChangeEvent.index);
+    }
   }
 }
