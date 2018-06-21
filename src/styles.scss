@@ -12,6 +12,11 @@ $theme: mat-light-theme($primary, $accent);
 @include angular-material-theme($theme);
 @include material-docs-app-theme($theme);
 
+body {
+  height: 100%;
+  margin: 0;
+  width: 100%;
+}
 .posIcon-48 {
     font-size: 48px;
 }
