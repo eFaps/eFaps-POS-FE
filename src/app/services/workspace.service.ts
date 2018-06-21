@@ -87,13 +87,14 @@ export class WorkspaceService {
         && this.current.spotConfig === SpotConfig.BASIC;
   }
 
+  public getSpotSize(): number {
+    return this.current
+        && this.current.spotCount;
+  }
+
   public showInventory() {
     return this.current
         && this.current.warehouseOid
         && this.current.warehouseOid.length > 0;
-  }
-
-  public getSpotSize():  number {
-    return 20;
   }
 }

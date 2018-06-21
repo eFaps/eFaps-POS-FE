@@ -7,6 +7,7 @@ export interface Workspace {
   posOid: string;
   docTypes: DocumentType[];
   spotConfig: SpotConfig;
+  spotCount: number;
   warehouseOid: string;
   printCmds: PrintCmd[];
 }
