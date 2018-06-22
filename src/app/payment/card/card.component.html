@@ -4,13 +4,13 @@
     <span matPrefix>{{currency}}&nbsp;</span>
   </mat-form-field>
   <button type="button" mat-raised-button (click)="setChange()">{{'<<'}}</button>
+  <div fxLayout="row" fxLayoutGap="20px">
+    <app-keypad (number)="setNumber($event)"></app-keypad>
+    <mat-radio-group class="paymentType-radio-group" formControlName="paymentType">
+      <mat-radio-button class="paymentType-radio-button" *ngFor="let type of paymentTypes; let idx = index" [value]="type">
+        {{('PAYMENT.' + PaymentType[type]) | translate}}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
 </form>
-<div fxLayout="row" fxLayoutGap="20px">
-  <app-keypad (number)="setNumber($event)"></app-keypad>
-  <mat-radio-group class="paymentType-radio-group" [(ngModel)]="paymentType">
-    <mat-radio-button class="paymentType-radio-button" *ngFor="let type of paymentTypes; let idx = index" [value]="type">
-      {{('PAYMENT.' + PaymentType[type]) | translate}}
-    </mat-radio-button>
-  </mat-radio-group>
-</div>
 <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="addPayment()">Add Pago</button>
