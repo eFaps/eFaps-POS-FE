@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 import { MatKeyboardModule, MatKeyboardService } from '@ngx-material-keyboard/core';
 import {
   MissingTranslationHandler,
@@ -19,6 +20,28 @@ import { HttpLoaderFactory } from '../app.module';
 import { MaterialModule } from '../material/material.module';
 import { AuthService, ConfigService, VirtKeyboardDirective, UserService, WorkspaceService} from '../services/index';
 import { LoginComponent } from './login.component';
+import { Observable } from 'rxjs/Observable';
+import { User } from '../model/index';
+
+class UserServiceStub {
+  public getUsers(): Observable<User[]> {
+    return new Observable(observer => {
+      observer.next([{
+        username: 'demo',
+        firstName: 'string',
+        surName: 'string',
+      }]);
+      observer.complete();
+    });
+  }
+}
+
+class ConfigServiceStub {
+
+}
+
+
+const routerSpy = jasmine.createSpyObj('Router', ['pos']);
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -42,12 +65,13 @@ describe('LoginComponent', () => {
       ],
       providers: [
         AuthService,
-        ConfigService,
         HttpClient,
         HttpHandler,
         MatKeyboardService,
-        UserService,
-        WorkspaceService
+        WorkspaceService,
+        { provide: ConfigService, useClass: ConfigServiceStub },
+        { provide: UserService,   useClass: UserServiceStub },
+        { provide: Router,        useValue: routerSpy }
       ],
       declarations: [ VirtKeyboardDirective, LoginComponent ]
     })
