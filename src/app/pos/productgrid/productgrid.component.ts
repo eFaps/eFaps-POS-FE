@@ -16,12 +16,12 @@ export class ProductgridComponent implements OnInit {
   ticket: Item[];
   shownTabs = [0];
 
-  constructor(private productService: ProductService, private ticketSync: PosService) { }
+  constructor(private productService: ProductService, private posService: PosService) { }
 
   ngOnInit() {
     this.productService.getPosCategories()
       .subscribe(_categories => this.categories = _categories);
-    this.ticketSync.currentTicket.subscribe(_ticket => this.ticket = _ticket);
+    this.posService.currentTicket.subscribe(_ticket => this.ticket = _ticket);
   }
 
   select(_product: Product) {
@@ -34,7 +34,7 @@ export class ProductgridComponent implements OnInit {
   }
 
   syncTicket() {
-    this.ticketSync.changeTicket(this.ticket);
+    this.posService.changeTicket(this.ticket);
   }
 
   tabChanged(_tabChangeEvent: MatTabChangeEvent): void {
