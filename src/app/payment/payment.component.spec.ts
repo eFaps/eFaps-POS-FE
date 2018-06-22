@@ -5,12 +5,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgBusyModule } from 'ng-busy';
+import { MockComponent } from 'ng-mocks';
 import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../material/material.module';
 import { Document } from '../model/index';
 import { DocumentService, PaymentService, WorkspaceService } from '../services/index';
+import { ContactComponent } from '../shared/contact/contact.component';
 import { PaymentComponent } from './payment.component';
+import { CardComponent } from './card/card.component';
+import { DocumentComponent } from '../shared/document/document.component';
+import { CashComponent } from './cash/cash.component';
+import { FreeComponent } from './free/free.component';
 
 @Pipe({ name: 'translate' })
 class TranslatePipeStub implements PipeTransform {
@@ -33,48 +39,6 @@ class PosCurrencyPipeStub implements PipeTransform {
   }
 }
 
-@Component({
-  selector: 'app-cash',
-  template: '<p>Cash</p>'
-})
-class MockCashComponent {
-  @Input()
-  protected change: number;
-}
-
-@Component({
-  selector: 'app-card',
-  template: '<p>Card</p>'
-})
-class MockCardComponent {
-  @Input()
-  protected change: number;
-}
-
-@Component({
-  selector: 'app-free',
-  template: '<p>Free</p>'
-})
-class MockFreeComponent {
-  @Input()
-  protected change: number;
-}
-
-@Component({
-  selector: 'app-contact',
-  template: '<p>Contact</p>'
-})
-class MockContactComponent {
-}
-
-@Component({
-  selector: 'app-document',
-  template: '<p>Contact</p>'
-})
-class MockDocumentComponent {
-  @Input() document: Document;
-}
-
 class DocumentServiceStub { }
 class PaymentServiceStub {
   currentDocument = new Observable(observer => {
@@ -95,7 +59,7 @@ class WorkspaceServiceStub {
   });
 }
 
-fdescribe('PaymentComponent', () => {
+describe('PaymentComponent', () => {
   let component: PaymentComponent;
   let fixture: ComponentFixture<PaymentComponent>;
 
@@ -119,11 +83,11 @@ fdescribe('PaymentComponent', () => {
         TranslateParamsPipeStub,
         PosCurrencyPipeStub,
         PaymentComponent,
-        MockContactComponent,
-        MockDocumentComponent,
-        MockCardComponent,
-        MockCashComponent,
-        MockFreeComponent
+        MockComponent(ContactComponent),
+        MockComponent(DocumentComponent),
+        MockComponent(CardComponent),
+        MockComponent(CashComponent),
+        MockComponent(FreeComponent)
       ]
     })
       .compileComponents();
