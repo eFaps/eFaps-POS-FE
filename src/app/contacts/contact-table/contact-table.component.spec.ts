@@ -1,10 +1,21 @@
-import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from '../../material/material.module';
-import { ConfigService, WorkspaceService } from '../../services/index';
+import { ContactService } from '../../services/index';
 import { ContactTableComponent } from './contact-table.component';
+import { Observable } from 'rxjs/Observable';
+import { Contact } from '../../model/index';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
+
+class ContactServiceStub {
+  getContacts(): Observable<Contact[]> {
+    return new Observable(observer => {
+      observer.next([]);
+    });
+  }
+}
 
 describe('ContactTableComponent', () => {
   let component: ContactTableComponent;
@@ -17,14 +28,11 @@ describe('ContactTableComponent', () => {
         MaterialModule
       ],
       providers: [
-        HttpClient,
-        HttpHandler,
-        ConfigService,
-        WorkspaceService
+        { provide: ContactService, useClass: ContactServiceStub }
       ],
-      declarations: [ ContactTableComponent ]
+      declarations: [ContactTableComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -35,5 +43,11 @@ describe('ContactTableComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render the create button', () => {
+    const baseDe: DebugElement = fixture.debugElement;
+    const buttonDe = baseDe.query(By.css('button'));
+    expect(buttonDe).toBeTruthy();
   });
 });
