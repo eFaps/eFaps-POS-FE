@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 
 const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
-fdescribe('DocumentComponent', () => {
+describe('DocumentComponent', () => {
   let component: DocumentComponent;
   let fixture: ComponentFixture<DocumentComponent>;
 
