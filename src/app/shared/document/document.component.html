@@ -1,4 +1,4 @@
-<div class="mat-typography">
+<div *ngIf="document" class="mat-typography">
   <h3>{{this.document.type | translate}}: {{document.number}}</h3>
   <div class="pos-doc-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource" matSort matSortActive="index" matSortDirection="asc">
@@ -32,7 +32,7 @@
         Op. Gravada: {{document.netTotal | posCurrency:document.currency}}
       </div>
     </mat-list-item>
-    <mat-list-item class="amount" *ngFor="let taxEntry of document.taxes">
+    <mat-list-item  class="amount" *ngFor="let taxEntry of document.taxes">
       <div matLine>
         {{taxEntry.tax.name | translate}}: {{taxEntry.amount | posCurrency:document.currency}}
       </div>

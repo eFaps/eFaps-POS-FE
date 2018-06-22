@@ -1,4 +1,4 @@
-<form class="example-form">
+<div class="example-form">
   <mat-form-field class="example-full-width">
     <input matInput placeholder="{{nameSearch ? 'Nombre' : 'RUC' }}" aria-label="Contacto" [matAutocomplete]="auto" [formControl]="searchControl">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selectContact($event)">
@@ -10,4 +10,4 @@
   <mat-slide-toggle [checked]="nameSearch" (change)="setNameSearch()">
     {{nameSearch ? 'Buscar por Nombre' : 'Buscar por RUC' }}
   </mat-slide-toggle>
-</form>
+</div>
