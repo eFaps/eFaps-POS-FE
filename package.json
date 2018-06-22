@@ -3,13 +3,12 @@
   "version": "0.8.0",
   "license": "Apache 2.0",
   "scripts": {
-    "ng": "ng",
     "start": "npm run build-css && ng serve --proxy-config proxy.conf.json --host 0.0.0.0",
     "build": "node ./buildutil.js && npm run build-css && ng build --prod",
-    "test": "node ./buildutil.js && npm run build-css && ng build --aot --source-map false",
+    "build2": "node ./buildutil.js && npm run build-css && ng build --aot --source-map false",
+    "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "demo": "node-sass --help",
     "build-css": "node-sass --output src/assets src/scss"
   },
   "private": true,

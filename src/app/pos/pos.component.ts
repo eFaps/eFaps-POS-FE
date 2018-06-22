@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy, HostListener, ElementRef } from '@angular/core';
 
 import { Item } from '../model/index';
-import { MsgService, PosService } from '../services/index'
+import { MsgService, PosService } from '../services/index';
 
 @Component({
   selector: 'app-pos',
   templateUrl: './pos.component.html',
   styleUrls: ['./pos.component.scss']
 })
-export class PosComponent implements OnInit {
+export class PosComponent implements OnInit, OnDestroy {
   ticket: Item[];
   screenHeight: number;
   screenWidth: number;

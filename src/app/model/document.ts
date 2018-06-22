@@ -25,15 +25,15 @@ export interface Payable extends Document {
 export interface Order extends Document {
   spot?: Spot;
 }
-
+/* tslint:disable-next-line */
 export interface Receipt extends Payable {
 
 }
-
+/* tslint:disable-next-line */
 export interface Invoice extends Payable {
 
 }
-
+/* tslint:disable-next-line */
 export interface Ticket extends Payable {
 
 }
