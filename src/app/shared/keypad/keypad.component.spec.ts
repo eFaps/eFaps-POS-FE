@@ -1,5 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MaterialModule } from '../../material/material.module';
 import { KeypadComponent } from './keypad.component';
 
 describe('KeypadComponent', () => {
@@ -8,6 +10,13 @@ describe('KeypadComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        BrowserAnimationsModule,
+        MaterialModule
+      ],
+      providers: [
+
+      ],
       declarations: [ KeypadComponent ]
     })
     .compileComponents();

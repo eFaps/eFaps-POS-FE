@@ -1,6 +1,27 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Observable } from 'rxjs/Observable';
 
+import { MaterialModule } from '../material/material.module';
+import { PosService, WorkspaceService } from '../services';
 import { WorkspaceComponent } from './workspace.component';
+
+class PosServiceStub {
+  getPoss() {
+    return new Observable(observer => {
+      observer.next([]);
+    });
+  }
+}
+
+class WorkspaceServiceStub {
+  getWorkspaces() {
+    return new Observable(observer => {
+      observer.next([]);
+    });
+  }
+}
 
 describe('WorkspaceComponent', () => {
   let component: WorkspaceComponent;
@@ -8,6 +29,15 @@ describe('WorkspaceComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        BrowserAnimationsModule,
+        MaterialModule,
+        RouterTestingModule
+      ],
+      providers: [
+        { provide: PosService, useClass: PosServiceStub },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
+      ],
       declarations: [ WorkspaceComponent ]
     })
     .compileComponents();
