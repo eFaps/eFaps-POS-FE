@@ -19,4 +19,5 @@ export * from './style-manager.service';
 export * from './theme-storage.service';
 export * from './user.service';
 export * from './utils.service';
+export * from './virt-keyboard.directive';
 export * from './workspace.service';
