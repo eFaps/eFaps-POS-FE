@@ -1,21 +1,25 @@
-import { HttpClient, HttpHandler } from '@angular/common/http';
+import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material';
-import {
-  MissingTranslationHandler,
-  TranslateCompiler,
-  TranslateLoader,
-  TranslateModule,
-  TranslateParser,
-  TranslateService,
-  TranslateStore,
-  USE_DEFAULT_LANG
-} from '@ngx-translate/core';
-import { UtilsService } from '../../services/index';
-import { HttpLoaderFactory } from '../../app.module';
+
 import { MaterialModule } from '../../material/material.module';
+import { DocumentType } from '../../model/index';
 import { SharedModule } from '../../shared/shared.module';
 import { ConfirmDialogComponent } from './confirm-dialog.component';
+
+@Pipe({ name: 'posCurrency' })
+class PosCurrencyPipeStub implements PipeTransform {
+  transform(_value: number, _currency: string): any {
+    return 'something';
+  }
+}
+
+@Pipe({ name: 'translate' })
+class TranslatePipeStub implements PipeTransform {
+  transform(_value: number, _currency: string): any {
+    return 'something';
+  }
+}
 
 describe('ConfirmDialogComponent', () => {
   let component: ConfirmDialogComponent;
@@ -25,21 +29,26 @@ describe('ConfirmDialogComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MaterialModule,
-        SharedModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-          }
-        })
+        SharedModule
       ],
       providers: [
-        UtilsService,
         { provide: MatDialogRef, useValue: {} },
-        { provide: MAT_DIALOG_DATA, useValue: [] },
+        {
+          provide: MAT_DIALOG_DATA, useValue: {
+            docType: DocumentType.RECEIPT,
+            document: {
+              number: '1234'
+            },
+            change: 33.44,
+            currency: 'PEN'
+          }
+        },
       ],
-      declarations: [ConfirmDialogComponent]
+      declarations: [
+        ConfirmDialogComponent,
+        PosCurrencyPipeStub,
+        TranslatePipeStub
+      ]
     })
       .compileComponents();
   }));
