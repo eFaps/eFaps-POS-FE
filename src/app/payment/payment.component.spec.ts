@@ -1,71 +1,129 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
+import { Component, Input, Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import {
-  MissingTranslationHandler,
-  TranslateCompiler,
-  TranslateLoader,
-  TranslateModule,
-  TranslateParser,
-  TranslateService,
-  TranslateStore,
-  USE_DEFAULT_LANG
-} from '@ngx-translate/core';
+import { NgBusyModule } from 'ng-busy';
+import { Observable } from 'rxjs/Observable';
 
-import { HttpLoaderFactory } from '../app.module';
 import { MaterialModule } from '../material/material.module';
-import {
-  AuthService,
-  ConfigService,
-  DocumentService,
-  PaymentService,
-  PosService,
-  UtilsService,
-  WorkspaceService
-} from '../services/index';
-import { SharedModule } from '../shared/shared.module';
-import { CardComponent } from './card/card.component';
-import { CashComponent } from './cash/cash.component';
-import { FreeComponent } from './free/free.component';
+import { Document } from '../model/index';
+import { DocumentService, PaymentService, WorkspaceService } from '../services/index';
 import { PaymentComponent } from './payment.component';
 
-describe('PaymentComponent', () => {
+@Pipe({ name: 'translate' })
+class TranslatePipeStub implements PipeTransform {
+  transform(_value: number, _currency: string): any {
+    return 'something';
+  }
+}
+
+@Pipe({ name: 'translateParams' })
+class TranslateParamsPipeStub implements PipeTransform {
+  transform(_value: number, _currency: string): any {
+    return 'something';
+  }
+}
+
+@Pipe({ name: 'posCurrency' })
+class PosCurrencyPipeStub implements PipeTransform {
+  transform(_value: number, _currency: string): any {
+    return 'something';
+  }
+}
+
+@Component({
+  selector: 'app-cash',
+  template: '<p>Cash</p>'
+})
+class MockCashComponent {
+  @Input()
+  protected change: number;
+}
+
+@Component({
+  selector: 'app-card',
+  template: '<p>Card</p>'
+})
+class MockCardComponent {
+  @Input()
+  protected change: number;
+}
+
+@Component({
+  selector: 'app-free',
+  template: '<p>Free</p>'
+})
+class MockFreeComponent {
+  @Input()
+  protected change: number;
+}
+
+@Component({
+  selector: 'app-contact',
+  template: '<p>Contact</p>'
+})
+class MockContactComponent {
+}
+
+@Component({
+  selector: 'app-document',
+  template: '<p>Contact</p>'
+})
+class MockDocumentComponent {
+  @Input() document: Document;
+}
+
+class DocumentServiceStub { }
+class PaymentServiceStub {
+  currentDocument = new Observable(observer => {
+    observer.next({});
+  });
+  currentPayments = new Observable(observer => {
+    observer.next([]);
+  });
+  currentTotal = new Observable(observer => {
+    observer.next({});
+  });
+ }
+class WorkspaceServiceStub {
+  currentWorkspace = new Observable(observer => {
+    observer.next({
+      docTypes: []
+    });
+  });
+}
+
+fdescribe('PaymentComponent', () => {
   let component: PaymentComponent;
   let fixture: ComponentFixture<PaymentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        BrowserAnimationsModule,
         FormsModule,
-        SharedModule,
+        NgBusyModule,
         MaterialModule,
         ReactiveFormsModule,
-        RouterTestingModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-          }
-        })
+        RouterTestingModule
       ],
       providers: [
-        AuthService,
-        ConfigService,
-        DocumentService,
-        HttpClient,
-        HttpHandler,
-        PaymentService,
-        PosService,
-        UtilsService,
-        WorkspaceService
+        { provide: DocumentService, useClass: DocumentServiceStub },
+        { provide: PaymentService, useClass: PaymentServiceStub },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
       ],
       declarations: [
-        CardComponent,
-        CashComponent,
-        FreeComponent,
-        PaymentComponent
+        TranslatePipeStub,
+        TranslateParamsPipeStub,
+        PosCurrencyPipeStub,
+        PaymentComponent,
+        MockContactComponent,
+        MockDocumentComponent,
+        MockCardComponent,
+        MockCashComponent,
+        MockFreeComponent
       ]
     })
       .compileComponents();
