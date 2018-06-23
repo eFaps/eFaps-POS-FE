@@ -6,6 +6,16 @@ import { ConfigService } from './config.service';
 import { DocumentService } from './document.service';
 import { SpotService } from './spot.service';
 import { WorkspaceService } from './workspace.service';
+import { Observable } from 'rxjs/Observable';
+
+class AuthServiceStub { }
+class ConfigServiceStub { }
+class DocumentServiceStub { }
+class WorkspaceServiceStub {
+  currentWorkspace = new Observable(observer => {
+    observer.next();
+  });
+}
 
 describe('SpotService', () => {
   beforeEach(() => {
@@ -13,11 +23,11 @@ describe('SpotService', () => {
       providers: [
         HttpClient,
         HttpHandler,
-        AuthService,
-        ConfigService,
-        DocumentService,
         SpotService,
-        WorkspaceService
+        { provide: AuthService, useClass: AuthServiceStub },
+        { provide: ConfigService, useClass: ConfigServiceStub },
+        { provide: DocumentService, useClass: DocumentServiceStub },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
       ]
     });
   });

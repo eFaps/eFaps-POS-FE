@@ -4,14 +4,16 @@ import { TestBed, inject } from '@angular/core/testing';
 import { ConfigService } from './config.service';
 import { InventoryService } from './inventory.service';
 
+class ConfigServiceStub {}
+
 describe('InventoryService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         HttpClient,
         HttpHandler,
-        ConfigService,
-        InventoryService
+        InventoryService,
+        { provide: ConfigService, useClass: ConfigServiceStub },
       ]
     });
   });

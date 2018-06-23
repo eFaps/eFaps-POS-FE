@@ -5,6 +5,14 @@ import { StompConfig, StompRService } from '@stomp/ng2-stompjs';
 import { AuthService } from './auth.service';
 import { ConfigService } from './config.service';
 import { MsgService } from './msg.service';
+import { Observable } from 'rxjs/Observable';
+
+class ConfigServiceStub { }
+class AuthServiceStub {
+  currentEvent = new Observable(observer => {
+    observer.next();
+  });
+}
 
 describe('MsgService', () => {
   beforeEach(() => {
@@ -12,10 +20,10 @@ describe('MsgService', () => {
       providers: [
         HttpClient,
         HttpHandler,
-        AuthService,
-        ConfigService,
         MsgService,
-        StompRService
+        StompRService,
+        { provide: AuthService, useClass: AuthServiceStub },
+        { provide: ConfigService, useClass: ConfigServiceStub },
       ]
     });
   });

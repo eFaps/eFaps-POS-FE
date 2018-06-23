@@ -4,6 +4,8 @@ import { TestBed, inject } from '@angular/core/testing';
 import { AdminService } from './admin.service';
 import { ConfigService } from './config.service';
 
+class ConfigServiceStub {}
+
 describe('AdminService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -11,7 +13,7 @@ describe('AdminService', () => {
         HttpClient,
         HttpHandler,
         AdminService,
-        ConfigService
+        { provide: ConfigService, useClass: ConfigServiceStub }
       ]
     });
   });

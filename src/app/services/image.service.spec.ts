@@ -5,6 +5,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ConfigService } from './config.service';
 import { ImageService } from './image.service';
 
+class ConfigServiceStub {}
+
 describe('ImageService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -12,8 +14,8 @@ describe('ImageService', () => {
         DomSanitizer,
         HttpClient,
         HttpHandler,
-        ConfigService,
-        ImageService
+        ImageService,
+        { provide: ConfigService, useClass: ConfigServiceStub },
       ]
     });
   });

@@ -5,15 +5,18 @@ import { AuthService } from './auth.service';
 import { ConfigService } from './config.service';
 import { WorkspaceService } from './workspace.service';
 
+class ConfigServiceStub {}
+class AuthServiceStub { }
+
 describe('WorkspaceService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         HttpClient,
         HttpHandler,
-        AuthService,
-        ConfigService,
-        WorkspaceService
+        WorkspaceService,
+        { provide: AuthService, useClass: AuthServiceStub },
+        { provide: ConfigService, useClass: ConfigServiceStub },
       ]
     });
   });

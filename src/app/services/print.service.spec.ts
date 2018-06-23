@@ -4,14 +4,16 @@ import { TestBed, inject } from '@angular/core/testing';
 import { ConfigService } from './config.service';
 import { PrintService } from './print.service';
 
+class ConfigServiceStub {}
+
 describe('PrintService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         HttpClient,
         HttpHandler,
-        ConfigService,
-        PrintService
+        PrintService,
+        { provide: ConfigService, useClass: ConfigServiceStub },
       ]
     });
   });
