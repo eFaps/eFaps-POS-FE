@@ -5,39 +5,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgBusyModule } from 'ng-busy';
-import { MockComponent } from 'ng-mocks';
+import { MockComponent, MockPipe } from 'ng-mocks';
 import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../material/material.module';
 import { Document } from '../model/index';
-import { DocumentService, PaymentService, WorkspaceService } from '../services/index';
+import { DocumentService, PaymentService, WorkspaceService, PosCurrencyPipe } from '../services/index';
 import { ContactComponent } from '../shared/contact/contact.component';
 import { PaymentComponent } from './payment.component';
 import { CardComponent } from './card/card.component';
 import { DocumentComponent } from '../shared/document/document.component';
 import { CashComponent } from './cash/cash.component';
 import { FreeComponent } from './free/free.component';
-
-@Pipe({ name: 'translate' })
-class TranslatePipeStub implements PipeTransform {
-  transform(_value: number, _currency: string): any {
-    return 'something';
-  }
-}
-
-@Pipe({ name: 'translateParams' })
-class TranslateParamsPipeStub implements PipeTransform {
-  transform(_value: number, _currency: string): any {
-    return 'something';
-  }
-}
-
-@Pipe({ name: 'posCurrency' })
-class PosCurrencyPipeStub implements PipeTransform {
-  transform(_value: number, _currency: string): any {
-    return 'something';
-  }
-}
+import { TranslatePipe } from '@ngx-translate/core';
 
 class DocumentServiceStub { }
 class PaymentServiceStub {
@@ -79,15 +59,14 @@ describe('PaymentComponent', () => {
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
       ],
       declarations: [
-        TranslatePipeStub,
-        TranslateParamsPipeStub,
-        PosCurrencyPipeStub,
-        PaymentComponent,
+        MockPipe(TranslatePipe),
+        MockPipe(PosCurrencyPipe),
         MockComponent(ContactComponent),
         MockComponent(DocumentComponent),
         MockComponent(CardComponent),
         MockComponent(CashComponent),
-        MockComponent(FreeComponent)
+        MockComponent(FreeComponent),
+        PaymentComponent
       ]
     })
       .compileComponents();

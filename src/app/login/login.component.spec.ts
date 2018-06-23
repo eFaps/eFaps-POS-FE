@@ -1,27 +1,17 @@
-import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { MatKeyboardModule, MatKeyboardService } from '@ngx-material-keyboard/core';
-import {
-  MissingTranslationHandler,
-  TranslateCompiler,
-  TranslateLoader,
-  TranslateModule,
-  TranslateParser,
-  TranslateService,
-  TranslateStore,
-  USE_DEFAULT_LANG
-} from '@ngx-translate/core';
-
-import { HttpLoaderFactory } from '../app.module';
-import { MaterialModule } from '../material/material.module';
-import { AuthService, ConfigService, VirtKeyboardDirective, UserService, WorkspaceService} from '../services/index';
-import { LoginComponent } from './login.component';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockPipe } from 'ng-mocks';
 import { Observable } from 'rxjs/Observable';
+
+import { MaterialModule } from '../material/material.module';
 import { User } from '../model/index';
+import { AuthService, ConfigService, UserService, VirtKeyboardDirective, WorkspaceService } from '../services/index';
+import { LoginComponent } from './login.component';
 
 class UserServiceStub {
   public getUsers(): Observable<User[]> {
@@ -36,10 +26,18 @@ class UserServiceStub {
   }
 }
 
+class AuthServiceStub {
+  logout() { }
+}
 class ConfigServiceStub {
 
 }
+class TranslateServiceStub {
 
+}
+class WorkspaceServiceStub {
+  logout() { }
+}
 
 const routerSpy = jasmine.createSpyObj('Router', ['pos']);
 
@@ -54,28 +52,23 @@ describe('LoginComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule,
         MaterialModule,
-        MatKeyboardModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-          }
-        })
+        MatKeyboardModule
       ],
       providers: [
-        AuthService,
-        HttpClient,
-        HttpHandler,
         MatKeyboardService,
-        WorkspaceService,
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
+        { provide: TranslateService, useClass: TranslateServiceStub },
+        { provide: AuthService, useClass: AuthServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },
-        { provide: UserService,   useClass: UserServiceStub },
-        { provide: Router,        useValue: routerSpy }
+        { provide: UserService, useClass: UserServiceStub },
+        { provide: Router, useValue: routerSpy }
       ],
-      declarations: [ VirtKeyboardDirective, LoginComponent ]
+      declarations: [VirtKeyboardDirective,
+        LoginComponent,
+        MockPipe(TranslatePipe)
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

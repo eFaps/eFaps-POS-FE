@@ -27,7 +27,10 @@ class MsgServiceStub {
   init() {
 
   }
-  publishStartEditOrder() {
+  publishStartEditOrder(_id) {
+
+  }
+  publishFinishEditOrder(_id) {
 
   }
 }

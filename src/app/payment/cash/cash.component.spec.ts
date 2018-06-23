@@ -2,18 +2,10 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MissingTranslationHandler,
-  TranslateCompiler,
-  TranslateLoader,
-  TranslateModule,
-  TranslateParser,
-  TranslateService,
-  TranslateStore,
-  USE_DEFAULT_LANG
-} from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
+import { MockPipe } from 'ng-mocks';
+import { Observable } from 'rxjs/Observable';
 
-import { HttpLoaderFactory } from '../../app.module';
 import { MaterialModule } from '../../material/material.module';
 import {
   AuthService,
@@ -27,6 +19,22 @@ import {
 import { SharedModule } from '../../shared/shared.module';
 import { CashComponent } from './cash.component';
 
+class AuthServiceStub { }
+class ConfigServiceStub { }
+class DocumentServiceStub { }
+class PosServiceStub { }
+class UtilsServiceStub {
+  getCurrencySymbol(som) {
+    return 'PEN';
+  }
+}
+class PaymentServiceStub {
+  currentPayments = new Observable(observer => {
+    observer.next([]);
+  });
+}
+class WorkspaceServiceStub { }
+
 describe('CashComponent', () => {
   let component: CashComponent;
   let fixture: ComponentFixture<CashComponent>;
@@ -38,26 +46,20 @@ describe('CashComponent', () => {
         MaterialModule,
         ReactiveFormsModule,
         SharedModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-          }
-        })
       ],
       providers: [
-        AuthService,
-        ConfigService,
-        DocumentService,
-        HttpClient,
-        HttpHandler,
-        PaymentService,
-        PosService,
-        UtilsService,
-        WorkspaceService
+        { provide: AuthService, useClass: AuthServiceStub },
+        { provide: ConfigService, useClass: ConfigServiceStub },
+        { provide: DocumentService, useClass: DocumentServiceStub },
+        { provide: PosService, useClass: PosServiceStub },
+        { provide: UtilsService, useClass: UtilsServiceStub },
+        { provide: PaymentService, useClass: PaymentServiceStub },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
       ],
-      declarations: [ CashComponent ]
+      declarations: [
+        CashComponent,
+        MockPipe(TranslatePipe)
+      ]
     })
     .compileComponents();
   }));

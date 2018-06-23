@@ -1,30 +1,42 @@
-import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import {
-  MissingTranslationHandler,
-  TranslateCompiler,
-  TranslateLoader,
-  TranslateModule,
-  TranslateParser,
-  TranslateService,
-  TranslateStore,
-  USE_DEFAULT_LANG
-} from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
+import { MockPipe } from 'ng-mocks';
+import { Observable } from 'rxjs/Observable';
 
-import { HttpLoaderFactory } from '../../app.module';
 import { MaterialModule } from '../../material/material.module';
 import {
   AuthService,
   ConfigService,
   DocumentService,
-  PosService,
   PosCurrencyPipe,
+  PosService,
   UtilsService,
   WorkspaceService
 } from '../../services/index';
 import { OrderTableComponent } from './order-table.component';
+
+class AuthServiceStub {
+  hasRole(val) {
+    return false;
+  }
+}
+class ConfigServiceStub { }
+class DocumentServiceStub {
+  getOrders() {
+    return new Observable(observer => {
+      observer.next([]);
+    });
+  }
+}
+class PosServiceStub { }
+class UtilsServiceStub { }
+class WorkspaceServiceStub {
+  showSpots() {
+    return false;
+  }
+}
 
 describe('OrderTableComponent', () => {
   let component: OrderTableComponent;
@@ -35,26 +47,21 @@ describe('OrderTableComponent', () => {
       imports: [
         BrowserAnimationsModule,
         MaterialModule,
-        RouterTestingModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-          }
-        })
+        RouterTestingModule
       ],
       providers: [
-        AuthService,
-        HttpClient,
-        HttpHandler,
-        ConfigService,
-        DocumentService,
-        PosService,
-        UtilsService,
-        WorkspaceService
+        { provide: AuthService, useClass: AuthServiceStub },
+        { provide: ConfigService, useClass: ConfigServiceStub },
+        { provide: DocumentService, useClass: DocumentServiceStub },
+        { provide: PosService, useClass: PosServiceStub },
+        { provide: UtilsService, useClass: UtilsServiceStub },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
       ],
-      declarations: [PosCurrencyPipe, OrderTableComponent]
+      declarations: [
+        OrderTableComponent,
+        MockPipe(PosCurrencyPipe),
+        MockPipe(TranslatePipe)
+      ]
     })
       .compileComponents();
   }));
