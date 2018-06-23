@@ -22,13 +22,13 @@ class PosServiceStub {
 }
 class MsgServiceStub {
   currentOrder = new Observable(observer => {
-    observer.next({});
+    observer.next();
   });
   init() {
 
   }
   publishStartEditOrder() {
-    
+
   }
 }
 
