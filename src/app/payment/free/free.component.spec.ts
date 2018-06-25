@@ -1,9 +1,8 @@
-import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslatePipe } from '@ngx-translate/core';
-import { MockPipe } from 'ng-mocks';
+import { MockComponent, MockPipe } from 'ng-mocks';
 import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../../material/material.module';
@@ -16,7 +15,7 @@ import {
   UtilsService,
   WorkspaceService
 } from '../../services/index';
-import { SharedModule } from '../../shared/shared.module';
+import { KeypadComponent } from '../../shared/keypad/keypad.component';
 import { FreeComponent } from './free.component';
 
 class AuthServiceStub { }
@@ -45,7 +44,6 @@ describe('FreeComponent', () => {
         BrowserAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
-        SharedModule,
       ],
       providers: [
         { provide: AuthService, useClass: AuthServiceStub },
@@ -58,7 +56,8 @@ describe('FreeComponent', () => {
       ],
       declarations: [
         FreeComponent,
-        MockPipe(TranslatePipe)
+        MockPipe(TranslatePipe),
+        MockComponent(KeypadComponent)
       ]
     })
     .compileComponents();

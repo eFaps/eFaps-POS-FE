@@ -1,10 +1,13 @@
-import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from '../../material/material.module';
 import { InventoryTableComponent } from './inventory-table.component';
-import { ConfigService, WorkspaceService } from '../../services/index';
+import { InventoryService } from '../../services/index';
+
+class InventoryServiceStub {
+
+}
 
 describe('InventoryTableComponent', () => {
   let component: InventoryTableComponent;
@@ -17,12 +20,11 @@ describe('InventoryTableComponent', () => {
         MaterialModule
       ],
       providers: [
-        HttpClient,
-        HttpHandler,
-        ConfigService,
-        WorkspaceService
+        { provide: InventoryService, useClass: InventoryServiceStub }
       ],
-      declarations: [InventoryTableComponent]
+      declarations: [
+        InventoryTableComponent
+      ]
     })
       .compileComponents();
   }));

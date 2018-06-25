@@ -1,11 +1,20 @@
-import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MockComponent } from 'ng-mocks';
+import { Observable } from 'rxjs';
 
 import { MaterialModule } from '../../material/material.module';
-import { ConfigService, WorkspaceService } from '../../services/index';
+import { InventoryService } from '../../services/index';
 import { InventoryTableComponent } from '../inventory-table/inventory-table.component';
 import { InventoryComponent } from './inventory.component';
+
+class InventoryServiceStub {
+  getWarehouses() {
+    return new Observable(observer => {
+      observer.next([]);
+    });
+  }
+}
 
 describe('InventoryComponent', () => {
   let component: InventoryComponent;
@@ -18,12 +27,12 @@ describe('InventoryComponent', () => {
         MaterialModule
       ],
       providers: [
-        HttpClient,
-        HttpHandler,
-        ConfigService,
-        WorkspaceService
+        { provide: InventoryService, useClass: InventoryServiceStub }
       ],
-      declarations: [ InventoryComponent, InventoryTableComponent ]
+      declarations: [
+        InventoryComponent,
+        MockComponent(InventoryTableComponent)
+      ]
     })
     .compileComponents();
   }));

@@ -1,9 +1,8 @@
-import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslatePipe } from '@ngx-translate/core';
-import { MockPipe } from 'ng-mocks';
+import { MockPipe, MockComponent } from 'ng-mocks';
 import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../../material/material.module';
@@ -16,8 +15,8 @@ import {
   UtilsService,
   WorkspaceService
 } from '../../services/index';
-import { SharedModule } from '../../shared/shared.module';
 import { CardComponent } from './card.component';
+import { KeypadComponent } from '../../shared/keypad/keypad.component';
 
 class AuthServiceStub { }
 class ConfigServiceStub { }
@@ -44,8 +43,7 @@ describe('CardComponent', () => {
       imports: [
         BrowserAnimationsModule,
         MaterialModule,
-        ReactiveFormsModule,
-        SharedModule,
+        ReactiveFormsModule
       ],
       providers: [
         { provide: AuthService, useClass: AuthServiceStub },
@@ -58,7 +56,8 @@ describe('CardComponent', () => {
       ],
       declarations: [
         CardComponent,
-        MockPipe(TranslatePipe)
+        MockPipe(TranslatePipe),
+        MockComponent(KeypadComponent)
       ]
     })
     .compileComponents();
