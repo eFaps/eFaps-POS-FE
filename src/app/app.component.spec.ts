@@ -1,29 +1,25 @@
-import { HttpClient } from '@angular/common/http';
 import { TestBed, async } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import {
-  MissingTranslationHandler,
-  TranslateCompiler,
-  TranslateLoader,
-  TranslateModule,
-  TranslateParser,
-  TranslateService,
-  TranslateStore,
-  USE_DEFAULT_LANG
-} from '@ngx-translate/core';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
+import { MockComponent, MockPipe } from 'ng-mocks';
 
 import { AppComponent } from './app.component';
-import { HttpLoaderFactory } from './app.module';
 import { MaterialModule } from './material/material.module';
-import {
-  AdminService,
-  AuthService,
-  ConfigService,
-  WorkspaceService
-} from './services/index';
-import { SharedModule } from './shared/shared.module';
+import { AuthService, WorkspaceService } from './services/index';
 import { ThemePickerComponent } from './theme-picker/theme-picker.component';
+
+class AuthServiceStub { }
+class WorkspaceServiceStub {
+  getLanguage() {
+    return "en";
+  }
+}
+class TranslateServiceSub {
+  use(_lang) {
+
+  }
+}
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -32,23 +28,16 @@ describe('AppComponent', () => {
         MaterialModule,
         BrowserAnimationsModule,
         RouterTestingModule,
-        SharedModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-          }
-        })
       ],
       providers: [
-        AuthService,
-        ConfigService,
-        WorkspaceService
+        { provide: AuthService, useClass: AuthServiceStub },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
+        { provide: TranslateService, useClass: TranslateServiceSub }
       ],
       declarations: [
         AppComponent,
-        ThemePickerComponent
+        MockComponent(ThemePickerComponent),
+        MockPipe(TranslatePipe)
       ],
     }).compileComponents();
   }));

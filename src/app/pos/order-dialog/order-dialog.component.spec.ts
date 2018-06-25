@@ -12,7 +12,9 @@ class PrintServiceStub {
 class WorkspaceServiceStub {
   currentWorkspace = new Observable(observer => {
     observer.next({
-      docTypes: []
+      docTypes: [],
+      printCmds: [],
+      oid: 'wsOid'
     });
   });
 }

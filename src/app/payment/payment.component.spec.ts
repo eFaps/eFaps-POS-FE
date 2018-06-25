@@ -3,20 +3,20 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { NgBusyModule } from 'ng-busy';
-import { MockComponent, MockPipe } from 'ng-mocks';
+import { TranslatePipe } from '@ngx-translate/core';
+import { BusyDirective } from 'ng-busy';
+import { MockComponent, MockDirective, MockPipe } from 'ng-mocks';
 import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../material/material.module';
 import { Document } from '../model/index';
-import { DocumentService, PaymentService, WorkspaceService, PosCurrencyPipe } from '../services/index';
+import { DocumentService, PaymentService, PosCurrencyPipe, WorkspaceService } from '../services/index';
 import { ContactComponent } from '../shared/contact/contact.component';
-import { PaymentComponent } from './payment.component';
-import { CardComponent } from './card/card.component';
 import { DocumentComponent } from '../shared/document/document.component';
+import { CardComponent } from './card/card.component';
 import { CashComponent } from './cash/cash.component';
 import { FreeComponent } from './free/free.component';
-import { TranslatePipe } from '@ngx-translate/core';
+import { PaymentComponent } from './payment.component';
 
 class DocumentServiceStub { }
 class PaymentServiceStub {
@@ -47,7 +47,6 @@ describe('PaymentComponent', () => {
       imports: [
         BrowserAnimationsModule,
         FormsModule,
-        NgBusyModule,
         MaterialModule,
         ReactiveFormsModule,
         RouterTestingModule
@@ -65,6 +64,7 @@ describe('PaymentComponent', () => {
         MockComponent(CardComponent),
         MockComponent(CashComponent),
         MockComponent(FreeComponent),
+        MockDirective(BusyDirective),
         PaymentComponent
       ]
     })
