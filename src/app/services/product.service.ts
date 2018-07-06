@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Subscriber } from 'rxjs/Subscriber';
-import { map } from 'rxjs/operators';
 import { forkJoin } from 'rxjs/observable/forkJoin';
+import { map } from 'rxjs/operators';
+import { Subscriber } from 'rxjs/Subscriber';
 
+import { Category, PosCategory, Product } from '../model/index';
 import { ConfigService } from './config.service';
-import { Product, Category, PosCategory } from '../model/index';
 
 @Injectable()
 export class ProductService {
@@ -15,8 +14,12 @@ export class ProductService {
   constructor(private http: HttpClient, private config: ConfigService) { }
 
   public getProducts(): Observable<Product[]> {
-    const href = this.config.baseUrl + '/products';
-    const requestUrl = `${href}`;
+    const requestUrl = `${this.config.baseUrl}/products`;
+    return this.http.get<Product[]>(requestUrl);
+  }
+
+  public findProducts(_term: string): Observable<Product[]> {
+    const requestUrl = `${this.config.baseUrl}/products?term=${_term}`;
     return this.http.get<Product[]>(requestUrl);
   }
 
