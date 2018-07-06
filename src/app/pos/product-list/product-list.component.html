@@ -19,8 +19,8 @@
         <button (click)="show(element)">
           <mat-icon  class="posIcon-36">info</mat-icon>
         </button>
-        <button (click)="select(element)">
-          <mat-icon  class="posIcon-36">check_circle_outline</mat-icon>
+        <button (click)="select(element)" [disabled]="!hasStock(element)">
+          <mat-icon class="posIcon-36" [class.mat-warn]="!hasStock(element)">check_circle_outline</mat-icon>
         </button>
       </mat-cell>
     </ng-container>

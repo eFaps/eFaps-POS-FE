@@ -97,4 +97,8 @@ export class WorkspaceService {
         && this.current.warehouseOid
         && this.current.warehouseOid.length > 0;
   }
+
+  public getWarehouseOid(): string {
+    return this.showInventory() && this.current.warehouseOid;
+  }
 }

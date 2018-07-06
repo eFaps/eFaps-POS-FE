@@ -4,10 +4,10 @@ import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
-import { Product } from '../../model/index';
-import { PosService, ProductService } from '../../services/index';
-import { AbstractProductSelector } from '../abstract-product-selector';
+import { InventoryEntry, Product } from '../../model/index';
 import { ProductComponent } from '../../products/product/product.component';
+import { InventoryService, PosService, ProductService, WorkspaceService } from '../../services/index';
+import { AbstractProductSelector } from '../abstract-product-selector';
 
 @Component({
   selector: 'app-product-list',
@@ -23,12 +23,16 @@ export class ProductListComponent
   dataSource = new MatTableDataSource();
   @ViewChild(MatSort) sort: MatSort;
 
+  inventory: InventoryEntry[] = [];
+
   constructor(protected productService: ProductService,
     protected posService: PosService,
+    private workspaceService: WorkspaceService,
+    private inventoryService: InventoryService,
     private fb: FormBuilder,
     private dialog: MatDialog) {
-      super(productService, posService);
-    }
+    super(productService, posService);
+  }
 
   ngOnInit() {
     super.ngOnInit();
@@ -38,6 +42,13 @@ export class ProductListComponent
     this.formCtrlSub = this.filterForm.valueChanges
       .debounceTime(500)
       .subscribe(newValue => this.applyFilter(newValue.filter));
+
+    if (this.workspaceService.showInventory()) {
+      this.inventoryService.getInventory(this.workspaceService.getWarehouseOid())
+        .subscribe(_entries => {
+          this.inventory = _entries;
+        });
+    }
   }
 
   applyFilter(_filterValue: string) {
@@ -52,6 +63,12 @@ export class ProductListComponent
     const dialogRef = this.dialog.open(ProductComponent, {
       data: _product,
     });
+  }
+
+  hasStock(_product: Product) {
+    return this.workspaceService.showInventory()
+      ? this.inventory.some(entry => entry.product.oid === _product.oid)
+      : true;
   }
 
   ngOnDestroy() {
