@@ -7,6 +7,7 @@ import { debounceTime } from 'rxjs/operators';
 import { Product } from '../../model/index';
 import { PosService, ProductService } from '../../services/index';
 import { AbstractProductSelector } from '../abstract-product-selector';
+import { ProductComponent } from '../../products/product/product.component';
 
 @Component({
   selector: 'app-product-list',
@@ -24,7 +25,8 @@ export class ProductListComponent
 
   constructor(protected productService: ProductService,
     protected posService: PosService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private dialog: MatDialog) {
       super(productService, posService);
     }
 
@@ -44,6 +46,12 @@ export class ProductListComponent
         this.dataSource.data = _products;
         this.dataSource.sort = this.sort;
       });
+  }
+
+  show(_product: Product) {
+    const dialogRef = this.dialog.open(ProductComponent, {
+      data: _product,
+    });
   }
 
   ngOnDestroy() {
