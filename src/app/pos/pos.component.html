@@ -1,7 +1,12 @@
 <div fxLayout='row' fxLayoutGap="20px">
-  <div class="productgrid" [ngStyle]="{'height.px': screenHeight - 64 }">
+  <div *ngIf="grid; else productlist" class="productgrid" [ngStyle]="{'height.px': screenHeight - 64 }">
     <app-productgrid></app-productgrid>
   </div>
+  <ng-template #productlist>
+    <div class="productlist" [ngStyle]="{'height.px': screenHeight - 64 }">
+      <app-product-list></app-product-list>
+    </div>
+  </ng-template>
   <div class='ticket' [ngStyle]="{'height.px': screenHeight - 64 - 6}">
     <div>
       <app-ticket></app-ticket>

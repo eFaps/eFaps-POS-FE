@@ -7,7 +7,7 @@ $ticketWith: 450px;
   width: $ticketWith;
 }
 
-.productgrid {
+.productgrid, .productlist {
   overflow-y: auto;
   width: calc(100% - #{$ticketWith});
 }

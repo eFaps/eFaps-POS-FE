@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy, HostListener, ElementRef } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { Item } from '../model/index';
 import { MsgService, PosService } from '../services/index';
@@ -13,6 +14,7 @@ export class PosComponent implements OnInit, OnDestroy {
   screenHeight: number;
   screenWidth: number;
   private orderId: string;
+  grid = false;
 
   constructor(private posService: PosService, private msgService: MsgService) { }
 

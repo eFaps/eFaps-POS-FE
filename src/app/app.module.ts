@@ -22,13 +22,7 @@ import { MaterialModule } from './material/material.module';
 import { OrdersModule } from './orders/orders.module';
 import { ConfirmDialogComponent } from './payment/confirm-dialog/confirm-dialog.component';
 import { PaymentModule } from './payment/payment.module';
-import { CommandsComponent } from './pos/commands/commands.component';
-import { OrderDialogComponent } from './pos/order-dialog/order-dialog.component';
-import { PosComponent } from './pos/pos.component';
 import { PosModule } from './pos/pos.module';
-import { ProductgridComponent } from './pos/productgrid/productgrid.component';
-import { TicketComponent } from './pos/ticket/ticket.component';
-import { TotalsComponent } from './pos/totals/totals.component';
 import {
   AdminService,
   AuthService,
@@ -62,14 +56,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   declarations: [
     AppComponent,
     LoginComponent,
-    PosComponent,
-    ProductgridComponent,
-    TicketComponent,
     VirtKeyboardDirective,
     WorkspaceComponent,
-    TotalsComponent,
-    CommandsComponent,
-    OrderDialogComponent,
     SameHeightDirective,
     ThemePickerComponent
   ],
@@ -135,8 +123,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     }
   ],
   entryComponents: [
-      ConfirmDialogComponent,
-      OrderDialogComponent
+      ConfirmDialogComponent
   ],
   bootstrap: [
       AppComponent
