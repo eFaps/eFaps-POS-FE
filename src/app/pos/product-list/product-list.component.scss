@@ -1,6 +1,6 @@
 .mat-form-field {
   padding-left: 10px;
-  width: 100%;
+  width: calc(100% - 10px);
 }
 .product-list {
   height: calc(100% - 56px);

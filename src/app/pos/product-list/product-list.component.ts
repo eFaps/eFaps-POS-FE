@@ -6,23 +6,30 @@ import { debounceTime } from 'rxjs/operators';
 
 import { Product } from '../../model/index';
 import { PosService, ProductService } from '../../services/index';
+import { AbstractProductSelector } from '../abstract-product-selector';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit, OnDestroy {
+export class ProductListComponent
+  extends AbstractProductSelector
+  implements OnInit, OnDestroy {
   filterForm: FormGroup;
   formCtrlSub: Subscription;
-  displayedColumns = ['sku', 'description'];
+  displayedColumns = ['sku', 'description', 'cmd'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private productService: ProductService, private posService: PosService,
-    private fb: FormBuilder) { }
+  constructor(protected productService: ProductService,
+    protected posService: PosService,
+    private fb: FormBuilder) {
+      super(productService, posService);
+    }
 
   ngOnInit() {
+    super.ngOnInit();
     this.filterForm = this.fb.group({
       'filter': []
     });

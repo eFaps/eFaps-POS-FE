@@ -14,7 +14,7 @@ export class PosComponent implements OnInit, OnDestroy {
   screenHeight: number;
   screenWidth: number;
   private orderId: string;
-  grid = false;
+  grid = true;
 
   constructor(private posService: PosService, private msgService: MsgService) { }
 
