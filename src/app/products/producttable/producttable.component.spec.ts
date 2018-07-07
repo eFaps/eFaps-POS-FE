@@ -1,10 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ProducttableComponent } from './producttable.component';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from '../../material/material.module';
-import { ProductService } from '../../services/index';
+import { MockComponent } from 'ng-mocks';
 import { Observable } from 'rxjs/Observable';
+
+import { MaterialModule } from '../../material/material.module';
+import { ProductComponent } from '../../products/product/product.component';
+import { ProductService } from '../../services/index';
+import { ProducttableComponent } from './producttable.component';
 
 class ProductServiceStub {
   getProducts() {
@@ -27,7 +29,10 @@ describe('ProducttableComponent', () => {
       providers: [
         { provide: ProductService, useClass: ProductServiceStub },
       ],
-      declarations: [ ProducttableComponent ]
+      declarations: [
+        MockComponent(ProductComponent),
+        ProducttableComponent
+      ]
     })
     .compileComponents();
   }));

@@ -1,6 +1,30 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MockComponent } from 'ng-mocks';
+import { Observable } from 'rxjs/Observable';
 
+import { MaterialModule } from '../../material/material.module';
+import { ProductComponent } from '../../products/product/product.component';
+import { InventoryService, PosService, ProductService, WorkspaceService } from '../../services/index';
 import { ProductListComponent } from './product-list.component';
+
+class PosServiceStub {
+  currentOrder = new Observable(observer => {
+    observer.next({});
+  });
+  currentTicket = new Observable(observer => {
+    observer.next({});
+  });
+}
+class ProductServiceStub {}
+class WorkspaceServiceStub {
+  showInventory() {
+    return false;
+  }
+}
+class InventoryServiceStub {}
 
 describe('ProductListComponent', () => {
   let component: ProductListComponent;
@@ -8,7 +32,22 @@ describe('ProductListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductListComponent ]
+      imports: [
+        BrowserAnimationsModule,
+        MaterialModule,
+        ReactiveFormsModule,
+        RouterTestingModule
+      ],
+      providers: [
+        { provide: PosService, useClass: PosServiceStub },
+        { provide: ProductService, useClass: ProductServiceStub },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
+        { provide: InventoryService, useClass: InventoryServiceStub }
+      ],
+      declarations: [
+        MockComponent(ProductComponent),
+        ProductListComponent
+      ]
     })
     .compileComponents();
   }));

@@ -20,7 +20,7 @@ class PosServiceStub {
     observer.next('');
   });
   currentTaxes = new Observable(observer => {
-    observer.next({});
+    observer.next(new Map());
   });
   currentCrossTotal = new Observable(observer => {
     observer.next({});
