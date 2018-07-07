@@ -17,8 +17,9 @@ export class PosComponent implements OnInit, OnDestroy {
   private orderId: string;
   currentLayout: PosLayout = PosLayout.GRID;
 
-  constructor(private posService: PosService, private msgService: MsgService,
-    private workspaceService: WorkspaceService,
+  constructor(public workspaceService: WorkspaceService,
+    private posService: PosService,
+    private msgService: MsgService,
     private authService: AuthService) { }
 
   ngOnInit() {
