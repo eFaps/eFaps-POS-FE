@@ -1,9 +1,8 @@
 import { Component, ElementRef, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 
-import { Item } from '../model/index';
+import { Item, PosLayout } from '../model/index';
 import { AuthService, MsgService, PosService, WorkspaceService } from '../services/index';
-import { PosLayout } from '../model/index';
 
 @Component({
   selector: 'app-pos',
