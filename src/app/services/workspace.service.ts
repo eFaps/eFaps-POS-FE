@@ -9,7 +9,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { AuthService } from './auth.service';
 import { ConfigService } from './config.service';
-import { SpotConfig, Workspace } from '../model/index';
+import { SpotConfig, PosLayout, Workspace } from '../model/index';
 
 @Injectable()
 export class WorkspaceService {
@@ -100,5 +100,11 @@ export class WorkspaceService {
 
   public getWarehouseOid(): string {
     return this.showInventory() && this.current.warehouseOid;
+  }
+
+  public getPosLayout(): PosLayout {
+      return this.current && this.current.posLayout
+        ? this.current.posLayout
+        : PosLayout.GRID;
   }
 }

@@ -1,12 +1,9 @@
 <div fxLayout='row' fxLayoutGap="20px">
-  <div *ngIf="grid; else productlist" class="productgrid" [ngStyle]="{'height.px': screenHeight - 64 }">
-    <app-productgrid></app-productgrid>
+  <div [ngSwitch]="currentLayout" class="selector" [ngStyle]="{'height.px': screenHeight - 64 }">
+    <app-productgrid *ngSwitchCase="PosLayout.GRID"></app-productgrid>
+    <app-product-list *ngSwitchCase="PosLayout.LIST"></app-product-list>
+    <button mat-fab color="primary" (click)="switchLayout()" *ngIf="this.workspaceService.getPosLayout() === PosLayout.BOTH">Switch</button>
   </div>
-  <ng-template #productlist>
-    <div class="productlist" [ngStyle]="{'height.px': screenHeight - 64 }">
-      <app-product-list></app-product-list>
-    </div>
-  </ng-template>
   <div class='ticket' [ngStyle]="{'height.px': screenHeight - 64 - 6}">
     <div>
       <app-ticket></app-ticket>

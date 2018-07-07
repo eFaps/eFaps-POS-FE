@@ -2,7 +2,8 @@ import { Component, ElementRef, HostListener, OnDestroy, OnInit } from '@angular
 import { NgModule } from '@angular/core';
 
 import { Item } from '../model/index';
-import { MsgService, PosService } from '../services/index';
+import { AuthService, MsgService, PosService, WorkspaceService } from '../services/index';
+import { PosLayout } from '../model/index';
 
 @Component({
   selector: 'app-pos',
@@ -10,13 +11,16 @@ import { MsgService, PosService } from '../services/index';
   styleUrls: ['./pos.component.scss']
 })
 export class PosComponent implements OnInit, OnDestroy {
+  PosLayout = PosLayout;
   ticket: Item[];
   screenHeight: number;
   screenWidth: number;
   private orderId: string;
-  grid = false;
+  currentLayout: PosLayout = PosLayout.GRID;
 
-  constructor(private posService: PosService, private msgService: MsgService) { }
+  constructor(private posService: PosService, private msgService: MsgService,
+    private workspaceService: WorkspaceService,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.posService.currentTicket.subscribe(data => this.ticket = data);
@@ -28,6 +32,15 @@ export class PosComponent implements OnInit, OnDestroy {
         this.orderId = order.id;
       }
     });
+    if (this.workspaceService.getPosLayout() === PosLayout.BOTH) {
+      const posLayoutStr = localStorage.getItem('posLayout');
+      const posLayout = JSON.parse(posLayoutStr)[this.authService.getCurrentUsername()];
+      if (posLayout) {
+        this.currentLayout = posLayout;
+      }
+    } else {
+      this.currentLayout = this.workspaceService.getPosLayout();
+    }
   }
 
   ngOnDestroy() {
@@ -40,5 +53,26 @@ export class PosComponent implements OnInit, OnDestroy {
   onResize(event?) {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
+  }
+
+  switchLayout() {
+    if (this.currentLayout === PosLayout.GRID) {
+      this.currentLayout = PosLayout.LIST;
+    } else {
+      this.currentLayout = PosLayout.GRID;
+    }
+    this.storeCurrentLayout();
+  }
+
+  private storeCurrentLayout() {
+    const posLayoutStr = localStorage.getItem('posLayout');
+    let posLayouts;
+    if (posLayoutStr) {
+      posLayouts = JSON.parse(posLayoutStr);
+    } else {
+      posLayouts = {};
+    }
+    posLayouts[this.authService.getCurrentUsername()] = this.currentLayout;
+    localStorage.setItem('posLayout', JSON.stringify(posLayouts));
   }
 }

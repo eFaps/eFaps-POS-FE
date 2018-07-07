@@ -10,10 +10,17 @@ export interface Workspace {
   spotCount: number;
   warehouseOid: string;
   printCmds: PrintCmd[];
+  posLayout: PosLayout;
 }
 
 export interface PrintCmd {
   printerOid: string;
   target: 'JOB';
   targetOid: string;
+}
+
+export enum PosLayout {
+    GRID = 'GRID',
+    LIST = 'LIST',
+    BOTH = 'BOTH',
 }
