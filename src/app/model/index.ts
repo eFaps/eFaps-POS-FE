@@ -1,4 +1,5 @@
 export * from './category';
+export * from './balance';
 export * from './contact';
 export * from './document';
 export * from './inventory-entry';

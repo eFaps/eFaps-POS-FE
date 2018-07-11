@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { Subscriber } from 'rxjs/Subscriber';
 
-import { Document, Payment } from '../model/index';
+import { Balance, Document, Payment } from '../model/index';
 import { PosService } from './pos.service';
 
 @Injectable()
@@ -22,6 +22,10 @@ export class PaymentService {
   private totalSource = new BehaviorSubject<number>(this.total);
   currentTotal = this.totalSource.asObservable();
 
+  private balance: Balance;
+  private balanceSource = new BehaviorSubject<Balance>(this.balance);
+  currentBalance = this.balanceSource.asObservable();
+  
   currency: string;
 
   constructor(private posService: PosService) {

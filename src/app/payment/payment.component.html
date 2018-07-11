@@ -2,11 +2,14 @@
 <div fxLayout="row" fxLayoutGap="20px">
   <div fxLayout="column" fxFlex="50">
     <app-contact *ngIf="docType === DocumentType.INVOICE" (contactSelected)="selectContact($event)"></app-contact>
-    <mat-radio-group class="docType-radio-group" [(ngModel)]="docType">
-      <mat-radio-button class="docType-radio-button" *ngFor="let type of docTypes; let idx = index" [value]="DocumentType[type]">
-        {{type | translate}}
-      </mat-radio-button>
-    </mat-radio-group>
+    <div fxLayout="row">
+      <mat-radio-group class="docType-radio-group" [(ngModel)]="docType" fxFlex>
+        <mat-radio-button class="docType-radio-button" *ngFor="let type of docTypes; let idx = index" [value]="DocumentType[type]">
+          {{type | translate}}
+        </mat-radio-button>
+      </mat-radio-group>
+      <div class="balance" fxFlex="250px">{{ balance?.name }}</div>
+    </div>
     <app-document [document]='document'></app-document>
   </div>
   <div fxFlex>

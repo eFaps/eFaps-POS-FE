@@ -2,6 +2,7 @@ import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AdminComponent } from './admin/admin/admin.component';
+import { BalanceComponent } from './balance/balance/balance.component'
 import { ContactTableComponent } from './contacts/contact-table/contact-table.component';
 import { AdminGuard, AuthGuard, WorkspaceGuard } from './guards/index';
 import { InventoryComponent } from './inventory/inventory/inventory.component';
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
   { path: 'contacts', component: ContactTableComponent, canActivate: [AuthGuard] },
   { path: 'spots', component: SpotPickerComponent, canActivate: [AuthGuard] },
   { path: 'inventory', component: InventoryComponent, canActivate: [AuthGuard] },
+  { path: 'balance', component: BalanceComponent, canActivate: [AuthGuard] },
 
   // otherwise redirect to home
   { path: '**', redirectTo: 'pos' }

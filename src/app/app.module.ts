@@ -16,6 +16,7 @@ import { ContactsModule } from './contacts/contacts.module';
 import { InventoryModule } from './inventory/inventory.module';
 
 import { ProductsModule } from './products/products.module';
+import { BalanceModule } from './balance/balance.module';
 import { AdminGuard, AuthGuard, WorkspaceGuard } from './guards/index';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from './material/material.module';
@@ -71,6 +72,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MaterialModule,
     routes,
     AdminModule,
+    BalanceModule,
     ContactsModule,
     InventoryModule,
     PaymentModule,

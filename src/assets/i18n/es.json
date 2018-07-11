@@ -26,6 +26,7 @@
       "SPOTS": "Mesas",
       "INVENTORY" : "Stock",
       "CONTACTS": "Clientes",
+      "BALANCE": "Balances",
       "WORKSPACES": "Entornos",
       "ADMIN": "Admin",
       "LOGIN": "Login/Logout"
