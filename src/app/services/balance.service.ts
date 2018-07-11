@@ -1,19 +1,63 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ConfigService } from './config.service';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+
 import { Balance } from '../model';
+import { AuthService } from './auth.service';
+import { ConfigService } from './config.service';
+import { WorkspaceService } from './workspace.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BalanceService {
+  private balance: Balance;
+  private balanceSource = new BehaviorSubject<Balance>(this.balance);
+  currentBalance = this.balanceSource.asObservable();
 
-  constructor(private http: HttpClient, private config: ConfigService) { }
+  constructor(private http: HttpClient, private authService: AuthService,
+    private config: ConfigService, private workspaceService: WorkspaceService) {
+    this.setup();
+  }
 
-  getCurrent(_createNew?: boolean) {
+  private setup() {
+    this.authService.currentEvent.subscribe(_event => {
+      switch (_event) {
+        case 'login':
+          this.load();
+          break;
+        case 'logout':
+          this.balanceSource.next(null);
+      }
+    });
+    this.workspaceService.currentWorkspace.subscribe(_ws => {
+      if (_ws) {
+        this.load();
+      } else {
+        this.balanceSource.next(null);
+      }
+    });
+  }
+
+  private load() {
+    this.getCurrent(false).subscribe(_balance => {
+        this.balanceSource.next(_balance);
+      },
+      _error => {
+        if (_error.status !== 404) {
+          console.log(_error);
+        }
+      });
+  }
+
+  private getCurrent(_createNew?: boolean) {
     const requestUrl = `${this.config.baseUrl}/balance`;
     const params = new HttpParams()
-        .set('createNew', _createNew.toString());
+      .set('createNew', _createNew.toString());
     return this.http.get<Balance>(requestUrl, { params: params });
+  }
+
+  init() {
+    this.getCurrent(true).subscribe(_balance => this.balanceSource.next(_balance));
   }
 }

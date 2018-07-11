@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { EnumValues } from 'enum-values';
 import { Subscription } from 'rxjs/Subscription';
 
-import { Balance, Contact, DocStatus, Document, DocumentType, Payment, PaymentType } from '../model/index';
-import { DocumentService, PaymentService, WorkspaceService } from '../services/index';
+import { Balance, Contact, DocStatus, Document, DocumentType, Payment, PaymentType } from '../model';
+import { DocumentService, PaymentService, WorkspaceService, BalanceService } from '../services';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -32,6 +32,7 @@ export class PaymentComponent implements OnInit {
     private workspaceService: WorkspaceService,
     public paymentService: PaymentService,
     private documentService: DocumentService,
+    private balanceService: BalanceService,
     private dialog: MatDialog,
     private fb: FormBuilder) {
   }
@@ -40,7 +41,7 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {
     this.paymentService.currentDocument.subscribe(_doc => this.document = _doc);
     this.paymentService.currentPayments.subscribe(_payments => this.payments = _payments);
-    this.paymentService.currentBalance.subscribe(_balance => this.balance = _balance);
+    this.balanceService.currentBalance.subscribe(_balance => this.balance = _balance);
     this.paymentService.currentTotal.subscribe(_total => {
       this.total = _total;
       this.change = this.document ? _total - this.document.crossTotal : _total;

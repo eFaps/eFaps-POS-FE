@@ -27,6 +27,7 @@ export class AuthService {
         if (token) {
           this.currentUser = { username: username, token: token };
           localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+          this.eventSource.next('login');
           return true;
         } else {
           return false;

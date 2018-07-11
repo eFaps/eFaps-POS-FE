@@ -22,10 +22,6 @@ export class PaymentService {
   private totalSource = new BehaviorSubject<number>(this.total);
   currentTotal = this.totalSource.asObservable();
 
-  private balance: Balance;
-  private balanceSource = new BehaviorSubject<Balance>(this.balance);
-  currentBalance = this.balanceSource.asObservable();
-  
   currency: string;
 
   constructor(private posService: PosService) {

@@ -14,15 +14,11 @@ export class BalanceComponent implements OnInit {
   constructor(private balanceService: BalanceService) { }
 
   ngOnInit() {
-    this.balanceService.getCurrent(false)
-      .subscribe(_balance => this.currentBalance = _balance,
-          error => if (error.status !== 404) {
-            console.log(error);
-          });
+    this.balanceService.currentBalance
+      .subscribe(_balance => this.currentBalance = _balance);
   }
 
   init() {
-    this.balanceService.getCurrent(true)
-      .subscribe(_balance => this.currentBalance = _balance);
+    this.balanceService.init();
   }
 }
