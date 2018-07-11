@@ -1,5 +1,6 @@
 export * from './admin.service';
 export * from './auth.service';
+export * from './balance.service';
 export * from './config.service';
 export * from './contact.service';
 export * from './document.service';
