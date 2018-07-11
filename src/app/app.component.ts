@@ -16,6 +16,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   workspace: string;
   spots = false;
   inventory = false;
+  allowPayment = false;
 
   constructor(private cdRef: ChangeDetectorRef, public translate: TranslateService,
     private workspaceService: WorkspaceService,
@@ -28,11 +29,12 @@ export class AppComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
-    this.workspaceService.currentWorkspace.subscribe(data => {
-      if (data) {
-        this.workspace = data.name;
+    this.workspaceService.currentWorkspace.subscribe(_data => {
+      if (_data) {
+        this.workspace = _data.name;
         this.spots = this.workspaceService.showSpots();
         this.inventory = this.workspaceService.showInventory();
+        this.allowPayment = _data.docTypes && _data.docTypes.length > 0;
       } else {
         this.workspace = '';
         this.spots = false;
