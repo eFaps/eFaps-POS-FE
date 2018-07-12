@@ -42,7 +42,7 @@
           <h1 [ngClass]="{'negative': change < 0}">{{'PAYMENT.CHANGE' | translate }}: {{change | posCurrency:paymentService.currency}}</h1>
         </div>
         <div class="createDocument">
-          <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="createDocument()">Finalizar</button>
+          <button *ngIf="balance" type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="createDocument()">Finalizar</button>
         </div>
       </div>
     </div>

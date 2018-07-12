@@ -15,7 +15,12 @@ export class BalanceComponent implements OnInit {
 
   ngOnInit() {
     this.balanceService.currentBalance
-      .subscribe(_balance => this.currentBalance = _balance);
+      .subscribe(_balance =>  {
+        this.currentBalance = _balance;
+        if (_balance && !_balance.oid) {
+          this.init();
+        }
+      });
   }
 
   init() {
