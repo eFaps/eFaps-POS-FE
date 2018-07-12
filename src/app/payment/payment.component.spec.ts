@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../material/material.module';
 import { Document } from '../model/index';
-import { DocumentService, PaymentService, PosCurrencyPipe, WorkspaceService } from '../services/index';
+import { DocumentService, PaymentService, PosCurrencyPipe, WorkspaceService, BalanceService } from '../services/index';
 import { ContactComponent } from '../shared/contact/contact.component';
 import { DocumentComponent } from '../shared/document/document.component';
 import { CardComponent } from './card/card.component';
@@ -29,12 +29,17 @@ class PaymentServiceStub {
   currentTotal = new Observable(observer => {
     observer.next({});
   });
- }
+}
 class WorkspaceServiceStub {
   currentWorkspace = new Observable(observer => {
     observer.next({
       docTypes: []
     });
+  });
+}
+class BalanceServiceStub {
+  currentBalance = new Observable(observer => {
+    observer.next([]);
   });
 }
 
@@ -52,6 +57,7 @@ describe('PaymentComponent', () => {
         RouterTestingModule
       ],
       providers: [
+        { provide: BalanceService, useClass: BalanceServiceStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
