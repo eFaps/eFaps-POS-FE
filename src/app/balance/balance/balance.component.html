@@ -1,5 +1,6 @@
 <div>
   {{currentBalance?.number}}
   <button *ngIf="!currentBalance" type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="init()">Init</button>
+  <button *ngIf="currentBalance" type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="close()">Close</button>
 </div>
 <app-balance-document-list></app-balance-document-list>

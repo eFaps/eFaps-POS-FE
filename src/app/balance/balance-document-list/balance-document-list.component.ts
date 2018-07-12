@@ -28,6 +28,9 @@ export class BalanceDocumentListComponent implements OnInit {
             this.dataSource.data = _payables;
             this.dataSource.sort = this.sort;
           });
+        } else {
+          this.dataSource.data = [];
+          this.dataSource.sort = this.sort;
         }
       });
   }

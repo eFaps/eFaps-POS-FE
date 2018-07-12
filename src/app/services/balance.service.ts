@@ -60,4 +60,10 @@ export class BalanceService {
   init() {
     this.getCurrent(true).subscribe(_balance => this.balanceSource.next(_balance));
   }
+
+  close(_balance: Balance) {
+    const url = `${this.config.baseUrl}/balance/${_balance.id}`;
+    this.http.put<Balance>(url, _balance).subscribe();
+    this.balanceSource.next(null);
+  }
 }

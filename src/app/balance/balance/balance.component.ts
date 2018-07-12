@@ -21,4 +21,8 @@ export class BalanceComponent implements OnInit {
   init() {
     this.balanceService.init();
   }
+
+  close() {
+    this.balanceService.close(this.currentBalance);
+  }
 }
