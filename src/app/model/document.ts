@@ -19,6 +19,7 @@ export interface Document {
 }
 
 export interface Payable extends Document {
+  balanceOid: string;
   payments: Payment[];
 }
 

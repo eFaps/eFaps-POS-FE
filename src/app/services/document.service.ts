@@ -9,7 +9,7 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
 import { ConfigService } from './config.service';
 import { WorkspaceService } from './workspace.service';
 
-import { Invoice, Order, Receipt, Ticket } from '../model/index';
+import { Balance, Invoice, Order, Payable, Receipt, Ticket } from '../model';
 
 @Injectable()
 export class DocumentService {
@@ -63,5 +63,23 @@ export class DocumentService {
     const url = `${this.config.baseUrl}/documents/orders`;
     const params = new HttpParams().set('spot', 'true');
     return this.http.get<Order[]>(url, { params: params });
+  }
+
+  public getDocuments4Balance(_balance: Balance): Observable<Payable[]> {
+    const receipts = this.getReceipts4Balance(_balance);
+    const invoices = this.getInvoicess4Balance(_balance);
+    return forkJoin(receipts, invoices).map(([s1, s2]) => [...s1, ...s2]);
+  }
+
+  public getReceipts4Balance(_balance: Balance): Observable<Receipt[]> {
+    const url = `${this.config.baseUrl}/documents/receipts`;
+    const params = new HttpParams().set('balanceOid', _balance.oid ? _balance.oid : _balance.id);
+    return this.http.get<Receipt[]>(url, { params: params });
+  }
+
+  public getInvoicess4Balance(_balance: Balance): Observable<Invoice[]> {
+    const url = `${this.config.baseUrl}/documents/invoices`;
+    const params = new HttpParams().set('balanceOid', _balance.oid ? _balance.oid : _balance.id);
+    return this.http.get<Invoice[]>(url, { params: params });
   }
 }

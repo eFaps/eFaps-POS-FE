@@ -75,7 +75,8 @@ export class PaymentComponent implements OnInit {
       crossTotal: this.document.crossTotal,
       taxes: this.document.taxes,
       contactOid: this.contact ? (this.contact.oid ? this.contact.oid : this.contact.id) : null,
-      workspaceOid: this.workspaceOid
+      workspaceOid: this.workspaceOid,
+      balanceOid: this.balance.oid ? this.balance.oid : this.balance.id
     };
 
     switch (this.docType) {
