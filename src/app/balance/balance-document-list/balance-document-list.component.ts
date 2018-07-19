@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { Balance, DocStatus, Payable, Roles } from '../../model';
 import { BalanceService, DocumentService } from '../../services';
+import { DocumentDialogComponent } from '../document-dialog/document-dialog.component';
 
 @Component({
   selector: 'app-balance-document-list',
@@ -10,14 +11,15 @@ import { BalanceService, DocumentService } from '../../services';
 })
 export class BalanceDocumentListComponent implements OnInit {
   DocStatus = DocStatus;
-  displayedColumns = ['number', 'date', 'total', 'status'];
+  displayedColumns = ['number', 'date', 'total', 'status', 'cmd'];
   dataSource = new MatTableDataSource<Payable>();
   @ViewChild(MatSort) sort: MatSort;
 
   currentBalance: Balance;
 
   constructor(private balanceService: BalanceService,
-    private documentService: DocumentService) { }
+    private documentService: DocumentService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.balanceService.currentBalance
@@ -34,4 +36,11 @@ export class BalanceDocumentListComponent implements OnInit {
         }
       });
   }
+  
+  show(_payable: Payable) {
+    const dialogRef = this.dialog.open(DocumentDialogComponent, {
+      data: _payable,
+    });
+  }
+
 }

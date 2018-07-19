@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { BalanceDocumentListComponent } from './balance-document-list/balance-document-list.component';
 import { BalanceComponent } from './balance/balance.component';
 import { BalancePaymentListComponent } from './balance-payment-list/balance-payment-list.component';
+import { DocumentDialogComponent } from './document-dialog/document-dialog.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,11 @@ import { BalancePaymentListComponent } from './balance-payment-list/balance-paym
   declarations: [
     BalanceComponent,
     BalanceDocumentListComponent,
-    BalancePaymentListComponent
+    BalancePaymentListComponent,
+    DocumentDialogComponent
+  ],
+  entryComponents: [
+    DocumentDialogComponent
   ]
 })
 export class BalanceModule { }
