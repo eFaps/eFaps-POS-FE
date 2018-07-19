@@ -1,0 +1,5 @@
+<mat-list dense>
+  <mat-list-item *ngFor="let payment of payments">
+    <span matLine>{{('PAYMENT.' + payment.type) | translate}}: {{payment.amount}}</span>
+  </mat-list-item>
+</mat-list>

@@ -5,6 +5,7 @@ import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
 import { BalanceDocumentListComponent } from './balance-document-list/balance-document-list.component';
 import { BalanceComponent } from './balance/balance.component';
+import { BalancePaymentListComponent } from './balance-payment-list/balance-payment-list.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { BalanceComponent } from './balance/balance.component';
   ],
   declarations: [
     BalanceComponent,
-    BalanceDocumentListComponent
+    BalanceDocumentListComponent,
+    BalancePaymentListComponent
   ]
 })
 export class BalanceModule { }
