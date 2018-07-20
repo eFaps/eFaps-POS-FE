@@ -35,3 +35,11 @@
     </p>
   </div>
 </div>
+<div *ngIf="relations.length > 0">
+  <mat-list>
+    <span class="property">Relacionados:</span>
+    <mat-list-item *ngFor="let relation of relations">
+      <span matLine>{{relation.label}}: {{relation.product.sku}} {{relation.product.description}}</span>
+    </mat-list-item>
+  </mat-list>
+</div>
