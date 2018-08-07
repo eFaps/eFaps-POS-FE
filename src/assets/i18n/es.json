@@ -44,5 +44,12 @@
   "LOGIN": {
     "INVALIDFORM": "Seleciona un usario y ingresa el clave",
     "401": "Usuario o clave incorrecto"
+  },
+  "BALANCE": {
+    "BTN-OPEN": "Iniciar",
+    "BTN-CLOSE": "Cerrar",
+    "CONFIRM-CLOSE": "Esta segura que quiere cerrar la caja?",
+    "CONFIRM-OPEN": "Esta segura que quiere inciar la caja?"
   }
+
 }
