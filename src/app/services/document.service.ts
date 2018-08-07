@@ -68,7 +68,11 @@ export class DocumentService {
   public getDocuments4Balance(_balance: Balance): Observable<Payable[]> {
     const receipts = this.getReceipts4Balance(_balance);
     const invoices = this.getInvoicess4Balance(_balance);
-    return forkJoin(receipts, invoices).map(([s1, s2]) => [...s1, ...s2]);
+    return forkJoin(receipts, invoices).map(([s1, s2]) => {
+      s1.map(r => r.type = 'RECEIPT');
+      s2.map(r => r.type = 'INVOICE');
+      return [...s1, ...s2];
+    });
   }
 
   public getReceipts4Balance(_balance: Balance): Observable<Receipt[]> {

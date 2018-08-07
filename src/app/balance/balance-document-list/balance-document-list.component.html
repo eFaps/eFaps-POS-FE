@@ -1,5 +1,9 @@
 <div class="pos-doc-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource" matSort matSortActive="number" matSortDirection="desc">
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </mat-header-cell>
+      <mat-cell *matCellDef="let doc"> {{doc.type | translate }} </mat-cell>
+    </ng-container>
     <ng-container matColumnDef="number">
       <mat-header-cell *matHeaderCellDef mat-sort-header> No </mat-header-cell>
       <mat-cell *matCellDef="let doc"> {{doc.number}} </mat-cell>

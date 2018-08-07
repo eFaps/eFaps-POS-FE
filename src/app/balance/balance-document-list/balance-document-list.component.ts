@@ -11,7 +11,7 @@ import { DocumentDialogComponent } from '../document-dialog/document-dialog.comp
 })
 export class BalanceDocumentListComponent implements OnInit {
   DocStatus = DocStatus;
-  displayedColumns = ['number', 'date', 'total', 'status', 'cmd'];
+  displayedColumns = ['type', 'number', 'date', 'total', 'status', 'cmd'];
   dataSource = new MatTableDataSource<Payable>();
   @ViewChild(MatSort) sort: MatSort;
 
@@ -36,7 +36,7 @@ export class BalanceDocumentListComponent implements OnInit {
         }
       });
   }
-  
+
   show(_payable: Payable) {
     const dialogRef = this.dialog.open(DocumentDialogComponent, {
       data: _payable,
