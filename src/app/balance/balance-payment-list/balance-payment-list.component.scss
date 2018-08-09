@@ -1,0 +1,37 @@
+$col1: 150px;
+$col2: 60px;
+
+.paymentType, .amount {
+  font-weight: bold;
+  display: inline-block;
+}
+
+.paymentType {
+  min-width: $col1;
+}
+
+.amount {
+  min-width: $col2;
+  text-align: right;
+}
+
+.total {
+  padding-left: 15px;
+
+  span {
+    font-weight: bold;
+    display: inline-block;
+    border-top-color: lightgray;
+    border-top-style: solid;
+    border-top-width: 1px;
+    padding-top: 5px;
+
+    &:nth-of-type(1) {
+      min-width: $col1;
+    }
+    &:nth-of-type(2) {
+      min-width: $col2;
+      text-align: right;
+    }
+  }
+}

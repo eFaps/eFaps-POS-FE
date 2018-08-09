@@ -12,7 +12,7 @@ import { BalanceService, DocumentService } from '../../services';
 export class BalancePaymentListComponent implements OnInit {
   PaymentType = PaymentType;
   payments: Payment[] = [];
-
+  total = 0;
   currentBalance: Balance;
 
   constructor(private balanceService: BalanceService,
@@ -21,6 +21,8 @@ export class BalancePaymentListComponent implements OnInit {
   ngOnInit() {
     this.balanceService.currentBalance
       .subscribe(_balance => {
+        this.payments = [];
+        this.total = 0;
         this.currentBalance = _balance;
         if (_balance) {
           this.documentService.getDocuments4Balance(_balance).subscribe(_payables => {
@@ -35,12 +37,11 @@ export class BalancePaymentListComponent implements OnInit {
                   paymentMap.set(_payment.type, payment);
                 }
                 payment.amount = payment.amount + _payment.amount;
+                this.total = this.total + _payment.amount;
               });
             });
             Array.from(paymentMap.values()).forEach(_payment => this.payments.push(_payment));
           });
-        } else {
-          this.payments = [];
         }
       });
   }

@@ -49,7 +49,8 @@
     "BTN-OPEN": "Iniciar",
     "BTN-CLOSE": "Cerrar",
     "CONFIRM-CLOSE": "Esta segura que quiere cerrar la caja?",
-    "CONFIRM-OPEN": "Esta segura que quiere inciar la caja?"
+    "CONFIRM-OPEN": "Esta segura que quiere inciar la caja?",
+    "TOTAL": "Total"
   }
 
 }
