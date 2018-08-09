@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatSort, MatTableDataSource } from '@angular/material';
+import { Observable, Subscription } from 'rxjs/Rx';
 
 import { Balance, Payable, Payment, PaymentType } from '../../model';
 import { BalanceService, DocumentService } from '../../services';
@@ -9,17 +10,18 @@ import { BalanceService, DocumentService } from '../../services';
   templateUrl: './balance-payment-list.component.html',
   styleUrls: ['./balance-payment-list.component.scss']
 })
-export class BalancePaymentListComponent implements OnInit {
+export class BalancePaymentListComponent implements OnInit, OnDestroy {
   PaymentType = PaymentType;
   payments: Payment[] = [];
   total = 0;
   currentBalance: Balance;
+  sub$: Subscription;
 
   constructor(private balanceService: BalanceService,
     private documentService: DocumentService) { }
 
   ngOnInit() {
-    this.balanceService.currentBalance
+    this.sub$ = this.balanceService.currentBalance
       .subscribe(_balance => {
         this.payments = [];
         this.total = 0;
@@ -36,13 +38,22 @@ export class BalancePaymentListComponent implements OnInit {
                   payment = { type: _payment.type, amount: 0 };
                   paymentMap.set(_payment.type, payment);
                 }
-                payment.amount = payment.amount + _payment.amount;
-                this.total = this.total + _payment.amount;
+                let amount = _payment.amount;
+                const paymentType: PaymentType = _payment.type;
+                if (paymentType.toString() === PaymentType[PaymentType.CHANGE]) {
+                  amount = -amount;
+                }
+                payment.amount = payment.amount + amount;
+                this.total = this.total + amount;
               });
             });
             Array.from(paymentMap.values()).forEach(_payment => this.payments.push(_payment));
           });
         }
       });
+  }
+
+  ngOnDestroy() {
+    this.sub$.unsubscribe();
   }
 }
