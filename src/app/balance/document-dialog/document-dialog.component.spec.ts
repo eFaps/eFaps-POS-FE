@@ -1,5 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material';
+import { MockComponent } from 'ng-mocks';
 
+import { DocumentComponent } from '../../shared/document/document.component';
 import { DocumentDialogComponent } from './document-dialog.component';
 
 describe('DocumentDialogComponent', () => {
@@ -8,7 +11,14 @@ describe('DocumentDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DocumentDialogComponent ]
+      providers: [
+        { provide: MatDialogRef, useValue: {} },
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+      ],
+      declarations: [
+        DocumentDialogComponent,
+        MockComponent(DocumentComponent),
+      ]
     })
     .compileComponents();
   }));

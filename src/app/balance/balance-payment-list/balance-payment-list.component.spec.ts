@@ -14,7 +14,13 @@ class BalanceServiceStub {
   });
 }
 
-class DocumentServiceStub { }
+class DocumentServiceStub {
+  getDocuments4Balance() {
+    return new Observable(observer => {
+      observer.next([]);
+    });
+  }
+}
 
 describe('BalancePaymentListComponent', () => {
   let component: BalancePaymentListComponent;
