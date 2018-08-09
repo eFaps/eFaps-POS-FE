@@ -24,7 +24,7 @@ describe('PrintDialogComponent', () => {
         { provide: MatDialogRef, useValue: {} },
         {
           provide: MAT_DIALOG_DATA, useValue: new Observable(observer => {
-            observer.next({});
+            observer.next([]);
           })
         },
       ],
