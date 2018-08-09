@@ -26,21 +26,35 @@
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
   </div>
-  <mat-list>
-    <mat-list-item class="amount">
-      <div matLine>
-        Op. Gravada: {{document.netTotal | posCurrency:document.currency}}
-      </div>
-    </mat-list-item>
-    <mat-list-item  class="amount" *ngFor="let taxEntry of document.taxes">
-      <div matLine>
-        {{taxEntry.tax.name | translate}}: {{taxEntry.amount | posCurrency:document.currency}}
-      </div>
-    </mat-list-item>
-    <mat-list-item class="amount">
-      <div matLine>
-        Total: {{document.crossTotal | posCurrency:document.currency}}
-      </div>
-    </mat-list-item>
-  </mat-list>
+  <div fxLayout="row" fxLayoutGap="20px">
+    <div *ngIf="document?.payments" >
+      <mat-list dense>
+        <mat-list-item *ngFor="let payment of document.payments">
+          <p matLine>
+            <span class="paymentType">{{('PAYMENT.' + payment.type) | translate}}: </span>
+            <span class="amount">{{payment.amount | number:'1.2-2'}}</span>
+          </p>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div fxFlex="grow">
+      <mat-list>
+        <mat-list-item class="amount">
+          <div matLine>
+            Op. Gravada: {{document.netTotal | posCurrency:document.currency}}
+          </div>
+        </mat-list-item>
+        <mat-list-item class="amount" *ngFor="let taxEntry of document.taxes">
+          <div matLine>
+            {{taxEntry.tax.name | translate}}: {{taxEntry.amount | posCurrency:document.currency}}
+          </div>
+        </mat-list-item>
+        <mat-list-item class="amount">
+          <div matLine>
+            Total: {{document.crossTotal | posCurrency:document.currency}}
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </div>
 </div>

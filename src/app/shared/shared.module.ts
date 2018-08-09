@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatKeyboardModule } from '@ngx-material-keyboard/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -12,8 +13,8 @@ import { PosCurrencyPipe, SecurePipe } from '../services/index';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ContactComponent } from './contact/contact.component';
 import { DocumentComponent } from './document/document.component';
-import { KeypadComponent } from './keypad/keypad.component';
 import { ImageComponent } from './image/image.component';
+import { KeypadComponent } from './keypad/keypad.component';
 import { PrintDialogComponent } from './print-dialog/print-dialog.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -23,6 +24,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 @NgModule({
   imports: [
     CommonModule,
+    FlexLayoutModule,
     FormsModule,
     HttpClientModule,
     MaterialModule,
