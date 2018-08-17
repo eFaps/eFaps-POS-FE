@@ -10,7 +10,7 @@ import { CreateContactDialogComponent } from '../create-contact-dialog/create-co
   styleUrls: ['./contact-table.component.scss']
 })
 export class ContactTableComponent implements OnInit {
-  displayedColumns = ['name', 'taxNumber'];
+  displayedColumns = ['name', 'idType', 'idNumber'];
   dataSource = new MatTableDataSource<Contact>();
   @ViewChild(MatSort) sort: MatSort;
 

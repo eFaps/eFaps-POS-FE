@@ -50,7 +50,6 @@ export interface DocItem {
   taxes: TaxEntry[];
 }
 
-
 export enum DocumentType {
   RECEIPT,
   INVOICE,

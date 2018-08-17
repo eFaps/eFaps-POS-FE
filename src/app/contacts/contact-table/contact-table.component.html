@@ -7,9 +7,13 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
       <mat-cell *matCellDef="let contact"> {{contact.name}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="taxNumber">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> R.U.C. </mat-header-cell>
-      <mat-cell *matCellDef="let contact"> {{contact.taxNumber}} </mat-cell>
+    <ng-container matColumnDef="idType">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de Documento </mat-header-cell>
+      <mat-cell *matCellDef="let contact"> {{ 'IDTYPE.' + contact.idType | translate}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="idNumber">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Numero </mat-header-cell>
+      <mat-cell *matCellDef="let contact"> {{contact.idNumber}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

@@ -2,7 +2,14 @@
 <mat-dialog-content>
   <form [formGroup]="contactForm">
     <mat-form-field>
-      <input matInput placeholder="{{ 'CONTACTS.TAXNUMBER' | translate }}" formControlName="taxNumber">
+      <mat-select placeholder="{{ 'CONTACTS.IDTYPE' | translate }}" formControlName="idType">
+        <mat-option *ngFor="let idType of idTypes" [value]="idType">
+          {{ 'IDTYPE.' + identificationType[idType] | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="{{ 'CONTACTS.IDNUMBER' | translate }}" formControlName="idNumber">
     </mat-form-field>
     <mat-form-field>
       <input matInput placeholder="{{ 'CONTACTS.NAME' | translate }}" formControlName="name">
@@ -10,6 +17,6 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button type="button" [disabled]="contactForm.invalid" (click)="submit()">{{ "CMD.CREATE" | translate }}</button>
-  <button mat-button type="button" mat-dialog-close>{{ "CMD.CANCEL" | translate }}</button>
+  <button mat-button type="button " [disabled]="contactForm.invalid" (click)="submit() ">{{ "CMD.CREATE" | translate }}</button>
+  <button mat-button type="button " mat-dialog-close>{{ "CMD.CANCEL" | translate }}</button>
 </mat-dialog-actions>

@@ -33,7 +33,8 @@
   },
   "CONTACTS": {
       "CREATETITLE": "Registrar nuevo Cliente",
-      "TAXNUMBER" : "R.U.C.",
+      "IDTYPE": "Tipo de Documento",
+      "IDNUMBER" : "Numero",
       "NAME": "Nombre"
   },
   "CMD": {
@@ -51,6 +52,12 @@
     "CONFIRM-CLOSE": "Esta segura que quiere cerrar la caja?",
     "CONFIRM-OPEN": "Esta segura que quiere inciar la caja?",
     "TOTAL": "Total"
+  },
+  "IDTYPE": {
+    "RUC": "R.U.C.",
+    "DNI": "DNI",
+    "CE": "Carne de extranjeria",
+    "PASSPORT": "Pasaporte ",
+    "OTHER": "Otros"
   }
-
 }
