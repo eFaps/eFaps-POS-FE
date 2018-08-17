@@ -19,27 +19,41 @@ export class CreateContactDialogComponent implements OnInit {
     private contactService: ContactService,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-      this.idTypes = Object.keys(this.identificationType).filter(f => !isNaN(Number(f)));
-    }
+    this.idTypes = Object.keys(this.identificationType).filter(f => !isNaN(Number(f)));
+  }
 
   ngOnInit() {
     this.contactForm = this.fb.group({
       idType: ['', [Validators.required]],
-      idNumber: ['', [Validators.required, Validators.pattern('[0-9]{11}')]],
+      idNumber: ['', [Validators.required]],
       name: ['', Validators.required],
     });
+    this.contactForm.get('idType').valueChanges.subscribe(
+      (idType) => {
+        if (Number(idType) === IdentificationType.RUC) {
+          this.contactForm.get('idNumber').setValidators([Validators.required, Validators.pattern('[0-9]{11}')]);
+        } else if (Number(idType) === IdentificationType.DNI) {
+          this.contactForm.get('idNumber').setValidators([Validators.required, Validators.pattern('[0-9]{8}')]);
+        } else if (Number(idType) === IdentificationType.CE) {
+          this.contactForm.get('idNumber').setValidators([Validators.required, Validators.pattern('[0-9]{9}')]);
+        } else {
+          this.contactForm.get('idNumber').setValidators([Validators.required]);
+        }
+        this.contactForm.get('idNumber').updateValueAndValidity();
+      }
+    );
   }
 
   submit() {
-      console.log(this.contactForm);
-      const contact = {
-          id: null,
-          oid: null,
-          name: this.contactForm.value.name,
-          idType: IdentificationType[IdentificationType[this.contactForm.value.idType]],
-          idNumber: this.contactForm.value.idNumber,
-      };
-      this.contactService.createContact(contact)
-        .subscribe(_contact => this.dialogRef.close(_contact));
+    console.log(this.contactForm);
+    const contact = {
+      id: null,
+      oid: null,
+      name: this.contactForm.value.name,
+      idType: IdentificationType[IdentificationType[this.contactForm.value.idType]],
+      idNumber: this.contactForm.value.idNumber,
+    };
+    this.contactService.createContact(contact)
+      .subscribe(_contact => this.dialogRef.close(_contact));
   }
 }
