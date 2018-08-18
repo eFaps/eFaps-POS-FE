@@ -1,13 +1,15 @@
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslatePipe } from '@ngx-translate/core';
+import { MockPipe } from 'ng-mocks';
+import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../../material/material.module';
+import { Contact } from '../../model/index';
 import { ContactService } from '../../services/index';
 import { ContactTableComponent } from './contact-table.component';
-import { Observable } from 'rxjs/Observable';
-import { Contact } from '../../model/index';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 
 class ContactServiceStub {
   getContacts(): Observable<Contact[]> {
@@ -30,7 +32,10 @@ describe('ContactTableComponent', () => {
       providers: [
         { provide: ContactService, useClass: ContactServiceStub }
       ],
-      declarations: [ContactTableComponent]
+      declarations: [
+        MockPipe(TranslatePipe),
+        ContactTableComponent
+      ]
     })
       .compileComponents();
   }));
