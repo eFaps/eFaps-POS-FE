@@ -162,6 +162,7 @@ export class PosService {
       const tax = netPrice * (_tax.percent / 100);
       entries.push({
         tax: _tax,
+        base: netPrice,
         amount: tax
       });
     });
@@ -170,22 +171,24 @@ export class PosService {
 
   private getTaxEntries(): TaxEntry[] {
     const taxEntries: TaxEntry[] = [];
-    const taxValues: Map<string, number> = new Map();
-    const taxes: Map<string, Tax> = new Map();
+    const taxValues: Map<string, TaxEntry> = new Map();
     this.getDocItems().forEach(_item => {
       _item.taxes.forEach(_taxEntry => {
         if (!taxValues.has(_taxEntry.tax.name)) {
-          taxValues.set(_taxEntry.tax.name, 0);
+          taxValues.set(_taxEntry.tax.name, {
+            tax: _taxEntry.tax,
+            base: 0,
+            amount: 0,
+          });
         }
-        taxValues.set(_taxEntry.tax.name, taxValues.get(_taxEntry.tax.name) + _taxEntry.amount);
-        taxes.set(_taxEntry.tax.name, _taxEntry.tax);
+        const ce = taxValues.get(_taxEntry.tax.name);
+        ce.amount = ce.amount + _taxEntry.amount;
+        ce.base = ce.base + _taxEntry.base;
+        taxValues.set(_taxEntry.tax.name, ce);
       });
     });
     taxValues.forEach((_value, _key) => {
-        taxEntries.push({
-            tax: taxes.get(_key),
-            amount: _value
-        });
+      taxEntries.push(_value);
     });
     return taxEntries;
   }

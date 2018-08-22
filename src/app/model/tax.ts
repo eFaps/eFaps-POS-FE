@@ -5,5 +5,6 @@ export interface Tax {
 
 export interface TaxEntry {
     tax: Tax;
+    base: number;
     amount: number;
 }
