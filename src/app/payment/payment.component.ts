@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 import { EnumValues } from 'enum-values';
+import { Observable } from 'rxjs/Observable';
+import { startWith } from 'rxjs/operators';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Balance, Contact, DocStatus, Document, DocumentType, Payment, PaymentType } from '../model';
-import { DocumentService, PaymentService, WorkspaceService, BalanceService } from '../services';
+import { BalanceService, DocumentService, PaymentService, WorkspaceService } from '../services';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -14,7 +16,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.scss']
 })
-export class PaymentComponent implements OnInit {
+export class PaymentComponent implements OnInit, OnDestroy {
   DocumentType = DocumentType;
   PaymentType = PaymentType;
   document: Document;
@@ -27,6 +29,9 @@ export class PaymentComponent implements OnInit {
   contact: Contact;
   workspaceOid: string;
   balance: Balance;
+  showContact = false;
+  permitToggleContact = true;
+  sub$: Subscription[] = [];
 
   constructor(private router: Router,
     private workspaceService: WorkspaceService,
@@ -39,20 +44,24 @@ export class PaymentComponent implements OnInit {
 
 
   ngOnInit() {
-    this.paymentService.currentDocument.subscribe(_doc => this.document = _doc);
-    this.paymentService.currentPayments.subscribe(_payments => this.payments = _payments);
-    this.balanceService.currentBalance.subscribe(_balance => this.balance = _balance);
-    this.paymentService.currentTotal.subscribe(_total => {
+    this.sub$.push(this.paymentService.currentDocument.subscribe(_doc => this.document = _doc));
+    this.sub$.push(this.paymentService.currentPayments.subscribe(_payments => this.payments = _payments));
+    this.sub$.push(this.balanceService.currentBalance.subscribe(_balance => this.balance = _balance));
+    this.sub$.push(this.paymentService.currentTotal.subscribe(_total => {
       this.total = _total;
       this.change = this.document ? _total - this.document.crossTotal : _total;
-    });
-    this.workspaceService.currentWorkspace.subscribe(_data => {
+    }));
+    this.sub$.push(this.workspaceService.currentWorkspace.subscribe(_data => {
       this.workspaceOid = _data.oid;
       this.docTypes = [];
       _data.docTypes.forEach((_value) => {
         this.docTypes.push(_value.toString());
       });
-    });
+    }));
+  }
+
+  ngOnDestroy() {
+    this.sub$.forEach(_sub => _sub.unsubscribe());
   }
 
   createDocument() {
@@ -136,5 +145,18 @@ export class PaymentComponent implements OnInit {
 
   selectContact(_contact: Contact) {
     this.contact = _contact;
+  }
+
+  toggleContact() {
+    this.showContact = !this.showContact;
+  }
+
+  setDocType(_docTypeIdx) {
+    if (DocumentType.INVOICE === _docTypeIdx) {
+      this.showContact = true;
+      this.permitToggleContact = false;
+    } else {
+      this.permitToggleContact = true;
+    }
   }
 }

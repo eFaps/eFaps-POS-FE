@@ -1,13 +1,14 @@
 <div [ngBusy]="{busy: busy, message: 'WAIT' | translate}"></div>
 <div fxLayout="row" fxLayoutGap="20px">
   <div fxLayout="column" fxFlex="50">
-    <app-contact *ngIf="docType === DocumentType.INVOICE" (contactSelected)="selectContact($event)"></app-contact>
+    <app-contact *ngIf="showContact" (contactSelected)="selectContact($event)"></app-contact>
     <div fxLayout="row">
       <mat-radio-group class="docType-radio-group" [(ngModel)]="docType" fxFlex>
-        <mat-radio-button class="docType-radio-button" *ngFor="let type of docTypes; let idx = index" [value]="DocumentType[type]">
+        <mat-radio-button class="docType-radio-button" *ngFor="let type of docTypes; let idx = index" [value]="DocumentType[type]" (click)="setDocType(DocumentType[type])">
           {{type | translate}}
         </mat-radio-button>
       </mat-radio-group>
+      <mat-button-toggle [value]="showContact" (change)="toggleContact()" [disabled]="!permitToggleContact">{{ showContact ? 'Desc.' : 'Cliente'}}</mat-button-toggle>
       <div class="balance" fxFlex="250px">{{ balance?.number }}</div>
     </div>
     <app-document [document]='document'></app-document>
