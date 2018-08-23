@@ -3,14 +3,14 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { BusyDirective } from 'ng-busy';
 import { MockComponent, MockDirective, MockPipe } from 'ng-mocks';
 import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../material/material.module';
 import { Document } from '../model/index';
-import { DocumentService, PaymentService, PosCurrencyPipe, WorkspaceService, BalanceService } from '../services/index';
+import { BalanceService, DocumentService, PaymentService, PosCurrencyPipe, WorkspaceService } from '../services/index';
 import { ContactComponent } from '../shared/contact/contact.component';
 import { DocumentComponent } from '../shared/document/document.component';
 import { CardComponent } from './card/card.component';
@@ -42,6 +42,7 @@ class BalanceServiceStub {
     observer.next([]);
   });
 }
+class TranslateServiceStub { }
 
 describe('PaymentComponent', () => {
   let component: PaymentComponent;
@@ -60,6 +61,7 @@ describe('PaymentComponent', () => {
         { provide: BalanceService, useClass: BalanceServiceStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
+        { provide: TranslateService, useClass: TranslateServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
       ],
       declarations: [
