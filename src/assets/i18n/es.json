@@ -27,7 +27,7 @@
       "SPOTS": "Mesas",
       "INVENTORY" : "Stock",
       "CONTACTS": "Clientes",
-      "BALANCE": "Balances",
+      "BALANCE": "Cierre de Cajas",
       "WORKSPACES": "Entornos",
       "ADMIN": "Admin",
       "LOGIN": "Login/Logout"
@@ -48,6 +48,7 @@
     "401": "Usuario o clave incorrecto"
   },
   "BALANCE": {
+    "LABEL": "Cierre de Caja",
     "BTN-OPEN": "Iniciar",
     "BTN-CLOSE": "Cerrar",
     "CONFIRM-CLOSE": "Esta segura que quiere cerrar la caja?",

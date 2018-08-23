@@ -9,7 +9,9 @@
         </mat-radio-button>
       </mat-radio-group>
       <mat-button-toggle [value]="showContact" (change)="toggleContact()" [disabled]="!permitToggleContact">{{ showContact ? 'Desc.' : 'Cliente'}}</mat-button-toggle>
-      <div class="balance" fxFlex="250px">{{ balance?.number }}</div>
+      <div class="balance" fxFlex="250px">
+        <span *ngIf="balance">{{ 'BALANCE.LABEL' | translate }} - {{ balance?.number }}</span>
+      </div>
     </div>
     <app-document [document]='document'></app-document>
   </div>
