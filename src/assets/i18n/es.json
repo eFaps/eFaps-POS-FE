@@ -16,7 +16,8 @@
       "FREE": "Gratis",
       "CARD": "Tarjeta",
       "DEBITCARD": "Tarjeta de debito",
-      "CREDITCARD": "Tarjeta de credito"
+      "CREDITCARD": "Tarjeta de credito",
+      "NOCONTACTMSG": "Se necesita asignar un cliente!"
   },
   "WAIT": "Un momento...",
   "MENU": {

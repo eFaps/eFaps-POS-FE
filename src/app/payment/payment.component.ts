@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { EnumValues } from 'enum-values';
 import { Observable } from 'rxjs/Observable';
@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Balance, Contact, DocStatus, Document, DocumentType, Payment, PaymentType } from '../model';
 import { BalanceService, DocumentService, PaymentService, WorkspaceService } from '../services';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-payment',
@@ -34,11 +35,13 @@ export class PaymentComponent implements OnInit, OnDestroy {
   sub$: Subscription[] = [];
 
   constructor(private router: Router,
+    private translateService: TranslateService,
     private workspaceService: WorkspaceService,
     public paymentService: PaymentService,
     private documentService: DocumentService,
     private balanceService: BalanceService,
     private dialog: MatDialog,
+    private snackBar: MatSnackBar,
     private fb: FormBuilder) {
   }
 
@@ -64,61 +67,78 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.sub$.forEach(_sub => _sub.unsubscribe());
   }
 
-  createDocument() {
-    if (this.change !== 0) {
-      this.payments.push({
-        type: PaymentType.CHANGE,
-        amount: this.change
-      });
+  validate() {
+    let ret = true;
+    if (DocumentType.INVOICE === this.docType && this.contact == null) {
+      this.snackBar.open(this.translateService.instant('PAYMENT.NOCONTACTMSG'), '', { duration: 3000 });
+      ret = false;
+    } else if (DocumentType.RECEIPT === this.docType
+          && this.contact == null
+          && this.document.crossTotal > 700) {
+      this.snackBar.open(this.translateService.instant('PAYMENT.NOCONTACTMSG'), '', { duration: 3000 });
+      ret = false;
     }
+    return ret;
+  }
 
-    const document = {
-      id: null,
-      oid: null,
-      number: null,
-      currency: this.document.currency,
-      items: this.document.items,
-      status: DocStatus.OPEN,
-      payments: this.payments,
-      netTotal: this.document.netTotal,
-      crossTotal: this.document.crossTotal,
-      taxes: this.document.taxes,
-      contactOid: this.contact ? (this.contact.oid ? this.contact.oid : this.contact.id) : null,
-      workspaceOid: this.workspaceOid,
-      balanceOid: this.balance.oid ? this.balance.oid : this.balance.id
-    };
+  createDocument() {
+    if (this.validate()) {
 
-    switch (this.docType) {
-      case DocumentType.RECEIPT:
-        this.busy = this.documentService.createReceipt(document)
-          .subscribe(_doc => {
-            delete this.document['spot'];
-            this.documentService.updateOrder(Object.assign(this.document, { status: DocStatus.CLOSED })).subscribe();
-            this.router.navigate(['/pos']);
-            this.showConfirm(_doc, DocumentType.RECEIPT);
-            this.paymentService.reset();
-          });
-        break;
-      case DocumentType.INVOICE:
-        this.busy = this.documentService.createInvoice(document)
-          .subscribe(_doc => {
-            delete this.document['spot'];
-            this.documentService.updateOrder(Object.assign(this.document, { status: DocStatus.CLOSED })).subscribe();
-            this.router.navigate(['/pos']);
-            this.showConfirm(_doc, DocumentType.INVOICE);
-            this.paymentService.reset();
-          });
-        break;
-      case DocumentType.TICKET:
-        this.busy = this.documentService.createTicket(document)
-          .subscribe(_doc => {
-            delete this.document['spot'];
-            this.documentService.updateOrder(Object.assign(this.document, { status: DocStatus.CLOSED })).subscribe();
-            this.router.navigate(['/pos']);
-            this.showConfirm(_doc, DocumentType.TICKET);
-            this.paymentService.reset();
-          });
-        break;
+      if (this.change !== 0) {
+        this.payments.push({
+          type: PaymentType.CHANGE,
+          amount: this.change
+        });
+      }
+
+      const document = {
+        id: null,
+        oid: null,
+        number: null,
+        currency: this.document.currency,
+        items: this.document.items,
+        status: DocStatus.OPEN,
+        payments: this.payments,
+        netTotal: this.document.netTotal,
+        crossTotal: this.document.crossTotal,
+        taxes: this.document.taxes,
+        contactOid: this.contact ? (this.contact.oid ? this.contact.oid : this.contact.id) : null,
+        workspaceOid: this.workspaceOid,
+        balanceOid: this.balance.oid ? this.balance.oid : this.balance.id
+      };
+
+      switch (this.docType) {
+        case DocumentType.RECEIPT:
+          this.busy = this.documentService.createReceipt(document)
+            .subscribe(_doc => {
+              delete this.document['spot'];
+              this.documentService.updateOrder(Object.assign(this.document, { status: DocStatus.CLOSED })).subscribe();
+              this.router.navigate(['/pos']);
+              this.showConfirm(_doc, DocumentType.RECEIPT);
+              this.paymentService.reset();
+            });
+          break;
+        case DocumentType.INVOICE:
+          this.busy = this.documentService.createInvoice(document)
+            .subscribe(_doc => {
+              delete this.document['spot'];
+              this.documentService.updateOrder(Object.assign(this.document, { status: DocStatus.CLOSED })).subscribe();
+              this.router.navigate(['/pos']);
+              this.showConfirm(_doc, DocumentType.INVOICE);
+              this.paymentService.reset();
+            });
+          break;
+        case DocumentType.TICKET:
+          this.busy = this.documentService.createTicket(document)
+            .subscribe(_doc => {
+              delete this.document['spot'];
+              this.documentService.updateOrder(Object.assign(this.document, { status: DocStatus.CLOSED })).subscribe();
+              this.router.navigate(['/pos']);
+              this.showConfirm(_doc, DocumentType.TICKET);
+              this.paymentService.reset();
+            });
+          break;
+      }
     }
   }
 
