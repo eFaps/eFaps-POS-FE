@@ -10,20 +10,22 @@
 </div>
 <div class="inputForm">
   <form [formGroup]="loginForm" (ngSubmit)="login()">
-    <span [hidden]="hiddenUser">
-          <mat-form-field class="example-full-width">
-              <input placeholder="{{'USER' | translate}}" class="form-control" matInput formControlName="userName" [appVirtKeyboard]>
-          </mat-form-field>
-      </span>
+    <div [hidden]="hiddenUser">
+      <mat-form-field class="example-full-width">
+        <input placeholder="{{'USER' | translate}}" class="form-control" matInput formControlName="userName" [appVirtKeyboard]>
+      </mat-form-field>
+    </div>
     <mat-form-field class="example-full-width">
       <input placeholder="{{'PASSWORD' | translate}}" type="password" class="form-control" matInput formControlName="password" [appVirtKeyboard] [activateKeyboard]="virtKeyboard">
     </mat-form-field>
-    <button type="submit" class="btn btn-success" mat-raised-button color="primary">Login</button>
+    <div>
+      <button type="submit" class="btn btn-success" mat-raised-button color="primary">Login</button>
+    </div>
   </form>
 </div>
 <div class="config">
-<mat-slide-toggle [checked]="virtKeyboard" (change)="toggleVirtKeyboard($event)">
-  Virtual Keyboard
-</mat-slide-toggle>
-<mat-button-toggle [value]="hiddenUser" (change)="toggleUser()">Toggle me!</mat-button-toggle>
+  <mat-slide-toggle [checked]="virtKeyboard" (change)="toggleVirtKeyboard($event)">
+    Virtual Keyboard
+  </mat-slide-toggle>
 </div>
+<mat-button-toggle [value]="hiddenUser" (change)="toggleUser()" class="hiddenUser">{{'HIDDENUSER' | translate}}</mat-button-toggle>
