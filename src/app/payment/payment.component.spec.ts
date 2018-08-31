@@ -10,7 +10,10 @@ import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../material/material.module';
 import { Document } from '../model/index';
-import { BalanceService, DocumentService, PaymentService, PosCurrencyPipe, WorkspaceService } from '../services/index';
+import {
+  BalanceService, DocumentService, PaymentService, PosCurrencyPipe,
+  PrintService, WorkspaceService
+} from '../services/index';
 import { ContactComponent } from '../shared/contact/contact.component';
 import { DocumentComponent } from '../shared/document/document.component';
 import { CardComponent } from './card/card.component';
@@ -43,6 +46,7 @@ class BalanceServiceStub {
   });
 }
 class TranslateServiceStub { }
+class PrintServiceStub { }
 
 describe('PaymentComponent', () => {
   let component: PaymentComponent;
@@ -63,6 +67,7 @@ describe('PaymentComponent', () => {
         { provide: PaymentService, useClass: PaymentServiceStub },
         { provide: TranslateService, useClass: TranslateServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
+        { provide: PrintService, useClass: PrintServiceStub }
       ],
       declarations: [
         MockPipe(TranslatePipe),

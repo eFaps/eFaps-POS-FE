@@ -77,8 +77,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
       this.snackBar.open(this.translateService.instant('PAYMENT.NOCONTACTMSG'), '', { duration: 3000 });
       ret = false;
     } else if (DocumentType.RECEIPT === this.docType
-          && this.contact == null
-          && this.document.crossTotal > 700) {
+        && this.contact == null
+        && this.document.crossTotal > 700) {
       this.snackBar.open(this.translateService.instant('PAYMENT.NOCONTACTMSG'), '', { duration: 3000 });
       ret = false;
     }
