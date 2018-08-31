@@ -46,6 +46,9 @@
         </div>
         <div class="createDocument">
           <button *ngIf="balance" type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="createDocument()">Finalizar</button>
+          <button mat-button (click)="printPreliminary()" *ngIf="allowPrintPreliminary">
+            <mat-icon  class="posIcon-36">print</mat-icon>
+          </button>
         </div>
       </div>
     </div>

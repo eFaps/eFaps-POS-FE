@@ -2,15 +2,16 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { EnumValues } from 'enum-values';
 import { Observable } from 'rxjs/Observable';
 import { startWith } from 'rxjs/operators';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Balance, Contact, DocStatus, Document, DocumentType, Payment, PaymentType } from '../model';
-import { BalanceService, DocumentService, PaymentService, WorkspaceService } from '../services';
+import { BalanceService, DocumentService, PaymentService, PrintService, WorkspaceService } from '../services';
+import { PrintDialogComponent } from '../shared/print-dialog/print-dialog.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-payment',
@@ -33,6 +34,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   showContact = false;
   permitToggleContact = true;
   sub$: Subscription[] = [];
+  allowPrintPreliminary = true;
 
   constructor(private router: Router,
     private translateService: TranslateService,
@@ -40,6 +42,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     public paymentService: PaymentService,
     private documentService: DocumentService,
     private balanceService: BalanceService,
+    private printService: PrintService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     private fb: FormBuilder) {
@@ -56,6 +59,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     }));
     this.sub$.push(this.workspaceService.currentWorkspace.subscribe(_data => {
       this.workspaceOid = _data.oid;
+      this.allowPrintPreliminary = _data.printCmds.some(x => x.target === 'PRELIMINARY');
       this.docTypes = [];
       _data.docTypes.forEach((_value) => {
         this.docTypes.push(_value.toString());
@@ -178,5 +182,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
     } else {
       this.permitToggleContact = true;
     }
+  }
+
+  printPreliminary() {
+    const dialogRef = this.dialog.open(PrintDialogComponent, {
+      data: this.printService.printPreliminary(this.workspaceOid, this.document)
+    });
   }
 }

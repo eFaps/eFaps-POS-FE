@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { Order, PrintResponse } from '../model/index';
+import { Document, Order, PrintResponse } from '../model/index';
 import { ConfigService } from './config.service';
 
 @Injectable({
@@ -15,7 +15,8 @@ export class PrintService {
 
   printJobs(_workspaceOid: string, _order: Order): Observable<PrintResponse[]> {
     const requestUrl = `${this.config.baseUrl}/print/jobs`;
-    const params = new HttpParams().set('documentId', _order.id)
+    const params = new HttpParams()
+      .set('documentId', _order.id)
       .set('workspaceOid', _workspaceOid);
     return this.http.post<PrintResponse[]>(requestUrl, null, { params: params });
   }
@@ -25,4 +26,11 @@ export class PrintService {
     return this.http.get(requestUrl, { responseType: 'blob' });
   }
 
+  printPreliminary(_workspaceOid: string, _doc: Document): Observable<PrintResponse[]> {
+    const requestUrl = `${this.config.baseUrl}/print/preliminary`;
+    const params = new HttpParams()
+      .set('documentId', _doc.id)
+      .set('workspaceOid', _workspaceOid);
+    return this.http.post<PrintResponse[]>(requestUrl, null, { params: params });
+  }
 }
