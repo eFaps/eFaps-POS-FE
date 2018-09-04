@@ -33,6 +33,8 @@ export class PrintDialogComponent implements OnInit {
               }, false);
               reader.readAsDataURL(preview);
             });
+          } else {
+              t.loaded = true;
           }
         });
       }
