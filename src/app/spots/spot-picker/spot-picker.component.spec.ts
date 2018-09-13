@@ -1,12 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SpotPickerComponent } from './spot-picker.component';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from '../../material/material.module';
-import { PosService, SpotService, WorkspaceService } from '../../services/index';
-import { DocumentService } from '../../services/document.service';
-import { Observable } from 'rxjs/Observable';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslatePipe } from '@ngx-translate/core';
+import { MockPipe } from 'ng-mocks';
+import { Observable } from 'rxjs/Observable';
+
+import { MaterialModule } from '../../material/material.module';
+import { DocumentService } from '../../services/document.service';
+import { PosService, SpotService, WorkspaceService } from '../../services/index';
+import { SpotPickerComponent } from './spot-picker.component';
 
 class PosServiceStub { }
 class DocumentServiceStub { }
@@ -36,7 +38,10 @@ describe('SpotPickerComponent', () => {
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: SpotService, useClass: SpotServiceStub },
       ],
-      declarations: [SpotPickerComponent]
+      declarations: [
+        SpotPickerComponent,
+        MockPipe(TranslatePipe),
+      ]
     })
       .compileComponents();
   }));

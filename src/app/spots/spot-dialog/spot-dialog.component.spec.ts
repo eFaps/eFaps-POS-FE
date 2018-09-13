@@ -1,6 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { MatDialogRef } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TranslatePipe } from '@ngx-translate/core';
+import { MockPipe } from 'ng-mocks';
 
+import { MaterialModule } from '../../material/material.module';
+import { DocumentService, WorkspaceService } from '../../services';
 import { SpotDialogComponent } from './spot-dialog.component';
+
+class DocumentServiceStub {}
+class WorkspaceServiceStub {}
 
 describe('SpotDialogComponent', () => {
   let component: SpotDialogComponent;
@@ -8,9 +18,22 @@ describe('SpotDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SpotDialogComponent ]
+      imports: [
+        BrowserAnimationsModule,
+        MaterialModule,
+        RouterTestingModule
+      ],
+      providers: [
+        { provide: MatDialogRef, useValue: {} },
+        { provide: DocumentService, useClass: DocumentServiceStub },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub }
+      ],
+      declarations: [
+        SpotDialogComponent,
+        MockPipe(TranslatePipe),
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
