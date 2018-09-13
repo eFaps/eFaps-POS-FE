@@ -25,4 +25,10 @@ export class SpotService {
       });
     });
   }
+
+  public swap(_origin: Spot, _target: Spot): Observable<Order> {
+    const order = _origin.order;
+    order.spot = { id: _target.id, label: _target.label };
+    return this.documentService.updateOrder(order);
+  }
 }

@@ -3,3 +3,8 @@
     <button mat-fab color="{{spot.order ? 'accent' : 'primary'}}" (click)="selectSpot(spot)">{{spot.label}}</button>
   </div>
 </div>
+<div class="swap">
+  <button (click)="showSwapModal()" mat-fab color="primary">
+    <mat-icon class="posIcon-36">swap_horiz</mat-icon>
+  </button>
+  <div>

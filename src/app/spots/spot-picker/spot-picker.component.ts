@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { Spot, DocStatus, Document } from '../../model/index';
+import { DocStatus, Document, Spot } from '../../model/index';
 import { DocumentService, PosService, SpotService, WorkspaceService } from '../../services/index';
+import { SpotDialogComponent } from '../spot-dialog/spot-dialog.component';
 
 @Component({
   selector: 'app-spot-picker',
@@ -16,7 +18,8 @@ export class SpotPickerComponent implements OnInit {
     private posService: PosService,
     private documentService: DocumentService,
     private workspaceService: WorkspaceService,
-    private spotService: SpotService) { }
+    private spotService: SpotService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.spotService.getSpots().subscribe(_spots => {
@@ -46,5 +49,14 @@ export class SpotPickerComponent implements OnInit {
         this.router.navigate(['/pos']);
       });
     }
+  }
+
+  showSwapModal() {
+    const dialogRef = this.dialog.open(SpotDialogComponent, {});
+    dialogRef.afterClosed().subscribe(_result => {
+      if (_result) {
+        this.ngOnInit();
+      }
+    });
   }
 }

@@ -5,3 +5,15 @@
     padding: 20px;
   }
 }
+
+.swap {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 8px;
+
+  & .posIcon-36 {
+    top: -5px;
+    position: relative;
+  }
+}

@@ -4,6 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialModule } from '../material/material.module';
 import { SpotPickerComponent } from './spot-picker/spot-picker.component';
+import { SpotDialogComponent } from './spot-dialog/spot-dialog.component';
 
 @NgModule({
   imports: [
@@ -12,7 +13,11 @@ import { SpotPickerComponent } from './spot-picker/spot-picker.component';
     FlexLayoutModule
   ],
   declarations: [
-      SpotPickerComponent
-  ]
+      SpotPickerComponent,
+      SpotDialogComponent
+  ],
+  entryComponents: [
+    SpotDialogComponent
+  ],
 })
 export class SpotsModule { }
