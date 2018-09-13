@@ -1,5 +1,8 @@
-<div fxLayout="row wrap" fxLayoutAlign="start" class="spotsContainer">
-  <div *ngFor="let spot of spots">
-    <button *ngIf="(spot.order && select) || (!select && !spot.order)"  mat-fab color="{{spot.order ? 'accent' : 'primary'}}" (click)="selectSpot(spot)">{{spot.label}}</button>
+<h3 mat-dialog-title>{{(select ? 'SPOT.SWAP.SELECTORIGIN' : 'SPOT.SWAP.SELECTTARGET') | translate}}</h3>
+<mat-dialog-content>
+  <div fxLayout="row wrap" fxLayoutAlign="start" class="spotsContainer">
+    <div *ngFor="let spot of spots">
+      <button *ngIf="(spot.order && select) || (!select && !spot.order)"  mat-fab color="{{spot.order ? 'accent' : 'primary'}}" (click)="selectSpot(spot)">{{spot.label}}</button>
+    </div>
   </div>
-</div>
+</mat-dialog-content>

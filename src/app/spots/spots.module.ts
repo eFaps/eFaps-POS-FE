@@ -3,14 +3,16 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialModule } from '../material/material.module';
-import { SpotPickerComponent } from './spot-picker/spot-picker.component';
+import { SharedModule } from '../shared/shared.module';
 import { SpotDialogComponent } from './spot-dialog/spot-dialog.component';
+import { SpotPickerComponent } from './spot-picker/spot-picker.component';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    SharedModule
   ],
   declarations: [
       SpotPickerComponent,

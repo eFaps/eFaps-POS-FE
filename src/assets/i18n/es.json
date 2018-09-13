@@ -62,5 +62,13 @@
     "CE": "Carne de extranjeria",
     "PASSPORT": "Pasaporte ",
     "OTHER": "Otros"
+  },
+  "SPOT": {
+    "SWAP": {
+      "CMD": "Intercambiar",
+      "SELECTORIGIN": "Seleccionar Origin",
+      "SELECTTARGET": "Seleccionar Objectivo"
+    }
   }
+
 }
