@@ -10,6 +10,7 @@ import {
   WorkspaceService
 } from '../../services/index';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
+import { SplitOrderDialogComponent } from '../split-order-dialog/split-order-dialog.component';
 
 @Component({
   selector: 'app-order-table',
@@ -34,8 +35,8 @@ export class OrderTableComponent implements OnInit {
 
   ngOnInit() {
     this.displayedColumns = this.workspaceService.showSpots()
-        ? ['number', 'date', 'total', 'status', 'spot', 'cmd']
-        : ['number', 'date', 'total', 'status', 'cmd'];
+      ? ['number', 'date', 'total', 'status', 'spot', 'cmd']
+      : ['number', 'date', 'total', 'status', 'cmd'];
     this.isAdmin = this.authService.hasRole(Roles.ADMIN);
     this.documentService.getOrders().subscribe(_orders => {
       this.dataSource.data = _orders;
@@ -63,6 +64,18 @@ export class OrderTableComponent implements OnInit {
           this.changeDetectorRefs.detectChanges();
         });
       }
+    });
+  }
+
+  split(_order: Order) {
+    const dialogRef = this.dialog.open(SplitOrderDialogComponent, {
+      width: '90%',
+      data: _order
+    });
+    dialogRef.afterClosed().subscribe(_result => {
+      this.dataSource = new MatTableDataSource<Order>();
+      this.ngOnInit();
+      this.changeDetectorRefs.detectChanges();
     });
   }
 }
