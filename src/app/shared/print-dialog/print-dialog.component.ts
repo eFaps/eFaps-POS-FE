@@ -11,6 +11,7 @@ export class PrintDialogComponent implements OnInit {
   previewUrls: any[] = [];
   loaded = false;
   showEmptyMsg = false;
+  success = false;
 
   constructor(private printService: PrintService,
     private dialogRef: MatDialogRef<PrintDialogComponent>,
@@ -34,7 +35,7 @@ export class PrintDialogComponent implements OnInit {
               reader.readAsDataURL(preview);
             });
           } else {
-              t.loaded = true;
+            t.success = true;
           }
         });
       }
