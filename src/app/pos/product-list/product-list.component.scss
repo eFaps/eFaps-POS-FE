@@ -3,14 +3,17 @@
   width: calc(100% - 10px);
 }
 .product-list {
-  height: calc(100% - 56px);
+  height: calc(100% - 58px);
   overflow: auto;
 }
 
 .mat-column-sku {
-  flex: 0 0 120px;
+  flex: 0 0 110px;
 }
 
 .mat-column-cmd {
-  flex: 0 0 120px;
+  flex: 0 0 145px;
+}
+mat-table button {
+  min-width: fit-content;
 }

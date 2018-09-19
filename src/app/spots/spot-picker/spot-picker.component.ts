@@ -29,7 +29,7 @@ export class SpotPickerComponent implements OnInit {
 
   selectSpot(_spot: Spot) {
     if (_spot.order) {
-      this.posService.changeOrder(_spot.order);
+      this.posService.setOrder(_spot.order);
       this.router.navigate(['/pos']);
     } else {
       const order = {
@@ -45,7 +45,7 @@ export class SpotPickerComponent implements OnInit {
         spot: _spot
       };
       this.documentService.createOrder(order).subscribe(_order => {
-        this.posService.changeOrder(_order);
+        this.posService.setOrder(_order);
         this.router.navigate(['/pos']);
       });
     }
