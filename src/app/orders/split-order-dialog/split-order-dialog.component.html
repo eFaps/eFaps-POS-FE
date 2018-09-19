@@ -24,7 +24,7 @@
       <ng-container matColumnDef="cmd">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let item">
-          <button (click)="moveToTarget(item)">
+          <button (click)="moveToTarget(item)" mat-button>
             <mat-icon class="posIcon-36">fast_forward</mat-icon>
           </button>
         </mat-cell>
@@ -38,7 +38,7 @@
       <ng-container matColumnDef="cmd">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let item">
-          <button (click)="moveToOrigin(item)">
+          <button (click)="moveToOrigin(item)" mat-button>
             <mat-icon  class="posIcon-36">fast_rewind</mat-icon>
           </button>
         </mat-cell>
@@ -68,3 +68,8 @@
     </mat-table>
   </div>
 </div>
+<mat-dialog-actions align="end">
+  <button (click)="save()" mat-button [disabled]="!saveable">
+    <mat-icon class="posIcon-36">save</mat-icon>
+  </button>
+</mat-dialog-actions>

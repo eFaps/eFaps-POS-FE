@@ -58,10 +58,10 @@ export class PosService {
       if (_data) {
         if (!(this.currentPos && this.currentPos.oid === _data.posOid)) {
           this.getPos(_data.posOid)
-            .subscribe(_pos =>  {
-                this.currentPos = _pos;
-                this.currencySource.next(_pos.currency);
-             });
+            .subscribe(_pos => {
+              this.currentPos = _pos;
+              this.currencySource.next(_pos.currency);
+            });
           this.changeTicket([]);
         }
       }
@@ -76,16 +76,16 @@ export class PosService {
     const url = `${this.config.baseUrl}/poss`;
     return this.http.get<Pos[]>(url);
   }
+
   public getPos(_oid: string): Observable<Pos> {
     const url = `${this.config.baseUrl}/poss/${_oid}`;
     return this.http.get<Pos>(url);
   }
 
-
-  changeOrder(_order: Order) {
+  public setOrder(_order: Order) {
     this.orderSource.next(_order);
     const items: Item[] = [];
-    _order.items.sort((a, b) => (a < b ? -1 : 1)).forEach(_item => {
+    _order.items.sort((a, b) => (a.index < b.index ? -1 : 1)).forEach(_item => {
       items.push({
         product: _item.product,
         quantity: _item.quantity,
@@ -128,7 +128,7 @@ export class PosService {
     this.taxesSource.next(taxes);
   }
 
-  createOrder(): Observable<Order> {
+  public createOrder(): Observable<Order> {
     return this.documentService.createOrder({
       id: null,
       oid: null,
@@ -193,7 +193,7 @@ export class PosService {
     return taxEntries;
   }
 
-  updateOrder(_order: Order): Observable<Order> {
+  public updateOrder(_order: Order): Observable<Order> {
     return this.documentService.updateOrder(Object.assign(_order, {
       items: this.getDocItems(),
       netTotal: this.netTotal,
@@ -202,7 +202,26 @@ export class PosService {
     }));
   }
 
-  reset() {
+  public calculateOrder(_order: Order): Order {
+    const docItems = this.ticket.map((_item, _index) => <DocItem>{
+      index: _order.items[_index].index,
+      product: _item.product,
+      quantity: _item.quantity,
+      netUnitPrice: _item.product.netPrice,
+      netPrice: _item.product.netPrice * _item.quantity,
+      crossUnitPrice: _item.product.crossPrice,
+      crossPrice: _item.price,
+      taxes: this.getItemTaxEntries(_item)
+    });
+    return Object.assign(_order, {
+      items: docItems,
+      netTotal: this.netTotal,
+      crossTotal: this.crossTotal,
+      taxes: this.getTaxEntries()
+    });
+  }
+
+  public reset() {
     this.changeTicket([]);
     this.orderSource.next(null);
   }

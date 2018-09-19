@@ -46,7 +46,7 @@ export class OrderTableComponent implements OnInit {
   }
 
   pos(_order: Order) {
-    this.posService.changeOrder(_order);
+    this.posService.setOrder(_order);
     this.router.navigate(['/pos']);
   }
 
