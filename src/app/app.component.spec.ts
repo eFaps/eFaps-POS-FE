@@ -1,8 +1,10 @@
 import { TestBed, async } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TranslateService, TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { AngularSvgIconModule, SvgIconRegistryService } from 'angular-svg-icon';
 import { MockComponent, MockPipe } from 'ng-mocks';
+import { Observable } from 'rxjs';
 
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
@@ -16,8 +18,11 @@ class WorkspaceServiceStub {
   }
 }
 class TranslateServiceSub {
-  use(_lang) {
-
+  use(_lang) {}
+}
+class SvgIconRegistryServiceStub {
+  loadSvg(): Observable<any> {
+    return new Observable();
   }
 }
 
@@ -28,11 +33,13 @@ describe('AppComponent', () => {
         MaterialModule,
         BrowserAnimationsModule,
         RouterTestingModule,
+        AngularSvgIconModule
       ],
       providers: [
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
-        { provide: TranslateService, useClass: TranslateServiceSub }
+        { provide: TranslateService, useClass: TranslateServiceSub },
+        { provide: SvgIconRegistryService, useClass: SvgIconRegistryServiceStub }
       ],
       declarations: [
         AppComponent,

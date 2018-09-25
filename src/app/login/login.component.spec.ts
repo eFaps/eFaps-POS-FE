@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatKeyboardModule, MatKeyboardService } from '@ngx-material-keyboard/core';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { AngularSvgIconModule, SvgIconRegistryService } from 'angular-svg-icon';
 import { MockPipe } from 'ng-mocks';
 import { Observable } from 'rxjs/Observable';
 
@@ -25,18 +26,18 @@ class UserServiceStub {
     });
   }
 }
-
 class AuthServiceStub {
   logout() { }
 }
-class ConfigServiceStub {
-
-}
-class TranslateServiceStub {
-
-}
+class ConfigServiceStub { }
+class TranslateServiceStub { }
 class WorkspaceServiceStub {
   logout() { }
+}
+class SvgIconRegistryServiceStub {
+  loadSvg(): Observable<any> {
+    return new Observable();
+  }
 }
 
 const routerSpy = jasmine.createSpyObj('Router', ['pos']);
@@ -52,7 +53,8 @@ describe('LoginComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule,
         MaterialModule,
-        MatKeyboardModule
+        MatKeyboardModule,
+        AngularSvgIconModule
       ],
       providers: [
         MatKeyboardService,
@@ -61,6 +63,7 @@ describe('LoginComponent', () => {
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },
         { provide: UserService, useClass: UserServiceStub },
+        { provide: SvgIconRegistryService, useClass: SvgIconRegistryServiceStub },
         { provide: Router, useValue: routerSpy }
       ],
       declarations: [VirtKeyboardDirective,
