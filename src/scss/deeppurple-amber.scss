@@ -10,7 +10,6 @@ $theme: mat-light-theme($primary, $accent);
 
 @include productgrid-theme($theme);
 
-svg#synerPOS-Logo {
+svg-icon.logo {
   fill: #673ab7;
-  width: 200px;
 }
