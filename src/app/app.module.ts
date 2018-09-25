@@ -8,22 +8,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StompRService } from '@stomp/ng2-stompjs';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 import { AdminModule } from './admin/admin.module';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
-import { ContactsModule } from './contacts/contacts.module';
-import { InventoryModule } from './inventory/inventory.module';
-
-import { ProductsModule } from './products/products.module';
 import { BalanceModule } from './balance/balance.module';
+import { ContactsModule } from './contacts/contacts.module';
 import { AdminGuard, AuthGuard, WorkspaceGuard } from './guards/index';
+import { InventoryModule } from './inventory/inventory.module';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from './material/material.module';
 import { OrdersModule } from './orders/orders.module';
 import { ConfirmDialogComponent } from './payment/confirm-dialog/confirm-dialog.component';
 import { PaymentModule } from './payment/payment.module';
 import { PosModule } from './pos/pos.module';
+import { ProductsModule } from './products/products.module';
 import {
   AdminService,
   AuthService,
@@ -42,7 +42,6 @@ import {
   WorkspaceService
 } from './services/index';
 import { SameHeightDirective } from './services/same-height.directive';
-
 import { VirtKeyboardDirective } from './services/virt-keyboard.directive';
 import { SharedModule } from './shared/shared.module';
 import { SpotsModule } from './spots/spots.module';
@@ -70,6 +69,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    AngularSvgIconModule,
     routes,
     AdminModule,
     BalanceModule,

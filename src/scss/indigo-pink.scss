@@ -8,3 +8,8 @@ $theme: mat-light-theme($primary, $accent);
 @include angular-material-theme($theme);
 @include material-docs-app-theme($theme);
 @include productgrid-theme($theme);
+
+svg#synerPOS-Logo {
+  fill: #3f51b5;
+  width: 200px;
+}
