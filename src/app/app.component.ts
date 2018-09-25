@@ -19,7 +19,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   inventory = false;
   allowPayment = false;
 
-  constructor(private router: Router, private cdRef: ChangeDetectorRef,
+  constructor(public router: Router, private cdRef: ChangeDetectorRef,
     public translate: TranslateService,
     private workspaceService: WorkspaceService,
     public auth: AuthService) {
