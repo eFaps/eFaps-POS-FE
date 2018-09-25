@@ -1,4 +1,5 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { Roles } from './model/index';
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
   inventory = false;
   allowPayment = false;
 
-  constructor(private cdRef: ChangeDetectorRef, public translate: TranslateService,
+  constructor(private router: Router, private cdRef: ChangeDetectorRef,
+    public translate: TranslateService,
     private workspaceService: WorkspaceService,
     public auth: AuthService) {
     translate.use(workspaceService.getLanguage());
