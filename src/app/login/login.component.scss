@@ -1,7 +1,8 @@
 .pos-usergrid {
-  width: 800px;
+  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
+  width: 800px;
 }
 
 .pos-usercard {
@@ -42,4 +43,12 @@
   left: calc(50% - 100px);
   top: 30px;
   width: 200px;
+}
+
+mat-card {
+  & .logo {
+    margin-bottom: 20px;
+    position: unset;
+    width: 165px;
+  }
 }

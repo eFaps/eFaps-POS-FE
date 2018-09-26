@@ -1,7 +1,7 @@
 <div fxLayout="column">
   <div fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="10px" class="pos-usergrid" [style.display]="!hiddenUser?'none':'inherit'">
     <mat-card class="pos-usercard" *ngFor="let user of users" (click)="select(user)" [ngClass]="{'pos-card-selected': this.loginForm.value.userName==user.username}">
-      <img mat-card-image src="assets/user.svg" alt="{user.firstName}} {{user.surName}}">
+      <svg-icon src="/assets/user.svg" class="logo"></svg-icon>
       <mat-card-content>
         {{user.firstName}} {{user.surName}}
       </mat-card-content>

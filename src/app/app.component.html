@@ -1,7 +1,7 @@
 <div class="pos-container">
   <mat-toolbar color="primary" fxLayout='row'>
     <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
-    <h2 class="example-app-name">POS - {{workspace}}</h2>
+    <h2 class="example-app-name">{{workspace}}</h2>
     <div fxFlex fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
       <svg-icon src="/assets/synercom_logo.svg" class="logo white" *ngIf="!router.url.includes('login')"></svg-icon>
       <app-theme-picker></app-theme-picker>
