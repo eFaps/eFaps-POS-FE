@@ -1,22 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as jwtDecode from 'jwt-decode';
+import { LocalStorage } from 'ngx-store';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 
 import { Roles } from '../model/index';
 import { ConfigService } from './config.service';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class AuthService {
-  public currentUser: any;
+  @LocalStorage() public currentUser: any;
 
   private eventSource = new BehaviorSubject<string>('');
   currentEvent = this.eventSource.asObservable();
 
   constructor(private http: HttpClient, private config: ConfigService) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   login(username: string, password: string): Observable<boolean> {
@@ -26,7 +26,7 @@ export class AuthService {
         const token = response.token;
         if (token) {
           this.currentUser = { username: username, token: token };
-          localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+          this.currentUser.save();
           this.eventSource.next('login');
           return true;
         } else {
@@ -38,7 +38,6 @@ export class AuthService {
 
   logout(): void {
     this.currentUser = null;
-    localStorage.removeItem('currentUser');
     this.eventSource.next('logout');
   }
 
