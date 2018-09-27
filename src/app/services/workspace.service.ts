@@ -2,7 +2,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LocalStorageService } from 'ngx-store';
+import { LocalStorage } from 'ngx-store';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
@@ -18,9 +18,10 @@ export class WorkspaceService {
   private current: Workspace;
   private currentSource = new BehaviorSubject<Workspace>(this.current);
   currentWorkspace = this.currentSource.asObservable();
+  @LocalStorage() workspaces: any = {};
 
   constructor(private http: HttpClient, private auth: AuthService,
-    private config: ConfigService, private localStorageService: LocalStorageService) { }
+    private config: ConfigService) { }
 
   public getWorkspaces(): Observable<Workspace[]> {
     const url = `${this.config.baseUrl}/workspaces`;
@@ -36,9 +37,7 @@ export class WorkspaceService {
     if (this.currentSource.getValue()) {
       return new Promise<boolean>(resolve => resolve(true));
     }
-    const workspacesStr = this.localStorageService.get('workspaces');
-    if (workspacesStr) {
-      const workspaceOid = JSON.parse(workspacesStr)[this.auth.getCurrentUsername()];
+      const workspaceOid = this.workspaces[this.auth.getCurrentUsername()];
       if (workspaceOid) {
         return new Promise<boolean>(resolve => {
           this.getWorkspace(workspaceOid).subscribe(
@@ -51,7 +50,7 @@ export class WorkspaceService {
             }
           );
         });
-      }
+
     }
     return new Promise<boolean>(resolve => resolve(false));
   }
@@ -67,15 +66,8 @@ export class WorkspaceService {
   }
 
   private storeCurrentWorkspace(_oid: string) {
-    const workspacesStr = this.localStorageService.get('workspaces');
-    let workspaces;
-    if (workspacesStr) {
-      workspaces = JSON.parse(workspacesStr);
-    } else {
-      workspaces = {};
-    }
-    workspaces[this.auth.getCurrentUsername()] = _oid;
-    this.localStorageService.set('workspaces', JSON.stringify(workspaces));
+    this.workspaces[this.auth.getCurrentUsername()] = _oid;
+    this.workspaces.save();
   }
 
   public getLanguage() {

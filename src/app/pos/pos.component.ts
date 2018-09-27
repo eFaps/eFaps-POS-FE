@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
+import { LocalStorage } from 'ngx-store';
 
 import { Item, PosLayout } from '../model/index';
 import { AuthService, MsgService, PosService, WorkspaceService } from '../services/index';
@@ -16,6 +17,7 @@ export class PosComponent implements OnInit, OnDestroy {
   screenWidth: number;
   private orderId: string;
   currentLayout: PosLayout = PosLayout.GRID;
+  @LocalStorage() posLayouts: any = {};
 
   constructor(public workspaceService: WorkspaceService,
     private posService: PosService,
@@ -33,10 +35,9 @@ export class PosComponent implements OnInit, OnDestroy {
       }
     });
     if (this.workspaceService.getPosLayout() === PosLayout.BOTH) {
-      const posLayoutStr = localStorage.getItem('posLayout');
-      const posLayout = JSON.parse(posLayoutStr)[this.authService.getCurrentUsername()];
-      if (posLayout) {
-        this.currentLayout = posLayout;
+      const layout = this.posLayouts[this.authService.getCurrentUsername()];
+      if (layout) {
+        this.currentLayout = layout;
       }
     } else {
       this.currentLayout = this.workspaceService.getPosLayout();
@@ -65,14 +66,7 @@ export class PosComponent implements OnInit, OnDestroy {
   }
 
   private storeCurrentLayout() {
-    const posLayoutStr = localStorage.getItem('posLayout');
-    let posLayouts;
-    if (posLayoutStr) {
-      posLayouts = JSON.parse(posLayoutStr);
-    } else {
-      posLayouts = {};
-    }
-    posLayouts[this.authService.getCurrentUsername()] = this.currentLayout;
-    localStorage.setItem('posLayout', JSON.stringify(posLayouts));
+    this.posLayouts[this.authService.getCurrentUsername()] = this.currentLayout;
+    this.posLayouts.save();
   }
 }
