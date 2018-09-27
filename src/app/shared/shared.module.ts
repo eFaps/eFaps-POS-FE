@@ -7,6 +7,7 @@ import { MatKeyboardModule } from '@ngx-material-keyboard/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgBusyModule } from 'ng-busy';
+import { WebStorageModule } from 'ngx-store';
 
 import { MaterialModule } from '../material/material.module';
 import { PosCurrencyPipe, SecurePipe } from '../services/index';
@@ -31,7 +32,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NgBusyModule,
     ReactiveFormsModule,
     TranslateModule,
-    MatKeyboardModule
+    MatKeyboardModule,
+    WebStorageModule
   ],
   declarations: [
     ConfirmDialogComponent,
@@ -54,7 +56,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NgBusyModule,
     PosCurrencyPipe,
     SecurePipe,
-    TranslateModule
+    TranslateModule,
+    WebStorageModule
   ],
   entryComponents: [
     ConfirmDialogComponent,

@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
-import { Subscriber } from 'rxjs/Subscriber';
-import { map } from 'rxjs/operators';
 import 'rxjs/add/operator/toPromise';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { LocalStorageService } from 'ngx-store';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
+import { Subscriber } from 'rxjs/Subscriber';
+
+import { PosLayout, SpotConfig, Workspace } from '../model/index';
 import { AuthService } from './auth.service';
 import { ConfigService } from './config.service';
-import { SpotConfig, PosLayout, Workspace } from '../model/index';
 
 @Injectable()
 export class WorkspaceService {
@@ -19,7 +20,7 @@ export class WorkspaceService {
   currentWorkspace = this.currentSource.asObservable();
 
   constructor(private http: HttpClient, private auth: AuthService,
-    private config: ConfigService) { }
+    private config: ConfigService, private localStorageService: LocalStorageService) { }
 
   public getWorkspaces(): Observable<Workspace[]> {
     const url = `${this.config.baseUrl}/workspaces`;
@@ -35,7 +36,7 @@ export class WorkspaceService {
     if (this.currentSource.getValue()) {
       return new Promise<boolean>(resolve => resolve(true));
     }
-    const workspacesStr = localStorage.getItem('workspaces');
+    const workspacesStr = this.localStorageService.get('workspaces');
     if (workspacesStr) {
       const workspaceOid = JSON.parse(workspacesStr)[this.auth.getCurrentUsername()];
       if (workspaceOid) {
@@ -66,7 +67,7 @@ export class WorkspaceService {
   }
 
   private storeCurrentWorkspace(_oid: string) {
-    const workspacesStr = localStorage.getItem('workspaces');
+    const workspacesStr = this.localStorageService.get('workspaces');
     let workspaces;
     if (workspacesStr) {
       workspaces = JSON.parse(workspacesStr);
@@ -74,7 +75,7 @@ export class WorkspaceService {
       workspaces = {};
     }
     workspaces[this.auth.getCurrentUsername()] = _oid;
-    localStorage.setItem('workspaces', JSON.stringify(workspaces));
+    this.localStorageService.set('workspaces', JSON.stringify(workspaces));
   }
 
   public getLanguage() {
