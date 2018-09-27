@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
 import { LocalStorage } from 'ngx-store';
@@ -11,7 +11,7 @@ import { ContactService } from '../../services/index';
   templateUrl: './create-contact-dialog.component.html',
   styleUrls: ['./create-contact-dialog.component.scss']
 })
-export class CreateContactDialogComponent implements OnInit {
+export class CreateContactDialogComponent implements OnInit, OnDestroy {
   identificationType = IdentificationType;
   idTypes;
   contactForm: FormGroup;
@@ -44,6 +44,10 @@ export class CreateContactDialogComponent implements OnInit {
         this.contactForm.get('idNumber').updateValueAndValidity();
       }
     );
+  }
+
+  ngOnDestroy() {
+    // event empty method is needed to allow ngx-store handle class destruction
   }
 
   submit() {

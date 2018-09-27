@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { LocalStorage } from 'ngx-store';
@@ -12,7 +12,7 @@ import { ProductComponent } from '../product/product.component';
   templateUrl: './producttable.component.html',
   styleUrls: ['./producttable.component.scss']
 })
-export class ProducttableComponent implements OnInit {
+export class ProducttableComponent implements OnInit, OnDestroy {
   displayedColumns = ['sku', 'description', 'cmd'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatSort) sort: MatSort;
@@ -33,6 +33,10 @@ export class ProducttableComponent implements OnInit {
       filter: ['']
     });
     this.filterForm.get('filter').valueChanges.subscribe(value => this.applyFilter(value));
+  }
+
+  ngOnDestroy() {
+    // event empty method is needed to allow ngx-store handle class destruction
   }
 
   applyFilter(_filterValue: string) {
