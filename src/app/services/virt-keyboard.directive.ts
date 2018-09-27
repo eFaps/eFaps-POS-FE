@@ -1,6 +1,6 @@
-import { Directive, ElementRef, HostListener, Input, Optional, Self, EventEmitter, Output, OnDestroy } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, OnDestroy, Optional, Output, Self } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { MatKeyboardDirective, MatKeyboardService, MatKeyboardRef, MatKeyboardComponent } from '@ngx-material-keyboard/core';
+import { MatKeyboardComponent, MatKeyboardDirective, MatKeyboardRef, MatKeyboardService } from '@ngx-material-keyboard/core';
 
 @Directive({
   selector: 'input[appVirtKeyboard], textarea[appVirtKeyboard]'
@@ -41,15 +41,12 @@ export class VirtKeyboardDirective implements OnDestroy {
         duration: this.duration
       });
 
-      // reference the input element
       this._keyboardRef.instance.setInputInstance(this._elementRef);
 
-      // set control if given, cast to smth. non-abstract
       if (this._control) {
         this._keyboardRef.instance.attachControl(this._control.control);
       }
 
-      // connect outputs
       this._keyboardRef.instance.enterClick.subscribe(() => this.enterClick.next());
       this._keyboardRef.instance.capsClick.subscribe(() => this.capsClick.next());
       this._keyboardRef.instance.altClick.subscribe(() => this.altClick.next());
@@ -63,5 +60,4 @@ export class VirtKeyboardDirective implements OnDestroy {
       this._keyboardRef.dismiss();
     }
   }
-
 }

@@ -37,12 +37,11 @@ import {
   PaymentService,
   PosService,
   ProductService,
+  SameHeightDirective,
   UserService,
   UtilsService,
   WorkspaceService
 } from './services/index';
-import { SameHeightDirective } from './services/same-height.directive';
-import { VirtKeyboardDirective } from './services/virt-keyboard.directive';
 import { SharedModule } from './shared/shared.module';
 import { SpotsModule } from './spots/spots.module';
 import { ThemePickerComponent } from './theme-picker/theme-picker.component';
@@ -56,7 +55,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   declarations: [
     AppComponent,
     LoginComponent,
-    VirtKeyboardDirective,
     WorkspaceComponent,
     SameHeightDirective,
     ThemePickerComponent

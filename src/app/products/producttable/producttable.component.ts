@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort, MatTableDataSource, MatDialog } from '@angular/material';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
+import { LocalStorage } from 'ngx-store';
 
 import { Product } from '../../model/index';
 import { ProductService } from '../../services/index';
@@ -14,9 +16,12 @@ export class ProducttableComponent implements OnInit {
   displayedColumns = ['sku', 'description', 'cmd'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatSort) sort: MatSort;
+  @LocalStorage() virtKeyboard = false;
+  filterForm: FormGroup;
 
   constructor(private productService: ProductService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
     this.productService.getProducts()
@@ -24,6 +29,10 @@ export class ProducttableComponent implements OnInit {
         this.dataSource.data = data;
         this.dataSource.sort = this.sort;
       });
+    this.filterForm = this.fb.group({
+      filter: ['']
+    });
+    this.filterForm.get('filter').valueChanges.subscribe(value => this.applyFilter(value));
   }
 
   applyFilter(_filterValue: string) {

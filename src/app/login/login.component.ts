@@ -3,8 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatSnackBar } from '@angular/material';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Router } from '@angular/router';
-import { MatKeyboardService } from '@ngx-material-keyboard/core';
 import { TranslateService } from '@ngx-translate/core';
+import { LocalStorage } from 'ngx-store';
 
 import { User } from '../model/index';
 import { AuthService, UserService, WorkspaceService } from '../services/index';
@@ -14,17 +14,15 @@ import { AuthService, UserService, WorkspaceService } from '../services/index';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   users: User[] = [];
   loading = false;
   hiddenUser = true;
-  virtKeyboard = false;
+  @LocalStorage() virtKeyboard = false;
 
   constructor(
     private router: Router,
-    private keyboardService: MatKeyboardService,
     private userService: UserService,
     private authService: AuthService,
     private workspaceService: WorkspaceService,
@@ -62,14 +60,14 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/']);
           } else {
             this.snackBar.open(this.translateService.instant('LOGIN.401'), '', {
-                duration: 3000
+              duration: 3000
             });
             this.loading = false;
           }
         }, error => {
           if (error.status && error.status === 401) {
             this.snackBar.open(this.translateService.instant('LOGIN.401'), '', {
-                duration: 3000
+              duration: 3000
             });
           }
         });

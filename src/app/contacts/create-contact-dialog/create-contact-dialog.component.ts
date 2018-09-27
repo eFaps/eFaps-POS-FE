@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
+import { LocalStorage } from 'ngx-store';
 
 import { Contact, IdentificationType } from '../../model/index';
 import { ContactService } from '../../services/index';
@@ -14,6 +15,7 @@ export class CreateContactDialogComponent implements OnInit {
   identificationType = IdentificationType;
   idTypes;
   contactForm: FormGroup;
+  @LocalStorage() virtKeyboard = false;
 
   constructor(public dialogRef: MatDialogRef<CreateContactDialogComponent>,
     private contactService: ContactService,

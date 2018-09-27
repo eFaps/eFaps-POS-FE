@@ -10,7 +10,7 @@ import { NgBusyModule } from 'ng-busy';
 import { WebStorageModule } from 'ngx-store';
 
 import { MaterialModule } from '../material/material.module';
-import { PosCurrencyPipe, SecurePipe } from '../services/index';
+import { PosCurrencyPipe, SecurePipe, VirtKeyboardDirective } from '../services/index';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ContactComponent } from './contact/contact.component';
 import { DocumentComponent } from './document/document.component';
@@ -29,10 +29,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FormsModule,
     HttpClientModule,
     MaterialModule,
+    MatKeyboardModule,
     NgBusyModule,
     ReactiveFormsModule,
     TranslateModule,
-    MatKeyboardModule,
     WebStorageModule
   ],
   declarations: [
@@ -44,7 +44,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PosCurrencyPipe,
     SecurePipe,
     ImageComponent,
-    PrintDialogComponent
+    PrintDialogComponent,
+    VirtKeyboardDirective,
   ],
   exports: [
     ConfirmDialogComponent,
@@ -57,6 +58,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PosCurrencyPipe,
     SecurePipe,
     TranslateModule,
+    VirtKeyboardDirective,
     WebStorageModule
   ],
   entryComponents: [
