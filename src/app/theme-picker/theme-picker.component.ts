@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, NgModule, ViewEncapsulation } from '@angular/core';
 
-import { DocsSiteTheme, StyleManagerService, ThemeStorageService } from '../services/index';
+import { DocsSiteTheme, StyleManagerService } from '../services/index';
+import { LocalStorage } from 'ngx-store';
 
 @Component({
   selector: 'app-theme-picker',
@@ -11,7 +12,7 @@ import { DocsSiteTheme, StyleManagerService, ThemeStorageService } from '../serv
   encapsulation: ViewEncapsulation.None
 })
 export class ThemePickerComponent {
-  currentTheme;
+  @LocalStorage() currentTheme;
   themes = [
     {
       primary: '#673AB7',
@@ -24,7 +25,7 @@ export class ThemePickerComponent {
       accent: '#E91E63',
       href: 'indigo-pink.css',
       isDark: false,
-      isDefault: false,
+      isDefault: true,
     },
     {
       primary: '#E91E63',
@@ -38,14 +39,12 @@ export class ThemePickerComponent {
       href: 'purple-green.css',
       isDark: true,
     },
-];
+  ];
   constructor(
-    public styleManager: StyleManagerService,
-    private themeStorage: ThemeStorageService
+    public styleManager: StyleManagerService
   ) {
-    const currentTheme = this.themeStorage.getStoredTheme();
-    if (currentTheme) {
-      this.installTheme(currentTheme);
+    if (this.currentTheme) {
+      this.installTheme(this.currentTheme);
     }
   }
   installTheme(theme: DocsSiteTheme) {
@@ -55,10 +54,6 @@ export class ThemePickerComponent {
       this.styleManager.removeStyle('theme');
     } else {
       this.styleManager.setStyle('theme', `assets/${theme.href}`);
-    }
-
-    if (this.currentTheme) {
-      this.themeStorage.storeTheme(this.currentTheme);
     }
   }
 

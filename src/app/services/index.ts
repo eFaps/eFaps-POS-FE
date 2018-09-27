@@ -17,7 +17,6 @@ export * from './product.service';
 export * from './secure.pipe';
 export * from './spot.service';
 export * from './style-manager.service';
-export * from './theme-storage.service';
 export * from './user.service';
 export * from './utils.service';
 export * from './virt-keyboard.directive';
