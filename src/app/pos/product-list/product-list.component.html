@@ -19,7 +19,7 @@
         <button (click)="show(element)" mat-stroked-button>
           <mat-icon  class="posIcon-36">info</mat-icon>
         </button>
-        <button (click)="select(element)" [disabled]="!hasStock(element)" mat-stroked-button>
+        <button (click)="select(element)" [disabled]="!selectable(element)" mat-stroked-button>
           <mat-icon class="posIcon-36" [class.mat-warn]="!hasStock(element)">check_circle_outline</mat-icon>
         </button>
       </mat-cell>

@@ -4,9 +4,9 @@ import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
-import { InventoryEntry, Product } from '../../model/index';
+import { InventoryEntry, Product, Roles } from '../../model/index';
 import { ProductComponent } from '../../products/product/product.component';
-import { InventoryService, PosService, ProductService, WorkspaceService } from '../../services/index';
+import { AuthService, InventoryService, PosService, ProductService, WorkspaceService } from '../../services/index';
 import { AbstractProductSelector } from '../abstract-product-selector';
 
 @Component({
@@ -29,6 +29,7 @@ export class ProductListComponent
     protected posService: PosService,
     private workspaceService: WorkspaceService,
     private inventoryService: InventoryService,
+    private authService: AuthService,
     private fb: FormBuilder,
     private dialog: MatDialog) {
     super(productService, posService);
@@ -63,6 +64,10 @@ export class ProductListComponent
     const dialogRef = this.dialog.open(ProductComponent, {
       data: _product,
     });
+  }
+
+  selectable(_product: Product) {
+    return this.hasStock(_product) || this.authService.hasRole(Roles.ADMIN);
   }
 
   hasStock(_product: Product) {
