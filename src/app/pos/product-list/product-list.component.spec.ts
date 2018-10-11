@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../../material/material.module';
 import { ProductComponent } from '../../products/product/product.component';
-import { InventoryService, PosService, ProductService, WorkspaceService } from '../../services/index';
+import { AuthService, InventoryService, PosService, ProductService, WorkspaceService } from '../../services/index';
 import { ProductListComponent } from './product-list.component';
 
 class PosServiceStub {
@@ -25,6 +25,7 @@ class WorkspaceServiceStub {
   }
 }
 class InventoryServiceStub {}
+class AuthServiceStub {}
 
 describe('ProductListComponent', () => {
   let component: ProductListComponent;
@@ -42,7 +43,8 @@ describe('ProductListComponent', () => {
         { provide: PosService, useClass: PosServiceStub },
         { provide: ProductService, useClass: ProductServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
-        { provide: InventoryService, useClass: InventoryServiceStub }
+        { provide: InventoryService, useClass: InventoryServiceStub },
+        { provide: AuthService, useClass: AuthServiceStub }
       ],
       declarations: [
         MockComponent(ProductComponent),
