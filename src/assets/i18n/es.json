@@ -69,6 +69,10 @@
       "SELECTORIGIN": "Seleccionar Origin",
       "SELECTTARGET": "Seleccionar Objectivo"
     }
+  },
+  "ORDERS": {
+    "LAZYLOADON": "Todo",
+    "LAZYLOADOFF": "Solo Pendiente"
   }
 
 }

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
@@ -12,6 +13,7 @@ import { SplitOrderDialogComponent } from './split-order-dialog/split-order-dial
     CommonModule,
     FlexLayoutModule,
     MaterialModule,
+    ReactiveFormsModule,
     SharedModule
   ],
   declarations: [

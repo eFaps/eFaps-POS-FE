@@ -1,3 +1,11 @@
+<form [formGroup]="filterForm">
+  <mat-form-field>
+    <input matInput placeholder="Filter" formControlName="filter">
+  </mat-form-field>
+  <mat-slide-toggle [checked]="lazyLoadOrders" (change)="toggleLazyLoadOrders($event)">
+    {{ (lazyLoadOrders ? "ORDERS.LAZYLOADON" : "ORDERS.LAZYLOADOFF") | translate}}
+  </mat-slide-toggle>
+</form>
 <div class="pos-order-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource" matSort matSortActive="status" matSortDirection="desc">
     <ng-container matColumnDef="number">
@@ -24,18 +32,18 @@
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let order">
         <button (click)="pos(order)" *ngIf="order.status===DocStatus[DocStatus.OPEN]" mat-stroked-button>
-          <mat-icon  class="posIcon-36">shop</mat-icon>
+          <mat-icon class="posIcon-36">shop</mat-icon>
         </button>
         <button (click)="delete(order)" *ngIf="isAdmin && order.status===DocStatus[DocStatus.OPEN]" mat-stroked-button>
-          <mat-icon  class="posIcon-36">delete</mat-icon>
+          <mat-icon class="posIcon-36">delete</mat-icon>
         </button>
         <button (click)="split(order)" *ngIf="isAdmin && order.status===DocStatus[DocStatus.OPEN]" mat-stroked-button>
-          <mat-icon  class="posIcon-36">call_split</mat-icon>
+          <mat-icon class="posIcon-36">call_split</mat-icon>
         </button>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
-   <mat-paginator [pageSizeOptions]="[25, 50, 100]"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[25, 50, 100]"></mat-paginator>
 </div>

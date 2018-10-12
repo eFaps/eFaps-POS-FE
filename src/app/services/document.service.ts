@@ -1,15 +1,13 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Subscriber } from 'rxjs/Subscriber';
-import { map } from 'rxjs/operators';
 import { forkJoin } from 'rxjs/observable/forkJoin';
+import { map } from 'rxjs/operators';
+import { Subscriber } from 'rxjs/Subscriber';
 
+import { Balance, DocStatus, Invoice, Order, Payable, Receipt, Ticket } from '../model';
 import { ConfigService } from './config.service';
 import { WorkspaceService } from './workspace.service';
-
-import { Balance, Invoice, Order, Payable, Receipt, Ticket } from '../model';
 
 @Injectable()
 export class DocumentService {
@@ -59,9 +57,21 @@ export class DocumentService {
     return this.http.get<Order[]>(url);
   }
 
-  public getOrders4Spots(): Observable<Order[]> {
+  public getOpenOrders(): Observable<Order[]> {
     const url = `${this.config.baseUrl}/documents/orders`;
+    const params = new HttpParams().set('status', 'OPEN');
+    return this.http.get<Order[]>(url, { params: params });
+  }
+
+  public findOrders(_term: string): Observable<Order[]> {
+    const url = `${this.config.baseUrl}/documents/orders`;
+    const params = new HttpParams().set('term', _term);
+    return this.http.get<Order[]>(url, { params: params });
+  }
+
+  public getOrders4Spots(): Observable<Order[]> {
     const params = new HttpParams().set('spot', 'true');
+    const url = `${this.config.baseUrl}/documents/orders`;
     return this.http.get<Order[]>(url, { params: params });
   }
 
