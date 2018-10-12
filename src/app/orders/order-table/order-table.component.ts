@@ -1,8 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog, MatPaginator, MatSort, MatTableDataSource, MatSlideToggleChange } from '@angular/material';
+import { MatDialog, MatPaginator, MatSlideToggleChange, MatSort, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { LocalStorage } from 'ngx-store';
+import { Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 import { DocStatus, Order, Roles } from '../../model';
 import {
