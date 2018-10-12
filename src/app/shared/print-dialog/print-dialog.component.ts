@@ -36,6 +36,7 @@ export class PrintDialogComponent implements OnInit {
             });
           } else {
             t.success = true;
+            t.loaded = true;
           }
         });
       }
