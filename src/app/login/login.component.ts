@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   hiddenUser = true;
   @LocalStorage() virtKeyboard = false;
+  @ViewChild('pwd') pwdField: ElementRef;
 
   constructor(
     private router: Router,
@@ -76,6 +77,7 @@ export class LoginComponent implements OnInit {
 
   select(_user: User) {
     this.loginForm.patchValue({ userName: _user.username });
+    this.pwdField.nativeElement.focus();
   }
 
   toggleUser() {
