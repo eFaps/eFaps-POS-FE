@@ -10,6 +10,7 @@ import { DocStatus, Order, Roles } from '../../model';
 import {
   AuthService,
   DocumentService,
+  PaymentService,
   PosService,
   WorkspaceService
 } from '../../services';
@@ -30,6 +31,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   isAdmin = false;
+  allowPayment = false;
   @LocalStorage() lazyLoadOrders = false;
 
   constructor(private router: Router,
@@ -37,6 +39,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     private documentService: DocumentService,
     private posService: PosService,
     private workspaceService: WorkspaceService,
+    private paymentService: PaymentService,
     private fb: FormBuilder,
     private dialog: MatDialog,
     private changeDetectorRefs: ChangeDetectorRef) { }
@@ -50,6 +53,8 @@ export class OrderTableComponent implements OnInit, OnDestroy {
       ? ['number', 'date', 'total', 'status', 'spot', 'cmd']
       : ['number', 'date', 'total', 'status', 'cmd'];
     this.isAdmin = this.authService.hasRole(Roles.ADMIN);
+    this.allowPayment = this.workspaceService.allowPayment();
+
     this.formCtrlSub = this.filterForm.valueChanges
       .debounceTime(500)
       .subscribe(newValue => this.applyFilter(newValue.filter));
@@ -63,6 +68,12 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   pos(_order: Order) {
     this.posService.setOrder(_order);
     this.router.navigate(['/pos']);
+  }
+
+  payment(_order: Order) {
+    const order = Object.assign({ type: 'ORDER' }, _order);
+    this.paymentService.updateDocument(order);
+    this.router.navigate(['/payment']);
   }
 
   delete(_order: Order) {

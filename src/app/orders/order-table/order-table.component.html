@@ -34,6 +34,9 @@
         <button (click)="pos(order)" *ngIf="order.status===DocStatus[DocStatus.OPEN]" mat-stroked-button>
           <mat-icon class="posIcon-36">shop</mat-icon>
         </button>
+        <button (click)="payment(order)" *ngIf="order.status===DocStatus[DocStatus.OPEN] && allowPayment" mat-stroked-button>
+          <mat-icon class="posIcon-36">monetization_on</mat-icon>
+        </button>
         <button (click)="delete(order)" *ngIf="isAdmin && order.status===DocStatus[DocStatus.OPEN]" mat-stroked-button>
           <mat-icon class="posIcon-36">delete</mat-icon>
         </button>

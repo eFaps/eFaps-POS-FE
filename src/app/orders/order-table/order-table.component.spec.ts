@@ -12,6 +12,7 @@ import {
   ConfigService,
   DocumentService,
   PosCurrencyPipe,
+  PaymentService,
   PosService,
   UtilsService,
   WorkspaceService
@@ -37,7 +38,11 @@ class WorkspaceServiceStub {
   showSpots() {
     return false;
   }
+  allowPayment() {
+    return true;
+  }
 }
+class PaymentServiceStub { }
 
 describe('OrderTableComponent', () => {
   let component: OrderTableComponent;
@@ -55,6 +60,7 @@ describe('OrderTableComponent', () => {
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
+        { provide: PaymentService, useClass: PaymentServiceStub },
         { provide: PosService, useClass: PosServiceStub },
         { provide: UtilsService, useClass: UtilsServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },

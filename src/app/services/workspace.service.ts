@@ -91,6 +91,12 @@ export class WorkspaceService {
         && this.current.warehouseOid.length > 0;
   }
 
+  public allowPayment() {
+    return this.current
+        && this.current.docTypes
+        && this.current.docTypes.length > 0;
+  }
+
   public getWarehouseOid(): string {
     return this.showInventory() && this.current.warehouseOid;
   }
