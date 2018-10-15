@@ -1,9 +1,11 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { NgModule } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { LocalStorage } from 'ngx-store';
 
 import { Item, PosLayout } from '../model/index';
 import { AuthService, MsgService, PosService, WorkspaceService } from '../services/index';
+import { AbstractProductSelector } from './abstract-product-selector';
 
 @Component({
   selector: 'app-pos',
@@ -12,19 +14,25 @@ import { AuthService, MsgService, PosService, WorkspaceService } from '../servic
 })
 export class PosComponent implements OnInit, OnDestroy {
   PosLayout = PosLayout;
+  multiplierForm: FormGroup;
   ticket: Item[];
   screenHeight: number;
   screenWidth: number;
   private orderId: string;
   currentLayout: PosLayout = PosLayout.GRID;
   @LocalStorage() posLayouts: any = {};
+  multiplier = 1;
 
   constructor(public workspaceService: WorkspaceService,
     private posService: PosService,
     private msgService: MsgService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.multiplierForm = this.fb.group({
+      'multiplier': [''],
+    });
     this.posService.currentTicket.subscribe(data => this.ticket = data);
     this.onResize();
     this.msgService.init();
@@ -68,5 +76,26 @@ export class PosComponent implements OnInit, OnDestroy {
   private storeCurrentLayout() {
     this.posLayouts[this.authService.getCurrentUsername()] = this.currentLayout;
     this.posLayouts.save();
+  }
+
+  setMultiplier(_number: string) {
+    let multi;
+    switch (_number) {
+      case 'clear':
+        multi = '';
+        break;
+      default:
+        multi = '' + this.multiplierForm.value.multiplier + _number;
+        break;
+    }
+    this.multiplierForm.patchValue({ 'multiplier': multi });
+    this.multiplier = Number(multi);
+  }
+
+  onProductSelect(_multiplier: number) {
+    this.multiplier = _multiplier;
+    if (_multiplier === 0 {
+      this.multiplierForm.patchValue({ 'multiplier': '' });
+    });
   }
 }

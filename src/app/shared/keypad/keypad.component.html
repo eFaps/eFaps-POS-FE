@@ -1,10 +1,12 @@
 <mat-grid-list cols="3" rowHeight="50px" gutterSize="8px">
-  <mat-grid-tile>
+  <mat-grid-tile *ngIf="showTopClear">
   </mat-grid-tile>
-  <mat-grid-tile>
+  <mat-grid-tile *ngIf="showTopClear">
   </mat-grid-tile>
-  <mat-grid-tile>
-    <button type="button" mat-raised-button (click)="clickBtn('clear')">*</button>
+  <mat-grid-tile *ngIf="showTopClear">
+    <button type="button" mat-raised-button (click)="clickBtn('clear')">
+      <mat-icon class="posIcon-36">clear</mat-icon>
+    </button>
   </mat-grid-tile>
   <mat-grid-tile>
     <button type="button" mat-raised-button (click)="clickBtn('1')">1</button>
@@ -33,7 +35,10 @@
   <mat-grid-tile>
     <button type="button" mat-raised-button (click)="clickBtn('9')">9</button>
   </mat-grid-tile>
-  <mat-grid-tile>
+  <mat-grid-tile >
+    <button type="button" mat-raised-button (click)="clickBtn('clear')" *ngIf="showBottomClear">
+      <mat-icon class="posIcon-36">clear</mat-icon>
+    </button>
   </mat-grid-tile>
   <mat-grid-tile>
     <button type="button" mat-raised-button (click)="clickBtn('0')">0</button>
