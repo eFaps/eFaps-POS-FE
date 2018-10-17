@@ -7,6 +7,7 @@ import { KeypadComponent } from './keypad.component';
 
 class HotkeysServiceStub {
   add() { }
+  get() { }
 }
 
 describe('KeypadComponent', () => {
