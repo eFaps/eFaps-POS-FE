@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MockComponent, MockDirective, MockPipe } from 'ng-mocks';
@@ -7,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { MaterialModule } from '../material/material.module';
 import { PosLayout } from '../model/index';
 import { AuthService, MsgService, PosService, WorkspaceService } from '../services/index';
+import { SharedModule } from '../shared/shared.module';
 import { CommandsComponent } from './commands/commands.component';
 import { PosComponent } from './pos.component';
 import { ProductListComponent } from './product-list/product-list.component';
@@ -14,7 +16,11 @@ import { ProductgridComponent } from './productgrid/productgrid.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { TotalsComponent } from './totals/totals.component';
 
-class AuthServiceStub {}
+class AuthServiceStub {
+  getCurrentUsername() {
+    return "blabla";
+  }
+}
 class PosServiceStub {
   currentOrder = new Observable(observer => {
     observer.next({});
@@ -52,7 +58,9 @@ describe('PosComponent', () => {
       imports: [
         BrowserAnimationsModule,
         MaterialModule,
-        RouterTestingModule
+        ReactiveFormsModule,
+        RouterTestingModule,
+        SharedModule
       ],
       providers: [
         { provide: AuthService, useClass: AuthServiceStub },
@@ -67,9 +75,9 @@ describe('PosComponent', () => {
         MockComponent(TicketComponent),
         MockComponent(TotalsComponent),
         MockComponent(CommandsComponent)
-       ]
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
