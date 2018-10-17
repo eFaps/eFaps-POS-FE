@@ -19,13 +19,19 @@
     <div class="paymentsTypes">
       <mat-tab-group>
         <mat-tab label="{{'PAYMENT.CASH' | translate}}">
-          <app-cash [change]="change"></app-cash>
+          <ng-template matTabContent>
+            <app-cash [change]="change"></app-cash>
+          </ng-template>
         </mat-tab>
         <mat-tab label="{{'PAYMENT.FREE' | translate}}">
-          <app-free [change]="change"></app-free>
+          <ng-template matTabContent>
+            <app-free [change]="change"></app-free>
+          </ng-template>
         </mat-tab>
         <mat-tab label="{{'PAYMENT.CARD' | translate}}">
-           <app-card [change]="change"></app-card>
+          <ng-template matTabContent>
+            <app-card [change]="change"></app-card>
+          </ng-template>
         </mat-tab>
       </mat-tab-group>
     </div>
@@ -35,8 +41,8 @@
         <mat-list-item *ngFor="let payment of payments">
           <span matLine>{{('PAYMENT.' + PaymentType[payment.type]) | translate}} {{payment.amount}}</span>
           <button mat-icon-button (click)="delPayment(payment)">
-                <mat-icon>highlight_off</mat-icon>
-            </button>
+            <mat-icon>highlight_off</mat-icon>
+          </button>
         </mat-list-item>
       </mat-list>
       <div fxLayout="row" fxLayoutGap="20px">
@@ -47,7 +53,7 @@
         <div class="createDocument">
           <button *ngIf="balance" type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="createDocument()">Finalizar</button>
           <button mat-button (click)="printPreliminary()" *ngIf="allowPrintPreliminary">
-            <mat-icon  class="posIcon-36">print</mat-icon>
+            <mat-icon class="posIcon-36">print</mat-icon>
           </button>
         </div>
       </div>

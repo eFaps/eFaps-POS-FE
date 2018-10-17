@@ -32,8 +32,13 @@ export class AppComponent implements OnInit, AfterViewChecked {
     };
     this.hotkeysService.add(new Hotkey('shift+f1', (event: KeyboardEvent): boolean => {
         console.log('Typed hotkey');
+        this.router.navigate(['/pos']);
+        return false;
+    }, undefined, 'Send a secret message to the console.'));
+    this.hotkeysService.add(new Hotkey('shift+f2', (event: KeyboardEvent): boolean => {
+        console.log('Typed hotkey');
         this.router.navigate(['/orders']);
-        return false; // Prevent bubbling
+        return false;
     }, undefined, 'Send a secret message to the console.'));
   }
 

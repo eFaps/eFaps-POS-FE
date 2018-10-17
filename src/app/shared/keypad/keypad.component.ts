@@ -17,6 +17,10 @@ export class KeypadComponent implements OnInit {
 
   ngOnInit() {
     for (var i = 0; i < 10; i++) {
+      const existing = this.hotkeysService.get('' + i);
+      if (existing) {
+        this.hotkeysService.remove(existing);
+      }
       this.hotkeys.push(new Hotkey('' + i, (event: KeyboardEvent): boolean => {
         this.clickBtn(event.key);
         return false;
