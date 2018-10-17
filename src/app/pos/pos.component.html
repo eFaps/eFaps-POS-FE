@@ -2,17 +2,22 @@
   <div [ngSwitch]="currentLayout" class="selector" [ngStyle]="{'height.px': screenHeight - 64 }">
     <app-productgrid *ngSwitchCase="PosLayout.GRID" (selection)="onProductSelect($event)" [multiplier]="multiplier"></app-productgrid>
     <app-product-list *ngSwitchCase="PosLayout.LIST" (selection)="onProductSelect($event)" [multiplier]="multiplier"></app-product-list>
-    <button mat-fab color="primary" (click)="switchLayout()" *ngIf="this.workspaceService.getPosLayout() === PosLayout.BOTH">Switch</button>
+    <button mat-fab color="primary" (click)="switchLayout()" *ngIf="this.workspaceService.getPosLayout() === PosLayout.BOTH" class="switch">Switch</button>
   </div>
   <div class='ticket' [ngStyle]="{'height.px': screenHeight - 64 - 6}">
     <div>
-      <div fxLayout='row'>
-        <form [formGroup]="multiplierForm">
-          <mat-form-field >
-            <input matInput type="number" formControlName="multiplier" autocomplete="off" class="right-align">
-          </mat-form-field>
-        </form>
-        <app-keypad [showTopClear]="false" [showBottomClear]="true" (number)="setMultiplier($event)"></app-keypad>
+      <div fxLayout='column'>
+        <mat-button-toggle [checked]="numPad" (click)="toggleNumPad()">
+          <mat-icon class="posIcon-36">dialpad</mat-icon>
+        </mat-button-toggle>
+        <div fxLayout='row' *ngIf="numPad" fxLayoutGap="10px" fxLayoutAlign="center center">
+          <form [formGroup]="multiplierForm">
+            <mat-form-field>
+              <input matInput type="number" formControlName="multiplier" autocomplete="off" class="right-align">
+            </mat-form-field>
+          </form>
+          <app-keypad [showTopClear]="false" [showBottomClear]="true" (number)="setMultiplier($event)"></app-keypad>
+        </div>
       </div>
       <app-ticket></app-ticket>
       <app-totals></app-totals>

@@ -21,6 +21,8 @@ export class PosComponent implements OnInit, OnDestroy {
   private orderId: string;
   currentLayout: PosLayout = PosLayout.GRID;
   @LocalStorage() posLayouts: any = {};
+  numPad = false;
+  @LocalStorage() posNumPad: any = {};
   multiplier = 1;
 
   constructor(public workspaceService: WorkspaceService,
@@ -50,6 +52,7 @@ export class PosComponent implements OnInit, OnDestroy {
     } else {
       this.currentLayout = this.workspaceService.getPosLayout();
     }
+    this.numPad = this.posNumPad[this.authService.getCurrentUsername()]
   }
 
   ngOnDestroy() {
@@ -94,8 +97,14 @@ export class PosComponent implements OnInit, OnDestroy {
 
   onProductSelect(_multiplier: number) {
     this.multiplier = _multiplier;
-    if (_multiplier === 0 {
+    if (_multiplier === 0) {
       this.multiplierForm.patchValue({ 'multiplier': '' });
-    });
+    }
+  }
+
+  toggleNumPad() {
+    this.numPad = !this.numPad;
+    this.posNumPad[this.authService.getCurrentUsername()] = this.numPad;
+    this.posNumPad.save();
   }
 }
