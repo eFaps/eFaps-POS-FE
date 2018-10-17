@@ -1,7 +1,7 @@
 <div fxLayout='row' fxLayoutGap="20px">
   <div [ngSwitch]="currentLayout" class="selector" [ngStyle]="{'height.px': screenHeight - 64 }">
-    <app-productgrid *ngSwitchCase="PosLayout.GRID" (selection)="onProductSelect($event)" [multiplier]="multiplier"></app-productgrid>
-    <app-product-list *ngSwitchCase="PosLayout.LIST" (selection)="onProductSelect($event)" [multiplier]="multiplier"></app-product-list>
+    <app-productgrid *ngSwitchCase="PosLayout.GRID" (selection)="resetMultiplier()" [multiplier]="multiplier"></app-productgrid>
+    <app-product-list *ngSwitchCase="PosLayout.LIST" (selection)="resetMultiplier()" [multiplier]="multiplier"></app-product-list>
     <button mat-fab color="primary" (click)="switchLayout()" *ngIf="this.workspaceService.getPosLayout() === PosLayout.BOTH" class="switch">Switch</button>
   </div>
   <div class='ticket' [ngStyle]="{'height.px': screenHeight - 64 - 6}">
@@ -19,7 +19,7 @@
           <app-keypad [showTopClear]="false" [showBottomClear]="true" (number)="setMultiplier($event)"></app-keypad>
         </div>
       </div>
-      <app-ticket></app-ticket>
+      <app-ticket [multiplier]="multiplier" (multiplierClick)="resetMultiplier()"></app-ticket>
       <app-totals></app-totals>
     </div>
     <app-commands></app-commands>

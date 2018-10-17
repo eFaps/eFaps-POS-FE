@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 
-import { PosService } from '../../services/index';
 import { Item } from '../../model/index';
+import { PosService } from '../../services/index';
 
 @Component({
   selector: 'app-ticket',
@@ -14,6 +14,8 @@ export class TicketComponent implements OnInit {
   displayedColumns = ['quantity', 'productDesc', 'unitPrice', 'price', 'modify'];
   dataSource = new MatTableDataSource<Item>();
   currentCurrency = '';
+  @Input() multiplier: number;
+  @Output() multiplierClick = new EventEmitter<any>();
 
   constructor(private posService: PosService) { }
 
@@ -22,15 +24,16 @@ export class TicketComponent implements OnInit {
     this.posService.currentCurrency.subscribe(_data => this.currentCurrency = _data);
   }
 
-  addOne(_item: Item) {
-    _item.quantity = _item.quantity + 1;
+  add(_item: Item) {
+    _item.quantity = _item.quantity + this.getQuantity();
     this.syncTicket();
+    this.multiplierClick.emit();
   }
 
-  subtractOne(_item: Item) {
-    _item.quantity = _item.quantity - 1;
+  subtract(_item: Item) {
+    _item.quantity = _item.quantity - this.getQuantity();
     if (_item.quantity < 1) {
-        const ticket = this.dataSource.data;
+      const ticket = this.dataSource.data;
       if (ticket.includes(_item)) {
         const index = ticket.indexOf(_item);
         if (index > -1) {
@@ -40,9 +43,14 @@ export class TicketComponent implements OnInit {
       }
     }
     this.syncTicket();
+    this.multiplierClick.emit();
   }
 
   syncTicket() {
     this.posService.changeTicket(this.dataSource.data);
+  }
+
+  private getQuantity(): number {
+    return this.multiplier > 0 ? this.multiplier : 1;
   }
 }

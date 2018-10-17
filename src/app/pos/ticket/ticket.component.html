@@ -19,10 +19,10 @@
     <ng-container matColumnDef="modify">
       <mat-header-cell *matHeaderCellDef fxFlex="120px"> Modificar </mat-header-cell>
       <mat-cell *matCellDef="let item" fxFlex="120px">
-        <button (click)="addOne(item)">
+        <button (click)="add(item)">
             <mat-icon  class="posIcon-36">control_point</mat-icon>
           </button>
-        <button (click)="subtractOne(item)">
+        <button (click)="subtract(item)">
           <mat-icon  class="posIcon-36">indeterminate_check_box</mat-icon>
       </button>
       </mat-cell>

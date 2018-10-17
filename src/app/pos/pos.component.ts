@@ -95,11 +95,9 @@ export class PosComponent implements OnInit, OnDestroy {
     this.multiplier = Number(multi);
   }
 
-  onProductSelect(_multiplier: number) {
-    this.multiplier = _multiplier;
-    if (_multiplier === 0) {
-      this.multiplierForm.patchValue({ 'multiplier': '' });
-    }
+  resetMultiplier() {
+    this.multiplier = 0;
+    this.multiplierForm.patchValue({ 'multiplier': '' });
   }
 
   toggleNumPad() {
