@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AngularSvgIconModule, SvgIconRegistryService } from 'angular-svg-icon';
+import { HotkeyModule, HotkeysService } from 'angular2-hotkeys';
 import { MockComponent, MockPipe } from 'ng-mocks';
 import { Observable } from 'rxjs';
 
@@ -25,18 +26,22 @@ class SvgIconRegistryServiceStub {
     return new Observable();
   }
 }
-
+class HotkeysServiceStub {
+  add() { }
+}
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         MaterialModule,
         BrowserAnimationsModule,
+        HotkeyModule,
         RouterTestingModule,
         AngularSvgIconModule
       ],
       providers: [
         { provide: AuthService, useClass: AuthServiceStub },
+        { provide: HotkeysService, useClass: HotkeysServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: TranslateService, useClass: TranslateServiceSub },
         { provide: SvgIconRegistryService, useClass: SvgIconRegistryServiceStub }

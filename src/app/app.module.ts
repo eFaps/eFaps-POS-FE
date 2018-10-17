@@ -9,6 +9,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StompRService } from '@stomp/ng2-stompjs';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { HotkeyModule } from 'angular2-hotkeys';
 
 import { AdminModule } from './admin/admin.module';
 import { AppComponent } from './app.component';
@@ -79,6 +80,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SpotsModule,
     PosModule,
     ProductsModule,
+    HotkeyModule.forRoot({
+      cheatSheetDescription: 'Presentar',
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -1,8 +1,13 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HotkeysService } from 'angular2-hotkeys';
 
 import { MaterialModule } from '../../material/material.module';
 import { KeypadComponent } from './keypad.component';
+
+class HotkeysServiceStub {
+  add() { }
+}
 
 describe('KeypadComponent', () => {
   let component: KeypadComponent;
@@ -15,7 +20,7 @@ describe('KeypadComponent', () => {
         MaterialModule
       ],
       providers: [
-
+        { provide: HotkeysService, useClass: HotkeysServiceStub },
       ],
       declarations: [ KeypadComponent ]
     })

@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Roles } from './model/index';
 import { AuthService, WorkspaceService } from './services/index';
+import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 
 @Component({
   selector: 'app-root',
@@ -22,12 +23,18 @@ export class AppComponent implements OnInit, AfterViewChecked {
   constructor(public router: Router, private cdRef: ChangeDetectorRef,
     public translate: TranslateService,
     private workspaceService: WorkspaceService,
-    public auth: AuthService) {
+    public auth: AuthService,
+    private hotkeysService: HotkeysService) {
     translate.use(workspaceService.getLanguage());
     this.screenWidth = window.innerWidth;
     window.onresize = () => {
       this.screenWidth = window.innerWidth;
     };
+    this.hotkeysService.add(new Hotkey('shift+f1', (event: KeyboardEvent): boolean => {
+        console.log('Typed hotkey');
+        this.router.navigate(['/orders']);
+        return false; // Prevent bubbling
+    }, undefined, 'Send a secret message to the console.'));
   }
 
   ngOnInit() {
