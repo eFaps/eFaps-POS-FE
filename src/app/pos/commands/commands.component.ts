@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, HostListener } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 
@@ -13,7 +13,7 @@ import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 })
 export class CommandsComponent implements OnInit {
   currentOrder: Order;
-
+  sticky = false;
   constructor(private router: Router,
     private posService: PosService,
     private paymentService: PaymentService,
@@ -57,7 +57,7 @@ export class CommandsComponent implements OnInit {
       });
   }
 
-  isSticky() {
-    return this.el.nativeElement.offsetTop - window.innerHeight + 100 > 0;
+  evalSticky() {
+    this.sticky = this.el.nativeElement.offsetTop - window.innerHeight + 100 > 0;
   }
 }

@@ -1,4 +1,14 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChildren, QueryList } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostListener,
+  Inject,
+  OnDestroy,
+  OnInit,
+  QueryList,
+  ViewChild
+} from '@angular/core';
 import { NgModule } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { LocalStorage } from 'ngx-store';
@@ -6,6 +16,7 @@ import { LocalStorage } from 'ngx-store';
 import { Item, PosLayout } from '../model/index';
 import { AuthService, MsgService, PosService, WorkspaceService } from '../services/index';
 import { AbstractProductSelector } from './abstract-product-selector';
+import { CommandsComponent } from './commands/commands.component'
 
 @Component({
   selector: 'app-pos',
@@ -24,18 +35,24 @@ export class PosComponent implements OnInit, OnDestroy {
   numPad = false;
   @LocalStorage() posNumPad: any = {};
   multiplier = 1;
+  @ViewChild(CommandsComponent) cmdComp;
 
   constructor(public workspaceService: WorkspaceService,
     private posService: PosService,
     private msgService: MsgService,
     private authService: AuthService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.multiplierForm = this.fb.group({
       'multiplier': [''],
     });
-    this.posService.currentTicket.subscribe(data => this.ticket = data);
+    this.posService.currentTicket.subscribe(data =>  {
+      this.ticket = data;
+      this.changeDetectorRef.detectChanges();
+      this.cmdComp.evalSticky();
+    });
     this.onResize();
     this.msgService.init();
     this.posService.currentOrder.subscribe(order => {
@@ -65,6 +82,7 @@ export class PosComponent implements OnInit, OnDestroy {
   onResize(event?) {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
+    this.cmdComp.evalSticky();
   }
 
   switchLayout() {
@@ -104,5 +122,7 @@ export class PosComponent implements OnInit, OnDestroy {
     this.numPad = !this.numPad;
     this.posNumPad[this.authService.getCurrentUsername()] = this.numPad;
     this.posNumPad.save();
+    this.changeDetectorRef.detectChanges();
+    this.cmdComp.evalSticky();
   }
 }
