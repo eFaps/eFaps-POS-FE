@@ -36,7 +36,7 @@
     "hammerjs": "^2.0.8",
     "jwt-decode": "^2.2.0",
     "ng-busy": "^1.4.8",
-    "ngx-store": "^2.0.0",
+    "ngx-store": "mtraynham/ngx-store#angular_7_build",
     "parse-decimal-number": "^1.0.0",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
