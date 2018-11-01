@@ -2,8 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as jwtDecode from 'jwt-decode';
 import { LocalStorage } from 'ngx-store';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject ,  Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Roles } from '../model/index';

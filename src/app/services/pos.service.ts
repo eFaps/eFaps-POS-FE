@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
-import { Subscriber } from 'rxjs/Subscriber';
+import { BehaviorSubject ,  Observable ,  Subscriber } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { ConfigService } from './config.service';

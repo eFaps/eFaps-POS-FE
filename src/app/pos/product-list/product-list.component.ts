@@ -40,8 +40,8 @@ export class ProductListComponent
     this.filterForm = this.fb.group({
       'filter': []
     });
-    this.formCtrlSub = this.filterForm.valueChanges
-      .debounceTime(500)
+    this.formCtrlSub = this.filterForm.valueChanges.pipe(
+      debounceTime(500))
       .subscribe(newValue => this.applyFilter(newValue.filter));
 
     if (this.workspaceService.showInventory()) {

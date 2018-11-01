@@ -4,9 +4,8 @@ import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { EnumValues } from 'enum-values';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  Subscription } from 'rxjs';
 import { startWith } from 'rxjs/operators';
-import { Subscription } from 'rxjs/Subscription';
 
 import { Balance, Contact, DocStatus, Document, DocumentType, Payment, PaymentType } from '../model';
 import { BalanceService, DocumentService, PaymentService, PrintService, WorkspaceService } from '../services';

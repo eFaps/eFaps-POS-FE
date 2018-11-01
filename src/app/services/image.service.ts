@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscriber } from 'rxjs/Subscriber';
+import { Observable ,  Subscriber } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { ConfigService } from './config.service';

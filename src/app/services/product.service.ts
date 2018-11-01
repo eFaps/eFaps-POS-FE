@@ -1,9 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { forkJoin } from 'rxjs/observable/forkJoin';
+import { Observable ,  forkJoin ,  Subscriber } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Subscriber } from 'rxjs/Subscriber';
 
 import { Category, PosCategory, Product } from '../model/index';
 import { ConfigService } from './config.service';

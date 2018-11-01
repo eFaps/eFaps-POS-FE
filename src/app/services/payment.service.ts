@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject ,  Observable ,  Subscriber } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Subscriber } from 'rxjs/Subscriber';
 
 import { Balance, Document, Payment } from '../model/index';
 import { PosService } from './pos.service';

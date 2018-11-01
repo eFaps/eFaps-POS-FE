@@ -1,9 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { forkJoin } from 'rxjs/observable/forkJoin';
+import { Observable ,  forkJoin ,  Subscriber } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Subscriber } from 'rxjs/Subscriber';
 
 import { Balance, DocStatus, Invoice, Order, Payable, Receipt, Ticket } from '../model';
 import { ConfigService } from './config.service';
@@ -78,11 +76,11 @@ export class DocumentService {
   public getDocuments4Balance(_balance: Balance): Observable<Payable[]> {
     const receipts = this.getReceipts4Balance(_balance);
     const invoices = this.getInvoicess4Balance(_balance);
-    return forkJoin(receipts, invoices).map(([s1, s2]) => {
+    return forkJoin(receipts, invoices).pipe(map(([s1, s2]) => {
       s1.map(r => r.type = 'RECEIPT');
       s2.map(r => r.type = 'INVOICE');
       return [...s1, ...s2];
-    });
+    }));
   }
 
   public getReceipts4Balance(_balance: Balance): Observable<Receipt[]> {

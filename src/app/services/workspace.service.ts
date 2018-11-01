@@ -1,12 +1,10 @@
-import 'rxjs/add/operator/toPromise';
+
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LocalStorage } from 'ngx-store';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject ,  Observable ,  Subscriber } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Subscriber } from 'rxjs/Subscriber';
 
 import { PosLayout, SpotConfig, Workspace } from '../model/index';
 import { AuthService } from './auth.service';

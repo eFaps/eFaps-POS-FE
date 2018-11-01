@@ -55,8 +55,8 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     this.isAdmin = this.authService.hasRole(Roles.ADMIN);
     this.allowPayment = this.workspaceService.allowPayment();
 
-    this.formCtrlSub = this.filterForm.valueChanges
-      .debounceTime(500)
+    this.formCtrlSub = this.filterForm.valueChanges.pipe(
+      debounceTime(500))
       .subscribe(newValue => this.applyFilter(newValue.filter));
     this.initTable();
   }
