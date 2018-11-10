@@ -1,3 +1,4 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -124,6 +125,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi: true
+    },
+    // temporal woraround to deactivate the LiveAnnouncer
+    {
+      provide: LiveAnnouncer,
+      useValue: {}
     }
   ],
   entryComponents: [

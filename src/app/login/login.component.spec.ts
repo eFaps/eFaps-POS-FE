@@ -1,3 +1,4 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -64,7 +65,8 @@ describe('LoginComponent', () => {
         { provide: ConfigService, useClass: ConfigServiceStub },
         { provide: UserService, useClass: UserServiceStub },
         { provide: SvgIconRegistryService, useClass: SvgIconRegistryServiceStub },
-        { provide: Router, useValue: routerSpy }
+        { provide: Router, useValue: routerSpy },
+        { provide: LiveAnnouncer, useValue: {} },
       ],
       declarations: [VirtKeyboardDirective,
         LoginComponent,
