@@ -1,0 +1,28 @@
+{
+  "name": "syner-kiosk-core",
+  "version": "1.0.0",
+  "description": "Syner-Kiosk core library for conneting to CashDro",
+  "module": "./esm5/index.js",
+  "es2015": "./esm2015/index.js",
+  "typings": "./types/index.d.ts",
+  "scripts": {
+    "cleanup": "shx rm -rf dist",
+    "build": "tsc && tsc --target es2018 --outDir dist/esm2015 && cp package.json dist/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jan Moxter",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^2.0.1",
+    "typed-rest-client": "^1.0.11"
+  },
+  "devDependencies": {
+    "@types/config": "0.0.34",
+    "mockserver-node": "^5.4.1",
+    "shx": "^0.3.2",
+    "typescript": "^3.1.6"
+  },
+  "files": [
+    "dist/"
+  ]
+}

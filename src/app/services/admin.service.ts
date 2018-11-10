@@ -1,7 +1,9 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { ConfigService } from './config.service';
 
@@ -23,6 +25,6 @@ export class AdminService {
     return this.http.get(url, {
       observe: 'response',
       responseType: 'text'
-    }).map(req => req.body);
+    }).pipe(map(req => req.body));
   }
 }

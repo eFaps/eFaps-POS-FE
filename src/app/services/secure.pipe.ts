@@ -1,4 +1,4 @@
-import 'rxjs/add/observable/of';
+
 
 import {
   ChangeDetectorRef,
@@ -9,10 +9,8 @@ import {
 } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject ,  Observable ,  Subscription } from 'rxjs';
 import { ImageService } from './image.service';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 
 @Pipe({
   name: 'secure',

@@ -1,3 +1,4 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { HttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -45,6 +46,7 @@ describe('CreateContactDialogComponent', () => {
         WorkspaceService,
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] },
+        { provide: LiveAnnouncer, useValue: {} },
       ],
       declarations: [CreateContactDialogComponent]
     }).compileComponents();

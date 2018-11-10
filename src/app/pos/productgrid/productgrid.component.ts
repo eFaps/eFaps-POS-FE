@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { Item, PosCategory, Product } from '../../model/index';

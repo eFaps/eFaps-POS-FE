@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Spot, Order } from '../model/index';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { DocumentService } from './document.service';
 import { WorkspaceService } from './workspace.service';
 

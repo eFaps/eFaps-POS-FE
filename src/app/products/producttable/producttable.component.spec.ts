@@ -1,3 +1,4 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -32,6 +33,7 @@ describe('ProducttableComponent', () => {
       ],
       providers: [
         { provide: ProductService, useClass: ProductServiceStub },
+        { provide: LiveAnnouncer, useValue: {} },
       ],
       declarations: [
         VirtKeyboardDirective,

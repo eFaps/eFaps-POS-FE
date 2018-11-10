@@ -1,5 +1,7 @@
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/map';
+
+import {debounceTime} from 'rxjs/operators';
+
+
 
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -22,8 +24,8 @@ export class ContactComponent implements OnInit {
   constructor(private contactService: ContactService) { }
 
   ngOnInit() {
-      this.searchControl.valueChanges
-        .debounceTime(400)
+      this.searchControl.valueChanges.pipe(
+        debounceTime(400))
         .subscribe(data => {
             this.contactService.searchContacts(data, this.nameSearch).subscribe(response => {
                 this.searchResult = response;
