@@ -6,7 +6,7 @@
     "start": "npm run build-css && ng serve --proxy-config proxy.conf.json --host 0.0.0.0",
     "build": "node ./buildutil.js && npm run build-css && ng build --prod",
     "build2": "node ./buildutil.js && npm run build-css && ng build --aot --source-map false",
-    "test": "ng test",
+    "test": "ng test --browsers ChromeHeadless --watch=false",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-css": "node-sass --output src/assets src/scss"
