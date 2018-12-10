@@ -2,6 +2,8 @@
   "name": "pos",
   "version": "0.9.0",
   "license": "Apache 2.0",
+  "homepage": "www.eFaps.org",
+  "main": "main.js",
   "scripts": {
     "start": "npm run build-css && ng serve --proxy-config proxy.conf.json --host 0.0.0.0",
     "build": "node ./buildutil.js && npm run build-css && ng build --prod",
@@ -9,7 +11,10 @@
     "test": "ng test --browsers ChromeHeadless --watch=false",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-css": "node-sass --output src/assets src/scss"
+    "build-css": "node-sass --output src/assets src/scss",
+    "dev": "tsc -p tsconfig-electron.json && concurrently \"npm run start\" \"electron . --dev\"",
+    "build-electron": "tsc -p tsconfig-electron.json && node ./buildutil.js && npm run build-css && ng run pos:build-electron --configuration production",
+    "electron": "npm run build-electron && electron ."
   },
   "private": true,
   "dependencies": {
@@ -44,6 +49,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.10.7",
+    "@angular-guru/electron-builder": "^6.1.7",
     "@angular/cli": "^7.1.2",
     "@angular/compiler-cli": "^7.1.2",
     "@types/jasmine": "^2.8.12",
@@ -52,6 +58,8 @@
     "@types/sockjs-client": "^1.1.0",
     "@types/stompjs": "^2.3.4",
     "codelyzer": "^4.5.0",
+    "concurrently": "^4.1.0",
+    "electron": "^3.0.10",
     "import-sort-style-module": "^4.2.0",
     "jasmine-core": "^2.99.1",
     "jasmine-spec-reporter": "^4.2.1",
@@ -66,7 +74,7 @@
     "replace-in-file": "^3.4.2",
     "ts-node": "^4.1.0",
     "tslint": "^5.11.0",
-    "typescript": "^3.2.2"
+    "typescript": "~3.1.6"
   },
   "importSort": {
     ".js, .jsx, .es6, .es": {

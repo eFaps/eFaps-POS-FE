@@ -58,3 +58,6 @@ typings/
 .env
 
 /dist/
+
+main.js
+main.js.map
