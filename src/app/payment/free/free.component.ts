@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
-import { Payment, PaymentType } from '../../model/index';
+import { PaymentType } from '../../model/index';
 import { PaymentService, UtilsService } from '../../services/index';
 import { PaymentForm } from '../payment-form';
 

@@ -16,6 +16,7 @@
       "CASH": "Efectivo",
       "FREE": "Gratis",
       "CARD": "Tarjeta",
+      "AUTO": "Auto-Pago",
       "DEBITCARD": "Tarjeta de debito",
       "CREDITCARD": "Tarjeta de credito",
       "NOCONTACTMSG": "Se necesita asignar un cliente!"

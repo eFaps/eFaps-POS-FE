@@ -1,0 +1,15 @@
+.right-align {
+  text-align: right;
+}
+
+.payment-form {
+  & mat-form-field {
+    width: 120px;
+    margin-right: 15px;
+  }
+}
+mat-spinner {
+  position: absolute;
+  top: calc(50% - 50px);
+  left: calc(50%);
+}

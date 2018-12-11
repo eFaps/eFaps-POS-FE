@@ -1,0 +1,16 @@
+<div fxLayout="row">
+  <div>
+    <form class="payment-form" [formGroup]="paymentForm">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Monto" type="text" formControlName="amount" class="right-align">
+        <span matPrefix>{{currency}}&nbsp;</span>
+      </mat-form-field>
+      <button type="button" mat-raised-button (click)="setChange()">{{'<<'}}</button>
+    </form>
+    <app-keypad (number)="setNumber($event)"></app-keypad>
+    <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="addPayment()">Add Pago</button>
+  </div>
+  <div>
+    <mat-spinner *ngIf="collecting"></mat-spinner>
+  </div>
+</div>

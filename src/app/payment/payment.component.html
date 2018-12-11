@@ -33,6 +33,11 @@
             <app-card [change]="change"></app-card>
           </ng-template>
         </mat-tab>
+        <mat-tab label="{{'PAYMENT.AUTO' | translate}}">
+          <ng-template matTabContent>
+            <app-auto [change]="change"></app-auto>
+          </ng-template>
+        </mat-tab>
       </mat-tab-group>
     </div>
     <mat-divider></mat-divider>
