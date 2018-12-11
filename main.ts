@@ -5,6 +5,7 @@ import { BrowserWindow, app } from 'electron';
 
 let win;
 let devMode = process.argv.includes('--dev');
+let lifeMode = process.argv.includes('--life');
 console.log(process.argv);
 function createWindow() {
   win = new BrowserWindow({
@@ -14,9 +15,11 @@ function createWindow() {
     }
   });
   if (devMode) {
-    console.log('*** DEV Mode ***');
-    win.loadURL('http://localhost:4200');
     win.webContents.openDevTools();
+  }
+  if (lifeMode) {
+    console.log('*** LIFE Mode ***');
+    win.loadURL('http://localhost:4200');
   } else {
     win.loadURL(url.format({
       pathname: path.join(__dirname, 'dist/index.html'),

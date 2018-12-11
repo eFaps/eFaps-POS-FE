@@ -1,5 +1,5 @@
 export const environment = {
-  electron: false,
+  electron: true,
   production: true,
   version: '0.9.0'
 };

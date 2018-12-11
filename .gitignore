@@ -58,6 +58,7 @@ typings/
 .env
 
 /dist/
+/distribution/
 
 main.js
 main.js.map

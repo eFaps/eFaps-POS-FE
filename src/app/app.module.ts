@@ -5,13 +5,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, Routes } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StompRService } from '@stomp/ng2-stompjs';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HotkeyModule } from 'angular2-hotkeys';
 
+import { environment } from '../environments/environment';
 import { AdminModule } from './admin/admin.module';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
@@ -47,10 +47,16 @@ import {
 import { SharedModule } from './shared/shared.module';
 import { SpotsModule } from './spots/spots.module';
 import { ThemePickerComponent } from './theme-picker/theme-picker.component';
+import { TranslateFileLoader } from './util/translate-file-loader';
 import { WorkspaceComponent } from './workspace/workspace.component';
 
-export function HttpLoaderFactory(httpClient: HttpClient) {
-  return new TranslateHttpLoader(httpClient);
+export function TranslateLoaderFactory(_httpClient: HttpClient) {
+  console.log(environment);
+  if (environment.electron) {
+    return new TranslateFileLoader();
+  } else {
+    return new TranslateHttpLoader(_httpClient);
+  }
 }
 
 @NgModule({
@@ -87,8 +93,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [ HttpClient ]
+        useFactory: TranslateLoaderFactory,
+        deps: [HttpClient]
       }
     })
   ],
@@ -133,10 +139,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     }
   ],
   entryComponents: [
-      ConfirmDialogComponent
+    ConfirmDialogComponent
   ],
   bootstrap: [
-      AppComponent
+    AppComponent
   ]
 })
 export class AppModule { }

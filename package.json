@@ -2,19 +2,26 @@
   "name": "pos",
   "version": "0.9.0",
   "license": "Apache 2.0",
+  "author": {
+    "name": "eFaps.org",
+    "email": "information@eFaps.org"
+  },
   "homepage": "www.eFaps.org",
   "main": "main.js",
   "scripts": {
+    "_build-css": "node-sass --output src/assets src/scss",
+    "_build": "tsc -p tsconfig-electron.json && node ./buildutil.js",
     "start": "npm run build-css && ng serve --proxy-config proxy.conf.json --host 0.0.0.0",
     "build": "node ./buildutil.js && npm run build-css && ng build --prod",
     "build2": "node ./buildutil.js && npm run build-css && ng build --aot --source-map false",
     "test": "ng test --browsers ChromeHeadless --watch=false",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-css": "node-sass --output src/assets src/scss",
-    "dev": "tsc -p tsconfig-electron.json && concurrently \"npm run start\" \"electron . --dev\"",
-    "build-electron": "tsc -p tsconfig-electron.json && node ./buildutil.js && npm run build-css && ng run pos:build-electron --configuration production",
-    "electron": "npm run build-electron && electron ."
+    "electron-live": "npm run _build && npm run _build-css && concurrently \"npm run start\" \"electron . --dev --life\"",
+    "electron-build-prod": "npm run _build && npm run _build-css && ng run pos:build-electron --configuration production",
+    "electron-build-dev": "npm run _build && npm run _build-css && ng run pos:build-electron --configuration development",
+    "electron": "npm run electron-build-dev && electron . --dev",
+    "dist": "build"
   },
   "private": true,
   "dependencies": {
@@ -31,8 +38,8 @@
     "@angular/platform-browser-dynamic": "^7.1.2",
     "@angular/router": "^7.1.2",
     "@ngx-material-keyboard/core": "^0.1.1",
-    "@ngx-translate/core": "^10.0.2",
-    "@ngx-translate/http-loader": "^3.0.1",
+    "@ngx-translate/core": "^11.0.0",
+    "@ngx-translate/http-loader": "^4.0.0",
     "@stomp/ng2-stompjs": "^6.0.1",
     "angular-svg-icon": "^6.0.1",
     "angular2-hotkeys": "^2.1.4",
@@ -60,6 +67,7 @@
     "codelyzer": "^4.5.0",
     "concurrently": "^4.1.0",
     "electron": "^3.0.10",
+    "electron-builder": "^20.38.2",
     "import-sort-style-module": "^4.2.0",
     "jasmine-core": "^2.99.1",
     "jasmine-spec-reporter": "^4.2.1",
@@ -84,6 +92,38 @@
     ".ts, .tsx": {
       "parser": "typescript",
       "style": "module"
+    }
+  },
+  "build": {
+    "appId": "efaps.pos.fe",
+    "productName": "eFaps-POS-FE",
+    "directories": {
+      "output": "distribution"
+    },
+    "linux": {
+      "category": "Office",
+      "description": "POS",
+      "target": [
+        "AppImage",
+        "deb",
+        "zip"
+      ]
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
     }
   }
 }
