@@ -5,20 +5,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MissingTranslationHandler,
-  TranslateCompiler,
   TranslateLoader,
   TranslateModule,
-  TranslateParser,
-  TranslateService,
-  TranslateStore,
-  USE_DEFAULT_LANG
 } from '@ngx-translate/core';
 
-import { HttpLoaderFactory } from '../../app.module';
 import { MaterialModule } from '../../material/material.module';
 import { ConfigService, WorkspaceService } from '../../services/index';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule, TranslateLoaderFactory } from '../../shared/shared.module';
 import { CreateContactDialogComponent } from './create-contact-dialog.component';
 
 describe('CreateContactDialogComponent', () => {
@@ -36,7 +29,7 @@ describe('CreateContactDialogComponent', () => {
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
+            useFactory: TranslateLoaderFactory,
             deps: [HttpClient]
           }
         })

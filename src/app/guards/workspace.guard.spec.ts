@@ -1,9 +1,9 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { LocalStorageService } from 'ngx-store';
 
 import { AuthService, ConfigService, WorkspaceService } from '../services/index';
-
 import { WorkspaceGuard } from './workspace.guard';
 
 describe('WorkspaceGuard', () => {
@@ -18,7 +18,8 @@ describe('WorkspaceGuard', () => {
         ConfigService,
         WorkspaceService,
         HttpClient,
-        HttpHandler
+        HttpHandler,
+        LocalStorageService
       ]
     });
   });

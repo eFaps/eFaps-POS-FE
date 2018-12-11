@@ -1,6 +1,7 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { LocalStorageService } from 'ngx-store';
 
 import { AuthService, ConfigService } from '../services/index';
 import { AuthGuard } from './auth.guard';
@@ -16,7 +17,8 @@ describe('AuthGuard', () => {
         AuthGuard,
         ConfigService,
         HttpClient,
-        HttpHandler
+        HttpHandler,
+        LocalStorageService
       ]
     });
   });

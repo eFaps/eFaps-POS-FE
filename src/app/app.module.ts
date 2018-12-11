@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StompRService } from '@stomp/ng2-stompjs';
 import { AngularSvgIconModule, SERVER_URL } from 'angular-svg-icon';
 import { HotkeyModule } from 'angular2-hotkeys';
@@ -44,19 +43,10 @@ import {
   UtilsService,
   WorkspaceService
 } from './services/index';
-import { SharedModule } from './shared/shared.module';
+import { SharedModule, TranslateLoaderFactory } from './shared/shared.module';
 import { SpotsModule } from './spots/spots.module';
 import { ThemePickerComponent } from './theme-picker/theme-picker.component';
-import { TranslateFileLoader } from './util/translate-file-loader';
 import { WorkspaceComponent } from './workspace/workspace.component';
-export function TranslateLoaderFactory(_httpClient: HttpClient) {
-  console.log(environment);
-  if (environment.electron) {
-    return new TranslateFileLoader();
-  } else {
-    return new TranslateHttpLoader(_httpClient);
-  }
-}
 
 @NgModule({
   declarations: [

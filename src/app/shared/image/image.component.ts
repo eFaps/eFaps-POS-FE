@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
-import { Observable } from 'rxjs';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-image',
@@ -11,8 +10,7 @@ export class ImageComponent implements OnInit {
   imageUrl: any;
   loaded = false;
 
-  constructor(private dialogRef: MatDialogRef<ImageComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: any) { }
+  constructor(@Inject(MAT_DIALOG_DATA) private data: any) { }
 
   ngOnInit() {
     const t = this;

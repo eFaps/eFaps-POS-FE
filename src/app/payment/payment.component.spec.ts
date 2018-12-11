@@ -1,4 +1,3 @@
-import { Component, Input, Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -6,13 +5,17 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { BusyDirective } from 'ng-busy';
 import { MockComponent, MockDirective, MockPipe } from 'ng-mocks';
+import { LocalStorageService } from 'ngx-store';
 import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../material/material.module';
-import { Document } from '../model/index';
 import {
-  BalanceService, DocumentService, PaymentService, PosCurrencyPipe,
-  PrintService, WorkspaceService
+  BalanceService,
+  DocumentService,
+  PaymentService,
+  PosCurrencyPipe,
+  PrintService,
+  WorkspaceService
 } from '../services/index';
 import { ContactComponent } from '../shared/contact/contact.component';
 import { DocumentComponent } from '../shared/document/document.component';
@@ -20,6 +23,7 @@ import { CardComponent } from './card/card.component';
 import { CashComponent } from './cash/cash.component';
 import { FreeComponent } from './free/free.component';
 import { PaymentComponent } from './payment.component';
+import { AutoComponent } from './auto/auto.component';
 
 class DocumentServiceStub { }
 class PaymentServiceStub {
@@ -36,7 +40,8 @@ class PaymentServiceStub {
 class WorkspaceServiceStub {
   currentWorkspace = new Observable(observer => {
     observer.next({
-      docTypes: []
+      docTypes: [],
+      printCmds: []
     });
   });
 }
@@ -47,6 +52,7 @@ class BalanceServiceStub {
 }
 class TranslateServiceStub { }
 class PrintServiceStub { }
+class LocalStorageServiceStub { }
 
 describe('PaymentComponent', () => {
   let component: PaymentComponent;
@@ -62,6 +68,7 @@ describe('PaymentComponent', () => {
         RouterTestingModule
       ],
       providers: [
+        { provide: LocalStorageService, useClass: LocalStorageServiceStub },
         { provide: BalanceService, useClass: BalanceServiceStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
@@ -74,6 +81,7 @@ describe('PaymentComponent', () => {
         MockPipe(PosCurrencyPipe),
         MockComponent(ContactComponent),
         MockComponent(DocumentComponent),
+        MockComponent(AutoComponent),
         MockComponent(CardComponent),
         MockComponent(CashComponent),
         MockComponent(FreeComponent),

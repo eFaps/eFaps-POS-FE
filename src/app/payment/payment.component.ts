@@ -1,11 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
+import { FormBuilder } from '@angular/forms';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { EnumValues } from 'enum-values';
-import { Observable ,  Subscription } from 'rxjs';
-import { startWith } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 import { Balance, Contact, DocStatus, Document, DocumentType, Payment, PaymentType } from '../model';
 import { BalanceService, DocumentService, PaymentService, PrintService, WorkspaceService } from '../services';
@@ -76,8 +74,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
       this.snackBar.open(this.translateService.instant('PAYMENT.NOCONTACTMSG'), '', { duration: 3000 });
       ret = false;
     } else if (DocumentType.RECEIPT === this.docType
-        && this.contact == null
-        && this.document.crossTotal > 700) {
+      && this.contact == null
+      && this.document.crossTotal > 700) {
       this.snackBar.open(this.translateService.instant('PAYMENT.NOCONTACTMSG'), '', { duration: 3000 });
       ret = false;
     }

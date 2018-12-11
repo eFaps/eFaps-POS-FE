@@ -1,5 +1,6 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { TestBed, inject } from '@angular/core/testing';
+import { LocalStorageService } from 'ngx-store';
 
 import { ConfigService } from './config.service';
 
@@ -9,7 +10,8 @@ describe('ConfigService', () => {
       providers: [
         HttpClient,
         HttpHandler,
-        ConfigService
+        ConfigService,
+        LocalStorageService
       ]
     });
   });

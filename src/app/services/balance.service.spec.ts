@@ -9,13 +9,13 @@ import { Observable } from 'rxjs';
 
 class AuthServiceStub {
   currentEvent = new Observable(observer => {
-    observer.next([]);
+    observer.next('nothing');
   });
 }
-class ConfigServiceStub {}
+class ConfigServiceStub { }
 class WorkspaceServiceStub {
   currentWorkspace = new Observable(observer => {
-    observer.next([]);
+    observer.next();
   });
 }
 

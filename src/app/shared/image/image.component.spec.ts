@@ -20,13 +20,13 @@ describe('ImageComponent', () => {
         { provide: MatDialogRef, useValue: {} },
         {
           provide: MAT_DIALOG_DATA, useValue: new Observable(observer => {
-            observer.next({});
+            observer.next(new Blob());
           })
         },
       ],
-      declarations: [ ImageComponent ]
+      declarations: [ImageComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

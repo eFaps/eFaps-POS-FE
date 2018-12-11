@@ -214,7 +214,11 @@
                 "input": "src",
                 "output": "/"
               }
-            ]
+            ],
+            "fileReplacements": [{
+              "replace": "src/app/util/translate-file-loader.ts",
+              "with": "src/app/util/translate-file-loader.noop.ts"
+            }]
           }
         },
         "lint": {

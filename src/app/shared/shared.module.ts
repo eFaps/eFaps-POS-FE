@@ -17,9 +17,15 @@ import { DocumentComponent } from './document/document.component';
 import { ImageComponent } from './image/image.component';
 import { KeypadComponent } from './keypad/keypad.component';
 import { PrintDialogComponent } from './print-dialog/print-dialog.component';
+import { environment } from '../../environments/environment';
+import { TranslateFileLoader } from '../util/translate-file-loader';
 
-export function HttpLoaderFactory(httpClient: HttpClient) {
-  return new TranslateHttpLoader(httpClient);
+export function TranslateLoaderFactory(_httpClient: HttpClient) {
+  if (environment.electron) {
+    return new TranslateFileLoader();
+  } else {
+    return new TranslateHttpLoader(_httpClient);
+  }
 }
 
 @NgModule({

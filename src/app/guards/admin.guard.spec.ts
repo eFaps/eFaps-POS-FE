@@ -1,8 +1,10 @@
-import { TestBed, async, inject } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClient, HttpHandler } from '@angular/common/http';
-import { AdminGuard } from './admin.guard';
+import { TestBed, inject } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { LocalStorageService } from 'ngx-store';
+
 import { AuthService, ConfigService } from '../services/index';
+import { AdminGuard } from './admin.guard';
 
 describe('AdminGuard', () => {
   beforeEach(() => {
@@ -11,11 +13,12 @@ describe('AdminGuard', () => {
         RouterTestingModule
       ],
       providers: [
-        AuthService,
         AdminGuard,
+        AuthService,
         ConfigService,
         HttpClient,
-        HttpHandler
+        HttpHandler,
+        LocalStorageService
       ]
     });
   });
