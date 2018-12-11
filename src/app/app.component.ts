@@ -31,14 +31,14 @@ export class AppComponent implements OnInit, AfterViewChecked {
       this.screenWidth = window.innerWidth;
     };
     this.hotkeysService.add(new Hotkey('shift+f1', (event: KeyboardEvent): boolean => {
-        console.log('Typed hotkey');
-        this.router.navigate(['/pos']);
-        return false;
+      console.log('Typed hotkey');
+      this.router.navigate(['/pos']);
+      return false;
     }, undefined, 'Send a secret message to the console.'));
     this.hotkeysService.add(new Hotkey('shift+f2', (event: KeyboardEvent): boolean => {
-        console.log('Typed hotkey');
-        this.router.navigate(['/orders']);
-        return false;
+      console.log('Typed hotkey');
+      this.router.navigate(['/orders']);
+      return false;
     }, undefined, 'Send a secret message to the console.'));
   }
 
