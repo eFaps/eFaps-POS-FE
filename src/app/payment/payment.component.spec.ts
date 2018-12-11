@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { BusyDirective } from 'ng-busy';
+import { NgBusyDirective } from 'ng-busy';
 import { MockComponent, MockDirective, MockPipe } from 'ng-mocks';
 import { LocalStorageService } from 'ngx-store';
 import { Observable } from 'rxjs/Observable';
@@ -85,7 +85,7 @@ describe('PaymentComponent', () => {
         MockComponent(CardComponent),
         MockComponent(CashComponent),
         MockComponent(FreeComponent),
-        MockDirective(BusyDirective),
+        MockDirective(NgBusyDirective),
         PaymentComponent
       ]
     })
