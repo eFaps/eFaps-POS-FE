@@ -20,6 +20,7 @@
     "electron-live": "npm run _build && npm run _build-css && concurrently \"npm run start\" \"electron . --dev --life\"",
     "electron-build-prod": "npm run _build && npm run _build-css && ng run pos:build-electron --configuration production",
     "electron-build-dev": "npm run _build && npm run _build-css && ng run pos:build-electron --configuration development",
+    "electron-prod": "npm run electron-build-prod && electron .",
     "electron": "npm run electron-build-dev && electron . --dev",
     "dist": "build"
   },
