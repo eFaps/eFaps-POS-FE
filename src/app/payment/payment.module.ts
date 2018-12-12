@@ -5,12 +5,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
+import { AutoComponent } from './auto/auto.component';
+import { CardComponent } from './card/card.component';
 import { CashComponent } from './cash/cash.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { FreeComponent } from './free/free.component';
+import { PaymentTypeContainerComponent } from './payment-type-container/payment-type-container.component';
+import { PaymentTypeDirective } from './payment-type.directive';
 import { PaymentComponent } from './payment.component';
-import { CardComponent } from './card/card.component';
-import { AutoComponent } from './auto/auto.component';
 
 @NgModule({
   imports: [
@@ -27,7 +29,14 @@ import { AutoComponent } from './auto/auto.component';
     FreeComponent,
     ConfirmDialogComponent,
     CardComponent,
-    AutoComponent
+    AutoComponent,
+    PaymentTypeDirective,
+    PaymentTypeContainerComponent
+  ],
+  entryComponents: [
+    CashComponent,
+    CardComponent,
+    FreeComponent
   ]
 })
 export class PaymentModule { }

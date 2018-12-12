@@ -1,5 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, ComponentFactoryResolver, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,6 +8,10 @@ import { Balance, Contact, DocStatus, Document, DocumentType, Payment, PaymentTy
 import { BalanceService, DocumentService, PaymentService, PrintService, WorkspaceService } from '../services';
 import { PrintDialogComponent } from '../shared/print-dialog/print-dialog.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { PaymentTypeItem } from './payment-type-item';
+import { CashComponent } from './cash/cash.component';
+import { FreeComponent } from './free/free.component';
+import { CardComponent } from './card/card.component';
 
 @Component({
   selector: 'app-payment',
@@ -16,6 +19,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit, OnDestroy {
+  tabs: PaymentTypeItem[] = [];
   DocumentType = DocumentType;
   PaymentType = PaymentType;
   document: Document;
@@ -41,8 +45,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     private balanceService: BalanceService,
     private printService: PrintService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar,
-    private fb: FormBuilder) {
+    private snackBar: MatSnackBar) {
   }
 
 
@@ -62,6 +65,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
         this.docTypes.push(_value.toString());
       });
     }));
+    this.tabs.push(new PaymentTypeItem(CashComponent, "Cash"));
+    this.tabs.push(new PaymentTypeItem(FreeComponent, "Free"));
+    this.tabs.push(new PaymentTypeItem(CardComponent, "Card"));
   }
 
   ngOnDestroy() {

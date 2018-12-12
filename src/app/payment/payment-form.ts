@@ -7,8 +7,7 @@ import { PaymentService, UtilsService } from '../services/index';
 export abstract class PaymentForm implements OnInit {
   public paymentForm: FormGroup;
   protected payments: Payment[];
-  @Input()
-  protected change: number;
+  @Input() protected change: number;
   public currency: string;
 
   constructor(protected paymentService: PaymentService, protected utilsService: UtilsService,
