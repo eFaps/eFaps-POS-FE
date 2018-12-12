@@ -55,6 +55,7 @@
     "parse-decimal-number": "^1.0.0",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
+    "synercash": "file:./synercash-0.0.2.tgz",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

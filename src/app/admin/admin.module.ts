@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SynerCashModule } from 'synercash';
 
 import { MaterialModule } from '../material/material.module';
 import { AdminComponent } from './admin/admin.component';
@@ -9,7 +10,8 @@ import { AdminComponent } from './admin/admin.component';
   imports: [
     CommonModule,
     FlexLayoutModule,
-    MaterialModule
+    MaterialModule,
+    SynerCashModule
   ],
   declarations: [AdminComponent]
 })
