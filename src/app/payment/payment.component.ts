@@ -1,17 +1,29 @@
-import { Component, ComponentFactoryResolver, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-import { Balance, Contact, DocStatus, Document, DocumentType, Payment, PaymentType } from '../model';
-import { BalanceService, DocumentService, PaymentService, PrintService, WorkspaceService } from '../services';
+import {
+  Balance,
+  Contact,
+  DocStatus,
+  Document,
+  DocumentType,
+  Payment,
+  PaymentType
+} from '../model';
+import {
+  BalanceService,
+  DocumentService,
+  PaymentService,
+  PrintService,
+  WorkspaceService
+} from '../services';
+import { PaymentTypeProviderService } from '../services/payment-type-provider.service';
 import { PrintDialogComponent } from '../shared/print-dialog/print-dialog.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { PaymentTypeItem } from './payment-type-item';
-import { CashComponent } from './cash/cash.component';
-import { FreeComponent } from './free/free.component';
-import { CardComponent } from './card/card.component';
 
 @Component({
   selector: 'app-payment',
@@ -41,6 +53,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     private workspaceService: WorkspaceService,
     public paymentService: PaymentService,
+    private paymentTypeProvider: PaymentTypeProviderService,
     private documentService: DocumentService,
     private balanceService: BalanceService,
     private printService: PrintService,
@@ -65,9 +78,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
         this.docTypes.push(_value.toString());
       });
     }));
-    this.tabs.push(new PaymentTypeItem(CashComponent, "Cash"));
-    this.tabs.push(new PaymentTypeItem(FreeComponent, "Free"));
-    this.tabs.push(new PaymentTypeItem(CardComponent, "Card"));
+    this.paymentTypeProvider.getPaymentTypeItems().subscribe(items => this.tabs = items);
   }
 
   ngOnDestroy() {

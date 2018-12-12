@@ -34,6 +34,7 @@ import { PaymentComponent } from './payment.component';
     PaymentTypeContainerComponent
   ],
   entryComponents: [
+    AutoComponent,
     CashComponent,
     CardComponent,
     FreeComponent

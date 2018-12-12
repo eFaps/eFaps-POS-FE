@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 import { PaymentService, UtilsService } from '../../services/index';
-import { Payment, PaymentType } from '../../model/index';
+import { PaymentType } from '../../model/index';
 import { PaymentForm } from '../payment-form';
 
 @Component({
@@ -18,7 +18,7 @@ export class CashComponent extends PaymentForm {
   }
 
   getPaymentType(): PaymentType {
-      return PaymentType.CASH;
+    return PaymentType.CASH;
   }
 
   addNumber(_number: number) {

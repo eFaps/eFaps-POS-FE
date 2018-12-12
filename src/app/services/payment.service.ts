@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject ,  Observable ,  Subscriber } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
-import { Balance, Document, Payment } from '../model/index';
+import { Document, Payment } from '../model/index';
 import { PosService } from './pos.service';
+import { PaymentTypeItem } from '../payment/payment-type-item';
+import { CashComponent } from '../payment/cash/cash.component';
+import { FreeComponent } from '../payment/free/free.component';
+import { CardComponent } from '../payment/card/card.component';
 
 @Injectable()
 export class PaymentService {
