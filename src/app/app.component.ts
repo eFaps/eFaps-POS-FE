@@ -1,10 +1,12 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Hotkey, HotkeysService } from 'angular2-hotkeys';
 
+import { environment } from '../environments/environment';
 import { Roles } from './model/index';
 import { AuthService, WorkspaceService } from './services/index';
-import { HotkeysService, Hotkey } from 'angular2-hotkeys';
+import { ElectronUtil } from './util/electron-util';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +21,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   spots = false;
   inventory = false;
   allowPayment = false;
+  electron = false;
 
   constructor(public router: Router, private cdRef: ChangeDetectorRef,
     public translate: TranslateService,
@@ -30,6 +33,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
     window.onresize = () => {
       this.screenWidth = window.innerWidth;
     };
+    this.electron = environment.electron;
     this.hotkeysService.add(new Hotkey('shift+f1', (event: KeyboardEvent): boolean => {
       console.log('Typed hotkey');
       this.router.navigate(['/pos']);
@@ -59,5 +63,9 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked() {
     this.cdRef.detectChanges();
+  }
+
+  async close() {
+    ElectronUtil.close();
   }
 }

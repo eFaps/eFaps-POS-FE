@@ -61,6 +61,9 @@
           </button>
         </mat-list-item>
       </mat-list>
+      <button *ngIf="electron" matTooltip="{{'MENU.CLOSE' | translate}}" matTooltipPosition="right" id="close" (click)="close()">
+          <mat-icon aria-label="Close" class="posIcon-36">album</mat-icon>
+      </button>
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet></router-outlet>

@@ -32,7 +32,8 @@
       "BALANCE": "Cierre de Cajas",
       "WORKSPACES": "Entornos",
       "ADMIN": "Admin",
-      "LOGIN": "Login/Logout"
+      "LOGIN": "Login/Logout",
+      "CLOSE": "Cerrar"
   },
   "CONTACTS": {
       "CREATETITLE": "Registrar nuevo Cliente",
