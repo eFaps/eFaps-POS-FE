@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 import { Document, Payment } from '../model/index';
 import { PosService } from './pos.service';
-import { PaymentTypeItem } from '../payment/payment-type-item';
-import { CashComponent } from '../payment/cash/cash.component';
-import { FreeComponent } from '../payment/free/free.component';
-import { CardComponent } from '../payment/card/card.component';
 
 @Injectable()
 export class PaymentService {

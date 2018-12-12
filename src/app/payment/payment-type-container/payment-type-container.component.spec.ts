@@ -1,4 +1,5 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFactoryResolver } from '@angular/core';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
 import { PaymentTypeContainerComponent } from './payment-type-container.component';
 
@@ -8,9 +9,14 @@ describe('PaymentTypeContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PaymentTypeContainerComponent ]
+      providers: [
+        ComponentFactoryResolver
+      ],
+      declarations: [
+        PaymentTypeContainerComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,10 +1,7 @@
-
-
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LocalStorage } from 'ngx-store';
-import { BehaviorSubject ,  Observable ,  Subscriber } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { PosLayout, SpotConfig, Workspace } from '../model/index';
 import { AuthService } from './auth.service';
@@ -35,19 +32,19 @@ export class WorkspaceService {
     if (this.currentSource.getValue()) {
       return new Promise<boolean>(resolve => resolve(true));
     }
-      const workspaceOid = this.workspaces[this.auth.getCurrentUsername()];
-      if (workspaceOid) {
-        return new Promise<boolean>(resolve => {
-          this.getWorkspace(workspaceOid).subscribe(
-            _ws => {
-              this.setCurrent(_ws);
-              resolve(true);
-            },
-            _error => {
-              resolve(false);
-            }
-          );
-        });
+    const workspaceOid = this.workspaces[this.auth.getCurrentUsername()];
+    if (workspaceOid) {
+      return new Promise<boolean>(resolve => {
+        this.getWorkspace(workspaceOid).subscribe(
+          _ws => {
+            this.setCurrent(_ws);
+            resolve(true);
+          },
+          _error => {
+            resolve(false);
+          }
+        );
+      });
 
     }
     return new Promise<boolean>(resolve => resolve(false));
@@ -74,25 +71,25 @@ export class WorkspaceService {
 
   public showSpots() {
     return this.current
-        && this.current.spotConfig
-        && this.current.spotConfig === SpotConfig.BASIC;
+      && this.current.spotConfig
+      && this.current.spotConfig === SpotConfig.BASIC;
   }
 
   public getSpotSize(): number {
     return this.current
-        && this.current.spotCount;
+      && this.current.spotCount;
   }
 
   public showInventory() {
     return this.current
-        && this.current.warehouseOid
-        && this.current.warehouseOid.length > 0;
+      && this.current.warehouseOid
+      && this.current.warehouseOid.length > 0;
   }
 
   public allowPayment() {
     return this.current
-        && this.current.docTypes
-        && this.current.docTypes.length > 0;
+      && this.current.docTypes
+      && this.current.docTypes.length > 0;
   }
 
   public getWarehouseOid(): string {
@@ -100,8 +97,8 @@ export class WorkspaceService {
   }
 
   public getPosLayout(): PosLayout {
-      return this.current && this.current.posLayout
-        ? this.current.posLayout
-        : PosLayout.GRID;
+    return this.current && this.current.posLayout
+      ? this.current.posLayout
+      : PosLayout.GRID;
   }
 }

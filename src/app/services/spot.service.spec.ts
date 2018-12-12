@@ -15,6 +15,9 @@ class WorkspaceServiceStub {
   currentWorkspace = new Observable(observer => {
     observer.next();
   });
+  public getSpotSize(): number {
+    return 0;
+  }
 }
 
 describe('SpotService', () => {

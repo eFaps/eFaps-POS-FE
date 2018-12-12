@@ -32,7 +32,11 @@ class PaymentServiceStub {
     observer.next([]);
   });
 }
-class WorkspaceServiceStub { }
+class WorkspaceServiceStub {
+  getSpotSize(): number {
+    return 0;
+  }
+}
 
 describe('AutoComponent', () => {
   let component: AutoComponent;

@@ -8,9 +8,15 @@ import { MockPipe } from 'ng-mocks';
 import { MaterialModule } from '../../material/material.module';
 import { DocumentService, WorkspaceService } from '../../services';
 import { SpotDialogComponent } from './spot-dialog.component';
+import { Observable, of } from 'rxjs';
+import { Order } from '../../model';
 
-class DocumentServiceStub {}
-class WorkspaceServiceStub {}
+class DocumentServiceStub {
+  public getOrders4Spots(): Observable<Order[]> {
+    return of([]);
+  }
+}
+class WorkspaceServiceStub { }
 
 describe('SpotDialogComponent', () => {
   let component: SpotDialogComponent;

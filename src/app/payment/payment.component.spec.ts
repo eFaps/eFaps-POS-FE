@@ -19,11 +19,11 @@ import {
 } from '../services/index';
 import { ContactComponent } from '../shared/contact/contact.component';
 import { DocumentComponent } from '../shared/document/document.component';
-import { CardComponent } from './card/card.component';
-import { CashComponent } from './cash/cash.component';
-import { FreeComponent } from './free/free.component';
 import { PaymentComponent } from './payment.component';
-import { AutoComponent } from './auto/auto.component';
+import { PaymentTypeProviderService } from '../services/payment-type-provider.service';
+import { PaymentTypeContainerComponent } from './payment-type-container/payment-type-container.component';
+import { PaymentTypeItem } from './payment-type-item';
+import { of } from 'rxjs';
 
 class DocumentServiceStub { }
 class PaymentServiceStub {
@@ -53,6 +53,11 @@ class BalanceServiceStub {
 class TranslateServiceStub { }
 class PrintServiceStub { }
 class LocalStorageServiceStub { }
+class PaymentTypeProviderServiceStub {
+  getPaymentTypeItems(): Observable<PaymentTypeItem[]> {
+    return of([]);
+  }
+}
 
 describe('PaymentComponent', () => {
   let component: PaymentComponent;
@@ -72,6 +77,7 @@ describe('PaymentComponent', () => {
         { provide: BalanceService, useClass: BalanceServiceStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
+        { provide: PaymentTypeProviderService, useClass: PaymentTypeProviderServiceStub },
         { provide: TranslateService, useClass: TranslateServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: PrintService, useClass: PrintServiceStub }
@@ -81,10 +87,7 @@ describe('PaymentComponent', () => {
         MockPipe(PosCurrencyPipe),
         MockComponent(ContactComponent),
         MockComponent(DocumentComponent),
-        MockComponent(AutoComponent),
-        MockComponent(CardComponent),
-        MockComponent(CashComponent),
-        MockComponent(FreeComponent),
+        MockComponent(PaymentTypeContainerComponent),
         MockDirective(NgBusyDirective),
         PaymentComponent
       ]

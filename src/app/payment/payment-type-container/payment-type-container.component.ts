@@ -15,10 +15,12 @@ export class PaymentTypeContainerComponent implements OnInit {
   constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
-    let componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.item.component);
-    let viewContainerRef = this.paymentType.viewContainerRef;
-    viewContainerRef.clear();
-    let componentRef = viewContainerRef.createComponent(componentFactory);
-    componentRef.instance.change = this.change;
+    if (this.item) {
+      let componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.item.component);
+      let viewContainerRef = this.paymentType.viewContainerRef;
+      viewContainerRef.clear();
+      let componentRef = viewContainerRef.createComponent(componentFactory);
+      componentRef.instance.change = this.change;
+    }
   }
 }
