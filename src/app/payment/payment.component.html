@@ -15,7 +15,7 @@
     </div>
     <app-document [document]='document'></app-document>
   </div>
-  <div fxFlex>
+  <div fxFlex class="paymentsContainer">
     <div class="paymentsTypes">
       <mat-tab-group>
         <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab.label">
