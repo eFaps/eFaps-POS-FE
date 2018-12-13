@@ -2,11 +2,25 @@ import * as path from 'path';
 import * as url from 'url';
 
 import { BrowserWindow, app } from 'electron';
+import { localStorage } from 'electron-browser-storage';
 
-let win;
-let devMode = process.argv.includes('--dev');
-let lifeMode = process.argv.includes('--life');
+let win, baseUrl;
+let devMode = false;
+let lifeMode = false;
 console.log(process.argv);
+
+process.argv.forEach(val => {
+  if (val === '--dev') {
+    devMode = true;
+  }
+  if (val === '--life') {
+    lifeMode = true;
+  }
+  if (val.startsWith('--baseUrl=')) {
+    baseUrl = val.replace('--baseUrl=', '');
+  }
+});
+
 function createWindow() {
   win = new BrowserWindow({
     kiosk: !devMode,
@@ -31,7 +45,12 @@ function createWindow() {
     win = null;
   });
 }
-app.on('ready', createWindow);
+app.on('ready', async () => {
+  if (baseUrl) {
+    await localStorage.setItem('synerPOS_baseUrl', baseUrl);
+  }
+  createWindow();
+});
 
 app.on('window-all-closed', function() {
   // On macOS specific close process

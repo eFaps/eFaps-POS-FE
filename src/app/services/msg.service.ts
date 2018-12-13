@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { StompConfig, StompRService } from '@stomp/ng2-stompjs';
-import { Message } from '@stomp/stompjs';
 
 import { AuthService } from './auth.service';
 import { ConfigService } from './config.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,9 @@ export class MsgService {
   init() {
     if (!this.stompService.connected()) {
       const stompConfig: StompConfig = {
-        url: `ws:///${window.location.host}${this.configService.socketUrl}`,
+        url: environment.electron
+          ? this.configService.socketUrl
+          : `ws:///${window.location.host}${this.configService.socketUrl}`,
         headers: {
           login: this.authService.currentUser.token,
         },
