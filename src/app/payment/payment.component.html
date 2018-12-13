@@ -17,7 +17,7 @@
   </div>
   <div fxFlex class="paymentsContainer">
     <div class="paymentsTypes">
-      <mat-tab-group>
+      <mat-tab-group (selectedIndexChange)="selectPaymentType($event)">
         <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab.label">
           <ng-template matTabContent>
             <app-payment-type-container [item]="tab" [change]="change"></app-payment-type-container>

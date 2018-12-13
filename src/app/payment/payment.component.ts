@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatSnackBar, MatTabGroup } from '@angular/material';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -24,6 +24,7 @@ import { PaymentTypeProviderService } from '../services/payment-type-provider.se
 import { PrintDialogComponent } from '../shared/print-dialog/print-dialog.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { PaymentTypeItem } from './payment-type-item';
+import { LocalStorage } from 'ngx-store';
 
 @Component({
   selector: 'app-payment',
@@ -31,7 +32,9 @@ import { PaymentTypeItem } from './payment-type-item';
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit, OnDestroy {
+  @ViewChild(MatTabGroup) tabGroup: MatTabGroup;
   tabs: PaymentTypeItem[] = [];
+  @LocalStorage() selectedPaymentTypeItem: number = 0;
   DocumentType = DocumentType;
   PaymentType = PaymentType;
   document: Document;
@@ -78,7 +81,10 @@ export class PaymentComponent implements OnInit, OnDestroy {
         this.docTypes.push(_value.toString());
       });
     }));
-    this.paymentTypeProvider.getPaymentTypeItems().subscribe(items => this.tabs = items);
+    this.sub$.push(this.paymentTypeProvider.getPaymentTypeItems().subscribe(items => {
+      this.tabs = items;
+      this.tabGroup.selectedIndex = this.selectedPaymentTypeItem;
+    }));
   }
 
   ngOnDestroy() {
@@ -202,5 +208,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(PrintDialogComponent, {
       data: this.printService.printPreliminary(this.workspaceOid, this.document)
     });
+  }
+
+  selectPaymentType(_index: number) {
+    this.selectedPaymentTypeItem = _index;
   }
 }
