@@ -13,7 +13,7 @@ export class BalanceDocumentListComponent implements OnInit {
   DocStatus = DocStatus;
   displayedColumns = ['type', 'number', 'date', 'total', 'status', 'cmd'];
   dataSource = new MatTableDataSource<Payable>();
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   currentBalance: Balance;
 

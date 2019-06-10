@@ -12,7 +12,7 @@ import { InventoryService } from '../../services/index';
 export class InventoryTableComponent implements OnInit {
   displayedColumns = ['quantity', 'sku', 'description'];
   dataSource = new MatTableDataSource();
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
   @Input() warehouse: Warehouse;
 
   constructor(private inventoryService: InventoryService) { }

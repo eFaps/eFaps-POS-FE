@@ -13,7 +13,7 @@ export class DocumentComponent implements OnInit {
   displayedColumns = ['index', 'quantity', 'productDesc', 'crossUnitPrice', 'crossPrice'];
   dataSource = new MatTableDataSource<DocItem>();
   @Input() document: Document;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(private router: Router) { }
 

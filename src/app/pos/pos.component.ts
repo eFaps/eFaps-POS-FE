@@ -35,7 +35,7 @@ export class PosComponent implements OnInit, OnDestroy {
   numPad = false;
   @LocalStorage() posNumPad: any = {};
   multiplier = 1;
-  @ViewChild(CommandsComponent) cmdComp;
+  @ViewChild(CommandsComponent, { static: true }) cmdComp;
 
   constructor(public workspaceService: WorkspaceService,
     private posService: PosService,
@@ -48,7 +48,7 @@ export class PosComponent implements OnInit, OnDestroy {
     this.multiplierForm = this.fb.group({
       'multiplier': [''],
     });
-    this.posService.currentTicket.subscribe(data =>  {
+    this.posService.currentTicket.subscribe(data => {
       this.ticket = data;
       this.changeDetectorRef.detectChanges();
       this.cmdComp.evalSticky();

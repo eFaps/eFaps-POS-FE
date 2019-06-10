@@ -15,7 +15,7 @@ import { ProductComponent } from '../product/product.component';
 export class ProducttableComponent implements OnInit, OnDestroy {
   displayedColumns = ['sku', 'description', 'cmd'];
   dataSource = new MatTableDataSource();
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
   @LocalStorage() virtKeyboard = false;
   filterForm: FormGroup;
 

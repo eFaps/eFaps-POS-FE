@@ -21,7 +21,7 @@ export class ProductListComponent
   formCtrlSub: Subscription;
   displayedColumns = ['sku', 'description', 'cmd'];
   dataSource = new MatTableDataSource();
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   inventory: InventoryEntry[] = [];
 
