@@ -23,7 +23,7 @@
     </div>
   </form>
 </div>
-<svg-icon src="/assets/synercom_logo.svg" class="logo"></svg-icon>
+<svg-icon src="/assets/synercom_logo.svg" class="logo" [svgStyle]="{ 'width.px':200 }"></svg-icon>
 <div class="config">
   <mat-slide-toggle [checked]="virtKeyboard" (change)="toggleVirtKeyboard($event)">
     Virtual Keyboard

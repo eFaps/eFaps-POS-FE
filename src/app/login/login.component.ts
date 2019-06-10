@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Router } from '@angular/router';
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   hiddenUser = true;
   @LocalStorage() virtKeyboard = false;
-  @ViewChild('pwd') pwdField: ElementRef;
+  @ViewChild('pwd', { static: false }) pwdField: ElementRef;
 
   constructor(
     private router: Router,

@@ -10,7 +10,7 @@ import { PaymentTypeDirective } from '../payment-type.directive';
 export class PaymentTypeContainerComponent implements OnInit {
   @Input() item: PaymentTypeItem;
   @Input() change: number;
-  @ViewChild(PaymentTypeDirective) paymentType: PaymentTypeDirective;
+  @ViewChild(PaymentTypeDirective, { static: true }) paymentType: PaymentTypeDirective;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 

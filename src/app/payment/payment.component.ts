@@ -32,7 +32,7 @@ import { LocalStorage } from 'ngx-store';
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit, OnDestroy {
-  @ViewChild(MatTabGroup) tabGroup: MatTabGroup;
+  @ViewChild(MatTabGroup, { static: true }) tabGroup: MatTabGroup;
   tabs: PaymentTypeItem[] = [];
   @LocalStorage() selectedPaymentTypeItem: number = 0;
   DocumentType = DocumentType;

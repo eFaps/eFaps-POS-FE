@@ -12,7 +12,7 @@ import { CreateContactDialogComponent } from '../create-contact-dialog/create-co
 export class ContactTableComponent implements OnInit {
   displayedColumns = ['name', 'idType', 'idNumber'];
   dataSource = new MatTableDataSource<Contact>();
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(private contactService: ContactService, private dialog: MatDialog,
     private changeDetectorRefs: ChangeDetectorRef) { }
