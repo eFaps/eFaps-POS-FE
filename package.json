@@ -1,6 +1,6 @@
 {
   "name": "pos",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "license": "Apache 2.0",
   "author": {
     "name": "eFaps.org",
@@ -55,7 +55,7 @@
     "parse-decimal-number": "^1.0.0",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
-    "synercash": "file:./synercash-0.0.2.tgz",
+    "synercash": "file:./synercash-0.0.3.tgz",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
