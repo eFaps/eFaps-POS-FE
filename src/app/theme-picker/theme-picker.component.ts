@@ -1,5 +1,4 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, NgModule, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
 import { DocsSiteTheme, StyleManagerService } from '../services/index';
 import { LocalStorage } from 'ngx-store';
@@ -45,16 +44,13 @@ export class ThemePickerComponent {
   ) {
     if (this.currentTheme) {
       this.installTheme(this.currentTheme);
+    } else {
+      this.installTheme(this.themes[1]);
     }
   }
   installTheme(theme: DocsSiteTheme) {
     this.currentTheme = this._getCurrentThemeFromHref(theme.href);
-
-    if (theme.isDefault) {
-      this.styleManager.removeStyle('theme');
-    } else {
-      this.styleManager.setStyle('theme', `assets/${theme.href}`);
-    }
+    this.styleManager.setStyle('theme', `assets/${theme.href}`);
   }
 
   private _getCurrentThemeFromHref(href: string): DocsSiteTheme {
