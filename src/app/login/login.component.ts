@@ -45,6 +45,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (this.companyService.hasCompany()) {
       this.showCompanySelection = false;
       this.subscription.add(this.userService.getUsers().subscribe(data => this.users = data));
+      this.subscription.add(this.companyService.getCompanies()
+        .subscribe(
+          {
+            next: companies => this.companies = companies
+          }
+        ));
     } else {
       this.subscription.add(this.companyService.getCompanies()
         .subscribe(
@@ -110,6 +116,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.companyService.setCurrentCompany(company);
     this.showCompanySelection = false;
     this.userService.getUsers().subscribe(data => this.users = data);
+  }
+
+  showCompanies() {
+    this.showCompanySelection = true;
   }
 
   ngOnDestroy(): void {

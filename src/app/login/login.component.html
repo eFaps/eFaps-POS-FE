@@ -40,3 +40,4 @@
   </mat-slide-toggle>
 </div>
 <mat-button-toggle [value]="hiddenUser" (change)="toggleUser()" class="hiddenUser">{{'HIDDENUSER' | translate}}</mat-button-toggle>
+<mat-button-toggle *ngIf="companies.length > 1" (change)="showCompanies()" class="showCompanies">{{'SHOWCOMPANIES' | translate}}</mat-button-toggle>

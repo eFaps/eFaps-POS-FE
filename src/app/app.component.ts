@@ -5,7 +5,7 @@ import { Hotkey, HotkeysService } from 'angular2-hotkeys';
 
 import { environment } from '../environments/environment';
 import { Roles } from './model/index';
-import { AuthService, WorkspaceService } from './services/index';
+import { AuthService, WorkspaceService, CompanyService } from './services/index';
 import { ElectronUtil } from './util/electron-util';
 
 @Component({
@@ -18,6 +18,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   title = 'app';
   screenWidth: number;
   workspace: string;
+  company: string;
   spots = false;
   inventory = false;
   allowPayment = false;
@@ -27,7 +28,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
     public translate: TranslateService,
     private workspaceService: WorkspaceService,
     public auth: AuthService,
-    private hotkeysService: HotkeysService) {
+    private hotkeysService: HotkeysService,
+    private companyService: CompanyService) {
     translate.use(workspaceService.getLanguage());
     this.screenWidth = window.innerWidth;
     window.onresize = () => {
@@ -47,6 +49,10 @@ export class AppComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
+    this.companyService.company.subscribe({
+      next: data => this.company = data.label
+    });
+
     this.workspaceService.currentWorkspace.subscribe(_data => {
       if (_data) {
         this.workspace = _data.name;

@@ -10,6 +10,7 @@
   "USER": "Usuario",
   "VAT": "I.G.V.",
   "HIDDENUSER": "Otros Usuarios",
+  "SHOWCOMPANIES": "Selecionar Empresa",
   "PAYMENT": {
       "TOTAL": "Total",
       "CHANGE": "Cambio",
