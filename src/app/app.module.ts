@@ -34,6 +34,7 @@ import {
   ErrorInterceptor,
   ImageService,
   JwtInterceptor,
+  CompanyInterceptor,
   MsgService,
   PaymentService,
   PosService,
@@ -121,6 +122,11 @@ import { WorkspaceComponent } from './workspace/workspace.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CompanyInterceptor,
       multi: true
     },
     {

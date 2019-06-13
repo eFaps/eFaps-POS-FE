@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.workspaceService.logout();
     if (this.companyService.hasCompany()) {
       this.showCompanySelection = false;
-      this.userService.getUsers().subscribe(data => this.users = data);
+      this.subscription.add(this.userService.getUsers().subscribe(data => this.users = data));
     } else {
       this.subscription.add(this.companyService.getCompanies()
         .subscribe(

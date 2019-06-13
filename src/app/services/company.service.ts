@@ -4,13 +4,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Company } from '../model';
 import { ConfigService } from './config.service';
+import { LocalStorage } from 'ngx-store';
 
 @Injectable()
 export class CompanyService {
+  @LocalStorage() public currentCompany: Company;
 
-  private current: Company = null;
-  private currentSource = new BehaviorSubject<Company>(this.current);
-  currentCompany = this.currentSource.asObservable();
+  private currentSource = new BehaviorSubject<Company>(this.currentCompany);
+  company = this.currentSource.asObservable();
 
   constructor(private http: HttpClient, private config: ConfigService) {
   }
@@ -22,11 +23,11 @@ export class CompanyService {
   }
 
   setCurrentCompany(company: Company): any {
-    this.current = company;
+    this.currentCompany = company;
     this.currentSource.next(company);
   }
 
   hasCompany(): boolean {
-    return this.current != null;
+    return this.currentCompany != null;
   }
 }
