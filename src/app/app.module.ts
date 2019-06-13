@@ -39,6 +39,7 @@ import {
   PosService,
   ProductService,
   SameHeightDirective,
+  CompanyService,
   UserService,
   UtilsService,
   WorkspaceService
@@ -103,6 +104,7 @@ import { WorkspaceComponent } from './workspace/workspace.component';
     UserService,
     ImageService,
     ConfigService,
+    CompanyService,
     StompRService,
     WorkspaceService,
     {

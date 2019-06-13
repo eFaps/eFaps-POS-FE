@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
@@ -6,24 +6,30 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { LocalStorage } from 'ngx-store';
 
-import { User } from '../model/index';
-import { AuthService, UserService, WorkspaceService } from '../services/index';
+import { User, Company } from '../model/index';
+import { AuthService, CompanyService, UserService, WorkspaceService } from '../services/index';
+import { Subscription } from 'rxjs';
 
 @Component({
   moduleId: module.id,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+export class LoginComponent implements OnInit, OnDestroy {
+  private subscription: Subscription = new Subscription();
+  companies: Company[] = [];
   users: User[] = [];
+  loginForm: FormGroup;
   loading = false;
   hiddenUser = true;
   @LocalStorage() virtKeyboard = false;
   @ViewChild('pwd', { static: false }) pwdField: ElementRef;
 
+  showCompanySelection = false;
+
   constructor(
     private router: Router,
+    private companyService: CompanyService,
     private userService: UserService,
     private authService: AuthService,
     private workspaceService: WorkspaceService,
@@ -36,8 +42,20 @@ export class LoginComponent implements OnInit {
     // reset login status
     this.authService.logout();
     this.workspaceService.logout();
-    this.userService.getUsers()
-      .subscribe(data => this.users = data);
+    if (this.companyService.hasCompany()) {
+      this.showCompanySelection = false;
+      this.userService.getUsers().subscribe(data => this.users = data);
+    } else {
+      this.subscription.add(this.companyService.getCompanies()
+        .subscribe(
+          {
+            next: companies => {
+              this.companies = companies;
+              this.showCompanySelection = companies.length > 1;
+            }
+          }
+        ));
+    }
   }
 
   createForm() {
@@ -86,5 +104,15 @@ export class LoginComponent implements OnInit {
 
   toggleVirtKeyboard(_toggle: MatSlideToggleChange) {
     this.virtKeyboard = !this.virtKeyboard;
+  }
+
+  setCompany(company: Company) {
+    this.companyService.setCurrentCompany(company);
+    this.showCompanySelection = false;
+    this.userService.getUsers().subscribe(data => this.users = data);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

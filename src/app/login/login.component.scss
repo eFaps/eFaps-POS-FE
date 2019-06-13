@@ -1,3 +1,27 @@
+@mixin login-theme($theme) {
+  $background: map-get($theme, background);
+
+  .companies {
+    background-color: mat-color($background, card);
+  }
+}
+
+.companies {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+
+  .pos-companycard {
+    width: 160px;
+    cursor: pointer;
+
+    .mat-card-content {
+      text-align: center;
+    }
+  }
+}
+
 .pos-usergrid {
   margin-top: 20px;
   margin-left: auto;

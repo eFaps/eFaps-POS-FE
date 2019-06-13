@@ -1,12 +1,15 @@
 @import '../styles';
 @import '../app/pos/productgrid/productgrid.component.scss';
-// Define the dark theme.
+@import '../app/login/login.component.scss';
+
 $primary: mat-palette($mat-pink);
 $accent: mat-palette($mat-blue-grey, A200, A100, A400);
 $theme: mat-dark-theme($primary, $accent);
+
 @include angular-material-theme($theme);
 @include material-docs-app-theme($theme);
 @include productgrid-theme($theme);
+@include login-theme($theme);
 
 svg-icon.logo {
   fill: #e91e63;

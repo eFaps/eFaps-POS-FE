@@ -1,13 +1,15 @@
 @import '../styles';
 @import '../app/pos/productgrid/productgrid.component.scss';
+@import '../app/login/login.component.scss';
 
 $primary: mat-palette($mat-indigo);
 $accent: mat-palette($mat-pink, A200, A100, A400);
-
 $theme: mat-light-theme($primary, $accent);
+
 @include angular-material-theme($theme);
 @include material-docs-app-theme($theme);
 @include productgrid-theme($theme);
+@include login-theme($theme);
 
 svg-icon.logo {
   fill: #3f51b5;

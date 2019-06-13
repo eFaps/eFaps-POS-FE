@@ -1,5 +1,6 @@
-export * from './category';
 export * from './balance';
+export * from './category';
+export * from './company';
 export * from './contact';
 export * from './document';
 export * from './inventory-entry';
