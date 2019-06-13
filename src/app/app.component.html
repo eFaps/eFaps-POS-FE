@@ -3,7 +3,7 @@
     <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
     <svg-icon src="/assets/synercom_logo.svg" class="logo white" *ngIf="!router.url.includes('login')"></svg-icon>
     <div fxFlex fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
-      <span class="workspace">{{workspace}} {{company}}</span>
+      <span class="workspace"> {{workspace}} {{workspace && company ? ' - ' : ''}} {{company}}</span>
       <app-theme-picker></app-theme-picker>
     </div>
   </mat-toolbar>
