@@ -1,6 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable ,  forkJoin ,  Subscriber } from 'rxjs';
+import { Cacheable } from 'ngx-cacheable';
+import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Category, PosCategory, Product } from '../model/index';
@@ -11,6 +12,7 @@ export class ProductService {
 
   constructor(private http: HttpClient, private config: ConfigService) { }
 
+  @Cacheable()
   public getProducts(): Observable<Product[]> {
     const requestUrl = `${this.config.baseUrl}/products`;
     return this.http.get<Product[]>(requestUrl);
@@ -31,24 +33,25 @@ export class ProductService {
         const products: Product[] = data[1];
         const posCategories: PosCategory[] = [];
         categories.forEach(_category => {
-            posCategories.push({
-                oid: _category.oid,
-                name: _category.name,
-                products: products.filter(_product => _product.categoryOids.includes(_category.oid))
-            });
+          posCategories.push({
+            oid: _category.oid,
+            name: _category.name,
+            products: products.filter(_product => _product.categoryOids.includes(_category.oid))
+          });
         });
         posCategories.sort((n1, n2) => {
-            if (n1.name > n2.name) {
-                return 1;
-            } else if (n1.name < n2.name) {
-                return -1;
-            }
-            return 0;
+          if (n1.name > n2.name) {
+            return 1;
+          } else if (n1.name < n2.name) {
+            return -1;
+          }
+          return 0;
         });
         return posCategories;
       }));
   }
 
+  @Cacheable()
   public getCategories(): Observable<Category[]> {
     const href = this.config.baseUrl + '/categories';
     const requestUrl = `${href}`;

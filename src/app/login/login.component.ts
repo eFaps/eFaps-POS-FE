@@ -1,14 +1,15 @@
-import { Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { globalCacheBusterNotifier } from 'ngx-cacheable';
 import { LocalStorage } from 'ngx-store';
-
-import { User, Company } from '../model/index';
-import { AuthService, CompanyService, UserService, WorkspaceService } from '../services/index';
 import { Subscription } from 'rxjs';
+
+import { Company, User } from '../model/index';
+import { AuthService, CompanyService, UserService, WorkspaceService } from '../services/index';
 
 @Component({
   moduleId: module.id,
@@ -35,7 +36,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     private workspaceService: WorkspaceService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
-    private translateService: TranslateService) { }
+    private translateService: TranslateService) {
+    globalCacheBusterNotifier.next();
+  }
 
   ngOnInit() {
     this.createForm();
