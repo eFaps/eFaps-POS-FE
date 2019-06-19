@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSnackBar, MatTabGroup } from '@angular/material';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { LocalStorage } from 'ngx-store';
 import { Subscription } from 'rxjs';
 
 import {
@@ -20,11 +21,10 @@ import {
   PrintService,
   WorkspaceService
 } from '../services';
-import { PaymentTypeProviderService } from '../services/payment-type-provider.service';
 import { PrintDialogComponent } from '../shared/print-dialog/print-dialog.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { PaymentTypeItem } from './payment-type-item';
-import { LocalStorage } from 'ngx-store';
+import { PaymentTypeProviderService } from '../services/payment-type-provider.service';
 
 @Component({
   selector: 'app-payment',
@@ -49,7 +49,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   balance: Balance;
   showContact = false;
   permitToggleContact = true;
-  sub$: Subscription[] = [];
+  private subscriptions$ = new Subscription();
   allowPrintPreliminary = true;
 
   constructor(private router: Router,
@@ -66,14 +66,14 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    this.sub$.push(this.paymentService.currentDocument.subscribe(_doc => this.document = _doc));
-    this.sub$.push(this.paymentService.currentPayments.subscribe(_payments => this.payments = _payments));
-    this.sub$.push(this.balanceService.currentBalance.subscribe(_balance => this.balance = _balance));
-    this.sub$.push(this.paymentService.currentTotal.subscribe(_total => {
+    this.subscriptions$.add(this.paymentService.currentDocument.subscribe(_doc => this.document = _doc));
+    this.subscriptions$.add(this.paymentService.currentPayments.subscribe(_payments => this.payments = _payments));
+    this.subscriptions$.add(this.balanceService.currentBalance.subscribe(_balance => this.balance = _balance));
+    this.subscriptions$.add(this.paymentService.currentTotal.subscribe(_total => {
       this.total = _total;
       this.change = this.document ? _total - this.document.crossTotal : _total;
     }));
-    this.sub$.push(this.workspaceService.currentWorkspace.subscribe(_data => {
+    this.subscriptions$.add(this.workspaceService.currentWorkspace.subscribe(_data => {
       this.workspaceOid = _data.oid;
       this.allowPrintPreliminary = _data.printCmds.some(x => x.target === 'PRELIMINARY');
       this.docTypes = [];
@@ -81,14 +81,14 @@ export class PaymentComponent implements OnInit, OnDestroy {
         this.docTypes.push(_value.toString());
       });
     }));
-    this.sub$.push(this.paymentTypeProvider.getPaymentTypeItems().subscribe(items => {
+    this.subscriptions$.add(this.paymentTypeProvider.getPaymentTypeItems().subscribe(items => {
       this.tabs = items;
       this.tabGroup.selectedIndex = this.selectedPaymentTypeItem;
     }));
   }
 
   ngOnDestroy() {
-    this.sub$.forEach(_sub => _sub.unsubscribe());
+    this.subscriptions$.unsubscribe();
   }
 
   validate() {
