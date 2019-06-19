@@ -77,29 +77,33 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login() {
     if (this.loginForm.status === 'INVALID') {
-      this.snackBar.open(this.translateService.instant('LOGIN.INVALIDFORM'), '', {
-        duration: 3000
-      });
+      this.openSnackBar('LOGIN.INVALIDFORM');
     } else {
       this.loading = true;
       this.authService.login(this.loginForm.value.userName, this.loginForm.value.password)
-        .subscribe((result) => {
-          if (result === true) {
-            this.router.navigate(['/']);
-          } else {
-            this.snackBar.open(this.translateService.instant('LOGIN.401'), '', {
-              duration: 3000
-            });
-            this.loading = false;
-          }
-        }, error => {
-          if (error.status && error.status === 401) {
-            this.snackBar.open(this.translateService.instant('LOGIN.401'), '', {
-              duration: 3000
-            });
+        .subscribe({
+          next: result => {
+            if (result === true) {
+              this.router.navigate(['/']);
+            } else {
+              this.openSnackBar('LOGIN.401');
+              this.loading = false;
+            }
+          },
+          error: error => {
+            if (error.status && error.status === 401) {
+              this.openSnackBar('LOGIN.401');
+            }
           }
         });
     }
+  }
+
+  openSnackBar(key: string) {
+    const msg = this.translateService.instant(key);
+    this.snackBar.open(msg, '', {
+      duration: 3000
+    });
   }
 
   select(_user: User) {

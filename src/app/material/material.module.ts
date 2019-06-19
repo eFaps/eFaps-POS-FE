@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { A11yModule } from '@angular/cdk/a11y';
 import { NgModule } from '@angular/core';
 import {
   MatAutocompleteModule,
@@ -16,8 +16,8 @@ import {
   MatPaginatorModule,
   MatProgressSpinnerModule,
   MatRadioModule,
-  MatSidenavModule,
   MatSelectModule,
+  MatSidenavModule,
   MatSlideToggleModule,
   MatSnackBarModule,
   MatSortModule,
@@ -27,58 +27,36 @@ import {
   MatTooltipModule
 } from '@angular/material';
 
+const modules = [
+  A11yModule,
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+];
+
 @NgModule({
-  imports: [
-    MatAutocompleteModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatDialogModule,
-    MatDividerModule,
-    MatFormFieldModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatPaginatorModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-    MatSidenavModule,
-    MatSelectModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatTooltipModule
-  ],
-  exports: [
-    MatAutocompleteModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatDialogModule,
-    MatDividerModule,
-    MatFormFieldModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatPaginatorModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-    MatSidenavModule,
-    MatSelectModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatTooltipModule
-  ]
+  imports: modules,
+  exports: modules
 })
 export class MaterialModule { }
