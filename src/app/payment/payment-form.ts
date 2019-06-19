@@ -1,14 +1,17 @@
-import { Input, OnInit } from '@angular/core';
+import { Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
-import { Payment, PaymentType } from '../model/index';
-import { PaymentService, UtilsService } from '../services/index';
+import { Document, Payment, PaymentType } from '../model';
+import { PaymentService, UtilsService } from '../services';
 
-export abstract class PaymentForm implements OnInit {
+export abstract class PaymentForm implements OnInit, OnDestroy {
   public paymentForm: FormGroup;
   protected payments: Payment[];
   @Input() protected change: number;
   public currency: string;
+  private subscription = new Subscription();
+  private document: Document;
 
   constructor(protected paymentService: PaymentService, protected utilsService: UtilsService,
     protected fb: FormBuilder) {
@@ -19,7 +22,16 @@ export abstract class PaymentForm implements OnInit {
     this.paymentForm = this.fb.group({
       'amount': ['0.00', Validators.min(0)],
     });
-    this.paymentService.currentPayments.subscribe(_payments => this.payments = _payments);
+    this.subscription.add(this.paymentService.currentDocument.subscribe(_doc => this.document = _doc));
+    this.subscription.add(this.paymentService.currentPayments
+      .subscribe(_payments => this.payments = _payments));
+    this.subscription.add(this.paymentService.currentTotal.subscribe(_total => {
+      this.change = this.document ? _total - this.document.crossTotal : _total;
+    }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   setNumber(_number: string) {
