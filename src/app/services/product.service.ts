@@ -39,14 +39,6 @@ export class ProductService {
             products: products.filter(_product => _product.categoryOids.includes(_category.oid))
           });
         });
-        posCategories.sort((n1, n2) => {
-          if (n1.name > n2.name) {
-            return 1;
-          } else if (n1.name < n2.name) {
-            return -1;
-          }
-          return 0;
-        });
         return posCategories;
       }));
   }
