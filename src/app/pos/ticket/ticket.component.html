@@ -17,8 +17,8 @@
       <mat-cell *matCellDef="let item"> {{item.price | posCurrency:currentCurrency}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="modify">
-      <mat-header-cell *matHeaderCellDef fxFlex="120px"> Modificar </mat-header-cell>
-      <mat-cell *matCellDef="let item" fxFlex="120px">
+      <mat-header-cell *matHeaderCellDef> Modificar </mat-header-cell>
+      <mat-cell *matCellDef="let item">
         <button (click)="add(item)">
             <mat-icon  class="posIcon-36">control_point</mat-icon>
           </button>

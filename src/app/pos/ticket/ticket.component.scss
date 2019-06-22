@@ -1,3 +1,20 @@
-.pos-ticket-container{
-    width: 100%
+.pos-ticket-container {
+    width: 100%;
+
+    .mat-column-quantity {
+      flex: 0 0 22px;
+    }
+
+    .mat-column-unitPrice {
+      flex: 0 0 58px;
+    }
+
+    .mat-column-price {
+      flex: 0 0 65px;
+    }
+
+    .mat-column-modify {
+      flex: 0 0 120px;
+      padding-right: 5px;
+    }
 }
