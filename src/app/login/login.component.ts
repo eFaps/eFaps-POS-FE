@@ -60,7 +60,12 @@ export class LoginComponent implements OnInit, OnDestroy {
           {
             next: companies => {
               this.companies = companies;
-              this.showCompanySelection = companies.length > 1;
+              if (companies.length > 1) {
+                this.showCompanySelection = true;
+              } else {
+                this.subscription.add(this.userService.getUsers()
+                  .subscribe(data => this.users = data));
+              }
             }
           }
         ));
