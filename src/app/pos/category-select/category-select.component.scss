@@ -8,10 +8,13 @@
   min-width: 500px;
 
   .category {
-    margin: 5px;
+    margin: 10px 5px;
+    flex-basis: 130px;
+    flex-grow: 1;
+    flex-shrink: 1;
 
     button {
-      min-width: 120px;
+      width: 100%;
     }
   }
 }
