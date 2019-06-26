@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Subscription } from 'rxjs';
-import { WorkspaceService, PaymentService } from '../../services';
-import { Discount, DiscountType } from '../../model';
+import { WorkspaceService, PaymentService, DiscountService } from '../../services';
+import { Discount, DiscountType, Document } from '../../model';
 
 @Component({
   selector: 'app-discount',
@@ -10,18 +10,19 @@ import { Discount, DiscountType } from '../../model';
   styleUrls: ['./discount.component.scss']
 })
 export class DiscountComponent implements OnInit, OnDestroy {
-
+  private document: Document;
   private subscriptions$ = new Subscription();
   _discounts: Discount[] = [];
 
   constructor(public dialogRef: MatDialogRef<DiscountComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private workspaceService: WorkspaceService,
-    public paymentService: PaymentService) { }
+    public paymentService: PaymentService, private discountService: DiscountService) { }
 
   ngOnInit() {
     this.subscriptions$.add(this.workspaceService.currentWorkspace.subscribe(ws => {
       this._discounts = ws.discounts
     }));
+    this.document = this.data;
   }
 
   get percentDiscount() {
@@ -37,7 +38,9 @@ export class DiscountComponent implements OnInit, OnDestroy {
   }
 
   applyDiscount(discount: Discount) {
-    console.log(discount)
+    const docWithDiscount = this.discountService.applyDiscount(this.document, discount);
+    this.paymentService.updateDocument(docWithDiscount);
+    this.dialogRef.close();
   }
 
   ngOnDestroy(): void {

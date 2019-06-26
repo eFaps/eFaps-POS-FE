@@ -12,17 +12,25 @@ import { Document, DocItem } from '../../model/index';
 export class DocumentComponent implements OnInit {
   displayedColumns = ['index', 'quantity', 'productDesc', 'crossUnitPrice', 'crossPrice'];
   dataSource = new MatTableDataSource<DocItem>();
-  @Input() document: Document;
+  _document: Document;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    if (this.document) {
-      this.dataSource.data = this.document.items.sort((a, b) => (a.index < b.index ? -1 : 1));
-      this.dataSource.sort = this.sort;
-    } else {
+    if (!this._document) {
       this.router.navigate(['/pos']);
     }
+  }
+
+  @Input()
+  set document(document: Document) {
+    this._document = document;
+    this.dataSource.data = this._document.items.sort((a, b) => (a.index < b.index ? -1 : 1));
+    this.dataSource.sort = this.sort;
+  }
+
+  get document() {
+    return this._document;
   }
 }

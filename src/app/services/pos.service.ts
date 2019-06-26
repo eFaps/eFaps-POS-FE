@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
-import { BehaviorSubject ,  Observable ,  Subscriber } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { ConfigService } from './config.service';
 import { DocumentService } from './document.service';
@@ -13,8 +12,6 @@ import {
   Item,
   Order,
   Pos,
-  Product,
-  Receipt,
   Tax,
   TaxEntry
 } from '../model/index';

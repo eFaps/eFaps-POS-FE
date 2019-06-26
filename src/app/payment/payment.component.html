@@ -13,7 +13,7 @@
         <span *ngIf="balance">{{ 'BALANCE.LABEL' | translate }} - {{ balance?.number }}</span>
       </div>
     </div>
-    <app-document [document]='document'></app-document>
+    <app-document></app-document>
     <button mat-fab color="primary" (click)="showDiscount()" class="discount">Desc.</button>
   </div>
   <div fxFlex class="paymentsContainer">

@@ -1,9 +1,9 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable ,  forkJoin ,  Subscriber } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Balance, DocStatus, Invoice, Order, Payable, Receipt, Ticket } from '../model';
+import { Balance, Invoice, Order, Payable, Receipt, Ticket } from '../model';
 import { ConfigService } from './config.service';
 import { WorkspaceService } from './workspace.service';
 
@@ -12,7 +12,7 @@ export class DocumentService {
   private wsoid: string;
 
   constructor(private http: HttpClient, private config: ConfigService,
-    private workspaceService: WorkspaceService) {
+    workspaceService: WorkspaceService) {
     workspaceService.currentWorkspace.subscribe(_ws => {
       if (_ws) {
         this.wsoid = _ws.oid;

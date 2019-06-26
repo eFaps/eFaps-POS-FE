@@ -26,6 +26,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { PaymentTypeItem } from './payment-type-item';
 import { PaymentTypeProviderService } from '../services/payment-type-provider.service';
 import { DiscountComponent } from './discount/discount.component';
+import { DocumentComponent } from '../shared/document/document.component';
 
 @Component({
   selector: 'app-payment',
@@ -34,6 +35,7 @@ import { DiscountComponent } from './discount/discount.component';
 })
 export class PaymentComponent implements OnInit, OnDestroy {
   @ViewChild(MatTabGroup, { static: true }) tabGroup: MatTabGroup;
+  @ViewChild(DocumentComponent, { static: true }) documentComponent: DocumentComponent;
   tabs: PaymentTypeItem[] = [];
   @LocalStorage() selectedPaymentTypeItem: number = 0;
   DocumentType = DocumentType;
@@ -67,7 +69,10 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    this.subscriptions$.add(this.paymentService.currentDocument.subscribe(_doc => this.document = _doc));
+    this.subscriptions$.add(this.paymentService.currentDocument.subscribe(_doc => {
+      this.document = _doc;
+      this.documentComponent.document = _doc;
+    }));
     this.subscriptions$.add(this.paymentService.currentPayments.subscribe(_payments => this.payments = _payments));
     this.subscriptions$.add(this.balanceService.currentBalance.subscribe(_balance => this.balance = _balance));
     this.subscriptions$.add(this.paymentService.currentTotal.subscribe(_total => {
@@ -217,7 +222,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   showDiscount() {
     const dialogRef = this.dialog.open(DiscountComponent, {
-      data: "some data"
+      data: this.document
     });
   }
 }
