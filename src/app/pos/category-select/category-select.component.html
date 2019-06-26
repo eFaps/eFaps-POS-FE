@@ -1,0 +1,9 @@
+<div class="container">
+  <ng-container *ngFor="let category of categories; index as i ">
+    <div class="category">
+      <button mat-raised-button (click)="selectCategory(i)">
+        {{ category.name }}
+      </button>
+    </div>
+  </ng-container>
+</div>

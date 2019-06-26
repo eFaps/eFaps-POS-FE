@@ -1,22 +1,21 @@
 import {
   ChangeDetectorRef,
   Component,
-  ElementRef,
   HostListener,
   Inject,
   OnDestroy,
   OnInit,
-  QueryList,
   ViewChild
 } from '@angular/core';
-import { NgModule } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { LocalStorage } from 'ngx-store';
 
 import { Item, PosLayout } from '../model/index';
 import { AuthService, MsgService, PosService, WorkspaceService } from '../services/index';
-import { AbstractProductSelector } from './abstract-product-selector';
 import { CommandsComponent } from './commands/commands.component'
+import { MatDialog } from '@angular/material';
+import { CategorySelectComponent } from './category-select/category-select.component';
+import { ProductgridComponent } from './productgrid/productgrid.component';
 
 @Component({
   selector: 'app-pos',
@@ -36,12 +35,14 @@ export class PosComponent implements OnInit, OnDestroy {
   @LocalStorage() posNumPad: any = {};
   multiplier = 1;
   @ViewChild(CommandsComponent, { static: true }) cmdComp;
+  @ViewChild(ProductgridComponent, { static: false }) grid;
 
   constructor(public workspaceService: WorkspaceService,
     private posService: PosService,
     private msgService: MsgService,
     private authService: AuthService,
     private fb: FormBuilder,
+    private dialog: MatDialog,
     @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit() {
@@ -124,5 +125,17 @@ export class PosComponent implements OnInit, OnDestroy {
     this.posNumPad.save();
     this.changeDetectorRef.detectChanges();
     this.cmdComp.evalSticky();
+  }
+
+  openCatSelect() {
+    let ref = this.dialog.open(CategorySelectComponent, {
+    });
+    ref.afterClosed().subscribe({
+      next: (index) => {
+        if (this.grid) {
+          this.grid.selectedIndex = index;
+        }
+      }
+    })
   }
 }

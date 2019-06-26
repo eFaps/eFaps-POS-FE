@@ -12,6 +12,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductgridComponent } from './productgrid/productgrid.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { TotalsComponent } from './totals/totals.component';
+import { CategorySelectComponent } from './category-select/category-select.component';
 
 @NgModule({
   imports: [
@@ -28,10 +29,12 @@ import { TotalsComponent } from './totals/totals.component';
     ProductListComponent,
     ProductgridComponent,
     TicketComponent,
-    TotalsComponent
+    TotalsComponent,
+    CategorySelectComponent
   ],
   entryComponents: [
-    OrderDialogComponent
+    OrderDialogComponent,
+    CategorySelectComponent
   ],
 })
 export class PosModule { }

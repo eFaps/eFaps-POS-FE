@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-
-import { Item, PosCategory, Product } from '../../model/index';
-import { PosService, ProductService } from '../../services/index';
 import { MatTabChangeEvent } from '@angular/material';
+
+import { PosService, ProductService } from '../../services/index';
 import { AbstractProductSelector } from '../abstract-product-selector';
 
 @Component({
@@ -15,7 +12,7 @@ import { AbstractProductSelector } from '../abstract-product-selector';
 export class ProductgridComponent extends AbstractProductSelector implements OnInit {
   categories = [];
   shownTabs = [0];
-
+  selectedIndex;
   constructor(protected productService: ProductService, protected posService: PosService) {
     super(productService, posService);
   }
@@ -27,7 +24,7 @@ export class ProductgridComponent extends AbstractProductSelector implements OnI
   }
 
   tabChanged(_tabChangeEvent: MatTabChangeEvent): void {
-    if (!this.shownTabs.includes( _tabChangeEvent.index)) {
+    if (!this.shownTabs.includes(_tabChangeEvent.index)) {
       this.shownTabs.push(_tabChangeEvent.index);
     }
   }
