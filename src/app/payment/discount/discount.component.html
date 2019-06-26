@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="type-wrapper">
+    <ng-container *ngFor="let discount of percentDiscount">
+        <button mat-raised-button (click)="applyDiscount(discount)">
+          {{ discount.label ? discount.label : discount.value + ' %'}}
+        </button>
+    </ng-container>
+  </div>
+  <div>
+    <ng-container *ngFor="let discount of amountDiscount">
+        <button mat-raised-button (click)="applyDiscount(discount)">
+          {{ discount.label ? discount.label : discount.value | posCurrency:paymentService.currency }}
+        </button>
+    </ng-container>
+  </div>
+</div>

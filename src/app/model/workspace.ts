@@ -11,6 +11,7 @@ export interface Workspace {
   warehouseOid: string;
   printCmds: PrintCmd[];
   posLayout: PosLayout;
+  discounts: Discount[]
 }
 
 export interface PrintCmd {
@@ -20,7 +21,19 @@ export interface PrintCmd {
 }
 
 export enum PosLayout {
-    GRID = 'GRID',
-    LIST = 'LIST',
-    BOTH = 'BOTH',
+  GRID = 'GRID',
+  LIST = 'LIST',
+  BOTH = 'BOTH',
+}
+
+export interface Discount {
+  type: DiscountType,
+  value: number,
+  productOid: string,
+  label: string
+}
+
+export enum DiscountType {
+  PERCENT = 'PERCENT',
+  AMOUNT = 'AMOUNT'
 }

@@ -25,6 +25,7 @@ import { PrintDialogComponent } from '../shared/print-dialog/print-dialog.compon
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { PaymentTypeItem } from './payment-type-item';
 import { PaymentTypeProviderService } from '../services/payment-type-provider.service';
+import { DiscountComponent } from './discount/discount.component';
 
 @Component({
   selector: 'app-payment',
@@ -212,5 +213,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   selectPaymentType(_index: number) {
     this.selectedPaymentTypeItem = _index;
+  }
+
+  showDiscount() {
+    const dialogRef = this.dialog.open(DiscountComponent, {
+      data: "some data"
+    });
   }
 }

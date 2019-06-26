@@ -13,6 +13,7 @@ import { FreeComponent } from './free/free.component';
 import { PaymentTypeContainerComponent } from './payment-type-container/payment-type-container.component';
 import { PaymentTypeDirective } from './payment-type.directive';
 import { PaymentComponent } from './payment.component';
+import { DiscountComponent } from './discount/discount.component';
 
 @NgModule({
   imports: [
@@ -24,20 +25,22 @@ import { PaymentComponent } from './payment.component';
     ReactiveFormsModule,
   ],
   declarations: [
-    CashComponent,
-    PaymentComponent,
-    FreeComponent,
-    ConfirmDialogComponent,
-    CardComponent,
     AutoComponent,
+    CardComponent,
+    CashComponent,
+    ConfirmDialogComponent,
+    DiscountComponent,
+    FreeComponent,
+    PaymentComponent,
+    PaymentTypeContainerComponent,
     PaymentTypeDirective,
-    PaymentTypeContainerComponent
   ],
   entryComponents: [
     AutoComponent,
-    CashComponent,
     CardComponent,
-    FreeComponent
+    CashComponent,
+    DiscountComponent,
+    FreeComponent,
   ]
 })
 export class PaymentModule { }
