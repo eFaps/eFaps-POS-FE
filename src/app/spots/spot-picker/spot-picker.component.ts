@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { DocStatus, Document, Spot } from '../../model/index';
-import { DocumentService, PosService, SpotService, WorkspaceService } from '../../services/index';
+import { DocStatus, Spot } from '../../model/index';
+import { DocumentService, PosService, SpotService } from '../../services/index';
 import { SpotDialogComponent } from '../spot-dialog/spot-dialog.component';
 
 @Component({
@@ -17,7 +17,6 @@ export class SpotPickerComponent implements OnInit {
   constructor(private router: Router,
     private posService: PosService,
     private documentService: DocumentService,
-    private workspaceService: WorkspaceService,
     private spotService: SpotService,
     private dialog: MatDialog) { }
 
@@ -42,7 +41,8 @@ export class SpotPickerComponent implements OnInit {
         netTotal: 0,
         crossTotal: 0,
         taxes: [],
-        spot: _spot
+        spot: _spot,
+        discount: null
       };
       this.documentService.createOrder(order).subscribe(_order => {
         this.posService.setOrder(_order);

@@ -2,6 +2,7 @@ import { Payment } from './payment';
 import { Product } from './product';
 import { TaxEntry } from './tax';
 import { Spot } from './spot';
+import { Discount } from './discount';
 
 export interface Document {
   type?: 'ORDER' | 'RECEIPT' | 'INVOICE' | 'TICKET';
@@ -25,6 +26,7 @@ export interface Payable extends Document {
 
 export interface Order extends Document {
   spot?: Spot;
+  discount: Discount;
 }
 /* tslint:disable-next-line */
 export interface Receipt extends Payable {

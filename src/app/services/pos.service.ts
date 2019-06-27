@@ -77,10 +77,14 @@ export class PosService {
     return this.http.get<Pos>(url);
   }
 
-  public setOrder(_order: Order) {
-    this.orderSource.next(_order);
+  public setOrder(order: Order) {
+    if (order.discount) {
+      order.items = order.items.filter(item => item.product.oid != order.discount.productOid);
+      order.discount = null;
+    }
+    this.orderSource.next(order);
     const items: Item[] = [];
-    _order.items.sort((a, b) => (a.index < b.index ? -1 : 1)).forEach(_item => {
+    order.items.sort((a, b) => (a.index < b.index ? -1 : 1)).forEach(_item => {
       items.push({
         product: _item.product,
         quantity: _item.quantity,
@@ -133,21 +137,23 @@ export class PosService {
       status: DocStatus.OPEN,
       netTotal: this.netTotal,
       crossTotal: this.crossTotal,
-      taxes: this.getTaxEntries()
+      taxes: this.getTaxEntries(),
+      discount: null
     });
   }
 
   private getDocItems(): DocItem[] {
-    return this.ticket.map((_item, _index) => <DocItem>{
-      index: _index + 1,
-      product: _item.product,
-      quantity: _item.quantity,
-      netUnitPrice: _item.product.netPrice,
-      netPrice: _item.product.netPrice * _item.quantity,
-      crossUnitPrice: _item.product.crossPrice,
-      crossPrice: _item.price,
-      taxes: this.getItemTaxEntries(_item)
-    });
+    return this.ticket
+      .map((_item, _index) => <DocItem>{
+        index: _index + 1,
+        product: _item.product,
+        quantity: _item.quantity,
+        netUnitPrice: _item.product.netPrice,
+        netPrice: _item.product.netPrice * _item.quantity,
+        crossUnitPrice: _item.product.crossPrice,
+        crossPrice: _item.price,
+        taxes: this.getItemTaxEntries(_item)
+      });
   }
 
   private getItemTaxEntries(_item: Item): TaxEntry[] {
@@ -193,7 +199,7 @@ export class PosService {
       items: this.getDocItems(),
       netTotal: this.netTotal,
       crossTotal: this.crossTotal,
-      taxes: this.getTaxEntries()
+      taxes: this.getTaxEntries(),
     }));
   }
 

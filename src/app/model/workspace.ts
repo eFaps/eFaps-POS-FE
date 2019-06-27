@@ -1,5 +1,6 @@
 import { DocumentType } from './document';
 import { SpotConfig } from './spot';
+import { Discount } from './discount';
 
 export interface Workspace {
   oid: string;
@@ -24,16 +25,4 @@ export enum PosLayout {
   GRID = 'GRID',
   LIST = 'LIST',
   BOTH = 'BOTH',
-}
-
-export interface Discount {
-  type: DiscountType,
-  value: number,
-  productOid: string,
-  label: string
-}
-
-export enum DiscountType {
-  PERCENT = 'PERCENT',
-  AMOUNT = 'AMOUNT'
 }

@@ -35,7 +35,8 @@ export class SplitOrderDialogComponent implements OnInit {
       status: DocStatus.OPEN,
       netTotal: 0,
       crossTotal: 0,
-      taxes: []
+      taxes: [],
+      discount: null
     };
   }
 

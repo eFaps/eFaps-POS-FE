@@ -12,7 +12,8 @@ import {
   Document,
   DocumentType,
   Payment,
-  PaymentType
+  PaymentType,
+  Order,
 } from '../model';
 import {
   BalanceService,
@@ -142,7 +143,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
           this.busy = this.documentService.createReceipt(document)
             .subscribe(_doc => {
               delete this.document['spot'];
-              this.documentService.updateOrder(Object.assign(this.document, { status: DocStatus.CLOSED })).subscribe();
+              this.documentService.updateOrder(Object.assign(this.document,
+                { status: DocStatus.CLOSED, discount: null })).subscribe();
               this.router.navigate(['/pos']);
               this.showConfirm(_doc, DocumentType.RECEIPT);
               this.paymentService.reset();
@@ -152,7 +154,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
           this.busy = this.documentService.createInvoice(document)
             .subscribe(_doc => {
               delete this.document['spot'];
-              this.documentService.updateOrder(Object.assign(this.document, { status: DocStatus.CLOSED })).subscribe();
+              this.documentService.updateOrder(Object.assign(this.document,
+                { status: DocStatus.CLOSED, discount: null })).subscribe();
               this.router.navigate(['/pos']);
               this.showConfirm(_doc, DocumentType.INVOICE);
               this.paymentService.reset();
@@ -162,7 +165,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
           this.busy = this.documentService.createTicket(document)
             .subscribe(_doc => {
               delete this.document['spot'];
-              this.documentService.updateOrder(Object.assign(this.document, { status: DocStatus.CLOSED })).subscribe();
+              this.documentService.updateOrder(Object.assign(this.document,
+                { status: DocStatus.CLOSED, discount: null })).subscribe();
               this.router.navigate(['/pos']);
               this.showConfirm(_doc, DocumentType.TICKET);
               this.paymentService.reset();
@@ -221,8 +225,10 @@ export class PaymentComponent implements OnInit, OnDestroy {
   }
 
   showDiscount() {
-    const dialogRef = this.dialog.open(DiscountComponent, {
-      data: this.document
-    });
+    if ('discount' in this.document) {
+      const dialogRef = this.dialog.open(DiscountComponent, {
+        data: this.document
+      });
+    }
   }
 }

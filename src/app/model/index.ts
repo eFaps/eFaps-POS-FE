@@ -2,6 +2,7 @@ export * from './balance';
 export * from './category';
 export * from './company';
 export * from './contact';
+export * from './discount';
 export * from './document';
 export * from './inventory-entry';
 export * from './item';

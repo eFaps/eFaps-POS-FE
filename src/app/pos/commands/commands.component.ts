@@ -1,9 +1,9 @@
-import { Component, ElementRef, OnInit, HostListener } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { Order } from '../../model/index';
-import { PaymentService, PosService, PrintService, WorkspaceService } from '../../services/index';
+import { PaymentService, PosService, WorkspaceService } from '../../services/index';
 import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 
 @Component({
@@ -38,23 +38,23 @@ export class CommandsComponent implements OnInit {
   }
 
   onUpdate(_order: Order) {
-      const order = Object.assign({ type: 'ORDER' }, _order);
-      const dialogRef = this.dialog.open(OrderDialogComponent, {
-        width: '450px',
-        disableClose: true,
-        data: { order: order }
-      });
-      dialogRef.afterClosed().subscribe(_result => {
-        this.posService.reset();
-        if (_result) {
-          this.paymentService.updateDocument(_result);
-          this.router.navigate(['/payment']);
-        } else {
-            if (this.workspaceService.showSpots()) {
-                this.router.navigate(['/spots']);
-            }
+    const order = Object.assign({ type: 'ORDER', discount: null }, _order);
+    const dialogRef = this.dialog.open(OrderDialogComponent, {
+      width: '450px',
+      disableClose: true,
+      data: { order: order }
+    });
+    dialogRef.afterClosed().subscribe(_result => {
+      this.posService.reset();
+      if (_result) {
+        this.paymentService.updateDocument(_result);
+        this.router.navigate(['/payment']);
+      } else {
+        if (this.workspaceService.showSpots()) {
+          this.router.navigate(['/spots']);
         }
-      });
+      }
+    });
   }
 
   evalSticky() {

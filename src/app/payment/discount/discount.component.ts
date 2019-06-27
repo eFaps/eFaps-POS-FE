@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { WorkspaceService, PaymentService, DiscountService } from '../../services';
-import { Discount, DiscountType, Document } from '../../model';
+import { Discount, DiscountType, Order } from '../../model';
 
 @Component({
   selector: 'app-discount',
@@ -10,7 +10,7 @@ import { Discount, DiscountType, Document } from '../../model';
   styleUrls: ['./discount.component.scss']
 })
 export class DiscountComponent implements OnInit, OnDestroy {
-  private document: Document;
+  private document: Order;
   private subscriptions$ = new Subscription();
   _discounts: Discount[] = [];
 

@@ -1,27 +1,33 @@
 import { Injectable } from '@angular/core';
-import { Discount, DiscountType, Document, DocItem, Product, TaxEntry } from '../model';
+import { Discount, DiscountType, Document, DocItem, Product, Order } from '../model';
 import { TaxService } from './tax.service';
+import { DocumentService } from './document.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DiscountService {
 
-  constructor(private taxService: TaxService) { }
+  constructor(private taxService: TaxService,
+    private documentService: DocumentService) { }
 
-  applyDiscount(document: Document, discount: Discount): Document {
-    if (discount.type === DiscountType.PERCENT) {
-      this.applyPercent(document, discount);
+  applyDiscount(order: Order, discount: Discount): Document {
+    if (order.discount) {
+      order.items = order.items.filter(item => item.product.oid != order.discount.productOid);
+      order.discount = null;
     }
-    return document;
+
+    if (discount.type === DiscountType.PERCENT) {
+      this.applyPercent(order, discount);
+    }
+    return order;
   }
 
-  private applyPercent(document: Document, discount: Discount): Document {
-
-    const net = -(document.netTotal * (discount.value / 100));
-    const cross = -(document.crossTotal * (discount.value / 100));
+  private applyPercent(order: Order, discount: Discount): Document {
+    const net = -(order.netTotal * (discount.value / 100));
+    const cross = -(order.crossTotal * (discount.value / 100));
     const item: DocItem = {
-      index: document.items.length + 1,
+      index: order.items.length + 1,
       product: this.getDiscountProduct(discount),
       quantity: 1,
       netPrice: net,
@@ -31,7 +37,7 @@ export class DiscountService {
       taxes: []
     }
 
-    document.taxes.forEach(taxEntry => {
+    order.taxes.forEach(taxEntry => {
       item.taxes.push(
         {
           tax: taxEntry.tax,
@@ -41,23 +47,24 @@ export class DiscountService {
       )
     })
     console.log(item);
-    document.items.push(item);
-    return this.recalculate(document);
+    order.items.push(item);
+    order.discount = discount;
+    this.documentService.updateOrder(order).subscribe();
+    return this.recalculate(order);
   }
 
-  private recalculate(document: Document): Document {
+  private recalculate(order: Order): Document {
     let crossTotal = 0;
     let netTotal = 0;
-    document.items.forEach(item => {
+    order.items.forEach(item => {
       crossTotal = crossTotal + item.crossPrice;
       netTotal = netTotal + item.netPrice;
     });
-    document.taxes = this.taxService.calculateTax(document);
-    document.crossTotal = netTotal + this.taxService.taxTotal(document);
-    document.netTotal = netTotal;
-    return document;
+    order.taxes = this.taxService.calculateTax(order);
+    order.crossTotal = netTotal + this.taxService.taxTotal(order);
+    order.netTotal = netTotal;
+    return order;
   }
-
 
   private getDiscountProduct(discount: Discount): Product {
     return {
