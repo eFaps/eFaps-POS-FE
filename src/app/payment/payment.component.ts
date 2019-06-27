@@ -12,8 +12,7 @@ import {
   Document,
   DocumentType,
   Payment,
-  PaymentType,
-  Order,
+  PaymentType
 } from '../model';
 import {
   BalanceService,
@@ -177,7 +176,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   }
 
   showConfirm(_document: Document, docType: DocumentType) {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+    this.dialog.open(ConfirmDialogComponent, {
       width: '450px',
       disableClose: false,
       data: {
@@ -215,7 +214,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   }
 
   printPreliminary() {
-    const dialogRef = this.dialog.open(PrintDialogComponent, {
+    this.dialog.open(PrintDialogComponent, {
       data: this.printService.printPreliminary(this.workspaceOid, this.document)
     });
   }
@@ -226,8 +225,12 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   showDiscount() {
     if ('discount' in this.document) {
-      const dialogRef = this.dialog.open(DiscountComponent, {
+      this.dialog.open(DiscountComponent, {
         data: this.document
+      }).afterClosed().subscribe({
+        next: () => {
+          this.paymentService.calculateTotals(this.payments);
+        }
       });
     }
   }
