@@ -113,13 +113,14 @@ export class PosService {
     _ticket.forEach((_item: Item) => {
       const itemNet = _item.product.netPrice * _item.quantity;
       net += itemNet;
+      cross += itemNet;
       _item.product.taxes.forEach((_tax: Tax) => {
         const tax = itemNet * (_tax.percent / 100);
         if (!taxes.has(_tax.name)) {
           taxes.set(_tax.name, 0);
         }
         taxes.set(_tax.name, taxes.get(_tax.name) + tax);
-        cross += itemNet + tax;
+        cross += tax;
       });
     });
     this.netTotalSource.next(net);

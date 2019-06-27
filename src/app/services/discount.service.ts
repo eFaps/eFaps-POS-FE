@@ -17,13 +17,14 @@ export class DiscountService {
       order.discount = null;
     }
 
-    if (discount.type === DiscountType.PERCENT) {
-      this.applyPercent(order, discount);
+    if (discount && discount.type === DiscountType.PERCENT) {
+      order = this.applyPercent(order, discount);
     }
+    this.documentService.updateOrder(this.recalculate(order)).subscribe();
     return order;
   }
 
-  private applyPercent(order: Order, discount: Discount): Document {
+  private applyPercent(order: Order, discount: Discount): Order {
     const net = -(order.netTotal * (discount.value / 100));
     const cross = -(order.crossTotal * (discount.value / 100));
     const item: DocItem = {
@@ -49,11 +50,10 @@ export class DiscountService {
     console.log(item);
     order.items.push(item);
     order.discount = discount;
-    this.documentService.updateOrder(order).subscribe();
-    return this.recalculate(order);
+    return order;
   }
 
-  private recalculate(order: Order): Document {
+  private recalculate(order: Order): Order {
     let crossTotal = 0;
     let netTotal = 0;
     order.items.forEach(item => {
