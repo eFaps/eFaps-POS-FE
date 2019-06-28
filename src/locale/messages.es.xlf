@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="es" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="reload" datatype="html">
+        <source>Reload</source>
+        <target>Recargar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin/admin.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="versionCloud" datatype="html">
+        <target>Cloud: <x id="INTERPOLATION" equiv-text="{{ versions.remote }}"/></target>
+        <target>Nube: <x id="INTERPOLATION" equiv-text="{{ versions.remote }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin/admin.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="versionLocal" datatype="html">
+        <target>Local: <x id="INTERPOLATION" equiv-text="{{ versions.local }}"/></target>
+        <target>Local: <x id="INTERPOLATION" equiv-text="{{ versions.local }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin/admin.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="hiddenUser" datatype="html">
+        <source>hidden User</source>
+        <target>Otros Usuarios</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="selectCompany" datatype="html">
+        <source>Select Company</source>
+        <target>Selecionar Empresa</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

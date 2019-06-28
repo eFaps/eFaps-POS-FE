@@ -1,12 +1,12 @@
-<div [ngBusy]="{busy: busy, message: 'WAIT' | translate}"></div>
+<div i18n-ngBusy [ngBusy]="{busy: busy, message: 'WAIT'}"></div>
 <div class="adminpage" fxLayout='row' fxLayoutGap="20px">
   <div>
-    <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="reload()">Reload</button>
+    <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="reload()" i18n="@@reload">Reload</button>
   </div>
   <div class="mat-elevation-z3 versions">
     <h1>Versions:</h1>
-    <p>Cloud: {{ versions.remote }}</p>
-    <p>Local: {{ versions.local }}</p>
+    <p i18n="@@versionCloud">Cloud: {{ versions.remote }}</p>
+    <p i18n="@@versionLocal">Local: {{ versions.local }}</p>
   </div>
   <synercash-preferences></synercash-preferences>
 </div>

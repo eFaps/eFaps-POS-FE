@@ -12,6 +12,7 @@
     "_build-css": "node-sass --output src/assets src/scss",
     "_build": "tsc -p tsconfig-electron.json && node ./buildutil.js",
     "start": "npm run _build-css && ng serve --proxy-config proxy.conf.json --host 0.0.0.0",
+    "start-es": "npm run _build-css && ng serve --configuration es --proxy-config proxy.conf.json --host 0.0.0.0",
     "build": "node ./buildutil.js && npm run _build-css && ng build --prod",
     "build2": "node ./buildutil.js && npm run _build-css && ng build --aot --source-map false",
     "test": "ng test --browsers ChromeHeadless --watch=false",
@@ -23,7 +24,8 @@
     "electron-prod": "npm run electron-build-prod && electron .",
     "electron": "npm run electron-build-dev && electron . --dev",
     "dist": "electron-builder",
-    "dist-win": "electron-builder --win"
+    "dist-win": "electron-builder --win",
+    "i18n": "ng xi18n --output-path locale"
   },
   "private": true,
   "dependencies": {

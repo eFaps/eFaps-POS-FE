@@ -1,5 +1,5 @@
 <div class="companies" fxLayout="column" *ngIf="showCompanySelection">
-  <div fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="10px" class="pos-usergrid" >
+  <div fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="10px" class="pos-usergrid">
     <mat-card class="pos-companycard" *ngFor="let company of companies" (click)="setCompany(company)">
       <svg-icon src="/assets/enterprise.svg" class="logo"></svg-icon>
       <mat-card-content>
@@ -22,22 +22,20 @@
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div [hidden]="hiddenUser">
       <mat-form-field class="example-full-width">
-        <input placeholder="{{'USER' | translate}}" class="form-control" matInput formControlName="userName" [appVirtKeyboard]>
+        <input i18n-placeholder="@@user" placeholder="User" class="form-control" matInput formControlName="userName" [appVirtKeyboard]>
       </mat-form-field>
     </div>
     <mat-form-field class="example-full-width">
-      <input #pwd placeholder="{{'PASSWORD' | translate}}" type="password" (keyup.enter)="login()" (enterClick)="login()" matInput formControlName="password" [appVirtKeyboard] [activateKeyboard]="virtKeyboard">
+      <input #pwd i18n-placeholder="@@password" placeholder="Password" type="password" (keyup.enter)="login()" (enterClick)="login()" matInput formControlName="password" [appVirtKeyboard] [activateKeyboard]="virtKeyboard">
     </mat-form-field>
     <div>
-      <button type="submit" class="btn btn-success" mat-raised-button color="primary">Login</button>
+      <button type="submit" class="btn btn-success" mat-raised-button color="primary" i18n="@@login">Login</button>
     </div>
   </form>
 </div>
 <svg-icon src="/assets/synercom_logo.svg" class="logo" [svgStyle]="{ 'width.px':200 }"></svg-icon>
 <div class="config">
-  <mat-slide-toggle [checked]="virtKeyboard" (change)="toggleVirtKeyboard($event)">
-    Virtual Keyboard
-  </mat-slide-toggle>
+  <mat-slide-toggle [checked]="virtKeyboard" (change)="toggleVirtKeyboard($event)" i18n="@@virtualKeyboard">Virtual Keyboard</mat-slide-toggle>
 </div>
-<mat-button-toggle [value]="hiddenUser" (change)="toggleUser()" class="hiddenUser">{{'HIDDENUSER' | translate}}</mat-button-toggle>
-<mat-button-toggle *ngIf="companies.length > 1" (change)="showCompanies()" class="showCompanies">{{'SHOWCOMPANIES' | translate}}</mat-button-toggle>
+<mat-button-toggle [value]="hiddenUser" (change)="toggleUser()" class="hiddenUser" i18n="@@hiddenUser">hidden User</mat-button-toggle>
+<mat-button-toggle *ngIf="companies.length > 1" (change)="showCompanies()" class="showCompanies" i18n="@@selectCompany">Select Company</mat-button-toggle>
