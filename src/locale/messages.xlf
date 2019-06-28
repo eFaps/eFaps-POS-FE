@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en" datatype="plaintext" original="ng2.template" target-language="es-PE">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="user" datatype="html">
         <source>User</source>
-        <target state="translated">Usuario</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/login/login.component.html</context>
           <context context-type="linenumber">25</context>
@@ -12,7 +11,6 @@
       </trans-unit>
       <trans-unit id="password" datatype="html">
         <source>Password</source>
-        <target state="translated">Contraseña</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/login/login.component.html</context>
           <context context-type="linenumber">29</context>
@@ -20,7 +18,6 @@
       </trans-unit>
       <trans-unit id="login" datatype="html">
         <source>Login</source>
-        <target state="translated">Ingresar</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/login/login.component.html</context>
           <context context-type="linenumber">32</context>
@@ -28,7 +25,6 @@
       </trans-unit>
       <trans-unit id="virtualKeyboard" datatype="html">
         <source>Virtual Keyboard</source>
-        <target state="translated">Teclado virtual</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/login/login.component.html</context>
           <context context-type="linenumber">38</context>
@@ -36,7 +32,6 @@
       </trans-unit>
       <trans-unit id="hiddenUser" datatype="html">
         <source>hidden User</source>
-        <target state="translated">Otros Usuarios</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/login/login.component.html</context>
           <context context-type="linenumber">40</context>
@@ -44,7 +39,6 @@
       </trans-unit>
       <trans-unit id="selectCompany" datatype="html">
         <source>Select Company</source>
-        <target state="translated">Seleccionar Empresa</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/login/login.component.html</context>
           <context context-type="linenumber">41</context>
@@ -52,7 +46,6 @@
       </trans-unit>
       <trans-unit id="reload" datatype="html">
         <source>Reload</source>
-        <target state="translated">Recargar</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/admin/admin.component.html</context>
           <context context-type="linenumber">4</context>
@@ -60,7 +53,6 @@
       </trans-unit>
       <trans-unit id="versionCloud" datatype="html">
         <source>Cloud: <x id="INTERPOLATION" equiv-text="{{ versions.remote }}"/></source>
-        <target state="translated">Nube:  <x id="INTERPOLATION" equiv-text="{{ versions.remote }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/admin/admin.component.html</context>
           <context context-type="linenumber">8</context>
@@ -68,7 +60,6 @@
       </trans-unit>
       <trans-unit id="versionLocal" datatype="html">
         <source>Local: <x id="INTERPOLATION" equiv-text="{{ versions.local }}"/></source>
-        <target state="translated">Local: <x id="INTERPOLATION" equiv-text="{{ versions.local }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/admin/admin.component.html</context>
           <context context-type="linenumber">9</context>
