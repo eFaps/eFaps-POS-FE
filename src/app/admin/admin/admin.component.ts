@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from '../../services/index';
-import { environment } from '../../../environments/environment';
 import { Subscription } from 'rxjs';
+
+import { Versions } from '../../model/versions';
+import { AdminService } from '../../services/index';
 
 @Component({
   selector: 'app-admin',
@@ -10,15 +11,12 @@ import { Subscription } from 'rxjs';
 })
 export class AdminComponent implements OnInit {
   busy: Subscription;
-  versions = {
-    FE: environment.version,
-    BE: ''
-  };
+  versions: Versions;
 
   constructor(private adminService: AdminService) { }
 
   ngOnInit() {
-    this.adminService.version().subscribe(_version => this.versions.BE = _version);
+    this.adminService.version().subscribe(versions => this.versions = versions);
   }
 
   reload() {

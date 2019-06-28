@@ -1,10 +1,8 @@
-
-import {map} from 'rxjs/operators';
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { Versions } from '../model/versions';
 import { ConfigService } from './config.service';
 
 @Injectable({
@@ -20,11 +18,8 @@ export class AdminService {
     return this.http.get(url);
   }
 
-  version(): Observable<string> {
-    const url = `${this.config.baseUrl}/admin/version`;
-    return this.http.get(url, {
-      observe: 'response',
-      responseType: 'text'
-    }).pipe(map(req => req.body));
+  version(): Observable<Versions> {
+    const url = `${this.config.baseUrl}/admin/versions`;
+    return this.http.get<Versions>(url);
   }
 }
