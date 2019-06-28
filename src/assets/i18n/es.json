@@ -21,19 +21,6 @@
       "NOCONTACTMSG": "Se necesita asignar un cliente!"
   },
   "WAIT": "Un momento...",
-  "MENU": {
-      "POS": "Registrar Ordenes",
-      "PRODUCTS": "Productos",
-      "ORDERS": "Ordenes",
-      "SPOTS": "Mesas",
-      "INVENTORY" : "Stock",
-      "CONTACTS": "Clientes",
-      "BALANCE": "Cierre de Cajas",
-      "WORKSPACES": "Entornos",
-      "ADMIN": "Admin",
-      "LOGIN": "Login/Logout",
-      "CLOSE": "Cerrar"
-  },
   "CONTACTS": {
       "CREATETITLE": "Registrar nuevo Cliente",
       "IDTYPE": "Tipo de Documento",

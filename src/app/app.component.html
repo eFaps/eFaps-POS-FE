@@ -11,52 +11,52 @@
     <mat-sidenav #sidenav [mode]="(screenWidth > 840) ? 'side' : 'over'">
       <mat-list>
         <mat-list-item>
-          <button routerLink="/pos" matTooltip="{{'MENU.POS' | translate}}" matTooltipPosition="right">
+          <button routerLink="/pos" i18n-matTooltip="@@pos" matTooltip="Register" matTooltipPosition="right">
               <mat-icon aria-label="POS" class="posIcon-36">shop</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item>
-          <button routerLink="/products" matTooltip="{{'MENU.PRODUCTS' | translate}}" matTooltipPosition="right">
+          <button routerLink="/products" i18n-matTooltip="@@products" matTooltip="Products" matTooltipPosition="right">
             <mat-icon aria-label="products" class="posIcon-36">store</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item>
-          <button routerLink="/orders" matTooltip="{{'MENU.ORDERS' | translate}}" matTooltipPosition="right">
+          <button routerLink="/orders" i18n-matTooltip="@@orders" matTooltip="Orders" matTooltipPosition="right">
             <mat-icon aria-label="Orders" class="posIcon-36">dns</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item *ngIf="spots">
-          <button routerLink="/spots" matTooltip="{{'MENU.SPOTS' | translate}}" matTooltipPosition="right">
+          <button routerLink="/spots" i18n-matTooltip="@@spots" matTooltip="Tables" matTooltipPosition="right">
               <mat-icon aria-label="Spots" class="posIcon-36">place</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item *ngIf="inventory">
-          <button routerLink="/inventory" matTooltip="{{'MENU.INVENTORY' | translate}}" matTooltipPosition="right">
+          <button routerLink="/inventory" i18n-matTooltip="@@inventory" matTooltip="Inventory" matTooltipPosition="right">
             <mat-icon aria-label="inventory" class="posIcon-36">domain</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item>
-          <button routerLink="/contacts" matTooltip="{{'MENU.CONTACTS' | translate}}" matTooltipPosition="right">
+          <button routerLink="/contacts"  i18n-matTooltip="@@contacts" matTooltip="Contacts" matTooltipPosition="right">
             <mat-icon aria-label="Contacts" class="posIcon-36">contacts</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item *ngIf="allowPayment">
-          <button routerLink="/balance" matTooltip="{{'MENU.BALANCE' | translate}}" matTooltipPosition="right">
+          <button routerLink="/balance" i18n-matTooltip="@@balance" matTooltip="Balance" matTooltipPosition="right">
             <mat-icon aria-label="Balance" class="posIcon-36">account_balance</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item>
-          <button routerLink="/workspaces" matTooltip="{{'MENU.WORKSPACES' | translate}}" matTooltipPosition="right">
+          <button routerLink="/workspaces" i18n-matTooltip="@@workspaces" matTooltip="Workspaces" matTooltipPosition="right">
               <mat-icon aria-label="Workspaces" class="posIcon-36">devices</mat-icon>
           </button>
         </mat-list-item>
-        <mat-list-item *ngIf="auth.hasRole(Roles['ADMIN'])" matTooltip="{{'MENU.ADMIN' | translate}}" matTooltipPosition="right">
+        <mat-list-item *ngIf="auth.hasRole(Roles['ADMIN'])" i18n-matTooltip="@@admin" matTooltip="Admin" matTooltipPosition="right">
           <button routerLink="/admin">
               <mat-icon aria-label="Admin" class="posIcon-36">build</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item>
-          <button routerLink="/login" matTooltip="{{'MENU.LOGIN' | translate}}" matTooltipPosition="right">
+          <button routerLink="/login" i18n-matTooltip="@@loginlogout" matTooltip="Login / Logout" matTooltipPosition="right">
               <mat-icon aria-label="login" class="posIcon-36">bubble_chart</mat-icon>
           </button>
         </mat-list-item>
