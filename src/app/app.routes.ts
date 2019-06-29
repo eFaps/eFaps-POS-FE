@@ -11,7 +11,7 @@ import { OrderTableComponent } from './orders/order-table/order-table.component'
 import { PaymentComponent } from './payment/payment.component';
 import { PosComponent } from './pos/pos.component';
 import { ProducttableComponent } from './products/producttable/producttable.component';
-import { SpotPickerComponent } from './spots/spot-picker/spot-picker.component';
+import { SpotsComponent } from './spots/spots/spots.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
 
 const appRoutes: Routes = [
@@ -23,7 +23,7 @@ const appRoutes: Routes = [
   { path: 'orders', component: OrderTableComponent, canActivate: [AuthGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'contacts', component: ContactTableComponent, canActivate: [AuthGuard] },
-  { path: 'spots', component: SpotPickerComponent, canActivate: [AuthGuard] },
+  { path: 'spots', component: SpotsComponent, canActivate: [AuthGuard] },
   { path: 'inventory', component: InventoryComponent, canActivate: [AuthGuard] },
   { path: 'balance', component: BalanceComponent, canActivate: [AuthGuard] },
 

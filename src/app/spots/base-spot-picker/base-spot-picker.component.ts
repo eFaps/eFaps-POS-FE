@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { DocStatus, Spot } from '../../model/index';
-import { DocumentService, PosService, SpotService } from '../../services/index';
+import { Spot, DocStatus } from '../../model';
+import { DocumentService, PosService, SpotService } from '../../services';
 import { SpotDialogComponent } from '../spot-dialog/spot-dialog.component';
 
 @Component({
-  selector: 'app-spot-picker',
-  templateUrl: './spot-picker.component.html',
-  styleUrls: ['./spot-picker.component.scss']
+  selector: 'app-base-spot-picker',
+  templateUrl: './base-spot-picker.component.html',
+  styleUrls: ['./base-spot-picker.component.scss']
 })
-export class SpotPickerComponent implements OnInit {
+export class BaseSpotPickerComponent implements OnInit {
   spots: Spot[] = [];
 
   constructor(private router: Router,

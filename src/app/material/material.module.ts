@@ -1,4 +1,5 @@
 import { A11yModule } from '@angular/cdk/a11y';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgModule } from '@angular/core';
 import {
   MatAutocompleteModule,
@@ -24,11 +25,12 @@ import {
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule,
 } from '@angular/material';
 
 const modules = [
   A11yModule,
+  DragDropModule,
   MatAutocompleteModule,
   MatButtonModule,
   MatButtonToggleModule,
