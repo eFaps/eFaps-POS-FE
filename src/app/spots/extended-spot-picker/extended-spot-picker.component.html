@@ -1,9 +1,19 @@
 <mat-tab-group>
   <mat-tab *ngFor="let floor of floors; let i = index" label="{{floor.label}}">
     <div class="floor">
-      <div *ngFor="let spot of floor.spots">
-        <button mat-fab color="{{spot.order ? 'accent' : 'primary'}}" (click)="selectSpot(spot)" cdkDrag [cdkDragDisabled]="!editMode">{{spot.label}}</button>
-      </div>
+      <ng-container *ngFor="let spot of floor.spots">
+        <button mat-fab
+          color="{{spot.order ? 'accent' : 'primary'}}"
+          (click)="selectSpot(spot)"
+          cdkDrag
+          [cdkDragDisabled]="!editMode"
+          (cdkDragEnded)="dragEnded($event)"
+          [cdkDragData]="spot"
+          cdkDragBoundary=".floor"
+          [cdkDragFreeDragPosition]="spot.position">
+            {{spot.label}}
+        </button>
+      </ng-container>
     </div>
   </mat-tab>
 </mat-tab-group>

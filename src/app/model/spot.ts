@@ -10,6 +10,7 @@ export interface Spot {
   id: string;
   label: string;
   order?: Order;
+  position?: Position;
 }
 
 export interface SpotsLayout {
@@ -19,4 +20,9 @@ export interface SpotsLayout {
 export interface Floor {
   label: string;
   spots: Spot[];
+}
+
+export interface Position {
+  x: number;
+  y: number;
 }

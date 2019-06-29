@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Spot, Order, SpotsLayout } from '../model/index';
+import { LocalStorage } from 'ngx-store';
 import { Observable } from 'rxjs';
+
+import { Order, Spot, SpotsLayout, Position } from '../model/index';
 import { DocumentService } from './document.service';
 import { WorkspaceService } from './workspace.service';
 
@@ -8,6 +10,8 @@ import { WorkspaceService } from './workspace.service';
   providedIn: 'root'
 })
 export class SpotService {
+
+  @LocalStorage() public positions: any = {};
 
   constructor(private documentService: DocumentService,
     private workspaceService: WorkspaceService) { }
@@ -56,12 +60,18 @@ export class SpotService {
           floor.spots.forEach(spot => {
             const order = _orders.find(o => o.spot && o.spot.id === spot.id);
             spot.order = order;
+            spot.position = this.positions[spot.id];
           })
         });
         observer.next(layout);
         observer.complete();
       });
     });
+  }
+
+  setPosition(spot: Spot, position: Position): void {
+    this.positions[spot.id] = position;
+    this.positions.save();
   }
 
   public swap(_origin: Spot, _target: Spot): Observable<Order> {

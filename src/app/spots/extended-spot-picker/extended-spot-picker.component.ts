@@ -1,8 +1,10 @@
+import { CdkDragEnd } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
-import { SpotsLayout, Spot } from '../../model';
-import { AbstractSpotPicker } from '../abstract-spot-picker';
 import { Router } from '@angular/router';
-import { PosService, DocumentService, SpotService } from '../../services';
+
+import { Spot, SpotsLayout } from '../../model';
+import { DocumentService, PosService, SpotService } from '../../services';
+import { AbstractSpotPicker } from '../abstract-spot-picker';
 
 @Component({
   selector: 'app-extended-spot-picker',
@@ -38,5 +40,11 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements O
     if (!this.editMode) {
       super.selectSpot(spot);
     }
+  }
+
+  dragEnded(event: CdkDragEnd) {
+    const spot: Spot = event.source.data;
+    const position = event.source.getFreeDragPosition();
+    this.spotService.setPosition(spot, position);
   }
 }
