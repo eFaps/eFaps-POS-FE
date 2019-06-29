@@ -1,5 +1,5 @@
 <mat-tab-group>
-  <mat-tab *ngFor="let floor of floors; let i = index" label="{{floor.label}}">
+  <mat-tab *ngFor="let floor of floors; let i = index" label="{{floor?.label}}">
     <div class="floor">
       <ng-container *ngFor="let spot of floor.spots">
         <button mat-fab

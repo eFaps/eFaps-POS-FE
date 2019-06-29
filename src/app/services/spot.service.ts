@@ -48,6 +48,14 @@ export class SpotService {
             {
               id: '3',
               label: 'Mesa 3'
+            },
+            {
+              id: '123.45',
+              label: 'Mesa 4'
+            },
+            {
+              id: '159.58',
+              label: 'Bar 1'
             }
           ]
         }

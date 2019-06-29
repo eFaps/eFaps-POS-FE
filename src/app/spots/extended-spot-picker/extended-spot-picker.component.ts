@@ -29,7 +29,7 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements O
   }
 
   get floors() {
-    return this.spotsLayout.floors;
+    return this.spotsLayout ? this.spotsLayout.floors : [];
   }
 
   togglEditMode() {
