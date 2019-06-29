@@ -5,50 +5,28 @@ import { Router } from '@angular/router';
 import { Spot, DocStatus } from '../../model';
 import { DocumentService, PosService, SpotService } from '../../services';
 import { SpotDialogComponent } from '../spot-dialog/spot-dialog.component';
+import { AbstractSpotPicker } from '../abstract-spot-picker';
 
 @Component({
   selector: 'app-base-spot-picker',
   templateUrl: './base-spot-picker.component.html',
   styleUrls: ['./base-spot-picker.component.scss']
 })
-export class BaseSpotPickerComponent implements OnInit {
+export class BaseSpotPickerComponent extends AbstractSpotPicker implements OnInit {
   spots: Spot[] = [];
 
-  constructor(private router: Router,
-    private posService: PosService,
-    private documentService: DocumentService,
+  constructor(router: Router,
+    posService: PosService,
+    documentService: DocumentService,
     private spotService: SpotService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog) {
+    super(router, posService, documentService);
+  }
 
   ngOnInit() {
     this.spotService.getSpots().subscribe(_spots => {
       this.spots = _spots;
     });
-  }
-
-  selectSpot(_spot: Spot) {
-    if (_spot.order) {
-      this.posService.setOrder(_spot.order);
-      this.router.navigate(['/pos']);
-    } else {
-      const order = {
-        id: null,
-        oid: null,
-        number: null,
-        currency: this.posService.currency,
-        items: [],
-        status: DocStatus.OPEN,
-        netTotal: 0,
-        crossTotal: 0,
-        taxes: [],
-        spot: _spot,
-        discount: null
-      };
-      this.documentService.createOrder(order).subscribe(_order => {
-        this.posService.setOrder(_order);
-        this.router.navigate(['/pos']);
-      });
-    }
   }
 
   showSwapModal() {
