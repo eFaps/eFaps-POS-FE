@@ -11,3 +11,12 @@ export interface Spot {
   label: string;
   order?: Order;
 }
+
+export interface SpotsLayout {
+  floors: Floor[];
+}
+
+export interface Floor {
+  label: string;
+  spots: Spot[];
+}

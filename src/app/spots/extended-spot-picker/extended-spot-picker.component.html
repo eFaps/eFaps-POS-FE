@@ -1,1 +1,14 @@
-<p>extended-spot-picker works!</p>
+<mat-tab-group>
+  <mat-tab *ngFor="let floor of floors; let i = index" label="{{floor.label}}">
+    <div class="floor">
+      <div *ngFor="let spot of floor.spots">
+        <button mat-fab color="{{spot.order ? 'accent' : 'primary'}}" (click)="selectSpot(spot)" cdkDrag [cdkDragDisabled]="!editMode">{{spot.label}}</button>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+<div class="editModeButton">
+  <button (click)="togglEditMode()" mat-fab color="{{editMode ? 'accent' : 'primary' }}" matTooltip="Edit Mode">
+    <mat-icon class="posIcon-36">edit</mat-icon>
+  </button>
+  <div>
