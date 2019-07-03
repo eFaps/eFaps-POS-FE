@@ -1,8 +1,7 @@
 export enum PaymentType {
   CASH,
   FREE,
-  CREDITCARD,
-  DEBITCARD,
+  CARD,
   CHANGE,
   AUTO
 }

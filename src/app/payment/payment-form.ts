@@ -10,7 +10,7 @@ export abstract class PaymentForm implements OnInit, OnDestroy {
   protected payments: Payment[];
   @Input() protected change: number;
   public currency: string;
-  private subscriptions$ = new Subscription();
+  protected subscription$ = new Subscription();
   private document: Document;
 
   constructor(protected paymentService: PaymentService, protected utilsService: UtilsService,
@@ -22,16 +22,16 @@ export abstract class PaymentForm implements OnInit, OnDestroy {
     this.paymentForm = this.fb.group({
       'amount': ['0.00', Validators.min(0)],
     });
-    this.subscriptions$.add(this.paymentService.currentDocument.subscribe(_doc => this.document = _doc));
-    this.subscriptions$.add(this.paymentService.currentPayments
+    this.subscription$.add(this.paymentService.currentDocument.subscribe(_doc => this.document = _doc));
+    this.subscription$.add(this.paymentService.currentPayments
       .subscribe(_payments => this.payments = _payments));
-    this.subscriptions$.add(this.paymentService.currentTotal.subscribe(_total => {
+    this.subscription$.add(this.paymentService.currentTotal.subscribe(_total => {
       this.change = this.document ? _total - this.document.crossTotal : _total;
     }));
   }
 
   ngOnDestroy(): void {
-    this.subscriptions$.unsubscribe();
+    this.subscription$.unsubscribe();
   }
 
   setNumber(_number: string) {

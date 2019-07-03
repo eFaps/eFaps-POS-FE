@@ -10,10 +10,9 @@ import { CardComponent } from './card/card.component';
 import { CashComponent } from './cash/cash.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { FreeComponent } from './free/free.component';
-import { PaymentTypeContainerComponent } from './payment-type-container/payment-type-container.component';
-import { PaymentTypeDirective } from './payment-type.directive';
 import { PaymentComponent } from './payment.component';
 import { DiscountComponent } from './discount/discount.component';
+import { PaymentTypeComponent } from './payment-type/payment-type.component';
 
 @NgModule({
   imports: [
@@ -32,8 +31,7 @@ import { DiscountComponent } from './discount/discount.component';
     DiscountComponent,
     FreeComponent,
     PaymentComponent,
-    PaymentTypeContainerComponent,
-    PaymentTypeDirective,
+    PaymentTypeComponent,
   ],
   entryComponents: [
     AutoComponent,

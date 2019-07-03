@@ -23,8 +23,6 @@ import {
 } from '../services';
 import { PrintDialogComponent } from '../shared/print-dialog/print-dialog.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { PaymentTypeItem } from './payment-type-item';
-import { PaymentTypeProviderService } from '../services/payment-type-provider.service';
 import { DiscountComponent } from './discount/discount.component';
 import { DocumentComponent } from '../shared/document/document.component';
 
@@ -36,7 +34,6 @@ import { DocumentComponent } from '../shared/document/document.component';
 export class PaymentComponent implements OnInit, OnDestroy {
   @ViewChild(MatTabGroup, { static: true }) tabGroup: MatTabGroup;
   @ViewChild(DocumentComponent, { static: true }) documentComponent: DocumentComponent;
-  tabs: PaymentTypeItem[] = [];
   @LocalStorage() selectedPaymentTypeItem: number = 0;
   DocumentType = DocumentType;
   PaymentType = PaymentType;
@@ -59,14 +56,12 @@ export class PaymentComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     private workspaceService: WorkspaceService,
     public paymentService: PaymentService,
-    private paymentTypeProvider: PaymentTypeProviderService,
     private documentService: DocumentService,
     private balanceService: BalanceService,
     private printService: PrintService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar) {
   }
-
 
   ngOnInit() {
     this.subscriptions$.add(this.paymentService.currentDocument.subscribe(_doc => {
@@ -86,10 +81,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
       _data.docTypes.forEach((_value) => {
         this.docTypes.push(_value.toString());
       });
-    }));
-    this.subscriptions$.add(this.paymentTypeProvider.getPaymentTypeItems().subscribe(items => {
-      this.tabs = items;
-      this.tabGroup.selectedIndex = this.selectedPaymentTypeItem;
     }));
   }
 

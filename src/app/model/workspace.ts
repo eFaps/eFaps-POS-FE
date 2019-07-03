@@ -12,13 +12,19 @@ export interface Workspace {
   warehouseOid: string;
   printCmds: PrintCmd[];
   posLayout: PosLayout;
-  discounts: Discount[]
+  discounts: Discount[];
+  cards: Card[];
 }
 
 export interface PrintCmd {
   printerOid: string;
   target: 'JOB' | 'PRELIMINARY' | 'TICKET';
   targetOid: string;
+}
+
+export interface Card {
+  label: string;
+  cardTypeId: number;
 }
 
 export enum PosLayout {
