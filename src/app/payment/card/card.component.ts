@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { PaymentType } from '../../model/index';
-import { PaymentService, UtilsService, WorkspaceService } from '../../services/index';
+import { Payment, PaymentType, Card } from '../../model';
+import { PaymentService, UtilsService, WorkspaceService } from '../../services';
 import { PaymentForm } from '../payment-form';
 
 @Component({
@@ -11,7 +11,7 @@ import { PaymentForm } from '../payment-form';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent extends PaymentForm {
-  cards = [];
+  cards: Card[] = [];
 
   constructor(paymentService: PaymentService, utilsService: UtilsService,
     fb: FormBuilder, private workspaceService: WorkspaceService) {
@@ -31,7 +31,12 @@ export class CardComponent extends PaymentForm {
       });
   }
 
-  getPaymentType(): PaymentType {
-    return PaymentType.CARD;
+  getPayment(): Payment {
+    return {
+      type: PaymentType.CARD,
+      amount: 0,
+      cardTypeId: this.paymentForm.value.card.cardTypeId,
+      cardLabel: this.paymentForm.value.card.label
+    };
   }
 }

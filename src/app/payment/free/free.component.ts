@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
-import { PaymentType } from '../../model/index';
+import { Payment, PaymentType } from '../../model';
 import { PaymentService, UtilsService } from '../../services/index';
 import { PaymentForm } from '../payment-form';
 
@@ -17,7 +17,7 @@ export class FreeComponent extends PaymentForm {
     super(paymentService, utilsService, fb);
   }
 
-  getPaymentType(): PaymentType {
-    return PaymentType.FREE;
+  getPayment(): Payment {
+    return { type: PaymentType.FREE, amount: 0 };
   }
 }

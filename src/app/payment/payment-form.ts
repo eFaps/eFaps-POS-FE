@@ -68,15 +68,14 @@ export abstract class PaymentForm implements OnInit, OnDestroy {
   addPayment() {
     const amount = this.utilsService.parse(this.paymentForm.value.amount);
     if (amount > 0) {
-      this.payments.push({
-        type: this.getPaymentType(),
-        amount: amount
-      });
+      let payment = this.getPayment();
+      payment.amount = amount;
+      this.payments.push(payment);
       this.paymentService.updatePayments(this.payments);
-      this.paymentForm.setValue({ 'amount': 0 });
+      this.paymentForm.patchValue({ 'amount': 0 });
       this.setNumber('0');
     }
   }
 
-  abstract getPaymentType(): PaymentType;
+  abstract getPayment(): Payment;
 }

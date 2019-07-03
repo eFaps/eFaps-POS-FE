@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { PaymentForm } from '../payment-form';
-import { PaymentService, UtilsService, AutoPaymentService } from '../../services';
 import { FormBuilder } from '@angular/forms';
-import { PaymentType } from '../../model';
+
+import { Payment, PaymentType } from '../../model';
+import { AutoPaymentService, PaymentService, UtilsService } from '../../services';
+import { PaymentForm } from '../payment-form';
 
 @Component({
   selector: 'app-auto',
@@ -16,8 +17,8 @@ export class AutoComponent extends PaymentForm {
     super(paymentService, utilsService, fb);
   }
 
-  getPaymentType(): PaymentType {
-    return PaymentType.AUTO;
+  getPayment(): Payment {
+    return { type: PaymentType.AUTO, amount: 0 };
   }
 
   addPayment() {
