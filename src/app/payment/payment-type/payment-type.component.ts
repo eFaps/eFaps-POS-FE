@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-payment-type',
@@ -12,4 +13,7 @@ export class PaymentTypeComponent implements OnInit {
   ngOnInit() {
   }
 
+  get auto() {
+    return environment.electron;
+  }
 }

@@ -135,6 +135,34 @@
           <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="cash-payment" datatype="html">
+        <source>Cash</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment-type/payment-type.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="card-payment" datatype="html">
+        <source>Cards</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment-type/payment-type.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="free-payment" datatype="html">
+        <source>Free</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment-type/payment-type.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="auto-payment" datatype="html">
+        <source>Auto</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment-type/payment-type.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>
