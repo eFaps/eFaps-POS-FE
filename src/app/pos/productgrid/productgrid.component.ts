@@ -13,6 +13,11 @@ export class ProductgridComponent extends AbstractProductSelector implements OnI
   categories = [];
   shownTabs = [0];
   selectedIndex;
+
+  //size = 'small';
+  //size = 'medium';
+  size = 'big';
+
   constructor(protected productService: ProductService, protected posService: PosService) {
     super(productService, posService);
   }

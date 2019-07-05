@@ -7,26 +7,83 @@
     background-color: mat-color($background, card);
   }
 }
+$small-size: 100px;
+$medium-size: 125px;
+$big-size: 150px;
 
+.pos-productgrid {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 
-.pos-card {
-  width: 180px;
-  margin-bottom: 5px;
-}
-
-.pos-card-tablet {
-  width: 120px;
-
-  &.mat-card {
-    padding-top: 10px;
-    padding-bottom: 10px;
+  .pos-card {
+    margin-right: 5px;
   }
 
-  & .mat-card-title {
-    margin-bottom: 5px;
+  .mat-card-content {
+    text-align: center;
   }
-}
 
-.mat-card-image {
-  object-fit: contain;
+  &.small {
+    .pos-card {
+      width: $small-size;
+      padding: 5px;
+
+      .mat-card-header .mat-card-title {
+        font-size: 14px;
+      }
+
+      .pos-card-image {
+        height: $small-size + 5px;
+
+        .mat-card-image {
+          max-width: $small-size;
+          max-height: $small-size;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  &.medium {
+    .pos-card {
+      width: $medium-size;
+      padding: 5px;
+
+      .mat-card-header .mat-card-title {
+        font-size: 16px;
+      }
+
+      .pos-card-image {
+        height: $medium-size + 5px;
+
+        .mat-card-image {
+          max-width: $medium-size;
+          max-height: $medium-size;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  &.big {
+    .pos-card {
+      width: $big-size;
+      padding: 5px;
+
+      .mat-card-header .mat-card-title {
+        font-size: 16px;
+      }
+
+      .pos-card-image {
+        height: $big-size + 5px;
+
+        .mat-card-image {
+          max-width: $big-size;
+          max-height: $big-size;
+          margin: 0;
+        }
+      }
+    }
+  }
 }
