@@ -18,7 +18,7 @@ export interface Workspace {
 
 export interface PrintCmd {
   printerOid: string;
-  target: 'JOB' | 'PRELIMINARY' | 'TICKET';
+  target: 'JOB' | 'PRELIMINARY' | 'TICKET' | 'COPY';
   targetOid: string;
 }
 

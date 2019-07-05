@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatTableDataSource, MatSort, MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { Document, DocItem } from '../../model/index';
+import { PrintService, WorkspaceService } from '../../services';
+import { PrintDialogComponent } from '../print-dialog/print-dialog.component';
 
 @Component({
   selector: 'app-document',
@@ -14,13 +16,25 @@ export class DocumentComponent implements OnInit {
   dataSource = new MatTableDataSource<DocItem>();
   _document: Document;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  private workspaceOid: string;
+  @Input() permitPrint = false;
+  hasCopyPrintCmd = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private dialog: MatDialog,
+    private workspaceService: WorkspaceService,
+    private printService: PrintService) { }
 
   ngOnInit() {
     if (!this._document) {
       this.router.navigate(['/pos']);
     }
+    this.workspaceService.currentWorkspace.subscribe({
+      next: workspace => {
+        this.workspaceOid = workspace.oid;
+        this.hasCopyPrintCmd = workspace.printCmds.some(x => x.target === 'COPY');
+      }
+    })
   }
 
   @Input()
@@ -30,7 +44,13 @@ export class DocumentComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  get document() {
+  get document(): Document {
     return this._document;
+  }
+
+  printCopy() {
+    this.dialog.open(PrintDialogComponent, {
+      data: this.printService.printCopy(this.workspaceOid, this._document)
+    });
   }
 }

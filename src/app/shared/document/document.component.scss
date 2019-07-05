@@ -1,4 +1,3 @@
-
 .mat-list-item {
   height: 32px;
 }
@@ -21,4 +20,17 @@
 
 .mat-column-crossPrice {
   flex: 0 0 60px;
+}
+
+.footer {
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+
+  .print-container {
+    button {
+      top: calc(50% - 18px);
+    }
+  }
 }
