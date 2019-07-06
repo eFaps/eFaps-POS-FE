@@ -190,6 +190,54 @@
           <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="filter" datatype="html">
+        <source>Filter</source>
+        <target state="translated">Filtrar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orderNumber" datatype="html">
+        <source> No </source>
+        <target state="translated">Nº</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orderDate" datatype="html">
+        <source> Date </source>
+        <target state="translated">Fecha</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orderStatus" datatype="html">
+        <source> Status </source>
+        <target state="translated">Estatus</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orderCrossTotal" datatype="html">
+        <source> Cross Total </source>
+        <target state="translated">Total</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spot" datatype="html">
+        <source> Spot </source>
+        <target state="translated">Mesas</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

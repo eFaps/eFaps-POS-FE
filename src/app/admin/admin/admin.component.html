@@ -1,4 +1,4 @@
-<div i18n-ngBusy [ngBusy]="{busy: busy, message: 'WAIT'}"></div>
+<div i18n-ngBusy [ngBusy]="{busy: busy, message: 'WAIT' | translate}"></div>
 <div class="adminpage" fxLayout='row' fxLayoutGap="20px">
   <div>
     <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="reload()" i18n="@@reload">Reload</button>
