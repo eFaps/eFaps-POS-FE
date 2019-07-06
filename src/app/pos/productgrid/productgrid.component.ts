@@ -13,10 +13,12 @@ export class ProductgridComponent extends AbstractProductSelector implements OnI
   categories = [];
   shownTabs = [0];
   selectedIndex;
+  currentCurrency: string;
 
   //size = 'small';
-  //size = 'medium';
-  size = 'big';
+  //size = 'medium' | big;
+  size = 'medium';
+  showPrices = true;
 
   constructor(protected productService: ProductService, protected posService: PosService) {
     super(productService, posService);
@@ -26,6 +28,7 @@ export class ProductgridComponent extends AbstractProductSelector implements OnI
     super.ngOnInit();
     this.productService.getPosCategories()
       .subscribe(_categories => this.categories = _categories);
+    this.posService.currentCurrency.subscribe(_data => this.currentCurrency = _data);
   }
 
   tabChanged(_tabChangeEvent: MatTabChangeEvent): void {

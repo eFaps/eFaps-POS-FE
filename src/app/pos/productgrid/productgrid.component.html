@@ -7,6 +7,9 @@
         </mat-card-header>
         <div class="pos-card-image">
           <img *ngIf="shownTabs.includes(i)" mat-card-image [src]="product.imageOid | secure" alt="{{product.description}}">
+          <div class="pos-card-price" *ngIf="showPrices">
+            {{ product.crossPrice | posCurrency:currentCurrency}}
+          </div>
         </div>
         <mat-card-content>
           {{product.description}}
