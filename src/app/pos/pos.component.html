@@ -1,6 +1,6 @@
 <div fxLayout='row' fxLayoutGap="20px">
   <div [ngSwitch]="currentLayout" class="selector" [ngStyle]="{'height.px': screenHeight - 64 }">
-    <app-productgrid *ngSwitchCase="PosLayout.GRID" (selection)="resetMultiplier()" [multiplier]="multiplier"></app-productgrid>
+    <app-product-grid *ngSwitchCase="PosLayout.GRID" (selection)="resetMultiplier()" [multiplier]="multiplier"></app-product-grid>
     <app-product-list *ngSwitchCase="PosLayout.LIST" (selection)="resetMultiplier()" [multiplier]="multiplier"></app-product-list>
     <button mat-fab color="primary" (click)="openCatSelect()" class="catSelect">Cat.</button>
     <button mat-fab color="primary" (click)="switchLayout()" *ngIf="this.workspaceService.getPosLayout() === PosLayout.BOTH" class="switch">Switch</button>

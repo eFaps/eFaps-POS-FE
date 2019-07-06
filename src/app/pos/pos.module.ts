@@ -9,7 +9,7 @@ import { CommandsComponent } from './commands/commands.component';
 import { OrderDialogComponent } from './order-dialog/order-dialog.component';
 import { PosComponent } from './pos.component';
 import { ProductListComponent } from './product-list/product-list.component';
-import { ProductgridComponent } from './productgrid/productgrid.component';
+import { ProductGridComponent } from './product-grid/product-grid.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { TotalsComponent } from './totals/totals.component';
 import { CategorySelectComponent } from './category-select/category-select.component';
@@ -27,7 +27,7 @@ import { CategorySelectComponent } from './category-select/category-select.compo
     OrderDialogComponent,
     PosComponent,
     ProductListComponent,
-    ProductgridComponent,
+    ProductGridComponent,
     TicketComponent,
     TotalsComponent,
     CategorySelectComponent

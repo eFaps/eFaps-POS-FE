@@ -5,11 +5,11 @@ import { PosService, ProductService } from '../../services/index';
 import { AbstractProductSelector } from '../abstract-product-selector';
 
 @Component({
-  selector: 'app-productgrid',
-  templateUrl: './productgrid.component.html',
-  styleUrls: ['./productgrid.component.scss']
+  selector: 'app-product-grid',
+  templateUrl: './product-grid.component.html',
+  styleUrls: ['./product-grid.component.scss']
 })
-export class ProductgridComponent extends AbstractProductSelector implements OnInit {
+export class ProductGridComponent extends AbstractProductSelector implements OnInit {
   categories = [];
   shownTabs = [0];
   selectedIndex;

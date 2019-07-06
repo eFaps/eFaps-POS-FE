@@ -15,7 +15,7 @@ import { AuthService, MsgService, PosService, WorkspaceService } from '../servic
 import { CommandsComponent } from './commands/commands.component'
 import { MatDialog } from '@angular/material';
 import { CategorySelectComponent } from './category-select/category-select.component';
-import { ProductgridComponent } from './productgrid/productgrid.component';
+import { ProductGridComponent } from './product-grid/product-grid.component';
 
 @Component({
   selector: 'app-pos',
@@ -35,7 +35,7 @@ export class PosComponent implements OnInit, OnDestroy {
   @LocalStorage() posNumPad: any = {};
   multiplier = 1;
   @ViewChild(CommandsComponent, { static: true }) cmdComp;
-  @ViewChild(ProductgridComponent, { static: false }) grid;
+  @ViewChild(ProductGridComponent, { static: false }) grid;
 
   constructor(public workspaceService: WorkspaceService,
     private posService: PosService,
