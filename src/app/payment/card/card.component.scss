@@ -6,3 +6,10 @@
 .card-radio-button {
   margin: 15px;
 }
+
+.payment-form {
+  & mat-form-field {
+    width: 120px;
+    margin-right: 15px;
+  }
+}
