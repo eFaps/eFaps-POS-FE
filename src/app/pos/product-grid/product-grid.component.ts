@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material';
+import { Subscription } from 'rxjs';
 
-import { PosService, ProductService } from '../../services/index';
+import { PosService, ProductService, WorkspaceService } from '../../services/index';
 import { AbstractProductSelector } from '../abstract-product-selector';
 
 @Component({
@@ -9,7 +10,8 @@ import { AbstractProductSelector } from '../abstract-product-selector';
   templateUrl: './product-grid.component.html',
   styleUrls: ['./product-grid.component.scss']
 })
-export class ProductGridComponent extends AbstractProductSelector implements OnInit {
+export class ProductGridComponent extends AbstractProductSelector
+  implements OnInit, OnDestroy {
   categories = [];
   shownTabs = [0];
   selectedIndex;
@@ -19,16 +21,36 @@ export class ProductGridComponent extends AbstractProductSelector implements OnI
   //size = 'medium' | big;
   size = 'large';
   showPrices = true;
+  private subscription$ = new Subscription();
 
-  constructor(protected productService: ProductService, protected posService: PosService) {
+  constructor(productService: ProductService, posService: PosService,
+    private workspaceService: WorkspaceService) {
     super(productService, posService);
   }
 
   ngOnInit() {
     super.ngOnInit();
-    this.productService.getPosCategories()
-      .subscribe(_categories => this.categories = _categories);
-    this.posService.currentCurrency.subscribe(_data => this.currentCurrency = _data);
+    this.subscription$.add(this.productService.getPosCategories()
+      .subscribe({
+        next: _categories => this.categories = _categories
+      })
+    );
+
+    this.workspaceService.currentWorkspace.subscribe({
+      next: workspace => {
+        this.showPrices = workspace.gridShowPrice;
+        this.size = workspace.gridSize ? workspace.gridSize.toLowerCase() : 'large';
+        if (this.showPrices) {
+          this.subscription$.add(this.posService.currentCurrency.subscribe({
+            next: currency => this.currentCurrency = currency
+          }));
+        }
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription$.unsubscribe();
   }
 
   tabChanged(_tabChangeEvent: MatTabChangeEvent): void {

@@ -14,6 +14,8 @@ export interface Workspace {
   posLayout: PosLayout;
   discounts: Discount[];
   cards: Card[];
+  gridSize: PosGridSize;
+  gridShowPrice: boolean;
 }
 
 export interface PrintCmd {
@@ -31,4 +33,10 @@ export enum PosLayout {
   GRID = 'GRID',
   LIST = 'LIST',
   BOTH = 'BOTH',
+}
+
+export enum PosGridSize {
+  SMALL = 'SMALL',
+  MEDIUM = 'MEDIUM',
+  LARGE = 'LARGE',
 }
