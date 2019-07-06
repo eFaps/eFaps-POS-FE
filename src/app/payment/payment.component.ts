@@ -125,7 +125,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
         taxes: this.document.taxes,
         contactOid: this.contact ? (this.contact.oid ? this.contact.oid : this.contact.id) : null,
         workspaceOid: this.workspaceOid,
-        balanceOid: this.balance.oid ? this.balance.oid : this.balance.id
+        balanceOid: this.balance.oid ? this.balance.oid : this.balance.id,
+        discount: this.document.discount
       };
 
       switch (this.docType) {

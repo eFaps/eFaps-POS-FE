@@ -17,6 +17,7 @@ export interface Document {
   taxes: TaxEntry[];
   contactOid?: string;
   workspaceOid?: string;
+  discount: Discount;
 }
 
 export interface Payable extends Document {
@@ -26,7 +27,6 @@ export interface Payable extends Document {
 
 export interface Order extends Document {
   spot?: Spot;
-  discount: Discount;
 }
 /* tslint:disable-next-line */
 export interface Receipt extends Payable {
