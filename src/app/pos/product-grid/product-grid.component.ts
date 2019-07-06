@@ -17,7 +17,7 @@ export class ProductGridComponent extends AbstractProductSelector implements OnI
 
   //size = 'small';
   //size = 'medium' | big;
-  size = 'medium';
+  size = 'large';
   showPrices = true;
 
   constructor(protected productService: ProductService, protected posService: PosService) {
