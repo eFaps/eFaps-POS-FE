@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA } from '@angular/material';
 import { PrintService } from '../../services/index';
 
 @Component({
@@ -14,7 +14,6 @@ export class PrintDialogComponent implements OnInit {
   success = false;
 
   constructor(private printService: PrintService,
-    private dialogRef: MatDialogRef<PrintDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any) { }
 
   ngOnInit() {

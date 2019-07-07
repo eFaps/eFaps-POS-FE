@@ -1,7 +1,5 @@
 import {
-  NumberFormatStyle,
   getCurrencySymbol,
-  getLocaleNumberFormat,
   registerLocaleData
 } from '@angular/common';
 import localeEsPE from '@angular/common/locales/es-PE';

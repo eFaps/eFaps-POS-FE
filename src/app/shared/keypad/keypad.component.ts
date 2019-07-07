@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { Hotkey, HotkeysService } from 'angular2-hotkeys';
 
 @Component({
@@ -7,7 +6,7 @@ import { Hotkey, HotkeysService } from 'angular2-hotkeys';
   templateUrl: './keypad.component.html',
   styleUrls: ['./keypad.component.scss']
 })
-export class KeypadComponent implements OnInit {
+export class KeypadComponent implements OnInit, OnDestroy {
   @Input() showTopClear: boolean = true;
   @Input() showBottomClear: boolean = false;
   @Output() number = new EventEmitter<string>();

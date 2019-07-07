@@ -1,10 +1,6 @@
-
-import {debounceTime} from 'rxjs/operators';
-
-
-
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 
 import { Contact } from '../../model/index';
 import { ContactService } from '../../services/index';
@@ -13,7 +9,7 @@ import { ContactService } from '../../services/index';
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
-  providers: [ ContactService ]
+  providers: [ContactService]
 })
 export class ContactComponent implements OnInit {
   searchControl: FormControl = new FormControl();
@@ -24,17 +20,17 @@ export class ContactComponent implements OnInit {
   constructor(private contactService: ContactService) { }
 
   ngOnInit() {
-      this.searchControl.valueChanges.pipe(
-        debounceTime(400))
-        .subscribe(data => {
-            this.contactService.searchContacts(data, this.nameSearch).subscribe(response => {
-                this.searchResult = response;
-            });
+    this.searchControl.valueChanges.pipe(
+      debounceTime(400))
+      .subscribe(data => {
+        this.contactService.searchContacts(data, this.nameSearch).subscribe(response => {
+          this.searchResult = response;
         });
+      });
   }
 
   setNameSearch() {
-    this.nameSearch = ! this.nameSearch;
+    this.nameSearch = !this.nameSearch;
   }
 
   displayFn(_contact?: Contact): string | undefined {

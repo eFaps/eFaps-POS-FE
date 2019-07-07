@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
-import { Observable, forkJoin } from 'rxjs';
 
 import { InventoryEntry, Product, ProductRelation, RelationEntry } from '../../model/index';
 import { InventoryService, PosService, ProductService, WorkspaceService } from '../../services/index';

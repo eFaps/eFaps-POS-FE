@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { Spot, DocStatus } from '../../model';
+import { Spot } from '../../model';
 import { DocumentService, PosService, SpotService } from '../../services';
 import { SpotDialogComponent } from '../spot-dialog/spot-dialog.component';
 import { AbstractSpotPicker } from '../abstract-spot-picker';

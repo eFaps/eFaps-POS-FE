@@ -1,5 +1,3 @@
-
-
 import {
   ChangeDetectorRef,
   OnDestroy,
@@ -7,9 +5,9 @@ import {
   PipeTransform,
   WrappedValue
 } from '@angular/core';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
-import { BehaviorSubject ,  Observable ,  Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { ImageService } from './image.service';
 
 @Pipe({

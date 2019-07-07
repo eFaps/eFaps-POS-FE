@@ -1,4 +1,3 @@
-import { DecimalPipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 

@@ -1,9 +1,9 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { LocalStorage } from 'ngx-store';
 
-import { Contact, IdentificationType } from '../../model/index';
+import { IdentificationType } from '../../model/index';
 import { ContactService } from '../../services/index';
 
 @Component({

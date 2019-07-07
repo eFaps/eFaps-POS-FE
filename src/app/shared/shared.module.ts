@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatKeyboardModule } from '@ngx-material-keyboard/core';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgBusyModule } from 'ng-busy';
 import { WebStorageModule } from 'ngx-store';
