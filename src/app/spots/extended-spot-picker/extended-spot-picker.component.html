@@ -1,6 +1,6 @@
-<mat-tab-group>
-  <mat-tab *ngFor="let floor of floors; let i = index" label="{{floor?.label}}">
-    <div class="floor">
+<mat-tab-group [class.header-less-tabs]="floors.length <= 1" (resized)="onResized($event)">
+  <mat-tab *ngFor="let floor of floors; let i = index" label="{{floor?.label}}" >
+    <div class="floor" [class.sidenav]="sidenav">
       <ng-container *ngFor="let spot of floor.spots">
         <button mat-fab
           color="{{spot.order ? 'accent' : 'primary'}}"
@@ -21,4 +21,4 @@
   <button (click)="togglEditMode()" mat-fab color="{{editMode ? 'accent' : 'primary' }}" matTooltip="Edit Mode">
     <mat-icon class="posIcon-36">edit</mat-icon>
   </button>
-  <div>
+</div>

@@ -6,19 +6,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatKeyboardModule } from '@ngx-material-keyboard/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AngularResizedEventModule } from 'angular-resize-event';
 import { NgBusyModule } from 'ng-busy';
 import { WebStorageModule } from 'ngx-store';
 
+import { environment } from '../../environments/environment';
 import { MaterialModule } from '../material/material.module';
 import { PosCurrencyPipe, SecurePipe, VirtKeyboardDirective } from '../services/index';
+import { TranslateFileLoader } from '../util/translate-file-loader';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ContactComponent } from './contact/contact.component';
 import { DocumentComponent } from './document/document.component';
 import { ImageComponent } from './image/image.component';
 import { KeypadComponent } from './keypad/keypad.component';
 import { PrintDialogComponent } from './print-dialog/print-dialog.component';
-import { environment } from '../../environments/environment';
-import { TranslateFileLoader } from '../util/translate-file-loader';
 
 export function TranslateLoaderFactory(_httpClient: HttpClient) {
   if (environment.electron) {
@@ -39,7 +40,8 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     NgBusyModule,
     ReactiveFormsModule,
     TranslateModule,
-    WebStorageModule
+    WebStorageModule,
+    AngularResizedEventModule
   ],
   declarations: [
     ConfirmDialogComponent,
@@ -65,7 +67,8 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     SecurePipe,
     TranslateModule,
     VirtKeyboardDirective,
-    WebStorageModule
+    WebStorageModule,
+    AngularResizedEventModule
   ],
   entryComponents: [
     ConfirmDialogComponent,
