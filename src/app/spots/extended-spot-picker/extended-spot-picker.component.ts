@@ -1,18 +1,18 @@
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
-import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ResizedEvent } from 'angular-resize-event';
 
-import { Spot, SpotsLayout } from '../../model';
+import { Spot, SpotsLayout, SpotConfig } from '../../model';
 import { DocumentService, PosService, SpotService } from '../../services';
 import { AbstractSpotPicker } from '../abstract-spot-picker';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-extended-spot-picker',
   templateUrl: './extended-spot-picker.component.html',
   styleUrls: ['./extended-spot-picker.component.scss']
 })
-export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements OnInit, AfterViewInit {
+export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements OnInit {
   spotsLayout: SpotsLayout;
   editMode = false;
   sidenav = false;
@@ -20,9 +20,9 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements O
   constructor(router: Router,
     posService: PosService,
     documentService: DocumentService,
-    private spotService: SpotService,
-    private elRef: ElementRef) {
-    super(router, posService, documentService);
+    dialog: MatDialog,
+    private spotService: SpotService) {
+    super(router, posService, documentService, dialog);
   }
 
   ngOnInit() {
@@ -51,11 +51,7 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements O
     this.spotService.setPosition(spot, position);
   }
 
-  onResized(_event: ResizedEvent) {
-    this.sidenav = this.elRef.nativeElement.getBoundingClientRect().x > 50;
-  }
-
-  ngAfterViewInit(): void {
-    this.sidenav = this.elRef.nativeElement.getBoundingClientRect().x > 50;
+  getSpotConfig(): SpotConfig {
+    return SpotConfig.EXTENDED;
   }
 }

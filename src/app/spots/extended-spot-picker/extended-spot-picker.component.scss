@@ -10,13 +10,8 @@
       background-repeat: no-repeat;
       background-position: 25px center;
       background-clip: border-box;
-      background-attachment: fixed;
+      background-attachment: local;
       transition:background-position 0.25s ease;
-
-      &.sidenav {
-        background-position-x: 110px;
-        transition:background-position 0.25s ease;
-      }
     }
   }
 }
@@ -29,10 +24,24 @@
 
 .editModeButton {
   position: absolute;
-  right: 10px;
+  right: 80px;
   bottom: 4px;
+  margin: 8px;
   z-index: 1;
 
+  & .posIcon-36 {
+    top: -5px;
+    position: relative;
+  }
+}
+
+.swap {
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  margin: 8px;
+  z-index: 1;
+  
   & .posIcon-36 {
     top: -5px;
     position: relative;

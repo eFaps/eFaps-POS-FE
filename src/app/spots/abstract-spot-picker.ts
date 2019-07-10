@@ -1,12 +1,17 @@
-import { Spot, DocStatus } from '../model';
+import { OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
-import { PosService, DocumentService } from '../services';
 
-export abstract class AbstractSpotPicker {
+import { DocStatus, Spot, SpotConfig } from '../model';
+import { DocumentService, PosService } from '../services';
+import { SpotDialogComponent } from './spot-dialog/spot-dialog.component';
+
+export abstract class AbstractSpotPicker implements OnInit {
 
   constructor(protected router: Router,
     protected posService: PosService,
-    protected documentService: DocumentService
+    protected documentService: DocumentService,
+    protected dialog: MatDialog
   ) {
 
   }
@@ -35,4 +40,18 @@ export abstract class AbstractSpotPicker {
       });
     }
   }
+
+  showSwapModal() {
+    const dialogRef = this.dialog.open(SpotDialogComponent, { data: this.getSpotConfig() });
+    dialogRef.afterClosed().subscribe(_result => {
+      if (_result) {
+        this.ngOnInit();
+      }
+    });
+  }
+
+  ngOnInit(): void {
+  }
+
+  abstract getSpotConfig(): SpotConfig;
 }

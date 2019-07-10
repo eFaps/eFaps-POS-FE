@@ -45,7 +45,6 @@
     "@ngx-translate/core": "^11.0.0",
     "@ngx-translate/http-loader": "^4.0.0",
     "@stomp/ng2-stompjs": "^7.2.0",
-    "angular-resize-event": "^1.0.0",
     "angular-svg-icon": "^7.2.1",
     "angular2-hotkeys": "^2.1.4",
     "core-js": "^2.6.9",

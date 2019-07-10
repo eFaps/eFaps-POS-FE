@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { Spot } from '../../model';
+import { Spot, SpotConfig } from '../../model';
 import { DocumentService, PosService, SpotService } from '../../services';
-import { SpotDialogComponent } from '../spot-dialog/spot-dialog.component';
 import { AbstractSpotPicker } from '../abstract-spot-picker';
 
 @Component({
@@ -18,9 +17,9 @@ export class BaseSpotPickerComponent extends AbstractSpotPicker implements OnIni
   constructor(router: Router,
     posService: PosService,
     documentService: DocumentService,
-    private spotService: SpotService,
-    private dialog: MatDialog) {
-    super(router, posService, documentService);
+    dialog: MatDialog,
+    private spotService: SpotService) {
+    super(router, posService, documentService, dialog);
   }
 
   ngOnInit() {
@@ -29,12 +28,7 @@ export class BaseSpotPickerComponent extends AbstractSpotPicker implements OnIni
     });
   }
 
-  showSwapModal() {
-    const dialogRef = this.dialog.open(SpotDialogComponent, {});
-    dialogRef.afterClosed().subscribe(_result => {
-      if (_result) {
-        this.ngOnInit();
-      }
-    });
+  getSpotConfig(): SpotConfig {
+    return SpotConfig.BASIC;
   }
 }
