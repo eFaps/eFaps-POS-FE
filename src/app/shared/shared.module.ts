@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatKeyboardModule } from '@ngx-material-keyboard/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AngularResizedEventModule } from 'angular-resize-event';
 import { NgBusyModule } from 'ng-busy';
 import { WebStorageModule } from 'ngx-store';
 
@@ -41,7 +40,6 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     ReactiveFormsModule,
     TranslateModule,
     WebStorageModule,
-    AngularResizedEventModule
   ],
   declarations: [
     ConfirmDialogComponent,
@@ -68,7 +66,6 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     TranslateModule,
     VirtKeyboardDirective,
     WebStorageModule,
-    AngularResizedEventModule
   ],
   entryComponents: [
     ConfirmDialogComponent,
