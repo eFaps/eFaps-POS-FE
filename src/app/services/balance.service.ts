@@ -21,8 +21,8 @@ export class BalanceService {
   }
 
   private setup() {
-    this.authService.currentEvent.subscribe(_event => {
-      switch (_event) {
+    this.authService.currentEvent.subscribe(event => {
+      switch (event) {
         case 'login':
           this.load();
           break;
@@ -30,8 +30,8 @@ export class BalanceService {
           this.balanceSource.next(null);
       }
     });
-    this.workspaceService.currentWorkspace.subscribe(_ws => {
-      if (_ws) {
+    this.workspaceService.currentWorkspace.subscribe(ws => {
+      if (ws) {
         this.load();
       } else {
         this.balanceSource.next(null);
@@ -40,14 +40,16 @@ export class BalanceService {
   }
 
   private load() {
-    this.getCurrent(false).subscribe(_balance => {
-        this.balanceSource.next(_balance);
+    this.getCurrent(false).subscribe({
+      next: balance => {
+        this.balanceSource.next(balance);
       },
-      _error => {
-        if (_error.status !== 404) {
-          console.log(_error);
+      error: error => {
+        if (error.status !== 404) {
+          console.log(error);
         }
-      });
+      }
+    });
   }
 
   private getCurrent(_createNew?: boolean) {

@@ -1,27 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
 import { Balance } from '../../model';
 import { BalanceService } from '../../services';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-balance',
   templateUrl: './balance.component.html',
   styleUrls: ['./balance.component.scss']
 })
-export class BalanceComponent implements OnInit {
+export class BalanceComponent implements OnInit, OnDestroy {
   currentBalance: Balance;
+  private subscription$ = new Subscription();
 
-  constructor(private balanceService: BalanceService, private dialog: MatDialog,
-    private translateService: TranslateService) { }
+  constructor(private balanceService: BalanceService,
+    private translateService: TranslateService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.balanceService.currentBalance
-      .subscribe(_balance =>  {
+    this.subscription$.add(this.balanceService.currentBalance
+      .subscribe(_balance => {
         this.currentBalance = _balance;
-      });
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription$.unsubscribe();
   }
 
   init() {

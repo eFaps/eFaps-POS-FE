@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
-import { Balance, DocStatus, Payable, Roles } from '../../model';
+import { Subscription } from 'rxjs';
+
+import { Balance, DocStatus, Payable } from '../../model';
 import { BalanceService, DocumentService } from '../../services';
 import { DocumentDialogComponent } from '../document-dialog/document-dialog.component';
 
@@ -9,20 +11,21 @@ import { DocumentDialogComponent } from '../document-dialog/document-dialog.comp
   templateUrl: './balance-document-list.component.html',
   styleUrls: ['./balance-document-list.component.scss']
 })
-export class BalanceDocumentListComponent implements OnInit {
+export class BalanceDocumentListComponent implements OnInit, OnDestroy {
   DocStatus = DocStatus;
   displayedColumns = ['type', 'number', 'date', 'total', 'status', 'cmd'];
   dataSource = new MatTableDataSource<Payable>();
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   currentBalance: Balance;
+  private subscription$ = new Subscription();
 
   constructor(private balanceService: BalanceService,
     private documentService: DocumentService,
     private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.balanceService.currentBalance
+    this.subscription$.add(this.balanceService.currentBalance
       .subscribe(_balance => {
         this.currentBalance = _balance;
         if (_balance) {
@@ -34,13 +37,17 @@ export class BalanceDocumentListComponent implements OnInit {
           this.dataSource.data = [];
           this.dataSource.sort = this.sort;
         }
-      });
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription$.unsubscribe();
   }
 
   show(_payable: Payable) {
-    const dialogRef = this.dialog.open(DocumentDialogComponent, {
+    this.dialog.open(DocumentDialogComponent, {
       data: _payable,
     });
   }
-
 }
