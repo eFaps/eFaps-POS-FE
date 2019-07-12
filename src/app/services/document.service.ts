@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Balance, Invoice, Order, Payable, Receipt, Ticket } from '../model';
@@ -74,24 +74,46 @@ export class DocumentService {
   }
 
   public getDocuments4Balance(_balance: Balance): Observable<Payable[]> {
-    const receipts = this.getReceipts4Balance(_balance);
-    const invoices = this.getInvoicess4Balance(_balance);
-    return forkJoin(receipts, invoices).pipe(map(([s1, s2]) => {
-      s1.map(r => r.type = 'RECEIPT');
-      s2.map(r => r.type = 'INVOICE');
-      return [...s1, ...s2];
-    }));
+    return merge(
+      this.getReceipts4Balance(_balance),
+      this.getInvoices4Balance(_balance),
+      this.getTickets4Balance(_balance)
+    );
   }
 
-  public getReceipts4Balance(_balance: Balance): Observable<Receipt[]> {
+  private getReceipts4Balance(_balance: Balance): Observable<Payable[]> {
     const url = `${this.config.baseUrl}/documents/receipts`;
     const params = new HttpParams().set('balanceOid', _balance.oid ? _balance.oid : _balance.id);
-    return this.http.get<Receipt[]>(url, { params: params });
+    return this.http.get<Receipt[]>(url, { params: params })
+      .pipe(map(docs => {
+        docs.map(doc => {
+          doc.type = 'RECEIPT';
+        })
+        return [...docs]
+      }))
   }
 
-  public getInvoicess4Balance(_balance: Balance): Observable<Invoice[]> {
+  private getInvoices4Balance(_balance: Balance): Observable<Payable[]> {
     const url = `${this.config.baseUrl}/documents/invoices`;
     const params = new HttpParams().set('balanceOid', _balance.oid ? _balance.oid : _balance.id);
-    return this.http.get<Invoice[]>(url, { params: params });
+    return this.http.get<Invoice[]>(url, { params: params })
+      .pipe(map(docs => {
+        docs.map(doc => {
+          doc.type = 'INVOICE';
+        })
+        return [...docs]
+      }));
+  }
+
+  private getTickets4Balance(_balance: Balance): Observable<Payable[]> {
+    const url = `${this.config.baseUrl}/documents/tickets`;
+    const params = new HttpParams().set('balanceOid', _balance.oid ? _balance.oid : _balance.id);
+    return this.http.get<Ticket[]>(url, { params: params })
+      .pipe(map(docs => {
+        docs.map(doc => {
+          doc.type = 'TICKET';
+        })
+        return [...docs]
+      }))
   }
 }

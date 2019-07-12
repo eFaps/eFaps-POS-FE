@@ -1,9 +1,7 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
-import { Subscription } from 'rxjs';
 
-import { Balance, DocStatus, Payable } from '../../model';
-import { BalanceService, DocumentService } from '../../services';
+import { DocStatus, Payable } from '../../model';
 import { DocumentDialogComponent } from '../document-dialog/document-dialog.component';
 
 @Component({
@@ -11,38 +9,18 @@ import { DocumentDialogComponent } from '../document-dialog/document-dialog.comp
   templateUrl: './balance-document-list.component.html',
   styleUrls: ['./balance-document-list.component.scss']
 })
-export class BalanceDocumentListComponent implements OnInit, OnDestroy {
+export class BalanceDocumentListComponent {
   DocStatus = DocStatus;
   displayedColumns = ['type', 'number', 'date', 'total', 'status', 'cmd'];
   dataSource = new MatTableDataSource<Payable>();
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  currentBalance: Balance;
-  private subscription$ = new Subscription();
+  constructor(private dialog: MatDialog) { }
 
-  constructor(private balanceService: BalanceService,
-    private documentService: DocumentService,
-    private dialog: MatDialog) { }
-
-  ngOnInit() {
-    this.subscription$.add(this.balanceService.currentBalance
-      .subscribe(_balance => {
-        this.currentBalance = _balance;
-        if (_balance) {
-          this.documentService.getDocuments4Balance(_balance).subscribe(_payables => {
-            this.dataSource.data = _payables;
-            this.dataSource.sort = this.sort;
-          });
-        } else {
-          this.dataSource.data = [];
-          this.dataSource.sort = this.sort;
-        }
-      })
-    );
-  }
-
-  ngOnDestroy() {
-    this.subscription$.unsubscribe();
+  @Input()
+  set payables(payables: Payable[]) {
+    this.dataSource.data = payables;
+    this.dataSource.sort = this.sort;
   }
 
   show(_payable: Payable) {

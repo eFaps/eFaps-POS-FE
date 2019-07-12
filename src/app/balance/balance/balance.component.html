@@ -1,7 +1,8 @@
+<div i18n-ngBusy [ngBusy]="{busy: busy, message: 'WAIT' | translate}"></div>
 <div>
   <span class="balanceNumber" *ngIf="currentBalance">{{ 'BALANCE.LABEL' | translate }} - {{currentBalance?.number}}</span>
   <button *ngIf="!currentBalance" type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="init()">{{'BALANCE.BTN-OPEN' | translate}}</button>
   <button *ngIf="currentBalance" type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="close()">{{'BALANCE.BTN-CLOSE' | translate}}</button>
 </div>
-<app-balance-document-list></app-balance-document-list>
-<app-balance-payment-list></app-balance-payment-list>
+<app-balance-document-list [payables]="payables"></app-balance-document-list>
+<app-balance-payment-list [payables]="payables"></app-balance-payment-list>

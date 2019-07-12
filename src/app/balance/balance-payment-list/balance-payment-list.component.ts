@@ -1,59 +1,46 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatSort, MatTableDataSource } from '@angular/material';
-import { Observable, Subscription } from 'rxjs/Rx';
+import { Component, Input } from '@angular/core';
 
-import { Balance, Payable, Payment, PaymentType } from '../../model';
-import { BalanceService, DocumentService } from '../../services';
+import { Payable, Payment, PaymentType } from '../../model';
+import { Decimal } from 'decimal.js';
+
 
 @Component({
   selector: 'app-balance-payment-list',
   templateUrl: './balance-payment-list.component.html',
   styleUrls: ['./balance-payment-list.component.scss']
 })
-export class BalancePaymentListComponent implements OnInit, OnDestroy {
+export class BalancePaymentListComponent {
   PaymentType = PaymentType;
   payments: Payment[] = [];
   total = 0;
-  currentBalance: Balance;
-  sub$: Subscription;
 
-  constructor(private balanceService: BalanceService,
-    private documentService: DocumentService) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.sub$ = this.balanceService.currentBalance
-      .subscribe(_balance => {
-        this.payments = [];
-        this.total = 0;
-        this.currentBalance = _balance;
-        if (_balance) {
-          this.documentService.getDocuments4Balance(_balance).subscribe(_payables => {
-            const paymentMap = new Map<PaymentType, Payment>();
-            _payables.forEach(_payable => {
-              _payable.payments.forEach(_payment => {
-                let payment;
-                if (paymentMap.has(_payment.type)) {
-                  payment = paymentMap.get(_payment.type);
-                } else {
-                  payment = { type: _payment.type, amount: 0 };
-                  paymentMap.set(_payment.type, payment);
-                }
-                let amount = _payment.amount;
-                const paymentType: PaymentType = _payment.type;
-                if (paymentType.toString() === PaymentType[PaymentType.CHANGE]) {
-                  amount = -amount;
-                }
-                payment.amount = payment.amount + amount;
-                this.total = this.total + amount;
-              });
-            });
-            Array.from(paymentMap.values()).forEach(_payment => this.payments.push(_payment));
-          });
+  @Input()
+  set payables(payables: Payable[]) {
+    this.total = 0;
+    this.payments = [];
+    const paymentMap = new Map<PaymentType, Payment>();
+    payables.forEach(payable => {
+      payable.payments.forEach(payment => {
+        let currentPayment;
+        if (paymentMap.has(payment.type)) {
+          currentPayment = paymentMap.get(payment.type);
+        } else {
+          currentPayment = { type: payment.type, amount: 0 };
+          paymentMap.set(payment.type, currentPayment);
         }
+        let amount = new Decimal(payment.amount);
+        const paymentType: PaymentType = payment.type;
+        if (paymentType.toString() === PaymentType[PaymentType.CHANGE]) {
+          amount = amount.neg();
+        }
+        currentPayment.amount = new Decimal(currentPayment.amount).plus(amount)
+          .toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber();
+        this.total = new Decimal(this.total).plus(amount)
+          .toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber();
       });
-  }
-
-  ngOnDestroy() {
-    this.sub$.unsubscribe();
+    });
+    Array.from(paymentMap.values()).forEach(_payment => this.payments.push(_payment));
   }
 }

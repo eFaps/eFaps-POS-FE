@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-
-import { Balance } from '../../model';
-import { BalanceService } from '../../services';
-import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+
+import { Balance, Payable } from '../../model';
+import { BalanceService, DocumentService } from '../../services';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-balance',
@@ -14,16 +14,25 @@ import { Subscription } from 'rxjs';
 })
 export class BalanceComponent implements OnInit, OnDestroy {
   currentBalance: Balance;
-  private subscription$ = new Subscription();
+  payables: Payable[] = [];
+  busy: Subscription;
+  subscription$ = new Subscription();
 
   constructor(private balanceService: BalanceService,
+    private documentService: DocumentService,
     private translateService: TranslateService,
     private dialog: MatDialog) { }
 
   ngOnInit() {
     this.subscription$.add(this.balanceService.currentBalance
-      .subscribe(_balance => {
-        this.currentBalance = _balance;
+      .subscribe(balance => {
+        this.currentBalance = balance;
+        this.payables = [];
+        if (balance) {
+          this.busy = this.documentService.getDocuments4Balance(balance).subscribe({
+            next: payables => this.payables = this.payables.concat(payables)
+          })
+        }
       })
     );
   }
