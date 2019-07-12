@@ -15,6 +15,7 @@ import {
   Tax,
   TaxEntry
 } from '../model/index';
+import { Decimal } from 'decimal.js';
 
 @Injectable()
 export class PosService {
@@ -94,38 +95,43 @@ export class PosService {
     this.changeTicket(items);
   }
 
-  changeTicket(_ticket: Item[]) {
-    this.calculateItems(_ticket);
-    this.calculateTotals(_ticket);
-    this.ticketSource.next(_ticket);
+  changeTicket(ticket: Item[]) {
+    this.calculateItems(ticket);
+    this.calculateTotals(ticket);
+    this.ticketSource.next(ticket);
   }
 
-  private calculateItems(_ticket: Item[]) {
-    _ticket.forEach((_item: Item) => {
-      _item.price = (_item.product.crossPrice * _item.quantity);
+  private calculateItems(ticket: Item[]) {
+    ticket.forEach((item: Item) => {
+      item.price = new Decimal(item.product.crossPrice).mul(new Decimal(item.quantity))
+        .toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber();
     });
   }
 
-  private calculateTotals(_ticket: Item[]) {
-    let net = 0;
-    let cross = 0;
-    const taxes = new Map<string, number>();
-    _ticket.forEach((_item: Item) => {
-      const itemNet = _item.product.netPrice * _item.quantity;
-      net += itemNet;
-      cross += itemNet;
-      _item.product.taxes.forEach((_tax: Tax) => {
-        const tax = itemNet * (_tax.percent / 100);
-        if (!taxes.has(_tax.name)) {
-          taxes.set(_tax.name, 0);
+  private calculateTotals(ticket: Item[]) {
+    let net = new Decimal(0);
+    let cross = new Decimal(0);
+    const taxes = new Map<string, Decimal>();
+    ticket.forEach((item: Item) => {
+      const itemNet = new Decimal(item.product.netPrice).mul(new Decimal(item.quantity));
+      net = net.plus(itemNet);
+      cross = cross.plus(itemNet);
+      item.product.taxes.forEach((tax: Tax) => {
+        const taxAmount = itemNet.mul(new Decimal(tax.percent).div(new Decimal(100)));
+        if (!taxes.has(tax.name)) {
+          taxes.set(tax.name, new Decimal(0));
         }
-        taxes.set(_tax.name, taxes.get(_tax.name) + tax);
-        cross += tax;
+        taxes.set(tax.name, taxes.get(tax.name).plus(taxAmount));
+        cross = cross.plus(taxAmount);
       });
     });
-    this.netTotalSource.next(net);
-    this.crossTotalSource.next(cross);
-    this.taxesSource.next(taxes);
+    this.netTotalSource.next(net.toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber());
+    this.crossTotalSource.next(cross.toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber());
+    const taxesNum = new Map<string, number>();
+    taxes.forEach((val, key) => {
+      taxesNum.set(key, val.toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber())
+    });
+    this.taxesSource.next(taxesNum);
   }
 
   public createOrder(): Observable<Order> {
@@ -145,27 +151,30 @@ export class PosService {
 
   private getDocItems(): DocItem[] {
     return this.ticket
-      .map((_item, _index) => <DocItem>{
-        index: _index + 1,
-        product: _item.product,
-        quantity: _item.quantity,
-        netUnitPrice: _item.product.netPrice,
-        netPrice: _item.product.netPrice * _item.quantity,
-        crossUnitPrice: _item.product.crossPrice,
-        crossPrice: _item.price,
-        taxes: this.getItemTaxEntries(_item)
+      .map((item, index) => <DocItem>{
+        index: index + 1,
+        product: item.product,
+        quantity: item.quantity,
+        netUnitPrice: item.product.netPrice,
+        netPrice: new Decimal(item.product.netPrice).mul(new Decimal(item.quantity))
+          .toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber(),
+        crossUnitPrice: item.product.crossPrice,
+        crossPrice: item.price,
+        taxes: this.getItemTaxEntries(item)
       });
   }
 
-  private getItemTaxEntries(_item: Item): TaxEntry[] {
+  private getItemTaxEntries(item: Item): TaxEntry[] {
     const entries: TaxEntry[] = [];
-    _item.product.taxes.forEach((_tax: Tax) => {
-      const netPrice = _item.product.netPrice * _item.quantity;
-      const tax = netPrice * (_tax.percent / 100);
+    item.product.taxes.forEach((_tax: Tax) => {
+      const netPrice = new Decimal(item.product.netPrice).mul(new Decimal(item.quantity))
+        .toDecimalPlaces(2, Decimal.ROUND_HALF_UP);
+      const taxAmount = netPrice.mul(new Decimal(_tax.percent).div(new Decimal(100)))
+        .toDecimalPlaces(2, Decimal.ROUND_HALF_UP);
       entries.push({
         tax: _tax,
-        base: netPrice,
-        amount: tax
+        base: netPrice.toNumber(),
+        amount: taxAmount.toNumber()
       });
     });
     return entries;
@@ -174,19 +183,21 @@ export class PosService {
   private getTaxEntries(): TaxEntry[] {
     const taxEntries: TaxEntry[] = [];
     const taxValues: Map<string, TaxEntry> = new Map();
-    this.getDocItems().forEach(_item => {
-      _item.taxes.forEach(_taxEntry => {
-        if (!taxValues.has(_taxEntry.tax.name)) {
-          taxValues.set(_taxEntry.tax.name, {
-            tax: _taxEntry.tax,
+    this.getDocItems().forEach(item => {
+      item.taxes.forEach(taxEntry => {
+        if (!taxValues.has(taxEntry.tax.name)) {
+          taxValues.set(taxEntry.tax.name, {
+            tax: taxEntry.tax,
             base: 0,
             amount: 0,
           });
         }
-        const ce = taxValues.get(_taxEntry.tax.name);
-        ce.amount = ce.amount + _taxEntry.amount;
-        ce.base = ce.base + _taxEntry.base;
-        taxValues.set(_taxEntry.tax.name, ce);
+        const ce = taxValues.get(taxEntry.tax.name);
+        ce.amount = new Decimal(ce.amount).plus(new Decimal(taxEntry.amount))
+          .toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber();
+        ce.base = new Decimal(ce.base).plus(new Decimal(taxEntry.base))
+          .toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber();
+        taxValues.set(taxEntry.tax.name, ce);
       });
     });
     taxValues.forEach((_value, _key) => {
@@ -204,18 +215,19 @@ export class PosService {
     }));
   }
 
-  public calculateOrder(_order: Order): Order {
-    const docItems = this.ticket.map((_item, _index) => <DocItem>{
-      index: _order.items[_index].index,
-      product: _item.product,
-      quantity: _item.quantity,
-      netUnitPrice: _item.product.netPrice,
-      netPrice: _item.product.netPrice * _item.quantity,
-      crossUnitPrice: _item.product.crossPrice,
-      crossPrice: _item.price,
-      taxes: this.getItemTaxEntries(_item)
+  public calculateOrder(order: Order): Order {
+    const docItems = this.ticket.map((item, index) => <DocItem>{
+      index: order.items[index].index,
+      product: item.product,
+      quantity: item.quantity,
+      netUnitPrice: item.product.netPrice,
+      netPrice: new Decimal(item.product.netPrice).mul(new Decimal(item.quantity))
+        .toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber(),
+      crossUnitPrice: item.product.crossPrice,
+      crossPrice: item.price,
+      taxes: this.getItemTaxEntries(item)
     });
-    return Object.assign(_order, {
+    return Object.assign(order, {
       items: docItems,
       netTotal: this.netTotal,
       crossTotal: this.crossTotal,

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { TaxEntry, Document } from '../model';
+import { Decimal } from 'decimal.js';
+
+import { Document, TaxEntry } from '../model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +23,10 @@ export class TaxService {
           });
         }
         const ce = taxValues.get(_taxEntry.tax.name);
-        ce.amount = ce.amount + _taxEntry.amount;
-        ce.base = ce.base + _taxEntry.base;
+        ce.amount = new Decimal(ce.amount).plus(new Decimal(_taxEntry.amount))
+          .toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber();
+        ce.base = new Decimal(ce.base).plus(new Decimal(_taxEntry.base))
+          .toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber();
         taxValues.set(_taxEntry.tax.name, ce);
       });
     });
@@ -33,10 +37,10 @@ export class TaxService {
   }
 
   taxTotal(document: Document): number {
-    let total = 0;
+    let total = new Decimal(0);
     document.taxes.forEach(entry => {
-      total = total + entry.amount;
+      total = total.plus(new Decimal(entry.amount));
     });
-    return total;
+    return total.toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber();
   }
 }

@@ -14,9 +14,7 @@ export class TotalsComponent implements OnInit {
   cross: number;
   currentCurrency: string;
 
-  constructor(private posService: PosService) {
-
-  }
+  constructor(private posService: PosService) { }
 
   ngOnInit() {
     this.posService.currentCurrency.subscribe(_data => this.currentCurrency = _data);

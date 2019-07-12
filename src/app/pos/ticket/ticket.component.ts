@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
+import { Decimal } from 'decimal.js';
 
 import { Item } from '../../model/index';
 import { PosService } from '../../services/index';
@@ -23,20 +24,20 @@ export class TicketComponent implements OnInit {
     this.posService.currentCurrency.subscribe(_data => this.currentCurrency = _data);
   }
 
-  add(_item: Item) {
-    _item.quantity = _item.quantity + this.getQuantity();
+  add(item: Item) {
+    item.quantity = new Decimal(item.quantity).plus(this.getQuantity()).toNumber();
     this.syncTicket();
     this.multiplierClick.emit();
   }
 
-  subtract(_item: Item) {
-    _item.quantity = _item.quantity - this.getQuantity();
-    if (_item.quantity < 1) {
+  subtract(item: Item) {
+    item.quantity = new Decimal(item.quantity).minus(this.getQuantity()).toNumber();
+    if (item.quantity < 1) {
       const ticket = this.dataSource.data;
-      if (ticket.includes(_item)) {
-        const index = ticket.indexOf(_item);
+      if (ticket.includes(item)) {
+        const index = ticket.indexOf(item);
         if (index > -1) {
-          ticket[ticket.indexOf(_item)].quantity = 1;
+          ticket[ticket.indexOf(item)].quantity = 1;
           ticket.splice(index, 1);
         }
       }
@@ -49,7 +50,7 @@ export class TicketComponent implements OnInit {
     this.posService.changeTicket(this.dataSource.data);
   }
 
-  private getQuantity(): number {
-    return this.multiplier > 0 ? this.multiplier : 1;
+  private getQuantity(): Decimal {
+    return new Decimal(this.multiplier > 0 ? this.multiplier : 1);
   }
 }

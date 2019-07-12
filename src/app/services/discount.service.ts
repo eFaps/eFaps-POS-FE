@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Discount, DiscountType, Document, DocItem, Product, Order } from '../model';
-import { TaxService } from './tax.service';
+import { Decimal } from 'decimal.js';
+
+import { Discount, DiscountType, DocItem, Document, Order, Product } from '../model';
 import { DocumentService } from './document.service';
+import { TaxService } from './tax.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,7 @@ export class DiscountService {
     if (order.discount) {
       order.items = order.items.filter(item => item.product.oid != order.discount.productOid);
       order.discount = null;
+      this.recalculate(order);
     }
 
     if (discount && discount.type === DiscountType.PERCENT) {
@@ -25,44 +28,52 @@ export class DiscountService {
   }
 
   private applyPercent(order: Order, discount: Discount): Order {
-    const net = -(order.netTotal * (discount.value / 100));
-    const cross = -(order.crossTotal * (discount.value / 100));
+    const factor = new Decimal(discount.value).div(new Decimal(100));
+
+    const net = new Decimal(order.netTotal).mul(factor).toDecimalPlaces(2, Decimal.ROUND_HALF_UP).neg();
+    const cross = new Decimal(order.crossTotal).mul(factor).toDecimalPlaces(2, Decimal.ROUND_HALF_UP).neg();
     const item: DocItem = {
       index: order.items.length + 1,
       product: this.getDiscountProduct(discount),
       quantity: 1,
-      netPrice: net,
-      netUnitPrice: net,
-      crossPrice: cross,
-      crossUnitPrice: cross,
+      netPrice: net.toNumber(),
+      netUnitPrice: net.toNumber(),
+      crossPrice: cross.toNumber(),
+      crossUnitPrice: cross.toNumber(),
       taxes: []
     }
 
     order.taxes.forEach(taxEntry => {
+      const base = new Decimal(taxEntry.base)
+        .minus(new Decimal(new Decimal(taxEntry.base).mul(factor)))
+        .toDecimalPlaces(2, Decimal.ROUND_HALF_UP);
+      const amount = new Decimal(taxEntry.amount).mul(factor).neg()
+        .toDecimalPlaces(2, Decimal.ROUND_HALF_UP);
+
       item.taxes.push(
         {
           tax: taxEntry.tax,
-          base: taxEntry.base - (taxEntry.base * (discount.value / 100)),
-          amount: -(taxEntry.amount * (discount.value / 100))
+          base: base.toNumber(),
+          amount: amount.toNumber()
         }
       )
     })
-    console.log(item);
     order.items.push(item);
     order.discount = discount;
     return order;
   }
 
   private recalculate(order: Order): Order {
-    let crossTotal = 0;
-    let netTotal = 0;
+    let crossTotal = new Decimal(0);
+    let netTotal = new Decimal(0);
     order.items.forEach(item => {
-      crossTotal = crossTotal + item.crossPrice;
-      netTotal = netTotal + item.netPrice;
+      crossTotal = crossTotal.plus(new Decimal(item.crossPrice));
+      netTotal = netTotal.plus(new Decimal(item.netPrice));
     });
     order.taxes = this.taxService.calculateTax(order);
-    order.crossTotal = netTotal + this.taxService.taxTotal(order);
-    order.netTotal = netTotal;
+    order.crossTotal = netTotal.plus(new Decimal(this.taxService.taxTotal(order)))
+      .toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber();
+    order.netTotal = netTotal.toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber();
     return order;
   }
 

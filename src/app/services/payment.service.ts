@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Decimal } from 'decimal.js';
 import { BehaviorSubject } from 'rxjs';
 
 import { Document, Payment } from '../model/index';
@@ -39,11 +40,11 @@ export class PaymentService {
   }
 
   calculateTotals(_payments: Payment[]) {
-    let total = 0;
+    let total = new Decimal(0);
     _payments.forEach((_payment: Payment) => {
-      total += _payment.amount;
+      total = total.plus(new Decimal(_payment.amount));
     });
-    this.totalSource.next(total);
+    this.totalSource.next(total.toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber());
   }
 
   reset() {
