@@ -37,12 +37,8 @@
     "401": "Usuario o clave incorrecto"
   },
   "BALANCE": {
-    "LABEL": "Cierre de Caja",
-    "BTN-OPEN": "Iniciar",
-    "BTN-CLOSE": "Cerrar",
     "CONFIRM-CLOSE": "Esta segura que quiere cerrar la caja?",
-    "CONFIRM-OPEN": "Esta segura que quiere inciar la caja?",
-    "TOTAL": "Total"
+    "CONFIRM-OPEN": "Esta segura que quiere inciar la caja?"
   },
   "IDTYPE": {
     "RUC": "R.U.C.",

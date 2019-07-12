@@ -128,7 +128,7 @@
       </trans-unit>
       <trans-unit id="balance" datatype="html">
         <source>Balance</source>
-        <target state="translated">Balance</target>
+        <target state="translated">Balance de caja</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
           <context context-type="linenumber">44</context>
@@ -156,6 +156,38 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
           <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="balanceWithNumber" datatype="html">
+        <source>Balance - <x id="INTERPOLATION" equiv-text="{{currentBalance?.number}}"/></source>
+        <target>Balance de caja - <x id="INTERPOLATION" equiv-text="{{currentBalance?.number}}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance/balance.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="initBalance" datatype="html">
+        <source>Init</source>
+        <target state="translated">Iniciar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance/balance.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="closeBalance" datatype="html">
+        <source>Close</source>
+        <target state="translated">Cerrar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance/balance.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="total" datatype="html">
+        <source>Total</source>
+        <target state="translated">TOTAL</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance-payment-list/balance-payment-list.component.html</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cash-payment" datatype="html">
