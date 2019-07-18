@@ -72,7 +72,7 @@ export class WorkspaceService {
   public showSpots() {
     return this.current
       && this.current.spotConfig
-      && this.current.spotConfig === SpotConfig.BASIC;
+      && this.current.spotConfig != SpotConfig.NONE;
   }
 
   public getSpotSize(): number {

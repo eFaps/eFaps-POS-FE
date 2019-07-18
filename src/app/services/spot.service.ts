@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { LocalStorage } from 'ngx-store';
 import { Observable } from 'rxjs';
 
-import { Order, Spot, SpotsLayout, Position } from '../model/index';
+import { Order, Position, Spot, SpotsLayout, Workspace } from '../model';
 import { DocumentService } from './document.service';
 import { WorkspaceService } from './workspace.service';
 
@@ -12,9 +12,15 @@ import { WorkspaceService } from './workspace.service';
 export class SpotService {
 
   @LocalStorage() public positions: any = {};
+  private workspace: Workspace;
 
   constructor(private documentService: DocumentService,
-    private workspaceService: WorkspaceService) { }
+    private workspaceService: WorkspaceService) {
+
+    workspaceService.currentWorkspace.subscribe({
+      next: workspace => this.workspace = workspace
+    });
+  }
 
   public getSpots(): Observable<Spot[]> {
     return new Observable((observer) => {
@@ -33,33 +39,7 @@ export class SpotService {
   public getLayout(): Observable<SpotsLayout> {
 
     let layout: SpotsLayout = {
-      floors: [
-        {
-          label: '1st Floor',
-          spots: [
-            {
-              id: '1',
-              label: 'Mesa 1'
-            },
-            {
-              id: '2',
-              label: 'Mesa 2'
-            },
-            {
-              id: '3',
-              label: 'Mesa 3'
-            },
-            {
-              id: '123.45',
-              label: 'Mesa 4'
-            },
-            {
-              id: '159.58',
-              label: 'Bar 1'
-            }
-          ]
-        }
-      ]
+      floors: this.workspace.floors
     }
 
     return new Observable((observer) => {

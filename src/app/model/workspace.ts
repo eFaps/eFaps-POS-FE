@@ -1,5 +1,5 @@
 import { DocumentType } from './document';
-import { SpotConfig } from './spot';
+import { SpotConfig, Floor } from './spot';
 import { Discount } from './discount';
 
 export interface Workspace {
@@ -16,6 +16,7 @@ export interface Workspace {
   cards: Card[];
   gridSize: PosGridSize;
   gridShowPrice: boolean;
+  floors: Floor[];
 }
 
 export interface PrintCmd {
