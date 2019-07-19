@@ -7,7 +7,7 @@ export enum SpotConfig {
 }
 
 export interface Spot {
-  id: string;
+  oid: string;
   label: string;
   order?: Order;
   position?: Position;
@@ -18,7 +18,9 @@ export interface SpotsLayout {
 }
 
 export interface Floor {
-  label: string;
+  oid: string;
+  name: string;
+  imageOid: string;
   spots: Spot[];
 }
 

@@ -27,8 +27,8 @@ export class SpotService {
       this.documentService.getOrders4Spots().subscribe(_orders => {
         const spots: Spot[] = [];
         for (let i = 0; i < this.workspaceService.getSpotSize(); i++) {
-          const order = _orders.find(o => o.spot && o.spot.id === ('' + i));
-          spots.push({ id: '' + i, label: 'M ' + (i + 1), order: order });
+          const order = _orders.find(o => o.spot && o.spot.oid === ('' + i));
+          spots.push({ oid: '' + i, label: 'M ' + (i + 1), order: order });
         }
         observer.next(spots);
         observer.complete();
@@ -46,9 +46,9 @@ export class SpotService {
       this.documentService.getOrders4Spots().subscribe(_orders => {
         layout.floors.forEach(floor => {
           floor.spots.forEach(spot => {
-            const order = _orders.find(o => o.spot && o.spot.id === spot.id);
+            const order = _orders.find(o => o.spot && o.spot.oid === spot.oid);
             spot.order = order;
-            spot.position = this.positions[spot.id];
+            spot.position = this.positions[spot.oid];
           })
         });
         observer.next(layout);
@@ -58,13 +58,13 @@ export class SpotService {
   }
 
   setPosition(spot: Spot, position: Position): void {
-    this.positions[spot.id] = position;
+    this.positions[spot.oid] = position;
     this.positions.save();
   }
 
   public swap(_origin: Spot, _target: Spot): Observable<Order> {
     const order = _origin.order;
-    order.spot = { id: _target.id, label: _target.label };
+    order.spot = { oid: _target.oid, label: _target.label };
     return this.documentService.updateOrder(order);
   }
 }

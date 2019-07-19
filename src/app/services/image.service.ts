@@ -31,4 +31,28 @@ export class ImageService {
     });
   }
 
+  @Cacheable()
+  getBase64Image(oid: string): Observable<String> {
+    const url = `${this.config.baseUrl}/images/${oid}`;
+    return new Observable<String>((subscriber: Subscriber<String>) => {
+      let objectUrl: string = null;
+      this.http
+        .get(url, { responseType: 'blob' })
+        .subscribe(blob => {
+          var reader = new FileReader();
+          reader.readAsDataURL(blob);
+          reader.onloadend = () => {
+            const base64 = reader.result;
+            subscriber.next(base64.toString());
+          }
+        });
+      return () => {
+        if (objectUrl) {
+          URL.revokeObjectURL(objectUrl);
+          objectUrl = null;
+        }
+      };
+    });
+  }
+
 }

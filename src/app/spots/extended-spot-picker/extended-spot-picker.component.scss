@@ -6,7 +6,6 @@
 
     .floor {
       height: 100%;
-      background-image: url("../../../assets/florplan.svg");
       background-repeat: no-repeat;
       background-position: 25px center;
       background-clip: border-box;
@@ -41,7 +40,7 @@
   bottom: 4px;
   margin: 8px;
   z-index: 1;
-  
+
   & .posIcon-36 {
     top: -5px;
     position: relative;
