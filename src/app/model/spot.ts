@@ -7,7 +7,8 @@ export enum SpotConfig {
 }
 
 export interface Spot {
-  oid: string;
+  id: string;
+  oid?: string;
   label: string;
   order?: Order;
   position?: Position;
