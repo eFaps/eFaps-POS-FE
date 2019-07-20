@@ -145,7 +145,8 @@ export class PosService {
       netTotal: this.netTotal,
       crossTotal: this.crossTotal,
       taxes: this.getTaxEntries(),
-      discount: null
+      discount: null,
+      payableOid: null
     });
   }
 

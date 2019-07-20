@@ -36,7 +36,8 @@ export class SplitOrderDialogComponent implements OnInit {
       netTotal: 0,
       crossTotal: 0,
       taxes: [],
-      discount: null
+      discount: null,
+      payableOid: null
     };
   }
 
