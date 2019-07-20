@@ -163,7 +163,7 @@
         <target>Balance de caja - <x id="INTERPOLATION" equiv-text="{{currentBalance?.number}}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance/balance.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="initBalance" datatype="html">
@@ -171,7 +171,7 @@
         <target state="translated">Iniciar</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance/balance.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="closeBalance" datatype="html">
@@ -179,7 +179,23 @@
         <target state="translated">Cerrar</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance/balance.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="currentBalance" datatype="html">
+        <source>Current Balance</source>
+        <target>Balance actual</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance/balance.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="balanceSummary" datatype="html">
+        <source>Summary</source>
+        <target>Resumen</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance/balance.component.html</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="total" datatype="html">
