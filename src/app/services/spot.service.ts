@@ -37,15 +37,15 @@ export class SpotService {
   }
 
   public getLayout(): Observable<SpotsLayout> {
-
     let layout: SpotsLayout = {
       floors: this.workspace.floors
     }
-
     return new Observable((observer) => {
       this.documentService.getOrders4Spots().subscribe(_orders => {
         layout.floors.forEach(floor => {
-          floor.spots.forEach(spot => {
+          floor.spots.sort((s1, s2) => {
+            return s1.label.localeCompare(s2.label);
+          }).forEach(spot => {
             if (spot.oid) {
               spot.id = spot.oid;
             }

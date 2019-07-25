@@ -1,7 +1,7 @@
 <mat-tab-group [class.header-less-tabs]="floors.length <= 1" animationDuration="0ms">
   <mat-tab *ngFor="let floor of floors; let i = index" label="{{floor?.name}}" >
     <div class="floor" [class.sidenav]="sidenav" [style.background-image]="image(floor)">
-      <ng-container *ngFor="let spot of floor.spots">
+      <ng-container *ngFor="let spot of floor.spots;let i = index">
         <button mat-fab
           color="{{spot.order ? 'accent' : 'primary'}}"
           (click)="selectSpot(spot)"
@@ -10,7 +10,9 @@
           (cdkDragEnded)="dragEnded($event)"
           [cdkDragData]="spot"
           cdkDragBoundary=".floor"
-          [cdkDragFreeDragPosition]="spot.position">
+          [cdkDragFreeDragPosition]="spot.position"
+          [style.left]="getLeft(i)"
+          [style.top]="getTop(i)">
             {{spot.label}}
         </button>
       </ng-container>

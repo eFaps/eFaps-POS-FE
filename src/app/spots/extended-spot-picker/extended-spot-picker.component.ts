@@ -18,7 +18,6 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements O
   editMode = false;
   sidenav = false;
   images = new Map<String, String>();
-
   constructor(router: Router,
     posService: PosService,
     documentService: DocumentService,
@@ -72,5 +71,21 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements O
 
   getSpotConfig(): SpotConfig {
     return SpotConfig.EXTENDED;
+  }
+
+  getLeft(i: number): string {
+    while (i > 9) {
+      i = i - 10;
+    }
+    return (i * 60) + "px";
+  }
+
+  getTop(i: number) {
+    var mul = 0;
+    while (i > 9) {
+      i = i - 10;
+      mul++;
+    }
+    return (mul * 60) + "px";
   }
 }

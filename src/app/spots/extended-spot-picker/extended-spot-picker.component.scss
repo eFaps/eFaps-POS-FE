@@ -11,6 +11,10 @@
       background-clip: border-box;
       background-attachment: local;
       transition:background-position 0.25s ease;
+
+      button {
+        position: absolute;
+      }
     }
   }
 }
