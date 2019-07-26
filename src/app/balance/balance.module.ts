@@ -8,6 +8,7 @@ import { BalanceComponent } from './balance/balance.component';
 import { BalancePaymentListComponent } from './balance-payment-list/balance-payment-list.component';
 import { DocumentDialogComponent } from './document-dialog/document-dialog.component';
 import { BalanceSummaryComponent } from './balance-summary/balance-summary.component';
+import { BalanceSummarySectionComponent } from './balance-summary-section/balance-summary-section.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { BalanceSummaryComponent } from './balance-summary/balance-summary.compo
     BalanceDocumentListComponent,
     BalancePaymentListComponent,
     DocumentDialogComponent,
-    BalanceSummaryComponent
+    BalanceSummaryComponent,
+    BalanceSummarySectionComponent
   ],
   entryComponents: [
     DocumentDialogComponent,

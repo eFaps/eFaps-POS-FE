@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <div class="document">
+    <div>
+      <p>Documents: {{detail.documentCount}}</p>
+    </div>
+    <div>
+      <p>NetTotal: {{detail.netTotal}}</p>
+      <p>CrossTotal: {{detail.crossTotal}}</p>
+    </div>
+  </div>
+  <div class="payment">
+    <div>
+      <p>Payments: {{detail.paymentCount}}</p>
+    </div>
+    <div *ngFor="let info of detail.paymentInfos">
+      <p>Type: {{info.type}} {{info.cardLabel}}</p>
+      <p>Count: {{info.count}}</p>
+      <p>Amount: {{info.amount}}</p>
+    </div>
+  </div>
+</div>

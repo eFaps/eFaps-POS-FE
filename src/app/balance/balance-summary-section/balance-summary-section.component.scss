@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+
+  .document {
+    width: 125px;
+    margin-right: 25px;
+  }
+
+  .payment {
+    display: flex;
+    flex-direction: row;
+
+    div {
+      margin-right: 25px;
+    }
+  }
+}

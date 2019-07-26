@@ -1,4 +1,13 @@
-
-.wrapper{
+.wrapper {
   padding: 10px;
+
+  .section {
+    border: 1px solid;
+    margin: 2px;
+    padding: 5px;
+
+    & > p {
+      font-weight: bold;
+    }
+  }
 }

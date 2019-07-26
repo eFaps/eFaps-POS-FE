@@ -1,5 +1,22 @@
 <div class="wrapper">
-<p>Soon to come</p>
-<p>Number: {{summary?.balance.number}}</p>
-<p>Started: {{summary?.balance.startAt}}</p>
+  <h1>Beta</h1>
+  <p>Number: {{summary?.balance.number}}</p>
+  <p>Started: {{summary?.balance.startAt}}</p>
+
+  <div class="section" *ngIf="summary?.invoiceDetail.documentCount > 0">
+    <p>Invoices</p>
+    <app-balance-summary-section [detail]="summary.invoiceDetail"></app-balance-summary-section>
+  </div>
+  <div class="section" *ngIf="summary?.receiptDetail.documentCount > 0">
+    <p>Receipts</p>
+    <app-balance-summary-section [detail]="summary.receiptDetail"></app-balance-summary-section>
+  </div>
+  <div class="section" *ngIf="summary?.ticketDetail.documentCount > 0">
+    <p>Tickets</p>
+    <app-balance-summary-section [detail]="summary.ticketDetail"></app-balance-summary-section>
+  </div>
+  <div class="section" *ngIf="summary?.detail.documentCount > 0">
+    <p>Over all</p>
+    <app-balance-summary-section [detail]="summary.detail"></app-balance-summary-section>
+  </div>
 </div>
