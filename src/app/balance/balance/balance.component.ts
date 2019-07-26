@@ -26,6 +26,9 @@ export class BalanceComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription$.add(this.balanceService.currentBalance
       .subscribe(balance => {
+        if (this.busy) {
+          this.busy.unsubscribe();
+        }
         this.currentBalance = balance;
         this.payables = [];
         if (balance) {
@@ -39,6 +42,9 @@ export class BalanceComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription$.unsubscribe();
+    if (this.busy) {
+      this.busy.unsubscribe();
+    }
   }
 
   init() {
