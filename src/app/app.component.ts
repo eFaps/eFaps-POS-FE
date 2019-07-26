@@ -50,7 +50,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this.companyService.company.subscribe({
-      next: data => this.company = data.label
+      next: data => data ? this.company = data.label : this.company = null
     });
 
     this.workspaceService.currentWorkspace.subscribe(_data => {
