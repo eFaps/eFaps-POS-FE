@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
-import { Balance } from '../model';
+import { Balance, BalanceSummary } from '../model';
 import { AuthService } from './auth.service';
 import { ConfigService } from './config.service';
 import { WorkspaceService } from './workspace.service';
@@ -52,7 +52,7 @@ export class BalanceService {
     });
   }
 
-  private getCurrent(_createNew?: boolean) {
+  private getCurrent(_createNew?: boolean): Observable<Balance> {
     const requestUrl = `${this.config.baseUrl}/balance`;
     const params = new HttpParams()
       .set('createNew', _createNew.toString());
@@ -63,9 +63,14 @@ export class BalanceService {
     this.getCurrent(true).subscribe(_balance => this.balanceSource.next(_balance));
   }
 
-  close(_balance: Balance) {
-    const url = `${this.config.baseUrl}/balance/${_balance.id}`;
-    this.http.put<Balance>(url, _balance).subscribe();
+  close(balance: Balance) {
+    const url = `${this.config.baseUrl}/balance/${balance.id}`;
+    this.http.put<Balance>(url, balance).subscribe();
     this.balanceSource.next(null);
+  }
+
+  getSummary(balance: Balance): Observable<BalanceSummary> {
+    const url = `${this.config.baseUrl}/balance/${balance.id}/summary`;
+    return this.http.get<BalanceSummary>(url);
   }
 }

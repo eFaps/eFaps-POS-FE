@@ -1,3 +1,4 @@
+export * from './balance-summary';
 export * from './balance';
 export * from './category';
 export * from './company';
