@@ -1,5 +1,14 @@
 <h1 mat-dialog-title>{{DocumentType[data.docType] | translate }}: {{data.document.number}}</h1>
-<mat-dialog-content>{{'PAYMENT.CHANGE' | translate }}: {{ data.change | posCurrency:data.currency}}</mat-dialog-content>
+<mat-dialog-content>
+  <div class="content">
+    <div>
+      {{'PAYMENT.CHANGE' | translate }}: {{ data.change | posCurrency:data.currency}}
+    </div>
+    <div *ngIf="data.print">
+      <app-print-display [printObservable]="printObservable"></app-print-display>
+    </div>
+  </div>
+</mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>OK</button>
 </mat-dialog-actions>

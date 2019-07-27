@@ -51,6 +51,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   permitToggleContact = true;
   private subscriptions$ = new Subscription();
   allowPrintPreliminary = true;
+  private printTicket = false;
 
   constructor(private router: Router,
     private translateService: TranslateService,
@@ -77,6 +78,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.subscriptions$.add(this.workspaceService.currentWorkspace.subscribe(_data => {
       this.workspaceOid = _data.oid;
       this.allowPrintPreliminary = _data.printCmds.some(x => x.target === 'PRELIMINARY');
+      this.printTicket = _data.printCmds.some(x => x.target === 'TICKET');
       this.docTypes = [];
       _data.docTypes.forEach((_value) => {
         this.docTypes.push(_value.toString());
@@ -175,7 +177,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
         document: _document,
         docType: docType,
         change: this.change,
-        currency: this.paymentService.currency
+        currency: this.paymentService.currency,
+        print: this.printTicket,
+        workspaceOid: this.workspaceOid
       }
     });
   }

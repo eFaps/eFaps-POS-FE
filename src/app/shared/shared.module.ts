@@ -68,6 +68,7 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     TranslateModule,
     VirtKeyboardDirective,
     WebStorageModule,
+    PrintDisplayComponent
   ],
   entryComponents: [
     ConfirmDialogComponent,

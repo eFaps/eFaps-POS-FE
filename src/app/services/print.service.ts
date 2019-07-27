@@ -41,4 +41,12 @@ export class PrintService {
       .set('workspaceOid', _workspaceOid);
     return this.http.post<PrintResponse[]>(requestUrl, null, { params: params });
   }
+
+  printTicket(_workspaceOid: string, _doc: Document): Observable<PrintResponse[]> {
+    const requestUrl = `${this.config.baseUrl}/print/ticket`;
+    const params = new HttpParams()
+      .set('documentId', _doc.id)
+      .set('workspaceOid', _workspaceOid);
+    return this.http.post<PrintResponse[]>(requestUrl, null, { params: params });
+  }
 }
