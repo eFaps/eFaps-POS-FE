@@ -1,6 +1,3 @@
 <mat-dialog-content>
-  <mat-spinner *ngIf="!loaded"></mat-spinner>
-  <h2 *ngIf="showEmptyMsg">No se impremi nada</h2>
-  <h2 *ngIf="!showEmptyMsg && success" class="success">LISTO</h2>
-  <img [src]="url" *ngFor="let url of previewUrls; let i = index">
+  <app-print-display [printObservable]="data"></app-print-display>
 </mat-dialog-content>

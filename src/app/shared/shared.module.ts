@@ -19,6 +19,7 @@ import { DocumentComponent } from './document/document.component';
 import { ImageComponent } from './image/image.component';
 import { KeypadComponent } from './keypad/keypad.component';
 import { PrintDialogComponent } from './print-dialog/print-dialog.component';
+import { PrintDisplayComponent } from './print-display/print-display.component';
 
 export function TranslateLoaderFactory(_httpClient: HttpClient) {
   if (environment.electron) {
@@ -52,6 +53,7 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     ImageComponent,
     PrintDialogComponent,
     VirtKeyboardDirective,
+    PrintDisplayComponent,
   ],
   exports: [
     ConfirmDialogComponent,
