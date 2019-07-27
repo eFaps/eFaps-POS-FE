@@ -5,6 +5,9 @@
     </div>
     <div>
       <p>NetTotal: {{detail.netTotal}}</p>
+      <ng-container *ngFor="let taxEntry of detail.taxEntries">
+        <p>{{taxEntry.tax.name}}: {{taxEntry.amount}} </p>
+      </ng-container>
       <p>CrossTotal: {{detail.crossTotal}}</p>
     </div>
   </div>

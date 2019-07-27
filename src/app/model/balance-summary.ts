@@ -1,5 +1,6 @@
 import { Balance } from './balance';
 import { PaymentType } from './payment';
+import { TaxEntry } from './tax';
 
 export interface BalanceSummary {
   balance: Balance;
@@ -14,7 +15,8 @@ export interface SummaryDetail {
   paymentCount: number;
   netTotal: number;
   crossTotal: number;
-  paymentInfos: PaymentInfo[]
+  paymentInfos: PaymentInfo[];
+  taxEntries: TaxEntry[];
 }
 
 export interface PaymentInfo {
