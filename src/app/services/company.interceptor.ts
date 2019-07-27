@@ -6,14 +6,19 @@ import { CompanyService } from './company.service';
 @Injectable()
 export class CompanyInterceptor implements HttpInterceptor {
 
-  constructor(private companyService: CompanyService) { }
+  private currentCompany;
+
+  constructor(companyService: CompanyService) {
+    companyService.company.subscribe({
+      next: company => this.currentCompany = company
+    })
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const currentCompany = this.companyService.currentCompany;
-    if (currentCompany && currentCompany.key) {
+    if (this.currentCompany && this.currentCompany.key) {
       request = request.clone({
         setHeaders: {
-          "X-CONTEXT-COMPANY": currentCompany.key
+          "X-CONTEXT-COMPANY": this.currentCompany.key
         }
       });
     }
