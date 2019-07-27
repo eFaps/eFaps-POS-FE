@@ -1,24 +1,34 @@
 <div class="wrapper">
   <div class="document">
     <div>
-      <p>Documents: {{detail.documentCount}}</p>
+      <span i18n="@@bs-documents">Documents:</span><span>{{detail.documentCount}}</span>
     </div>
     <div>
-      <p>NetTotal: {{detail.netTotal}}</p>
-      <ng-container *ngFor="let taxEntry of detail.taxEntries">
-        <p>{{taxEntry.tax.name}}: {{taxEntry.amount}} </p>
-      </ng-container>
-      <p>CrossTotal: {{detail.crossTotal}}</p>
+      <span i18n="@@bs-nettotal">Net Total:</span><span>{{detail.netTotal | number:'1.2-2'}}</span>
+    </div>
+    <div *ngFor="let taxEntry of detail.taxEntries">
+      <span>{{taxEntry.tax.name}}:</span><span>{{taxEntry.amount | number:'1.2-2'}}</span>
+    </div>
+    <div>
+      <span i18n="@@bs-crosstotal">Cross Total:</span><span>{{detail.crossTotal | number:'1.2-2'}}</span>
     </div>
   </div>
   <div class="payment">
     <div>
-      <p>Payments: {{detail.paymentCount}}</p>
+      <div>
+        <span i18n="@@bs-payments">Payments:</span><span>{{detail.paymentCount}}</span>
+      </div>
     </div>
     <div *ngFor="let info of detail.paymentInfos">
-      <p>Type: {{info.type}} {{info.cardLabel}}</p>
-      <p>Count: {{info.count}}</p>
-      <p>Amount: {{info.amount}}</p>
+      <div>
+        <span i18n="@@paymentType">{info.type, select, CASH {Cash} FREE {Free} CARD {} CHANGE {Change} AUTO {Auto}} {{info.cardLabel}}</span>
+      </div>
+      <div>
+        <span i18n="@@bs-count">Count:</span><span>{{info.count}}</span>
+      </div>
+      <div>
+        <span i18n="@@bs-amount">Amount:</span><span>{{info.amount | number:'1.2-2'}}</span>
+      </div>
     </div>
   </div>
 </div>

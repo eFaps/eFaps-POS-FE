@@ -3,8 +3,13 @@
   flex-direction: row;
 
   .document {
-    width: 125px;
+    width: 150px;
     margin-right: 25px;
+
+    div {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   .payment {
@@ -12,7 +17,13 @@
     flex-direction: row;
 
     div {
+      width: 150px;
       margin-right: 25px;
+
+      div {
+        display: flex;
+        justify-content: space-between;
+      }
     }
   }
 }

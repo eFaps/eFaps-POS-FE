@@ -95,16 +95,16 @@
         </context-group>
       </trans-unit>
       <trans-unit id="versionCloud" datatype="html">
-        <source>Cloud: <x id="INTERPOLATION" equiv-text="{{ versions.remote }}"/></source>
-        <target state="translated">Nube: <x id="INTERPOLATION" equiv-text="{{ versions.remote }}"/></target>
+        <source>Cloud: <x id="INTERPOLATION" equiv-text="{{ versions?.remote }}"/></source>
+        <target state="translated">Nube: <x id="INTERPOLATION" equiv-text="{{ versions?.remote }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/admin/admin.component.html</context>
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="versionLocal" datatype="html">
-        <source>Local: <x id="INTERPOLATION" equiv-text="{{ versions.local }}"/></source>
-        <target state="translated">Local: <x id="INTERPOLATION" equiv-text="{{ versions.local }}"/></target>
+        <source>Local: <x id="INTERPOLATION" equiv-text="{{ versions?.local }}"/></source>
+        <target state="translated">Local: <x id="INTERPOLATION" equiv-text="{{ versions?.local }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/admin/admin.component.html</context>
           <context context-type="linenumber">9</context>
@@ -284,6 +284,118 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
           <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bs-number" datatype="html">
+        <source>Number: <x id="INTERPOLATION" equiv-text="{{summary?.balance.number}}"/></source>
+      <target state="translated">Numero: <x id="INTERPOLATION" equiv-text="{{summary?.balance.number}}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bs-started" datatype="html">
+        <source>Started: <x id="INTERPOLATION" equiv-text="{{summary?.balance.startAt}}"/></source>
+        <target state="translated">Inicio: <x id="INTERPOLATION" equiv-text="{{summary?.balance.startAt}}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bs-invoices" datatype="html">
+        <source>Invoices</source>
+        <target state="translated">Facturas</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bs-receipts" datatype="html">
+        <source>Receipts</source>
+        <target state="translated">Boletas</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bs-tickets" datatype="html">
+        <source>Tickets</source>
+        <target state="translated">Tickets</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bs-overall" datatype="html">
+        <source>Over all</source>
+        <target state="translated">Totales:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bs-documents" datatype="html">
+        <source>Documents:</source>
+        <target state="translated">Documentos:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bs-nettotal" datatype="html">
+        <source>Net Total:</source>
+        <target state="translated">Total Neto:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bs-crosstotal" datatype="html">
+        <source>Cross Total:</source>
+        <target state="translated">Total Bruto:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bs-payments" datatype="html">
+        <source>Payments:</source>
+        <target state="translated">Pagos:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="paymentType" datatype="html">
+        <source><x id="ICU" equiv-text="{info.type, select, CASH {...} FREE {...} CARD {...} CHANGE {...} AUTO {...}}"/> <x id="INTERPOLATION" equiv-text="{{info.cardLabel}}"/></source>
+        <target state="translated"><x id="ICU" equiv-text="{info.type, select, CASH {...} FREE {...} CARD {...} CHANGE {...} AUTO {...}}"/> <x id="INTERPOLATION" equiv-text="{{info.cardLabel}}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a8bdced8a4d361a0a3aa960b859d0a347134721a" datatype="html">
+        <source>{VAR_SELECT, select, CASH {Cash} FREE {Free} CARD {} CHANGE {Change} AUTO {Auto} }</source>
+        <target state="translated">{VAR_SELECT, select, CASH {Efectivo} FREE {Gratis} CARD {} CHANGE {Cambio} AUTO {Auto} }</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bs-count" datatype="html">
+        <source>Count:</source>
+        <target state="translated">Candidad:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bs-amount" datatype="html">
+        <source>Amount:</source>
+        <target state="translated">Monto:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
     </body>
