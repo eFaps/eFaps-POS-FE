@@ -125,6 +125,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   setCompany(company: Company) {
+    this.users = [];
     this.companyService.setCurrentCompany(company);
     this.showCompanySelection = false;
     this.userService.getUsers().subscribe(data => this.users = data);

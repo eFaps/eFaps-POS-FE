@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { PosLayout, SpotConfig, Workspace } from '../model/index';
 import { AuthService } from './auth.service';
 import { ConfigService } from './config.service';
+import { CompanyService } from './company.service';
 
 @Injectable()
 export class WorkspaceService {
@@ -16,7 +17,7 @@ export class WorkspaceService {
   @LocalStorage() workspaces: any = {};
 
   constructor(private http: HttpClient, private auth: AuthService,
-    private config: ConfigService) { }
+    private config: ConfigService, private companyService: CompanyService) { }
 
   public getWorkspaces(): Observable<Workspace[]> {
     const url = `${this.config.baseUrl}/workspaces`;
@@ -32,7 +33,16 @@ export class WorkspaceService {
     if (this.currentSource.getValue()) {
       return new Promise<boolean>(resolve => resolve(true));
     }
-    const workspaceOid = this.workspaces[this.auth.getCurrentUsername()];
+    var workspaceOid;
+    if (this.companyService.hasCompany()) {
+      if (!this.workspaces[this.companyService.currentCompany.key]) {
+        this.workspaces[this.companyService.currentCompany.key] = {};
+      }
+      workspaceOid = this.workspaces[this.companyService.currentCompany.key][this.auth.getCurrentUsername()];
+    } else {
+      workspaceOid = this.workspaces[this.auth.getCurrentUsername()];
+    }
+
     if (workspaceOid) {
       return new Promise<boolean>(resolve => {
         this.getWorkspace(workspaceOid).subscribe(
@@ -61,7 +71,11 @@ export class WorkspaceService {
   }
 
   private storeCurrentWorkspace(_oid: string) {
-    this.workspaces[this.auth.getCurrentUsername()] = _oid;
+    if (this.companyService.hasCompany()) {
+      this.workspaces[this.companyService.currentCompany.key][this.auth.getCurrentUsername()] = _oid;
+    } else {
+      this.workspaces[this.auth.getCurrentUsername()] = _oid;
+    }
     this.workspaces.save();
   }
 
