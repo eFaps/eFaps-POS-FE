@@ -31,6 +31,7 @@
     <ng-container matColumnDef="cmd">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let order">
+<div>
         <button (click)="pos(order)" *ngIf="order.status===DocStatus[DocStatus.OPEN]" mat-stroked-button>
           <mat-icon class="posIcon-36">shop</mat-icon>
         </button>
@@ -43,6 +44,7 @@
         <button (click)="split(order)" *ngIf="isAdmin && order.status===DocStatus[DocStatus.OPEN]" mat-stroked-button>
           <mat-icon class="posIcon-36">call_split</mat-icon>
         </button>
+        </div>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
