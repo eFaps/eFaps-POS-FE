@@ -38,12 +38,14 @@ export class ProductGridComponent extends AbstractProductSelector
 
     this.workspaceService.currentWorkspace.subscribe({
       next: workspace => {
-        this.showPrices = workspace.gridShowPrice;
-        this.size = workspace.gridSize ? workspace.gridSize.toLowerCase() : 'large';
-        if (this.showPrices) {
-          this.subscription$.add(this.posService.currentCurrency.subscribe({
-            next: currency => this.currentCurrency = currency
-          }));
+        if (workspace) {
+          this.showPrices = workspace.gridShowPrice;
+          this.size = workspace.gridSize ? workspace.gridSize.toLowerCase() : 'large';
+          if (this.showPrices) {
+            this.subscription$.add(this.posService.currentCurrency.subscribe({
+              next: currency => this.currentCurrency = currency
+            }));
+          }
         }
       }
     });
