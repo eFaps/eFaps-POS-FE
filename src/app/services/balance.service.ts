@@ -6,6 +6,7 @@ import { Balance, BalanceSummary } from '../model';
 import { AuthService } from './auth.service';
 import { ConfigService } from './config.service';
 import { WorkspaceService } from './workspace.service';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -63,10 +64,10 @@ export class BalanceService {
     this.getCurrent(true).subscribe(_balance => this.balanceSource.next(_balance));
   }
 
-  close(balance: Balance) {
+  close(balance: Balance): Observable<Balance> {
     const url = `${this.config.baseUrl}/balance/${balance.id}`;
-    this.http.put<Balance>(url, balance).subscribe();
-    this.balanceSource.next(null);
+    return this.http.put<Balance>(url, balance)
+      .pipe(tap(() => this.balanceSource.next(null)))
   }
 
   getSummary(balance: Balance): Observable<BalanceSummary> {

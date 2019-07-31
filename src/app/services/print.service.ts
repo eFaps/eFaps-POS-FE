@@ -49,4 +49,12 @@ export class PrintService {
       .set('workspaceOid', _workspaceOid);
     return this.http.post<PrintResponse[]>(requestUrl, null, { params: params });
   }
+
+  printBalance(workspaceOid: string, balanceId: string): Observable<PrintResponse[]> {
+    const requestUrl = `${this.config.baseUrl}/print/balance`;
+    const params = new HttpParams()
+      .set('balanceId', balanceId)
+      .set('workspaceOid', workspaceOid);
+    return this.http.post<PrintResponse[]>(requestUrl, null, { params: params });
+  }
 }

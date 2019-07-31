@@ -4,8 +4,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { Balance, Payable } from '../../model';
-import { BalanceService, DocumentService } from '../../services';
+import { BalanceService, DocumentService, PrintService, WorkspaceService } from '../../services';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
+import { PrintDialogComponent } from '../../shared/print-dialog/print-dialog.component';
 
 @Component({
   selector: 'app-balance',
@@ -17,9 +18,13 @@ export class BalanceComponent implements OnInit, OnDestroy {
   payables: Payable[] = [];
   busy: Subscription;
   subscription$ = new Subscription();
+  private print = false;
+  private workspaceOid: string;
 
   constructor(private balanceService: BalanceService,
     private documentService: DocumentService,
+    private printService: PrintService,
+    private workspaceService: WorkspaceService,
     private translateService: TranslateService,
     private dialog: MatDialog) { }
 
@@ -38,6 +43,14 @@ export class BalanceComponent implements OnInit, OnDestroy {
         }
       })
     );
+    this.subscription$.add(this.workspaceService.currentWorkspace.subscribe({
+      next: workspace => {
+        if (workspace) {
+          this.print = workspace.printCmds.some(x => x.target === 'BALANCE');
+          this.workspaceOid = workspace.oid;
+        }
+      }
+    }))
   }
 
   ngOnDestroy() {
@@ -64,10 +77,20 @@ export class BalanceComponent implements OnInit, OnDestroy {
       width: '300px',
       data: { title: this.translateService.instant('BALANCE.CONFIRM-CLOSE') }
     });
-    dialogRef.afterClosed().subscribe(_result => {
-      if (_result) {
-        this.balanceService.close(this.currentBalance);
+    dialogRef.afterClosed().subscribe({
+      next: result => {
+        if (result) {
+          this.balanceService.close(this.currentBalance).subscribe({
+            next: (balance) => {
+              if (this.print) {
+                this.dialog.open(PrintDialogComponent, {
+                  data: this.printService.printBalance(this.workspaceOid, balance.id)
+                });
+              }
+            }
+          });
+        }
       }
-    });
+    })
   }
 }
