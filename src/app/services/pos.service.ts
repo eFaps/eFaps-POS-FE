@@ -13,7 +13,8 @@ import {
   Order,
   Pos,
   Tax,
-  TaxEntry
+  TaxEntry,
+  TaxType,
 } from '../model/index';
 import { Decimal } from 'decimal.js';
 
@@ -103,9 +104,35 @@ export class PosService {
 
   private calculateItems(ticket: Item[]) {
     ticket.forEach((item: Item) => {
-      item.price = new Decimal(item.product.crossPrice).mul(new Decimal(item.quantity))
-        .toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber();
+      item.price = this.calculateItemCrossPrice(item).toNumber()
     });
+  }
+
+  private calculateItemCrossPrice(item: Item): Decimal {
+    if (item.product.taxes.some(tax => tax.type === TaxType.PERUNIT)) {
+      const net = new Decimal(item.product.netPrice)
+        .mul(new Decimal(item.quantity));
+      return net
+        .add(this.calcTax(net, new Decimal(item.quantity), item.product.taxes))
+        .toDecimalPlaces(2, Decimal.ROUND_HALF_UP)
+    }
+    return new Decimal(item.product.crossPrice).mul(new Decimal(item.quantity))
+      .toDecimalPlaces(2, Decimal.ROUND_HALF_UP);
+  }
+
+  private calcTax(net: Decimal, quantity: Decimal, taxes: Tax[]): Decimal {
+    let amount = new Decimal(0);
+    taxes.forEach(tax => {
+      switch (tax.type) {
+        case TaxType.PERUNIT:
+          amount = amount.add(quantity.mul(new Decimal(tax.amount)));
+          break;
+        case TaxType.ADVALOREM:
+          amount = amount.add(net.mul(new Decimal(tax.percent).div(new Decimal(100))));
+          break;
+      }
+    });
+    return amount;
   }
 
   private calculateTotals(ticket: Item[]) {
@@ -117,7 +144,7 @@ export class PosService {
       net = net.plus(itemNet);
       cross = cross.plus(itemNet);
       item.product.taxes.forEach((tax: Tax) => {
-        const taxAmount = itemNet.mul(new Decimal(tax.percent).div(new Decimal(100)));
+        const taxAmount = this.calcTax(itemNet, new Decimal(item.quantity), [tax]);
         if (!taxes.has(tax.name)) {
           taxes.set(tax.name, new Decimal(0));
         }
