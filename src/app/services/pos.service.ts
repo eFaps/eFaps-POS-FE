@@ -135,11 +135,11 @@ export class PosService {
     return amount;
   }
 
-  private calculateTotals(ticket: Item[]) {
+  private calculateTotals(items: Item[]) {
     let net = new Decimal(0);
     let cross = new Decimal(0);
     const taxes = new Map<string, Decimal>();
-    ticket.forEach((item: Item) => {
+    items.forEach((item: Item) => {
       const itemNet = new Decimal(item.product.netPrice).mul(new Decimal(item.quantity));
       net = net.plus(itemNet);
       cross = cross.plus(itemNet);
@@ -194,14 +194,13 @@ export class PosService {
 
   private getItemTaxEntries(item: Item): TaxEntry[] {
     const entries: TaxEntry[] = [];
-    item.product.taxes.forEach((_tax: Tax) => {
-      const netPrice = new Decimal(item.product.netPrice).mul(new Decimal(item.quantity))
-        .toDecimalPlaces(2, Decimal.ROUND_HALF_UP);
-      const taxAmount = netPrice.mul(new Decimal(_tax.percent).div(new Decimal(100)))
-        .toDecimalPlaces(2, Decimal.ROUND_HALF_UP);
+    item.product.taxes.forEach((tax: Tax) => {
+      const itemNet = new Decimal(item.product.netPrice).mul(new Decimal(item.quantity));
+      const taxAmount = this.calcTax(itemNet, new Decimal(item.quantity), [tax]);
+      const base = TaxType.PERUNIT === tax.type ? item.quantity : itemNet.toNumber();
       entries.push({
-        tax: _tax,
-        base: netPrice.toNumber(),
+        tax: tax,
+        base: base,
         amount: taxAmount.toNumber()
       });
     });
