@@ -422,6 +422,14 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="61b5125ef686f5575a7d14393bbbdbd372947b70" datatype="html">
+        <source>Balance - <x id="INTERPOLATION" equiv-text="{{ balance?.number }}"/></source>
+        <target>Balance de caja - <x id="INTERPOLATION" equiv-text="{{ balance?.number }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>
