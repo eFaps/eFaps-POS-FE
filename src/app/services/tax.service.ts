@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Decimal } from 'decimal.js';
 
-import { Document, TaxEntry } from '../model';
+import { Document, TaxEntry, Tax, TaxType } from '../model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,23 @@ export class TaxService {
 
   constructor() { }
 
-  calculateTax(document: Document): TaxEntry[] {
+  calcTax(net: Decimal, quantity: Decimal, ...taxes: Tax[]): Decimal {
+    let amount = new Decimal(0);
+    taxes.forEach(tax => {
+      switch (tax.type) {
+        case TaxType.PERUNIT:
+          amount = amount.add(quantity.mul(new Decimal(tax.amount)));
+          break;
+        case TaxType.ADVALOREM:
+          amount = amount.add(net.mul(new Decimal(tax.percent).div(new Decimal(100))));
+          break;
+      }
+    });
+    return amount;
+  }
+
+
+  calcTax4Document(document: Document): TaxEntry[] {
     const taxEntries: TaxEntry[] = [];
     const taxValues: Map<string, TaxEntry> = new Map();
     document.items.forEach(_item => {
@@ -36,11 +52,13 @@ export class TaxService {
     return taxEntries;
   }
 
-  taxTotal(document: Document): number {
+  calcTaxTotal4Document(document: Document, ...types: TaxType[]): Decimal {
     let total = new Decimal(0);
     document.taxes.forEach(entry => {
-      total = total.plus(new Decimal(entry.amount));
+      if (types.length == 0 || types.includes(entry.tax.type)) {
+        total = total.plus(new Decimal(entry.amount));
+      }
     });
-    return total.toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber();
+    return total.toDecimalPlaces(2, Decimal.ROUND_HALF_UP);
   }
 }

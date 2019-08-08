@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Decimal } from 'decimal.js';
 
-import { Discount, DiscountType, DocItem, Document, Order, Product } from '../model';
+import { Discount, DiscountType, DocItem, Document, Order, Product, TaxType } from '../model';
 import { DocumentService } from './document.service';
 import { TaxService } from './tax.service';
 
@@ -30,8 +30,11 @@ export class DiscountService {
   private applyPercent(order: Order, discount: Discount): Order {
     const factor = new Decimal(discount.value).div(new Decimal(100));
 
-    const net = new Decimal(order.netTotal).mul(factor).toDecimalPlaces(2, Decimal.ROUND_HALF_UP).neg();
-    const cross = new Decimal(order.crossTotal).mul(factor).toDecimalPlaces(2, Decimal.ROUND_HALF_UP).neg();
+    const net = new Decimal(order.netTotal)
+      .mul(factor).toDecimalPlaces(2, Decimal.ROUND_HALF_UP).neg();
+    const adValoremTaxtotal = this.taxService.calcTaxTotal4Document(order, TaxType.ADVALOREM)
+    const cross = new Decimal(order.netTotal)
+      .add(adValoremTaxtotal).mul(factor).toDecimalPlaces(2, Decimal.ROUND_HALF_UP).neg();
     const item: DocItem = {
       index: order.items.length + 1,
       product: this.getDiscountProduct(discount),
@@ -44,19 +47,24 @@ export class DiscountService {
     }
 
     order.taxes.forEach(taxEntry => {
-      const base = new Decimal(taxEntry.base)
-        .minus(new Decimal(new Decimal(taxEntry.base).mul(factor)))
-        .toDecimalPlaces(2, Decimal.ROUND_HALF_UP);
-      const amount = new Decimal(taxEntry.amount).mul(factor).neg()
-        .toDecimalPlaces(2, Decimal.ROUND_HALF_UP);
-
-      item.taxes.push(
-        {
-          tax: taxEntry.tax,
-          base: base.toNumber(),
-          amount: amount.toNumber()
-        }
-      )
+      switch (taxEntry.tax.type) {
+        case TaxType.PERUNIT:
+          break;
+        case TaxType.ADVALOREM:
+          const base = new Decimal(taxEntry.base)
+            .minus(new Decimal(new Decimal(taxEntry.base).mul(factor)))
+            .toDecimalPlaces(2, Decimal.ROUND_HALF_UP);
+          const amount = new Decimal(taxEntry.amount).mul(factor).neg()
+            .toDecimalPlaces(2, Decimal.ROUND_HALF_UP);
+          item.taxes.push(
+            {
+              tax: taxEntry.tax,
+              base: base.toNumber(),
+              amount: amount.toNumber()
+            }
+          )
+          break;
+      }
     })
     order.items.push(item);
     order.discount = discount;
@@ -70,8 +78,8 @@ export class DiscountService {
       crossTotal = crossTotal.plus(new Decimal(item.crossPrice));
       netTotal = netTotal.plus(new Decimal(item.netPrice));
     });
-    order.taxes = this.taxService.calculateTax(order);
-    order.crossTotal = netTotal.plus(new Decimal(this.taxService.taxTotal(order)))
+    order.taxes = this.taxService.calcTax4Document(order);
+    order.crossTotal = netTotal.plus(this.taxService.calcTaxTotal4Document(order))
       .toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber();
     order.netTotal = netTotal.toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber();
     return order;
