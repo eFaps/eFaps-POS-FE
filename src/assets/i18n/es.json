@@ -11,8 +11,8 @@
   "VAT": "I.G.V.",
   "PAYMENT": {
       "TOTAL": "Total",
-      "CHANGE": "Cambio",
       "CASH": "Efectivo",
+      "CHANGE": "Cambio",
       "FREE": "Gratis",
       "CARD": "Tarjeta",
       "AUTO": "Auto-Pago",

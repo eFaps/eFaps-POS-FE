@@ -181,42 +181,42 @@
         <source>Number: <x id="INTERPOLATION" equiv-text="{{summary?.balance.number}}"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bs-started" datatype="html">
         <source>Started: <x id="INTERPOLATION" equiv-text="{{summary?.balance.startAt}}"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bs-invoices" datatype="html">
         <source>Invoices</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bs-receipts" datatype="html">
         <source>Receipts</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bs-tickets" datatype="html">
         <source>Tickets</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bs-overall" datatype="html">
         <source>Over all</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bs-documents" datatype="html">
@@ -273,6 +273,27 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
           <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="paymentSuccessDialogHeader" datatype="html">
+        <source><x id="ICU" equiv-text="{data.docType, select, 0 {...} 1 {...} 2 {...}}"/>: <x id="INTERPOLATION" equiv-text="{{data.document.number}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/success-dialog/success-dialog.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9d6cec9eab443e73d43b30cccd5189267fceaaa7" datatype="html">
+        <source>{VAR_SELECT, select, 0 {Receipt} 1 {Invoice} 2 {Ticket} }</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/success-dialog/success-dialog.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="paymentType-CHANGE" datatype="html">
+        <source>Change: <x id="INTERPOLATION" equiv-text="{{ data.change | posCurrency:data.currency}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/success-dialog/success-dialog.component.html</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cash-payment" datatype="html">

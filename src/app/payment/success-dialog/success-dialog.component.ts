@@ -9,7 +9,6 @@ import { PrintService } from '../../services';
   styleUrls: ['./success-dialog.component.scss']
 })
 export class SuccessDialogComponent implements OnInit {
-  DocumentType = DocumentType;
   printObservable: Observable<any> = null;
 
   constructor(private printService: PrintService,

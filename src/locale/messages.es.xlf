@@ -291,7 +291,7 @@
       <target state="translated">Numero: <x id="INTERPOLATION" equiv-text="{{summary?.balance.number}}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bs-started" datatype="html">
@@ -299,7 +299,7 @@
         <target state="translated">Inicio: <x id="INTERPOLATION" equiv-text="{{summary?.balance.startAt}}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bs-invoices" datatype="html">
@@ -307,7 +307,7 @@
         <target state="translated">Facturas</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bs-receipts" datatype="html">
@@ -315,7 +315,7 @@
         <target state="translated">Boletas</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bs-tickets" datatype="html">
@@ -323,7 +323,7 @@
         <target state="translated">Tickets</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bs-overall" datatype="html">
@@ -396,6 +396,30 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
           <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="paymentType-CHANGE" datatype="html">
+        <source>Change: <x id="INTERPOLATION" equiv-text="{{ data.change | posCurrency:data.currency}}"/></source>
+        <target>Cambio: <x id="INTERPOLATION" equiv-text="{{ data.change | posCurrency:data.currency}}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/success-dialog/success-dialog.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="paymentSuccessDialogHeader" datatype="html">
+        <source><x id="ICU" equiv-text="{data.docType, select, 0 {...} 1 {...} 2 {...}}"/>: <x id="INTERPOLATION" equiv-text="{{data.document.number}}"/></source>
+        <target><x id="ICU" equiv-text="{data.docType, select, 0 {...} 1 {...} 2 {...}}"/>: <x id="INTERPOLATION" equiv-text="{{data.document.number}}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/success-dialog/success-dialog.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9d6cec9eab443e73d43b30cccd5189267fceaaa7" datatype="html">
+        <source>{VAR_SELECT, select, 0 {Receipt} 1 {Invoice} 2 {Ticket} }</source>
+        <target>{VAR_SELECT, select, 0 {Boleta} 1 {Factura} 2 {Ticket} }</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/success-dialog/success-dialog.component.html</context>
+          <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
     </body>
