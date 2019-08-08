@@ -25,6 +25,7 @@ import { PrintDialogComponent } from '../shared/print-dialog/print-dialog.compon
 import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
 import { DiscountComponent } from './discount/discount.component';
 import { DocumentComponent } from '../shared/document/document.component';
+import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-payment',
@@ -106,68 +107,83 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   createDocument() {
     if (this.validate()) {
-
       if (this.change !== 0) {
-        this.payments.push({
-          type: PaymentType.CHANGE,
-          amount: this.change
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+          width: '300px',
+          data: { title: this.translateService.instant('PAYMENT.CONFIRM-CLOSE') }
         });
-      }
-
-      const document = {
-        id: null,
-        oid: null,
-        number: null,
-        currency: this.document.currency,
-        items: this.document.items,
-        status: DocStatus.OPEN,
-        payments: this.payments,
-        netTotal: this.document.netTotal,
-        crossTotal: this.document.crossTotal,
-        taxes: this.document.taxes,
-        contactOid: this.contact ? (this.contact.oid ? this.contact.oid : this.contact.id) : null,
-        workspaceOid: this.workspaceOid,
-        balanceOid: this.balance.oid ? this.balance.oid : this.balance.id,
-        discount: this.document.discount
-      };
-
-      switch (this.docType) {
-        case DocumentType.RECEIPT:
-          this.busy = this.documentService.createReceipt(document)
-            .subscribe(_doc => {
-              delete this.document['spot'];
-              this.documentService.updateOrder(Object.assign(this.document,
-                { status: DocStatus.CLOSED, discount: null, payableOid: _doc.id })).subscribe();
-              this.router.navigate(['/pos']);
-              this.showSuccess(_doc, DocumentType.RECEIPT);
-              this.paymentService.reset();
-            });
-          break;
-        case DocumentType.INVOICE:
-          this.busy = this.documentService.createInvoice(document)
-            .subscribe(_doc => {
-              delete this.document['spot'];
-              this.documentService.updateOrder(Object.assign(this.document,
-                { status: DocStatus.CLOSED, discount: null, payableOid: _doc.id })).subscribe();
-              this.router.navigate(['/pos']);
-              this.showSuccess(_doc, DocumentType.INVOICE);
-              this.paymentService.reset();
-            });
-          break;
-        case DocumentType.TICKET:
-          this.busy = this.documentService.createTicket(document)
-            .subscribe(_doc => {
-              delete this.document['spot'];
-              this.documentService.updateOrder(Object.assign(this.document,
-                { status: DocStatus.CLOSED, discount: null, payableOid: _doc.id })).subscribe();
-              this.router.navigate(['/pos']);
-              this.showSuccess(_doc, DocumentType.TICKET);
-              this.paymentService.reset();
-            });
-          break;
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            this.executeCreateDocument();
+          }
+        });
+      } else {
+        this.executeCreateDocument();
       }
     }
   }
+
+  private executeCreateDocument() {
+    if (this.change !== 0) {
+      this.payments.push({
+        type: PaymentType.CHANGE,
+        amount: this.change
+      });
+    }
+    const document = {
+      id: null,
+      oid: null,
+      number: null,
+      currency: this.document.currency,
+      items: this.document.items,
+      status: DocStatus.OPEN,
+      payments: this.payments,
+      netTotal: this.document.netTotal,
+      crossTotal: this.document.crossTotal,
+      taxes: this.document.taxes,
+      contactOid: this.contact ? (this.contact.oid ? this.contact.oid : this.contact.id) : null,
+      workspaceOid: this.workspaceOid,
+      balanceOid: this.balance.oid ? this.balance.oid : this.balance.id,
+      discount: this.document.discount
+    };
+
+    switch (this.docType) {
+      case DocumentType.RECEIPT:
+        this.busy = this.documentService.createReceipt(document)
+          .subscribe(_doc => {
+            delete this.document['spot'];
+            this.documentService.updateOrder(Object.assign(this.document,
+              { status: DocStatus.CLOSED, discount: null, payableOid: _doc.id })).subscribe();
+            this.router.navigate(['/pos']);
+            this.showSuccess(_doc, DocumentType.RECEIPT);
+            this.paymentService.reset();
+          });
+        break;
+      case DocumentType.INVOICE:
+        this.busy = this.documentService.createInvoice(document)
+          .subscribe(_doc => {
+            delete this.document['spot'];
+            this.documentService.updateOrder(Object.assign(this.document,
+              { status: DocStatus.CLOSED, discount: null, payableOid: _doc.id })).subscribe();
+            this.router.navigate(['/pos']);
+            this.showSuccess(_doc, DocumentType.INVOICE);
+            this.paymentService.reset();
+          });
+        break;
+      case DocumentType.TICKET:
+        this.busy = this.documentService.createTicket(document)
+          .subscribe(_doc => {
+            delete this.document['spot'];
+            this.documentService.updateOrder(Object.assign(this.document,
+              { status: DocStatus.CLOSED, discount: null, payableOid: _doc.id })).subscribe();
+            this.router.navigate(['/pos']);
+            this.showSuccess(_doc, DocumentType.TICKET);
+            this.paymentService.reset();
+          });
+        break;
+    }
+  }
+
 
   showSuccess(document: Document, docType: DocumentType) {
     this.dialog.open(SuccessDialogComponent, {

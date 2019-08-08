@@ -18,7 +18,8 @@
       "AUTO": "Auto-Pago",
       "DEBITCARD": "Tarjeta de debito",
       "CREDITCARD": "Tarjeta de credito",
-      "NOCONTACTMSG": "Se necesita asignar un cliente!"
+      "NOCONTACTMSG": "Se necesita asignar un cliente!",
+      "CONFIRM-CLOSE": "Esta segura?"
   },
   "WAIT": "Un momento...",
   "CONTACTS": {
