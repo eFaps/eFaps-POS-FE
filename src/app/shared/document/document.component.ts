@@ -40,8 +40,12 @@ export class DocumentComponent implements OnInit {
   @Input()
   set document(document: Document) {
     this._document = document;
-    this.dataSource.data = this._document.items.sort((a, b) => (a.index < b.index ? -1 : 1));
-    this.dataSource.sort = this.sort;
+    if (document) {
+      this.dataSource.data = this._document.items.sort((a, b) => (a.index < b.index ? -1 : 1));
+      this.dataSource.sort = this.sort;
+    } else {
+      this.dataSource.data = [];
+    }
   }
 
   get document(): Document {

@@ -8,11 +8,11 @@ import { SharedModule } from '../shared/shared.module';
 import { AutoComponent } from './auto/auto.component';
 import { CardComponent } from './card/card.component';
 import { CashComponent } from './cash/cash.component';
-import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { FreeComponent } from './free/free.component';
-import { PaymentComponent } from './payment.component';
 import { DiscountComponent } from './discount/discount.component';
+import { FreeComponent } from './free/free.component';
 import { PaymentTypeComponent } from './payment-type/payment-type.component';
+import { PaymentComponent } from './payment.component';
+import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
 
 @NgModule({
   imports: [
@@ -27,11 +27,11 @@ import { PaymentTypeComponent } from './payment-type/payment-type.component';
     AutoComponent,
     CardComponent,
     CashComponent,
-    ConfirmDialogComponent,
     DiscountComponent,
     FreeComponent,
     PaymentComponent,
     PaymentTypeComponent,
+    SuccessDialogComponent,
   ],
   entryComponents: [
     AutoComponent,
@@ -39,6 +39,7 @@ import { PaymentTypeComponent } from './payment-type/payment-type.component';
     CashComponent,
     DiscountComponent,
     FreeComponent,
+    SuccessDialogComponent
   ]
 })
 export class PaymentModule { }

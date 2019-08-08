@@ -22,7 +22,7 @@ import {
   WorkspaceService
 } from '../services';
 import { PrintDialogComponent } from '../shared/print-dialog/print-dialog.component';
-import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
 import { DiscountComponent } from './discount/discount.component';
 import { DocumentComponent } from '../shared/document/document.component';
 
@@ -139,7 +139,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
               this.documentService.updateOrder(Object.assign(this.document,
                 { status: DocStatus.CLOSED, discount: null, payableOid: _doc.id })).subscribe();
               this.router.navigate(['/pos']);
-              this.showConfirm(_doc, DocumentType.RECEIPT);
+              this.showSuccess(_doc, DocumentType.RECEIPT);
               this.paymentService.reset();
             });
           break;
@@ -150,7 +150,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
               this.documentService.updateOrder(Object.assign(this.document,
                 { status: DocStatus.CLOSED, discount: null, payableOid: _doc.id })).subscribe();
               this.router.navigate(['/pos']);
-              this.showConfirm(_doc, DocumentType.INVOICE);
+              this.showSuccess(_doc, DocumentType.INVOICE);
               this.paymentService.reset();
             });
           break;
@@ -161,7 +161,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
               this.documentService.updateOrder(Object.assign(this.document,
                 { status: DocStatus.CLOSED, discount: null, payableOid: _doc.id })).subscribe();
               this.router.navigate(['/pos']);
-              this.showConfirm(_doc, DocumentType.TICKET);
+              this.showSuccess(_doc, DocumentType.TICKET);
               this.paymentService.reset();
             });
           break;
@@ -169,12 +169,12 @@ export class PaymentComponent implements OnInit, OnDestroy {
     }
   }
 
-  showConfirm(_document: Document, docType: DocumentType) {
-    this.dialog.open(ConfirmDialogComponent, {
+  showSuccess(document: Document, docType: DocumentType) {
+    this.dialog.open(SuccessDialogComponent, {
       width: '450px',
       disableClose: false,
       data: {
-        document: _document,
+        document: document,
         docType: docType,
         change: this.change,
         currency: this.paymentService.currency,

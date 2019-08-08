@@ -21,7 +21,6 @@ import { InventoryModule } from './inventory/inventory.module';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from './material/material.module';
 import { OrdersModule } from './orders/orders.module';
-import { ConfirmDialogComponent } from './payment/confirm-dialog/confirm-dialog.component';
 import { PaymentModule } from './payment/payment.module';
 import { PosModule } from './pos/pos.module';
 import { ProductsModule } from './products/products.module';
@@ -138,9 +137,6 @@ import { WorkspaceComponent } from './workspace/workspace.component';
       provide: LiveAnnouncer,
       useValue: {}
     }
-  ],
-  entryComponents: [
-    ConfirmDialogComponent
   ],
   bootstrap: [
     AppComponent

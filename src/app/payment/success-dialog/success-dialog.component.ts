@@ -1,21 +1,19 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-
-import { DocumentType } from '../../model/index';
-import { PrintService } from '../../services';
 import { Observable } from 'rxjs';
 
+import { PrintService } from '../../services';
+
 @Component({
-  selector: 'app-confirm-dialog',
-  templateUrl: './confirm-dialog.component.html',
-  styleUrls: ['./confirm-dialog.component.scss']
+  templateUrl: './success-dialog.component.html',
+  styleUrls: ['./success-dialog.component.scss']
 })
-export class ConfirmDialogComponent implements OnInit {
+export class SuccessDialogComponent implements OnInit {
   DocumentType = DocumentType;
   printObservable: Observable<any> = null;
 
   constructor(private printService: PrintService,
-    public dialogRef: MatDialogRef<ConfirmDialogComponent>,
+    public dialogRef: MatDialogRef<SuccessDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
