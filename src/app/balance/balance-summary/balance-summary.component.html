@@ -1,7 +1,15 @@
 <div class="wrapper">
-  <p i18n="@@bs-number">Number: {{summary?.balance.number}}</p>
-  <p i18n="@@bs-started">Started: {{summary?.balance.startAt}}</p>
-
+  <div class="header" *ngIf="hasBalance()">
+    <div>
+      <p i18n="@@bs-number">Number: {{summary?.balance.number}}</p>
+      <p i18n="@@bs-started">Started: {{summary?.balance.startAt}}</p>
+    </div>
+    <div>
+      <button mat-button (click)="print()" *ngIf="printer">
+        <mat-icon class="posIcon-36">print</mat-icon>
+      </button>
+    </div>
+  </div>
   <div class="section" *ngIf="summary?.invoiceDetail.documentCount > 0">
     <p i18n="@@bs-invoices">Invoices</p>
     <app-balance-summary-section [detail]="summary.invoiceDetail"></app-balance-summary-section>

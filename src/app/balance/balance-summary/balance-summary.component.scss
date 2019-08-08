@@ -1,6 +1,15 @@
 .wrapper {
   padding: 10px;
 
+  .header {
+    display: flex;
+
+    div:last-child {
+      display: flex;
+      margin-left: 50px;
+    }
+  }
+
   .section {
     border: 1px solid;
     margin: 2px;
