@@ -96,6 +96,8 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   split(_order: Order) {
     const dialogRef = this.dialog.open(SplitOrderDialogComponent, {
       width: '90%',
+      minHeight: '200',
+      maxHeight: '90vh',
       data: _order
     });
     dialogRef.afterClosed().subscribe(_result => {
