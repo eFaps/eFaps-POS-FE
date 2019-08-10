@@ -1,4 +1,6 @@
 <div class="footer" [ngClass]="{'sticky': sticky}">
   <button mat-raised-button color="primary" (click)="createOrder()" *ngIf="!hasOrder()">Order</button>
-  <button mat-raised-button color="primary" (click)="updateOrder()" *ngIf="hasOrder()" translate [translateParams]="{number: 'currentOrder.number'}">{{ 'CMD.UPDATEORDER' | translate: currentOrder}}</button>
+  <button mat-raised-button color="primary" (click)="updateOrder()" *ngIf="hasOrder()" translate [translateParams]="{number: 'currentOrder.number'}">{{ 'CMD.UPDATEORDER' | translate: currentOrder}}
+    <span *ngIf="currentOrder.spot != null"> - {{currentOrder?.spot.label}}</span>
+  </button>
 </div>
