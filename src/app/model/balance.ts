@@ -1,3 +1,5 @@
+import { User } from './user';
+
 export interface Balance {
   id: string;
   oid: string;
@@ -5,4 +7,5 @@ export interface Balance {
   startAt: Date;
   endAt: Date;
   status: 'OPEN' | 'CLOSED';
+  user?: User;
 }

@@ -12,4 +12,9 @@
   <mat-tab i18n-label="@@balanceSummary" label="Summary">
     <app-balance-summary [balance]="currentBalance"></app-balance-summary>
   </mat-tab>
+  <mat-tab i18n-label="@@balances" label="Balances">
+    <ng-template matTabContent>
+      <app-balance-list></app-balance-list>
+    </ng-template>
+  </mat-tab>
 </mat-tab-group>

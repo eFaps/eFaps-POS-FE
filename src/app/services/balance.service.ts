@@ -54,7 +54,7 @@ export class BalanceService {
   }
 
   private getCurrent(_createNew?: boolean): Observable<Balance> {
-    const requestUrl = `${this.config.baseUrl}/balance`;
+    const requestUrl = `${this.config.baseUrl}/balance/current`;
     const params = new HttpParams()
       .set('createNew', _createNew.toString());
     return this.http.get<Balance>(requestUrl, { params: params });
@@ -73,5 +73,10 @@ export class BalanceService {
   getSummary(balance: Balance): Observable<BalanceSummary> {
     const url = `${this.config.baseUrl}/balance/${balance.id}/summary`;
     return this.http.get<BalanceSummary>(url);
+  }
+
+  getBalances(): Observable<Balance[]> {
+    const url = `${this.config.baseUrl}/balance`;
+    return this.http.get<Balance[]>(url);
   }
 }

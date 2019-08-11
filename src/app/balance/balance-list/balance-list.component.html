@@ -1,0 +1,26 @@
+<div class="wrappermat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource" matSort matSortActive="number" matSortDirection="desc">
+    <ng-container matColumnDef="number">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Number </mat-header-cell>
+      <mat-cell *matCellDef="let balance"> {{balance.number}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="user">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> User </mat-header-cell>
+      <mat-cell *matCellDef="let balance"> {{balance?.user.firstName}} {{balance?.user.surName}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="startAt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> StartAt </mat-header-cell>
+      <mat-cell *matCellDef="let balance"> {{balance.startAt}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="endAt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> EndAt </mat-header-cell>
+      <mat-cell *matCellDef="let balance"> {{balance.endAt}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+      <mat-cell *matCellDef="let balance"> {{balance.status}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
