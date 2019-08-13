@@ -51,8 +51,7 @@ export class DiscountService {
         case TaxType.PERUNIT:
           break;
         case TaxType.ADVALOREM:
-          const base = new Decimal(taxEntry.base)
-            .minus(new Decimal(new Decimal(taxEntry.base).mul(factor))).neg()
+          const base = new Decimal(taxEntry.base).mul(factor).neg()
             .toDecimalPlaces(2, Decimal.ROUND_HALF_UP);
           const amount = new Decimal(taxEntry.amount).mul(factor).neg()
             .toDecimalPlaces(2, Decimal.ROUND_HALF_UP);
