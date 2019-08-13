@@ -1,19 +1,21 @@
 <div [ngBusy]="{busy: busy, message: 'WAIT' | translate}"></div>
 <div fxLayout="row" fxLayoutGap="20px">
   <div fxLayout="column" fxFlex="50">
-    <app-contact *ngIf="showContact" (contactSelected)="selectContact($event)"></app-contact>
-    <div fxLayout="row">
-      <mat-radio-group class="docType-radio-group" [(ngModel)]="docType" fxFlex>
-        <mat-radio-button class="docType-radio-button" *ngFor="let type of docTypes; let idx = index" [value]="DocumentType[type]" (click)="setDocType(DocumentType[type])">
-          {{type | translate}}
-        </mat-radio-button>
-      </mat-radio-group>
-      <mat-button-toggle [value]="showContact" (change)="toggleContact()" [disabled]="!permitToggleContact">{{ showContact ? 'Desc.' : 'Cliente'}}</mat-button-toggle>
-      <div class="balance" fxFlex="250px">
-        <span *ngIf="balance" i18n>Balance - {{ balance?.number }}</span>
+    <div class="leftwrapper">
+      <app-contact *ngIf="showContact" (contactSelected)="selectContact($event)"></app-contact>
+      <div fxLayout="row">
+        <mat-radio-group class="docType-radio-group" [(ngModel)]="docType" fxFlex>
+          <mat-radio-button class="docType-radio-button" *ngFor="let type of docTypes; let idx = index" [value]="DocumentType[type]" (click)="setDocType(DocumentType[type])">
+            {{type | translate}}
+          </mat-radio-button>
+        </mat-radio-group>
+        <mat-button-toggle [value]="showContact" (change)="toggleContact()" [disabled]="!permitToggleContact">{{ showContact ? 'Desc.' : 'Cliente'}}</mat-button-toggle>
+        <div class="balance" fxFlex="250px">
+          <span *ngIf="balance" i18n>Balance - {{ balance?.number }}</span>
+        </div>
       </div>
+      <app-document></app-document>
     </div>
-    <app-document></app-document>
     <button mat-fab color="primary" (click)="showDiscount()" class="discount">Desc.</button>
   </div>
   <div fxFlex class="paymentsContainer">

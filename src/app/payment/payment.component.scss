@@ -40,3 +40,14 @@
   margin-bottom: auto;
   text-align: center;
 }
+
+.leftwrapper {
+  max-height: calc(100vh - 59px);
+  overflow: auto;
+}
+
+.discount {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
