@@ -2,7 +2,7 @@
   <div class="header" *ngIf="hasBalance()">
     <div>
       <p i18n="@@bs-number">Number: {{summary?.balance.number}}</p>
-      <p i18n="@@bs-started">Started: {{summary?.balance.startAt}}</p>
+      <p i18n="@@bs-started">Started: {{summary?.balance.startAt | date:'dd/MM/yy HH:mm' }}</p>
     </div>
     <div>
       <button mat-button (click)="print()" *ngIf="printer">
