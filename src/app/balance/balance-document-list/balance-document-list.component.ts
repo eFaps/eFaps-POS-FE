@@ -26,6 +26,7 @@ export class BalanceDocumentListComponent {
   show(_payable: Payable) {
     this.dialog.open(DocumentDialogComponent, {
       data: _payable,
+      maxHeight: '95vh'
     });
   }
 }
