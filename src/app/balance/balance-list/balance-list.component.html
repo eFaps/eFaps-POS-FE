@@ -10,11 +10,11 @@
     </ng-container>
     <ng-container matColumnDef="startAt">
       <mat-header-cell *matHeaderCellDef mat-sort-header> StartAt </mat-header-cell>
-      <mat-cell *matCellDef="let balance"> {{balance.startAt}} </mat-cell>
+      <mat-cell *matCellDef="let balance"> {{balance.startAt | date:'dd/MM/yy HH:mm'}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="endAt">
       <mat-header-cell *matHeaderCellDef mat-sort-header> EndAt </mat-header-cell>
-      <mat-cell *matCellDef="let balance"> {{balance.endAt}} </mat-cell>
+      <mat-cell *matCellDef="let balance"> {{balance.endAt | date:'dd/MM/yy HH:mm'}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
