@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 import { Payment, PaymentType } from '../../model';
-import { AutoPaymentService, PaymentService, UtilsService } from '../../services';
+import { CollectService, PaymentService, UtilsService } from '../../services';
 import { PaymentForm } from '../payment-form';
 
 @Component({
@@ -13,7 +13,7 @@ import { PaymentForm } from '../payment-form';
 export class AutoComponent extends PaymentForm {
   collecting = false;
   constructor(paymentService: PaymentService, utilsService: UtilsService,
-    fb: FormBuilder, private autoPaymentService: AutoPaymentService) {
+    fb: FormBuilder, private collectService: CollectService) {
     super(paymentService, utilsService, fb);
   }
 
@@ -25,7 +25,7 @@ export class AutoComponent extends PaymentForm {
     const amount = this.utilsService.parse(this.paymentForm.value.amount);
     if (amount > 0) {
       this.collecting = true;
-      this.autoPaymentService.collect(amount).subscribe(() => {
+      this.collectService.collect(amount).subscribe(() => {
         super.addPayment();
         this.collecting = false;
       });
