@@ -64,4 +64,9 @@ export class MsgService {
     this.init();
     this.stompService.publish('/app/orders/finish.edit', orderId);
   }
+
+  subscribeToCollectOrder(collectOrderId: string) {
+    this.init();
+    return this.stompService.subscribe(`/topic/collectOrder/${collectOrderId}`);
+  }
 }
