@@ -45,13 +45,12 @@ export class AutoComponent extends PaymentForm {
     }
   }
 
-  listenForPayment(collectOrderId: string) {
+  private listenForPayment(collectOrderId: string) {
     this.subscription$.add(this.msgService.subscribeToCollectOrder(collectOrderId).subscribe({
       next: data => {
         switch (data.body) {
           case 'SUCCESS':
-            super.addPayment();
-            this.collecting = false;
+            this.updatePayment4Collection(collectOrderId);
             break;
           case 'CANCELED':
             this.collecting = false;
@@ -60,5 +59,17 @@ export class AutoComponent extends PaymentForm {
         }
       }
     }))
+  }
+
+  private updatePayment4Collection(collectOrderId: string) {
+    if (this.collecting) {
+      this.collecting = false;
+      this.collectService.getCollectOrder(collectOrderId).subscribe({
+        next: order => {
+          this.paymentForm.patchValue({ 'amount': order.collected });
+          super.addPayment();
+        }
+      });
+    }
   }
 }

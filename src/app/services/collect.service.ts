@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from './config.service';
-import { Collector } from '../model/collector';
+import { Collector, CollectOrder } from '../model';
 import { Decimal } from 'decimal.js';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CollectService {
+
 
   constructor(private http: HttpClient, private config: ConfigService) { }
 
@@ -23,4 +25,8 @@ export class CollectService {
     return this.http.post(url, collectOrder, { responseType: 'text' });
   }
 
+  getCollectOrder(collectOrderId: string): Observable<CollectOrder> {
+    const requestUrl = `${this.config.baseUrl}/collectors/orders/${collectOrderId}`;
+    return this.http.get<CollectOrder>(requestUrl);
+  }
 }
