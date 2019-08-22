@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
 })
 export class CollectService {
 
-
   constructor(private http: HttpClient, private config: ConfigService) { }
 
   getCollectors() {

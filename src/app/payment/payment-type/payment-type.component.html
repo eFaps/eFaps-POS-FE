@@ -1,4 +1,4 @@
-<mat-tab-group>
+<mat-tab-group [selectedIndex]="selected" (selectedIndexChange)="setIndex($event)">
   <mat-tab i18n-label="@@cash-payment" label="Cash">
     <app-cash></app-cash>
   </mat-tab>

@@ -5,8 +5,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { PosLayout, SpotConfig, Workspace } from '../model/index';
 import { AuthService } from './auth.service';
-import { ConfigService } from './config.service';
+import { CollectService } from './collect.service';
 import { CompanyService } from './company.service';
+import { ConfigService } from './config.service';
 
 @Injectable()
 export class WorkspaceService {
@@ -15,9 +16,11 @@ export class WorkspaceService {
   private currentSource = new BehaviorSubject<Workspace>(this.current);
   currentWorkspace = this.currentSource.asObservable();
   @LocalStorage() workspaces: any = {};
+  private autoPayment = false;
 
   constructor(private http: HttpClient, private auth: AuthService,
-    private config: ConfigService, private companyService: CompanyService) { }
+    private config: ConfigService, private companyService: CompanyService,
+    private collectService: CollectService) { }
 
   public getWorkspaces(): Observable<Workspace[]> {
     const url = `${this.config.baseUrl}/workspaces`;
@@ -68,6 +71,9 @@ export class WorkspaceService {
     this.current = _workspace;
     this.currentSource.next(_workspace);
     this.storeCurrentWorkspace(_workspace.oid);
+    this.collectService.getCollectors().subscribe({
+      next: collectors => this.autoPayment = collectors && collectors.length > 0
+    });
   }
 
   private storeCurrentWorkspace(_oid: string) {
@@ -104,6 +110,10 @@ export class WorkspaceService {
     return this.current
       && this.current.docTypes
       && this.current.docTypes.length > 0;
+  }
+
+  public hasAutoPayment() {
+    return this.autoPayment;
   }
 
   public getWarehouseOid(): string {

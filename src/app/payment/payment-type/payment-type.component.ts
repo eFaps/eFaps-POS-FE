@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CollectService } from '../../services';
-import { Collector } from '../../model/collector';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { LocalStorage } from 'ngx-store';
 import { Subscription } from 'rxjs';
+
+import { AuthService, WorkspaceService } from '../../services';
 
 @Component({
   selector: 'app-payment-type',
@@ -9,15 +10,15 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./payment-type.component.scss']
 })
 export class PaymentTypeComponent implements OnInit, OnDestroy {
-  collectors: Collector[] = [];
   private subscription$ = new Subscription();
 
-  constructor(private collectService: CollectService) { }
+  @LocalStorage() selectedPayment: any = {};
+
+  constructor(private authService: AuthService,
+    private workspaceService: WorkspaceService) { }
 
   ngOnInit() {
-    this.subscription$.add(this.collectService.getCollectors().subscribe({
-      next: collectors => this.collectors = collectors
-    }))
+
   }
 
   ngOnDestroy() {
@@ -25,6 +26,19 @@ export class PaymentTypeComponent implements OnInit, OnDestroy {
   }
 
   get auto() {
-    return this.collectors.length > 0;
+    return this.workspaceService.hasAutoPayment()
+  }
+
+  get selected() {
+    const index = this.selectedPayment[this.authService.getCurrentUsername()];
+    if (index) {
+      return index;
+    }
+    return 0;
+  }
+
+  setIndex(data) {
+    this.selectedPayment[this.authService.getCurrentUsername()] = data;
+    this.selectedPayment.save();
   }
 }
