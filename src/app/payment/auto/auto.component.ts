@@ -66,7 +66,7 @@ export class AutoComponent extends PaymentForm {
       this.collecting = false;
       this.collectService.getCollectOrder(collectOrderId).subscribe({
         next: order => {
-          this.paymentForm.patchValue({ 'amount': order.collected });
+          this.paymentForm.patchValue({ 'amount': order.collected.toString() });
           super.addPayment();
         }
       });
