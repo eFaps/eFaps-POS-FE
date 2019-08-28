@@ -177,6 +177,13 @@
           <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="documents" datatype="html">
+        <source>Documents</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/balance/balance.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="total" datatype="html">
         <source>Total</source>
         <context-group purpose="location">
@@ -192,7 +199,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="bs-started" datatype="html">
-        <source>Started: <x id="INTERPOLATION" equiv-text="{{summary?.balance.startAt}}"/></source>
+        <source>Started: <x id="INTERPOLATION" equiv-text="{{summary?.balance.startAt | date:&apos;dd/MM/yy HH:mm&apos; }}"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
           <context context-type="linenumber">5</context>
@@ -280,6 +287,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
           <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="search" datatype="html">
+        <source>Search</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/document-list/document-list.component.html</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="paymentSuccessDialogHeader" datatype="html">
