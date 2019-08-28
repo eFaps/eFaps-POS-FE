@@ -116,4 +116,49 @@ export class DocumentService {
         return [...docs]
       }))
   }
+
+  public findPayables(_term: string): Observable<Payable[]> {
+    return merge(
+      this.findReceipts(_term),
+      this.findInvoices(_term),
+      this.findTickets(_term)
+    );
+  }
+
+  private findReceipts(_term: string): Observable<Payable[]> {
+    const url = `${this.config.baseUrl}/documents/receipts`;
+    const params = new HttpParams().set('term', _term);
+    return this.http.get<Receipt[]>(url, { params: params })
+      .pipe(map(docs => {
+        docs.map(doc => {
+          doc.type = 'RECEIPT';
+        })
+        return [...docs]
+      }))
+  }
+
+  private findInvoices(_term: string): Observable<Payable[]> {
+    const url = `${this.config.baseUrl}/documents/invoices`;
+    const params = new HttpParams().set('term', _term);
+    return this.http.get<Invoice[]>(url, { params: params })
+      .pipe(map(docs => {
+        docs.map(doc => {
+          doc.type = 'INVOICE';
+        })
+        return [...docs]
+      }));
+  }
+
+  private findTickets(_term: string): Observable<Payable[]> {
+    const url = `${this.config.baseUrl}/documents/tickets`;
+    const params = new HttpParams().set('term', _term);
+    return this.http.get<Ticket[]>(url, { params: params })
+      .pipe(map(docs => {
+        docs.map(doc => {
+          doc.type = 'TICKET';
+        })
+        return [...docs]
+      }))
+  }
+
 }
