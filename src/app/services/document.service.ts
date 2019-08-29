@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Balance, Invoice, Order, Payable, Receipt, Ticket } from '../model';
+import { Balance, Invoice, Order, Payable, Receipt, Ticket, PayableHead } from '../model';
 import { ConfigService } from './config.service';
 import { WorkspaceService } from './workspace.service';
 
@@ -73,6 +73,39 @@ export class DocumentService {
     return this.http.get<Order[]>(url, { params: params });
   }
 
+  public getReceipt(id: string): Observable<Receipt> {
+    const url = `${this.config.baseUrl}/documents/receipts/${id}`;
+    return this.http.get<Receipt>(url)
+      .pipe(
+        map(doc => {
+          doc.type = 'RECEIPT';
+          return doc;
+        })
+      )
+  }
+
+  public getInvoice(id: string): Observable<Invoice> {
+    const url = `${this.config.baseUrl}/documents/invoices/${id}`;
+    return this.http.get<Invoice>(url)
+      .pipe(
+        map(doc => {
+          doc.type = 'INVOICE';
+          return doc;
+        })
+      )
+  }
+
+  public getTicket(id: string): Observable<Ticket> {
+    const url = `${this.config.baseUrl}/documents/tickets/${id}`;
+    return this.http.get<Ticket>(url)
+      .pipe(
+        map(doc => {
+          doc.type = 'TICKET';
+          return doc;
+        })
+      )
+  }
+
   public getDocuments4Balance(_balance: Balance): Observable<Payable[]> {
     return merge(
       this.getReceipts4Balance(_balance),
@@ -117,7 +150,7 @@ export class DocumentService {
       }))
   }
 
-  public findPayables(_term: string): Observable<Payable[]> {
+  public findPayables(_term: string): Observable<PayableHead[]> {
     return merge(
       this.findReceipts(_term),
       this.findInvoices(_term),
@@ -125,10 +158,10 @@ export class DocumentService {
     );
   }
 
-  private findReceipts(_term: string): Observable<Payable[]> {
+  private findReceipts(_term: string): Observable<PayableHead[]> {
     const url = `${this.config.baseUrl}/documents/receipts`;
     const params = new HttpParams().set('term', _term);
-    return this.http.get<Receipt[]>(url, { params: params })
+    return this.http.get<PayableHead[]>(url, { params: params })
       .pipe(map(docs => {
         docs.map(doc => {
           doc.type = 'RECEIPT';
@@ -137,10 +170,10 @@ export class DocumentService {
       }))
   }
 
-  private findInvoices(_term: string): Observable<Payable[]> {
+  private findInvoices(_term: string): Observable<PayableHead[]> {
     const url = `${this.config.baseUrl}/documents/invoices`;
     const params = new HttpParams().set('term', _term);
-    return this.http.get<Invoice[]>(url, { params: params })
+    return this.http.get<PayableHead[]>(url, { params: params })
       .pipe(map(docs => {
         docs.map(doc => {
           doc.type = 'INVOICE';
@@ -149,10 +182,10 @@ export class DocumentService {
       }));
   }
 
-  private findTickets(_term: string): Observable<Payable[]> {
+  private findTickets(_term: string): Observable<PayableHead[]> {
     const url = `${this.config.baseUrl}/documents/tickets`;
     const params = new HttpParams().set('term', _term);
-    return this.http.get<Ticket[]>(url, { params: params })
+    return this.http.get<PayableHead[]>(url, { params: params })
       .pipe(map(docs => {
         docs.map(doc => {
           doc.type = 'TICKET';

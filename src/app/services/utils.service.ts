@@ -19,7 +19,10 @@ export class UtilsService {
   }
 
   toString(_number: number): string {
-    return _number.toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    if (_number) {
+      return _number.toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });  
+    }
+    return '';
   }
 
   getCurrencySymbol(_isoCode: string) {

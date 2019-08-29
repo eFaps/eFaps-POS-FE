@@ -4,7 +4,7 @@ import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
-import { Payable } from '../../model';
+import { Payable, PayableHead } from '../../model';
 import { DocumentService } from '../../services';
 import { DocumentDialogComponent } from '../document-dialog/document-dialog.component';
 
@@ -15,8 +15,8 @@ import { DocumentDialogComponent } from '../document-dialog/document-dialog.comp
 })
 export class DocumentListComponent implements OnInit, OnDestroy {
   searchForm: FormGroup;
-  displayedColumns = ['type', 'number', 'date', 'total', 'status', 'cmd'];
-  dataSource = new MatTableDataSource<Payable>();
+  displayedColumns = ['type', 'number', 'date', 'total', 'status', 'order', 'cmd'];
+  dataSource = new MatTableDataSource<PayableHead>();
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   private subscription$ = new Subscription();
 
@@ -47,9 +47,12 @@ export class DocumentListComponent implements OnInit, OnDestroy {
     });
   }
 
-  show(_payable: Payable) {
+  show(payable: PayableHead) {
     this.dialog.open(DocumentDialogComponent, {
-      data: _payable,
+      data: {
+        id: payable.id,
+        type: payable.type
+      },
       maxHeight: '95vh'
     });
   }

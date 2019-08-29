@@ -64,3 +64,15 @@ export enum DocStatus {
   CLOSED,
   CANCELED
 }
+
+export interface DocumentHead {
+  type?: 'ORDER' | 'RECEIPT' | 'INVOICE' | 'TICKET';
+  id: string;
+  number: string;
+  netTotal: number;
+  crossTotal: number;
+}
+
+export interface PayableHead extends DocumentHead {
+  order?: DocumentHead
+}
