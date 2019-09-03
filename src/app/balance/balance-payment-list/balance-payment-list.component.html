@@ -1,8 +1,8 @@
 <mat-list dense>
-  <mat-list-item *ngFor="let payment of payments">
+  <mat-list-item *ngFor="let paymentInfo of payments">
     <p matLine>
-      <span class="paymentType">{{('PAYMENT.' + payment.type) | translate}}:</span>
-      <span class="amount">{{payment.amount | number:'1.2-2'}}</span>
+      <span class="paymentType">{{('PAYMENT.' + paymentInfo.type) | translate}} {{paymentInfo.cardLabel}}:</span>
+      <span class="amount">{{paymentInfo.amount | number:'1.2-2'}}</span>
     </p>
   </mat-list-item>
 </mat-list>

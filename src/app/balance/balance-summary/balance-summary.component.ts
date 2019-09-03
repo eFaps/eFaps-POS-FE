@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Subscription } from 'rxjs';
 
-import { Balance, BalanceSummary } from '../../model';
-import { BalanceService, PrintService, WorkspaceService } from '../../services';
+import { BalanceSummary } from '../../model';
+import { PrintService, WorkspaceService } from '../../services';
 import { PrintDialogComponent } from '../../shared/print-dialog/print-dialog.component';
 
 @Component({
@@ -12,14 +12,12 @@ import { PrintDialogComponent } from '../../shared/print-dialog/print-dialog.com
   styleUrls: ['./balance-summary.component.scss']
 })
 export class BalanceSummaryComponent implements OnInit {
-  _balance: Balance;
   subscription$ = new Subscription()
-  summary: BalanceSummary;
+  @Input() summary: BalanceSummary;
   printer: boolean;
   private workspaceOid: string;
 
-  constructor(private balanceService: BalanceService,
-    private workspaceService: WorkspaceService,
+  constructor(private workspaceService: WorkspaceService,
     private printService: PrintService,
     private dialog: MatDialog) { }
 
@@ -36,23 +34,13 @@ export class BalanceSummaryComponent implements OnInit {
     }))
   }
 
-  @Input()
-  set balance(balance: Balance) {
-    this._balance = balance;
-    if (balance) {
-      this.subscription$.add(this.balanceService.getSummary(balance).subscribe({
-        next: summary => this.summary = summary
-      }));
-    }
-  }
-
   print() {
     this.dialog.open(PrintDialogComponent, {
-      data: this.printService.printBalance(this.workspaceOid, this._balance.id)
+      data: this.printService.printBalance(this.workspaceOid, this.summary.balance.id)
     });
   }
 
   hasBalance(): boolean {
-    return this._balance != null;
+    return this.summary && this.summary.balance != null;
   }
 }

@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-import { Balance, Payable } from '../../model';
+import { Balance, BalanceSummary, PayableHead } from '../../model';
 import { BalanceService, DocumentService, PrintService, WorkspaceService } from '../../services';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { PrintDialogComponent } from '../../shared/print-dialog/print-dialog.component';
@@ -15,11 +15,13 @@ import { PrintDialogComponent } from '../../shared/print-dialog/print-dialog.com
 })
 export class BalanceComponent implements OnInit, OnDestroy {
   currentBalance: Balance;
-  payables: Payable[] = [];
+  payables: PayableHead[] = [];
+  summary: BalanceSummary;
   busy: Subscription;
   subscription$ = new Subscription();
   private print = false;
   private workspaceOid: string;
+
 
   constructor(private balanceService: BalanceService,
     private documentService: DocumentService,
@@ -40,6 +42,9 @@ export class BalanceComponent implements OnInit, OnDestroy {
           this.busy = this.documentService.getDocuments4Balance(balance).subscribe({
             next: payables => this.payables = this.payables.concat(payables)
           })
+          this.subscription$.add(this.balanceService.getSummary(balance).subscribe({
+            next: summary => this.summary = summary
+          }));
         }
       })
     );

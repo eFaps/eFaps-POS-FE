@@ -7,10 +7,10 @@
       <button *ngIf="currentBalance" type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="close()" i18n="@@closeBalance">Close</button>
     </div>
     <app-balance-document-list [payables]="payables"></app-balance-document-list>
-    <app-balance-payment-list [payables]="payables"></app-balance-payment-list>
+    <app-balance-payment-list [summary]="summary"></app-balance-payment-list>
   </mat-tab>
   <mat-tab i18n-label="@@balanceSummary" label="Summary">
-    <app-balance-summary [balance]="currentBalance"></app-balance-summary>
+    <app-balance-summary [summary]="summary"></app-balance-summary>
   </mat-tab>
   <mat-tab i18n-label="@@balances" label="Balances">
     <ng-template matTabContent>
