@@ -27,7 +27,20 @@
 
 .editModeButton {
   position: absolute;
-  right: 80px;
+  right: 130px;
+  bottom: 4px;
+  margin: 8px;
+  z-index: 1;
+
+  & .posIcon-36 {
+    top: -5px;
+    position: relative;
+  }
+}
+
+.split {
+  position: absolute;
+  right: 65px;
   bottom: 4px;
   margin: 8px;
   z-index: 1;

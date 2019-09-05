@@ -49,6 +49,9 @@
     "OTHER": "Otros"
   },
   "SPOT": {
+    "SPLIT": {
+      "CMD": "Dividir"
+    },
     "SWAP": {
       "CMD": "Intercambiar",
       "SELECTORIGIN": "Seleccionar Origin",

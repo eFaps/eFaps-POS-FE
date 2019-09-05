@@ -9,6 +9,7 @@ import { Hotkey, HotkeysService } from 'angular2-hotkeys';
 export class KeypadComponent implements OnInit, OnDestroy {
   @Input() showTopClear: boolean = true;
   @Input() showBottomClear: boolean = false;
+  @Input() showDoubleZero: boolean = true;
   @Output() number = new EventEmitter<string>();
   private hotkeys: Hotkey[] = [];
 

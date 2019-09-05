@@ -1,0 +1,18 @@
+.wrapper {
+  .quantity {
+    display: flex;
+
+    input {
+      text-align: right;
+    }
+
+    mat-form-field {
+      width: 50px;
+      font-size: x-large;
+    }
+  }
+  .footer {
+    margin-top: 20px;
+    text-align: center;
+  }
+}

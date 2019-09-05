@@ -1,12 +1,13 @@
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { Floor, Spot, SpotConfig, SpotsLayout } from '../../model';
 import { DocumentService, PosService, SpotService, ImageService } from '../../services';
 import { AbstractSpotPicker } from '../abstract-spot-picker';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SplitDialogComponent } from '../split-dialog/split-dialog.component';
 
 @Component({
   selector: 'app-extended-spot-picker',
@@ -16,6 +17,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements OnInit {
   spotsLayout: SpotsLayout;
   editMode = false;
+  splitMode = false;
   sidenav = false;
   images = new Map<String, String>();
   constructor(router: Router,
@@ -24,7 +26,8 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements O
     dialog: MatDialog,
     private spotService: SpotService,
     private imageService: ImageService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private snackBar: MatSnackBar,
   ) {
     super(router, posService, documentService, dialog);
   }
@@ -57,8 +60,23 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements O
     this.editMode = !this.editMode;
   }
 
+  toggleSplitMode() {
+    this.splitMode = !this.splitMode;
+  }
+
   selectSpot(spot: Spot) {
-    if (!this.editMode) {
+    if (this.splitMode) {
+      if (spot.order) {
+        const dialogRef = this.dialog.open(SplitDialogComponent, { data: spot });
+        dialogRef.afterClosed().subscribe({
+          next: _ => { this.splitMode = false }
+        });
+      } else {
+        this.snackBar.open('No selecionable', '', {
+          duration: 3000
+        });
+      }
+    } else if (!this.editMode) {
       super.selectSpot(spot);
     }
   }

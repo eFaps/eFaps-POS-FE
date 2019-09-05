@@ -24,6 +24,11 @@
     <mat-icon class="posIcon-36">edit</mat-icon>
   </button>
 </div>
+<div class="split">
+  <button (click)="toggleSplitMode()" mat-fab color="{{splitMode ? 'accent' : 'primary' }}" matTooltip="{{'SPOT.SPLIT.CMD' | translate}}">
+    <mat-icon class="posIcon-36">open_with</mat-icon>
+  </button>
+</div>
 <div class="swap">
   <button (click)="showSwapModal()" mat-fab color="primary" matTooltip="{{'SPOT.SWAP.CMD' | translate}}">
     <mat-icon class="posIcon-36">swap_horiz</mat-icon>

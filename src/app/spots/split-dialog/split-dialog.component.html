@@ -1,0 +1,13 @@
+<div class="wrapper">
+  <div class="quantity">
+    <form [formGroup]="quantityForm">
+      <mat-form-field>
+        <input matInput formControlName="quantity" autocomplete="off" class="right-align">
+      </mat-form-field>
+    </form>
+    <app-keypad [showTopClear]="false" [showBottomClear]="true" [showDoubleZero]="false" (number)="setQuantity($event)"></app-keypad>
+  </div>
+  <div class="footer">
+    <button mat-raised-button color="primary" (click)="split()" >Dividir</button>
+  </div>
+</div>

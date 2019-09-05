@@ -44,6 +44,6 @@
     <button type="button" mat-raised-button (click)="clickBtn('0')">0</button>
   </mat-grid-tile>
   <mat-grid-tile>
-    <button type="button" mat-raised-button (click)="clickBtn('00')">00</button>
+    <button type="button" mat-raised-button (click)="clickBtn('00')" *ngIf="showDoubleZero">00</button>
   </mat-grid-tile>
 </mat-grid-list>
