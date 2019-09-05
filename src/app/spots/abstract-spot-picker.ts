@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { DocStatus, Spot, SpotConfig } from '../model';
 import { DocumentService, PosService } from '../services';
 import { SpotDialogComponent } from './spot-dialog/spot-dialog.component';
+import { SelectOrderDialogComponent } from './select-order-dialog/select-order-dialog.component';
 
 export abstract class AbstractSpotPicker implements OnInit {
 
@@ -18,8 +19,20 @@ export abstract class AbstractSpotPicker implements OnInit {
 
   selectSpot(spot: Spot) {
     if (spot.orders && spot.orders.length > 0) {
-      this.posService.setOrder(spot.orders[0]);
-      this.router.navigate(['/pos']);
+      if (spot.orders.length > 1) {
+        const dialogRef = this.dialog.open(SelectOrderDialogComponent, { data: spot.orders });
+        dialogRef.afterClosed().subscribe({
+          next: order => {
+            if (order) {
+              this.posService.setOrder(order);
+              this.router.navigate(['/pos']);
+            }
+          }
+        });
+      } else {
+        this.posService.setOrder(spot.orders[0]);
+        this.router.navigate(['/pos']);
+      }
     } else {
       const order = {
         id: null,

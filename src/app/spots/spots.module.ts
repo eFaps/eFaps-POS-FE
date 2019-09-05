@@ -8,6 +8,7 @@ import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
 import { BaseSpotPickerComponent } from './base-spot-picker/base-spot-picker.component';
 import { ExtendedSpotPickerComponent } from './extended-spot-picker/extended-spot-picker.component';
+import { SelectOrderDialogComponent } from './select-order-dialog/select-order-dialog.component';
 import { SplitDialogComponent } from './split-dialog/split-dialog.component';
 import { SpotDialogComponent } from './spot-dialog/spot-dialog.component';
 import { SpotsComponent } from './spots/spots.component';
@@ -24,13 +25,15 @@ import { SpotsComponent } from './spots/spots.component';
   declarations: [
     BaseSpotPickerComponent,
     ExtendedSpotPickerComponent,
+    SelectOrderDialogComponent,
     SplitDialogComponent,
     SpotDialogComponent,
     SpotsComponent,
   ],
   entryComponents: [
+    SelectOrderDialogComponent,
     SplitDialogComponent,
-    SpotDialogComponent
+    SpotDialogComponent,
   ],
   providers: [
 
