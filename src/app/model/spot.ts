@@ -10,7 +10,7 @@ export interface Spot {
   id: string;
   oid?: string;
   label: string;
-  order?: Order;
+  orders?: Order[];
   position?: Position;
 }
 

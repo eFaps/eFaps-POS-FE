@@ -66,7 +66,7 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements O
 
   selectSpot(spot: Spot) {
     if (this.splitMode) {
-      if (spot.order) {
+      if (spot.orders && spot.orders.length > 0) {
         const dialogRef = this.dialog.open(SplitDialogComponent, { data: spot });
         dialogRef.afterClosed().subscribe({
           next: _ => { this.splitMode = false }

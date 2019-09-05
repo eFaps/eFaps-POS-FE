@@ -3,7 +3,7 @@
     <div class="floor" [class.sidenav]="sidenav" [style.background-image]="image(floor)">
       <ng-container *ngFor="let spot of floor.spots;let i = index">
         <button mat-fab
-          color="{{spot.order ? 'accent' : 'primary'}}"
+          color="{{spot.orders && spot.orders.length > 0 ? 'accent' : 'primary'}}"
           (click)="selectSpot(spot)"
           cdkDrag
           [cdkDragDisabled]="!editMode"

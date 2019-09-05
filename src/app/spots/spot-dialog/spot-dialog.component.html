@@ -2,7 +2,7 @@
 <mat-dialog-content>
   <div fxLayout="row wrap" fxLayoutAlign="start" class="spotsContainer">
     <div *ngFor="let spot of spots">
-      <button *ngIf="(spot.order && select) || (!select && !spot.order)"  mat-fab color="{{spot.order ? 'accent' : 'primary'}}" (click)="selectSpot(spot)">{{spot.label}}</button>
+      <button *ngIf="(spot.orders && spot.orders.length > 0 && select) || (!select && !(spot.orders && spot.orders.length > 0))"  mat-fab color="{{spot.orders && spot.orders.length > 0 ? 'accent' : 'primary'}}" (click)="selectSpot(spot)">{{spot.label}}</button>
     </div>
   </div>
 </mat-dialog-content>

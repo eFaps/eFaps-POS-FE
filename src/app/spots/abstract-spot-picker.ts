@@ -16,9 +16,9 @@ export abstract class AbstractSpotPicker implements OnInit {
 
   }
 
-  selectSpot(_spot: Spot) {
-    if (_spot.order) {
-      this.posService.setOrder(_spot.order);
+  selectSpot(spot: Spot) {
+    if (spot.orders && spot.orders.length > 0) {
+      this.posService.setOrder(spot.orders[0]);
       this.router.navigate(['/pos']);
     } else {
       const order = {
@@ -31,7 +31,7 @@ export abstract class AbstractSpotPicker implements OnInit {
         netTotal: 0,
         crossTotal: 0,
         taxes: [],
-        spot: _spot,
+        spot: spot,
         discount: null,
         payableOid: null
       };

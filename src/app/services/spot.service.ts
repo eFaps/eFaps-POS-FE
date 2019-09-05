@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LocalStorage } from 'ngx-store';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 
 import { Order, Position, Spot, SpotsLayout, Workspace } from '../model';
 import { DocumentService } from './document.service';
@@ -27,8 +27,8 @@ export class SpotService {
       this.documentService.getOrders4Spots().subscribe(_orders => {
         const spots: Spot[] = [];
         for (let i = 0; i < this.workspaceService.getSpotSize(); i++) {
-          const order = _orders.find(o => o.spot && o.spot.id === ('' + i));
-          spots.push({ id: '' + i, label: 'M ' + (i + 1), order: order });
+          const orders = _orders.filter(o => o.spot && o.spot.id === ('' + i));
+          spots.push({ id: '' + i, label: 'M ' + (i + 1), orders: orders });
         }
         observer.next(spots);
         observer.complete();
@@ -49,8 +49,8 @@ export class SpotService {
             if (spot.oid) {
               spot.id = spot.oid;
             }
-            const order = _orders.find(o => o.spot && o.spot.id === spot.id);
-            spot.order = order;
+            const orders = _orders.filter(o => o.spot && o.spot.id === spot.id);
+            spot.orders = orders;
             spot.position = this.positions[spot.id];
           })
         });
@@ -65,9 +65,13 @@ export class SpotService {
     this.positions.save();
   }
 
-  public swap(_origin: Spot, _target: Spot): Observable<Order> {
-    const order = _origin.order;
-    order.spot = { id: _target.id, label: _target.label };
-    return this.documentService.updateOrder(order);
+  public swap(origin: Spot, target: Spot) {
+    const orders = origin.orders;
+    const obsv = [];
+    orders.forEach(order => {
+      order.spot = { id: target.id, label: target.label };
+      obsv.push(this.documentService.updateOrder(order));
+    });
+    return forkJoin(obsv);
   }
 }
