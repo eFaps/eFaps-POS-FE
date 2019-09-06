@@ -35,6 +35,6 @@ export class SplitDialogComponent implements OnInit {
   }
 
   split() {
-    this.dialogRef.close();
+    this.dialogRef.close(this.quantity);
   }
 }

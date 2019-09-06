@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { Floor, Spot, SpotConfig, SpotsLayout } from '../../model';
+import { Floor, Spot, SpotConfig, SpotsLayout, DocStatus } from '../../model';
 import { DocumentService, PosService, SpotService, ImageService } from '../../services';
 import { AbstractSpotPicker } from '../abstract-spot-picker';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SplitDialogComponent } from '../split-dialog/split-dialog.component';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-extended-spot-picker',
@@ -16,10 +17,12 @@ import { SplitDialogComponent } from '../split-dialog/split-dialog.component';
 })
 export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements OnInit {
   spotsLayout: SpotsLayout;
+  floors: Floor[] = []
   editMode = false;
   splitMode = false;
   sidenav = false;
   images = new Map<String, String>();
+
   constructor(router: Router,
     posService: PosService,
     documentService: DocumentService,
@@ -36,6 +39,7 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements O
     this.spotService.getLayout().subscribe({
       next: layout => {
         this.spotsLayout = layout;
+        this.floors = layout.floors;
         this.floors.forEach(floor => {
           this.imageService.getBase64Image(floor.imageOid).subscribe({
             next: data => this.images.set(floor.imageOid, data)
@@ -43,10 +47,6 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements O
         });
       }
     });
-  }
-
-  get floors() {
-    return this.spotsLayout ? this.spotsLayout.floors : [];
   }
 
   image(floor: Floor) {
@@ -69,7 +69,38 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements O
       if (spot.orders && spot.orders.length > 0) {
         const dialogRef = this.dialog.open(SplitDialogComponent, { data: spot });
         dialogRef.afterClosed().subscribe({
-          next: _ => { this.splitMode = false }
+          next: quantity => {
+            this.splitMode = false;
+            const orders2create = []
+            for (let i = spot.orders.length; i < quantity; i++) {
+              const order = {
+                id: null,
+                oid: null,
+                number: null,
+                currency: this.posService.currency,
+                items: [],
+                status: DocStatus.OPEN,
+                netTotal: 0,
+                crossTotal: 0,
+                taxes: [],
+                spot: spot,
+                discount: null,
+                payableOid: null
+              };
+              orders2create.push(this.documentService.createOrder(order));
+            }
+            forkJoin(orders2create).subscribe({
+              next: _ => {
+                this.spotService.getLayout().subscribe({
+                  next: layout => {
+                    this.spotsLayout = layout;
+                    this.floors = layout.floors;
+                    this.router.navigate(['/spots']);
+                  }
+                });
+              }
+            })
+          }
         });
       } else {
         this.snackBar.open('No selecionable', '', {
