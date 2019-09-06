@@ -132,6 +132,12 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     } else {
       this.documentService.getOpenOrders().subscribe(_orders => {
         this.dataSource.data = _orders;
+        this.dataSource.sortingDataAccessor = (item, property) => {
+          switch (property) {
+            case 'spot': return item.spot ? item.spot.label : "-";
+            default: return item[property];
+          }
+        };
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       });
