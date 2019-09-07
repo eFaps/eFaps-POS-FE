@@ -151,7 +151,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
       case DocumentType.RECEIPT:
         this.busy = this.documentService.createReceipt(document)
           .subscribe(_doc => {
-            delete this.document['spot'];
             this.documentService.updateOrder(Object.assign(this.document,
               { status: DocStatus.CLOSED, discount: null, payableOid: _doc.id })).subscribe();
             this.router.navigate(['/pos']);
@@ -162,7 +161,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
       case DocumentType.INVOICE:
         this.busy = this.documentService.createInvoice(document)
           .subscribe(_doc => {
-            delete this.document['spot'];
             this.documentService.updateOrder(Object.assign(this.document,
               { status: DocStatus.CLOSED, discount: null, payableOid: _doc.id })).subscribe();
             this.router.navigate(['/pos']);
@@ -173,7 +171,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
       case DocumentType.TICKET:
         this.busy = this.documentService.createTicket(document)
           .subscribe(_doc => {
-            delete this.document['spot'];
             this.documentService.updateOrder(Object.assign(this.document,
               { status: DocStatus.CLOSED, discount: null, payableOid: _doc.id })).subscribe();
             this.router.navigate(['/pos']);
