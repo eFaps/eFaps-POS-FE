@@ -3,7 +3,7 @@ import { MatDialog, MatSnackBar, MatTabGroup } from '@angular/material';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { LocalStorage } from 'ngx-store';
-import { Subscription } from 'rxjs';
+import { Subscription, PartialObserver } from 'rxjs';
 
 import {
   Balance,
@@ -11,8 +11,11 @@ import {
   DocStatus,
   Document,
   DocumentType,
+  Invoice,
   Payment,
-  PaymentType
+  PaymentType,
+  Receipt,
+  Ticket,
 } from '../model';
 import {
   BalanceService,
@@ -130,7 +133,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
         amount: this.change
       });
     }
-    const document = {
+    const payable = {
       id: null,
       oid: null,
       number: null,
@@ -149,35 +152,34 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
     switch (this.docType) {
       case DocumentType.RECEIPT:
-        this.busy = this.documentService.createReceipt(document)
-          .subscribe(_doc => {
-            this.documentService.updateOrder(Object.assign(this.document,
-              { status: DocStatus.CLOSED, discount: null, payableOid: _doc.id })).subscribe();
-            this.router.navigate(['/pos']);
-            this.showSuccess(_doc, DocumentType.RECEIPT);
-            this.paymentService.reset();
-          });
+        this.busy = this.documentService.createReceipt(this.document.id, payable)
+          .subscribe(this.getObserver<Receipt>(DocumentType.RECEIPT));
         break;
       case DocumentType.INVOICE:
-        this.busy = this.documentService.createInvoice(document)
-          .subscribe(_doc => {
-            this.documentService.updateOrder(Object.assign(this.document,
-              { status: DocStatus.CLOSED, discount: null, payableOid: _doc.id })).subscribe();
-            this.router.navigate(['/pos']);
-            this.showSuccess(_doc, DocumentType.INVOICE);
-            this.paymentService.reset();
-          });
+        this.busy = this.documentService.createInvoice(this.document.id, payable)
+          .subscribe(this.getObserver<Invoice>(DocumentType.INVOICE));
         break;
       case DocumentType.TICKET:
-        this.busy = this.documentService.createTicket(document)
-          .subscribe(_doc => {
-            this.documentService.updateOrder(Object.assign(this.document,
-              { status: DocStatus.CLOSED, discount: null, payableOid: _doc.id })).subscribe();
-            this.router.navigate(['/pos']);
-            this.showSuccess(_doc, DocumentType.TICKET);
-            this.paymentService.reset();
-          });
+        this.busy = this.documentService.createTicket(this.document.id, payable)
+          .subscribe(this.getObserver<Ticket>(DocumentType.TICKET));
         break;
+    }
+  }
+
+  private getObserver<T extends Document>(type: DocumentType): PartialObserver<T> {
+    return {
+      next: doc => {
+        this.router.navigate(['/pos']);
+        this.showSuccess(doc, type);
+        this.paymentService.reset();
+      },
+      error: response => {
+        if (response && response.error && response.error.status) {
+          this.snackBar.open(this.translateService.instant('PAYMENT.' + response.error.status), '', { duration: 3000 });
+        } else {
+          this.snackBar.open(this.translateService.instant('PAYMENT.UNKNOWNERROR'), '', { duration: 3000 });
+        }
+      }
     }
   }
 

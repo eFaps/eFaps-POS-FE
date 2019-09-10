@@ -324,6 +324,24 @@
           <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="payment-total" datatype="html">
+        <source>Total: <x id="INTERPOLATION" equiv-text="{{total | posCurrency:paymentService.currency}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="payment-submit" datatype="html">
+        <source>Submit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="cash-payment" datatype="html">
         <source>Cash</source>
         <context-group purpose="location">

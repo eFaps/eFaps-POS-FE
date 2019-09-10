@@ -10,7 +10,6 @@
   "USER": "Usuario",
   "VAT": "I.G.V.",
   "PAYMENT": {
-      "TOTAL": "Total",
       "CASH": "Efectivo",
       "CHANGE": "Cambio",
       "FREE": "Gratis",
@@ -19,7 +18,10 @@
       "DEBITCARD": "Tarjeta de debito",
       "CREDITCARD": "Tarjeta de credito",
       "NOCONTACTMSG": "Se necesita asignar un cliente!",
-      "CONFIRM-CLOSE": "Esta segura?"
+      "CONFIRM-CLOSE": "Esta segura?",
+      "412": "La orden esta Cerrado",
+      "428": "La orden es Inavlido",
+      "UNKNOWNERROR": "Error"
   },
   "WAIT": "Un momento...",
   "CONTACTS": {

@@ -454,6 +454,30 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="payment-total" datatype="html">
+        <source>Total: <x id="INTERPOLATION" equiv-text="{{total | posCurrency:paymentService.currency}}"/></source>
+        <target>Total: <x id="INTERPOLATION" equiv-text="{{total | posCurrency:paymentService.currency}}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="payment-change" datatype="html">
+        <source>Change: <x id="INTERPOLATION" equiv-text="{{total | posCurrency:paymentService.currency}}"/></source>
+        <target>Cambio: <x id="INTERPOLATION" equiv-text="{{total | posCurrency:paymentService.currency}}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="payment-submit" datatype="html">
+        <source>Submit</source>
+        <target>Emitir</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

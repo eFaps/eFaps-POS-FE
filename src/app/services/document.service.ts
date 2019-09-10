@@ -20,19 +20,22 @@ export class DocumentService {
     });
   }
 
-  public createReceipt(_receipt: Receipt): Observable<Receipt> {
+  public createReceipt(orderId: string, receipt: Receipt): Observable<Receipt> {
     const url = `${this.config.baseUrl}/workspaces/${this.wsoid}/documents/receipts`;
-    return this.http.post<Receipt>(url, _receipt);
+    const params = new HttpParams().set('orderId', orderId);
+    return this.http.post<Receipt>(url, receipt, { params: params });
   }
 
-  public createInvoice(_invoice: Invoice): Observable<Receipt> {
+  public createInvoice(orderId: string, invoice: Invoice): Observable<Receipt> {
     const url = `${this.config.baseUrl}/workspaces/${this.wsoid}/documents/invoices`;
-    return this.http.post<Invoice>(url, _invoice);
+    const params = new HttpParams().set('orderId', orderId);
+    return this.http.post<Invoice>(url, invoice, { params: params });
   }
 
-  public createTicket(_ticket: Ticket): Observable<Receipt> {
+  public createTicket(orderId: string, ticket: Ticket): Observable<Ticket> {
     const url = `${this.config.baseUrl}/workspaces/${this.wsoid}/documents/tickets`;
-    return this.http.post<Ticket>(url, _ticket);
+    const params = new HttpParams().set('orderId', orderId);
+    return this.http.post<Ticket>(url, ticket, { params: params });
   }
 
   public createOrder(_order: Order): Observable<Order> {
