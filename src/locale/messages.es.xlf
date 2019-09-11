@@ -478,6 +478,14 @@
           <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="addcontact" datatype="html">
+        <source>Add Contact</source>
+        <target>Añadir contacto</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/contacts/contact-table/contact-table.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

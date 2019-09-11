@@ -1,21 +1,30 @@
-<mat-toolbar>
-    <button mat-raised-button (click)="createContact()">Add Contact</button>
-</mat-toolbar>
-<div class="pos-order-container mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
-      <mat-cell *matCellDef="let contact"> {{contact.name}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="idType">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de Documento </mat-header-cell>
-      <mat-cell *matCellDef="let contact"> {{ 'IDTYPE.' + contact.idType | translate}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="idNumber">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Numero </mat-header-cell>
-      <mat-cell *matCellDef="let contact"> {{contact.idNumber}} </mat-cell>
-    </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+<div class="wrapper">
+  <div class="header">
+    <form [formGroup]="searchForm">
+      <mat-form-field>
+        <input matInput i18n-placeholder="@@search" placeholder="Search" formControlName="search" autocomplete="off">
+      </mat-form-field>
+    </form>
+    <div class="cmd">
+      <button mat-raised-button (click)="createContact()" i18n="@@addcontact">Add Contact</button>
+    </div>
+  </div>
+  <div class="pos-order-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let contact"> {{contact.name}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="idType">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de Documento </mat-header-cell>
+        <mat-cell *matCellDef="let contact"> {{ 'IDTYPE.' + contact.idType | translate}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="idNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Numero </mat-header-cell>
+        <mat-cell *matCellDef="let contact"> {{contact.idNumber}} </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
 </div>

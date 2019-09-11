@@ -1,0 +1,12 @@
+.wrapper {
+  padding: 5px;
+
+  .header {
+    display: flex;
+    align-items: center;
+
+    .cmd {
+      margin-left: 25px;
+    }
+  }
+}

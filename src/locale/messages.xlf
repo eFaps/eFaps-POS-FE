@@ -295,6 +295,17 @@
           <context context-type="sourcefile">app/balance/document-list/document-list.component.html</context>
           <context context-type="linenumber">4</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/contacts/contact-table/contact-table.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="addcontact" datatype="html">
+        <source>Add Contact</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/contacts/contact-table/contact-table.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="paymentSuccessDialogHeader" datatype="html">
         <source><x id="ICU" equiv-text="{data.docType, select, 0 {...} 1 {...} 2 {...}}"/>: <x id="INTERPOLATION" equiv-text="{{data.document.number}}"/></source>
@@ -330,6 +341,9 @@
           <context context-type="sourcefile">app/payment/payment.component.html</context>
           <context context-type="linenumber">37</context>
         </context-group>
+      </trans-unit>
+      <trans-unit id="payment-change" datatype="html">
+        <source>Change: <x id="INTERPOLATION" equiv-text="{{change | posCurrency:paymentService.currency}}"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/payment/payment.component.html</context>
           <context context-type="linenumber">38</context>
