@@ -76,3 +76,8 @@ export interface DocumentHead {
 export interface PayableHead extends DocumentHead {
   order?: DocumentHead
 }
+
+export interface OrderWrapper extends Order {
+  spotLabel: string;
+  multiple: boolean;
+}

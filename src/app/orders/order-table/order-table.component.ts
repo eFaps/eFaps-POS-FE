@@ -4,9 +4,9 @@ import { MatDialog, MatPaginator, MatSlideToggleChange, MatSort, MatTableDataSou
 import { Router } from '@angular/router';
 import { LocalStorage } from 'ngx-store';
 import { Subscription } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, map } from 'rxjs/operators';
 
-import { DocStatus, Order, Roles } from '../../model';
+import { DocStatus, Order, Roles, OrderWrapper } from '../../model';
 import {
   AuthService,
   DocumentService,
@@ -27,7 +27,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   filterForm: FormGroup;
   formCtrlSub: Subscription;
   displayedColumns = [];
-  dataSource = new MatTableDataSource<Order>();
+  dataSource = new MatTableDataSource<OrderWrapper>();
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   isAdmin = false;
@@ -85,7 +85,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(_result => {
       if (_result) {
         this.documentService.deleteOrder(_order).subscribe(() => {
-          this.dataSource = new MatTableDataSource<Order>();
+          this.dataSource = new MatTableDataSource<OrderWrapper>();
           this.ngOnInit();
           this.changeDetectorRefs.detectChanges();
         });
@@ -101,7 +101,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
       data: _order
     });
     dialogRef.afterClosed().subscribe(_result => {
-      this.dataSource = new MatTableDataSource<Order>();
+      this.dataSource = new MatTableDataSource<OrderWrapper>();
       this.ngOnInit();
       this.changeDetectorRefs.detectChanges();
     });
@@ -114,11 +114,17 @@ export class OrderTableComponent implements OnInit, OnDestroy {
 
   applyFilter(_filterValue: string) {
     if (this.lazyLoadOrders) {
-      this.documentService.findOrders(_filterValue).subscribe(_orders => {
-        this.dataSource.data = _orders;
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-      });
+      this.documentService.findOrders(_filterValue)
+        .pipe(
+          map(orders => orders.map(
+            order => {
+              return this.getOrderWrapper(orders, order)
+            })
+          )).subscribe(orderWrappers => {
+            this.dataSource.data = orderWrappers;
+            this.dataSource.sort = this.sort;
+            this.dataSource.paginator = this.paginator;
+          });
     } else {
       _filterValue = _filterValue.trim();
       _filterValue = _filterValue.toLowerCase();
@@ -126,40 +132,59 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     }
   }
 
+  private getOrderWrapper(orders: Order[], order: Order): OrderWrapper {
+    return {
+      ...order,
+      spotLabel: this.evalSpotLabel(orders, order),
+      multiple: this.evalMultiple(orders, order)
+    };
+  }
+
   initTable() {
     if (this.lazyLoadOrders) {
       this.dataSource.data = [];
     } else {
-      this.documentService.getOpenOrders().subscribe(_orders => {
-        this.dataSource.data = _orders;
-        this.dataSource.sortingDataAccessor = (item, property) => {
-          switch (property) {
-            case 'spot': return this.spotLabel(item);
-            default: return item[property];
-          }
-        };
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-      });
+      this.documentService.getOpenOrders()
+        .pipe(
+          map(orders => orders.map(
+            order => {
+              return this.getOrderWrapper(orders, order)
+            })
+          )).subscribe(orderWrappers => {
+            this.dataSource.data = orderWrappers;
+            this.dataSource.sortingDataAccessor = (item, property) => {
+              switch (property) {
+                case 'spot': return item.spotLabel;
+                default: return item[property];
+              }
+            };
+            this.dataSource.sort = this.sort;
+            this.dataSource.paginator = this.paginator;
+          });
     }
   }
 
-  spotLabel(order: Order) {
+  private evalSpotLabel(orders: Order[], order: Order) {
     if (!order.spot) {
       return "";
     }
-
-    const orders = this.dataSource.data.filter(item => {
+    const relatedOrders = orders.filter(item => {
       return item.spot && item.spot.id == order.spot.id;
     }).sort((o1, o2) => {
       if (o1.number < o2.number) { return -1; }
       if (o1.number > o2.number) { return 1; }
       return 0;
     });
-    if (orders.length < 2) {
+    if (relatedOrders.length < 2) {
       return order.spot.label
     }
     var index = orders.indexOf(order);
     return `${order.spot.label} - ${index + 1}`
+  }
+
+  private evalMultiple(orders: Order[], order: Order): boolean {
+    return order.spot && orders.filter(item => {
+      return item.spot && item.spot.id == order.spot.id;
+    }).length > 1;
   }
 }
