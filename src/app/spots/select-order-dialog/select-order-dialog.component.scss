@@ -1,5 +1,14 @@
 .wrapper {
-  button {
-    margin: 5px;
+  display: flex;
+  flex-wrap: wrap;
+
+  .orderbutton {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    
+    button {
+      margin: 5px;
+    }
   }
 }

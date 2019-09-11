@@ -134,7 +134,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
         this.dataSource.data = _orders;
         this.dataSource.sortingDataAccessor = (item, property) => {
           switch (property) {
-            case 'spot': return item.spot ? item.spot.label : "-";
+            case 'spot': return this.spotLabel(item);
             default: return item[property];
           }
         };
@@ -142,5 +142,24 @@ export class OrderTableComponent implements OnInit, OnDestroy {
         this.dataSource.paginator = this.paginator;
       });
     }
+  }
+
+  spotLabel(order: Order) {
+    if (!order.spot) {
+      return "";
+    }
+
+    const orders = this.dataSource.data.filter(item => {
+      return item.spot && item.spot.id == order.spot.id;
+    }).sort((o1, o2) => {
+      if (o1.number < o2.number) { return -1; }
+      if (o1.number > o2.number) { return 1; }
+      return 0;
+    });
+    if (orders.length < 2) {
+      return order.spot.label
+    }
+    var index = orders.indexOf(order);
+    return `${order.spot.label} - ${index + 1}`
   }
 }

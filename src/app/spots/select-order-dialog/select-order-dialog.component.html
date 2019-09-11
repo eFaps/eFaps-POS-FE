@@ -1,7 +1,10 @@
 <div class="wrapper">
-  <ng-container *ngFor="let order of orders">
-    <button mat-fab (click)="selectOrder(order)">
+  <ng-container *ngFor="let order of orders; let i = index">
+    <div class="orderbutton">
+      <span>{{i + 1}}</span>
+      <button mat-fab (click)="selectOrder(order)">
         {{order.number}}
-    </button>
+      </button>
+    </div>
   </ng-container>
 </div>

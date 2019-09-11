@@ -14,7 +14,11 @@ export class SelectOrderDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
-    this.orders = this.data;
+    this.orders = this.data.sort((o1, o2) => {
+      if (o1.number < o2.number) { return -1; }
+      if (o1.number > o2.number) { return 1; }
+      return 0;
+    });
   }
 
   selectOrder(order: Order) {
