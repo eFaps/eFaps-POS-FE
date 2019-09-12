@@ -16,6 +16,7 @@ import {
 } from '../../services';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { SplitOrderDialogComponent } from '../split-order-dialog/split-order-dialog.component';
+import { ReassignDialogComponent } from '../reassign-dialog/reassign-dialog.component';
 
 @Component({
   selector: 'app-order-table',
@@ -93,17 +94,26 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     });
   }
 
-  split(_order: Order) {
+  split(order: Order) {
     const dialogRef = this.dialog.open(SplitOrderDialogComponent, {
       width: '90%',
       minHeight: '200',
       maxHeight: '90vh',
-      data: _order
+      data: order
     });
     dialogRef.afterClosed().subscribe(_result => {
       this.dataSource = new MatTableDataSource<OrderWrapper>();
       this.ngOnInit();
       this.changeDetectorRefs.detectChanges();
+    });
+  }
+
+  reassign(order: Order) {
+    const dialogRef = this.dialog.open(ReassignDialogComponent, {
+      width: '90%',
+      minHeight: '200',
+      maxHeight: '90vh',
+      data: order
     });
   }
 

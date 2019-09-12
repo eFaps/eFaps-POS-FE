@@ -1,0 +1,28 @@
+.wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+
+  > div {
+    width: 50%;
+
+    &:first-child {
+      margin-right: 15px;
+    }
+  }
+
+  .selection {
+    display: flex;
+    justify-content: center;
+
+    .orderbutton {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+
+      button {
+        margin: 5px;
+      }
+    }
+  }
+}

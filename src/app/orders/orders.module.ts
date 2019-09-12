@@ -6,7 +6,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
 import { OrderTableComponent } from './order-table/order-table.component';
+import { ReassignDialogComponent } from './reassign-dialog/reassign-dialog.component';
 import { SplitOrderDialogComponent } from './split-order-dialog/split-order-dialog.component';
+import { ReassignItemComponent } from './reassign-item/reassign-item.component';
 
 @NgModule({
   imports: [
@@ -18,10 +20,13 @@ import { SplitOrderDialogComponent } from './split-order-dialog/split-order-dial
   ],
   declarations: [
     OrderTableComponent,
-    SplitOrderDialogComponent
+    ReassignDialogComponent,
+    SplitOrderDialogComponent,
+    ReassignItemComponent,
   ],
   entryComponents: [
-    SplitOrderDialogComponent
+    ReassignDialogComponent,
+    SplitOrderDialogComponent,
   ],
 })
 export class OrdersModule { }

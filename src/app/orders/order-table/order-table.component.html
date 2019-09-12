@@ -45,7 +45,7 @@
           <button (click)="split(order)" *ngIf="isAdmin && order.status===DocStatus[DocStatus.OPEN]" mat-stroked-button i18n-matTooltip="@@splitIntoNew" matTooltip="Split">
             <mat-icon class="posIcon-36">call_split</mat-icon>
           </button>
-          <button (click)="split(order)" *ngIf="isAdmin && order.status===DocStatus[DocStatus.OPEN] && order.multiple" mat-stroked-button i18n-matTooltip="@@reassign" matTooltip="Reassign">
+          <button (click)="reassign(order)" *ngIf="isAdmin && order.status===DocStatus[DocStatus.OPEN] && order.multiple" mat-stroked-button i18n-matTooltip="@@reassign" matTooltip="Reassign">
             <mat-icon class="posIcon-36">open_with</mat-icon>
           </button>
         </div>
