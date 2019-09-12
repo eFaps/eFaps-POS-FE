@@ -71,26 +71,25 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
   }
 
   private move(item: DocItem, origin: Order, target: Order) {
-    const targetItem = target.items.find(item => item.index === item.index);
-    if (targetItem) {
-      targetItem.quantity = targetItem.quantity + 1;
+    const index: number = origin.items.indexOf(item);
+    const targetIndex = target.items.findIndex(it => it.product.oid === item.product.oid);
+    if (targetIndex !== -1) {
+      target.items[targetIndex].quantity++;
       if (item.quantity === 1) {
-        const index: number = origin.items.indexOf(item);
         if (index !== -1) {
           origin.items.splice(index, 1);
         }
       } else {
-        item.quantity = item.quantity - 1;
+        origin.items[index].quantity = item.quantity - 1;
       }
     } else {
       if (item.quantity === 1) {
-        const index: number = origin.items.indexOf(item);
         if (index !== -1) {
           origin.items.splice(index, 1);
           target.items.push(item);
         }
       } else {
-        item.quantity = item.quantity - 1;
+        origin.items[index].quantity = item.quantity - 1;
         target.items.push({
           index: item.index,
           product: item.product,
@@ -103,12 +102,13 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
         });
       }
     }
-    origin.items.sort((a, b) => (a.index < b.index ? -1 : 1));
-    target.items.sort((a, b) => (a.index < b.index ? -1 : 1));
+    var idx = 1;
+    origin.items.forEach(item => item.index = idx++)
+    var idx = 1;
+    target.items.forEach(item => item.index = idx++)
+
     // reload in child
     this.left.order = this.orderLeft;
     this.right.order = this.orderRight;
   }
-
-
 }

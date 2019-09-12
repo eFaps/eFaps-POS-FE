@@ -115,6 +115,11 @@ export class OrderTableComponent implements OnInit, OnDestroy {
       maxHeight: '90vh',
       data: order
     });
+    dialogRef.afterClosed().subscribe(_result => {
+      this.dataSource = new MatTableDataSource<OrderWrapper>();
+      this.ngOnInit();
+      this.changeDetectorRefs.detectChanges();
+    });
   }
 
   toggleLazyLoadOrders(_toggle: MatSlideToggleChange) {

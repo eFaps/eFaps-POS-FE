@@ -21,11 +21,11 @@
   </ng-container>
   <ng-container matColumnDef="crossUnitPrice">
     <mat-header-cell *matHeaderCellDef> P.U. </mat-header-cell>
-    <mat-cell *matCellDef="let item"> {{item.crossUnitPrice}} </mat-cell>
+    <mat-cell *matCellDef="let item"> {{item.crossUnitPrice | posCurrency:order.currency }} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="crossPrice">
     <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
-    <mat-cell *matCellDef="let item"> {{item.crossPrice }} </mat-cell>
+    <mat-cell *matCellDef="let item"> {{item.crossPrice | posCurrency:order.currency }} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="cmdLeft">
     <mat-header-cell *matHeaderCellDef></mat-header-cell>
