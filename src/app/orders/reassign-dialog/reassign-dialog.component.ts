@@ -1,8 +1,9 @@
-import { Component, OnInit, Inject, OnDestroy, ViewChild } from '@angular/core';
-import { MAT_DIALOG_DATA, MatTableDataSource } from '@angular/material';
-import { DocumentService } from '../../services';
-import { Order, DocItem } from '../../model';
-import { Subscription } from 'rxjs';
+import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { Observable, Subscription, forkJoin } from 'rxjs';
+
+import { DocItem, Order } from '../../model';
+import { DocumentService, PosService } from '../../services';
 import { ReassignItemComponent } from '../reassign-item/reassign-item.component';
 
 @Component({
@@ -23,6 +24,8 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
   private subscription = new Subscription();
 
   constructor(private documentService: DocumentService,
+    private posService: PosService,
+    private dialogRef: MatDialogRef<ReassignDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any) { }
 
   ngOnInit() {
@@ -110,5 +113,21 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
     // reload in child
     this.left.order = this.orderLeft;
     this.right.order = this.orderRight;
+  }
+
+  save() {
+    const updates: Observable<Order>[] = [];
+    this.orders.forEach(
+      order => {
+        this.posService.setOrder(order);
+        updates.push(this.posService.updateOrder(order));
+      }
+    );
+    this.posService.reset();
+    forkJoin(...updates).subscribe({
+      next: _ => {
+        this.dialogRef.close();
+      }
+    });
   }
 }

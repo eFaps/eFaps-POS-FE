@@ -193,7 +193,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     if (relatedOrders.length < 2) {
       return order.spot.label
     }
-    var index = orders.indexOf(order);
+    var index = relatedOrders.indexOf(order);
     return `${order.spot.label} - ${index + 1}`
   }
 
