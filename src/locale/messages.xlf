@@ -22,6 +22,10 @@
           <context context-type="sourcefile">app/app.component.html</context>
           <context context-type="linenumber">24</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="spots" datatype="html">
         <source>Tables</source>
@@ -424,6 +428,34 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
           <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="payment" datatype="html">
+        <source>Payment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cancel" datatype="html">
+        <source>Cancel</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="splitIntoNew" datatype="html">
+        <source>Split</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="reassign" datatype="html">
+        <source>Reassign</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
     </body>
