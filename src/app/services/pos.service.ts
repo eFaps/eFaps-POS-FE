@@ -92,7 +92,8 @@ export class PosService {
       items.push({
         product: _item.product,
         quantity: _item.quantity,
-        price: _item.crossPrice
+        price: _item.crossPrice,
+        remark: _item.remark
       });
     });
     this.changeTicket(items);

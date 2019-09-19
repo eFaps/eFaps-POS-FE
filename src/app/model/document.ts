@@ -50,6 +50,7 @@ export interface DocItem {
   netUnitPrice: number;
   crossPrice: number;
   crossUnitPrice: number;
+  remark?: string;
   taxes: TaxEntry[];
 }
 

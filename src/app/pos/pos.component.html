@@ -1,8 +1,12 @@
 <div fxLayout='row' fxLayoutGap="20px">
   <div [ngSwitch]="currentLayout" class="selector" [ngStyle]="{'height.px': screenHeight - 64 }">
-    <app-product-grid *ngSwitchCase="PosLayout.GRID" (selection)="resetMultiplier()" [multiplier]="multiplier"></app-product-grid>
-    <app-product-list *ngSwitchCase="PosLayout.LIST" (selection)="resetMultiplier()" [multiplier]="multiplier"></app-product-list>
+    <app-product-grid *ngSwitchCase="PosLayout.GRID" (selection)="afterSelection()" [multiplier]="multiplier" [remarkMode]="remarkMode"></app-product-grid>
+    <app-product-list *ngSwitchCase="PosLayout.LIST" (selection)="afterSelection()" [multiplier]="multiplier" [remarkMode]="remarkMode"></app-product-list>
     <button mat-fab color="primary" (click)="openCatSelect()" class="catSelect">Cat.</button>
+    <button mat-fab color="primary" (click)="openCatSelect()" class="catSelect">Cat.</button>
+    <button class="remarkCmd" (click)="toggleRemarkMode()" mat-fab color="{{remarkMode ? 'accent' : 'primary' }}">
+      <mat-icon class="posIcon-36">description</mat-icon>
+    </button>
     <button mat-fab color="primary" (click)="switchLayout()" *ngIf="this.workspaceService.getPosLayout() === PosLayout.BOTH" class="switch">Switch</button>
   </div>
   <div class='ticket' [ngStyle]="{'height.px': screenHeight - 64 - 6}">

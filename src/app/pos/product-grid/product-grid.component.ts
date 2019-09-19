@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatTabChangeEvent } from '@angular/material';
+import { MatTabChangeEvent, MatDialog } from '@angular/material';
 import { Subscription } from 'rxjs';
 
 import { PosService, ProductService, WorkspaceService } from '../../services/index';
@@ -24,8 +24,8 @@ export class ProductGridComponent extends AbstractProductSelector
   private subscription$ = new Subscription();
 
   constructor(productService: ProductService, posService: PosService,
-    private workspaceService: WorkspaceService) {
-    super(productService, posService);
+    dialog: MatDialog, private workspaceService: WorkspaceService) {
+    super(productService, posService, dialog);
   }
 
   ngOnInit() {

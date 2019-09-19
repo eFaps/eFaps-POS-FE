@@ -36,6 +36,7 @@ export class PosComponent implements OnInit, OnDestroy {
   multiplier = 1;
   @ViewChild(CommandsComponent, { static: true }) cmdComp;
   @ViewChild(ProductGridComponent, { static: false }) grid;
+  remarkMode = false;
 
   constructor(public workspaceService: WorkspaceService,
     private posService: PosService,
@@ -114,6 +115,14 @@ export class PosComponent implements OnInit, OnDestroy {
     this.multiplier = Number(multi);
   }
 
+  afterSelection() {
+    this.resetMultiplier();
+    if (this.remarkMode) {
+      this.toggleRemarkMode();
+    }
+  }
+
+
   resetMultiplier() {
     this.multiplier = 0;
     this.multiplierForm.patchValue({ 'multiplier': '' });
@@ -137,5 +146,9 @@ export class PosComponent implements OnInit, OnDestroy {
         }
       }
     })
+  }
+
+  toggleRemarkMode() {
+    this.remarkMode = !this.remarkMode;
   }
 }

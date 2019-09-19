@@ -25,14 +25,14 @@ export class ProductListComponent
 
   inventory: InventoryEntry[] = [];
 
-  constructor(protected productService: ProductService,
-    protected posService: PosService,
+  constructor(productService: ProductService,
+    posService: PosService,
+    dialog: MatDialog,
     private workspaceService: WorkspaceService,
     private inventoryService: InventoryService,
     private authService: AuthService,
-    private fb: FormBuilder,
-    private dialog: MatDialog) {
-    super(productService, posService);
+    private fb: FormBuilder) {
+    super(productService, posService, dialog);
   }
 
   ngOnInit() {

@@ -13,6 +13,7 @@ import { ProductGridComponent } from './product-grid/product-grid.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { TotalsComponent } from './totals/totals.component';
 import { CategorySelectComponent } from './category-select/category-select.component';
+import { RemarkDialogComponent } from './remark-dialog/remark-dialog.component';
 
 @NgModule({
   imports: [
@@ -30,11 +31,13 @@ import { CategorySelectComponent } from './category-select/category-select.compo
     ProductGridComponent,
     TicketComponent,
     TotalsComponent,
-    CategorySelectComponent
+    CategorySelectComponent,
+    RemarkDialogComponent
   ],
   entryComponents: [
     OrderDialogComponent,
-    CategorySelectComponent
+    CategorySelectComponent,
+    RemarkDialogComponent
   ],
 })
 export class PosModule { }

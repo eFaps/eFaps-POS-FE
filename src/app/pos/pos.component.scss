@@ -26,6 +26,18 @@ $ticketWith: 450px;
   z-index: 200;
 }
 
+.remarkCmd {
+  position: absolute;
+  bottom: 10px;
+  left: 80px;
+  z-index: 200;
+
+  & .posIcon-36 {
+    top: -5px;
+    position: relative;
+  }
+}
+
 input {
   text-align: right;
 }
