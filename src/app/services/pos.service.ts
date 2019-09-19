@@ -176,6 +176,7 @@ export class PosService {
           .toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber(),
         crossUnitPrice: item.product.crossPrice,
         crossPrice: item.price,
+        remark: item.remark,
         taxes: this.getItemTaxEntries(item)
       });
   }

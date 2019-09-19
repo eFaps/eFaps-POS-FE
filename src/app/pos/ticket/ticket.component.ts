@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { MatSnackBar, MatTableDataSource } from '@angular/material';
 import { Decimal } from 'decimal.js';
 
 import { Item } from '../../model/index';
@@ -17,7 +17,7 @@ export class TicketComponent implements OnInit {
   @Input() multiplier: number;
   @Output() multiplierClick = new EventEmitter<any>();
 
-  constructor(private posService: PosService) { }
+  constructor(private posService: PosService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.posService.currentTicket.subscribe(_data => this.dataSource.data = _data);
@@ -52,5 +52,9 @@ export class TicketComponent implements OnInit {
 
   private getQuantity(): Decimal {
     return new Decimal(this.multiplier > 0 ? this.multiplier : 1);
+  }
+
+  showRemark(remark: string) {
+    this.snackBar.open(remark, null, { duration: 3000 });
   }
 }

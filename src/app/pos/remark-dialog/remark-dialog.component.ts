@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-remark-dialog',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./remark-dialog.component.scss']
 })
 export class RemarkDialogComponent implements OnInit {
+  remarkForm: FormGroup;
 
-  constructor() { }
+  constructor(private fb: FormBuilder,
+    private matDialogRef: MatDialogRef<RemarkDialogComponent>) { }
 
   ngOnInit() {
+    this.remarkForm = this.fb.group({
+      'remark': []
+    });
   }
 
+  close() {
+    this.matDialogRef.close(this.remarkForm.get('remark').value);
+  }
 }

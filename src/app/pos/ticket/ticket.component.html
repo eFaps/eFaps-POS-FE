@@ -6,7 +6,12 @@
     </ng-container>
     <ng-container matColumnDef="productDesc">
       <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.product.description}} </mat-cell>
+      <mat-cell *matCellDef="let item">
+        {{item.product.description}}
+        <button mat-icon-button *ngIf="item.remark" (click)="showRemark(item.remark)">
+          <mat-icon>description</mat-icon>
+        </button>
+      </mat-cell>
     </ng-container>
     <ng-container matColumnDef="unitPrice">
       <mat-header-cell *matHeaderCellDef> P.U. </mat-header-cell>
