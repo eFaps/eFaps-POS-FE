@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatChipInputEvent, MatDialogRef } from '@angular/material';
+
+import { Indication, Product } from '../../model';
 
 @Component({
   selector: 'app-remark-dialog',
@@ -9,9 +12,16 @@ import { MatDialogRef } from '@angular/material';
 })
 export class RemarkDialogComponent implements OnInit {
   remarkForm: FormGroup;
+  indications = [];
+  visible = true;
+  removable = true;
+
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+
 
   constructor(private fb: FormBuilder,
-    private matDialogRef: MatDialogRef<RemarkDialogComponent>) { }
+    private matDialogRef: MatDialogRef<RemarkDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Product) { }
 
   ngOnInit() {
     this.remarkForm = this.fb.group({
@@ -20,6 +30,45 @@ export class RemarkDialogComponent implements OnInit {
   }
 
   close() {
-    this.matDialogRef.close(this.remarkForm.get('remark').value);
+    const remarks = [];
+    this.indications.forEach(ind => {
+      remarks.push(ind.value)
+    });
+    this.matDialogRef.close(remarks.join("\n"));
+  }
+
+  remove(indication: any): void {
+    const index = this.indications.indexOf(indication);
+
+    if (index >= 0) {
+      this.indications.splice(index, 1);
+    }
+  }
+
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.addIndication(value);
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  select(indication: Indication) {
+    this.addIndication(indication.value);
+  }
+
+
+  private addIndication(value: string) {
+    if (!this.indications.some(val => val.value === value)) {
+      this.indications.push({ value: value });
+    }
+
   }
 }

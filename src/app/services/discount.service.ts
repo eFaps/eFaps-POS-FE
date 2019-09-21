@@ -94,7 +94,8 @@ export class DiscountService {
       crossPrice: 0,
       categoryOids: [],
       taxes: [],
-      relations: []
+      relations: [],
+      indicationSets: []
     }
   }
 }

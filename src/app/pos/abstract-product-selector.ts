@@ -20,7 +20,7 @@ export abstract class AbstractProductSelector implements OnInit {
   }
 
   select(product: Product) {
-    if (this.remarkMode) {
+    if (this.remarkMode || product.indicationSets.some(set => set.required)) {
       const dialogRef = this.dialog.open(RemarkDialogComponent, {
         data: product,
       });
