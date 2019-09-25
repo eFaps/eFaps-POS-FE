@@ -1,6 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 import { LocalStorage } from 'ngx-store';
 
 import { IdentificationType } from '../../model/index';
@@ -20,6 +20,7 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
   constructor(public dialogRef: MatDialogRef<CreateContactDialogComponent>,
     private contactService: ContactService,
     private fb: FormBuilder,
+    private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.idTypes = Object.keys(this.identificationType).filter(f => !isNaN(Number(f)));
   }
@@ -60,6 +61,16 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
       idNumber: this.contactForm.value.idNumber,
     };
     this.contactService.createContact(contact)
-      .subscribe(_contact => this.dialogRef.close(_contact));
+      .subscribe({
+        next: _contact => this.dialogRef.close(_contact),
+        error: err => {
+          if (err.error && err.error.status == 412) {
+            this.snackBar.open("Un contacto con el mismo Numero ya existe!",
+              null, { duration: 3000 });
+          } else {
+            this.snackBar.open("Algo inesperado paso", null, { duration: 3000 });
+          }
+        }
+      });
   }
 }
