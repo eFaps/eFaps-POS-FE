@@ -23,7 +23,20 @@ export class DiscountService {
     if (discount && discount.type === DiscountType.PERCENT) {
       order = this.applyPercent(order, discount);
     }
+    if (discount && discount.type === DiscountType.AMOUNT) {
+      order = this.applyAmount(order, discount);
+    }
     this.documentService.updateOrder(this.recalculate(order)).subscribe();
+    return order;
+  }
+
+  private applyAmount(order: Order, discount: Discount): Order {
+    const targetCross = new Decimal(order.crossTotal).minus(new Decimal(discount.value));
+    const percentage = new Decimal(100).mul(
+      new Decimal(1).minus(targetCross.dividedBy(new Decimal(order.crossTotal))))
+
+    order = this.applyPercent(order, { ...discount, value: percentage.toNumber() });
+    order.discount = discount;
     return order;
   }
 
