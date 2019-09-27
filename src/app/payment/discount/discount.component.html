@@ -1,16 +1,42 @@
 <div class="container">
   <div class="type-wrapper">
-    <ng-container *ngFor="let discount of percentDiscount">
+    <ng-container *ngFor="let discount of percentDiscounts">
         <button mat-raised-button (click)="applyDiscount(discount)">
           {{ discount.label ? discount.label : discount.value + ' %'}}
         </button>
     </ng-container>
   </div>
   <div class="type-wrapper">
-    <ng-container *ngFor="let discount of amountDiscount">
+    <ng-container *ngFor="let discount of amountDiscounts">
         <button mat-raised-button (click)="applyDiscount(discount)">
           {{ discount.label ? discount.label : discount.value | posCurrency:paymentService.currency }}
         </button>
+    </ng-container>
+  </div>
+  <div class="type-wrapper">
+    <ng-container *ngIf="manualPercent">
+      <form [formGroup]="percentForm">
+        <mat-form-field>
+          <input matInput i18n-placeholder="@@percentage"placeholder="Percentage" type="text" formControlName="percent">
+          <span matPrefix></span>
+        </mat-form-field>
+        <button mat-raised-button (click)="applyPercentAmount()">
+          %
+        </button>
+      </form>
+    </ng-container>
+  </div>
+  <div class="type-wrapper">
+    <ng-container *ngIf="manualAmount">
+      <form [formGroup]="amountForm">
+        <mat-form-field>
+          <input matInput i18n-placeholder="@@amount" placeholder="Amount" type="text" formControlName="amount">
+          <span matPrefix>{{currency}}&nbsp;</span>
+        </mat-form-field>
+        <button mat-raised-button (click)="applyManualAmount()">
+          {{ currency }}
+        </button>
+      </form>
     </ng-container>
   </div>
   <div class="type-wrapper">
