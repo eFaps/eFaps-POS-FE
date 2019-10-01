@@ -8,7 +8,7 @@ import {
 import { Observable } from 'rxjs';
 
 import { AuthService } from '../services/index';
-import { Roles } from '../model/index';
+import { Roles } from '@efaps/pos-library';
 
 @Injectable()
 export class AdminGuard implements CanActivate {

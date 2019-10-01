@@ -14,7 +14,6 @@ export * from './printer';
 export * from './product';
 export * from './spot';
 export * from './tax';
-export * from './user';
 export * from './versions';
 export * from './warehouse';
 export * from './workspace';

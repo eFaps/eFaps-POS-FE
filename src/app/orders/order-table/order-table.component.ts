@@ -6,7 +6,7 @@ import { LocalStorage } from 'ngx-store';
 import { Subscription } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 
-import { DocStatus, Order, Roles, OrderWrapper } from '../../model';
+import { DocStatus, Order, OrderWrapper } from '../../model';
 import {
   AuthService,
   DocumentService,
@@ -17,6 +17,7 @@ import {
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { SplitOrderDialogComponent } from '../split-order-dialog/split-order-dialog.component';
 import { ReassignDialogComponent } from '../reassign-dialog/reassign-dialog.component';
+import { Roles } from '@efaps/pos-library';
 
 @Component({
   selector: 'app-order-table',

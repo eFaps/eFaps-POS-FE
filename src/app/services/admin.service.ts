@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Versions } from '../model/versions';
-import { ConfigService } from './config.service';
+import { ConfigService } from '@efaps/pos-library';
+
 
 @Injectable({
   providedIn: 'root'

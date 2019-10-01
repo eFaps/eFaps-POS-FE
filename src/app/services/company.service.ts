@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Company } from '../model';
-import { ConfigService } from './config.service';
+import { ConfigService } from '@efaps/pos-library';
 import { LocalStorage } from 'ngx-store';
 
 @Injectable()

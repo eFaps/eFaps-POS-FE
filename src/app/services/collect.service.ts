@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ConfigService } from './config.service';
+import { ConfigService } from '@efaps/pos-library';
 import { Collector, CollectOrder } from '../model';
 import { Decimal } from 'decimal.js';
 import { Observable } from 'rxjs';

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable, Subscriber } from 'rxjs';
 
-import { ConfigService } from './config.service';
+import { ConfigService } from '@efaps/pos-library';
 import { Cacheable } from 'ngx-cacheable';
 
 @Injectable()

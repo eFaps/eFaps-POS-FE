@@ -4,10 +4,11 @@ import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
-import { InventoryEntry, Product, Roles } from '../../model/index';
+import { InventoryEntry, Product} from '../../model/index';
 import { ProductComponent } from '../../products/product/product.component';
 import { AuthService, InventoryService, PosService, ProductService, WorkspaceService } from '../../services/index';
 import { AbstractProductSelector } from '../abstract-product-selector';
+import { Roles } from '@efaps/pos-library';
 
 @Component({
   selector: 'app-product-list',

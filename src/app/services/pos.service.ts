@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { ConfigService } from './config.service';
+import { ConfigService } from '@efaps/pos-library';
 import { DocumentService } from './document.service';
 import { WorkspaceService } from './workspace.service';
 import {

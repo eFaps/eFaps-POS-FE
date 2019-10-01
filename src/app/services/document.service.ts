@@ -4,7 +4,7 @@ import { Observable, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Balance, Invoice, Order, Payable, Receipt, Ticket, PayableHead } from '../model';
-import { ConfigService } from './config.service';
+import { ConfigService } from '@efaps/pos-library';
 import { WorkspaceService } from './workspace.service';
 
 @Injectable()

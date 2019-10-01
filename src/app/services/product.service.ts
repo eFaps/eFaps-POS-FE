@@ -5,7 +5,7 @@ import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Category, PosCategory, Product } from '../model/index';
-import { ConfigService } from './config.service';
+import { ConfigService } from '@efaps/pos-library';
 
 @Injectable()
 export class ProductService {

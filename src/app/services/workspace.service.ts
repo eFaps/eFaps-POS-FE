@@ -7,7 +7,7 @@ import { PosLayout, SpotConfig, Workspace } from '../model/index';
 import { AuthService } from './auth.service';
 import { CollectService } from './collect.service';
 import { CompanyService } from './company.service';
-import { ConfigService } from './config.service';
+import { ConfigService } from '@efaps/pos-library';
 
 @Injectable()
 export class WorkspaceService {

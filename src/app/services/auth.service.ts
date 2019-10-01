@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Roles } from '@efaps/pos-library';
 import * as jwtDecode from 'jwt-decode';
 import { LocalStorage } from 'ngx-store';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Roles } from '../model/index';
 import { Tokens } from '../model/tokens';
-import { ConfigService } from './config.service';
+import { ConfigService } from '@efaps/pos-library';
 
 @Injectable()
 export class AuthService {

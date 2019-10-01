@@ -1,4 +1,4 @@
-import { User } from './user';
+import { User } from '@efaps/pos-library';
 
 export interface Balance {
   id: string;

@@ -4,9 +4,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Hotkey, HotkeysService } from 'angular2-hotkeys';
 
 import { environment } from '../environments/environment';
-import { Roles } from './model/index';
 import { AuthService, WorkspaceService, CompanyService } from './services/index';
 import { ElectronUtil } from './util/electron-util';
+import { Roles } from '@efaps/pos-library';
 
 @Component({
   selector: 'app-root',

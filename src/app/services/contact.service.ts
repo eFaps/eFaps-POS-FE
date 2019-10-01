@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { ConfigService } from './config.service';
+import { ConfigService } from '@efaps/pos-library';
 import { Observable } from 'rxjs';
 import { Contact } from '../model/index';
 

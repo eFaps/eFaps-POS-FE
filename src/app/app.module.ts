@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {PosLibraryModule, UserService, ConfigService} from '@efaps/pos-library';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { StompRService } from '@stomp/ng2-stompjs';
 import { AngularSvgIconModule, SERVER_URL } from 'angular-svg-icon';
@@ -27,20 +28,18 @@ import { ProductsModule } from './products/products.module';
 import {
   AdminService,
   AuthService,
-  ConfigService,
+  CompanyInterceptor,
+  CompanyService,
   ContactService,
   DocumentService,
   ErrorInterceptor,
   ImageService,
   JwtInterceptor,
-  CompanyInterceptor,
   MsgService,
   PaymentService,
   PosService,
   ProductService,
   SameHeightDirective,
-  CompanyService,
-  UserService,
   UtilsService,
   WorkspaceService
 } from './services/index';
@@ -77,6 +76,10 @@ import { WorkspaceComponent } from './workspace/workspace.component';
     SpotsModule,
     PosModule,
     ProductsModule,
+    PosLibraryModule.forRoot({
+      baseUrl: "/api",
+      socketUrl: "/socket"
+    }),
     HotkeyModule.forRoot({
       cheatSheetDescription: 'Presentar',
     }),
@@ -101,18 +104,10 @@ import { WorkspaceComponent } from './workspace/workspace.component';
     ProductService,
     PosService,
     UtilsService,
-    UserService,
     ImageService,
-    ConfigService,
     CompanyService,
     StompRService,
     WorkspaceService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: (configService: ConfigService) => function() { return configService.load(); },
-      deps: [ConfigService],
-      multi: true,
-    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

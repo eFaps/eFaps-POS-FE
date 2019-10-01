@@ -3,13 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Router } from '@angular/router';
+import { User, UserService } from '@efaps/pos-library';
 import { TranslateService } from '@ngx-translate/core';
 import { globalCacheBusterNotifier } from 'ngx-cacheable';
 import { LocalStorage } from 'ngx-store';
 import { Subscription } from 'rxjs';
 
-import { Company, User } from '../model/index';
-import { AuthService, CompanyService, UserService, WorkspaceService } from '../services/index';
+import { Company } from '../model/index';
+import { AuthService, CompanyService, WorkspaceService } from '../services/index';
 
 @Component({
   moduleId: module.id,

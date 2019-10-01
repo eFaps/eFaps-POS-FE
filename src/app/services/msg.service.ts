@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { StompConfig, StompRService } from '@stomp/ng2-stompjs';
 
 import { AuthService } from './auth.service';
-import { ConfigService } from './config.service';
+import { ConfigService } from '@efaps/pos-library';
 import { environment } from '../../environments/environment';
 
 @Injectable({

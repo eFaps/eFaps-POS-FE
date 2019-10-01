@@ -3,7 +3,7 @@ import { TestBed, inject } from '@angular/core/testing';
 import { Observable } from 'rxjs/Observable';
 
 import { AuthService } from './auth.service';
-import { ConfigService } from './config.service';
+import { ConfigService } from '@efaps/pos-library';
 import { DocumentService } from './document.service';
 import { PosService } from './pos.service';
 import { SpotService } from './spot.service';
