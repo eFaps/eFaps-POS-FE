@@ -26,7 +26,6 @@ import { PaymentModule } from './payment/payment.module';
 import { PosModule } from './pos/pos.module';
 import { ProductsModule } from './products/products.module';
 import {
-  AdminService,
   AuthService,
   CompanyInterceptor,
   CompanyService,
@@ -95,7 +94,6 @@ import { WorkspaceComponent } from './workspace/workspace.component';
     AdminGuard,
     AuthGuard,
     WorkspaceGuard,
-    AdminService,
     AuthService,
     ContactService,
     DocumentService,

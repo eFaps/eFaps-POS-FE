@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService, Versions } from '@efaps/pos-library';
 import { Subscription } from 'rxjs';
-
-import { Versions } from '../../model/versions';
-import { AdminService } from '../../services/index';
 
 @Component({
   selector: 'app-admin',
