@@ -1,12 +1,12 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService, Roles } from '@efaps/pos-library';
 import { TranslateService } from '@ngx-translate/core';
 import { Hotkey, HotkeysService } from 'angular2-hotkeys';
 
 import { environment } from '../environments/environment';
-import { AuthService, WorkspaceService, CompanyService } from './services/index';
+import { CompanyService, WorkspaceService } from './services/index';
 import { ElectronUtil } from './util/electron-util';
-import { Roles } from '@efaps/pos-library';
 
 @Component({
   selector: 'app-root',

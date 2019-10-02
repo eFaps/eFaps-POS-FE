@@ -4,10 +4,10 @@ import { LocalStorage } from 'ngx-store';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { PosLayout, SpotConfig, Workspace } from '../model/index';
-import { AuthService } from './auth.service';
+
 import { CollectService } from './collect.service';
 import { CompanyService } from './company.service';
-import { ConfigService } from '@efaps/pos-library';
+import { AuthService, ConfigService } from '@efaps/pos-library';
 
 @Injectable()
 export class WorkspaceService {

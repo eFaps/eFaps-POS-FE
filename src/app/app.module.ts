@@ -5,7 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {PosLibraryModule, UserService, ConfigService} from '@efaps/pos-library';
+import { PosLibraryModule  } from '@efaps/pos-library';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { StompRService } from '@stomp/ng2-stompjs';
 import { AngularSvgIconModule, SERVER_URL } from 'angular-svg-icon';
@@ -17,7 +17,7 @@ import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { BalanceModule } from './balance/balance.module';
 import { ContactsModule } from './contacts/contacts.module';
-import { AdminGuard, AuthGuard, WorkspaceGuard } from './guards/index';
+import { WorkspaceGuard } from './guards/index';
 import { InventoryModule } from './inventory/inventory.module';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from './material/material.module';
@@ -26,14 +26,12 @@ import { PaymentModule } from './payment/payment.module';
 import { PosModule } from './pos/pos.module';
 import { ProductsModule } from './products/products.module';
 import {
-  AuthService,
   CompanyInterceptor,
   CompanyService,
   ContactService,
   DocumentService,
   ErrorInterceptor,
   ImageService,
-  JwtInterceptor,
   MsgService,
   PaymentService,
   PosService,
@@ -91,10 +89,7 @@ import { WorkspaceComponent } from './workspace/workspace.component';
     })
   ],
   providers: [
-    AdminGuard,
-    AuthGuard,
     WorkspaceGuard,
-    AuthService,
     ContactService,
     DocumentService,
     MsgService,
@@ -106,11 +101,6 @@ import { WorkspaceComponent } from './workspace/workspace.component';
     CompanyService,
     StompRService,
     WorkspaceService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
-      multi: true
-    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,

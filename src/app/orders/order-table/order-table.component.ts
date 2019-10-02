@@ -8,7 +8,7 @@ import { debounceTime, map } from 'rxjs/operators';
 
 import { DocStatus, Order, OrderWrapper } from '../../model';
 import {
-  AuthService,
+
   DocumentService,
   PaymentService,
   PosService,
@@ -17,7 +17,7 @@ import {
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { SplitOrderDialogComponent } from '../split-order-dialog/split-order-dialog.component';
 import { ReassignDialogComponent } from '../reassign-dialog/reassign-dialog.component';
-import { Roles } from '@efaps/pos-library';
+import { Roles, AuthService } from '@efaps/pos-library';
 
 @Component({
   selector: 'app-order-table',

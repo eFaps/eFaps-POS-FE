@@ -8,13 +8,14 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material';
+import { AuthService } from '@efaps/pos-library';
 import { LocalStorage } from 'ngx-store';
 
 import { Item, PosLayout } from '../model/index';
-import { AuthService, MsgService, PosService, WorkspaceService } from '../services/index';
-import { CommandsComponent } from './commands/commands.component'
-import { MatDialog } from '@angular/material';
+import { MsgService, PosService, WorkspaceService } from '../services/index';
 import { CategorySelectComponent } from './category-select/category-select.component';
+import { CommandsComponent } from './commands/commands.component'
 import { ProductGridComponent } from './product-grid/product-grid.component';
 
 @Component({

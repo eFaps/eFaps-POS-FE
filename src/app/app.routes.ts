@@ -1,10 +1,11 @@
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard, AuthGuard } from '@efaps/pos-library';
 
 import { AdminComponent } from './admin/admin/admin.component';
 import { BalanceComponent } from './balance/balance/balance.component'
 import { ContactTableComponent } from './contacts/contact-table/contact-table.component';
-import { AdminGuard, AuthGuard, WorkspaceGuard } from './guards/index';
+import { WorkspaceGuard } from './guards/index';
 import { InventoryComponent } from './inventory/inventory/inventory.component';
 import { LoginComponent } from './login/login.component';
 import { OrderTableComponent } from './orders/order-table/order-table.component';

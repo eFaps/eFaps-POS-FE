@@ -1,9 +1,8 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { TestBed, inject } from '@angular/core/testing';
 
-import { AuthService } from './auth.service';
 import { BalanceService } from './balance.service';
-import { ConfigService } from '@efaps/pos-library';
+import { ConfigService, AuthService } from '@efaps/pos-library';
 import { WorkspaceService } from './workspace.service';
 import { Observable } from 'rxjs';
 

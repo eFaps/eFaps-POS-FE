@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Balance, BalanceSummary } from '../model';
-import { AuthService } from './auth.service';
-import { ConfigService } from '@efaps/pos-library';
+import { ConfigService, AuthService } from '@efaps/pos-library';
 import { WorkspaceService } from './workspace.service';
 import { tap } from 'rxjs/operators';
 
