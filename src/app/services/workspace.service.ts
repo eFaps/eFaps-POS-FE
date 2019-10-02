@@ -1,13 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AuthService, CollectService, ConfigService } from '@efaps/pos-library';
 import { LocalStorage } from 'ngx-store';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { PosLayout, SpotConfig, Workspace } from '../model/index';
-
-import { CollectService } from './collect.service';
 import { CompanyService } from './company.service';
-import { AuthService, ConfigService } from '@efaps/pos-library';
 
 @Injectable()
 export class WorkspaceService {

@@ -16,4 +16,3 @@ export * from './spot';
 export * from './tax';
 export * from './warehouse';
 export * from './workspace';
-export * from './collector';

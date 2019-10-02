@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { CollectService, Collector } from '@efaps/pos-library';
 
-import { Payment, PaymentType, Collector } from '../../model';
-import { CollectService, PaymentService, UtilsService, MsgService } from '../../services';
+import { Payment, PaymentType } from '../../model';
+import { MsgService, PaymentService, UtilsService } from '../../services';
 import { PaymentForm } from '../payment-form';
-
 
 @Component({
   selector: 'app-auto',

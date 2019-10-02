@@ -1,5 +1,4 @@
 export * from './balance.service';
-export * from './collect.service';
 export * from './company.interceptor';
 export * from './company.service';
 export * from './contact.service';
