@@ -12,7 +12,6 @@ export * from './payment.service';
 export * from './pos-currency.pipe';
 export * from './pos.service';
 export * from './print.service';
-export * from './product.service';
 export * from './same-height.directive';
 export * from './secure.pipe';
 export * from './spot.service';

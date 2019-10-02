@@ -2,8 +2,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatChipInputEvent, MatDialogRef } from '@angular/material';
-
-import { Indication, Product } from '../../model';
+import { Indication, Product } from '@efaps/pos-library';
 
 @Component({
   selector: 'app-remark-dialog',
@@ -17,7 +16,6 @@ export class RemarkDialogComponent implements OnInit {
   removable = true;
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-
 
   constructor(private fb: FormBuilder,
     private matDialogRef: MatDialogRef<RemarkDialogComponent>,
@@ -63,7 +61,6 @@ export class RemarkDialogComponent implements OnInit {
   select(indication: Indication) {
     this.addIndication(indication.value);
   }
-
 
   private addIndication(value: string) {
     if (!this.indications.some(val => val.value === value)) {

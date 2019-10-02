@@ -35,7 +35,6 @@ import {
   MsgService,
   PaymentService,
   PosService,
-  ProductService,
   SameHeightDirective,
   UtilsService,
   WorkspaceService
@@ -94,7 +93,6 @@ import { WorkspaceComponent } from './workspace/workspace.component';
     DocumentService,
     MsgService,
     PaymentService,
-    ProductService,
     PosService,
     UtilsService,
     ImageService,

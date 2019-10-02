@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../services';
-import { Category } from '../../model';
 import { MatDialogRef } from '@angular/material';
+import { Category, ProductService } from '@efaps/pos-library';
 
 @Component({
   selector: 'app-category-select',

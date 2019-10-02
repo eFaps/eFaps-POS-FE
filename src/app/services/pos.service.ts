@@ -1,23 +1,19 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { Injectable } from '@angular/core';
+import { ConfigService, Tax, TaxEntry, TaxType } from '@efaps/pos-library';
+import { Decimal } from 'decimal.js';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { ConfigService } from '@efaps/pos-library';
-import { DocumentService } from './document.service';
-import { WorkspaceService } from './workspace.service';
 import {
   DocItem,
   DocStatus,
   Item,
   Order,
-  Pos,
-  Tax,
-  TaxEntry,
-  TaxType,
+  Pos
 } from '../model/index';
-import { Decimal } from 'decimal.js';
+import { DocumentService } from './document.service';
 import { TaxService } from './tax.service';
+import { WorkspaceService } from './workspace.service';
 
 @Injectable()
 export class PosService {

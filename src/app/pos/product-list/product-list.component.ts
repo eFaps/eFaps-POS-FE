@@ -1,14 +1,14 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
+import { AuthService, Product, ProductService, Roles } from '@efaps/pos-library';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
-import { InventoryEntry, Product} from '../../model/index';
+import { InventoryEntry } from '../../model/index';
 import { ProductComponent } from '../../products/product/product.component';
-import { InventoryService, PosService, ProductService, WorkspaceService } from '../../services/index';
+import { InventoryService, PosService, WorkspaceService } from '../../services/index';
 import { AbstractProductSelector } from '../abstract-product-selector';
-import { Roles, AuthService } from '@efaps/pos-library';
 
 @Component({
   selector: 'app-product-list',

@@ -1,4 +1,5 @@
-import { Product } from './product';
+import { Product } from '@efaps/pos-library';
+
 import { Warehouse } from './warehouse';
 
 export interface InventoryEntry {

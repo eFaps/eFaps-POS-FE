@@ -1,10 +1,9 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
+import { Product, ProductService } from '@efaps/pos-library';
 import { LocalStorage } from 'ngx-store';
 
-import { Product } from '../../model/index';
-import { ProductService } from '../../services/index';
 import { ProductComponent } from '../product/product.component';
 
 @Component({

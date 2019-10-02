@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Decimal } from 'decimal.js';
 
-import { Discount, DiscountType, DocItem, Document, Order, Product, TaxType } from '../model';
+import { Discount, DiscountType, DocItem, Document, Order } from '../model';
 import { DocumentService } from './document.service';
 import { TaxService } from './tax.service';
+import { TaxType, Product } from '@efaps/pos-library';
 
 @Injectable({
   providedIn: 'root'

@@ -1,8 +1,8 @@
-import { Payment } from './payment';
-import { Product } from './product';
-import { TaxEntry } from './tax';
-import { Spot } from './spot';
+import { Product, TaxEntry } from '@efaps/pos-library';
+
 import { Discount } from './discount';
+import { Payment } from './payment';
+import { Spot } from './spot';
 
 export interface Document {
   type?: 'ORDER' | 'RECEIPT' | 'INVOICE' | 'TICKET';

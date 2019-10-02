@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
+import { Product, ProductRelation, ProductService, RelationEntry } from '@efaps/pos-library';
 
-import { InventoryEntry, Product, ProductRelation, RelationEntry } from '../../model/index';
-import { InventoryService, PosService, ProductService, WorkspaceService } from '../../services/index';
+import { InventoryEntry } from '../../model/index';
+import { InventoryService, PosService, WorkspaceService } from '../../services/index';
 
 @Component({
   selector: 'app-product',
