@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatTableDataSource } from '@angular/material';
-import { Order, DocItem, DocStatus } from '../../model';
-import { PosService } from '../../services';
+import { DocItem, DocStatus, Order, PosService } from '@efaps/pos-library';
 
 @Component({
   selector: 'app-split-order-dialog',

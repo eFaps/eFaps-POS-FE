@@ -1,9 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { Spot, SpotConfig, SpotService } from '@efaps/pos-library';
 import { Subscription } from 'rxjs';
-
-import { Spot, SpotConfig } from '../../model';
-import { SpotService } from '../../services';
 
 @Component({
   selector: 'app-spot-dialog',

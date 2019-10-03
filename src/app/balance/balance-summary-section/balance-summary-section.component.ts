@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { SummaryDetail, PaymentInfo } from '../../model';
+import { Component, Input, OnInit } from '@angular/core';
+import { PaymentInfo, SummaryDetail } from '@efaps/pos-library';
 
 @Component({
   selector: 'app-balance-summary-section',

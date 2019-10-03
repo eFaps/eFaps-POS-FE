@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-
-import { PaymentType, BalanceSummary, PaymentInfo } from '../../model';
+import { BalanceSummary, PaymentInfo, PaymentType } from '@efaps/pos-library';
 
 @Component({
   selector: 'app-balance-payment-list',

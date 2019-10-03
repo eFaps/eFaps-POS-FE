@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { WorkspaceService } from '../../services';
-import { SpotConfig } from '../../model';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { SpotConfig, WorkspaceService } from '@efaps/pos-library';
 import { Subscription } from 'rxjs';
 
 @Component({

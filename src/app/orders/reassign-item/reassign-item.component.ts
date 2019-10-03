@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import { DocItem, Order } from '../../model';
+import { DocItem, Order } from '@efaps/pos-library';
 
 @Component({
   selector: 'app-reassign-item',

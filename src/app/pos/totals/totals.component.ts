@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { PosService } from '../../services/index';
+import { PosService } from '@efaps/pos-library';
 
 @Component({
   selector: 'app-totals',

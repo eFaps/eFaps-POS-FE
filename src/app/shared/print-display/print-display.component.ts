@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { PrintService } from '../../services';
+import { Component, Input, OnInit } from '@angular/core';
+import { PrintService } from '@efaps/pos-library';
 import { Observable } from 'rxjs';
 
 @Component({

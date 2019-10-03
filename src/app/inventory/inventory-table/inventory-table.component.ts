@@ -1,8 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatTableDataSource } from '@angular/material';
-
-import { InventoryEntry, Warehouse } from '../../model/index';
-import { InventoryService } from '../../services/index';
+import { InventoryEntry, InventoryService, Warehouse } from '@efaps/pos-library';
 
 @Component({
   selector: 'app-inventory-table',

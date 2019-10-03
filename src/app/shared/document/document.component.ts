@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { MatTableDataSource, MatSort, MatDialog } from '@angular/material';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
+import { DocItem, Document, PrintService, WorkspaceService } from '@efaps/pos-library';
 
-import { Document, DocItem } from '../../model/index';
-import { PrintService, WorkspaceService } from '../../services';
 import { PrintDialogComponent } from '../print-dialog/print-dialog.component';
 
 @Component({

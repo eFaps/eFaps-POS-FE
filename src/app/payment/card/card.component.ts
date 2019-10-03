@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Card, Payment, PaymentService, PaymentType, UtilsService, WorkspaceService } from '@efaps/pos-library';
 
-import { Payment, PaymentType, Card } from '../../model';
-import { PaymentService, UtilsService, WorkspaceService } from '../../services';
 import { PaymentForm } from '../payment-form';
 
 @Component({

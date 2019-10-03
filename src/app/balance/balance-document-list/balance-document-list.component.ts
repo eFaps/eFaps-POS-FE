@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
+import { DocStatus, PayableHead } from '@efaps/pos-library';
 
-import { DocStatus, PayableHead } from '../../model';
 import { DocumentDialogComponent } from '../document-dialog/document-dialog.component';
 
 @Component({

@@ -1,10 +1,8 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
+import { ContactService, IdentificationType } from '@efaps/pos-library';
 import { LocalStorage } from 'ngx-store';
-
-import { IdentificationType } from '../../model/index';
-import { ContactService } from '../../services/index';
 
 @Component({
   selector: 'app-create-contact-dialog',

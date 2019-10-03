@@ -1,11 +1,10 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
+import { DocumentService, PayableHead } from '@efaps/pos-library';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
-import { Payable, PayableHead } from '../../model';
-import { DocumentService } from '../../services';
 import { DocumentDialogComponent } from '../document-dialog/document-dialog.component';
 
 @Component({

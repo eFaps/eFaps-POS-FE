@@ -1,9 +1,7 @@
 import { Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Document, Payment, PaymentService, UtilsService }from '@efaps/pos-library';
 import { Subscription } from 'rxjs';
-
-import { Document, Payment, PaymentType } from '../model';
-import { PaymentService, UtilsService } from '../services';
 
 export abstract class PaymentForm implements OnInit, OnDestroy {
   public paymentForm: FormGroup;
@@ -13,7 +11,8 @@ export abstract class PaymentForm implements OnInit, OnDestroy {
   protected subscription$ = new Subscription();
   private document: Document;
 
-  constructor(protected paymentService: PaymentService, protected utilsService: UtilsService,
+  constructor(protected paymentService: PaymentService,
+    protected utilsService: UtilsService,
     protected fb: FormBuilder) {
     this.currency = utilsService.getCurrencySymbol('PEN');
   }

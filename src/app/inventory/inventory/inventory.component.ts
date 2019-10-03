@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Warehouse } from '../../model/index';
-import { InventoryService } from '../../services/index';
+import { InventoryService, Warehouse } from '@efaps/pos-library';
 
 @Component({
   selector: 'app-inventory',

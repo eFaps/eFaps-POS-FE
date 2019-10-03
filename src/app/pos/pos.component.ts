@@ -9,11 +9,16 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { AuthService } from '@efaps/pos-library';
+import {
+  AuthService,
+  Item,
+  MsgService,
+  PosLayout,
+  PosService,
+  WorkspaceService
+} from '@efaps/pos-library';
 import { LocalStorage } from 'ngx-store';
 
-import { Item, PosLayout } from '../model/index';
-import { MsgService, PosService, WorkspaceService } from '../services/index';
 import { CategorySelectComponent } from './category-select/category-select.component';
 import { CommandsComponent } from './commands/commands.component'
 import { ProductGridComponent } from './product-grid/product-grid.component';

@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
+import { PrintService, WorkspaceService } from '@efaps/pos-library';
 
-import { PrintService, WorkspaceService } from '../../services/index';
 import { PrintDialogComponent } from '../../shared/print-dialog/print-dialog.component';
 
 @Component({

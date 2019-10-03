@@ -1,14 +1,23 @@
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { Router } from '@angular/router';
-
-import { Floor, Spot, SpotConfig, SpotsLayout, DocStatus } from '../../model';
-import { DocumentService, PosService, SpotService, ImageService } from '../../services';
-import { AbstractSpotPicker } from '../abstract-spot-picker';
 import { DomSanitizer } from '@angular/platform-browser';
-import { SplitDialogComponent } from '../split-dialog/split-dialog.component';
+import { Router } from '@angular/router';
+import {
+  DocStatus,
+  DocumentService,
+  Floor,
+  ImageService,
+  PosService,
+  Spot,
+  SpotConfig,
+  SpotService,
+  SpotsLayout
+} from '@efaps/pos-library';
 import { forkJoin } from 'rxjs';
+
+import { AbstractSpotPicker } from '../abstract-spot-picker';
+import { SplitDialogComponent } from '../split-dialog/split-dialog.component';
 
 @Component({
   selector: 'app-extended-spot-picker',

@@ -1,9 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Contact, ContactService } from '@efaps/pos-library';
 import { debounceTime } from 'rxjs/operators';
-
-import { Contact } from '../../model/index';
-import { ContactService } from '../../services/index';
 
 @Component({
   selector: 'app-contact',

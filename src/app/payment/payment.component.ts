@@ -1,34 +1,32 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSnackBar, MatTabGroup } from '@angular/material';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { LocalStorage } from 'ngx-store';
-import { Subscription, PartialObserver } from 'rxjs';
-
 import {
   Balance,
+  BalanceService,
   Contact,
   DocStatus,
   Document,
+  DocumentService,
   DocumentType,
   Invoice,
   Payment,
+  PaymentService,
   PaymentType,
+  PrintService,
   Receipt,
   Ticket,
-} from '../model';
-import {
-  BalanceService,
-  DocumentService,
-  PaymentService,
-  PrintService,
-  WorkspaceService
-} from '../services';
-import { PrintDialogComponent } from '../shared/print-dialog/print-dialog.component';
-import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
-import { DiscountComponent } from './discount/discount.component';
-import { DocumentComponent } from '../shared/document/document.component';
+  WorkspaceService,
+} from '@efaps/pos-library';
+import { TranslateService } from '@ngx-translate/core';
+import { LocalStorage } from 'ngx-store';
+import { PartialObserver, Subscription } from 'rxjs';
+
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
+import { DocumentComponent } from '../shared/document/document.component';
+import { PrintDialogComponent } from '../shared/print-dialog/print-dialog.component';
+import { DiscountComponent } from './discount/discount.component';
+import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
 
 @Component({
   selector: 'app-payment',

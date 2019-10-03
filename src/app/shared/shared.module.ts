@@ -3,6 +3,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PosLibraryModule } from '@efaps/pos-library';
 import { MatKeyboardModule } from '@ngx-material-keyboard/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -11,7 +12,7 @@ import { WebStorageModule } from 'ngx-store';
 
 import { environment } from '../../environments/environment';
 import { MaterialModule } from '../material/material.module';
-import { PosCurrencyPipe, SecurePipe, VirtKeyboardDirective } from '../services/index';
+import { VirtKeyboardDirective } from '../services/index';
 import { TranslateFileLoader } from '../util/translate-file-loader';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ContactComponent } from './contact/contact.component';
@@ -41,6 +42,7 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     ReactiveFormsModule,
     TranslateModule,
     WebStorageModule,
+    PosLibraryModule
   ],
   declarations: [
     ConfirmDialogComponent,
@@ -48,8 +50,6 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     DocumentComponent,
     ImageComponent,
     KeypadComponent,
-    PosCurrencyPipe,
-    SecurePipe,
     ImageComponent,
     PrintDialogComponent,
     VirtKeyboardDirective,
@@ -63,12 +63,11 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     KeypadComponent,
     MatKeyboardModule,
     NgBusyModule,
-    PosCurrencyPipe,
-    SecurePipe,
+    PosLibraryModule,
+    PrintDisplayComponent,
     TranslateModule,
     VirtKeyboardDirective,
     WebStorageModule,
-    PrintDisplayComponent
   ],
   entryComponents: [
     ConfirmDialogComponent,

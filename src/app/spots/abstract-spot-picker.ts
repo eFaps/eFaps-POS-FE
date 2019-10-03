@@ -1,11 +1,10 @@
 import { OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
+import { DocStatus, DocumentService, PosService, Spot, SpotConfig } from '@efaps/pos-library';
 
-import { DocStatus, Spot, SpotConfig } from '../model';
-import { DocumentService, PosService } from '../services';
-import { SpotDialogComponent } from './spot-dialog/spot-dialog.component';
 import { SelectOrderDialogComponent } from './select-order-dialog/select-order-dialog.component';
+import { SpotDialogComponent } from './spot-dialog/spot-dialog.component';
 
 export abstract class AbstractSpotPicker implements OnInit {
 

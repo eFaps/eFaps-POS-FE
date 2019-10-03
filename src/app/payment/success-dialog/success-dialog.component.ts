@@ -1,8 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { PrintService } from '@efaps/pos-library';
 import { Observable } from 'rxjs';
-
-import { PrintService } from '../../services';
 
 @Component({
   templateUrl: './success-dialog.component.html',

@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { BalanceSummary, PrintService, WorkspaceService } from '@efaps/pos-library';
 import { Subscription } from 'rxjs';
 
-import { BalanceSummary } from '../../model';
-import { PrintService, WorkspaceService } from '../../services';
 import { PrintDialogComponent } from '../../shared/print-dialog/print-dialog.component';
 
 @Component({

@@ -1,9 +1,7 @@
 import { EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { Product, ProductService } from '@efaps/pos-library';
+import { Item, PosService, Product, ProductService } from '@efaps/pos-library';
 
-import { Item } from '../model/index';
-import { PosService } from '../services/index';
 import { RemarkDialogComponent } from './remark-dialog/remark-dialog.component';
 
 export abstract class AbstractProductSelector implements OnInit {

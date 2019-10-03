@@ -1,9 +1,8 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
+import { Order, PaymentService, PosService, WorkspaceService } from '@efaps/pos-library';
 
-import { Order } from '../../model/index';
-import { PaymentService, PosService, WorkspaceService } from '../../services/index';
 import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 
 @Component({

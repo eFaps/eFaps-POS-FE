@@ -1,8 +1,7 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { BalanceService } from '../../services';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatSort, MatTableDataSource } from '@angular/material';
+import { Balance, BalanceService } from '@efaps/pos-library';
 import { Subscription } from 'rxjs';
-import { MatTableDataSource, MatSort } from '@angular/material';
-import { Balance } from '../../model';
 
 @Component({
   selector: 'app-balance-list',

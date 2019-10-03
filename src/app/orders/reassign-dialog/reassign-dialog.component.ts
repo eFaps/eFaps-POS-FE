@@ -1,9 +1,8 @@
 import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { DocItem, DocumentService, Order, PosService } from '@efaps/pos-library';
 import { Observable, Subscription, forkJoin } from 'rxjs';
 
-import { DocItem, Order } from '../../model';
-import { DocumentService, PosService } from '../../services';
 import { ReassignItemComponent } from '../reassign-item/reassign-item.component';
 
 @Component({

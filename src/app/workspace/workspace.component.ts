@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map, finalize, first } from 'rxjs/operators';
-
-import { Workspace } from '../model/index';
-import { Pos } from '../model/index';
-import { PosService, WorkspaceService } from '../services/index';
+import { Pos, PosService, Workspace, WorkspaceService } from '@efaps/pos-library';
 
 @Component({
   selector: 'app-workspace',

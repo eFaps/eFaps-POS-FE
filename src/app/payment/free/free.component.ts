@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Payment, PaymentService, PaymentType, UtilsService } from '@efaps/pos-library';
 
-import { Payment, PaymentType } from '../../model';
-import { PaymentService, UtilsService } from '../../services/index';
 import { PaymentForm } from '../payment-form';
 
 @Component({

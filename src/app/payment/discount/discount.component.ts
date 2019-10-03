@@ -1,10 +1,16 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import {
+  Discount,
+  DiscountService,
+  DiscountType,
+  Order,
+  PaymentService,
+  UtilsService,
+  WorkspaceService
+} from '@efaps/pos-library';
 import { Subscription } from 'rxjs';
-
-import { Discount, DiscountType, Order } from '../../model';
-import { DiscountService, PaymentService, WorkspaceService, UtilsService } from '../../services';
 
 @Component({
   selector: 'app-discount',

@@ -1,10 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import {
+  Balance,
+  BalanceService,
+  BalanceSummary,
+  DocumentService,
+  PayableHead,
+  PrintService,
+  WorkspaceService
+} from '@efaps/pos-library';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-import { Balance, BalanceSummary, PayableHead } from '../../model';
-import { BalanceService, DocumentService, PrintService, WorkspaceService } from '../../services';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { PrintDialogComponent } from '../../shared/print-dialog/print-dialog.component';
 

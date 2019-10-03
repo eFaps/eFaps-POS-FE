@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '@efaps/pos-library';
+import { WorkspaceService } from '@efaps/pos-library';
 import { LocalStorage } from 'ngx-store';
 import { Subscription } from 'rxjs';
-
-import { WorkspaceService } from '../../services';
 
 @Component({
   selector: 'app-payment-type',

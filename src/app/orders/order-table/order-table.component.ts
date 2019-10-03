@@ -2,22 +2,23 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@ang
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatPaginator, MatSlideToggleChange, MatSort, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
+import {
+  DocStatus,
+  DocumentService,
+  Order,
+  OrderWrapper,
+  PaymentService,
+  PosService,
+  WorkspaceService
+} from '@efaps/pos-library';
+import { AuthService, Roles } from '@efaps/pos-library';
 import { LocalStorage } from 'ngx-store';
 import { Subscription } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 
-import { DocStatus, Order, OrderWrapper } from '../../model';
-import {
-
-  DocumentService,
-  PaymentService,
-  PosService,
-  WorkspaceService
-} from '../../services';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
-import { SplitOrderDialogComponent } from '../split-order-dialog/split-order-dialog.component';
 import { ReassignDialogComponent } from '../reassign-dialog/reassign-dialog.component';
-import { Roles, AuthService } from '@efaps/pos-library';
+import { SplitOrderDialogComponent } from '../split-order-dialog/split-order-dialog.component';
 
 @Component({
   selector: 'app-order-table',

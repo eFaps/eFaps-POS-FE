@@ -1,11 +1,11 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { MatTableDataSource, MatSort, MatDialog } from '@angular/material';
-import { Contact } from '../../model/index';
-import { ContactService } from '../../services/index';
-import { CreateContactDialogComponent } from '../create-contact-dialog/create-contact-dialog.component';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
+import { Contact, ContactService } from '@efaps/pos-library';
 import { Subscription, merge } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+
+import { CreateContactDialogComponent } from '../create-contact-dialog/create-contact-dialog.component';
 
 @Component({
   selector: 'app-contact-table',

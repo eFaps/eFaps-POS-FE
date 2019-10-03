@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
+import { DocumentService, PosService, Spot, SpotConfig, SpotService } from '@efaps/pos-library';
 
-import { Spot, SpotConfig } from '../../model';
-import { DocumentService, PosService, SpotService } from '../../services';
 import { AbstractSpotPicker } from '../abstract-spot-picker';
 
 @Component({

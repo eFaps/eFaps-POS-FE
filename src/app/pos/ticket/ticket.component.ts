@@ -1,9 +1,7 @@
+import { Item, PosService } from '@efaps/pos-library';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatSnackBar, MatTableDataSource } from '@angular/material';
 import { Decimal } from 'decimal.js';
-
-import { Item } from '../../model/index';
-import { PosService } from '../../services/index';
 
 @Component({
   selector: 'app-ticket',
