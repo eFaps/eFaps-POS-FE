@@ -1,7 +1,7 @@
 <div class="companies" fxLayout="column" *ngIf="showCompanySelection">
   <div fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="10px" class="pos-usergrid">
     <mat-card class="pos-companycard" *ngFor="let company of companies" (click)="setCompany(company)">
-      <svg-icon src="/assets/enterprise.svg" class="logo"></svg-icon>
+      <svg-icon src="./assets/enterprise.svg" class="logo"></svg-icon>
       <mat-card-content>
         {{company.label}}
       </mat-card-content>
@@ -11,7 +11,7 @@
 <div fxLayout="column">
   <div fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="10px" class="pos-usergrid" [style.display]="!hiddenUser?'none':'inherit'">
     <mat-card class="pos-usercard" *ngFor="let user of users" (click)="select(user)" [ngClass]="{'pos-card-selected': this.loginForm.value.userName==user.username}">
-      <svg-icon src="/assets/user.svg" class="logo"></svg-icon>
+      <svg-icon src="./assets/user.svg" class="logo"></svg-icon>
       <mat-card-content>
         {{user.firstName}} {{user.surName}}
       </mat-card-content>
@@ -33,7 +33,7 @@
     </div>
   </form>
 </div>
-<svg-icon src="/assets/synercom_logo.svg" class="logo" [svgStyle]="{ 'width.px':200 }"></svg-icon>
+<svg-icon src="./assets/synercom_logo.svg" class="logo" [svgStyle]="{ 'width.px':200 }"></svg-icon>
 <div class="config">
   <mat-slide-toggle [checked]="virtKeyboard" (change)="toggleVirtKeyboard($event)" i18n="@@virtualKeyboard">Virtual Keyboard</mat-slide-toggle>
 </div>

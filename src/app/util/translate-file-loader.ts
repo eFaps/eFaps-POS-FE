@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import * as fs from 'fs';
 
 export class TranslateFileLoader implements TranslateLoader {
-  constructor(private prefix: string = 'assets/i18n', private suffix: string = '.json') { }
+  constructor(private prefix: string = './assets/i18n', private suffix: string = '.json') { }
 
   /**
    * Gets the translations from the server
