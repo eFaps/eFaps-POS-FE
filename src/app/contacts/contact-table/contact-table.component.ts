@@ -28,21 +28,29 @@ export class ContactTableComponent implements OnInit, OnDestroy {
       'search': []
     });
     this.subscription$.add(this.contactService.getContacts()
-      .subscribe(data => {
-        this.dataSource.data = data;
-        this.dataSource.sort = this.sort;
+      .subscribe({
+        next: data => {
+          this.dataSource.data = [];
+          this.dataSource.data = data;
+          this.dataSource.sort = this.sort;
+        }
       }));
-
     this.searchForm.valueChanges.pipe(
       debounceTime(400))
-      .subscribe(data => {
+      .subscribe(input => {
         this.dataSource.data = [];
-        merge(
-          this.contactService.searchContacts(data.search, true),
-          this.contactService.searchContacts(data.search, false)
-        ).subscribe({
-          next: data => this.dataSource.data = this.dataSource.data.concat(data)
-        })
+        if (input.search) {
+          merge(
+            this.contactService.searchContacts(input.search, true),
+            this.contactService.searchContacts(input.search, false)
+          ).subscribe({
+            next: data => this.dataSource.data = this.dataSource.data.concat(data)
+          })
+        } else {
+          this.contactService.getContacts().subscribe({
+            next: data => this.dataSource.data = data
+          })
+        }
       });
   }
 
