@@ -6,8 +6,7 @@ import { debounceTime } from 'rxjs/operators';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss'],
-  providers: [ContactService]
+  styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
   searchControl: FormControl = new FormControl();
