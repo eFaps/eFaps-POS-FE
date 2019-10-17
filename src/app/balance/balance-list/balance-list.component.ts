@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatSort, MatTableDataSource } from '@angular/material';
+import { MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { Balance, BalanceService } from '@efaps/pos-library';
 import { Subscription } from 'rxjs';
+import { BalanceSummaryDialogComponent } from '../balance-summary-dialog/balance-summary-dialog.component';
 
 @Component({
   selector: 'app-balance-list',
@@ -9,13 +10,14 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./balance-list.component.scss']
 })
 export class BalanceListComponent implements OnInit, OnDestroy {
-  displayedColumns = ['number', 'user', 'startAt', 'endAt', 'status'];
+  displayedColumns = ['number', 'user', 'startAt', 'endAt', 'status', 'cmd'];
   dataSource = new MatTableDataSource<Balance>();
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   private subscribtions$ = new Subscription();
 
-  constructor(private balanceService: BalanceService) { }
+  constructor(private balanceService: BalanceService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.subscribtions$.add(this.balanceService.getBalances().subscribe({
@@ -28,5 +30,15 @@ export class BalanceListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscribtions$.unsubscribe();
+  }
+
+  show(balance: Balance) {
+    console.log(balance);
+    this.dialog.open(BalanceSummaryDialogComponent, {
+      data: {
+        balance: balance
+      },
+      maxHeight: '95vh'
+    });
   }
 }
