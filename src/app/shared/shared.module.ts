@@ -26,7 +26,7 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
   if (environment.electron) {
     return new TranslateFileLoader();
   } else {
-    return new TranslateHttpLoader(_httpClient);
+    return new TranslateHttpLoader(_httpClient, "./assets/i18n/");
   }
 }
 
