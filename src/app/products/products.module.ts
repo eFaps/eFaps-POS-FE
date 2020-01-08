@@ -4,6 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../material/material.module';
+import { ServicesModule } from '../services/services.module';
 import { SharedModule } from '../shared/shared.module';
 import { ProductComponent } from './product/product.component';
 import { ProducttableComponent } from './producttable/producttable.component';
@@ -14,7 +15,8 @@ import { ProducttableComponent } from './producttable/producttable.component';
     FlexLayoutModule,
     MaterialModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    ServicesModule,
   ],
   declarations: [
     ProducttableComponent,

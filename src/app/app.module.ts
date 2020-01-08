@@ -3,64 +3,37 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PosLibraryModule } from '@efaps/pos-library';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AngularSvgIconModule, SERVER_URL } from 'angular-svg-icon';
 import { HotkeyModule } from 'angular2-hotkeys';
 
 import { environment } from '../environments/environment';
-import { AdminModule } from './admin/admin.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { routes } from './app.routes';
-import { BalanceModule } from './balance/balance.module';
-import { ContactsModule } from './contacts/contacts.module';
-import { InventoryModule } from './inventory/inventory.module';
-import { LoginComponent } from './login/login.component';
 import { MaterialModule } from './material/material.module';
-import { OrdersModule } from './orders/orders.module';
-import { PaymentModule } from './payment/payment.module';
-import { PosModule } from './pos/pos.module';
-import { ProductsModule } from './products/products.module';
 import { ErrorInterceptor, SameHeightDirective } from './services/index';
 import { SharedModule, TranslateLoaderFactory } from './shared/shared.module';
-import { SpotsModule } from './spots/spots.module';
 import { ThemePickerComponent } from './theme-picker/theme-picker.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     WorkspaceComponent,
     SameHeightDirective,
     ThemePickerComponent
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
     AngularSvgIconModule,
-    routes,
-    AdminModule,
-    BalanceModule,
-    ContactsModule,
-    InventoryModule,
-    PaymentModule,
-    OrdersModule,
+    AppRoutingModule,
     SharedModule,
-    SpotsModule,
-    PosModule,
-    ProductsModule,
-    PosLibraryModule.forRoot({
-      baseUrl: "/api",
-      socketUrl: "/socket"
-    }),
     HotkeyModule.forRoot({
       cheatSheetDescription: 'Presentar',
     }),
