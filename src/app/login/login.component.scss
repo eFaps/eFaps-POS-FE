@@ -7,36 +7,59 @@
 }
 
 .companies {
+  flex-direction: column;
+  display: flex;
   height: 100%;
   position: absolute;
   width: 100%;
   z-index: 10;
 
-  .pos-companycard {
-    width: 160px;
-    cursor: pointer;
+  .pos-companiesgrid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 800px;
 
-    .mat-card-content {
-      text-align: center;
-      font-size: 16px;
-      font-weight: bold;
+    .pos-companycard {
+      width: 160px;
+      cursor: pointer;
+
+      .mat-card-content {
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+      }
     }
   }
 }
 
-.pos-usergrid {
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 800px;
-}
+.usergrid-wrapper {
+  display: flex;
+  flex-direction: column;
 
-.pos-usercard {
-  width: 160px;
-}
+  .pos-usergrid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 800px;
 
-.pos-usercard .mat-card-content {
-  text-align: center;
+    .pos-usercard {
+      width: 160px;
+      cursor: pointer;
+    }
+
+    .pos-usercard .mat-card-content {
+      text-align: center;
+    }
+  }
 }
 
 .pos-card-selected {

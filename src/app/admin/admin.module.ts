@@ -1,17 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { TranslateModule } from '@ngx-translate/core';
+import { NgBusyModule } from 'ng-busy';
 
 import { MaterialModule } from '../material/material.module';
-import { SharedModule } from '../shared/shared.module';
+import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    FlexLayoutModule,
+    AdminRoutingModule,
     MaterialModule,
-    SharedModule
+    NgBusyModule,
+    TranslateModule,
   ],
   declarations: [AdminComponent]
 })

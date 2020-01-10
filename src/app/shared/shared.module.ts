@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,7 +12,6 @@ import { WebStorageModule } from 'ngx-store';
 
 import { environment } from '../../environments/environment';
 import { MaterialModule } from '../material/material.module';
-import { VirtKeyboardDirective } from '../services/index';
 import { TranslateFileLoader } from '../util/translate-file-loader';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ContactComponent } from './contact/contact.component';
@@ -35,14 +34,16 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     CommonModule,
     FlexLayoutModule,
     FormsModule,
-    HttpClientModule,
     MaterialModule,
     MatKeyboardModule,
     NgBusyModule,
     ReactiveFormsModule,
     TranslateModule,
     WebStorageModule,
-    PosLibraryModule
+    PosLibraryModule.forRoot({
+      baseUrl: "/api",
+      socketUrl: "/socket"
+    }),
   ],
   declarations: [
     ConfirmDialogComponent,
@@ -50,24 +51,18 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     DocumentComponent,
     ImageComponent,
     KeypadComponent,
-    ImageComponent,
     PrintDialogComponent,
-    VirtKeyboardDirective,
     PrintDisplayComponent,
   ],
   exports: [
-    ConfirmDialogComponent,
     ContactComponent,
     DocumentComponent,
-    ImageComponent,
     KeypadComponent,
-    MatKeyboardModule,
+    PrintDisplayComponent,
     NgBusyModule,
     PosLibraryModule,
-    PrintDisplayComponent,
     TranslateModule,
-    VirtKeyboardDirective,
-    WebStorageModule,
+    WebStorageModule
   ],
   entryComponents: [
     ConfirmDialogComponent,

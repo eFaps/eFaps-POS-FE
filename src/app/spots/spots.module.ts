@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
@@ -11,16 +10,17 @@ import { ExtendedSpotPickerComponent } from './extended-spot-picker/extended-spo
 import { SelectOrderDialogComponent } from './select-order-dialog/select-order-dialog.component';
 import { SplitDialogComponent } from './split-dialog/split-dialog.component';
 import { SpotDialogComponent } from './spot-dialog/spot-dialog.component';
+import { SpotsRoutingModule } from './spots-routing.module';
 import { SpotsComponent } from './spots/spots.component';
 
 @NgModule({
   imports: [
-    BrowserModule,
     CommonModule,
     ReactiveFormsModule,
     MaterialModule,
     FlexLayoutModule,
-    SharedModule
+    SharedModule,
+    SpotsRoutingModule,
   ],
   declarations: [
     BaseSpotPickerComponent,

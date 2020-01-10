@@ -1,5 +1,4 @@
 import { TestBed, async } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AngularSvgIconModule, SvgIconRegistryService } from 'angular-svg-icon';
@@ -34,7 +33,6 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MaterialModule,
-        BrowserAnimationsModule,
         HotkeyModule,
         RouterTestingModule,
         AngularSvgIconModule
