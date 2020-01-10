@@ -13,13 +13,12 @@ import { MaterialModule } from '../material/material.module';
     LoginComponent
   ],
   imports: [
+    AngularSvgIconModule,
     CommonModule,
     LoginRoutingModule,
-
-    AngularSvgIconModule,
-  MaterialModule,
     ReactiveFormsModule,
     ServicesModule,
+    MaterialModule,
   ]
 })
 export class LoginModule { }

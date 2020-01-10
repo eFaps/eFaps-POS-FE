@@ -1,5 +1,5 @@
-<div class="companies" fxLayout="column" *ngIf="showCompanySelection">
-  <div fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="10px" class="pos-usergrid">
+<div class="companies" *ngIf="showCompanySelection">
+  <div class="pos-companiesgrid">
     <mat-card class="pos-companycard" *ngFor="let company of companies" (click)="setCompany(company)">
       <svg-icon src="./assets/enterprise.svg" class="logo"></svg-icon>
       <mat-card-content>
@@ -8,8 +8,8 @@
     </mat-card>
   </div>
 </div>
-<div fxLayout="column">
-  <div fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="10px" class="pos-usergrid" [style.display]="!hiddenUser?'none':'inherit'">
+<div class="usergrid-wrapper">
+  <div class="pos-usergrid" [style.display]="!hiddenUser?'none':'flex'">
     <mat-card class="pos-usercard" *ngFor="let user of users" (click)="select(user)" [ngClass]="{'pos-card-selected': this.loginForm.value.userName==user.username}">
       <svg-icon src="./assets/user.svg" class="logo"></svg-icon>
       <mat-card-content>
