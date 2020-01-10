@@ -1,4 +1,4 @@
-<div fxLayout='row' fxLayoutGap="20px">
+<div class="content">
   <div [ngSwitch]="currentLayout" class="selector" [ngStyle]="{'height.px': screenHeight - 64 }">
     <app-product-grid *ngSwitchCase="PosLayout.GRID" (selection)="afterSelection()" [multiplier]="multiplier" [remarkMode]="remarkMode"></app-product-grid>
     <app-product-list *ngSwitchCase="PosLayout.LIST" (selection)="afterSelection()" [multiplier]="multiplier" [remarkMode]="remarkMode"></app-product-list>
@@ -11,11 +11,11 @@
   </div>
   <div class='ticket' [ngStyle]="{'height.px': screenHeight - 64 - 6}">
     <div>
-      <div fxLayout='column'>
+      <div class='numPad-wrapper'>
         <mat-button-toggle [checked]="numPad" (click)="toggleNumPad()">
           <mat-icon class="posIcon-36">dialpad</mat-icon>
         </mat-button-toggle>
-        <div fxLayout='row' *ngIf="numPad" fxLayoutGap="10px" fxLayoutAlign="center center">
+        <div class='numPad-form-wrapper' *ngIf="numPad">
           <form [formGroup]="multiplierForm">
             <mat-form-field>
               <input matInput type="number" formControlName="multiplier" autocomplete="off" class="right-align">
