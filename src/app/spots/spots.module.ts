@@ -10,6 +10,7 @@ import { ExtendedSpotPickerComponent } from './extended-spot-picker/extended-spo
 import { SelectOrderDialogComponent } from './select-order-dialog/select-order-dialog.component';
 import { SplitDialogComponent } from './split-dialog/split-dialog.component';
 import { SpotDialogComponent } from './spot-dialog/spot-dialog.component';
+import { SpotsRoutingModule } from './spots-routing.module';
 import { SpotsComponent } from './spots/spots.component';
 
 @NgModule({
@@ -18,7 +19,8 @@ import { SpotsComponent } from './spots/spots.component';
     ReactiveFormsModule,
     MaterialModule,
     FlexLayoutModule,
-    SharedModule
+    SharedModule,
+    SpotsRoutingModule,
   ],
   declarations: [
     BaseSpotPickerComponent,

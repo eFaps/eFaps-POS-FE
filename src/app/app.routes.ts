@@ -23,7 +23,7 @@ const appRoutes: Routes = [
 
 
 
-  { path: 'spots', component: SpotsComponent, canActivate: [AuthGuard] },
+
   { path: 'inventory', component: InventoryComponent, canActivate: [AuthGuard] },
   { path: 'balance', component: BalanceComponent, canActivate: [AuthGuard] },
 

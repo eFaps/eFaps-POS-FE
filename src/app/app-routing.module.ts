@@ -67,6 +67,14 @@ const routes: Routes = [
         )
   },
   {
+    path: 'spots', canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./spots/spots.module')
+        .then(
+          m => m.SpotsModule
+        )
+  },
+  {
     path: 'workspaces', canActivate: [AuthGuard],
     loadChildren: () =>
       import('./workspace/workspace.module')
