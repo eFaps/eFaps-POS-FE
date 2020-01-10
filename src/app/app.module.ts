@@ -15,12 +15,10 @@ import { MaterialModule } from './material/material.module';
 import { ErrorInterceptor, SameHeightDirective } from './services/index';
 import { SharedModule, TranslateLoaderFactory } from './shared/shared.module';
 import { ThemePickerComponent } from './theme-picker/theme-picker.component';
-import { WorkspaceComponent } from './workspace/workspace.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WorkspaceComponent,
     SameHeightDirective,
     ThemePickerComponent
   ],
