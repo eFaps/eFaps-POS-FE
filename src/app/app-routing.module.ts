@@ -13,6 +13,15 @@ const routes: Routes = [
         )
   },
   {
+    path: 'balance',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./balance/balance.module')
+        .then(
+          m => m.BalanceModule
+        )
+  },
+  {
     path: 'contacts',
     canActivate: [AuthGuard],
     loadChildren: () =>
@@ -21,6 +30,14 @@ const routes: Routes = [
           m => m.ContactsModule
         )
 
+  },
+  {
+    path: 'inventory', canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./inventory/inventory.module')
+        .then(
+          m => m.InventoryModule
+        )
   },
   {
     path: 'login',

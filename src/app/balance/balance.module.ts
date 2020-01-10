@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { BalanceDocumentListComponent } from './balance-document-list/balance-document-list.component';
 import { BalanceListComponent } from './balance-list/balance-list.component';
 import { BalancePaymentListComponent } from './balance-payment-list/balance-payment-list.component';
+import { BalanceRoutingModule } from './balance-routing.module';
 import { BalanceSummaryDialogComponent } from './balance-summary-dialog/balance-summary-dialog.component';
 import { BalanceSummarySectionComponent } from './balance-summary-section/balance-summary-section.component';
 import { BalanceSummaryComponent } from './balance-summary/balance-summary.component';
@@ -19,6 +20,7 @@ import { DocumentListComponent } from './document-list/document-list.component';
 @NgModule({
   imports: [
     CommonModule,
+    BalanceRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
     SharedModule,
