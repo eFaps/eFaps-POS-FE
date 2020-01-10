@@ -13,6 +13,16 @@ const routes: Routes = [
         )
   },
   {
+    path: 'contacts',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./contacts/contacts.module')
+        .then(
+          m => m.ContactsModule
+        )
+
+  },
+  {
     path: 'login',
     loadChildren: () =>
       import('./login/login.module')

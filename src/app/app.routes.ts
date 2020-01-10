@@ -15,14 +15,14 @@ import { SpotsComponent } from './spots/spots/spots.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'products', component: ProducttableComponent, canActivate: [AuthGuard, WorkspaceGuard] },
-  { path: 'pos', component: PosComponent, canActivate: [AuthGuard, WorkspaceGuard] },
-  { path: 'workspaces', component: WorkspaceComponent, canActivate: [AuthGuard] },
+
+
+
+
   { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard] },
-  { path: 'orders', component: OrderTableComponent, canActivate: [AuthGuard] },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminGuard] },
-  { path: 'contacts', component: ContactTableComponent, canActivate: [AuthGuard] },
+
+
+  
   { path: 'spots', component: SpotsComponent, canActivate: [AuthGuard] },
   { path: 'inventory', component: InventoryComponent, canActivate: [AuthGuard] },
   { path: 'balance', component: BalanceComponent, canActivate: [AuthGuard] },
