@@ -21,6 +21,24 @@ const routes: Routes = [
         )
   },
   {
+    path: 'orders',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./orders/orders.module')
+        .then(
+          m => m.OrdersModule
+        )
+  },
+  {
+    path: 'pos',
+    canActivate: [AuthGuard, WorkspaceGuard],
+    loadChildren: () =>
+      import('./pos/pos.module')
+        .then(
+          m => m.PosModule
+        )
+  },
+  {
     path: 'products',
     canActivate: [AuthGuard, WorkspaceGuard],
     loadChildren: () =>
@@ -37,7 +55,7 @@ const routes: Routes = [
           m => m.WorkspaceModule
         )
   },
-  { path: '**', redirectTo: 'products' },
+  { path: '**', redirectTo: 'pos' },
 ];
 
 @NgModule({
