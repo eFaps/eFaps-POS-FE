@@ -4,7 +4,8 @@ import { AuthGuard, WorkspaceGuard, AdminGuard } from '@efaps/pos-library';
 
 const routes: Routes = [
   {
-    path: 'admin', canActivate: [AuthGuard, AdminGuard],
+    path: 'admin',
+    canActivate: [AuthGuard, AdminGuard],
     loadChildren: () =>
       import('./admin/admin.module')
         .then(
@@ -20,6 +21,15 @@ const routes: Routes = [
         )
   },
   {
+    path: 'products',
+    canActivate: [AuthGuard, WorkspaceGuard],
+    loadChildren: () =>
+      import('./products/products.module')
+        .then(
+          m => m.ProductsModule
+        )
+  },
+  {
     path: 'workspaces', canActivate: [AuthGuard],
     loadChildren: () =>
       import('./workspace/workspace.module')
@@ -27,7 +37,7 @@ const routes: Routes = [
           m => m.WorkspaceModule
         )
   },
-  { path: '**', redirectTo: 'admin' },
+  { path: '**', redirectTo: 'products' },
 ];
 
 @NgModule({

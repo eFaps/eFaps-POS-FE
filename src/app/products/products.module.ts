@@ -7,16 +7,18 @@ import { MaterialModule } from '../material/material.module';
 import { ServicesModule } from '../services/services.module';
 import { SharedModule } from '../shared/shared.module';
 import { ProductComponent } from './product/product.component';
+import { ProductsRoutingModule } from './products-routing.module';
 import { ProducttableComponent } from './producttable/producttable.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    ProductsRoutingModule,
     FlexLayoutModule,
     MaterialModule,
     ReactiveFormsModule,
-    SharedModule,
     ServicesModule,
+    SharedModule
   ],
   declarations: [
     ProducttableComponent,
