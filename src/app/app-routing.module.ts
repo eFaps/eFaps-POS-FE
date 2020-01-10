@@ -40,6 +40,15 @@ const routes: Routes = [
         )
   },
   {
+    path: 'payment',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./payment/payment.module')
+        .then(
+          m => m.PaymentModule
+        )
+  },
+  {
     path: 'pos',
     canActivate: [AuthGuard, WorkspaceGuard],
     loadChildren: () =>

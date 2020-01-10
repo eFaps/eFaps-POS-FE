@@ -19,10 +19,10 @@ const appRoutes: Routes = [
 
 
 
-  { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard] },
 
 
-  
+
+
   { path: 'spots', component: SpotsComponent, canActivate: [AuthGuard] },
   { path: 'inventory', component: InventoryComponent, canActivate: [AuthGuard] },
   { path: 'balance', component: BalanceComponent, canActivate: [AuthGuard] },

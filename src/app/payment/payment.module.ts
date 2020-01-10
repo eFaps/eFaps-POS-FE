@@ -13,6 +13,7 @@ import { FreeComponent } from './free/free.component';
 import { PaymentTypeComponent } from './payment-type/payment-type.component';
 import { PaymentComponent } from './payment.component';
 import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
+import { PaymentRoutingModule } from './payment-routing.module';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { SuccessDialogComponent } from './success-dialog/success-dialog.componen
     FlexLayoutModule,
     FormsModule,
     MaterialModule,
+    PaymentRoutingModule,
     SharedModule,
     ReactiveFormsModule,
   ],
