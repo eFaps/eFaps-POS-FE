@@ -9,11 +9,11 @@
     </ng-container>
     <ng-container matColumnDef="sku">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.product.sku}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.product?.sku}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="description">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.product.description}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.product?.description}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
