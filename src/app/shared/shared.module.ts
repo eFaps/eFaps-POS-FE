@@ -40,10 +40,7 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     ReactiveFormsModule,
     TranslateModule,
     WebStorageModule,
-    PosLibraryModule.forRoot({
-      baseUrl: "/api",
-      socketUrl: "/socket"
-    }),
+    PosLibraryModule,
   ],
   declarations: [
     ConfirmDialogComponent,

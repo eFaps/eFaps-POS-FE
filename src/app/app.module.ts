@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PosLibraryModule } from '@efaps/pos-library';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AngularSvgIconModule, SERVER_URL } from 'angular-svg-icon';
 import { HotkeyModule } from 'angular2-hotkeys';
@@ -32,6 +33,10 @@ import { ThemePickerComponent } from './theme-picker/theme-picker.component';
     AngularSvgIconModule,
     AppRoutingModule,
     SharedModule,
+    PosLibraryModule.forRoot({
+      baseUrl: "/api",
+      socketUrl: "/socket"
+    }),
     HotkeyModule.forRoot({
       cheatSheetDescription: 'Presentar',
     }),
