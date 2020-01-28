@@ -14,7 +14,7 @@ import {
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
-import { ProductComponent } from '../../products/product/product.component';
+import { ProductComponent } from '../../shared/product/product.component';
 import { AbstractProductSelector } from '../abstract-product-selector';
 
 @Component({

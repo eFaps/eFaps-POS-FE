@@ -20,6 +20,7 @@ import { ImageComponent } from './image/image.component';
 import { KeypadComponent } from './keypad/keypad.component';
 import { PrintDialogComponent } from './print-dialog/print-dialog.component';
 import { PrintDisplayComponent } from './print-display/print-display.component';
+import { ProductComponent } from './product/product.component';
 
 export function TranslateLoaderFactory(_httpClient: HttpClient) {
   if (environment.electron) {
@@ -50,6 +51,7 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     KeypadComponent,
     PrintDialogComponent,
     PrintDisplayComponent,
+    ProductComponent,
   ],
   exports: [
     ContactComponent,
@@ -64,7 +66,8 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
   entryComponents: [
     ConfirmDialogComponent,
     ImageComponent,
-    PrintDialogComponent
+    PrintDialogComponent,
+    ProductComponent
   ]
 })
 export class SharedModule { }

@@ -4,7 +4,7 @@ import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { Product, ProductService } from '@efaps/pos-library';
 import { LocalStorage } from 'ngx-store';
 
-import { ProductComponent } from '../product/product.component';
+import { ProductComponent } from '../../shared/product/product.component';
 
 @Component({
   selector: 'app-producttable',
