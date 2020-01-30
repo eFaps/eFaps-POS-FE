@@ -1,6 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { MAT_DIALOG_DATA } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Balance, BalanceService, BalanceSummary } from '@efaps/pos-library';
+import { MockComponent } from 'ng-mocks';
+import { Observable } from 'rxjs';
 
+import { MaterialModule } from '../../material/material.module';
+import { BalanceSummaryComponent } from '../balance-summary/balance-summary.component';
 import { BalanceSummaryDialogComponent } from './balance-summary-dialog.component';
+
+class BalanceServiceStub {
+  getSummary(balance: Balance): Observable<BalanceSummary> {
+    return new Observable()
+  }
+
+}
 
 describe('BalanceSummaryDialogComponent', () => {
   let component: BalanceSummaryDialogComponent;
@@ -8,9 +22,20 @@ describe('BalanceSummaryDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BalanceSummaryDialogComponent ]
+      imports: [
+        MaterialModule,
+        BrowserAnimationsModule,
+      ],
+      providers: [
+        { provide: BalanceService, useClass: BalanceServiceStub },
+        { provide: MAT_DIALOG_DATA, useValue: [] },
+      ],
+      declarations: [
+        MockComponent(BalanceSummaryComponent),
+        BalanceSummaryDialogComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
