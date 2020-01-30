@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DocumentService, Order, WorkspaceService } from '@efaps/pos-library';
+import { Spot, SpotService } from '@efaps/pos-library';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MockPipe } from 'ng-mocks';
 import { Observable, of } from 'rxjs';
@@ -10,12 +10,11 @@ import { Observable, of } from 'rxjs';
 import { MaterialModule } from '../../material/material.module';
 import { SpotDialogComponent } from './spot-dialog.component';
 
-class DocumentServiceStub {
-  public getOrders4Spots(): Observable<Order[]> {
-    return of([]);
+class SpotServiceStub {
+  getSpots(): Observable<Spot[]> {
+    return new Observable()
   }
 }
-class WorkspaceServiceStub { }
 
 describe('SpotDialogComponent', () => {
   let component: SpotDialogComponent;
@@ -30,8 +29,8 @@ describe('SpotDialogComponent', () => {
       ],
       providers: [
         { provide: MatDialogRef, useValue: {} },
-        { provide: DocumentService, useClass: DocumentServiceStub },
-        { provide: WorkspaceService, useClass: WorkspaceServiceStub }
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: SpotService, useClass: SpotServiceStub },
       ],
       declarations: [
         SpotDialogComponent,
