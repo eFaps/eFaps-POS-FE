@@ -31,8 +31,18 @@ class PaymentServiceStub {
   currentPayments = new Observable(observer => {
     observer.next([]);
   });
+  currentDocument = new Observable(observer => {
+    observer.next([]);
+  });
+  currentTotal = new Observable(observer => {
+    observer.next([]);
+  });
 }
-class WorkspaceServiceStub { }
+class WorkspaceServiceStub {
+  currentWorkspace = new Observable(observer => {
+    observer.next([]);
+  });
+}
 
 describe('CardComponent', () => {
   let component: CardComponent;
@@ -60,7 +70,7 @@ describe('CardComponent', () => {
         MockComponent(KeypadComponent)
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
