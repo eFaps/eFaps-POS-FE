@@ -6,11 +6,12 @@ import {
   AuthService,
   ConfigService,
   DocumentService,
+  Order,
   PaymentService,
   PosCurrencyPipe,
   PosService,
   UtilsService,
-  WorkspaceService
+  WorkspaceService,
 } from '@efaps/pos-library';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MockPipe } from 'ng-mocks';
@@ -26,7 +27,12 @@ class AuthServiceStub {
 }
 class ConfigServiceStub { }
 class DocumentServiceStub {
-  getOpenOrders() {
+  getOpenOrders(): Observable<Order[]> {
+    return new Observable(observer => {
+      observer.next([]);
+    });
+  }
+  findOrders(_term: string): Observable<Order[]> {
     return new Observable(observer => {
       observer.next([]);
     });
