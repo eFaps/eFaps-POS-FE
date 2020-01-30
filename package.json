@@ -16,7 +16,7 @@
     "build": "node ./buildutil.js && npm run _build-css && ng build --prod",
     "build-es": "node ./buildutil.js && npm run _build-css && ng build --prod --build-optimizer --i18n-locale es --i18n-format xlf --i18n-file src/locale/messages.es.xlf ",
     "build2": "node ./buildutil.js && npm run _build-css && ng build --aot --source-map false",
-    "test": "ng test --browsers ChromeHeadless --watch=false",
+    "test": "ng test --browsers ChromeHeadlessNoSandbox --no-progress --no-watch",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "electron-live": "npm run _build && npm run _build-css && concurrently \"npm run start\" \"electron . --dev --life\"",
