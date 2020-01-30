@@ -1,5 +1,6 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Contact }from '@efaps/pos-library';
@@ -27,7 +28,8 @@ describe('ContactTableComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
-        MaterialModule
+        MaterialModule,
+        ReactiveFormsModule
       ],
       providers: [
         { provide: ContactService, useClass: ContactServiceStub }
