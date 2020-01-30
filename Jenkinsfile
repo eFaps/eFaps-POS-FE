@@ -5,10 +5,17 @@ properties([
 pipeline {
   agent any
   stages {
-    stage('Build') {
+    stage('Install dependencies') {
       steps {
         nodejs('NodeJS') {
           sh 'npm install'
+        }
+      }
+    }
+    stage('Build') {
+      steps {
+        nodejs('NodeJS') {
+          sh 'npm run build'
         }
       }
     }
