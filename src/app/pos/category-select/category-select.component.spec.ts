@@ -1,6 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { MatDialogRef } from '@angular/material';
+import { PosConfigToken, ProductService, Category } from '@efaps/pos-library';
 
 import { CategorySelectComponent } from './category-select.component';
+import { Observable } from 'rxjs';
+
+class ProductServiceStub {
+  getCategories(): Observable<Category[]> {
+    return new Observable()
+  }
+}
 
 describe('CategorySelectComponent', () => {
   let component: CategorySelectComponent;
@@ -8,9 +18,18 @@ describe('CategorySelectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CategorySelectComponent ]
+      imports: [
+        HttpClientModule
+      ],
+      providers: [
+
+        { provide: MatDialogRef, useValue: {} },
+        { provide: PosConfigToken, useValue: {} },
+        { provide: ProductService, useClass: ProductServiceStub }
+      ],
+      declarations: [CategorySelectComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
