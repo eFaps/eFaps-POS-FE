@@ -1,5 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { PosConfigToken } from '@efaps/pos-library';
+import { MockComponent } from 'ng-mocks';
 
+import { MaterialModule } from '../../material/material.module';
+import { BalanceSummarySectionComponent } from '../balance-summary-section/balance-summary-section.component';
 import { BalanceSummaryComponent } from './balance-summary.component';
 
 describe('BalanceSummaryComponent', () => {
@@ -8,9 +13,19 @@ describe('BalanceSummaryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BalanceSummaryComponent ]
+      imports: [
+        MaterialModule,
+        HttpClientModule
+      ],
+      providers: [
+        { provide: PosConfigToken, useValue: {} }
+      ],
+      declarations: [
+        MockComponent(BalanceSummarySectionComponent),
+        BalanceSummaryComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
