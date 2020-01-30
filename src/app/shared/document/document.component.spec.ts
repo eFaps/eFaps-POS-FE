@@ -1,15 +1,26 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { PosConfigToken, PosCurrencyPipe, PrintService, WorkspaceService } from '@efaps/pos-library';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MockPipe } from 'ng-mocks';
+import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../../material/material.module';
-import { PosCurrencyPipe } from '@efaps/pos-library';
 import { DocumentComponent } from './document.component';
-import { Router } from '@angular/router';
 
 const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+
+class WorkspaceServiceStub {
+  currentWorkspace = new Observable(observer => {
+    observer.next({
+      printCmds: []
+    });
+  });
+}
+class PrintServiceStub { }
 
 describe('DocumentComponent', () => {
   let component: DocumentComponent;
@@ -20,10 +31,14 @@ describe('DocumentComponent', () => {
       imports: [
         BrowserAnimationsModule,
         MaterialModule,
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientModule,
       ],
       providers: [
-        { provide: Router,      useValue: routerSpy }
+        { provide: PosConfigToken, useValue: {} },
+        { provide: Router, useValue: routerSpy },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
+        { provide: PrintService, useClass: PrintServiceStub }
       ],
       declarations: [
         DocumentComponent,
@@ -31,7 +46,7 @@ describe('DocumentComponent', () => {
         MockPipe(PosCurrencyPipe)
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
