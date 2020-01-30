@@ -1,9 +1,11 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { MockComponent } from 'ng-mocks';
 
 import { DocumentComponent } from '../../shared/document/document.component';
 import { DocumentDialogComponent } from './document-dialog.component';
+import { PosConfigToken } from '@efaps/pos-library';
 
 describe('DocumentDialogComponent', () => {
   let component: DocumentDialogComponent;
@@ -11,16 +13,20 @@ describe('DocumentDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        HttpClientModule
+      ],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: PosConfigToken, useValue: {} },
       ],
       declarations: [
         DocumentDialogComponent,
         MockComponent(DocumentComponent),
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
