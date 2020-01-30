@@ -1,6 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed, async } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService, WorkspaceService } from '@efaps/pos-library';
+import { AuthService, PosConfigToken, WorkspaceService } from '@efaps/pos-library';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AngularSvgIconModule, SvgIconRegistryService } from 'angular-svg-icon';
 import { HotkeyModule, HotkeysService } from 'angular2-hotkeys';
@@ -35,19 +37,27 @@ describe('AppComponent', () => {
         MaterialModule,
         HotkeyModule,
         RouterTestingModule,
-        AngularSvgIconModule
+        AngularSvgIconModule,
+        HttpClientModule,
+        BrowserAnimationsModule
       ],
       providers: [
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: HotkeysService, useClass: HotkeysServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: TranslateService, useClass: TranslateServiceSub },
-        { provide: SvgIconRegistryService, useClass: SvgIconRegistryServiceStub }
+        { provide: SvgIconRegistryService, useClass: SvgIconRegistryServiceStub },
+        {
+          provide: PosConfigToken, useValue: {
+            order: ''
+          }
+        },
       ],
       declarations: [
         AppComponent,
         MockComponent(ThemePickerComponent),
-        MockPipe(TranslatePipe)
+        MockPipe(TranslatePipe),
+
       ],
     }).compileComponents();
   }));
