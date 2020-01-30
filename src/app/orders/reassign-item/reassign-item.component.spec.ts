@@ -1,9 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ReassignItemComponent } from './reassign-item.component';
-import { MaterialModule } from '../../material/material.module';
-import { MockPipe } from 'ng-mocks';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { PosCurrencyPipe } from '@efaps/pos-library';
+import { MockPipe } from 'ng-mocks';
+
+import { MaterialModule } from '../../material/material.module';
+import { ReassignItemComponent } from './reassign-item.component';
 
 describe('ReassignItemComponent', () => {
   let component: ReassignItemComponent;
@@ -17,9 +17,9 @@ describe('ReassignItemComponent', () => {
       declarations: [
         MockPipe(PosCurrencyPipe),
         ReassignItemComponent
-       ]
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

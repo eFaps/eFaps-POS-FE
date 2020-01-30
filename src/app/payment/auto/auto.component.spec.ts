@@ -1,20 +1,22 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  AuthService,
+  ConfigService,
+  DocumentService,
+  MsgService,
+  PaymentService,
+  PosService,
+  UtilsService,
+  WorkspaceService,
+} from '@efaps/pos-library';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MockComponent, MockPipe } from 'ng-mocks';
 import { Observable } from 'rxjs';
 
 import { MaterialModule } from '../../material/material.module';
-import {
-  AuthService,
-  ConfigService,
-  DocumentService,
-  PaymentService,
-  PosService,
-  UtilsService,
-  WorkspaceService
-} from '@efaps/pos-library';
 import { KeypadComponent } from '../../shared/keypad/keypad.component';
 import { AutoComponent } from './auto.component';
 
@@ -31,12 +33,19 @@ class PaymentServiceStub {
   currentPayments = new Observable(observer => {
     observer.next([]);
   });
+  currentDocument = new Observable(observer => {
+    observer.next([]);
+  });
+  currentTotal = new Observable(observer => {
+    observer.next([]);
+  });
 }
 class WorkspaceServiceStub {
   getSpotSize(): number {
     return 0;
   }
 }
+class MsgServiceStub { }
 
 describe('AutoComponent', () => {
   let component: AutoComponent;
@@ -48,8 +57,10 @@ describe('AutoComponent', () => {
         BrowserAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
+        HttpClientModule,
       ],
       providers: [
+        { provide: MsgService, useClass: MsgServiceStub },
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
