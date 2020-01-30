@@ -1,5 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PosConfigToken, PosCurrencyPipe } from '@efaps/pos-library';
+import { TranslatePipe } from '@ngx-translate/core';
+import { MockPipe } from 'ng-mocks';
 
+import { MaterialModule } from '../../material/material.module';
 import { DocumentListComponent } from './document-list.component';
 
 describe('DocumentListComponent', () => {
@@ -8,7 +15,20 @@ describe('DocumentListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DocumentListComponent ]
+      imports: [
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        HttpClientModule,
+      ],
+      providers: [
+        { provide: PosConfigToken, useValue: {} },
+      ],
+      declarations: [
+        DocumentListComponent,
+        MockPipe(TranslatePipe),
+        MockPipe(PosCurrencyPipe)
+      ]
     })
     .compileComponents();
   }));
