@@ -243,6 +243,10 @@
             "fileReplacements": [{
               "replace": "src/app/util/translate-file-loader.ts",
               "with": "src/app/util/translate-file-loader.noop.ts"
+            },
+            {
+              "replace": "src/app/util/electron-util.ts",
+              "with": "src/app/util/electron-util.noop.ts"
             }]
           }
         },
