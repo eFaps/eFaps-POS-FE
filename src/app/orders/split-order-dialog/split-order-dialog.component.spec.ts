@@ -1,9 +1,11 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PosService } from '@efaps/pos-library';
 
 import { MaterialModule } from '../../material/material.module';
-import { PosService } from '@efaps/pos-library';
+import { SharedModule } from '../../shared/shared.module';
 import { SplitOrderDialogComponent } from './split-order-dialog.component';
 
 class PosServiceStub { }
@@ -16,7 +18,9 @@ describe('SplitOrderDialogComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
-        MaterialModule
+        MaterialModule,
+        ReactiveFormsModule,
+        SharedModule
       ],
       providers: [
         { provide: MatDialogRef, useValue: {} },
