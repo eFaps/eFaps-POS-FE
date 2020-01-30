@@ -6,8 +6,10 @@ import { Observable } from 'rxjs/Observable';
 import { MaterialModule } from '../../material/material.module';
 import { PrintService } from '@efaps/pos-library';
 import { PrintDialogComponent } from './print-dialog.component';
+import { MockComponent } from 'ng-mocks';
+import { PrintDisplayComponent } from '../print-display/print-display.component';
 
-class PrintServiceStub {}
+class PrintServiceStub { }
 
 describe('PrintDialogComponent', () => {
   let component: PrintDialogComponent;
@@ -28,9 +30,12 @@ describe('PrintDialogComponent', () => {
           })
         },
       ],
-      declarations: [ PrintDialogComponent ]
+      declarations: [
+        PrintDialogComponent,
+        MockComponent(PrintDisplayComponent)
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
