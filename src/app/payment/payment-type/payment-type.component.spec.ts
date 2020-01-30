@@ -24,7 +24,7 @@ describe('PaymentTypeComponent', () => {
         BrowserAnimationsModule,
       ],
       providers: [
-        {provide:PosConfigToken, useValue: {}}
+        { provide: PosConfigToken, useValue: {} }
       ],
       declarations: [
         MockComponent(AutoComponent),
@@ -33,9 +33,9 @@ describe('PaymentTypeComponent', () => {
         MockComponent(DiscountComponent),
         MockComponent(FreeComponent),
         PaymentTypeComponent
-       ]
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

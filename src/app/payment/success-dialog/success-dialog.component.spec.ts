@@ -1,6 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { PosConfigToken, PosCurrencyPipe, PrintService } from '@efaps/pos-library';
+import { MockComponent, MockPipe } from 'ng-mocks';
 
+import { MaterialModule } from '../../material/material.module';
+import { PrintDisplayComponent } from '../../shared/print-display/print-display.component';
 import { SuccessDialogComponent } from './success-dialog.component';
+
+class PrintServiceSub { }
 
 describe('SuccessDialogComponent', () => {
   let component: SuccessDialogComponent;
@@ -8,9 +16,31 @@ describe('SuccessDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SuccessDialogComponent ]
+      imports: [
+        MaterialModule,
+        HttpClientModule,
+      ],
+      providers: [
+        { provide: MatDialogRef, useValue: {} },
+        {
+          provide: MAT_DIALOG_DATA, useValue: {
+            docType: 0,
+            change: 0,
+            document: {
+              number: 123
+            }
+          }
+        },
+        { provide: PosConfigToken, useValue: {} },
+        { provide: PrintService, useClass: PrintServiceSub }
+      ],
+      declarations: [
+        MockPipe(PosCurrencyPipe),
+        MockComponent(PrintDisplayComponent),
+        SuccessDialogComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
