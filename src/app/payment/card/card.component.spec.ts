@@ -40,7 +40,9 @@ class PaymentServiceStub {
 }
 class WorkspaceServiceStub {
   currentWorkspace = new Observable(observer => {
-    observer.next([]);
+    observer.next({
+      cards: ["Something"]
+    });
   });
 }
 

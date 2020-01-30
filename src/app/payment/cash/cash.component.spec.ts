@@ -31,6 +31,12 @@ class PaymentServiceStub {
   currentPayments = new Observable(observer => {
     observer.next([]);
   });
+  currentDocument = new Observable(observer => {
+    observer.next([]);
+  });
+  currentTotal = new Observable(observer => {
+    observer.next([]);
+  });
 }
 class WorkspaceServiceStub { }
 
