@@ -16,6 +16,14 @@ describe('BalanceSummarySectionComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BalanceSummarySectionComponent);
     component = fixture.componentInstance;
+    component.detail = {
+      documentCount: 1,
+      paymentCount: 1,
+      netTotal: 10,
+      crossTotal: 10,
+      paymentInfos: [],
+      taxEntries: []
+    };
     fixture.detectChanges();
   });
 
