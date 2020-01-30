@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from '../../material/material.module';
 import { InventoryTableComponent } from './inventory-table.component';
-import { InventoryService } from '../../services/index';
+import { InventoryService } from '@efaps/pos-library';
 
 class InventoryServiceStub {
 

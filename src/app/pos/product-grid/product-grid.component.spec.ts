@@ -5,8 +5,9 @@ import { MockComponent, MockDirective, MockPipe } from 'ng-mocks';
 import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../../material/material.module';
-import { PaymentService, PosService, ProductService, SecurePipe, WorkspaceService } from '../../services/index';
-import { ProductgridComponent } from './productgrid.component';
+import { PaymentService, PosService, ProductService, SecurePipe, WorkspaceService } from '@efaps/pos-library';
+import { ProductGridComponent } from './product-grid.component';
+
 
 class PosServiceStub {
   currentOrder = new Observable(observer => {
@@ -25,8 +26,8 @@ class ProductServiceStub {
 }
 
 describe('ProductgridComponent', () => {
-  let component: ProductgridComponent;
-  let fixture: ComponentFixture<ProductgridComponent>;
+  let component: ProductGridComponent;
+  let fixture: ComponentFixture<ProductGridComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -40,7 +41,7 @@ describe('ProductgridComponent', () => {
         { provide: ProductService, useClass: ProductServiceStub }
       ],
       declarations: [
-        ProductgridComponent,
+        ProductGridComponent,
         MockPipe(SecurePipe)
       ]
     })
@@ -48,7 +49,7 @@ describe('ProductgridComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductgridComponent);
+    fixture = TestBed.createComponent(ProductGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

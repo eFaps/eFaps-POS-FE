@@ -1,13 +1,12 @@
-import { HttpClient, HttpHandler } from '@angular/common/http';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { By } from '@angular/platform-browser';
+import { AdminService } from '@efaps/pos-library';
 import { Observable } from 'rxjs/Observable';
 
 import { environment } from '../../../environments/environment';
 import { MaterialModule } from '../../material/material.module';
-import { AdminService } from '../../services/index';
 import { AdminComponent } from './admin.component';
 
 class AdminServiceStub {

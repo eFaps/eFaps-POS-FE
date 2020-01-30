@@ -5,7 +5,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { MockPipe } from 'ng-mocks';
 
 import { MaterialModule } from '../../material/material.module';
-import { PosCurrencyPipe } from '../../services';
+import { PosCurrencyPipe } from '@efaps/pos-library';
 import { DocumentComponent } from './document.component';
 import { Router } from '@angular/router';
 

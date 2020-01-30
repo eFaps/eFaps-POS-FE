@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../../material/material.module';
-import { PrintService } from '../../services/index';
+import { PrintService } from '@efaps/pos-library';
 import { PrintDialogComponent } from './print-dialog.component';
 
 class PrintServiceStub {}

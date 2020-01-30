@@ -4,13 +4,13 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ConfigService, WorkspaceService } from '@efaps/pos-library';
 import {
   TranslateLoader,
   TranslateModule,
 } from '@ngx-translate/core';
 
 import { MaterialModule } from '../../material/material.module';
-import { ConfigService, WorkspaceService } from '../../services/index';
 import { SharedModule, TranslateLoaderFactory } from '../../shared/shared.module';
 import { CreateContactDialogComponent } from './create-contact-dialog.component';
 

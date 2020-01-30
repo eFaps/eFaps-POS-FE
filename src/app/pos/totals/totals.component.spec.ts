@@ -6,7 +6,7 @@ import { MockPipe } from 'ng-mocks';
 import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../../material/material.module';
-import { PosCurrencyPipe, PosService } from '../../services/index';
+import { PosCurrencyPipe, PosService } from '@efaps/pos-library';
 import { TotalsComponent } from './totals.component';
 
 class PosServiceStub {

@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from '../../material/material.module';
-import { PosService } from '../../services';
+import { PosService } from '@efaps/pos-library';
 import { SplitOrderDialogComponent } from './split-order-dialog.component';
 
 class PosServiceStub { }

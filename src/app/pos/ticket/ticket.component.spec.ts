@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../../material/material.module';
-import { PosService, PosCurrencyPipe } from '../../services/index';
+import { PosService, PosCurrencyPipe } from '@efaps/pos-library';
 import { TicketComponent } from './ticket.component';
 import { MockPipe } from 'ng-mocks';
 

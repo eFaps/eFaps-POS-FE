@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InventoryService } from '@efaps/pos-library';
 import { MockComponent } from 'ng-mocks';
 import { Observable } from 'rxjs';
 
 import { MaterialModule } from '../../material/material.module';
-import { InventoryService } from '../../services/index';
 import { InventoryTableComponent } from '../inventory-table/inventory-table.component';
 import { InventoryComponent } from './inventory.component';
 

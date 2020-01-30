@@ -14,7 +14,7 @@ import {
   PosService,
   UtilsService,
   WorkspaceService
-} from '../../services';
+} from '@efaps/pos-library';
 import { KeypadComponent } from '../../shared/keypad/keypad.component';
 import { AutoComponent } from './auto.component';
 

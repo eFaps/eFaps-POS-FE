@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { AuthService, ConfigService, User, UserService, WorkspaceService } from '@efaps/pos-library';
 import { MatKeyboardModule, MatKeyboardService } from '@ngx-material-keyboard/core';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AngularSvgIconModule, SvgIconRegistryService } from 'angular-svg-icon';
@@ -11,9 +12,8 @@ import { MockPipe } from 'ng-mocks';
 import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../material/material.module';
-import { User } from '../model/index';
-import { AuthService, ConfigService, UserService, VirtKeyboardDirective, WorkspaceService } from '../services/index';
 import { LoginComponent } from './login.component';
+import { VirtKeyboardDirective } from '../services';
 
 class UserServiceStub {
   public getUsers(): Observable<User[]> {

@@ -6,15 +6,16 @@ import { MockComponent, MockDirective, MockPipe } from 'ng-mocks';
 import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../material/material.module';
-import { PosLayout } from '../model/index';
-import { AuthService, MsgService, PosService, WorkspaceService } from '../services/index';
+
+import { AuthService, MsgService, PosService, WorkspaceService, PosLayout } from '@efaps/pos-library';
 import { SharedModule } from '../shared/shared.module';
 import { CommandsComponent } from './commands/commands.component';
 import { PosComponent } from './pos.component';
 import { ProductListComponent } from './product-list/product-list.component';
-import { ProductgridComponent } from './productgrid/productgrid.component';
+
 import { TicketComponent } from './ticket/ticket.component';
 import { TotalsComponent } from './totals/totals.component';
+import { ProductGridComponent } from './product-grid/product-grid.component';
 
 class AuthServiceStub {
   getCurrentUsername() {
@@ -70,7 +71,7 @@ describe('PosComponent', () => {
       ],
       declarations: [
         PosComponent,
-        MockComponent(ProductgridComponent),
+        MockComponent(ProductGridComponent),
         MockComponent(ProductListComponent),
         MockComponent(TicketComponent),
         MockComponent(TotalsComponent),

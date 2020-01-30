@@ -1,11 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material';
-import { OrderDialogComponent } from './order-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PrintService, WorkspaceService } from '../../services/index';
-import { MaterialModule } from '../../material/material.module';
+import { PrintService, WorkspaceService } from '@efaps/pos-library';
 import { MockComponent, MockDirective, MockPipe } from 'ng-mocks';
 import { Observable } from 'rxjs/Observable';
+
+import { MaterialModule } from '../../material/material.module';
+import { OrderDialogComponent } from './order-dialog.component';
 
 class PrintServiceStub {
 }

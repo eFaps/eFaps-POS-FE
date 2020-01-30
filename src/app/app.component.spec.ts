@@ -1,5 +1,6 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { AuthService, WorkspaceService } from '@efaps/pos-library';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AngularSvgIconModule, SvgIconRegistryService } from 'angular-svg-icon';
 import { HotkeyModule, HotkeysService } from 'angular2-hotkeys';
@@ -8,7 +9,6 @@ import { Observable } from 'rxjs';
 
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
-import { AuthService, WorkspaceService } from './services/index';
 import { ThemePickerComponent } from './theme-picker/theme-picker.component';
 
 class AuthServiceStub { }

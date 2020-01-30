@@ -2,12 +2,12 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { AuthService, InventoryService, PosService, ProductService, WorkspaceService } from '@efaps/pos-library';
 import { MockComponent } from 'ng-mocks';
 import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../../material/material.module';
-import { ProductComponent } from '../../products/product/product.component';
-import { AuthService, InventoryService, PosService, ProductService, WorkspaceService } from '../../services/index';
+import { ProductComponent } from '../../shared/product/product.component';
 import { ProductListComponent } from './product-list.component';
 
 class PosServiceStub {

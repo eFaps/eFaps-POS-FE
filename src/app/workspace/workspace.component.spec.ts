@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { PosService, WorkspaceService } from '@efaps/pos-library';
 import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../material/material.module';
-import { PosService, WorkspaceService } from '../services';
 import { WorkspaceComponent } from './workspace.component';
 
 class PosServiceStub {

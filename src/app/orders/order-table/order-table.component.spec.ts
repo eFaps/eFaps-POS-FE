@@ -2,21 +2,21 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import {
+  AuthService,
+  ConfigService,
+  DocumentService,
+  PaymentService,
+  PosCurrencyPipe,
+  PosService,
+  UtilsService,
+  WorkspaceService
+} from '@efaps/pos-library';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MockPipe } from 'ng-mocks';
 import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../../material/material.module';
-import {
-  AuthService,
-  ConfigService,
-  DocumentService,
-  PosCurrencyPipe,
-  PaymentService,
-  PosService,
-  UtilsService,
-  WorkspaceService
-} from '../../services/index';
 import { OrderTableComponent } from './order-table.component';
 
 class AuthServiceStub {

@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BalanceService, DocumentService } from '@efaps/pos-library';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MockComponent, MockPipe } from 'ng-mocks';
 import { Observable } from 'rxjs';
 
 import { MaterialModule } from '../../material/material.module';
-import { BalanceService, DocumentService } from '../../services';
 import { BalanceDocumentListComponent } from '../balance-document-list/balance-document-list.component';
 import { BalancePaymentListComponent } from '../balance-payment-list/balance-payment-list.component';
 import { BalanceComponent } from './balance.component';
