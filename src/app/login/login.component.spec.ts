@@ -1,4 +1,5 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,8 +13,8 @@ import { MockPipe } from 'ng-mocks';
 import { Observable } from 'rxjs/Observable';
 
 import { MaterialModule } from '../material/material.module';
-import { LoginComponent } from './login.component';
 import { VirtKeyboardDirective } from '../services';
+import { LoginComponent } from './login.component';
 
 class UserServiceStub {
   public getUsers(): Observable<User[]> {
@@ -55,7 +56,8 @@ describe('LoginComponent', () => {
         RouterTestingModule,
         MaterialModule,
         MatKeyboardModule,
-        AngularSvgIconModule
+        AngularSvgIconModule,
+        HttpClientModule,
       ],
       providers: [
         MatKeyboardService,
