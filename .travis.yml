@@ -16,5 +16,5 @@ install:
   - npm install
 
 script:
-  - npm run build-css
+  - npm run _build-css
   - npm test
