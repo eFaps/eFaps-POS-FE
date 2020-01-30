@@ -1,16 +1,18 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ConfigService, WorkspaceService } from '@efaps/pos-library';
+import { ConfigService, WorkspaceService, PosConfigToken } from '@efaps/pos-library';
 import {
   TranslateLoader,
   TranslateModule,
 } from '@ngx-translate/core';
+import { MockDirective } from 'ng-mocks';
 
 import { MaterialModule } from '../../material/material.module';
+import { VirtKeyboardDirective } from '../../services';
 import { SharedModule, TranslateLoaderFactory } from '../../shared/shared.module';
 import { CreateContactDialogComponent } from './create-contact-dialog.component';
 
@@ -26,6 +28,7 @@ describe('CreateContactDialogComponent', () => {
         MaterialModule,
         SharedModule,
         MatDialogModule,
+        HttpClientModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -40,8 +43,13 @@ describe('CreateContactDialogComponent', () => {
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] },
         { provide: LiveAnnouncer, useValue: {} },
+        { provide: PosConfigToken, useValue: {} },
       ],
-      declarations: [CreateContactDialogComponent]
+      declarations: [
+        CreateContactDialogComponent,
+        MockDirective(VirtKeyboardDirective)
+
+      ]
     }).compileComponents();
   }));
 
