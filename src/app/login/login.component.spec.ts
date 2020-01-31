@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService, ConfigService, User, UserService, WorkspaceService } from '@efaps/pos-library';
+import { AuthService, CompanyService, ConfigService, User, UserService, WorkspaceService, Company } from '@efaps/pos-library';
 import { MatKeyboardModule, MatKeyboardService } from '@ngx-material-keyboard/core';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AngularSvgIconModule, SvgIconRegistryService } from 'angular-svg-icon';
@@ -16,6 +16,15 @@ import { MaterialModule } from '../material/material.module';
 import { VirtKeyboardDirective } from '../services';
 import { LoginComponent } from './login.component';
 
+class MatKeyboardServiceStub {}
+class CompanyServiceStub {
+  hasCompany(): boolean {
+    return false
+  }
+  getCompanies(): Observable<Company[]> {
+    return new Observable();
+  }
+}
 class UserServiceStub {
   public getUsers(): Observable<User[]> {
     return new Observable(observer => {
@@ -60,7 +69,8 @@ describe('LoginComponent', () => {
         HttpClientModule,
       ],
       providers: [
-        MatKeyboardService,
+        { provide: CompanyService, useClass: CompanyServiceStub },
+        { provide: MatKeyboardService, useClass: MatKeyboardServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: TranslateService, useClass: TranslateServiceStub },
         { provide: AuthService, useClass: AuthServiceStub },

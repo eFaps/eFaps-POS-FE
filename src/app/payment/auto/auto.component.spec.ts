@@ -3,14 +3,10 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  AuthService,
-  ConfigService,
-  DocumentService,
+  CollectService,
   MsgService,
   PaymentService,
-  PosService,
-  UtilsService,
-  WorkspaceService,
+  Collector,
 } from '@efaps/pos-library';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MockComponent, MockPipe } from 'ng-mocks';
@@ -20,13 +16,9 @@ import { MaterialModule } from '../../material/material.module';
 import { KeypadComponent } from '../../shared/keypad/keypad.component';
 import { AutoComponent } from './auto.component';
 
-class AuthServiceStub { }
-class ConfigServiceStub { }
-class DocumentServiceStub { }
-class PosServiceStub { }
-class UtilsServiceStub {
-  getCurrencySymbol(som) {
-    return 'PEN';
+class CollectServiceStub {
+  getCollectors(): Observable<Collector[]> {
+    return new Observable()
   }
 }
 class PaymentServiceStub {
@@ -40,11 +32,7 @@ class PaymentServiceStub {
     observer.next([]);
   });
 }
-class WorkspaceServiceStub {
-  getSpotSize(): number {
-    return 0;
-  }
-}
+
 class MsgServiceStub { }
 
 describe('AutoComponent', () => {
@@ -61,13 +49,8 @@ describe('AutoComponent', () => {
       ],
       providers: [
         { provide: MsgService, useClass: MsgServiceStub },
-        { provide: AuthService, useClass: AuthServiceStub },
-        { provide: ConfigService, useClass: ConfigServiceStub },
-        { provide: DocumentService, useClass: DocumentServiceStub },
-        { provide: PosService, useClass: PosServiceStub },
-        { provide: UtilsService, useClass: UtilsServiceStub },
+        { provide: CollectService, useClass: CollectServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
-        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
       ],
       declarations: [
         AutoComponent,

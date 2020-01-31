@@ -5,7 +5,9 @@ import { MockComponent } from 'ng-mocks';
 
 import { DocumentComponent } from '../../shared/document/document.component';
 import { DocumentDialogComponent } from './document-dialog.component';
-import { PosConfigToken } from '@efaps/pos-library';
+import { PosConfigToken, DocumentService } from '@efaps/pos-library';
+
+class DocumentServiceStub {}
 
 describe('DocumentDialogComponent', () => {
   let component: DocumentDialogComponent;
@@ -20,6 +22,7 @@ describe('DocumentDialogComponent', () => {
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
+        { provide: DocumentService, useClass: DocumentServiceStub },
       ],
       declarations: [
         DocumentDialogComponent,
