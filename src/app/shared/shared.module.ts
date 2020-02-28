@@ -4,9 +4,9 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PosLibraryModule } from '@efaps/pos-library';
-import { MatKeyboardModule } from '@ngx-material-keyboard/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MatKeyboardModule } from 'angular-onscreen-material-keyboard';
 import { NgBusyModule } from 'ng-busy';
 import { WebStorageModule } from 'ngx-store';
 
