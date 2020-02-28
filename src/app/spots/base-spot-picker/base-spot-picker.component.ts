@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DocumentService, PosService, Spot, SpotConfig, SpotService } from '@efaps/pos-library';
 

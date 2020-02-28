@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DocItem, DocumentService, Order, PosService } from '@efaps/pos-library';
 import { Observable, Subscription, forkJoin } from 'rxjs';
 

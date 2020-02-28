@@ -1,6 +1,7 @@
 import { Item, PosService } from '@efaps/pos-library';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatSnackBar, MatTableDataSource } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
 import { Decimal } from 'decimal.js';
 
 @Component({

@@ -1,5 +1,5 @@
 import { EventEmitter, Input, OnInit, Output, Directive } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Item, PosService, Product, ProductService } from '@efaps/pos-library';
 
 import { RemarkDialogComponent } from './remark-dialog/remark-dialog.component';

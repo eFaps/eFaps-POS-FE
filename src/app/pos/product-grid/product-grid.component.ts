@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog, MatTabChangeEvent } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { PosService, ProductService, WorkspaceService } from '@efaps/pos-library';
 import { Subscription } from 'rxjs';
 
