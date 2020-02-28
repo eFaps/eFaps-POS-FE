@@ -1,9 +1,10 @@
-import { EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { EventEmitter, Input, OnInit, Output, Directive } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Item, PosService, Product, ProductService } from '@efaps/pos-library';
 
 import { RemarkDialogComponent } from './remark-dialog/remark-dialog.component';
 
+@Directive()
 export abstract class AbstractProductSelector implements OnInit {
   ticket: Item[];
   @Input() multiplier: number;

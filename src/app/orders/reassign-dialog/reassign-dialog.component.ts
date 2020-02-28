@@ -15,9 +15,9 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
   orderLeft: Order;
   orderRight: Order;
 
-  @ViewChild('left', { static: false })
+  @ViewChild('left')
   private left: ReassignItemComponent;
-  @ViewChild('right', { static: false })
+  @ViewChild('right')
   private right: ReassignItemComponent;
 
   private subscription = new Subscription();

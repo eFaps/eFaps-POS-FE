@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loading = false;
   hiddenUser = true;
   @LocalStorage() virtKeyboard = false;
-  @ViewChild('pwd', { static: false }) pwdField: ElementRef;
+  @ViewChild('pwd') pwdField: ElementRef;
 
   showCompanySelection = false;
 

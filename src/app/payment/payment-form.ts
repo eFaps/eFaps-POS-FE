@@ -1,8 +1,9 @@
-import { Input, OnDestroy, OnInit } from '@angular/core';
+import { Input, OnDestroy, OnInit, Directive } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Document, Payment, PaymentService, UtilsService }from '@efaps/pos-library';
 import { Subscription } from 'rxjs';
 
+@Directive()
 export abstract class PaymentForm implements OnInit, OnDestroy {
   public paymentForm: FormGroup;
   protected payments: Payment[];

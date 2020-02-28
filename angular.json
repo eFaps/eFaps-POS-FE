@@ -4,6 +4,14 @@
   "newProjectRoot": "projects",
   "projects": {
     "pos": {
+      "i18n": {
+        "locales": {
+          "es": {
+            "translation": "src/locale/messages.es.xlf",
+            "baseHref": ""
+          }
+        }
+      },
       "root": "",
       "projectType": "application",
       "architect": {
@@ -29,24 +37,20 @@
             "styles": [{
                 "input": "src/styles.scss"
               },
-              {
+              {"inject":false,
                 "input": "src/assets/pink-bluegrey.css",
-                "lazy": true,
                 "bundleName": "pink-bluegrey"
               },
-              {
+              {"inject":false,
                 "input": "src/assets/deeppurple-amber.css",
-                "lazy": true,
                 "bundleName": "deeppurple-amber"
               },
-              {
+              {"inject":false,
                 "input": "src/assets/indigo-pink.css",
-                "lazy": true,
                 "bundleName": "indigo-pink"
               },
-              {
+              {"inject":false,
                 "input": "src/assets/purple-green.css",
-                "lazy": true,
                 "bundleName": "purple-green"
               }
             ],
@@ -69,6 +73,12 @@
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -94,11 +104,17 @@
             },
             "es": {
               "aot": true,
-              "i18nFile": "src/locale/messages.es.xlf",
-              "i18nFormat": "xlf",
-              "i18nLocale": "es",
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "i18nMissingTranslation": "warn"
-            }
+            ,            "localize": [
+              "es"
+            ]
+}
           }
         },
         "build-electron": {
@@ -208,24 +224,20 @@
             "styles": [{
                 "input": "src/styles.scss"
               },
-              {
+              {"inject":false,
                 "input": "src/assets/pink-bluegrey.css",
-                "lazy": true,
                 "bundleName": "pink-bluegrey"
               },
-              {
+              {"inject":false,
                 "input": "src/assets/deeppurple-amber.css",
-                "lazy": true,
                 "bundleName": "deeppurple-amber"
               },
-              {
+              {"inject":false,
                 "input": "src/assets/indigo-pink.css",
-                "lazy": true,
                 "bundleName": "indigo-pink"
               },
-              {
+              {"inject":false,
                 "input": "src/assets/purple-green.css",
-                "lazy": true,
                 "bundleName": "purple-green"
               }
             ],
@@ -295,7 +307,7 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
-      "styleext": "scss"
+      "style": "scss"
     },
     "@schematics/angular:directive": {
       "prefix": "app"

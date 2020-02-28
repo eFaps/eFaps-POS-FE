@@ -31,7 +31,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   formCtrlSub: Subscription;
   displayedColumns = [];
   dataSource = new MatTableDataSource<OrderWrapper>();
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   isAdmin = false;
   allowPayment = false;

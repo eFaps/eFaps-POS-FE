@@ -41,7 +41,7 @@ export class PosComponent implements OnInit, OnDestroy {
   @LocalStorage() posNumPad: any = {};
   multiplier = 1;
   @ViewChild(CommandsComponent, { static: true }) cmdComp;
-  @ViewChild(ProductGridComponent, { static: false }) grid;
+  @ViewChild(ProductGridComponent) grid;
   remarkMode = false;
 
   constructor(public workspaceService: WorkspaceService,
