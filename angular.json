@@ -37,19 +37,23 @@
             "styles": [{
                 "input": "src/styles.scss"
               },
-              {"inject":false,
+              {
+                "inject": false,
                 "input": "src/assets/pink-bluegrey.css",
                 "bundleName": "pink-bluegrey"
               },
-              {"inject":false,
+              {
+                "inject": false,
                 "input": "src/assets/deeppurple-amber.css",
                 "bundleName": "deeppurple-amber"
               },
-              {"inject":false,
+              {
+                "inject": false,
                 "input": "src/assets/indigo-pink.css",
                 "bundleName": "indigo-pink"
               },
-              {"inject":false,
+              {
+                "inject": false,
                 "input": "src/assets/purple-green.css",
                 "bundleName": "purple-green"
               }
@@ -57,10 +61,8 @@
             "stylePreprocessorOptions": {
               "includePaths": ["./", "./themes"]
             },
-            "scripts": [
-            ],
-            "fileReplacements": [
-              {
+            "scripts": [],
+            "fileReplacements": [{
                 "replace": "src/app/util/translate-file-loader.ts",
                 "with": "src/app/util/translate-file-loader.noop.ts"
               },
@@ -72,12 +74,10 @@
           },
           "configurations": {
             "production": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
+              "budgets": [{
+                "type": "anyComponentStyle",
+                "maximumWarning": "6kb"
+              }],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -103,17 +103,15 @@
             },
             "es": {
               "aot": true,
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "i18nMissingTranslation": "warn"
-            ,            "localize": [
-              "es"
-            ]
-}
+              "budgets": [{
+                "type": "anyComponentStyle",
+                "maximumWarning": "6kb"
+              }],
+              "i18nMissingTranslation": "warn",
+              "localize": [
+                "es"
+              ]
+            }
           }
         },
         "build-electron": {
@@ -163,7 +161,7 @@
               "includePaths": ["./", "./themes"]
             },
             "scripts": [
-              "node_modules/hammerjs/hammer.min.js"
+
             ]
           },
           "configurations": {
@@ -218,24 +216,28 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [
-              "node_modules/hammerjs/hammer.min.js"
+
             ],
             "styles": [{
                 "input": "src/styles.scss"
               },
-              {"inject":false,
+              {
+                "inject": false,
                 "input": "src/assets/pink-bluegrey.css",
                 "bundleName": "pink-bluegrey"
               },
-              {"inject":false,
+              {
+                "inject": false,
                 "input": "src/assets/deeppurple-amber.css",
                 "bundleName": "deeppurple-amber"
               },
-              {"inject":false,
+              {
+                "inject": false,
                 "input": "src/assets/indigo-pink.css",
                 "bundleName": "indigo-pink"
               },
-              {"inject":false,
+              {
+                "inject": false,
                 "input": "src/assets/purple-green.css",
                 "bundleName": "purple-green"
               }
@@ -252,13 +254,14 @@
               }
             ],
             "fileReplacements": [{
-              "replace": "src/app/util/translate-file-loader.ts",
-              "with": "src/app/util/translate-file-loader.noop.ts"
-            },
-            {
-              "replace": "src/app/util/electron-util.ts",
-              "with": "src/app/util/electron-util.noop.ts"
-            }]
+                "replace": "src/app/util/translate-file-loader.ts",
+                "with": "src/app/util/translate-file-loader.noop.ts"
+              },
+              {
+                "replace": "src/app/util/electron-util.ts",
+                "with": "src/app/util/electron-util.noop.ts"
+              }
+            ]
           }
         },
         "lint": {

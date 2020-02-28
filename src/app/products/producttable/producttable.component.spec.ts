@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductService } from '@efaps/pos-library';
-import { MatKeyboardModule } from '@ngx-material-keyboard/core';
+import { MatKeyboardModule } from 'angular-onscreen-material-keyboard';
 import { MockComponent } from 'ng-mocks';
 import { Observable } from 'rxjs/Observable';
 
