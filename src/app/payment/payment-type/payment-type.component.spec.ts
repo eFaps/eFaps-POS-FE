@@ -1,31 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { PaymentTypeComponent } from './payment-type.component';
-import { MaterialModule } from '../../material/material.module';
-import { MockComponent } from 'ng-mocks';
-import { CashComponent } from '../cash/cash.component';
-import { CardComponent } from '../card/card.component';
-import { DiscountComponent } from '../discount/discount.component';
-import { FreeComponent } from '../free/free.component';
-import { AutoComponent } from '../auto/auto.component';
-import { HttpClientModule } from '@angular/common/http';
-import { PosConfigToken } from '@efaps/pos-library';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PaymentTypeComponent } from "./payment-type.component";
+import { MaterialModule } from "../../material/material.module";
+import { MockComponent } from "ng-mocks";
+import { CashComponent } from "../cash/cash.component";
+import { CardComponent } from "../card/card.component";
+import { DiscountComponent } from "../discount/discount.component";
+import { FreeComponent } from "../free/free.component";
+import { AutoComponent } from "../auto/auto.component";
+import { HttpClientModule } from "@angular/common/http";
+import { PosConfigToken } from "@efaps/pos-library";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-describe('PaymentTypeComponent', () => {
+describe("PaymentTypeComponent", () => {
   let component: PaymentTypeComponent;
   let fixture: ComponentFixture<PaymentTypeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        MaterialModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-      ],
-      providers: [
-        { provide: PosConfigToken, useValue: {} }
-      ],
+      imports: [MaterialModule, HttpClientModule, BrowserAnimationsModule],
+      providers: [{ provide: PosConfigToken, useValue: {} }],
       declarations: [
         MockComponent(AutoComponent),
         MockComponent(CashComponent),
@@ -34,8 +28,7 @@ describe('PaymentTypeComponent', () => {
         MockComponent(FreeComponent),
         PaymentTypeComponent
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -44,7 +37,7 @@ describe('PaymentTypeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,22 +1,30 @@
-import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ConfigService, WorkspaceService, PosConfigToken } from '@efaps/pos-library';
+import { LiveAnnouncer } from "@angular/cdk/a11y";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ReactiveFormsModule } from "@angular/forms";
 import {
-  TranslateLoader,
-  TranslateModule,
-} from '@ngx-translate/core';
-import { MockDirective } from 'ng-mocks';
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef
+} from "@angular/material/dialog";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {
+  ConfigService,
+  WorkspaceService,
+  PosConfigToken
+} from "@efaps/pos-library";
+import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import { MockDirective } from "ng-mocks";
 
-import { MaterialModule } from '../../material/material.module';
-import { VirtKeyboardDirective } from '../../services';
-import { SharedModule, TranslateLoaderFactory } from '../../shared/shared.module';
-import { CreateContactDialogComponent } from './create-contact-dialog.component';
+import { MaterialModule } from "../../material/material.module";
+import { VirtKeyboardDirective } from "../../services";
+import {
+  SharedModule,
+  TranslateLoaderFactory
+} from "../../shared/shared.module";
+import { CreateContactDialogComponent } from "./create-contact-dialog.component";
 
-describe('CreateContactDialogComponent', () => {
+describe("CreateContactDialogComponent", () => {
   let component: CreateContactDialogComponent;
   let fixture: ComponentFixture<CreateContactDialogComponent>;
 
@@ -43,12 +51,11 @@ describe('CreateContactDialogComponent', () => {
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] },
         { provide: LiveAnnouncer, useValue: {} },
-        { provide: PosConfigToken, useValue: {} },
+        { provide: PosConfigToken, useValue: {} }
       ],
       declarations: [
         CreateContactDialogComponent,
         MockDirective(VirtKeyboardDirective)
-
       ]
     }).compileComponents();
   }));
@@ -59,7 +66,7 @@ describe('CreateContactDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

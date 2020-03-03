@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
 import {
   AuthService,
   InventoryEntry,
@@ -11,51 +11,53 @@ import {
   Product,
   ProductService,
   Roles,
-  WorkspaceService,
-} from '@efaps/pos-library';
-import { Subscription } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+  WorkspaceService
+} from "@efaps/pos-library";
+import { Subscription } from "rxjs";
+import { debounceTime } from "rxjs/operators";
 
-import { ProductComponent } from '../../shared/product/product.component';
-import { AbstractProductSelector } from '../abstract-product-selector';
+import { ProductComponent } from "../../shared/product/product.component";
+import { AbstractProductSelector } from "../abstract-product-selector";
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  selector: "app-product-list",
+  templateUrl: "./product-list.component.html",
+  styleUrls: ["./product-list.component.scss"]
 })
-export class ProductListComponent
-  extends AbstractProductSelector
+export class ProductListComponent extends AbstractProductSelector
   implements OnInit, OnDestroy {
   filterForm: FormGroup;
   formCtrlSub: Subscription;
-  displayedColumns = ['sku', 'description', 'cmd'];
+  displayedColumns = ["sku", "description", "cmd"];
   dataSource = new MatTableDataSource();
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   inventory: InventoryEntry[] = [];
 
-  constructor(productService: ProductService,
+  constructor(
+    productService: ProductService,
     posService: PosService,
     dialog: MatDialog,
     private workspaceService: WorkspaceService,
     private inventoryService: InventoryService,
     private authService: AuthService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder
+  ) {
     super(productService, posService, dialog);
   }
 
   ngOnInit() {
     super.ngOnInit();
     this.filterForm = this.fb.group({
-      'filter': []
+      filter: []
     });
-    this.formCtrlSub = this.filterForm.valueChanges.pipe(
-      debounceTime(500))
+    this.formCtrlSub = this.filterForm.valueChanges
+      .pipe(debounceTime(500))
       .subscribe(newValue => this.applyFilter(newValue.filter));
 
     if (this.workspaceService.showInventory()) {
-      this.inventoryService.getInventory(this.workspaceService.getWarehouseOid())
+      this.inventoryService
+        .getInventory(this.workspaceService.getWarehouseOid())
         .subscribe(_entries => {
           this.inventory = _entries;
         });
@@ -63,16 +65,15 @@ export class ProductListComponent
   }
 
   applyFilter(_filterValue: string) {
-    this.productService.findProducts(_filterValue)
-      .subscribe((_products) => {
-        this.dataSource.data = _products;
-        this.dataSource.sort = this.sort;
-      });
+    this.productService.findProducts(_filterValue).subscribe(_products => {
+      this.dataSource.data = _products;
+      this.dataSource.sort = this.sort;
+    });
   }
 
   show(_product: Product) {
     const dialogRef = this.dialog.open(ProductComponent, {
-      data: _product,
+      data: _product
     });
   }
 

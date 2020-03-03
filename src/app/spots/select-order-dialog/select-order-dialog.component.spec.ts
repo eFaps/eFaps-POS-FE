@@ -1,24 +1,21 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
-import { SelectOrderDialogComponent } from './select-order-dialog.component';
+import { SelectOrderDialogComponent } from "./select-order-dialog.component";
 
-describe('SelectOrderDialogComponent', () => {
+describe("SelectOrderDialogComponent", () => {
   let component: SelectOrderDialogComponent;
   let fixture: ComponentFixture<SelectOrderDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-
-      ],
+      imports: [],
       providers: [
         { provide: MatDialogRef, useValue: {} },
-        { provide: MAT_DIALOG_DATA, useValue: [] },
+        { provide: MAT_DIALOG_DATA, useValue: [] }
       ],
       declarations: [SelectOrderDialogComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -27,7 +24,7 @@ describe('SelectOrderDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

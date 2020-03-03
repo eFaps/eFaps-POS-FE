@@ -1,12 +1,25 @@
-import { Directive, ElementRef, EventEmitter, HostListener, Input, OnDestroy, Optional, Output, Self } from '@angular/core';
-import { NgControl } from '@angular/forms';
-import { MatKeyboardComponent, MatKeyboardRef, MatKeyboardService } from 'angular-onscreen-material-keyboard';
+import {
+  Directive,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnDestroy,
+  Optional,
+  Output,
+  Self
+} from "@angular/core";
+import { NgControl } from "@angular/forms";
+import {
+  MatKeyboardComponent,
+  MatKeyboardRef,
+  MatKeyboardService
+} from "angular-onscreen-material-keyboard";
 
 @Directive({
-  selector: 'input[appVirtKeyboard], textarea[appVirtKeyboard]'
+  selector: "input[appVirtKeyboard], textarea[appVirtKeyboard]"
 })
 export class VirtKeyboardDirective implements OnDestroy {
-
   private _keyboardRef: MatKeyboardRef<MatKeyboardComponent>;
 
   @Input() appVirtKeyboard: string;
@@ -25,15 +38,17 @@ export class VirtKeyboardDirective implements OnDestroy {
 
   @Output() shiftClick: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private _elementRef: ElementRef,
+  constructor(
+    private _elementRef: ElementRef,
     private _keyboardService: MatKeyboardService,
-    @Optional() @Self() private _control?: NgControl) { }
+    @Optional() @Self() private _control?: NgControl
+  ) {}
 
   ngOnDestroy() {
     this._hideKeyboard();
   }
 
-  @HostListener('focus', ['$event'])
+  @HostListener("focus", ["$event"])
   private _showKeyboard() {
     if (this.activateKeyboard) {
       this._keyboardRef = this._keyboardService.open(this.appVirtKeyboard, {
@@ -47,14 +62,20 @@ export class VirtKeyboardDirective implements OnDestroy {
         this._keyboardRef.instance.attachControl(this._control.control);
       }
 
-      this._keyboardRef.instance.enterClick.subscribe(() => this.enterClick.next());
-      this._keyboardRef.instance.capsClick.subscribe(() => this.capsClick.next());
+      this._keyboardRef.instance.enterClick.subscribe(() =>
+        this.enterClick.next()
+      );
+      this._keyboardRef.instance.capsClick.subscribe(() =>
+        this.capsClick.next()
+      );
       this._keyboardRef.instance.altClick.subscribe(() => this.altClick.next());
-      this._keyboardRef.instance.shiftClick.subscribe(() => this.shiftClick.next());
+      this._keyboardRef.instance.shiftClick.subscribe(() =>
+        this.shiftClick.next()
+      );
     }
   }
 
-  @HostListener('blur', ['$event'])
+  @HostListener("blur", ["$event"])
   private _hideKeyboard() {
     if (this._keyboardRef) {
       this._keyboardRef.dismiss();

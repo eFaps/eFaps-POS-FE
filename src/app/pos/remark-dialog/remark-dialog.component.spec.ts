@@ -1,29 +1,24 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import { MaterialModule } from '../../material/material.module';
-import { RemarkDialogComponent } from './remark-dialog.component';
+import { MaterialModule } from "../../material/material.module";
+import { RemarkDialogComponent } from "./remark-dialog.component";
 
-describe('RemarkDialogComponent', () => {
+describe("RemarkDialogComponent", () => {
   let component: RemarkDialogComponent;
   let fixture: ComponentFixture<RemarkDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        ReactiveFormsModule,
-        MaterialModule,
-        BrowserAnimationsModule
-      ],
+      imports: [ReactiveFormsModule, MaterialModule, BrowserAnimationsModule],
       providers: [
         { provide: MatDialogRef, useValue: {} },
-        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MAT_DIALOG_DATA, useValue: {} }
       ],
       declarations: [RemarkDialogComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -32,7 +27,7 @@ describe('RemarkDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -6,9 +6,9 @@ import {
   OnDestroy,
   OnInit,
   ViewChild
-} from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+} from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
 import {
   AuthService,
   Item,
@@ -16,17 +16,17 @@ import {
   PosLayout,
   PosService,
   WorkspaceService
-} from '@efaps/pos-library';
-import { LocalStorage } from 'ngx-store';
+} from "@efaps/pos-library";
+import { LocalStorage } from "ngx-store";
 
-import { CategorySelectComponent } from './category-select/category-select.component';
-import { CommandsComponent } from './commands/commands.component'
-import { ProductGridComponent } from './product-grid/product-grid.component';
+import { CategorySelectComponent } from "./category-select/category-select.component";
+import { CommandsComponent } from "./commands/commands.component";
+import { ProductGridComponent } from "./product-grid/product-grid.component";
 
 @Component({
-  selector: 'app-pos',
-  templateUrl: './pos.component.html',
-  styleUrls: ['./pos.component.scss']
+  selector: "app-pos",
+  templateUrl: "./pos.component.html",
+  styleUrls: ["./pos.component.scss"]
 })
 export class PosComponent implements OnInit, OnDestroy {
   PosLayout = PosLayout;
@@ -44,17 +44,19 @@ export class PosComponent implements OnInit, OnDestroy {
   @ViewChild(ProductGridComponent) grid;
   remarkMode = false;
 
-  constructor(public workspaceService: WorkspaceService,
+  constructor(
+    public workspaceService: WorkspaceService,
     private posService: PosService,
     private msgService: MsgService,
     private authService: AuthService,
     private fb: FormBuilder,
     private dialog: MatDialog,
-    @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef) { }
+    @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.multiplierForm = this.fb.group({
-      'multiplier': [''],
+      multiplier: [""]
     });
     this.posService.currentTicket.subscribe(data => {
       this.ticket = data;
@@ -77,7 +79,7 @@ export class PosComponent implements OnInit, OnDestroy {
     } else {
       this.currentLayout = this.workspaceService.getPosLayout();
     }
-    this.numPad = this.posNumPad[this.authService.getCurrentUsername()]
+    this.numPad = this.posNumPad[this.authService.getCurrentUsername()];
   }
 
   ngOnDestroy() {
@@ -86,7 +88,7 @@ export class PosComponent implements OnInit, OnDestroy {
     }
   }
 
-  @HostListener('window:resize', ['$event'])
+  @HostListener("window:resize", ["$event"])
   onResize(event?) {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
@@ -110,14 +112,14 @@ export class PosComponent implements OnInit, OnDestroy {
   setMultiplier(_number: string) {
     let multi;
     switch (_number) {
-      case 'clear':
-        multi = '';
+      case "clear":
+        multi = "";
         break;
       default:
-        multi = '' + this.multiplierForm.value.multiplier + _number;
+        multi = "" + this.multiplierForm.value.multiplier + _number;
         break;
     }
-    this.multiplierForm.patchValue({ 'multiplier': multi });
+    this.multiplierForm.patchValue({ multiplier: multi });
     this.multiplier = Number(multi);
   }
 
@@ -128,10 +130,9 @@ export class PosComponent implements OnInit, OnDestroy {
     }
   }
 
-
   resetMultiplier() {
     this.multiplier = 0;
-    this.multiplierForm.patchValue({ 'multiplier': '' });
+    this.multiplierForm.patchValue({ multiplier: "" });
   }
 
   toggleNumPad() {
@@ -143,15 +144,14 @@ export class PosComponent implements OnInit, OnDestroy {
   }
 
   openCatSelect() {
-    let ref = this.dialog.open(CategorySelectComponent, {
-    });
+    let ref = this.dialog.open(CategorySelectComponent, {});
     ref.afterClosed().subscribe({
-      next: (index) => {
+      next: index => {
         if (this.grid) {
           this.grid.selectedIndex = index;
         }
       }
-    })
+    });
   }
 
   toggleRemarkMode() {

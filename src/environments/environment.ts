@@ -6,5 +6,5 @@
 export const environment = {
   electron: false,
   production: false,
-  version: '1.0.0-dev'
+  version: "1.0.0-dev"
 };

@@ -1,32 +1,32 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from '@efaps/pos-library';
-import { WorkspaceService } from '@efaps/pos-library';
-import { LocalStorage } from 'ngx-store';
-import { Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { AuthService } from "@efaps/pos-library";
+import { WorkspaceService } from "@efaps/pos-library";
+import { LocalStorage } from "ngx-store";
+import { Subscription } from "rxjs";
 
 @Component({
-  selector: 'app-payment-type',
-  templateUrl: './payment-type.component.html',
-  styleUrls: ['./payment-type.component.scss']
+  selector: "app-payment-type",
+  templateUrl: "./payment-type.component.html",
+  styleUrls: ["./payment-type.component.scss"]
 })
 export class PaymentTypeComponent implements OnInit, OnDestroy {
   private subscription$ = new Subscription();
 
   @LocalStorage() selectedPayment: any = {};
 
-  constructor(private authService: AuthService,
-    private workspaceService: WorkspaceService) { }
+  constructor(
+    private authService: AuthService,
+    private workspaceService: WorkspaceService
+  ) {}
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.subscription$.unsubscribe();
   }
 
   get auto() {
-    return this.workspaceService.hasAutoPayment()
+    return this.workspaceService.hasAutoPayment();
   }
 
   get selected() {

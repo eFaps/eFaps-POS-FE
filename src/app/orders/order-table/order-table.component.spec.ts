@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ReactiveFormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterTestingModule } from "@angular/router/testing";
 import {
   AuthService,
   ConfigService,
@@ -11,21 +11,21 @@ import {
   PosCurrencyPipe,
   PosService,
   UtilsService,
-  WorkspaceService,
-} from '@efaps/pos-library';
-import { TranslatePipe } from '@ngx-translate/core';
-import { MockPipe } from 'ng-mocks';
-import { Observable } from 'rxjs/Observable';
+  WorkspaceService
+} from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
+import { MockPipe } from "ng-mocks";
+import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from '../../material/material.module';
-import { OrderTableComponent } from './order-table.component';
+import { MaterialModule } from "../../material/material.module";
+import { OrderTableComponent } from "./order-table.component";
 
 class AuthServiceStub {
   hasRole(val) {
     return false;
   }
 }
-class ConfigServiceStub { }
+class ConfigServiceStub {}
 class DocumentServiceStub {
   getOpenOrders(): Observable<Order[]> {
     return new Observable(observer => {
@@ -38,8 +38,8 @@ class DocumentServiceStub {
     });
   }
 }
-class PosServiceStub { }
-class UtilsServiceStub { }
+class PosServiceStub {}
+class UtilsServiceStub {}
 class WorkspaceServiceStub {
   showSpots() {
     return false;
@@ -48,9 +48,9 @@ class WorkspaceServiceStub {
     return true;
   }
 }
-class PaymentServiceStub { }
+class PaymentServiceStub {}
 
-describe('OrderTableComponent', () => {
+describe("OrderTableComponent", () => {
   let component: OrderTableComponent;
   let fixture: ComponentFixture<OrderTableComponent>;
 
@@ -69,15 +69,14 @@ describe('OrderTableComponent', () => {
         { provide: PaymentService, useClass: PaymentServiceStub },
         { provide: PosService, useClass: PosServiceStub },
         { provide: UtilsService, useClass: UtilsServiceStub },
-        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub }
       ],
       declarations: [
         OrderTableComponent,
         MockPipe(PosCurrencyPipe),
         MockPipe(TranslatePipe)
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -86,7 +85,7 @@ describe('OrderTableComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

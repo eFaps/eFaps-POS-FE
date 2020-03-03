@@ -1,18 +1,31 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { Router } from '@angular/router';
-import { AuthService, Company, CompanyService, User, UserService, WorkspaceService } from '@efaps/pos-library';
-import { TranslateService } from '@ngx-translate/core';
-import { globalCacheBusterNotifier } from 'ngx-cacheable';
-import { LocalStorage } from 'ngx-store';
-import { Subscription } from 'rxjs';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatSlideToggleChange } from "@angular/material/slide-toggle";
+import { Router } from "@angular/router";
+import {
+  AuthService,
+  Company,
+  CompanyService,
+  User,
+  UserService,
+  WorkspaceService
+} from "@efaps/pos-library";
+import { TranslateService } from "@ngx-translate/core";
+import { globalCacheBusterNotifier } from "ngx-cacheable";
+import { LocalStorage } from "ngx-store";
+import { Subscription } from "rxjs";
 
 @Component({
   moduleId: module.id,
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
@@ -22,7 +35,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loading = false;
   hiddenUser = true;
   @LocalStorage() virtKeyboard = false;
-  @ViewChild('pwd') pwdField: ElementRef;
+  @ViewChild("pwd") pwdField: ElementRef;
 
   showCompanySelection = false;
 
@@ -34,7 +47,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private workspaceService: WorkspaceService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
-    private translateService: TranslateService) {
+    private translateService: TranslateService
+  ) {
     globalCacheBusterNotifier.next();
   }
 
@@ -45,57 +59,60 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.workspaceService.logout();
     if (this.companyService.hasCompany()) {
       this.showCompanySelection = false;
-      this.subscription.add(this.userService.getUsers().subscribe(data => this.users = data));
-      this.subscription.add(this.companyService.getCompanies()
-        .subscribe(
-          {
-            next: companies => this.companies = companies
-          }
-        ));
+      this.subscription.add(
+        this.userService.getUsers().subscribe(data => (this.users = data))
+      );
+      this.subscription.add(
+        this.companyService.getCompanies().subscribe({
+          next: companies => (this.companies = companies)
+        })
+      );
     } else {
-      this.subscription.add(this.companyService.getCompanies()
-        .subscribe(
-          {
-            next: companies => {
-              this.companies = companies;
-              if (companies.length > 1) {
-                this.showCompanySelection = true;
-              } else {
-                this.subscription.add(this.userService.getUsers()
-                  .subscribe(data => this.users = data));
-              }
+      this.subscription.add(
+        this.companyService.getCompanies().subscribe({
+          next: companies => {
+            this.companies = companies;
+            if (companies.length > 1) {
+              this.showCompanySelection = true;
+            } else {
+              this.subscription.add(
+                this.userService
+                  .getUsers()
+                  .subscribe(data => (this.users = data))
+              );
             }
           }
-        ));
+        })
+      );
     }
   }
 
   createForm() {
     this.loginForm = this.fb.group({
-      userName: ['', Validators.required],
-      password: ['', Validators.required],
+      userName: ["", Validators.required],
+      password: ["", Validators.required]
     });
   }
 
-
   login() {
-    if (this.loginForm.status === 'INVALID') {
-      this.openSnackBar('LOGIN.INVALIDFORM');
+    if (this.loginForm.status === "INVALID") {
+      this.openSnackBar("LOGIN.INVALIDFORM");
     } else {
       this.loading = true;
-      this.authService.login(this.loginForm.value.userName, this.loginForm.value.password)
+      this.authService
+        .login(this.loginForm.value.userName, this.loginForm.value.password)
         .subscribe({
           next: result => {
             if (result === true) {
-              this.router.navigate(['/']);
+              this.router.navigate(["/"]);
             } else {
-              this.openSnackBar('LOGIN.401');
+              this.openSnackBar("LOGIN.401");
               this.loading = false;
             }
           },
           error: error => {
             if (error.status && error.status === 401) {
-              this.openSnackBar('LOGIN.401');
+              this.openSnackBar("LOGIN.401");
             }
           }
         });
@@ -104,7 +121,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   openSnackBar(key: string) {
     const msg = this.translateService.instant(key);
-    this.snackBar.open(msg, '', {
+    this.snackBar.open(msg, "", {
       duration: 3000
     });
   }
@@ -126,7 +143,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.users = [];
     this.companyService.setCurrentCompany(company);
     this.showCompanySelection = false;
-    this.userService.getUsers().subscribe(data => this.users = data);
+    this.userService.getUsers().subscribe(data => (this.users = data));
   }
 
   showCompanies() {

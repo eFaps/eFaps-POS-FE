@@ -1,24 +1,24 @@
-import { HttpClientModule } from '@angular/common/http';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from "@angular/common/http";
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ReactiveFormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   CollectService,
   MsgService,
   PaymentService,
-  Collector,
-} from '@efaps/pos-library';
-import { TranslatePipe } from '@ngx-translate/core';
-import { MockComponent, MockPipe } from 'ng-mocks';
-import { Observable } from 'rxjs';
+  Collector
+} from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
+import { MockComponent, MockPipe } from "ng-mocks";
+import { Observable } from "rxjs";
 
-import { MaterialModule } from '../../material/material.module';
-import { KeypadComponent } from '../../shared/keypad/keypad.component';
-import { AutoComponent } from './auto.component';
+import { MaterialModule } from "../../material/material.module";
+import { KeypadComponent } from "../../shared/keypad/keypad.component";
+import { AutoComponent } from "./auto.component";
 
 class CollectServiceStub {
   getCollectors(): Observable<Collector[]> {
-    return new Observable()
+    return new Observable();
   }
 }
 class PaymentServiceStub {
@@ -33,9 +33,9 @@ class PaymentServiceStub {
   });
 }
 
-class MsgServiceStub { }
+class MsgServiceStub {}
 
-describe('AutoComponent', () => {
+describe("AutoComponent", () => {
   let component: AutoComponent;
   let fixture: ComponentFixture<AutoComponent>;
 
@@ -45,20 +45,19 @@ describe('AutoComponent', () => {
         BrowserAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
-        HttpClientModule,
+        HttpClientModule
       ],
       providers: [
         { provide: MsgService, useClass: MsgServiceStub },
         { provide: CollectService, useClass: CollectServiceStub },
-        { provide: PaymentService, useClass: PaymentServiceStub },
+        { provide: PaymentService, useClass: PaymentServiceStub }
       ],
       declarations: [
         AutoComponent,
         MockPipe(TranslatePipe),
         MockComponent(KeypadComponent)
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -67,7 +66,7 @@ describe('AutoComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

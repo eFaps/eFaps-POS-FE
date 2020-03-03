@@ -1,13 +1,19 @@
-import { HttpClientModule } from '@angular/common/http';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
-import { PosConfigToken, PosCurrencyPipe, PosService, ProductService, SecurePipe } from '@efaps/pos-library';
-import { MockPipe } from 'ng-mocks';
-import { Observable } from 'rxjs/Observable';
+import { HttpClientModule } from "@angular/common/http";
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterTestingModule } from "@angular/router/testing";
+import {
+  PosConfigToken,
+  PosCurrencyPipe,
+  PosService,
+  ProductService,
+  SecurePipe
+} from "@efaps/pos-library";
+import { MockPipe } from "ng-mocks";
+import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from '../../material/material.module';
-import { ProductGridComponent } from './product-grid.component';
+import { MaterialModule } from "../../material/material.module";
+import { ProductGridComponent } from "./product-grid.component";
 
 class PosServiceStub {
   currentOrder = new Observable(observer => {
@@ -25,7 +31,7 @@ class ProductServiceStub {
   }
 }
 
-describe('ProductgridComponent', () => {
+describe("ProductgridComponent", () => {
   let component: ProductGridComponent;
   let fixture: ComponentFixture<ProductGridComponent>;
 
@@ -35,7 +41,7 @@ describe('ProductgridComponent', () => {
         BrowserAnimationsModule,
         MaterialModule,
         RouterTestingModule,
-        HttpClientModule,
+        HttpClientModule
       ],
       providers: [
         { provide: PosConfigToken, useValue: {} },
@@ -47,8 +53,7 @@ describe('ProductgridComponent', () => {
         MockPipe(PosCurrencyPipe),
         MockPipe(SecurePipe)
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -57,7 +62,7 @@ describe('ProductgridComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

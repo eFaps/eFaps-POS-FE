@@ -1,13 +1,13 @@
-import { ContactsModule } from './contacts.module';
+import { ContactsModule } from "./contacts.module";
 
-describe('ContactsModule', () => {
+describe("ContactsModule", () => {
   let contactsModule: ContactsModule;
 
   beforeEach(() => {
     contactsModule = new ContactsModule();
   });
 
-  it('should create an instance', () => {
+  it("should create an instance", () => {
     expect(contactsModule).toBeTruthy();
   });
 });

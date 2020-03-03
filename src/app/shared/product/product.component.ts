@@ -1,5 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from "@angular/core";
+import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import {
   InventoryEntry,
   InventoryService,
@@ -7,13 +7,13 @@ import {
   ProductRelation,
   ProductService,
   RelationEntry
-} from '@efaps/pos-library';
-import { PosService, WorkspaceService } from '@efaps/pos-library';
+} from "@efaps/pos-library";
+import { PosService, WorkspaceService } from "@efaps/pos-library";
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  selector: "app-product",
+  templateUrl: "./product.component.html",
+  styleUrls: ["./product.component.scss"]
 })
 export class ProductComponent implements OnInit {
   product: Product;
@@ -24,16 +24,20 @@ export class ProductComponent implements OnInit {
   inventory: InventoryEntry[] = [];
   relations: RelationEntry[] = [];
 
-  constructor(private productService: ProductService,
+  constructor(
+    private productService: ProductService,
     private posService: PosService,
     private workspaceService: WorkspaceService,
     private inventoryService: InventoryService,
-    @Inject(MAT_DIALOG_DATA) private data: any) { }
+    @Inject(MAT_DIALOG_DATA) private data: any
+  ) {}
 
   ngOnInit() {
     this.showInventory = this.workspaceService.showInventory();
     this.loading = true;
-    this.posService.currentCurrency.subscribe(_data => this.currentCurrency = _data);
+    this.posService.currentCurrency.subscribe(
+      _data => (this.currentCurrency = _data)
+    );
     this.productService.getProduct(this.data.oid).subscribe(_product => {
       this.product = _product;
       this.getCategories(_product.categoryOids);
@@ -45,12 +49,14 @@ export class ProductComponent implements OnInit {
 
   getRelations(_productRelations: ProductRelation[]) {
     for (const relation of _productRelations) {
-      this.productService.getProduct(relation.productOid).subscribe(_product => {
-        this.relations.push({
-          label: relation.label,
-          product: _product
+      this.productService
+        .getProduct(relation.productOid)
+        .subscribe(_product => {
+          this.relations.push({
+            label: relation.label,
+            product: _product
+          });
         });
-      });
     }
   }
 
@@ -64,9 +70,11 @@ export class ProductComponent implements OnInit {
 
   getInventory(_productOid: string) {
     if (this.showInventory) {
-      this.inventoryService.getInventory4Product(_productOid).subscribe(_entry => {
-        _entry.forEach(inv => this.inventory.push(inv));
-      });
+      this.inventoryService
+        .getInventory4Product(_productOid)
+        .subscribe(_entry => {
+          _entry.forEach(inv => this.inventory.push(inv));
+        });
     }
   }
 }

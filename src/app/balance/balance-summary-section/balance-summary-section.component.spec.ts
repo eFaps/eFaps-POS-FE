@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { BalanceSummarySectionComponent } from './balance-summary-section.component';
+import { BalanceSummarySectionComponent } from "./balance-summary-section.component";
 
-describe('BalanceSummarySectionComponent', () => {
+describe("BalanceSummarySectionComponent", () => {
   let component: BalanceSummarySectionComponent;
   let fixture: ComponentFixture<BalanceSummarySectionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BalanceSummarySectionComponent ]
-    })
-    .compileComponents();
+      declarations: [BalanceSummarySectionComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -27,7 +26,7 @@ describe('BalanceSummarySectionComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

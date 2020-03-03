@@ -1,15 +1,19 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatTabChangeEvent } from '@angular/material/tabs';
-import { PosService, ProductService, WorkspaceService } from '@efaps/pos-library';
-import { Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { MatTabChangeEvent } from "@angular/material/tabs";
+import {
+  PosService,
+  ProductService,
+  WorkspaceService
+} from "@efaps/pos-library";
+import { Subscription } from "rxjs";
 
-import { AbstractProductSelector } from '../abstract-product-selector';
+import { AbstractProductSelector } from "../abstract-product-selector";
 
 @Component({
-  selector: 'app-product-grid',
-  templateUrl: './product-grid.component.html',
-  styleUrls: ['./product-grid.component.scss']
+  selector: "app-product-grid",
+  templateUrl: "./product-grid.component.html",
+  styleUrls: ["./product-grid.component.scss"]
 })
 export class ProductGridComponent extends AbstractProductSelector
   implements OnInit, OnDestroy {
@@ -20,20 +24,24 @@ export class ProductGridComponent extends AbstractProductSelector
 
   //size = 'small';
   //size = 'medium' | big;
-  size = 'large';
+  size = "large";
   showPrices = true;
   private subscription$ = new Subscription();
 
-  constructor(productService: ProductService, posService: PosService,
-    dialog: MatDialog, private workspaceService: WorkspaceService) {
+  constructor(
+    productService: ProductService,
+    posService: PosService,
+    dialog: MatDialog,
+    private workspaceService: WorkspaceService
+  ) {
     super(productService, posService, dialog);
   }
 
   ngOnInit() {
     super.ngOnInit();
-    this.subscription$.add(this.productService.getPosCategories()
-      .subscribe({
-        next: _categories => this.categories = _categories
+    this.subscription$.add(
+      this.productService.getPosCategories().subscribe({
+        next: _categories => (this.categories = _categories)
       })
     );
 
@@ -41,11 +49,15 @@ export class ProductGridComponent extends AbstractProductSelector
       next: workspace => {
         if (workspace) {
           this.showPrices = workspace.gridShowPrice;
-          this.size = workspace.gridSize ? workspace.gridSize.toLowerCase() : 'large';
+          this.size = workspace.gridSize
+            ? workspace.gridSize.toLowerCase()
+            : "large";
           if (this.showPrices) {
-            this.subscription$.add(this.posService.currentCurrency.subscribe({
-              next: currency => this.currentCurrency = currency
-            }));
+            this.subscription$.add(
+              this.posService.currentCurrency.subscribe({
+                next: currency => (this.currentCurrency = currency)
+              })
+            );
           }
         }
       }

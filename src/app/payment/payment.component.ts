@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTabGroup } from '@angular/material/tabs';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatTabGroup } from "@angular/material/tabs";
+import { Router } from "@angular/router";
 import {
   Balance,
   BalanceService,
@@ -18,26 +18,27 @@ import {
   PrintService,
   Receipt,
   Ticket,
-  WorkspaceService,
-} from '@efaps/pos-library';
-import { TranslateService } from '@ngx-translate/core';
-import { LocalStorage } from 'ngx-store';
-import { PartialObserver, Subscription } from 'rxjs';
+  WorkspaceService
+} from "@efaps/pos-library";
+import { TranslateService } from "@ngx-translate/core";
+import { LocalStorage } from "ngx-store";
+import { PartialObserver, Subscription } from "rxjs";
 
-import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
-import { DocumentComponent } from '../shared/document/document.component';
-import { PrintDialogComponent } from '../shared/print-dialog/print-dialog.component';
-import { DiscountComponent } from './discount/discount.component';
-import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
+import { ConfirmDialogComponent } from "../shared/confirm-dialog/confirm-dialog.component";
+import { DocumentComponent } from "../shared/document/document.component";
+import { PrintDialogComponent } from "../shared/print-dialog/print-dialog.component";
+import { DiscountComponent } from "./discount/discount.component";
+import { SuccessDialogComponent } from "./success-dialog/success-dialog.component";
 
 @Component({
-  selector: 'app-payment',
-  templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.scss']
+  selector: "app-payment",
+  templateUrl: "./payment.component.html",
+  styleUrls: ["./payment.component.scss"]
 })
 export class PaymentComponent implements OnInit, OnDestroy {
   @ViewChild(MatTabGroup, { static: true }) tabGroup: MatTabGroup;
-  @ViewChild(DocumentComponent, { static: true }) documentComponent: DocumentComponent;
+  @ViewChild(DocumentComponent, { static: true })
+  documentComponent: DocumentComponent;
   @LocalStorage() selectedPaymentTypeItem: number = 0;
   DocumentType = DocumentType;
   PaymentType = PaymentType;
@@ -57,7 +58,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
   allowPrintPreliminary = true;
   private printTicket = false;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private translateService: TranslateService,
     private workspaceService: WorkspaceService,
     public paymentService: PaymentService,
@@ -65,29 +67,47 @@ export class PaymentComponent implements OnInit, OnDestroy {
     private balanceService: BalanceService,
     private printService: PrintService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar) {
-  }
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {
-    this.subscriptions$.add(this.paymentService.currentDocument.subscribe(_doc => {
-      this.document = _doc;
-      this.documentComponent.document = _doc;
-    }));
-    this.subscriptions$.add(this.paymentService.currentPayments.subscribe(_payments => this.payments = _payments));
-    this.subscriptions$.add(this.balanceService.currentBalance.subscribe(_balance => this.balance = _balance));
-    this.subscriptions$.add(this.paymentService.currentTotal.subscribe(_total => {
-      this.total = _total;
-      this.change = this.document ? _total - this.document.crossTotal : _total;
-    }));
-    this.subscriptions$.add(this.workspaceService.currentWorkspace.subscribe(_data => {
-      this.workspaceOid = _data.oid;
-      this.allowPrintPreliminary = _data.printCmds.some(x => x.target === 'PRELIMINARY');
-      this.printTicket = _data.printCmds.some(x => x.target === 'TICKET');
-      this.docTypes = [];
-      _data.docTypes.forEach((_value) => {
-        this.docTypes.push(_value.toString());
-      });
-    }));
+    this.subscriptions$.add(
+      this.paymentService.currentDocument.subscribe(_doc => {
+        this.document = _doc;
+        this.documentComponent.document = _doc;
+      })
+    );
+    this.subscriptions$.add(
+      this.paymentService.currentPayments.subscribe(
+        _payments => (this.payments = _payments)
+      )
+    );
+    this.subscriptions$.add(
+      this.balanceService.currentBalance.subscribe(
+        _balance => (this.balance = _balance)
+      )
+    );
+    this.subscriptions$.add(
+      this.paymentService.currentTotal.subscribe(_total => {
+        this.total = _total;
+        this.change = this.document
+          ? _total - this.document.crossTotal
+          : _total;
+      })
+    );
+    this.subscriptions$.add(
+      this.workspaceService.currentWorkspace.subscribe(_data => {
+        this.workspaceOid = _data.oid;
+        this.allowPrintPreliminary = _data.printCmds.some(
+          x => x.target === "PRELIMINARY"
+        );
+        this.printTicket = _data.printCmds.some(x => x.target === "TICKET");
+        this.docTypes = [];
+        _data.docTypes.forEach(_value => {
+          this.docTypes.push(_value.toString());
+        });
+      })
+    );
   }
 
   ngOnDestroy() {
@@ -97,12 +117,22 @@ export class PaymentComponent implements OnInit, OnDestroy {
   validate() {
     let ret = true;
     if (DocumentType.INVOICE === this.docType && this.contact == null) {
-      this.snackBar.open(this.translateService.instant('PAYMENT.NOCONTACTMSG'), '', { duration: 3000 });
+      this.snackBar.open(
+        this.translateService.instant("PAYMENT.NOCONTACTMSG"),
+        "",
+        { duration: 3000 }
+      );
       ret = false;
-    } else if (DocumentType.RECEIPT === this.docType
-      && this.contact == null
-      && this.document.crossTotal > 700) {
-      this.snackBar.open(this.translateService.instant('PAYMENT.NOCONTACTMSG'), '', { duration: 3000 });
+    } else if (
+      DocumentType.RECEIPT === this.docType &&
+      this.contact == null &&
+      this.document.crossTotal > 700
+    ) {
+      this.snackBar.open(
+        this.translateService.instant("PAYMENT.NOCONTACTMSG"),
+        "",
+        { duration: 3000 }
+      );
       ret = false;
     }
     return ret;
@@ -112,8 +142,10 @@ export class PaymentComponent implements OnInit, OnDestroy {
     if (this.validate()) {
       if (this.change !== 0) {
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-          width: '300px',
-          data: { title: this.translateService.instant('PAYMENT.CONFIRM-CLOSE') }
+          width: "300px",
+          data: {
+            title: this.translateService.instant("PAYMENT.CONFIRM-CLOSE")
+          }
         });
         dialogRef.afterClosed().subscribe(result => {
           if (result) {
@@ -144,7 +176,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
       netTotal: this.document.netTotal,
       crossTotal: this.document.crossTotal,
       taxes: this.document.taxes,
-      contactOid: this.contact ? (this.contact.oid ? this.contact.oid : this.contact.id) : null,
+      contactOid: this.contact
+        ? this.contact.oid
+          ? this.contact.oid
+          : this.contact.id
+        : null,
       workspaceOid: this.workspaceOid,
       balanceOid: this.balance.oid ? this.balance.oid : this.balance.id,
       discount: this.document.discount
@@ -152,41 +188,53 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
     switch (this.docType) {
       case DocumentType.RECEIPT:
-        this.busy = this.documentService.createReceipt(this.document.id, payable)
+        this.busy = this.documentService
+          .createReceipt(this.document.id, payable)
           .subscribe(this.getObserver<Receipt>(DocumentType.RECEIPT));
         break;
       case DocumentType.INVOICE:
-        this.busy = this.documentService.createInvoice(this.document.id, payable)
+        this.busy = this.documentService
+          .createInvoice(this.document.id, payable)
           .subscribe(this.getObserver<Invoice>(DocumentType.INVOICE));
         break;
       case DocumentType.TICKET:
-        this.busy = this.documentService.createTicket(this.document.id, payable)
+        this.busy = this.documentService
+          .createTicket(this.document.id, payable)
           .subscribe(this.getObserver<Ticket>(DocumentType.TICKET));
         break;
     }
   }
 
-  private getObserver<T extends Document>(type: DocumentType): PartialObserver<T> {
+  private getObserver<T extends Document>(
+    type: DocumentType
+  ): PartialObserver<T> {
     return {
       next: doc => {
-        this.router.navigate(['/pos']);
+        this.router.navigate(["/pos"]);
         this.showSuccess(doc, type);
         this.paymentService.reset();
       },
       error: response => {
         if (response && response.error && response.error.status) {
-          this.snackBar.open(this.translateService.instant('PAYMENT.' + response.error.status), '', { duration: 3000 });
+          this.snackBar.open(
+            this.translateService.instant("PAYMENT." + response.error.status),
+            "",
+            { duration: 3000 }
+          );
         } else {
-          this.snackBar.open(this.translateService.instant('PAYMENT.UNKNOWNERROR'), '', { duration: 3000 });
+          this.snackBar.open(
+            this.translateService.instant("PAYMENT.UNKNOWNERROR"),
+            "",
+            { duration: 3000 }
+          );
         }
       }
-    }
+    };
   }
-
 
   showSuccess(document: Document, docType: DocumentType) {
     this.dialog.open(SuccessDialogComponent, {
-      width: '450px',
+      width: "450px",
       disableClose: false,
       data: {
         document: document,
@@ -235,14 +283,17 @@ export class PaymentComponent implements OnInit, OnDestroy {
   }
 
   showDiscount() {
-    if ('discount' in this.document) {
-      this.dialog.open(DiscountComponent, {
-        data: this.document
-      }).afterClosed().subscribe({
-        next: () => {
-          this.paymentService.calculateTotals(this.payments);
-        }
-      });
+    if ("discount" in this.document) {
+      this.dialog
+        .open(DiscountComponent, {
+          data: this.document
+        })
+        .afterClosed()
+        .subscribe({
+          next: () => {
+            this.paymentService.calculateTotals(this.payments);
+          }
+        });
     }
   }
 }

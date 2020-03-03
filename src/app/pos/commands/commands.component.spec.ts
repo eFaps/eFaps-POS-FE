@@ -1,13 +1,17 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
-import { PaymentService, PosService, WorkspaceService } from '@efaps/pos-library';
-import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
-import { MockDirective, MockPipe } from 'ng-mocks';
-import { Observable } from 'rxjs/Observable';
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterTestingModule } from "@angular/router/testing";
+import {
+  PaymentService,
+  PosService,
+  WorkspaceService
+} from "@efaps/pos-library";
+import { TranslateDirective, TranslatePipe } from "@ngx-translate/core";
+import { MockDirective, MockPipe } from "ng-mocks";
+import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from '../../material/material.module';
-import { CommandsComponent } from './commands.component';
+import { MaterialModule } from "../../material/material.module";
+import { CommandsComponent } from "./commands.component";
 
 class PosServiceStub {
   currentOrder = new Observable(observer => {
@@ -33,29 +37,24 @@ class WorkspaceServiceStub {
   });
 }
 
-describe('CommandsComponent', () => {
+describe("CommandsComponent", () => {
   let component: CommandsComponent;
   let fixture: ComponentFixture<CommandsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        MaterialModule,
-        RouterTestingModule
-      ],
+      imports: [BrowserAnimationsModule, MaterialModule, RouterTestingModule],
       providers: [
         { provide: PosService, useClass: PosServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
-        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub }
       ],
       declarations: [
         CommandsComponent,
         MockDirective(TranslateDirective),
-        MockPipe(TranslatePipe, (...args) => 'Hallo')
+        MockPipe(TranslatePipe, (...args) => "Hallo")
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -64,7 +63,7 @@ describe('CommandsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

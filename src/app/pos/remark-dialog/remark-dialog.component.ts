@@ -1,14 +1,14 @@
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Indication, Product } from '@efaps/pos-library';
+import { COMMA, ENTER } from "@angular/cdk/keycodes";
+import { Component, Inject, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { MatChipInputEvent } from "@angular/material/chips";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { Indication, Product } from "@efaps/pos-library";
 
 @Component({
-  selector: 'app-remark-dialog',
-  templateUrl: './remark-dialog.component.html',
-  styleUrls: ['./remark-dialog.component.scss']
+  selector: "app-remark-dialog",
+  templateUrl: "./remark-dialog.component.html",
+  styleUrls: ["./remark-dialog.component.scss"]
 })
 export class RemarkDialogComponent implements OnInit {
   remarkForm: FormGroup;
@@ -18,20 +18,22 @@ export class RemarkDialogComponent implements OnInit {
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private matDialogRef: MatDialogRef<RemarkDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Product) { }
+    @Inject(MAT_DIALOG_DATA) public data: Product
+  ) {}
 
   ngOnInit() {
     this.remarkForm = this.fb.group({
-      'remark': []
+      remark: []
     });
   }
 
   close() {
     const remarks = [];
     this.indications.forEach(ind => {
-      remarks.push(ind.value)
+      remarks.push(ind.value);
     });
     this.matDialogRef.close(remarks.join("\n"));
   }
@@ -49,13 +51,13 @@ export class RemarkDialogComponent implements OnInit {
     const value = event.value;
 
     // Add our fruit
-    if ((value || '').trim()) {
+    if ((value || "").trim()) {
       this.addIndication(value);
     }
 
     // Reset the input value
     if (input) {
-      input.value = '';
+      input.value = "";
     }
   }
 
@@ -67,6 +69,5 @@ export class RemarkDialogComponent implements OnInit {
     if (!this.indications.some(val => val.value === value)) {
       this.indications.push({ value: value });
     }
-
   }
 }

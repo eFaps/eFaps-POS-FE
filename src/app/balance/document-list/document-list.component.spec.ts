@@ -1,15 +1,15 @@
-import { HttpClientModule } from '@angular/common/http';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PosConfigToken, PosCurrencyPipe } from '@efaps/pos-library';
-import { TranslatePipe } from '@ngx-translate/core';
-import { MockPipe } from 'ng-mocks';
+import { HttpClientModule } from "@angular/common/http";
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ReactiveFormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { PosConfigToken, PosCurrencyPipe } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
+import { MockPipe } from "ng-mocks";
 
-import { MaterialModule } from '../../material/material.module';
-import { DocumentListComponent } from './document-list.component';
+import { MaterialModule } from "../../material/material.module";
+import { DocumentListComponent } from "./document-list.component";
 
-describe('DocumentListComponent', () => {
+describe("DocumentListComponent", () => {
   let component: DocumentListComponent;
   let fixture: ComponentFixture<DocumentListComponent>;
 
@@ -19,18 +19,15 @@ describe('DocumentListComponent', () => {
         ReactiveFormsModule,
         BrowserAnimationsModule,
         MaterialModule,
-        HttpClientModule,
+        HttpClientModule
       ],
-      providers: [
-        { provide: PosConfigToken, useValue: {} },
-      ],
+      providers: [{ provide: PosConfigToken, useValue: {} }],
       declarations: [
         DocumentListComponent,
         MockPipe(TranslatePipe),
         MockPipe(PosCurrencyPipe)
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -39,7 +36,7 @@ describe('DocumentListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

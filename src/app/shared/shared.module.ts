@@ -1,26 +1,26 @@
-import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PosLibraryModule } from '@efaps/pos-library';
-import { TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { MatKeyboardModule } from 'angular-onscreen-material-keyboard';
-import { NgBusyModule } from 'ng-busy';
-import { WebStorageModule } from 'ngx-store';
+import { CommonModule } from "@angular/common";
+import { HttpClient } from "@angular/common/http";
+import { NgModule } from "@angular/core";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { PosLibraryModule } from "@efaps/pos-library";
+import { TranslateModule } from "@ngx-translate/core";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { MatKeyboardModule } from "angular-onscreen-material-keyboard";
+import { NgBusyModule } from "ng-busy";
+import { WebStorageModule } from "ngx-store";
 
-import { environment } from '../../environments/environment';
-import { MaterialModule } from '../material/material.module';
-import { TranslateFileLoader } from '../util/translate-file-loader';
-import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { ContactComponent } from './contact/contact.component';
-import { DocumentComponent } from './document/document.component';
-import { ImageComponent } from './image/image.component';
-import { KeypadComponent } from './keypad/keypad.component';
-import { PrintDialogComponent } from './print-dialog/print-dialog.component';
-import { PrintDisplayComponent } from './print-display/print-display.component';
-import { ProductComponent } from './product/product.component';
+import { environment } from "../../environments/environment";
+import { MaterialModule } from "../material/material.module";
+import { TranslateFileLoader } from "../util/translate-file-loader";
+import { ConfirmDialogComponent } from "./confirm-dialog/confirm-dialog.component";
+import { ContactComponent } from "./contact/contact.component";
+import { DocumentComponent } from "./document/document.component";
+import { ImageComponent } from "./image/image.component";
+import { KeypadComponent } from "./keypad/keypad.component";
+import { PrintDialogComponent } from "./print-dialog/print-dialog.component";
+import { PrintDisplayComponent } from "./print-display/print-display.component";
+import { ProductComponent } from "./product/product.component";
 
 export function TranslateLoaderFactory(_httpClient: HttpClient) {
   if (environment.electron) {
@@ -41,7 +41,7 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     ReactiveFormsModule,
     TranslateModule,
     WebStorageModule,
-    PosLibraryModule,
+    PosLibraryModule
   ],
   declarations: [
     ConfirmDialogComponent,
@@ -51,7 +51,7 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     KeypadComponent,
     PrintDialogComponent,
     PrintDisplayComponent,
-    ProductComponent,
+    ProductComponent
   ],
   exports: [
     ContactComponent,
@@ -70,4 +70,4 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     ProductComponent
   ]
 })
-export class SharedModule { }
+export class SharedModule {}

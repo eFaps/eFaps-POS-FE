@@ -1,16 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { VirtKeyboardDirective } from '.';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { VirtKeyboardDirective } from ".";
 
 @NgModule({
-  declarations: [
-    VirtKeyboardDirective
-  ],
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    VirtKeyboardDirective
-  ]
+  declarations: [VirtKeyboardDirective],
+  imports: [CommonModule],
+  exports: [VirtKeyboardDirective]
 })
-export class ServicesModule { }
+export class ServicesModule {}

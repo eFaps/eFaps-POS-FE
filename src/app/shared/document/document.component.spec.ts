@@ -1,17 +1,22 @@
-import { HttpClientModule } from '@angular/common/http';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import { PosConfigToken, PosCurrencyPipe, PrintService, WorkspaceService } from '@efaps/pos-library';
-import { TranslatePipe } from '@ngx-translate/core';
-import { MockPipe } from 'ng-mocks';
-import { Observable } from 'rxjs/Observable';
+import { HttpClientModule } from "@angular/common/http";
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { Router } from "@angular/router";
+import { RouterTestingModule } from "@angular/router/testing";
+import {
+  PosConfigToken,
+  PosCurrencyPipe,
+  PrintService,
+  WorkspaceService
+} from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
+import { MockPipe } from "ng-mocks";
+import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from '../../material/material.module';
-import { DocumentComponent } from './document.component';
+import { MaterialModule } from "../../material/material.module";
+import { DocumentComponent } from "./document.component";
 
-const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+const routerSpy = jasmine.createSpyObj("Router", ["navigate"]);
 
 class WorkspaceServiceStub {
   currentWorkspace = new Observable(observer => {
@@ -20,9 +25,9 @@ class WorkspaceServiceStub {
     });
   });
 }
-class PrintServiceStub { }
+class PrintServiceStub {}
 
-describe('DocumentComponent', () => {
+describe("DocumentComponent", () => {
   let component: DocumentComponent;
   let fixture: ComponentFixture<DocumentComponent>;
 
@@ -32,7 +37,7 @@ describe('DocumentComponent', () => {
         BrowserAnimationsModule,
         MaterialModule,
         RouterTestingModule,
-        HttpClientModule,
+        HttpClientModule
       ],
       providers: [
         { provide: PosConfigToken, useValue: {} },
@@ -45,8 +50,7 @@ describe('DocumentComponent', () => {
         MockPipe(TranslatePipe),
         MockPipe(PosCurrencyPipe)
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -55,7 +59,7 @@ describe('DocumentComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

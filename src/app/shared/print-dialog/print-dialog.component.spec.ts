@@ -1,41 +1,35 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Observable } from 'rxjs/Observable';
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from '../../material/material.module';
-import { PrintService } from '@efaps/pos-library';
-import { PrintDialogComponent } from './print-dialog.component';
-import { MockComponent } from 'ng-mocks';
-import { PrintDisplayComponent } from '../print-display/print-display.component';
+import { MaterialModule } from "../../material/material.module";
+import { PrintService } from "@efaps/pos-library";
+import { PrintDialogComponent } from "./print-dialog.component";
+import { MockComponent } from "ng-mocks";
+import { PrintDisplayComponent } from "../print-display/print-display.component";
 
-class PrintServiceStub { }
+class PrintServiceStub {}
 
-describe('PrintDialogComponent', () => {
+describe("PrintDialogComponent", () => {
   let component: PrintDialogComponent;
   let fixture: ComponentFixture<PrintDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        MaterialModule
-      ],
+      imports: [BrowserAnimationsModule, MaterialModule],
       providers: [
         { provide: PrintService, useClass: PrintServiceStub },
         { provide: MatDialogRef, useValue: {} },
         {
-          provide: MAT_DIALOG_DATA, useValue: new Observable(observer => {
+          provide: MAT_DIALOG_DATA,
+          useValue: new Observable(observer => {
             observer.next([]);
           })
-        },
+        }
       ],
-      declarations: [
-        PrintDialogComponent,
-        MockComponent(PrintDisplayComponent)
-      ]
-    })
-      .compileComponents();
+      declarations: [PrintDialogComponent, MockComponent(PrintDisplayComponent)]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -44,7 +38,7 @@ describe('PrintDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

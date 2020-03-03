@@ -1,19 +1,19 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { MaterialModule } from '../material/material.module';
-import { SharedModule } from '../shared/shared.module';
-import { AutoComponent } from './auto/auto.component';
-import { CardComponent } from './card/card.component';
-import { CashComponent } from './cash/cash.component';
-import { DiscountComponent } from './discount/discount.component';
-import { FreeComponent } from './free/free.component';
-import { PaymentTypeComponent } from './payment-type/payment-type.component';
-import { PaymentComponent } from './payment.component';
-import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
-import { PaymentRoutingModule } from './payment-routing.module';
+import { MaterialModule } from "../material/material.module";
+import { SharedModule } from "../shared/shared.module";
+import { AutoComponent } from "./auto/auto.component";
+import { CardComponent } from "./card/card.component";
+import { CashComponent } from "./cash/cash.component";
+import { DiscountComponent } from "./discount/discount.component";
+import { FreeComponent } from "./free/free.component";
+import { PaymentTypeComponent } from "./payment-type/payment-type.component";
+import { PaymentComponent } from "./payment.component";
+import { SuccessDialogComponent } from "./success-dialog/success-dialog.component";
+import { PaymentRoutingModule } from "./payment-routing.module";
 
 @NgModule({
   imports: [
@@ -23,7 +23,7 @@ import { PaymentRoutingModule } from './payment-routing.module';
     MaterialModule,
     PaymentRoutingModule,
     SharedModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AutoComponent,
@@ -33,7 +33,7 @@ import { PaymentRoutingModule } from './payment-routing.module';
     FreeComponent,
     PaymentComponent,
     PaymentTypeComponent,
-    SuccessDialogComponent,
+    SuccessDialogComponent
   ],
   entryComponents: [
     AutoComponent,
@@ -44,4 +44,4 @@ import { PaymentRoutingModule } from './payment-routing.module';
     SuccessDialogComponent
   ]
 })
-export class PaymentModule { }
+export class PaymentModule {}

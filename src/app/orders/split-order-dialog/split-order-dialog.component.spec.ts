@@ -1,16 +1,16 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PosService } from '@efaps/pos-library';
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { PosService } from "@efaps/pos-library";
 
-import { MaterialModule } from '../../material/material.module';
-import { SharedModule } from '../../shared/shared.module';
-import { SplitOrderDialogComponent } from './split-order-dialog.component';
+import { MaterialModule } from "../../material/material.module";
+import { SharedModule } from "../../shared/shared.module";
+import { SplitOrderDialogComponent } from "./split-order-dialog.component";
 
-class PosServiceStub { }
+class PosServiceStub {}
 
-describe('SplitOrderDialogComponent', () => {
+describe("SplitOrderDialogComponent", () => {
   let component: SplitOrderDialogComponent;
   let fixture: ComponentFixture<SplitOrderDialogComponent>;
 
@@ -25,17 +25,15 @@ describe('SplitOrderDialogComponent', () => {
       providers: [
         { provide: MatDialogRef, useValue: {} },
         {
-          provide: MAT_DIALOG_DATA, useValue: {
+          provide: MAT_DIALOG_DATA,
+          useValue: {
             items: []
           }
         },
         { provide: PosService, useClass: PosServiceStub }
       ],
-      declarations: [
-        SplitOrderDialogComponent
-      ]
-    })
-      .compileComponents();
+      declarations: [SplitOrderDialogComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -44,7 +42,7 @@ describe('SplitOrderDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

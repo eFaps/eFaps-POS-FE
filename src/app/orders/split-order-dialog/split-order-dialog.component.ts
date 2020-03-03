@@ -1,32 +1,50 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
-import { DocItem, DocStatus, Order, PosService } from '@efaps/pos-library';
+import { Component, Inject, OnInit } from "@angular/core";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MatTableDataSource } from "@angular/material/table";
+import { DocItem, DocStatus, Order, PosService } from "@efaps/pos-library";
 
 @Component({
-  selector: 'app-split-order-dialog',
-  templateUrl: './split-order-dialog.component.html',
-  styleUrls: ['./split-order-dialog.component.scss']
+  selector: "app-split-order-dialog",
+  templateUrl: "./split-order-dialog.component.html",
+  styleUrls: ["./split-order-dialog.component.scss"]
 })
 export class SplitOrderDialogComponent implements OnInit {
   originDataSource = new MatTableDataSource<DocItem>();
   targetDataSource = new MatTableDataSource<DocItem>();
-  originColumns = ['index', 'quantity', 'productDesc', 'crossUnitPrice', 'crossPrice', 'cmd'];
-  targetColumns = ['cmd', 'index', 'quantity', 'productDesc', 'crossUnitPrice', 'crossPrice'];
+  originColumns = [
+    "index",
+    "quantity",
+    "productDesc",
+    "crossUnitPrice",
+    "crossPrice",
+    "cmd"
+  ];
+  targetColumns = [
+    "cmd",
+    "index",
+    "quantity",
+    "productDesc",
+    "crossUnitPrice",
+    "crossPrice"
+  ];
   originOrder: Order;
   targetOrder: Order;
   saveable = false;
 
-  constructor(private posService: PosService,
+  constructor(
+    private posService: PosService,
     private dialogRef: MatDialogRef<SplitOrderDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
     this.originOrder = data;
   }
 
   ngOnInit() {
-    this.originDataSource.data = this.data.items.sort((a, b) => (a.index < b.index ? -1 : 1));
+    this.originDataSource.data = this.data.items.sort((a, b) =>
+      a.index < b.index ? -1 : 1
+    );
     this.targetOrder = {
-      type: 'ORDER',
+      type: "ORDER",
       id: null,
       oid: null,
       number: null,
@@ -103,7 +121,8 @@ export class SplitOrderDialogComponent implements OnInit {
     this.targetOrder = this.posService.calculateOrder(this.targetOrder);
     this.originDataSource.data = this.originOrder.items;
     this.targetDataSource.data = this.targetOrder.items;
-    this.saveable = this.originOrder.items.length > 0 && this.targetOrder.items.length > 0;
+    this.saveable =
+      this.originOrder.items.length > 0 && this.targetOrder.items.length > 0;
   }
 
   save() {

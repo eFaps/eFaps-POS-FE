@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   AuthService,
   ConfigService,
@@ -10,23 +10,23 @@ import {
   PosCurrencyPipe,
   PosService,
   UtilsService,
-  WorkspaceService,
-} from '@efaps/pos-library';
-import { TranslatePipe } from '@ngx-translate/core';
-import { MockComponent, MockPipe } from 'ng-mocks';
-import { Observable } from 'rxjs/Observable';
+  WorkspaceService
+} from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
+import { MockComponent, MockPipe } from "ng-mocks";
+import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from '../../material/material.module';
-import { KeypadComponent } from '../../shared/keypad/keypad.component';
-import { DiscountComponent } from './discount.component';
+import { MaterialModule } from "../../material/material.module";
+import { KeypadComponent } from "../../shared/keypad/keypad.component";
+import { DiscountComponent } from "./discount.component";
 
-class AuthServiceStub { }
-class ConfigServiceStub { }
-class DocumentServiceStub { }
-class PosServiceStub { }
+class AuthServiceStub {}
+class ConfigServiceStub {}
+class DocumentServiceStub {}
+class PosServiceStub {}
 class UtilsServiceStub {
   getCurrencySymbol(som) {
-    return 'PEN';
+    return "PEN";
   }
 }
 class PaymentServiceStub {
@@ -48,17 +48,13 @@ class WorkspaceServiceStub {
   });
 }
 
-describe('DiscountComponent', () => {
+describe("DiscountComponent", () => {
   let component: DiscountComponent;
   let fixture: ComponentFixture<DiscountComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        MaterialModule,
-        ReactiveFormsModule,
-      ],
+      imports: [BrowserAnimationsModule, MaterialModule, ReactiveFormsModule],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },
@@ -68,7 +64,7 @@ describe('DiscountComponent', () => {
         { provide: PosService, useClass: PosServiceStub },
         { provide: UtilsService, useClass: UtilsServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
-        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub }
       ],
       declarations: [
         DiscountComponent,
@@ -76,8 +72,7 @@ describe('DiscountComponent', () => {
         MockPipe(PosCurrencyPipe),
         MockComponent(KeypadComponent)
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -86,7 +81,7 @@ describe('DiscountComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

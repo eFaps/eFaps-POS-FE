@@ -1,12 +1,12 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BalanceService, DocumentService } from '@efaps/pos-library';
-import { TranslatePipe } from '@ngx-translate/core';
-import { MockPipe } from 'ng-mocks';
-import { Observable } from 'rxjs';
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BalanceService, DocumentService } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
+import { MockPipe } from "ng-mocks";
+import { Observable } from "rxjs";
 
-import { MaterialModule } from '../../material/material.module';
-import { BalancePaymentListComponent } from './balance-payment-list.component';
+import { MaterialModule } from "../../material/material.module";
+import { BalancePaymentListComponent } from "./balance-payment-list.component";
 
 class BalanceServiceStub {
   currentBalance = new Observable(observer => {
@@ -22,26 +22,19 @@ class DocumentServiceStub {
   }
 }
 
-describe('BalancePaymentListComponent', () => {
+describe("BalancePaymentListComponent", () => {
   let component: BalancePaymentListComponent;
   let fixture: ComponentFixture<BalancePaymentListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        MaterialModule
-      ],
+      imports: [BrowserAnimationsModule, MaterialModule],
       providers: [
         { provide: DocumentService, useClass: DocumentServiceStub },
         { provide: BalanceService, useClass: BalanceServiceStub }
       ],
-      declarations: [
-        BalancePaymentListComponent,
-        MockPipe(TranslatePipe)
-      ]
-    })
-    .compileComponents();
+      declarations: [BalancePaymentListComponent, MockPipe(TranslatePipe)]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -50,7 +43,7 @@ describe('BalancePaymentListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,17 +1,17 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { ReactiveFormsModule } from "@angular/forms";
 
-import { MaterialModule } from '../material/material.module';
-import { SharedModule } from '../shared/shared.module';
-import { BaseSpotPickerComponent } from './base-spot-picker/base-spot-picker.component';
-import { ExtendedSpotPickerComponent } from './extended-spot-picker/extended-spot-picker.component';
-import { SelectOrderDialogComponent } from './select-order-dialog/select-order-dialog.component';
-import { SplitDialogComponent } from './split-dialog/split-dialog.component';
-import { SpotDialogComponent } from './spot-dialog/spot-dialog.component';
-import { SpotsRoutingModule } from './spots-routing.module';
-import { SpotsComponent } from './spots/spots.component';
+import { MaterialModule } from "../material/material.module";
+import { SharedModule } from "../shared/shared.module";
+import { BaseSpotPickerComponent } from "./base-spot-picker/base-spot-picker.component";
+import { ExtendedSpotPickerComponent } from "./extended-spot-picker/extended-spot-picker.component";
+import { SelectOrderDialogComponent } from "./select-order-dialog/select-order-dialog.component";
+import { SplitDialogComponent } from "./split-dialog/split-dialog.component";
+import { SpotDialogComponent } from "./spot-dialog/spot-dialog.component";
+import { SpotsRoutingModule } from "./spots-routing.module";
+import { SpotsComponent } from "./spots/spots.component";
 
 @NgModule({
   imports: [
@@ -20,7 +20,7 @@ import { SpotsComponent } from './spots/spots.component';
     MaterialModule,
     FlexLayoutModule,
     SharedModule,
-    SpotsRoutingModule,
+    SpotsRoutingModule
   ],
   declarations: [
     BaseSpotPickerComponent,
@@ -28,15 +28,13 @@ import { SpotsComponent } from './spots/spots.component';
     SelectOrderDialogComponent,
     SplitDialogComponent,
     SpotDialogComponent,
-    SpotsComponent,
+    SpotsComponent
   ],
   entryComponents: [
     SelectOrderDialogComponent,
     SplitDialogComponent,
-    SpotDialogComponent,
+    SpotDialogComponent
   ],
-  providers: [
-
-  ]
+  providers: []
 })
-export class SpotsModule { }
+export class SpotsModule {}

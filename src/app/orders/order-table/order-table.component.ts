@@ -1,11 +1,17 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSlideToggleChange } from "@angular/material/slide-toggle";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
+import { Router } from "@angular/router";
 import {
   DocStatus,
   DocumentService,
@@ -14,20 +20,20 @@ import {
   PaymentService,
   PosService,
   WorkspaceService
-} from '@efaps/pos-library';
-import { AuthService, Roles } from '@efaps/pos-library';
-import { LocalStorage } from 'ngx-store';
-import { Subscription } from 'rxjs';
-import { debounceTime, map } from 'rxjs/operators';
+} from "@efaps/pos-library";
+import { AuthService, Roles } from "@efaps/pos-library";
+import { LocalStorage } from "ngx-store";
+import { Subscription } from "rxjs";
+import { debounceTime, map } from "rxjs/operators";
 
-import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
-import { ReassignDialogComponent } from '../reassign-dialog/reassign-dialog.component';
-import { SplitOrderDialogComponent } from '../split-order-dialog/split-order-dialog.component';
+import { ConfirmDialogComponent } from "../../shared/confirm-dialog/confirm-dialog.component";
+import { ReassignDialogComponent } from "../reassign-dialog/reassign-dialog.component";
+import { SplitOrderDialogComponent } from "../split-order-dialog/split-order-dialog.component";
 
 @Component({
-  selector: 'app-order-table',
-  templateUrl: './order-table.component.html',
-  styleUrls: ['./order-table.component.scss']
+  selector: "app-order-table",
+  templateUrl: "./order-table.component.html",
+  styleUrls: ["./order-table.component.scss"]
 })
 export class OrderTableComponent implements OnInit, OnDestroy {
   DocStatus = DocStatus;
@@ -41,7 +47,8 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   allowPayment = false;
   @LocalStorage() lazyLoadOrders = false;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private authService: AuthService,
     private documentService: DocumentService,
     private posService: PosService,
@@ -49,21 +56,22 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     private paymentService: PaymentService,
     private fb: FormBuilder,
     private dialog: MatDialog,
-    private changeDetectorRefs: ChangeDetectorRef) { }
+    private changeDetectorRefs: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.filterForm = this.fb.group({
-      'filter': [],
-      'preload': []
+      filter: [],
+      preload: []
     });
     this.displayedColumns = this.workspaceService.showSpots()
-      ? ['number', 'date', 'total', 'status', 'spot', 'cmd']
-      : ['number', 'date', 'total', 'status', 'cmd'];
+      ? ["number", "date", "total", "status", "spot", "cmd"]
+      : ["number", "date", "total", "status", "cmd"];
     this.isAdmin = this.authService.hasRole(Roles.ADMIN);
     this.allowPayment = this.workspaceService.allowPayment();
 
-    this.formCtrlSub = this.filterForm.valueChanges.pipe(
-      debounceTime(500))
+    this.formCtrlSub = this.filterForm.valueChanges
+      .pipe(debounceTime(500))
       .subscribe(newValue => this.applyFilter(newValue.filter));
     this.initTable();
   }
@@ -74,19 +82,19 @@ export class OrderTableComponent implements OnInit, OnDestroy {
 
   pos(_order: Order) {
     this.posService.setOrder(_order);
-    this.router.navigate(['/pos']);
+    this.router.navigate(["/pos"]);
   }
 
   payment(_order: Order) {
-    const order = Object.assign({ type: 'ORDER' }, _order);
+    const order = Object.assign({ type: "ORDER" }, _order);
     this.paymentService.updateDocument(order);
-    this.router.navigate(['/payment']);
+    this.router.navigate(["/payment"]);
   }
 
   delete(_order: Order) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: '250px',
-      data: { title: 'Are you sure?' }
+      width: "250px",
+      data: { title: "Are you sure?" }
     });
 
     dialogRef.afterClosed().subscribe(_result => {
@@ -102,9 +110,9 @@ export class OrderTableComponent implements OnInit, OnDestroy {
 
   split(order: Order) {
     const dialogRef = this.dialog.open(SplitOrderDialogComponent, {
-      width: '90%',
-      minHeight: '200',
-      maxHeight: '90vh',
+      width: "90%",
+      minHeight: "200",
+      maxHeight: "90vh",
       data: order
     });
     dialogRef.afterClosed().subscribe(_result => {
@@ -116,9 +124,9 @@ export class OrderTableComponent implements OnInit, OnDestroy {
 
   reassign(order: Order) {
     const dialogRef = this.dialog.open(ReassignDialogComponent, {
-      width: '90%',
-      minHeight: '200',
-      maxHeight: '90vh',
+      width: "90%",
+      minHeight: "200",
+      maxHeight: "90vh",
       data: order
     });
     dialogRef.afterClosed().subscribe(_result => {
@@ -135,17 +143,20 @@ export class OrderTableComponent implements OnInit, OnDestroy {
 
   applyFilter(_filterValue: string) {
     if (this.lazyLoadOrders) {
-      this.documentService.findOrders(_filterValue)
+      this.documentService
+        .findOrders(_filterValue)
         .pipe(
-          map(orders => orders.map(
-            order => {
-              return this.getOrderWrapper(orders, order)
+          map(orders =>
+            orders.map(order => {
+              return this.getOrderWrapper(orders, order);
             })
-          )).subscribe(orderWrappers => {
-            this.dataSource.data = orderWrappers;
-            this.dataSource.sort = this.sort;
-            this.dataSource.paginator = this.paginator;
-          });
+          )
+        )
+        .subscribe(orderWrappers => {
+          this.dataSource.data = orderWrappers;
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+        });
     } else {
       _filterValue = _filterValue.trim();
       _filterValue = _filterValue.toLowerCase();
@@ -165,23 +176,28 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     if (this.lazyLoadOrders) {
       this.dataSource.data = [];
     } else {
-      this.documentService.getOpenOrders()
+      this.documentService
+        .getOpenOrders()
         .pipe(
-          map(orders => orders.map(
-            order => {
-              return this.getOrderWrapper(orders, order)
+          map(orders =>
+            orders.map(order => {
+              return this.getOrderWrapper(orders, order);
             })
-          )).subscribe(orderWrappers => {
-            this.dataSource.data = orderWrappers;
-            this.dataSource.sortingDataAccessor = (item, property) => {
-              switch (property) {
-                case 'spot': return item.spotLabel;
-                default: return item[property];
-              }
-            };
-            this.dataSource.sort = this.sort;
-            this.dataSource.paginator = this.paginator;
-          });
+          )
+        )
+        .subscribe(orderWrappers => {
+          this.dataSource.data = orderWrappers;
+          this.dataSource.sortingDataAccessor = (item, property) => {
+            switch (property) {
+              case "spot":
+                return item.spotLabel;
+              default:
+                return item[property];
+            }
+          };
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+        });
     }
   }
 
@@ -189,23 +205,32 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     if (!order.spot) {
       return "";
     }
-    const relatedOrders = orders.filter(item => {
-      return item.spot && item.spot.id == order.spot.id;
-    }).sort((o1, o2) => {
-      if (o1.number < o2.number) { return -1; }
-      if (o1.number > o2.number) { return 1; }
-      return 0;
-    });
+    const relatedOrders = orders
+      .filter(item => {
+        return item.spot && item.spot.id == order.spot.id;
+      })
+      .sort((o1, o2) => {
+        if (o1.number < o2.number) {
+          return -1;
+        }
+        if (o1.number > o2.number) {
+          return 1;
+        }
+        return 0;
+      });
     if (relatedOrders.length < 2) {
-      return order.spot.label
+      return order.spot.label;
     }
     var index = relatedOrders.indexOf(order);
-    return `${order.spot.label} - ${index + 1}`
+    return `${order.spot.label} - ${index + 1}`;
   }
 
   private evalMultiple(orders: Order[], order: Order): boolean {
-    return order.spot && orders.filter(item => {
-      return item.spot && item.spot.id == order.spot.id;
-    }).length > 1;
+    return (
+      order.spot &&
+      orders.filter(item => {
+        return item.spot && item.spot.id == order.spot.id;
+      }).length > 1
+    );
   }
 }

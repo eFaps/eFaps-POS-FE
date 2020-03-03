@@ -1,11 +1,11 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
-import { PosService, WorkspaceService } from '@efaps/pos-library';
-import { Observable } from 'rxjs/Observable';
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterTestingModule } from "@angular/router/testing";
+import { PosService, WorkspaceService } from "@efaps/pos-library";
+import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from '../material/material.module';
-import { WorkspaceComponent } from './workspace.component';
+import { MaterialModule } from "../material/material.module";
+import { WorkspaceComponent } from "./workspace.component";
 
 class PosServiceStub {
   getPoss() {
@@ -23,24 +23,19 @@ class WorkspaceServiceStub {
   }
 }
 
-describe('WorkspaceComponent', () => {
+describe("WorkspaceComponent", () => {
   let component: WorkspaceComponent;
   let fixture: ComponentFixture<WorkspaceComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        MaterialModule,
-        RouterTestingModule
-      ],
+      imports: [BrowserAnimationsModule, MaterialModule, RouterTestingModule],
       providers: [
         { provide: PosService, useClass: PosServiceStub },
-        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub }
       ],
-      declarations: [ WorkspaceComponent ]
-    })
-    .compileComponents();
+      declarations: [WorkspaceComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -49,7 +44,7 @@ describe('WorkspaceComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

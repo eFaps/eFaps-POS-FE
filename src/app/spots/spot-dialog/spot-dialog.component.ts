@@ -1,12 +1,12 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Spot, SpotConfig, SpotService } from '@efaps/pos-library';
-import { Subscription } from 'rxjs';
+import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { Spot, SpotConfig, SpotService } from "@efaps/pos-library";
+import { Subscription } from "rxjs";
 
 @Component({
-  selector: 'app-spot-dialog',
-  templateUrl: './spot-dialog.component.html',
-  styleUrls: ['./spot-dialog.component.scss']
+  selector: "app-spot-dialog",
+  templateUrl: "./spot-dialog.component.html",
+  styleUrls: ["./spot-dialog.component.scss"]
 })
 export class SpotDialogComponent implements OnInit, OnDestroy {
   spots: Spot[] = [];
@@ -14,14 +14,19 @@ export class SpotDialogComponent implements OnInit, OnDestroy {
   origin: Spot;
   private subscription$ = new Subscription();
 
-  constructor(private dialogRef: MatDialogRef<SpotDialogComponent>,
+  constructor(
+    private dialogRef: MatDialogRef<SpotDialogComponent>,
     private spotService: SpotService,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
   ngOnInit() {
     if (this.data === SpotConfig.EXTENDED) {
       this.spotService.getLayout().subscribe({
-        next: layout => layout.floors.forEach(floor => { this.spots = this.spots.concat(floor.spots) })
+        next: layout =>
+          layout.floors.forEach(floor => {
+            this.spots = this.spots.concat(floor.spots);
+          })
       });
     } else {
       this.spotService.getSpots().subscribe(_spots => {

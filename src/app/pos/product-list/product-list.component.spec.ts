@@ -1,14 +1,20 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService, InventoryService, PosService, ProductService, WorkspaceService } from '@efaps/pos-library';
-import { MockComponent } from 'ng-mocks';
-import { Observable } from 'rxjs/Observable';
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ReactiveFormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterTestingModule } from "@angular/router/testing";
+import {
+  AuthService,
+  InventoryService,
+  PosService,
+  ProductService,
+  WorkspaceService
+} from "@efaps/pos-library";
+import { MockComponent } from "ng-mocks";
+import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from '../../material/material.module';
-import { ProductComponent } from '../../shared/product/product.component';
-import { ProductListComponent } from './product-list.component';
+import { MaterialModule } from "../../material/material.module";
+import { ProductComponent } from "../../shared/product/product.component";
+import { ProductListComponent } from "./product-list.component";
 
 class PosServiceStub {
   currentOrder = new Observable(observer => {
@@ -27,7 +33,7 @@ class WorkspaceServiceStub {
 class InventoryServiceStub {}
 class AuthServiceStub {}
 
-describe('ProductListComponent', () => {
+describe("ProductListComponent", () => {
   let component: ProductListComponent;
   let fixture: ComponentFixture<ProductListComponent>;
 
@@ -46,12 +52,8 @@ describe('ProductListComponent', () => {
         { provide: InventoryService, useClass: InventoryServiceStub },
         { provide: AuthService, useClass: AuthServiceStub }
       ],
-      declarations: [
-        MockComponent(ProductComponent),
-        ProductListComponent
-      ]
-    })
-    .compileComponents();
+      declarations: [MockComponent(ProductComponent), ProductListComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -60,7 +62,7 @@ describe('ProductListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

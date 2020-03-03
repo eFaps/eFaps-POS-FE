@@ -1,13 +1,13 @@
-import { SpotsModule } from './spots.module';
+import { SpotsModule } from "./spots.module";
 
-describe('SpotsModule', () => {
+describe("SpotsModule", () => {
   let spotsModule: SpotsModule;
 
   beforeEach(() => {
     spotsModule = new SpotsModule();
   });
 
-  it('should create an instance', () => {
+  it("should create an instance", () => {
     expect(spotsModule).toBeTruthy();
   });
 });

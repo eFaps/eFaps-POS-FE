@@ -1,10 +1,17 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { Hotkey, HotkeysService } from 'angular2-hotkeys';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output
+} from "@angular/core";
+import { Hotkey, HotkeysService } from "angular2-hotkeys";
 
 @Component({
-  selector: 'app-keypad',
-  templateUrl: './keypad.component.html',
-  styleUrls: ['./keypad.component.scss']
+  selector: "app-keypad",
+  templateUrl: "./keypad.component.html",
+  styleUrls: ["./keypad.component.scss"]
 })
 export class KeypadComponent implements OnInit, OnDestroy {
   @Input() showTopClear: boolean = true;
@@ -13,18 +20,20 @@ export class KeypadComponent implements OnInit, OnDestroy {
   @Output() number = new EventEmitter<string>();
   private hotkeys: Hotkey[] = [];
 
-  constructor(private hotkeysService: HotkeysService) { }
+  constructor(private hotkeysService: HotkeysService) {}
 
   ngOnInit() {
     for (var i = 0; i < 10; i++) {
-      const existing = this.hotkeysService.get('' + i);
+      const existing = this.hotkeysService.get("" + i);
       if (existing) {
         this.hotkeysService.remove(existing);
       }
-      this.hotkeys.push(new Hotkey('' + i, (event: KeyboardEvent): boolean => {
-        this.clickBtn(event.key);
-        return false;
-      }));
+      this.hotkeys.push(
+        new Hotkey("" + i, (event: KeyboardEvent): boolean => {
+          this.clickBtn(event.key);
+          return false;
+        })
+      );
     }
     this.hotkeys.forEach(hotKey => {
       this.hotkeysService.add(hotKey);

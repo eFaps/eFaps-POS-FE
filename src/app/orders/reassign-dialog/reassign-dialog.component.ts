@@ -1,48 +1,63 @@
-import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DocItem, DocumentService, Order, PosService } from '@efaps/pos-library';
-import { Observable, Subscription, forkJoin } from 'rxjs';
+import { Component, Inject, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import {
+  DocItem,
+  DocumentService,
+  Order,
+  PosService
+} from "@efaps/pos-library";
+import { Observable, Subscription, forkJoin } from "rxjs";
 
-import { ReassignItemComponent } from '../reassign-item/reassign-item.component';
+import { ReassignItemComponent } from "../reassign-item/reassign-item.component";
 
 @Component({
-  selector: 'app-reassign-dialog',
-  templateUrl: './reassign-dialog.component.html',
-  styleUrls: ['./reassign-dialog.component.scss']
+  selector: "app-reassign-dialog",
+  templateUrl: "./reassign-dialog.component.html",
+  styleUrls: ["./reassign-dialog.component.scss"]
 })
 export class ReassignDialogComponent implements OnInit, OnDestroy {
   orders: Order[] = [];
   orderLeft: Order;
   orderRight: Order;
 
-  @ViewChild('left')
+  @ViewChild("left")
   private left: ReassignItemComponent;
-  @ViewChild('right')
+  @ViewChild("right")
   private right: ReassignItemComponent;
 
   private subscription = new Subscription();
 
-  constructor(private documentService: DocumentService,
+  constructor(
+    private documentService: DocumentService,
     private posService: PosService,
     private dialogRef: MatDialogRef<ReassignDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: any) { }
+    @Inject(MAT_DIALOG_DATA) private data: any
+  ) {}
 
   ngOnInit() {
-    this.subscription.add(this.documentService.getOpenOrders().subscribe({
-      next: orders => {
-        if (orders) {
-          this.orders = orders.filter(item => {
-            return item.spot && item.spot.id == this.data.spot.id;
-          }).sort((o1, o2) => {
-            if (o1.number < o2.number) { return -1; }
-            if (o1.number > o2.number) { return 1; }
-            return 0;
-          });
-          this.orderLeft = this.orders[0];
-          this.orderRight = this.orders[1];
+    this.subscription.add(
+      this.documentService.getOpenOrders().subscribe({
+        next: orders => {
+          if (orders) {
+            this.orders = orders
+              .filter(item => {
+                return item.spot && item.spot.id == this.data.spot.id;
+              })
+              .sort((o1, o2) => {
+                if (o1.number < o2.number) {
+                  return -1;
+                }
+                if (o1.number > o2.number) {
+                  return 1;
+                }
+                return 0;
+              });
+            this.orderLeft = this.orders[0];
+            this.orderRight = this.orders[1];
+          }
         }
-      }
-    }));
+      })
+    );
   }
 
   ngOnDestroy() {
@@ -74,7 +89,9 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
 
   private move(item: DocItem, origin: Order, target: Order) {
     const index: number = origin.items.indexOf(item);
-    const targetIndex = target.items.findIndex(it => it.product.oid === item.product.oid);
+    const targetIndex = target.items.findIndex(
+      it => it.product.oid === item.product.oid
+    );
     if (targetIndex !== -1) {
       target.items[targetIndex].quantity++;
       if (item.quantity === 1) {
@@ -105,9 +122,9 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
       }
     }
     var idx = 1;
-    origin.items.forEach(item => item.index = idx++)
+    origin.items.forEach(item => (item.index = idx++));
     var idx = 1;
-    target.items.forEach(item => item.index = idx++)
+    target.items.forEach(item => (item.index = idx++));
 
     // reload in child
     this.left.order = this.orderLeft;
@@ -116,12 +133,10 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
 
   save() {
     const updates: Observable<Order>[] = [];
-    this.orders.forEach(
-      order => {
-        this.posService.setOrder(order);
-        updates.push(this.posService.updateOrder(order));
-      }
-    );
+    this.orders.forEach(order => {
+      this.posService.setOrder(order);
+      updates.push(this.posService.updateOrder(order));
+    });
     this.posService.reset();
     forkJoin(...updates).subscribe({
       next: _ => {

@@ -1,13 +1,13 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
-import { TranslatePipe } from '@ngx-translate/core';
-import { MockPipe } from 'ng-mocks';
-import { Observable } from 'rxjs/Observable';
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterTestingModule } from "@angular/router/testing";
+import { TranslatePipe } from "@ngx-translate/core";
+import { MockPipe } from "ng-mocks";
+import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from '../../material/material.module';
-import { PosCurrencyPipe, PosService } from '@efaps/pos-library';
-import { TotalsComponent } from './totals.component';
+import { MaterialModule } from "../../material/material.module";
+import { PosCurrencyPipe, PosService } from "@efaps/pos-library";
+import { TotalsComponent } from "./totals.component";
 
 class PosServiceStub {
   currentOrder = new Observable(observer => {
@@ -17,7 +17,7 @@ class PosServiceStub {
     observer.next({});
   });
   currentCurrency = new Observable(observer => {
-    observer.next('');
+    observer.next("");
   });
   currentTaxes = new Observable(observer => {
     observer.next(new Map());
@@ -30,27 +30,20 @@ class PosServiceStub {
   });
 }
 
-describe('TotalsComponent', () => {
+describe("TotalsComponent", () => {
   let component: TotalsComponent;
   let fixture: ComponentFixture<TotalsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        MaterialModule,
-        RouterTestingModule
-      ],
-      providers: [
-        { provide: PosService, useClass: PosServiceStub },
-      ],
+      imports: [BrowserAnimationsModule, MaterialModule, RouterTestingModule],
+      providers: [{ provide: PosService, useClass: PosServiceStub }],
       declarations: [
         TotalsComponent,
         MockPipe(PosCurrencyPipe),
-        MockPipe(TranslatePipe),
+        MockPipe(TranslatePipe)
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -59,7 +52,7 @@ describe('TotalsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

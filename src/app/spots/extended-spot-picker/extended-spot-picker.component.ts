@@ -1,9 +1,9 @@
-import { CdkDragEnd } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { CdkDragEnd } from "@angular/cdk/drag-drop";
+import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { DomSanitizer } from "@angular/platform-browser";
+import { Router } from "@angular/router";
 import {
   DocStatus,
   DocumentService,
@@ -14,33 +14,35 @@ import {
   SpotConfig,
   SpotService,
   SpotsLayout
-} from '@efaps/pos-library';
-import { forkJoin } from 'rxjs';
+} from "@efaps/pos-library";
+import { forkJoin } from "rxjs";
 
-import { AbstractSpotPicker } from '../abstract-spot-picker';
-import { SplitDialogComponent } from '../split-dialog/split-dialog.component';
+import { AbstractSpotPicker } from "../abstract-spot-picker";
+import { SplitDialogComponent } from "../split-dialog/split-dialog.component";
 
 @Component({
-  selector: 'app-extended-spot-picker',
-  templateUrl: './extended-spot-picker.component.html',
-  styleUrls: ['./extended-spot-picker.component.scss']
+  selector: "app-extended-spot-picker",
+  templateUrl: "./extended-spot-picker.component.html",
+  styleUrls: ["./extended-spot-picker.component.scss"]
 })
-export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements OnInit {
+export class ExtendedSpotPickerComponent extends AbstractSpotPicker
+  implements OnInit {
   spotsLayout: SpotsLayout;
-  floors: Floor[] = []
+  floors: Floor[] = [];
   editMode = false;
   splitMode = false;
   sidenav = false;
   images = new Map<String, String>();
 
-  constructor(router: Router,
+  constructor(
+    router: Router,
     posService: PosService,
     documentService: DocumentService,
     dialog: MatDialog,
     private spotService: SpotService,
     private imageService: ImageService,
     private sanitizer: DomSanitizer,
-    private snackBar: MatSnackBar,
+    private snackBar: MatSnackBar
   ) {
     super(router, posService, documentService, dialog);
   }
@@ -61,7 +63,9 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements O
 
   image(floor: Floor) {
     if (this.images.has(floor.imageOid)) {
-      return this.sanitizer.bypassSecurityTrustStyle("url('" + this.images.get(floor.imageOid) + "')");
+      return this.sanitizer.bypassSecurityTrustStyle(
+        "url('" + this.images.get(floor.imageOid) + "')"
+      );
     }
     return "url('')";
   }
@@ -77,11 +81,13 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements O
   selectSpot(spot: Spot) {
     if (this.splitMode) {
       if (spot.orders && spot.orders.length > 0) {
-        const dialogRef = this.dialog.open(SplitDialogComponent, { data: spot });
+        const dialogRef = this.dialog.open(SplitDialogComponent, {
+          data: spot
+        });
         dialogRef.afterClosed().subscribe({
           next: quantity => {
             this.splitMode = false;
-            const orders2create = []
+            const orders2create = [];
             for (let i = spot.orders.length; i < quantity; i++) {
               const order = {
                 id: null,
@@ -105,15 +111,15 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements O
                   next: layout => {
                     this.spotsLayout = layout;
                     this.floors = layout.floors;
-                    this.router.navigate(['/spots']);
+                    this.router.navigate(["/spots"]);
                   }
                 });
               }
-            })
+            });
           }
         });
       } else {
-        this.snackBar.open('No selecionable', '', {
+        this.snackBar.open("No selecionable", "", {
           duration: 3000
         });
       }
@@ -136,7 +142,7 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements O
     while (i > 9) {
       i = i - 10;
     }
-    return (i * 60) + "px";
+    return i * 60 + "px";
   }
 
   getTop(i: number) {
@@ -145,6 +151,6 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker implements O
       i = i - 10;
       mul++;
     }
-    return (mul * 60) + "px";
+    return mul * 60 + "px";
   }
 }

@@ -1,35 +1,31 @@
-import { HttpClientModule } from '@angular/common/http';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { MatDialogRef } from '@angular/material/dialog';
-import { PosConfigToken, ProductService, Category } from '@efaps/pos-library';
+import { HttpClientModule } from "@angular/common/http";
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { MatDialogRef } from "@angular/material/dialog";
+import { PosConfigToken, ProductService, Category } from "@efaps/pos-library";
 
-import { CategorySelectComponent } from './category-select.component';
-import { Observable } from 'rxjs';
+import { CategorySelectComponent } from "./category-select.component";
+import { Observable } from "rxjs";
 
 class ProductServiceStub {
   getCategories(): Observable<Category[]> {
-    return new Observable()
+    return new Observable();
   }
 }
 
-describe('CategorySelectComponent', () => {
+describe("CategorySelectComponent", () => {
   let component: CategorySelectComponent;
   let fixture: ComponentFixture<CategorySelectComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientModule
-      ],
+      imports: [HttpClientModule],
       providers: [
-
         { provide: MatDialogRef, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
         { provide: ProductService, useClass: ProductServiceStub }
       ],
       declarations: [CategorySelectComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -38,7 +34,7 @@ describe('CategorySelectComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,18 +1,25 @@
-import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Payment, PaymentService, PaymentType, UtilsService } from '@efaps/pos-library';
+import { Component } from "@angular/core";
+import { FormBuilder } from "@angular/forms";
+import {
+  Payment,
+  PaymentService,
+  PaymentType,
+  UtilsService
+} from "@efaps/pos-library";
 
-import { PaymentForm } from '../payment-form';
+import { PaymentForm } from "../payment-form";
 
 @Component({
-  selector: 'app-cash',
-  templateUrl: './cash.component.html',
-  styleUrls: ['./cash.component.scss']
+  selector: "app-cash",
+  templateUrl: "./cash.component.html",
+  styleUrls: ["./cash.component.scss"]
 })
 export class CashComponent extends PaymentForm {
-
-  constructor(paymentService: PaymentService, utilsService: UtilsService,
-    fb: FormBuilder) {
+  constructor(
+    paymentService: PaymentService,
+    utilsService: UtilsService,
+    fb: FormBuilder
+  ) {
     super(paymentService, utilsService, fb);
   }
 
@@ -21,8 +28,9 @@ export class CashComponent extends PaymentForm {
   }
 
   addNumber(_number: number) {
-    const amount = this.utilsService.parse(this.paymentForm.value.amount) + _number;
+    const amount =
+      this.utilsService.parse(this.paymentForm.value.amount) + _number;
     const amountStr = this.utilsService.toString(amount);
-    this.paymentForm.patchValue({ 'amount': amountStr });
+    this.paymentForm.patchValue({ amount: amountStr });
   }
 }

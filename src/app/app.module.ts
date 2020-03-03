@@ -1,28 +1,28 @@
-import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PosLibraryModule } from '@efaps/pos-library';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { AngularSvgIconModule, SERVER_URL } from 'angular-svg-icon';
-import { HotkeyModule } from 'angular2-hotkeys';
+import { LiveAnnouncer } from "@angular/cdk/a11y";
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule
+} from "@angular/common/http";
+import { NgModule } from "@angular/core";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { PosLibraryModule } from "@efaps/pos-library";
+import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import { AngularSvgIconModule, SERVER_URL } from "angular-svg-icon";
+import { HotkeyModule } from "angular2-hotkeys";
 
-import { environment } from '../environments/environment';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { MaterialModule } from './material/material.module';
-import { ErrorInterceptor, SameHeightDirective } from './services/index';
-import { SharedModule, TranslateLoaderFactory } from './shared/shared.module';
-import { ThemePickerComponent } from './theme-picker/theme-picker.component';
+import { environment } from "../environments/environment";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { MaterialModule } from "./material/material.module";
+import { ErrorInterceptor, SameHeightDirective } from "./services/index";
+import { SharedModule, TranslateLoaderFactory } from "./shared/shared.module";
+import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SameHeightDirective,
-    ThemePickerComponent
-  ],
+  declarations: [AppComponent, SameHeightDirective, ThemePickerComponent],
   imports: [
     BrowserAnimationsModule,
     HttpClientModule,
@@ -38,7 +38,7 @@ import { ThemePickerComponent } from './theme-picker/theme-picker.component';
       socketUrl: "/socket"
     }),
     HotkeyModule.forRoot({
-      cheatSheetDescription: 'Presentar',
+      cheatSheetDescription: "Presentar"
     }),
     TranslateModule.forRoot({
       loader: {
@@ -56,7 +56,7 @@ import { ThemePickerComponent } from './theme-picker/theme-picker.component';
     },
     {
       provide: SERVER_URL,
-      useValue: environment.electron ? __dirname : '',
+      useValue: environment.electron ? __dirname : ""
     },
     // temporal woraround to deactivate the LiveAnnouncer
     {
@@ -64,8 +64,6 @@ import { ThemePickerComponent } from './theme-picker/theme-picker.component';
       useValue: {}
     }
   ],
-  bootstrap: [
-    AppComponent
-  ]
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,31 +1,28 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import { MaterialModule } from '../../material/material.module';
-import { ConfirmDialogComponent } from './confirm-dialog.component';
+import { MaterialModule } from "../../material/material.module";
+import { ConfirmDialogComponent } from "./confirm-dialog.component";
 
-describe('ConfirmDialogComponent', () => {
+describe("ConfirmDialogComponent", () => {
   let component: ConfirmDialogComponent;
   let fixture: ComponentFixture<ConfirmDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        MaterialModule
-      ],
+      imports: [BrowserAnimationsModule, MaterialModule],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         {
-          provide: MAT_DIALOG_DATA, useValue: {
-            oid: '132.456'
+          provide: MAT_DIALOG_DATA,
+          useValue: {
+            oid: "132.456"
           }
-        },
+        }
       ],
       declarations: [ConfirmDialogComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -34,7 +31,7 @@ describe('ConfirmDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
