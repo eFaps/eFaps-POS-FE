@@ -4,9 +4,7 @@ addons:
 language: node_js
 node_js:
   - node
-
-addons:
-  chrome: stable
+  - lts/*
 
 cache:
   directories:
