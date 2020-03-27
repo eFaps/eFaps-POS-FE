@@ -1,0 +1,12 @@
+<div class="wrapper">
+  <h1 i18n="@@taxpayer-query">Taxpayer Registry Query</h1>
+  <form [formGroup]="taxpayerForm">
+    <mat-form-field>
+      <input matInput placeholder="dd" formControlName="term" autocomplete="off">
+    </mat-form-field>
+    <mat-slide-toggle [checked]="nameSearch" (change)="setNameSearch()">
+      {{toggleLabel}}
+    </mat-slide-toggle>
+    <button mat-raised-button color="primary" type="button" i18n="@@search">Search</button>
+  </form>
+</div>
