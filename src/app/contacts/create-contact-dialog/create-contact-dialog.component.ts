@@ -2,7 +2,7 @@ import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { ContactService, IdentificationType } from "@efaps/pos-library";
+import { ContactService, IdentificationType, Taxpayer } from "@efaps/pos-library";
 import { LocalStorage } from "ngx-store";
 
 @Component({
@@ -86,4 +86,12 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  onTaxpayerQuery(taxpayer: Taxpayer) {
+    this.contactForm.patchValue({
+      idNumber: taxpayer.id,
+      name: taxpayer.name
+    })
+  }
+
 }

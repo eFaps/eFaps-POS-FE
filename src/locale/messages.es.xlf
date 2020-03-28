@@ -2,6 +2,30 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template" target-language="es">
     <body>
+      <trans-unit id="taxpayer-query" datatype="html">
+        <source>Taxpayer Registry Query</source>
+        <target>Consulta RUC</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/taxpayer-query/taxpayer-query.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="taxpayer-query-nameSearch-true" datatype="html">
+        <source>Search by Name</source>
+        <target>Buscar por nombre</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/taxpayer-query/taxpayer-query.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="taxpayer-query-nameSearch-false" datatype="html">
+        <source>Search by Taxpayer-ID</source>
+        <target>Buscar por R.U.C.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/taxpayer-query/taxpayer-query.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="pos" datatype="html">
         <source>Register</source>
         <target state="translated">Registrar ordenes</target>
@@ -528,6 +552,7 @@
       </trans-unit>
       <trans-unit id="amount" datatype="html">
         <source>Amount</source>
+        <target>Monto</target>
         <context-group purpose="location">
           <target>Monto</target>
           <context context-type="sourcefile">app/payment/discount/discount.component.html</context>

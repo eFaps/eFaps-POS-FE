@@ -107,7 +107,6 @@
                 "type": "anyComponentStyle",
                 "maximumWarning": "6kb"
               }],
-              "i18nMissingTranslation": "warn",
               "localize": [
                 "es"
               ]

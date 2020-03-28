@@ -21,6 +21,8 @@ import { KeypadComponent } from "./keypad/keypad.component";
 import { PrintDialogComponent } from "./print-dialog/print-dialog.component";
 import { PrintDisplayComponent } from "./print-display/print-display.component";
 import { ProductComponent } from "./product/product.component";
+import { TaxpayerQueryComponent } from './taxpayer-query/taxpayer-query.component';
+import { ServicesModule } from '../services/services.module';
 
 export function TranslateLoaderFactory(_httpClient: HttpClient) {
   if (environment.electron) {
@@ -41,7 +43,8 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     ReactiveFormsModule,
     TranslateModule,
     WebStorageModule,
-    PosLibraryModule
+    PosLibraryModule,
+    ServicesModule
   ],
   declarations: [
     ConfirmDialogComponent,
@@ -51,13 +54,15 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     KeypadComponent,
     PrintDialogComponent,
     PrintDisplayComponent,
-    ProductComponent
+    ProductComponent,
+    TaxpayerQueryComponent
   ],
   exports: [
     ContactComponent,
     DocumentComponent,
     KeypadComponent,
     PrintDisplayComponent,
+    TaxpayerQueryComponent,
     NgBusyModule,
     PosLibraryModule,
     TranslateModule,

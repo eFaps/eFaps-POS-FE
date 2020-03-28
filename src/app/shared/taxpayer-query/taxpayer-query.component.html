@@ -2,11 +2,12 @@
   <h1 i18n="@@taxpayer-query">Taxpayer Registry Query</h1>
   <form [formGroup]="taxpayerForm">
     <mat-form-field>
-      <input matInput placeholder="dd" formControlName="term" autocomplete="off">
+      <input matInput placeholder="{{nameSearch ? 'Nombre' : 'R.U.C.' }}" formControlName="term" autocomplete="off">
     </mat-form-field>
     <mat-slide-toggle [checked]="nameSearch" (change)="setNameSearch()">
-      {{toggleLabel}}
+      <span *ngIf="nameSearch" i18n="@@taxpayer-query-nameSearch-false">Search by Name</span>
+      <span *ngIf="!nameSearch" i18n="@@taxpayer-query-nameSearch-true">Search by Taxpayer-ID</span>
     </mat-slide-toggle>
-    <button mat-raised-button color="primary" type="button" i18n="@@search">Search</button>
+    <button mat-raised-button color="primary" type="button" i18n="@@search" (click)="query()">Search</button>
   </form>
 </div>

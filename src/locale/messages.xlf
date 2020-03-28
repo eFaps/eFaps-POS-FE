@@ -1,7 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en" datatype="plaintext" original="ng2.template">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="taxpayer-query" datatype="html">
+        <source>Taxpayer Registry Query</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/taxpayer-query/taxpayer-query.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="taxpayer-query-nameSearch-true" datatype="html">
+        <source>Search by Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/taxpayer-query/taxpayer-query.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="taxpayer-query-nameSearch-false" datatype="html">
+        <source>Search by Taxpayer-ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/taxpayer-query/taxpayer-query.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="search" datatype="html">
+        <source>Search</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/taxpayer-query/taxpayer-query.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/balance/document-list/document-list.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/contacts/contact-table/contact-table.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="pos" datatype="html">
         <source>Register</source>
         <context-group purpose="location">
@@ -249,17 +285,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
           <context context-type="linenumber">30</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="search" datatype="html">
-        <source>Search</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/document-list/document-list.component.html</context>
-          <context context-type="linenumber">4</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/contacts/contact-table/contact-table.component.html</context>
-          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="addcontact" datatype="html">
