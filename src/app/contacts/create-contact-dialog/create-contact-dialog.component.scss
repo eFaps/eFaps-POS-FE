@@ -1,4 +1,8 @@
 form {
   display: flex;
   flex-direction: column;
+
+  app-taxpayer-query {
+    margin-bottom: 5px;
+  }
 }

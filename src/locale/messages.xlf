@@ -9,14 +9,14 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="taxpayer-query-nameSearch-true" datatype="html">
+      <trans-unit id="taxpayer-query-nameSearch-false" datatype="html">
         <source>Search by Name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/taxpayer-query/taxpayer-query.component.html</context>
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="taxpayer-query-nameSearch-false" datatype="html">
+      <trans-unit id="taxpayer-query-nameSearch-true" datatype="html">
         <source>Search by Taxpayer-ID</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/taxpayer-query/taxpayer-query.component.html</context>
@@ -285,6 +285,27 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
           <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="documentIdType" datatype="html">
+        <source>Document Type</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/contacts/create-contact-dialog/create-contact-dialog.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="documentId" datatype="html">
+        <source>ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/contacts/create-contact-dialog/create-contact-dialog.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contactName" datatype="html">
+        <source>Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/contacts/create-contact-dialog/create-contact-dialog.component.html</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="addcontact" datatype="html">

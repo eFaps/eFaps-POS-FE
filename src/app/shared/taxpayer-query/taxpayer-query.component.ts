@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { FormGroup, FormBuilder } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { TaxpayerService, Taxpayer } from "@efaps/pos-library";
 
 @Component({
@@ -20,12 +20,21 @@ export class TaxpayerQueryComponent implements OnInit {
 
   ngOnInit(): void {
     this.taxpayerForm = this.fb.group({
-      term: [""]
+      term: ["", [Validators.required, Validators.pattern("[0-9]{11}")]]
     });
   }
 
   setNameSearch() {
     this.nameSearch = !this.nameSearch;
+    if (this.nameSearch) {
+      this.taxpayerForm
+        .get("term")
+        .setValidators([Validators.required, Validators.minLength(3)]);
+    } else {
+      this.taxpayerForm
+        .get("term")
+        .setValidators([Validators.required, Validators.pattern("[0-9]{11}")]);
+    }
   }
 
   query() {

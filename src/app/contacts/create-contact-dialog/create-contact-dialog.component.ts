@@ -30,7 +30,7 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.contactForm = this.fb.group({
-      idType: ["", [Validators.required]],
+      idType: ["-1", [Validators.required]],
       idNumber: ["", [Validators.required]],
       name: ["", Validators.required]
     });
@@ -92,6 +92,10 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
       idNumber: taxpayer.id,
       name: taxpayer.name
     })
+  }
+
+  get showTaxpayerQuery() {
+    return this.contactForm.value.idType == IdentificationType.RUC
   }
 
 }

@@ -1,13 +1,15 @@
 <div class="wrapper">
   <h1 i18n="@@taxpayer-query">Taxpayer Registry Query</h1>
   <form [formGroup]="taxpayerForm">
-    <mat-form-field>
-      <input matInput placeholder="{{nameSearch ? 'Nombre' : 'R.U.C.' }}" formControlName="term" autocomplete="off">
-    </mat-form-field>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="{{nameSearch ? 'Nombre' : 'R.U.C.' }}" formControlName="term" autocomplete="off">
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="button" i18n="@@search" (click)="query()" [disabled]="taxpayerForm.invalid">Search</button>
+    </div>
     <mat-slide-toggle [checked]="nameSearch" (change)="setNameSearch()">
       <span *ngIf="nameSearch" i18n="@@taxpayer-query-nameSearch-false">Search by Name</span>
       <span *ngIf="!nameSearch" i18n="@@taxpayer-query-nameSearch-true">Search by Taxpayer-ID</span>
     </mat-slide-toggle>
-    <button mat-raised-button color="primary" type="button" i18n="@@search" (click)="query()">Search</button>
   </form>
 </div>
