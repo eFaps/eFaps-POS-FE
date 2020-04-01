@@ -7,7 +7,7 @@
     ]
   },
   "angularCompilerOptions": {
-    "enableIvy": false
+    "enableIvy": true
   },
   "files": [
     "main.ts",
