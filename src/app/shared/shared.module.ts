@@ -21,8 +21,8 @@ import { KeypadComponent } from "./keypad/keypad.component";
 import { PrintDialogComponent } from "./print-dialog/print-dialog.component";
 import { PrintDisplayComponent } from "./print-display/print-display.component";
 import { ProductComponent } from "./product/product.component";
-import { TaxpayerQueryComponent } from './taxpayer-query/taxpayer-query.component';
-import { ServicesModule } from '../services/services.module';
+import { TaxpayerQueryComponent } from "./taxpayer-query/taxpayer-query.component";
+import { ServicesModule } from "../services/services.module";
 
 export function TranslateLoaderFactory(_httpClient: HttpClient) {
   if (environment.electron) {

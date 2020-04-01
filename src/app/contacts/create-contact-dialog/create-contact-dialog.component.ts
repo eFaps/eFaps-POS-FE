@@ -2,7 +2,11 @@ import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { ContactService, IdentificationType, Taxpayer } from "@efaps/pos-library";
+import {
+  ContactService,
+  IdentificationType,
+  Taxpayer
+} from "@efaps/pos-library";
 import { LocalStorage } from "ngx-store";
 
 @Component({
@@ -88,14 +92,18 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
   }
 
   onTaxpayerQuery(taxpayer: Taxpayer) {
-    this.contactForm.patchValue({
-      idNumber: taxpayer.id,
-      name: taxpayer.name
-    })
+    if (taxpayer) {
+      this.contactForm.patchValue({
+        idNumber: taxpayer.id,
+        name: taxpayer.name
+      });
+    } else {
+      const msg = (<any> $localize) `:@@taxpayerQuery-empty:No results for the given ID`
+      this.snackBar.open(msg, null, { duration: 3000 });
+    }
   }
 
   get showTaxpayerQuery() {
-    return this.contactForm.value.idType == IdentificationType.RUC
+    return this.contactForm.value.idType == IdentificationType.RUC;
   }
-
 }

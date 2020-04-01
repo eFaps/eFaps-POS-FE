@@ -591,6 +591,10 @@
           <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="taxpayerQuery-empty">
+        <source>No results for the given ID</source>
+        <target>No encontramos resultados por este R.U.C. </target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
