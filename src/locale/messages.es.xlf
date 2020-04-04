@@ -595,6 +595,14 @@
         <source>No results for the given ID</source>
         <target>No encontramos resultados por este R.U.C. </target>
       </trans-unit>
+      <trans-unit id="taxpayer-ID">
+        <source>Taxpayer-ID </source>
+        <target>R.U.C.</target>
+      </trans-unit>
+      <trans-unit id="taxpayer-Name">
+        <source>Name</source>
+        <target>Nombre </target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

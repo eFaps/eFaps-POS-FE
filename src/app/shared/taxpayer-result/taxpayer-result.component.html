@@ -2,11 +2,11 @@
   <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
   <mat-table #table [dataSource]="dataSource">
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef i18n>Taxpayer-ID </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef i18n="@@taxpayer-ID">Taxpayer-ID </mat-header-cell>
       <mat-cell *matCellDef="let item"> {{item.id}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef i18n>Name</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef i18n="@@taxpayer-Name">Name</mat-header-cell>
       <mat-cell *matCellDef="let item"> {{item.name}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="cmd">
