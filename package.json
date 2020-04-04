@@ -61,8 +61,8 @@
     "ngx-store": "https://github.com/jan-moxter/ngx-store/releases/download/3.0.0/ngx-store-3.0.0.tgz",
     "parse-decimal-number": "^1.0.0",
     "prettier": "^1.19.1",
-    "rxjs": "^6.5.4",
-    "rxjs-compat": "^6.5.4",
+    "rxjs": "^6.5.5",
+    "rxjs-compat": "^6.5.5",
     "tslib": "^1.10.0",
     "zone.js": "^0.10.3"
   },
