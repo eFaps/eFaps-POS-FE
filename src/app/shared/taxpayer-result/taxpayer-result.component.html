@@ -1,0 +1,16 @@
+<div class="taxpayer-result-container mat-elevation-z8">
+  <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef i18n>Taxpayer-ID </mat-header-cell>
+      <mat-cell *matCellDef="let item"> {{item.id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef i18n>Name</mat-header-cell>
+      <mat-cell *matCellDef="let item"> {{item.name}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+   <mat-paginator [pageSizeOptions]="[5,10,20]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+</div>
