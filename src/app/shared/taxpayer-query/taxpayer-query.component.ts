@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { TaxpayerService, Taxpayer } from "@efaps/pos-library";
-import { MatDialog } from '@angular/material/dialog';
-import { TaxpayerResultComponent } from '../taxpayer-result/taxpayer-result.component';
+import { MatDialog } from "@angular/material/dialog";
+import { TaxpayerResultComponent } from "../taxpayer-result/taxpayer-result.component";
 
 @Component({
   selector: "app-taxpayer-query",
@@ -18,7 +18,7 @@ export class TaxpayerQueryComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private taxpayerService: TaxpayerService,
-    private dialog: MatDialog,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -42,10 +42,15 @@ export class TaxpayerQueryComponent implements OnInit {
 
   query() {
     if (this.nameSearch) {
-      this.dialog.open(TaxpayerResultComponent, {
+      const dialogRef = this.dialog.open(TaxpayerResultComponent, {
         data: this.taxpayerForm.value.term,
         maxHeight: "95vh"
-      })
+      });
+      dialogRef.afterClosed().subscribe({
+        next: taxpayer => {
+          this.result.next(taxpayer);
+        }
+      });
     } else {
       this.taxpayerService.getTaxpayer(this.taxpayerForm.value.term).subscribe({
         next: taxpayer => {

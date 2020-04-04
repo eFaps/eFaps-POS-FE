@@ -3,3 +3,17 @@ mat-spinner {
   position: absolute;
   top: calc(50% - 50px);
 }
+
+mat-row {
+  mat-cell:last-child {
+    flex: 0 0 0;
+    min-width: 70px;
+  }
+}
+
+mat-header-row {
+  mat-header-cell:last-child {
+    flex: 0 0 0;
+    min-width: 70px;
+  }
+}
