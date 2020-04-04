@@ -98,7 +98,9 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
         name: taxpayer.name
       });
     } else {
-      const msg = (<any> $localize) `:@@taxpayerQuery-empty:No results for the given ID`
+      const msg = (<any>(
+        $localize
+      ))`:@@taxpayerQuery-empty:No results for the given ID`;
       this.snackBar.open(msg, null, { duration: 3000 });
     }
   }

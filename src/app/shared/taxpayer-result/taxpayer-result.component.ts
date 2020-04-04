@@ -36,7 +36,9 @@ export class TaxpayerResultComponent implements OnInit, AfterViewInit {
         next: result => {
           this.result = result;
           this.dataSource = result.content;
-          this.paginator.length = result.totalElements;
+          if (this.paginator) {
+            this.paginator.length = result.totalElements;
+          }
           this.isLoadingResults = false;
         }
       });
@@ -64,9 +66,9 @@ export class TaxpayerResultComponent implements OnInit, AfterViewInit {
   }
 
   getTerm(): string {
-    if (this.data) {
-      const term = (<string> this.data).split(' ').join('" "')
-      return `"${term}""`
+    if (this.data && this.data.split) {
+      const term = (<string>this.data).split(" ").join('" "');
+      return `"${term}""`;
     }
   }
 

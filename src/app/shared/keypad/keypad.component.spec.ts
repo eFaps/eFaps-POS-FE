@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HotkeysService } from "angular2-hotkeys";
+import { HotkeysService, Hotkey } from "angular2-hotkeys";
 
 import { MaterialModule } from "../../material/material.module";
 import { KeypadComponent } from "./keypad.component";
@@ -8,6 +8,7 @@ import { KeypadComponent } from "./keypad.component";
 class HotkeysServiceStub {
   add() {}
   get() {}
+  remove(_hotkey: Hotkey) {}
 }
 
 describe("KeypadComponent", () => {

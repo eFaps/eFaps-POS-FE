@@ -23,7 +23,7 @@ import { PrintDisplayComponent } from "./print-display/print-display.component";
 import { ProductComponent } from "./product/product.component";
 import { TaxpayerQueryComponent } from "./taxpayer-query/taxpayer-query.component";
 import { ServicesModule } from "../services/services.module";
-import { TaxpayerResultComponent } from './taxpayer-result/taxpayer-result.component';
+import { TaxpayerResultComponent } from "./taxpayer-result/taxpayer-result.component";
 
 export function TranslateLoaderFactory(_httpClient: HttpClient) {
   if (environment.electron) {
