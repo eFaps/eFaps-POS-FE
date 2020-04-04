@@ -31,7 +31,7 @@ export class TaxpayerResultComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.isLoadingResults = true;
     this.taxpayerService
-      .findTaxpayers(this.data, { page: 0, size: 5 })
+      .findTaxpayers(this.getTerm(), { page: 0, size: 5 })
       .subscribe({
         next: result => {
           this.result = result;
@@ -47,7 +47,7 @@ export class TaxpayerResultComponent implements OnInit, AfterViewInit {
       next: pageEvent => {
         this.isLoadingResults = true;
         this.taxpayerService
-          .findTaxpayers(this.data, {
+          .findTaxpayers(this.getTerm(), {
             page: pageEvent.pageIndex,
             size: pageEvent.pageSize
           })
@@ -61,6 +61,13 @@ export class TaxpayerResultComponent implements OnInit, AfterViewInit {
           });
       }
     });
+  }
+
+  getTerm(): string {
+    if (this.data) {
+      const term = (<string> this.data).split(' ').join('" "')
+      return `"${term}""`
+    }
   }
 
   select(item: Taxpayer) {
