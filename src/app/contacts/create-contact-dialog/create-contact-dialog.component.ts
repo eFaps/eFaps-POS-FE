@@ -97,6 +97,19 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
         idNumber: taxpayer.id,
         name: taxpayer.name
       });
+      let msg = "";
+      if (taxpayer.homeState != "HABIDO") {
+        msg = `Condición del Contribuyente: ${taxpayer.homeState}`;
+      }
+      if (taxpayer.state != "ACTIVO") {
+        if (msg.length > 0) {
+          msg = `${msg} -- `;
+        }
+        msg = `${msg}Estado del Contribuyente: ${taxpayer.state}`;
+      }
+      if (msg.length > 0) {
+        this.snackBar.open(msg, null, { duration: 3000 });
+      }
     } else {
       const msg = (<any>(
         $localize
