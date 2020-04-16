@@ -17,7 +17,7 @@ import { Page } from "@efaps/pos-library/lib/model/pageable";
 })
 export class TaxpayerResultComponent implements OnInit, AfterViewInit {
   isLoadingResults = false;
-  displayedColumns = ["id", "name", "cmd"];
+  displayedColumns = ["id", "name", "warnings", "cmd"];
   dataSource: Taxpayer[] = [];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   result: Page<Taxpayer>;

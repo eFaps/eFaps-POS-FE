@@ -9,6 +9,13 @@
       <mat-header-cell *matHeaderCellDef i18n="@@taxpayer-Name">Name</mat-header-cell>
       <mat-cell *matCellDef="let item"> {{item.name}} </mat-cell>
     </ng-container>
+    <ng-container matColumnDef="warnings">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let item">
+        <mat-icon *ngIf="item.homeState != 'HABIDO'" class="posIcon-36" [matTooltip]="'Condición del Contribuyente: ' + item.state">warning</mat-icon>
+        <mat-icon *ngIf="item.state != 'ACTIVO'" class="posIcon-36" [matTooltip]="'Estado del Contribuyente: ' + item.homeState">warning</mat-icon>
+      </mat-cell>
+    </ng-container>
     <ng-container matColumnDef="cmd">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let item">
@@ -22,5 +29,5 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
-   <mat-paginator [pageSizeOptions]="[5,10,20]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5,10,20]" [pageSize]="5" showFirstLastButtons></mat-paginator>
 </div>
