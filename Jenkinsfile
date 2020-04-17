@@ -14,16 +14,10 @@ pipeline {
           }
         }
         stages {
-          stage('Install dependencies') {
+          stage('Install and build') {
             steps {
               nodejs(NODEJS) {
-                sh 'npm install'
-              }
-            }
-          }
-          stage('Build') {
-            steps {
-              nodejs(NODEJS) {
+                sh 'npm clean-install'
                 sh 'npm run build'
               }
             }
