@@ -5,17 +5,25 @@ properties([
 pipeline {
   agent any
   stages {
-    stage('Install dependencies') {
-      steps {
-        nodejs('NodeJS') {
-          sh 'npm install'
+    matrix {
+      axes {
+        axis {
+          name 'NODEJS'
+          values 'NodeJS-Latest', 'NodeJS-LTS'
         }
       }
-    }
-    stage('Build') {
-      steps {
-        nodejs('NodeJS') {
-          sh 'npm run build'
+      stage('Install dependencies') {
+        steps {
+          nodejs(${NODEJS}) {
+            sh 'npm install'
+          }
+        }
+      }
+      stage('Build') {
+        steps {
+          nodejs(${NODEJS}) {
+            sh 'npm run build'
+          }
         }
       }
     }
