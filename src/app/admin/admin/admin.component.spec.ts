@@ -9,7 +9,7 @@ import { MockDirective, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs/Observable";
 
 import { environment } from "../../../environments/environment";
-import { MaterialModule } from "../../material/material.module";
+
 import { AdminComponent } from "./admin.component";
 
 class AdminServiceStub {
@@ -29,7 +29,7 @@ describe("AdminComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FlexLayoutModule, MaterialModule],
+      imports: [FlexLayoutModule],
       providers: [{ provide: AdminService, useClass: AdminServiceStub }],
       declarations: [
         AdminComponent,

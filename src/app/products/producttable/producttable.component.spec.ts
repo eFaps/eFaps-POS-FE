@@ -7,10 +7,10 @@ import { MatKeyboardModule } from "angular-onscreen-material-keyboard";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from "../../material/material.module";
 import { VirtKeyboardDirective } from "../../services";
 import { ProductComponent } from "../../shared/product/product.component";
 import { ProducttableComponent } from "./producttable.component";
+import { MatDialogModule } from "@angular/material/dialog";
 
 class ProductServiceStub {
   getProducts() {
@@ -28,9 +28,9 @@ describe("ProducttableComponent", () => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
-        MaterialModule,
         MatKeyboardModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatDialogModule
       ],
       providers: [
         { provide: ProductService, useClass: ProductServiceStub },

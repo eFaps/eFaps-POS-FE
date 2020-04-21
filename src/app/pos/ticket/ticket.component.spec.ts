@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
+import { PosCurrencyPipe, PosService } from "@efaps/pos-library";
+import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from "../../material/material.module";
-import { PosService, PosCurrencyPipe } from "@efaps/pos-library";
 import { TicketComponent } from "./ticket.component";
-import { MockPipe } from "ng-mocks";
 
 class PosServiceStub {
   currentOrder = new Observable(observer => {
@@ -26,7 +26,11 @@ describe("TicketComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MaterialModule, RouterTestingModule],
+      imports: [
+        BrowserAnimationsModule,
+        RouterTestingModule,
+        MatSnackBarModule
+      ],
       providers: [{ provide: PosService, useClass: PosServiceStub }],
       declarations: [TicketComponent, MockPipe(PosCurrencyPipe)]
     }).compileComponents();

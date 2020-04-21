@@ -1,9 +1,8 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { HttpClientModule } from "@angular/common/http";
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { PosConfigToken } from "@efaps/pos-library";
 
 import { PrintDisplayComponent } from "./print-display.component";
-import { MaterialModule } from "../../material/material.module";
-import { HttpClientModule } from "@angular/common/http";
-import { PosConfigToken } from "@efaps/pos-library";
 
 describe("PrintDisplayComponent", () => {
   let component: PrintDisplayComponent;
@@ -11,7 +10,7 @@ describe("PrintDisplayComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MaterialModule, HttpClientModule],
+      imports: [HttpClientModule],
       providers: [{ provide: PosConfigToken, useValue: {} }],
       declarations: [PrintDisplayComponent]
     }).compileComponents();

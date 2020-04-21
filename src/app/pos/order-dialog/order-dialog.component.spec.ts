@@ -6,10 +6,8 @@ import {
 } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PrintService, WorkspaceService } from "@efaps/pos-library";
-import { MockComponent, MockDirective, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from "../../material/material.module";
 import { OrderDialogComponent } from "./order-dialog.component";
 
 class PrintServiceStub {}
@@ -29,7 +27,7 @@ describe("OrderDialogComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MaterialModule],
+      imports: [BrowserAnimationsModule, MatDialogModule],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         {

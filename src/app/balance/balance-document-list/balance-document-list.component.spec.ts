@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   BalanceService,
@@ -9,7 +10,6 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { MaterialModule } from "../../material/material.module";
 import { BalanceDocumentListComponent } from "./balance-document-list.component";
 
 class BalanceServiceStub {
@@ -32,7 +32,7 @@ describe("BalanceDocumentListComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MaterialModule],
+      imports: [BrowserAnimationsModule, MatDialogModule],
       providers: [
         { provide: DocumentService, useClass: DocumentServiceStub },
         { provide: BalanceService, useClass: BalanceServiceStub }

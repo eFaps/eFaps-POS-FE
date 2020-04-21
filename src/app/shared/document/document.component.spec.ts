@@ -1,5 +1,6 @@
 import { HttpClientModule } from "@angular/common/http";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Router } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
@@ -13,7 +14,6 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from "../../material/material.module";
 import { DocumentComponent } from "./document.component";
 
 const routerSpy = jasmine.createSpyObj("Router", ["navigate"]);
@@ -35,9 +35,9 @@ describe("DocumentComponent", () => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
-        MaterialModule,
         RouterTestingModule,
-        HttpClientModule
+        HttpClientModule,
+        MatDialogModule
       ],
       providers: [
         { provide: PosConfigToken, useValue: {} },

@@ -12,7 +12,6 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockComponent, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { MaterialModule } from "../../material/material.module";
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
 import { AutoComponent } from "./auto.component";
 
@@ -41,12 +40,7 @@ describe("AutoComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        MaterialModule,
-        ReactiveFormsModule,
-        HttpClientModule
-      ],
+      imports: [BrowserAnimationsModule, ReactiveFormsModule, HttpClientModule],
       providers: [
         { provide: MsgService, useClass: MsgServiceStub },
         { provide: CollectService, useClass: CollectServiceStub },

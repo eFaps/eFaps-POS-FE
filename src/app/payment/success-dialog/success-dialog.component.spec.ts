@@ -8,7 +8,6 @@ import {
 } from "@efaps/pos-library";
 import { MockComponent, MockPipe } from "ng-mocks";
 
-import { MaterialModule } from "../../material/material.module";
 import { PrintDisplayComponent } from "../../shared/print-display/print-display.component";
 import { SuccessDialogComponent } from "./success-dialog.component";
 
@@ -20,7 +19,7 @@ describe("SuccessDialogComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MaterialModule, HttpClientModule],
+      imports: [HttpClientModule],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         {

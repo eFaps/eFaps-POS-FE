@@ -1,13 +1,13 @@
 import { HttpClientModule } from "@angular/common/http";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { Taxpayer, TaxpayerService } from "@efaps/pos-library";
+import { Page, PageRequest } from "@efaps/pos-library/lib/model/pageable";
+import { Observable } from "rxjs";
 
 import { TaxpayerResultComponent } from "./taxpayer-result.component";
-import { TaxpayerService, Taxpayer } from "@efaps/pos-library";
-import { PageRequest, Page } from "@efaps/pos-library/lib/model/pageable";
-import { Observable } from "rxjs";
-import { MaterialModule } from "../../material/material.module";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 
 class TaxpayerServiceStub {
   public findTaxpayers(
@@ -45,7 +45,7 @@ describe("TaxpayerResultComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, MaterialModule, NoopAnimationsModule],
+      imports: [HttpClientModule, NoopAnimationsModule, MatPaginatorModule],
       declarations: [TaxpayerResultComponent],
       providers: [
         { provide: TaxpayerService, useClass: TaxpayerServiceStub },

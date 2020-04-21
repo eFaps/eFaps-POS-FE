@@ -5,7 +5,6 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockComponent, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from "../../material/material.module";
 import {
   AuthService,
   ConfigService,
@@ -46,7 +45,7 @@ describe("FreeComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MaterialModule, ReactiveFormsModule],
+      imports: [BrowserAnimationsModule, ReactiveFormsModule],
       providers: [
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },

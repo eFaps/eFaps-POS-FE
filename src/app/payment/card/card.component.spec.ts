@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatSelectModule } from "@angular/material/select";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { TranslatePipe } from "@ngx-translate/core";
-import { MockPipe, MockComponent } from "ng-mocks";
-import { Observable } from "rxjs/Observable";
-
-import { MaterialModule } from "../../material/material.module";
+import { RouterTestingModule } from "@angular/router/testing";
 import {
   AuthService,
   ConfigService,
@@ -15,8 +15,12 @@ import {
   UtilsService,
   WorkspaceService
 } from "@efaps/pos-library";
-import { CardComponent } from "./card.component";
+import { TranslatePipe } from "@ngx-translate/core";
+import { MockComponent, MockPipe } from "ng-mocks";
+import { Observable } from "rxjs/Observable";
+
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
+import { CardComponent } from "./card.component";
 
 class AuthServiceStub {}
 class ConfigServiceStub {}
@@ -52,7 +56,15 @@ describe("CardComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MaterialModule, ReactiveFormsModule],
+      imports: [
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatRadioModule,
+        MatSelectModule,
+        RouterTestingModule
+      ],
       providers: [
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },

@@ -4,7 +4,6 @@ import { MatDialogRef } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MockComponent } from "ng-mocks";
 
-import { MaterialModule } from "../../material/material.module";
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
 import { SplitDialogComponent } from "./split-dialog.component";
 
@@ -14,7 +13,7 @@ describe("SplitDialogComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MaterialModule, BrowserAnimationsModule],
+      imports: [ReactiveFormsModule, BrowserAnimationsModule],
       providers: [{ provide: MatDialogRef, useValue: {} }],
       declarations: [SplitDialogComponent, MockComponent(KeypadComponent)]
     }).compileComponents();

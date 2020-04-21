@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { PaymentTypeComponent } from "./payment-type.component";
-import { MaterialModule } from "../../material/material.module";
+
 import { MockComponent } from "ng-mocks";
 import { CashComponent } from "../cash/cash.component";
 import { CardComponent } from "../card/card.component";
@@ -18,7 +18,7 @@ describe("PaymentTypeComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MaterialModule, HttpClientModule, BrowserAnimationsModule],
+      imports: [HttpClientModule, BrowserAnimationsModule],
       providers: [{ provide: PosConfigToken, useValue: {} }],
       declarations: [
         MockComponent(AutoComponent),

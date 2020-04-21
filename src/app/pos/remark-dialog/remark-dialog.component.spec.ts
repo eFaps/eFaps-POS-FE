@@ -3,7 +3,6 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import { MaterialModule } from "../../material/material.module";
 import { RemarkDialogComponent } from "./remark-dialog.component";
 
 describe("RemarkDialogComponent", () => {
@@ -12,7 +11,7 @@ describe("RemarkDialogComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MaterialModule, BrowserAnimationsModule],
+      imports: [ReactiveFormsModule, BrowserAnimationsModule],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} }

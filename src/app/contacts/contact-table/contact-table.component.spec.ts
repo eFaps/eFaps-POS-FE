@@ -9,8 +9,8 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from "../../material/material.module";
 import { ContactTableComponent } from "./contact-table.component";
+import { MatDialogModule } from "@angular/material/dialog";
 
 class ContactServiceStub {
   getContacts(): Observable<Contact[]> {
@@ -26,7 +26,7 @@ describe("ContactTableComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MaterialModule, ReactiveFormsModule],
+      imports: [BrowserAnimationsModule, ReactiveFormsModule, MatDialogModule],
       providers: [{ provide: ContactService, useClass: ContactServiceStub }],
       declarations: [MockPipe(TranslatePipe), ContactTableComponent]
     }).compileComponents();

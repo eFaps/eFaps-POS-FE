@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
+import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import {
@@ -17,7 +18,6 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from "../../material/material.module";
 import { OrderTableComponent } from "./order-table.component";
 
 class AuthServiceStub {
@@ -58,7 +58,7 @@ describe("OrderTableComponent", () => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
-        MaterialModule,
+        MatDialogModule,
         RouterTestingModule,
         ReactiveFormsModule
       ],

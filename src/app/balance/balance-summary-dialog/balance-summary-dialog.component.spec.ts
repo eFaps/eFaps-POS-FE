@@ -5,7 +5,6 @@ import { Balance, BalanceService, BalanceSummary } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { MaterialModule } from "../../material/material.module";
 import { BalanceSummaryComponent } from "../balance-summary/balance-summary.component";
 import { BalanceSummaryDialogComponent } from "./balance-summary-dialog.component";
 
@@ -21,7 +20,7 @@ describe("BalanceSummaryDialogComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MaterialModule, BrowserAnimationsModule],
+      imports: [BrowserAnimationsModule],
       providers: [
         { provide: BalanceService, useClass: BalanceServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: [] }

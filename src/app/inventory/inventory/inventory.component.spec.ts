@@ -4,7 +4,6 @@ import { InventoryService } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { MaterialModule } from "../../material/material.module";
 import { InventoryTableComponent } from "../inventory-table/inventory-table.component";
 import { InventoryComponent } from "./inventory.component";
 
@@ -22,7 +21,7 @@ describe("InventoryComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MaterialModule],
+      imports: [BrowserAnimationsModule],
       providers: [
         { provide: InventoryService, useClass: InventoryServiceStub }
       ],

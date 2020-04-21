@@ -2,13 +2,15 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatListModule } from '@angular/material/list';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatDividerModule } from "@angular/material/divider";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatInputModule } from "@angular/material/input";
+import { MatListModule } from "@angular/material/list";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatTabsModule } from "@angular/material/tabs";
 
 import { SharedModule } from "../shared/shared.module";
 import { AutoComponent } from "./auto/auto.component";
@@ -30,12 +32,14 @@ import { SuccessDialogComponent } from "./success-dialog/success-dialog.componen
     MatDialogModule,
     MatDividerModule,
     MatFormFieldModule,
+    MatInputModule,
     MatGridListModule,
     MatListModule,
+    MatRadioModule,
     MatTabsModule,
     PaymentRoutingModule,
     ReactiveFormsModule,
-    SharedModule,
+    SharedModule
   ],
   declarations: [
     AutoComponent,
@@ -45,7 +49,7 @@ import { SuccessDialogComponent } from "./success-dialog/success-dialog.componen
     FreeComponent,
     PaymentComponent,
     PaymentTypeComponent,
-    SuccessDialogComponent,
+    SuccessDialogComponent
   ],
   entryComponents: [
     AutoComponent,

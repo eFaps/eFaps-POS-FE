@@ -7,22 +7,25 @@ import {
   MatDialogModule,
   MatDialogRef
 } from "@angular/material/dialog";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   ConfigService,
-  WorkspaceService,
-  PosConfigToken
+  PosConfigToken,
+  WorkspaceService
 } from "@efaps/pos-library";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { MockDirective } from "ng-mocks";
 
-import { MaterialModule } from "../../material/material.module";
 import { VirtKeyboardDirective } from "../../services";
 import {
   SharedModule,
   TranslateLoaderFactory
 } from "../../shared/shared.module";
 import { CreateContactDialogComponent } from "./create-contact-dialog.component";
+import { MatSelectModule } from "@angular/material/select";
+import { MatInputModule } from "@angular/material/input";
 
 describe("CreateContactDialogComponent", () => {
   let component: CreateContactDialogComponent;
@@ -33,7 +36,10 @@ describe("CreateContactDialogComponent", () => {
       imports: [
         BrowserAnimationsModule,
         ReactiveFormsModule,
-        MaterialModule,
+        MatSnackBarModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule,
         SharedModule,
         MatDialogModule,
         HttpClientModule,

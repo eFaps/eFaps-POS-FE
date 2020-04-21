@@ -7,7 +7,6 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable, of } from "rxjs";
 
-import { MaterialModule } from "../../material/material.module";
 import { SpotDialogComponent } from "./spot-dialog.component";
 
 class SpotServiceStub {
@@ -22,7 +21,7 @@ describe("SpotDialogComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MaterialModule, RouterTestingModule],
+      imports: [BrowserAnimationsModule, RouterTestingModule],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },

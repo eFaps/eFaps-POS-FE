@@ -16,7 +16,6 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockComponent, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from "../../material/material.module";
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
 import { DiscountComponent } from "./discount.component";
 
@@ -54,7 +53,7 @@ describe("DiscountComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MaterialModule, ReactiveFormsModule],
+      imports: [BrowserAnimationsModule, ReactiveFormsModule],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },

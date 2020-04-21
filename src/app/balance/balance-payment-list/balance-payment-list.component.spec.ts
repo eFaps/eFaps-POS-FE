@@ -5,7 +5,6 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { MaterialModule } from "../../material/material.module";
 import { BalancePaymentListComponent } from "./balance-payment-list.component";
 
 class BalanceServiceStub {
@@ -28,7 +27,7 @@ describe("BalancePaymentListComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MaterialModule],
+      imports: [BrowserAnimationsModule],
       providers: [
         { provide: DocumentService, useClass: DocumentServiceStub },
         { provide: BalanceService, useClass: BalanceServiceStub }

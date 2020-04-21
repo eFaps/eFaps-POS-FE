@@ -2,12 +2,12 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ReactiveFormsModule } from "@angular/forms";
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from "@angular/material/button";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatIconModule } from "@angular/material/icon";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 import { SharedModule } from "../shared/shared.module";
 import { BaseSpotPickerComponent } from "./base-spot-picker/base-spot-picker.component";
@@ -30,7 +30,7 @@ import { SpotsComponent } from "./spots/spots.component";
     MatTooltipModule,
     ReactiveFormsModule,
     SharedModule,
-    SpotsRoutingModule,
+    SpotsRoutingModule
   ],
   declarations: [
     BaseSpotPickerComponent,

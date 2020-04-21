@@ -4,7 +4,6 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { PosService, WorkspaceService } from "@efaps/pos-library";
 import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from "../material/material.module";
 import { WorkspaceComponent } from "./workspace.component";
 
 class PosServiceStub {
@@ -29,7 +28,7 @@ describe("WorkspaceComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MaterialModule, RouterTestingModule],
+      imports: [BrowserAnimationsModule, RouterTestingModule],
       providers: [
         { provide: PosService, useClass: PosServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub }

@@ -2,31 +2,30 @@ import { LiveAnnouncer } from "@angular/cdk/a11y";
 import { HttpClientModule } from "@angular/common/http";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Router } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
 import {
   AuthService,
+  Company,
   CompanyService,
   ConfigService,
   User,
   UserService,
-  WorkspaceService,
-  Company
+  WorkspaceService
 } from "@efaps/pos-library";
-
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
-import { AngularSvgIconModule, SvgIconRegistryService } from "angular-svg-icon";
-import { MockPipe } from "ng-mocks";
-import { Observable } from "rxjs/Observable";
-
-import { MaterialModule } from "../material/material.module";
-import { VirtKeyboardDirective } from "../services";
-import { LoginComponent } from "./login.component";
 import {
   MatKeyboardModule,
   MatKeyboardService
 } from "angular-onscreen-material-keyboard";
+import { AngularSvgIconModule, SvgIconRegistryService } from "angular-svg-icon";
+import { MockPipe } from "ng-mocks";
+import { Observable } from "rxjs/Observable";
+
+import { VirtKeyboardDirective } from "../services";
+import { LoginComponent } from "./login.component";
 
 class MatKeyboardServiceStub {}
 class CompanyServiceStub {
@@ -77,10 +76,10 @@ describe("LoginComponent", () => {
         BrowserAnimationsModule,
         ReactiveFormsModule,
         RouterTestingModule,
-        MaterialModule,
         MatKeyboardModule,
         AngularSvgIconModule,
-        HttpClientModule
+        HttpClientModule,
+        MatSnackBarModule
       ],
       providers: [
         { provide: CompanyService, useClass: CompanyServiceStub },

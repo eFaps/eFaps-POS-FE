@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
-import { MatDialogRef } from "@angular/material/dialog";
+import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { TaxpayerService } from "@efaps/pos-library";
 
 import { TaxpayerQueryComponent } from "./taxpayer-query.component";
-import { MaterialModule } from "../../material/material.module";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 
 class TaxpayerServiceStub {}
 
@@ -15,7 +15,12 @@ describe("TaxpayerQueryComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MaterialModule, NoopAnimationsModule],
+      imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        MatDialogModule,
+        MatPaginatorModule
+      ],
       declarations: [TaxpayerQueryComponent],
       providers: [
         { provide: TaxpayerService, useClass: TaxpayerServiceStub },

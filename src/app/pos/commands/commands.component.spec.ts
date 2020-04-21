@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import {
@@ -10,7 +11,6 @@ import { TranslateDirective, TranslatePipe } from "@ngx-translate/core";
 import { MockDirective, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs/Observable";
 
-import { MaterialModule } from "../../material/material.module";
 import { CommandsComponent } from "./commands.component";
 
 class PosServiceStub {
@@ -43,7 +43,7 @@ describe("CommandsComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MaterialModule, RouterTestingModule],
+      imports: [BrowserAnimationsModule, RouterTestingModule, MatDialogModule],
       providers: [
         { provide: PosService, useClass: PosServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },

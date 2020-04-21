@@ -3,10 +3,9 @@ import { NgModule } from "@angular/core";
 
 import { WorkspaceRoutingModule } from "./workspace-routing.module";
 import { WorkspaceComponent } from "./workspace.component";
-import { MaterialModule } from "../material/material.module";
 
 @NgModule({
-  imports: [CommonModule, WorkspaceRoutingModule, MaterialModule],
+  imports: [CommonModule, WorkspaceRoutingModule],
   declarations: [WorkspaceComponent]
 })
 export class WorkspaceModule {}

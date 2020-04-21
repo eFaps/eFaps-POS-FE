@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Balance, BalanceService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
-import { MaterialModule } from "../../material/material.module";
 import { BalanceListComponent } from "./balance-list.component";
 
 class BalanceServiceStub {
@@ -18,7 +18,7 @@ describe("BalanceListComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MaterialModule, BrowserAnimationsModule],
+      imports: [BrowserAnimationsModule, MatDialogModule],
       providers: [{ provide: BalanceService, useClass: BalanceServiceStub }],
       declarations: [BalanceListComponent]
     }).compileComponents();

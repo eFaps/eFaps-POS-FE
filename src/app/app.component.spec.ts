@@ -14,7 +14,6 @@ import { MockComponent, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
 import { AppComponent } from "./app.component";
-import { MaterialModule } from "./material/material.module";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
 
 class AuthServiceStub {}
@@ -38,7 +37,6 @@ describe("AppComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        MaterialModule,
         HotkeyModule,
         RouterTestingModule,
         AngularSvgIconModule,

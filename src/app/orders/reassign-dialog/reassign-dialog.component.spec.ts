@@ -4,7 +4,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { DocumentService, PosConfigToken, Order } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 
-import { MaterialModule } from "../../material/material.module";
 import { ReassignItemComponent } from "../reassign-item/reassign-item.component";
 import { ReassignDialogComponent } from "./reassign-dialog.component";
 import { Observable } from "rxjs";
@@ -21,7 +20,7 @@ describe("ReassignDialogComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MaterialModule, HttpClientModule],
+      imports: [HttpClientModule],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },
