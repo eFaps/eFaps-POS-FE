@@ -7,6 +7,7 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { InventoryRoutingModule } from "./inventory-routing.module";
 import { InventoryTableComponent } from "./inventory-table/inventory-table.component";
 import { InventoryComponent } from "./inventory/inventory.component";
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { InventoryComponent } from "./inventory/inventory.component";
     InventoryRoutingModule,
     MatFormFieldModule,
     MatTableModule,
-    MatTabsModule
+    MatTabsModule,
+    MatInputModule,
   ],
   declarations: [InventoryComponent, InventoryTableComponent]
 })

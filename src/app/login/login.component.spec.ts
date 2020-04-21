@@ -1,8 +1,10 @@
 import { LiveAnnouncer } from "@angular/cdk/a11y";
 import { HttpClientModule } from "@angular/common/http";
+import { DebugElement } from "@angular/core";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { By } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Router } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
@@ -33,7 +35,10 @@ class CompanyServiceStub {
     return false;
   }
   getCompanies(): Observable<Company[]> {
-    return new Observable();
+    return new Observable(observer => {
+      observer.next([]);
+      observer.complete();
+    });
   }
 }
 class UserServiceStub {
@@ -104,13 +109,21 @@ describe("LoginComponent", () => {
     }).compileComponents();
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  describe("Standard Login", () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(LoginComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
 
-  it("should create", () => {
-    expect(component).toBeTruthy();
+    it("should create", () => {
+      expect(component).toBeTruthy();
+    });
+
+    it("should show a user card", () => {
+      const baseDe: DebugElement = fixture.debugElement;
+      const cardDe = baseDe.query(By.css(".pos-usercard"));
+      expect(cardDe).toBeTruthy();
+    });
   });
 });
