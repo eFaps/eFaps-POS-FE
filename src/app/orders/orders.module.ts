@@ -2,8 +2,13 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ReactiveFormsModule } from "@angular/forms";
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTableModule } from '@angular/material/table';
 
-import { MaterialModule } from "../material/material.module";
 import { SharedModule } from "../shared/shared.module";
 import { OrderTableComponent } from "./order-table/order-table.component";
 import { OrdersRoutingModule } from "./orders-routing.module";
@@ -15,10 +20,15 @@ import { SplitOrderDialogComponent } from "./split-order-dialog/split-order-dial
   imports: [
     CommonModule,
     FlexLayoutModule,
-    MaterialModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatPaginatorModule,
+    MatSlideToggleModule,
+    MatTableModule,
     OrdersRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [
     OrderTableComponent,

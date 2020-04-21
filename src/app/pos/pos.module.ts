@@ -2,8 +2,16 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatBadgeModule } from "@angular/material/badge";
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 
-import { MaterialModule } from "../material/material.module";
 import { SharedModule } from "../shared/shared.module";
 import { CategorySelectComponent } from "./category-select/category-select.component";
 import { CommandsComponent } from "./commands/commands.component";
@@ -19,11 +27,19 @@ import { TotalsComponent } from "./totals/totals.component";
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule,
+    MatBadgeModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatChipsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatListModule,
+    MatTableModule,
+    MatTabsModule,
+    PosRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    PosRoutingModule,
-    MatBadgeModule
   ],
   declarations: [
     CommandsComponent,

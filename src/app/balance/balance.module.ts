@@ -1,10 +1,13 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { PosLibraryModule } from "@efaps/pos-library";
 import { NgBusyModule } from "ng-busy";
 
-import { MaterialModule } from "../material/material.module";
 import { SharedModule } from "../shared/shared.module";
 import { BalanceDocumentListComponent } from "./balance-document-list/balance-document-list.component";
 import { BalanceListComponent } from "./balance-list/balance-list.component";
@@ -19,13 +22,16 @@ import { DocumentListComponent } from "./document-list/document-list.component";
 
 @NgModule({
   imports: [
-    CommonModule,
     BalanceRoutingModule,
-    ReactiveFormsModule,
-    MaterialModule,
-    SharedModule,
+    CommonModule,
+    MatFormFieldModule,
+    MatListModule,
+    MatTableModule,
+    MatTabsModule,
     NgBusyModule,
-    PosLibraryModule
+    PosLibraryModule,
+    ReactiveFormsModule,
+    SharedModule,
   ],
   declarations: [
     BalanceComponent,

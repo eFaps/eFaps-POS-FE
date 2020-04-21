@@ -7,6 +7,11 @@ import {
 import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from "@angular/material/menu";
+import { MatSidenavModule } from "@angular/material/sidenav";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PosLibraryModule } from "@efaps/pos-library";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
@@ -16,7 +21,6 @@ import { HotkeyModule } from "angular2-hotkeys";
 import { environment } from "../environments/environment";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { MaterialModule } from "./material/material.module";
 import { ErrorInterceptor, SameHeightDirective } from "./services/index";
 import { SharedModule, TranslateLoaderFactory } from "./shared/shared.module";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
@@ -29,10 +33,14 @@ import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule,
     AngularSvgIconModule,
     AppRoutingModule,
     SharedModule,
+    MatGridListModule,
+    MatIconModule,
+    MatListModule,
+    MatMenuModule,
+    MatSidenavModule,
     PosLibraryModule.forRoot({
       baseUrl: "/api",
       socketUrl: "/socket"

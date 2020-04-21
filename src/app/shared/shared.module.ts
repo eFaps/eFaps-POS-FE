@@ -3,6 +3,14 @@ import { HttpClient } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTableModule } from '@angular/material/table';
 import { PosLibraryModule } from "@efaps/pos-library";
 import { TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
@@ -11,7 +19,7 @@ import { NgBusyModule } from "ng-busy";
 import { WebStorageModule } from "ngx-store";
 
 import { environment } from "../../environments/environment";
-import { MaterialModule } from "../material/material.module";
+import { ServicesModule } from "../services/services.module";
 import { TranslateFileLoader } from "../util/translate-file-loader";
 import { ConfirmDialogComponent } from "./confirm-dialog/confirm-dialog.component";
 import { ContactComponent } from "./contact/contact.component";
@@ -22,7 +30,6 @@ import { PrintDialogComponent } from "./print-dialog/print-dialog.component";
 import { PrintDisplayComponent } from "./print-display/print-display.component";
 import { ProductComponent } from "./product/product.component";
 import { TaxpayerQueryComponent } from "./taxpayer-query/taxpayer-query.component";
-import { ServicesModule } from "../services/services.module";
 import { TaxpayerResultComponent } from "./taxpayer-result/taxpayer-result.component";
 
 export function TranslateLoaderFactory(_httpClient: HttpClient) {
@@ -38,14 +45,21 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     CommonModule,
     FlexLayoutModule,
     FormsModule,
-    MaterialModule,
+    MatAutocompleteModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatGridListModule,
     MatKeyboardModule,
+    MatListModule,
+    MatPaginatorModule,
+    MatSlideToggleModule,
+    MatTableModule,
     NgBusyModule,
+    PosLibraryModule,
     ReactiveFormsModule,
+    ServicesModule,
     TranslateModule,
     WebStorageModule,
-    PosLibraryModule,
-    ServicesModule
   ],
   declarations: [
     ConfirmDialogComponent,
