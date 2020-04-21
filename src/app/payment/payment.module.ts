@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatDividerModule } from "@angular/material/divider";
@@ -28,12 +29,14 @@ import { SuccessDialogComponent } from "./success-dialog/success-dialog.componen
     CommonModule,
     FlexLayoutModule,
     FormsModule,
+    MatButtonModule,
     MatButtonToggleModule,
     MatDialogModule,
     MatDividerModule,
     MatFormFieldModule,
-    MatInputModule,
     MatGridListModule,
+    MatInputModule,
+    MatInputModule,
     MatListModule,
     MatRadioModule,
     MatTabsModule,
