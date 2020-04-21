@@ -6,21 +6,25 @@
 <div class="product-list mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="sku">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.sku}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@product-SKU">SKU</mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{product.sku}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="description">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@product-Description">Description</mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{product.description}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="stock">
+      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@product-Stock">Stock</mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{stock(product)}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="cmd">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        <button (click)="show(element)" mat-stroked-button>
+      <mat-cell *matCellDef="let product">
+        <button (click)="show(product)" mat-stroked-button>
           <mat-icon  class="posIcon-36">info</mat-icon>
         </button>
-        <button (click)="select(element)" [disabled]="!selectable(element)" mat-stroked-button>
-          <mat-icon class="posIcon-36" [class.mat-warn]="!hasStock(element)">check_circle_outline</mat-icon>
+        <button (click)="select(product)" [disabled]="!selectable(product)" mat-stroked-button>
+          <mat-icon class="posIcon-36" [class.mat-warn]="!hasStock(product)">check_circle_outline</mat-icon>
         </button>
       </mat-cell>
     </ng-container>

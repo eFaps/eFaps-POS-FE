@@ -5,7 +5,7 @@
         <mat-card-header>
           <mat-card-title>{{product.sku}}</mat-card-title>
         </mat-card-header>
-        <div class="pos-card-image">
+        <div class="pos-card-image" [matBadge]="stock(product)" [matBadgeHidden]="!showInventory" [matBadgeColor]="hasStock(product) ? 'primary' : 'warn'">
           <img *ngIf="shownTabs.includes(i)" mat-card-image [src]="product.imageOid | secure" alt="{{product.description}}">
           <div class="pos-card-price" *ngIf="showPrices">
             {{ product.crossPrice | posCurrency:currentCurrency}}

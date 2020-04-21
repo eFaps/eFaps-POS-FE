@@ -2,7 +2,9 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import {
+  InventoryService,
   PosService,
+  Product,
   ProductService,
   WorkspaceService
 } from "@efaps/pos-library";
@@ -21,7 +23,6 @@ export class ProductGridComponent extends AbstractProductSelector
   shownTabs = [0];
   selectedIndex;
   currentCurrency: string;
-
   //size = 'small';
   //size = 'medium' | big;
   size = "large";
@@ -29,12 +30,19 @@ export class ProductGridComponent extends AbstractProductSelector
   private subscription$ = new Subscription();
 
   constructor(
+    workspaceService: WorkspaceService,
     productService: ProductService,
     posService: PosService,
-    dialog: MatDialog,
-    private workspaceService: WorkspaceService
+    inventoryService: InventoryService,
+    dialog: MatDialog
   ) {
-    super(productService, posService, dialog);
+    super(
+      workspaceService,
+      productService,
+      posService,
+      inventoryService,
+      dialog
+    );
   }
 
   ngOnInit() {
@@ -58,6 +66,13 @@ export class ProductGridComponent extends AbstractProductSelector
                 next: currency => (this.currentCurrency = currency)
               })
             );
+          }
+          if (this.showInventory) {
+            this.inventoryService
+              .getInventory(this.workspaceService.getWarehouseOid())
+              .subscribe(_entries => {
+                this.inventory = _entries;
+              });
           }
         }
       }

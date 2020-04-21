@@ -603,6 +603,18 @@
         <source>Name</source>
         <target>Nombre </target>
       </trans-unit>
+      <trans-unit id="product-SKU">
+        <source>SKU</source>
+        <target>Codigo</target>
+      </trans-unit>
+      <trans-unit id="product-Description">
+        <source>Description</source>
+        <target>Descripción</target>
+      </trans-unit>
+      <trans-unit id="product-Stock">
+        <source>Stock</source>
+        <target>Stock</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

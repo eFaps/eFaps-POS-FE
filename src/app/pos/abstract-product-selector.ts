@@ -1,6 +1,14 @@
-import { EventEmitter, Input, OnInit, Output, Directive } from "@angular/core";
+import { Directive, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { Item, PosService, Product, ProductService } from "@efaps/pos-library";
+import {
+  InventoryEntry,
+  InventoryService,
+  Item,
+  PosService,
+  Product,
+  ProductService,
+  WorkspaceService
+} from "@efaps/pos-library";
 
 import { RemarkDialogComponent } from "./remark-dialog/remark-dialog.component";
 
@@ -11,14 +19,20 @@ export abstract class AbstractProductSelector implements OnInit {
   @Input() remarkMode = false;
   @Output() selection = new EventEmitter<number>();
 
+  showInventory = false;
+  inventory: InventoryEntry[] = [];
+
   constructor(
+    protected workspaceService: WorkspaceService,
     protected productService: ProductService,
     protected posService: PosService,
+    protected inventoryService: InventoryService,
     protected dialog: MatDialog
   ) {}
 
   ngOnInit() {
     this.posService.currentTicket.subscribe(_ticket => (this.ticket = _ticket));
+    this.showInventory = this.workspaceService.showInventory();
   }
 
   select(product: Product) {
@@ -50,5 +64,19 @@ export abstract class AbstractProductSelector implements OnInit {
 
   syncTicket() {
     this.posService.changeTicket(this.ticket);
+  }
+
+  stock(_product: Product): number {
+    if (!this.showInventory) {
+      return 0;
+    }
+    const inventoryEntry = this.inventory.find(
+      entry => entry.product.oid === _product.oid
+    );
+    return inventoryEntry ? inventoryEntry.quantity : 0;
+  }
+
+  hasStock(product: Product): boolean {
+    return this.stock(product) > 0;
   }
 }

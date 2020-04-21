@@ -24,9 +24,9 @@ $big-size: 170px;
   flex-wrap: wrap;
   flex-direction: row;
 
-
   .pos-card {
     margin-right: 5px;
+    margin-left: 2px;
 
     .mat-card-header {
       justify-content: center;
@@ -55,8 +55,6 @@ $big-size: 170px;
     .pos-card {
       width: $small-size;
       padding: 5px;
-
-
 
       .mat-card-header .mat-card-title {
         font-size: 14px;

@@ -5,7 +5,6 @@ import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import {
   AuthService,
-  InventoryEntry,
   InventoryService,
   PosService,
   Product,
@@ -28,22 +27,25 @@ export class ProductListComponent extends AbstractProductSelector
   implements OnInit, OnDestroy {
   filterForm: FormGroup;
   formCtrlSub: Subscription;
-  displayedColumns = ["sku", "description", "cmd"];
   dataSource = new MatTableDataSource();
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  inventory: InventoryEntry[] = [];
-
   constructor(
+    workspaceService: WorkspaceService,
     productService: ProductService,
     posService: PosService,
+    inventoryService: InventoryService,
     dialog: MatDialog,
-    private workspaceService: WorkspaceService,
-    private inventoryService: InventoryService,
     private authService: AuthService,
     private fb: FormBuilder
   ) {
-    super(productService, posService, dialog);
+    super(
+      workspaceService,
+      productService,
+      posService,
+      inventoryService,
+      dialog
+    );
   }
 
   ngOnInit() {
@@ -55,13 +57,19 @@ export class ProductListComponent extends AbstractProductSelector
       .pipe(debounceTime(500))
       .subscribe(newValue => this.applyFilter(newValue.filter));
 
-    if (this.workspaceService.showInventory()) {
+    if (this.showInventory) {
       this.inventoryService
         .getInventory(this.workspaceService.getWarehouseOid())
         .subscribe(_entries => {
           this.inventory = _entries;
         });
     }
+  }
+
+  get displayedColumns(): string[] {
+    return this.showInventory
+      ? ["sku", "description", "stock", "cmd"]
+      : ["sku", "description", "cmd"];
   }
 
   applyFilter(_filterValue: string) {
@@ -79,12 +87,6 @@ export class ProductListComponent extends AbstractProductSelector
 
   selectable(_product: Product) {
     return this.hasStock(_product) || this.authService.hasRole(Roles.ADMIN);
-  }
-
-  hasStock(_product: Product) {
-    return this.workspaceService.showInventory()
-      ? this.inventory.some(entry => entry.product.oid === _product.oid)
-      : true;
   }
 
   ngOnDestroy() {
