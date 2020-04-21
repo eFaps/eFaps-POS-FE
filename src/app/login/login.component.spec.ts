@@ -3,6 +3,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { DebugElement } from "@angular/core";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
+import { MatCardModule } from "@angular/material/card";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { By } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -47,8 +48,8 @@ class UserServiceStub {
       observer.next([
         {
           username: "demo",
-          firstName: "string",
-          surName: "string"
+          firstName: "Firstname",
+          surName: "Lastname"
         }
       ]);
       observer.complete();
@@ -78,13 +79,14 @@ describe("LoginComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
-        ReactiveFormsModule,
-        RouterTestingModule,
-        MatKeyboardModule,
         AngularSvgIconModule,
+        BrowserAnimationsModule,
         HttpClientModule,
-        MatSnackBarModule
+        MatCardModule,
+        MatKeyboardModule,
+        MatSnackBarModule,
+        ReactiveFormsModule,
+        RouterTestingModule
       ],
       providers: [
         { provide: CompanyService, useClass: CompanyServiceStub },
@@ -124,6 +126,31 @@ describe("LoginComponent", () => {
       const baseDe: DebugElement = fixture.debugElement;
       const cardDe = baseDe.query(By.css(".pos-usercard"));
       expect(cardDe).toBeTruthy();
+      const div = baseDe.query(By.css("form > div"));
+      expect(div.nativeElement.hidden).toBe(true);
+    });
+
+    it("should show the name of the user on the user card", () => {
+      const baseDe: DebugElement = fixture.debugElement;
+      const cardContent = baseDe.query(By.css(".mat-card-content"));
+      expect(cardContent.nativeElement.textContent.trim()).toBe(
+        "Firstname Lastname"
+      );
+    });
+
+    it("should show an input if hiddenUser is clicked and hides the card", () => {
+      const baseDe: DebugElement = fixture.debugElement;
+      const hiddenUserToggle = baseDe.query(By.css(".hiddenUser"));
+      hiddenUserToggle.triggerEventHandler("change", null);
+
+      fixture.detectChanges();
+      const input = baseDe.query(By.css("input[formcontrolname=userName]"));
+
+      expect(input).toBeTruthy();
+      const div = baseDe.query(By.css("form > div"));
+      expect(div.nativeElement.hidden).toBe(false);
+      const cardGrid = baseDe.query(By.css(".pos-usergrid"));
+      expect(cardGrid.nativeElement.style.display).toBe("none");
     });
   });
 });
