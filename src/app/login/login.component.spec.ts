@@ -1,10 +1,17 @@
 import { LiveAnnouncer } from "@angular/cdk/a11y";
 import { HttpClientModule } from "@angular/common/http";
 import { DebugElement } from "@angular/core";
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import {
+  ComponentFixture,
+  TestBed,
+  async,
+  inject
+} from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
-import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { By } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Router } from "@angular/router";
@@ -30,6 +37,12 @@ import { Observable } from "rxjs/Observable";
 import { VirtKeyboardDirective } from "../services";
 import { LoginComponent } from "./login.component";
 
+const user = {
+  username: "demo",
+  firstName: "Firstname",
+  surName: "Lastname"
+};
+
 class MatKeyboardServiceStub {}
 class CompanyServiceStub {
   hasCompany(): boolean {
@@ -45,22 +58,25 @@ class CompanyServiceStub {
 class UserServiceStub {
   public getUsers(): Observable<User[]> {
     return new Observable(observer => {
-      observer.next([
-        {
-          username: "demo",
-          firstName: "Firstname",
-          surName: "Lastname"
-        }
-      ]);
+      observer.next([user]);
       observer.complete();
     });
   }
 }
 class AuthServiceStub {
   logout() {}
+  login(_userName: string, password: string) {
+    return new Observable(observer => {
+      observer.next(password === "password");
+      observer.complete();
+    });
+  }
 }
+
 class ConfigServiceStub {}
-class TranslateServiceStub {}
+class TranslateServiceStub {
+  instant(key: String) {}
+}
 class WorkspaceServiceStub {
   logout() {}
 }
@@ -69,8 +85,9 @@ class SvgIconRegistryServiceStub {
     return new Observable();
   }
 }
-
-const routerSpy = jasmine.createSpyObj("Router", ["pos"]);
+class RouterStub {
+  navigate(path: string[]) {}
+}
 
 describe("LoginComponent", () => {
   let component: LoginComponent;
@@ -85,6 +102,8 @@ describe("LoginComponent", () => {
         MatCardModule,
         MatKeyboardModule,
         MatSnackBarModule,
+        MatFormFieldModule,
+        MatInputModule,
         ReactiveFormsModule,
         RouterTestingModule
       ],
@@ -96,11 +115,11 @@ describe("LoginComponent", () => {
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },
         { provide: UserService, useClass: UserServiceStub },
+        { provide: Router, useClass: RouterStub },
         {
           provide: SvgIconRegistryService,
           useClass: SvgIconRegistryServiceStub
         },
-        { provide: Router, useValue: routerSpy },
         { provide: LiveAnnouncer, useValue: {} }
       ],
       declarations: [
@@ -152,5 +171,63 @@ describe("LoginComponent", () => {
       const cardGrid = baseDe.query(By.css(".pos-usergrid"));
       expect(cardGrid.nativeElement.style.display).toBe("none");
     });
+
+    it("navegates to route if login successfull", inject(
+      [Router],
+      (router: Router) => {
+        const spy = spyOn(router, "navigate");
+        console.log(spy);
+        const baseDe: DebugElement = fixture.debugElement;
+        //select card
+        const card = baseDe.query(By.css(".pos-usercard"));
+        card.triggerEventHandler("click", user);
+        // imput password
+        const input = baseDe.query(By.css("input[type=password]"));
+        input.nativeElement.value = "password";
+        input.nativeElement.dispatchEvent(new Event("input"));
+        fixture.detectChanges();
+        // click the submit button
+        const button = baseDe.query(By.css("button"));
+        button.nativeElement.click();
+
+        const url = spy.calls.first().args[0];
+        expect(url).toEqual(["/"]);
+      }
+    ));
+
+    it("shows snackBar if form invalid", inject(
+      [MatSnackBar],
+      (snackBar: MatSnackBar) => {
+        spyOn(snackBar, "open");
+        const baseDe: DebugElement = fixture.debugElement;
+        //select card
+        const card = baseDe.query(By.css(".pos-usercard"));
+        card.triggerEventHandler("click", user);
+
+        const button = baseDe.query(By.css("button"));
+        button.nativeElement.click();
+        expect(snackBar.open).toHaveBeenCalled();
+      }
+    ));
+
+    it("shows snackBar if login invalid", inject(
+      [MatSnackBar],
+      (snackBar: MatSnackBar) => {
+        spyOn(snackBar, "open");
+        const baseDe: DebugElement = fixture.debugElement;
+        //select card
+        const card = baseDe.query(By.css(".pos-usercard"));
+        card.triggerEventHandler("click", user);
+        // imput password
+        const input = baseDe.query(By.css("input[type=password]"));
+        input.nativeElement.value = "invalid";
+        input.nativeElement.dispatchEvent(new Event("input"));
+        fixture.detectChanges();
+
+        const button = baseDe.query(By.css("button"));
+        button.nativeElement.click();
+        expect(snackBar.open).toHaveBeenCalled();
+      }
+    ));
   });
 });
