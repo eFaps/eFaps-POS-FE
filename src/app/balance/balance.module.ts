@@ -7,6 +7,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatListModule } from "@angular/material/list";
+import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
 import { PosLibraryModule } from "@efaps/pos-library";
@@ -34,6 +35,7 @@ import { DocumentListComponent } from "./document-list/document-list.component";
     MatIconModule,
     MatInputModule,
     MatListModule,
+    MatSortModule,
     MatTableModule,
     MatTabsModule,
     NgBusyModule,

@@ -12,6 +12,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatListModule } from "@angular/material/list";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
 
@@ -41,6 +42,7 @@ import { TotalsComponent } from "./totals/totals.component";
     MatInputModule,
     MatListModule,
     MatProgressSpinnerModule,
+    MatSortModule,
     MatTableModule,
     MatTabsModule,
     PosRoutingModule,

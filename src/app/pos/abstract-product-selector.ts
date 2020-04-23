@@ -8,7 +8,7 @@ import {
   Product,
   ProductService,
   ProductType,
-  WorkspaceService,
+  WorkspaceService
 } from "@efaps/pos-library";
 
 import { RemarkDialogComponent } from "./remark-dialog/remark-dialog.component";
@@ -68,7 +68,7 @@ export abstract class AbstractProductSelector implements OnInit {
   }
 
   isStockable(product: Product): boolean {
-    return ProductService.isStockable(product)
+    return ProductService.isStockable(product);
   }
 
   stock(_product: Product): number {

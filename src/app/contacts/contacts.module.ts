@@ -7,6 +7,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 
 import { ServicesModule } from "../services/services.module";
@@ -20,13 +21,14 @@ import { CreateContactDialogComponent } from "./create-contact-dialog/create-con
     CommonModule,
     ContactsRoutingModule,
     FormsModule,
-    MatInputModule,
+    MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatSnackBarModule,
+    MatInputModule,
     MatSelectModule,
+    MatSnackBarModule,
+    MatSortModule,
     MatTableModule,
-    MatButtonModule,
     ReactiveFormsModule,
     ServicesModule,
     SharedModule

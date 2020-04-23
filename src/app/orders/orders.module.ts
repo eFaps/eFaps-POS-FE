@@ -9,6 +9,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 
 import { SharedModule } from "../shared/shared.module";
@@ -22,14 +23,15 @@ import { SplitOrderDialogComponent } from "./split-order-dialog/split-order-dial
   imports: [
     CommonModule,
     FlexLayoutModule,
+    MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
+    MatInputModule,
     MatPaginatorModule,
     MatSlideToggleModule,
+    MatSortModule,
     MatTableModule,
-    MatInputModule,
-    MatButtonModule,
     OrdersRoutingModule,
     ReactiveFormsModule,
     SharedModule

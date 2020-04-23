@@ -6,7 +6,6 @@ import {
   Product,
   ProductRelation,
   ProductService,
-  ProductType,
   RelationEntry
 } from "@efaps/pos-library";
 import { PosService, WorkspaceService } from "@efaps/pos-library";
