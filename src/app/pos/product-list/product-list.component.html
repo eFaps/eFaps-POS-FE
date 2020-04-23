@@ -15,7 +15,7 @@
     </ng-container>
     <ng-container matColumnDef="stock">
       <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@product-Stock">Stock</mat-header-cell>
-      <mat-cell *matCellDef="let product"> {{stock(product)}} </mat-cell>
+      <mat-cell *matCellDef="let product"> {{isStockable(product) ? stock(product) : ''}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="cmd">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
@@ -24,7 +24,7 @@
           <mat-icon  class="posIcon-36">info</mat-icon>
         </button>
         <button (click)="select(product)" [disabled]="!selectable(product)" mat-stroked-button>
-          <mat-icon class="posIcon-36" [class.mat-warn]="!hasStock(product)">check_circle_outline</mat-icon>
+          <mat-icon class="posIcon-36" [class.mat-warn]="isStockable(product) && !hasStock(product)">check_circle_outline</mat-icon>
         </button>
       </mat-cell>
     </ng-container>

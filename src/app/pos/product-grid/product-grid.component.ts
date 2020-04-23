@@ -4,7 +4,6 @@ import { MatTabChangeEvent } from "@angular/material/tabs";
 import {
   InventoryService,
   PosService,
-  Product,
   ProductService,
   WorkspaceService
 } from "@efaps/pos-library";

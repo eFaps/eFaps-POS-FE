@@ -7,7 +7,8 @@ import {
   PosService,
   Product,
   ProductService,
-  WorkspaceService
+  ProductType,
+  WorkspaceService,
 } from "@efaps/pos-library";
 
 import { RemarkDialogComponent } from "./remark-dialog/remark-dialog.component";
@@ -64,6 +65,10 @@ export abstract class AbstractProductSelector implements OnInit {
 
   syncTicket() {
     this.posService.changeTicket(this.ticket);
+  }
+
+  isStockable(product: Product): boolean {
+    return ProductService.isStockable(product)
   }
 
   stock(_product: Product): number {

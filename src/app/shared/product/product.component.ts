@@ -6,6 +6,7 @@ import {
   Product,
   ProductRelation,
   ProductService,
+  ProductType,
   RelationEntry
 } from "@efaps/pos-library";
 import { PosService, WorkspaceService } from "@efaps/pos-library";
@@ -21,6 +22,7 @@ export class ProductComponent implements OnInit {
   categories: string[] = [];
   loading: boolean;
   showInventory: boolean;
+  isStockable: boolean;
   inventory: InventoryEntry[] = [];
   relations: RelationEntry[] = [];
 
@@ -38,16 +40,17 @@ export class ProductComponent implements OnInit {
     this.posService.currentCurrency.subscribe(
       _data => (this.currentCurrency = _data)
     );
-    this.productService.getProduct(this.data.oid).subscribe(_product => {
-      this.product = _product;
-      this.getCategories(_product.categoryOids);
+    this.productService.getProduct(this.data.oid).subscribe(product => {
+      this.product = product;
+      this.isStockable = ProductService.isStockable(product);
+      this.evalCategories(product.categoryOids);
       this.loading = false;
-      this.getRelations(_product.relations);
+      this.evalRelations(product.relations);
+      this.evalInventory(product);
     });
-    this.getInventory(this.data.oid);
   }
 
-  getRelations(_productRelations: ProductRelation[]) {
+  private evalRelations(_productRelations: ProductRelation[]) {
     for (const relation of _productRelations) {
       this.productService
         .getProduct(relation.productOid)
@@ -60,7 +63,7 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  getCategories(_categoryOids: string[]) {
+  private evalCategories(_categoryOids: string[]) {
     for (const oid of _categoryOids) {
       this.productService.getCategory(oid).subscribe(_category => {
         this.categories.push(_category.name);
@@ -68,10 +71,10 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  getInventory(_productOid: string) {
-    if (this.showInventory) {
+  private evalInventory(product: Product) {
+    if (this.showInventory && this.isStockable) {
       this.inventoryService
-        .getInventory4Product(_productOid)
+        .getInventory4Product(product.oid)
         .subscribe(_entry => {
           _entry.forEach(inv => this.inventory.push(inv));
         });

@@ -25,7 +25,7 @@
         </mat-list-item>
       </mat-list>
     </p>
-    <p *ngIf="showInventory">
+    <p *ngIf="showInventory && isStockable">
       <span class="property">Stock:</span>
       <mat-list dense>
         <mat-list-item *ngFor="let entry of inventory">
