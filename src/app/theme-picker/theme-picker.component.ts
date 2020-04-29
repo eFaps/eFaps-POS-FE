@@ -3,9 +3,9 @@ import {
   Component,
   ViewEncapsulation
 } from "@angular/core";
+import { LocalStorage } from "@efaps/ngx-store";
 
 import { DocsSiteTheme, StyleManagerService } from "../services/index";
-import { LocalStorage } from "ngx-store";
 
 @Component({
   selector: "app-theme-picker",

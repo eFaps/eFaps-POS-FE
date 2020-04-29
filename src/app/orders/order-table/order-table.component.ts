@@ -12,6 +12,7 @@ import { MatSlideToggleChange } from "@angular/material/slide-toggle";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
+import { LocalStorage } from "@efaps/ngx-store";
 import {
   DocStatus,
   DocumentService,
@@ -22,7 +23,6 @@ import {
   WorkspaceService
 } from "@efaps/pos-library";
 import { AuthService, Roles } from "@efaps/pos-library";
-import { LocalStorage } from "ngx-store";
 import { Subscription } from "rxjs";
 import { debounceTime, map } from "rxjs/operators";
 

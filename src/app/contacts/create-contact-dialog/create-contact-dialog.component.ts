@@ -2,12 +2,12 @@ import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { LocalStorage } from "@efaps/ngx-store";
 import {
   ContactService,
   IdentificationType,
   Taxpayer
 } from "@efaps/pos-library";
-import { LocalStorage } from "ngx-store";
 
 @Component({
   selector: "app-create-contact-dialog",

@@ -6,9 +6,10 @@ import {
   ViewChild
 } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatSlideToggleChange } from "@angular/material/slide-toggle";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
+import { LocalStorage } from "@efaps/ngx-store";
 import {
   AuthService,
   Company,
@@ -19,7 +20,6 @@ import {
 } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
 import { globalCacheBusterNotifier } from "ngx-cacheable";
-import { LocalStorage } from "ngx-store";
 import { Subscription } from "rxjs";
 
 @Component({

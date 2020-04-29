@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
+import { LocalStorage } from "@efaps/ngx-store";
 import { AuthService } from "@efaps/pos-library";
 import { WorkspaceService } from "@efaps/pos-library";
-import { LocalStorage } from "ngx-store";
 import { Subscription } from "rxjs";
 
 @Component({

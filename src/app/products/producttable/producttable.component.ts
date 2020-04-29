@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
+import { LocalStorage } from "@efaps/ngx-store";
 import { Product, ProductService } from "@efaps/pos-library";
-import { LocalStorage } from "ngx-store";
 
 import { ProductComponent } from "../../shared/product/product.component";
 

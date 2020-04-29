@@ -3,6 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTabGroup } from "@angular/material/tabs";
 import { Router } from "@angular/router";
+import { LocalStorage } from "@efaps/ngx-store";
 import {
   Balance,
   BalanceService,
@@ -21,7 +22,6 @@ import {
   WorkspaceService
 } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
-import { LocalStorage } from "ngx-store";
 import { PartialObserver, Subscription } from "rxjs";
 
 import { ConfirmDialogComponent } from "../shared/confirm-dialog/confirm-dialog.component";

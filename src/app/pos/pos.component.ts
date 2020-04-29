@@ -9,6 +9,7 @@ import {
 } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
+import { LocalStorage } from "@efaps/ngx-store";
 import {
   AuthService,
   Item,
@@ -17,7 +18,6 @@ import {
   PosService,
   WorkspaceService
 } from "@efaps/pos-library";
-import { LocalStorage } from "ngx-store";
 
 import { CategorySelectComponent } from "./category-select/category-select.component";
 import { CommandsComponent } from "./commands/commands.component";

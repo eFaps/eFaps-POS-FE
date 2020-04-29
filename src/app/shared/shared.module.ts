@@ -14,12 +14,12 @@ import { MatListModule } from "@angular/material/list";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatTableModule } from "@angular/material/table";
+import { WebStorageModule } from "@efaps/ngx-store";
 import { PosLibraryModule } from "@efaps/pos-library";
 import { TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { MatKeyboardModule } from "angular-onscreen-material-keyboard";
 import { NgBusyModule } from "ng-busy";
-import { WebStorageModule } from "ngx-store";
 
 import { environment } from "../../environments/environment";
 import { ServicesModule } from "../services/services.module";
