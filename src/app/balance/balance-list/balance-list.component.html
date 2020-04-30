@@ -6,7 +6,7 @@
     </ng-container>
     <ng-container matColumnDef="user">
       <mat-header-cell *matHeaderCellDef mat-sort-header> User </mat-header-cell>
-      <mat-cell *matCellDef="let balance"> {{balance?.user.firstName}} {{balance?.user.surName}} </mat-cell>
+      <mat-cell *matCellDef="let balance"> {{balance?.user?.firstName}} {{balance?.user?.surName}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="startAt">
       <mat-header-cell *matHeaderCellDef mat-sort-header> StartAt </mat-header-cell>

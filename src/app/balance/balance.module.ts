@@ -41,7 +41,7 @@ import { DocumentListComponent } from "./document-list/document-list.component";
     NgBusyModule,
     PosLibraryModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [
     BalanceComponent,
