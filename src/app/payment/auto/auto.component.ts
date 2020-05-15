@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
+import { FormBuilder, Validators } from "@angular/forms";
 import {
   CollectService,
   Collector,
@@ -18,7 +18,7 @@ import { PaymentForm } from "../payment-form";
 })
 export class AutoComponent extends PaymentForm {
   collecting = false;
-  collectors: Collector[];
+  collectors: Collector[] = [];
 
   constructor(
     paymentService: PaymentService,
@@ -32,9 +32,16 @@ export class AutoComponent extends PaymentForm {
 
   ngOnInit() {
     super.ngOnInit();
+    this.paymentForm = this.fb.group({
+      amount: ["0.00", Validators.min(0)],
+      collectorFrmCtrl: []
+    });
     this.subscription$.add(
       this.collectService.getCollectors().subscribe({
-        next: collectors => (this.collectors = collectors)
+        next: collectors => {
+          this.collectors = collectors;
+          this.paymentForm.patchValue({ collector: this.collectors[0] });
+        }
       })
     );
   }

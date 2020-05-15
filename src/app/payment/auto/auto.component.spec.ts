@@ -14,6 +14,9 @@ import { Observable } from "rxjs";
 
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
 import { AutoComponent } from "./auto.component";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatRadioModule } from '@angular/material/radio';
+import { MatInputModule } from '@angular/material/input';
 
 class CollectServiceStub {
   getCollectors(): Observable<Collector[]> {
@@ -40,7 +43,15 @@ describe("AutoComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, ReactiveFormsModule, HttpClientModule],
+      imports: [
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatRadioModule,
+        HttpClientModule,
+        MatFormFieldModule
+      ],
       providers: [
         { provide: MsgService, useClass: MsgServiceStub },
         { provide: CollectService, useClass: CollectServiceStub },

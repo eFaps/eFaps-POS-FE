@@ -8,8 +8,18 @@
     margin-right: 15px;
   }
 }
+
 mat-spinner {
   position: absolute;
   top: calc(50% - 50px);
   left: calc(50%);
+}
+
+.collector-radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.collector-radio-button {
+  margin: 15px;
 }
