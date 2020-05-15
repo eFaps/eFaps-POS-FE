@@ -50,7 +50,8 @@ export class AutoComponent extends PaymentForm {
       this.collectService
         .startCollect(this.collectors[0].key, amount, {})
         .subscribe({
-          next: collectOrderId => this.listenForPayment(collectOrderId),
+          next: startCollectResp =>
+            this.listenForPayment(startCollectResp.collectOrderId),
           error: err => {
             console.log(err);
           }
