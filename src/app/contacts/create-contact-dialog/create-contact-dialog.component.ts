@@ -16,7 +16,7 @@ import {
 })
 export class CreateContactDialogComponent implements OnInit, OnDestroy {
   identificationType = IdentificationType;
-  idTypes;
+  idTypes: string[] = [];
   contactForm: FormGroup;
   @LocalStorage() virtKeyboard = false;
 
@@ -27,9 +27,7 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.idTypes = Object.keys(this.identificationType).filter(
-      f => !isNaN(Number(f))
-    );
+    this.idTypes = Object.keys(this.identificationType);
   }
 
   ngOnInit() {
@@ -39,18 +37,18 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
       name: ["", Validators.required]
     });
     this.contactForm.get("idType").valueChanges.subscribe(idType => {
-      if (Number(idType) === IdentificationType.RUC) {
+      if (idType === IdentificationType.RUC) {
         this.contactForm
           .get("idNumber")
           .setValidators([
             Validators.required,
             Validators.pattern("[0-9]{11}")
           ]);
-      } else if (Number(idType) === IdentificationType.DNI) {
+      } else if (idType === IdentificationType.DNI) {
         this.contactForm
           .get("idNumber")
           .setValidators([Validators.required, Validators.pattern("[0-9]{8}")]);
-      } else if (Number(idType) === IdentificationType.CE) {
+      } else if (idType === IdentificationType.CE) {
         this.contactForm
           .get("idNumber")
           .setValidators([Validators.required, Validators.pattern("[0-9]{9}")]);
