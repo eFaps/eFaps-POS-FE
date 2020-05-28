@@ -4,10 +4,13 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { LocalStorage } from "@efaps/ngx-store";
 import {
+  ConfigService,
   ContactService,
   IdentificationType,
-  Taxpayer
+  Taxpayer,
 } from "@efaps/pos-library";
+
+import { CONTACT_ACTIVATE_EMAIL } from '../../util/keys';
 
 @Component({
   selector: "app-create-contact-dialog",
@@ -19,9 +22,11 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
   idTypes: string[] = [];
   contactForm: FormGroup;
   @LocalStorage() virtKeyboard = false;
+  useEmail: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<CreateContactDialogComponent>,
+    private configService: ConfigService,
     private contactService: ContactService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
@@ -31,10 +36,17 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.configService.getSystemConfig(CONTACT_ACTIVATE_EMAIL).subscribe({
+      next: value => {
+        this.useEmail = "true" === "" + value;
+      }
+    })
+
     this.contactForm = this.fb.group({
       idType: ["-1", [Validators.required]],
       idNumber: ["", [Validators.required]],
-      name: ["", Validators.required]
+      name: ["", Validators.required],
+      email: ["", Validators.email],
     });
     this.contactForm.get("idType").valueChanges.subscribe(idType => {
       if (idType === IdentificationType.RUC) {
@@ -71,7 +83,8 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
       name: this.contactForm.value.name,
       idType:
         IdentificationType[IdentificationType[this.contactForm.value.idType]],
-      idNumber: this.contactForm.value.idNumber
+      idNumber: this.contactForm.value.idNumber,
+      email: this.contactForm.value.email,
     };
     this.contactService.createContact(contact).subscribe({
       next: _contact => this.dialogRef.close(_contact),

@@ -1,5 +1,5 @@
 import { LiveAnnouncer } from "@angular/cdk/a11y";
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import {
@@ -8,6 +8,8 @@ import {
   MatDialogRef
 } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
@@ -24,8 +26,6 @@ import {
   TranslateLoaderFactory
 } from "../../shared/shared.module";
 import { CreateContactDialogComponent } from "./create-contact-dialog.component";
-import { MatSelectModule } from "@angular/material/select";
-import { MatInputModule } from "@angular/material/input";
 
 describe("CreateContactDialogComponent", () => {
   let component: CreateContactDialogComponent;
@@ -42,12 +42,11 @@ describe("CreateContactDialogComponent", () => {
         MatInputModule,
         SharedModule,
         MatDialogModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
             useFactory: TranslateLoaderFactory,
-            deps: [HttpClient]
           }
         })
       ],

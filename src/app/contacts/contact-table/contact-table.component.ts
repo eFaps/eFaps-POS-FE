@@ -9,10 +9,11 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
-import { Contact, ContactService } from "@efaps/pos-library";
+import { ConfigService, Contact, ContactService } from "@efaps/pos-library";
 import { Subscription, merge } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 
+import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
 import { CreateContactDialogComponent } from "../create-contact-dialog/create-contact-dialog.component";
 
 @Component({
@@ -21,13 +22,14 @@ import { CreateContactDialogComponent } from "../create-contact-dialog/create-co
   styleUrls: ["./contact-table.component.scss"]
 })
 export class ContactTableComponent implements OnInit, OnDestroy {
-  displayedColumns = ["name", "idType", "idNumber"];
   dataSource = new MatTableDataSource<Contact>();
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   searchForm: FormGroup;
   subscription$ = new Subscription();
+  useEmail: boolean = false;
 
   constructor(
+    private configService: ConfigService,
     private contactService: ContactService,
     private dialog: MatDialog,
     private fb: FormBuilder,
@@ -47,6 +49,14 @@ export class ContactTableComponent implements OnInit, OnDestroy {
         }
       })
     );
+    this.subscription$.add(
+      this.configService.getSystemConfig(CONTACT_ACTIVATE_EMAIL).subscribe({
+        next: value => {
+          this.useEmail = "true" === "" + value;
+        }
+      })
+    );
+
     this.searchForm.valueChanges.pipe(debounceTime(400)).subscribe(input => {
       this.dataSource.data = [];
       if (input.search) {
@@ -63,6 +73,12 @@ export class ContactTableComponent implements OnInit, OnDestroy {
         });
       }
     });
+  }
+
+  get displayedColumns() {
+    return this.useEmail
+      ? ["name", "idType", "idNumber", "email"]
+      : ["name", "idType", "idNumber"];
   }
 
   ngOnDestroy() {
