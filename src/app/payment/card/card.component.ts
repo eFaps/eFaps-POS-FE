@@ -6,7 +6,7 @@ import {
   PaymentService,
   PaymentType,
   UtilsService,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 
 import { PaymentForm } from "../payment-form";
@@ -14,7 +14,7 @@ import { PaymentForm } from "../payment-form";
 @Component({
   selector: "app-card",
   templateUrl: "./card.component.html",
-  styleUrls: ["./card.component.scss"]
+  styleUrls: ["./card.component.scss"],
 })
 export class CardComponent extends PaymentForm {
   cards: Card[] = [];
@@ -32,9 +32,9 @@ export class CardComponent extends PaymentForm {
     super.ngOnInit();
     this.paymentForm = this.fb.group({
       amount: ["0.00", Validators.min(0)],
-      card: []
+      card: [],
     });
-    this.workspaceService.currentWorkspace.subscribe(workspace => {
+    this.workspaceService.currentWorkspace.subscribe((workspace) => {
       this.cards = workspace.cards;
       this.paymentForm.patchValue({ card: this.cards[0] });
     });
@@ -45,7 +45,7 @@ export class CardComponent extends PaymentForm {
       type: PaymentType.CARD,
       amount: 0,
       cardTypeId: this.paymentForm.value.card.cardTypeId,
-      cardLabel: this.paymentForm.value.card.label
+      cardLabel: this.paymentForm.value.card.label,
     };
   }
 }

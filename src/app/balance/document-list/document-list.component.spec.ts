@@ -1,7 +1,11 @@
 import { HttpClientModule } from "@angular/common/http";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatTableModule } from "@angular/material/table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PosConfigToken, PosCurrencyPipe } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
@@ -18,15 +22,18 @@ describe("DocumentListComponent", () => {
       imports: [
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        HttpClientModule,
-        MatDialogModule
+        HttpClientTestingModule,
+        MatDialogModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
       ],
       providers: [{ provide: PosConfigToken, useValue: {} }],
       declarations: [
         DocumentListComponent,
         MockPipe(TranslatePipe),
-        MockPipe(PosCurrencyPipe)
-      ]
+        MockPipe(PosCurrencyPipe),
+      ],
     }).compileComponents();
   }));
 

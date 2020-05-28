@@ -7,17 +7,17 @@ import {
   OnDestroy,
   Optional,
   Output,
-  Self
+  Self,
 } from "@angular/core";
 import { NgControl } from "@angular/forms";
 import {
   MatKeyboardComponent,
   MatKeyboardRef,
-  MatKeyboardService
+  MatKeyboardService,
 } from "angular-onscreen-material-keyboard";
 
 @Directive({
-  selector: "input[appVirtKeyboard], textarea[appVirtKeyboard]"
+  selector: "input[appVirtKeyboard], textarea[appVirtKeyboard]",
 })
 export class VirtKeyboardDirective implements OnDestroy {
   private _keyboardRef: MatKeyboardRef<MatKeyboardComponent>;
@@ -53,7 +53,7 @@ export class VirtKeyboardDirective implements OnDestroy {
     if (this.activateKeyboard) {
       this._keyboardRef = this._keyboardService.open(this.appVirtKeyboard, {
         darkTheme: this.darkTheme,
-        duration: this.duration
+        duration: this.duration,
       });
 
       this._keyboardRef.instance.setInputInstance(this._elementRef);

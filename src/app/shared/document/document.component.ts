@@ -7,7 +7,7 @@ import {
   DocItem,
   Document,
   PrintService,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 
 import { PrintDialogComponent } from "../print-dialog/print-dialog.component";
@@ -15,7 +15,7 @@ import { PrintDialogComponent } from "../print-dialog/print-dialog.component";
 @Component({
   selector: "app-document",
   templateUrl: "./document.component.html",
-  styleUrls: ["./document.component.scss"]
+  styleUrls: ["./document.component.scss"],
 })
 export class DocumentComponent implements OnInit {
   displayedColumns = [
@@ -23,7 +23,7 @@ export class DocumentComponent implements OnInit {
     "quantity",
     "productDesc",
     "crossUnitPrice",
-    "crossPrice"
+    "crossPrice",
   ];
   dataSource = new MatTableDataSource<DocItem>();
   _document: Document;
@@ -44,12 +44,12 @@ export class DocumentComponent implements OnInit {
       this.router.navigate(["/pos"]);
     }
     this.workspaceService.currentWorkspace.subscribe({
-      next: workspace => {
+      next: (workspace) => {
         this.workspaceOid = workspace.oid;
         this.hasCopyPrintCmd = workspace.printCmds.some(
-          x => x.target === "COPY"
+          (x) => x.target === "COPY"
         );
-      }
+      },
     });
   }
 
@@ -72,7 +72,7 @@ export class DocumentComponent implements OnInit {
 
   printCopy() {
     this.dialog.open(PrintDialogComponent, {
-      data: this.printService.printCopy(this.workspaceOid, this._document)
+      data: this.printService.printCopy(this.workspaceOid, this._document),
     });
   }
 }

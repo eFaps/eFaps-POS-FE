@@ -19,7 +19,7 @@ import {
   PrintService,
   Receipt,
   Ticket,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
 import { PartialObserver, Subscription } from "rxjs";
@@ -33,7 +33,7 @@ import { SuccessDialogComponent } from "./success-dialog/success-dialog.componen
 @Component({
   selector: "app-payment",
   templateUrl: "./payment.component.html",
-  styleUrls: ["./payment.component.scss"]
+  styleUrls: ["./payment.component.scss"],
 })
 export class PaymentComponent implements OnInit, OnDestroy {
   @ViewChild(MatTabGroup, { static: true }) tabGroup: MatTabGroup;
@@ -72,23 +72,23 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions$.add(
-      this.paymentService.currentDocument.subscribe(_doc => {
+      this.paymentService.currentDocument.subscribe((_doc) => {
         this.document = _doc;
         this.documentComponent.document = _doc;
       })
     );
     this.subscriptions$.add(
       this.paymentService.currentPayments.subscribe(
-        _payments => (this.payments = _payments)
+        (_payments) => (this.payments = _payments)
       )
     );
     this.subscriptions$.add(
       this.balanceService.currentBalance.subscribe(
-        _balance => (this.balance = _balance)
+        (_balance) => (this.balance = _balance)
       )
     );
     this.subscriptions$.add(
-      this.paymentService.currentTotal.subscribe(_total => {
+      this.paymentService.currentTotal.subscribe((_total) => {
         this.total = _total;
         this.change = this.document
           ? _total - this.document.crossTotal
@@ -96,14 +96,14 @@ export class PaymentComponent implements OnInit, OnDestroy {
       })
     );
     this.subscriptions$.add(
-      this.workspaceService.currentWorkspace.subscribe(_data => {
+      this.workspaceService.currentWorkspace.subscribe((_data) => {
         this.workspaceOid = _data.oid;
         this.allowPrintPreliminary = _data.printCmds.some(
-          x => x.target === "PRELIMINARY"
+          (x) => x.target === "PRELIMINARY"
         );
-        this.printTicket = _data.printCmds.some(x => x.target === "TICKET");
+        this.printTicket = _data.printCmds.some((x) => x.target === "TICKET");
         this.docTypes = [];
-        _data.docTypes.forEach(_value => {
+        _data.docTypes.forEach((_value) => {
           this.docTypes.push(_value.toString());
         });
       })
@@ -144,10 +144,10 @@ export class PaymentComponent implements OnInit, OnDestroy {
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
           width: "300px",
           data: {
-            title: this.translateService.instant("PAYMENT.CONFIRM-CLOSE")
-          }
+            title: this.translateService.instant("PAYMENT.CONFIRM-CLOSE"),
+          },
         });
-        dialogRef.afterClosed().subscribe(result => {
+        dialogRef.afterClosed().subscribe((result) => {
           if (result) {
             this.executeCreateDocument();
           }
@@ -162,7 +162,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     if (this.change !== 0) {
       this.payments.push({
         type: PaymentType.CHANGE,
-        amount: this.change
+        amount: this.change,
       });
     }
     const payable = {
@@ -183,7 +183,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
         : null,
       workspaceOid: this.workspaceOid,
       balanceOid: this.balance.oid ? this.balance.oid : this.balance.id,
-      discount: this.document.discount
+      discount: this.document.discount,
     };
 
     switch (this.docType) {
@@ -209,12 +209,12 @@ export class PaymentComponent implements OnInit, OnDestroy {
     type: DocumentType
   ): PartialObserver<T> {
     return {
-      next: doc => {
+      next: (doc) => {
         this.router.navigate(["/pos"]);
         this.showSuccess(doc, type);
         this.paymentService.reset();
       },
-      error: response => {
+      error: (response) => {
         if (response && response.error && response.error.status) {
           this.snackBar.open(
             this.translateService.instant("PAYMENT." + response.error.status),
@@ -228,7 +228,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
             { duration: 3000 }
           );
         }
-      }
+      },
     };
   }
 
@@ -242,8 +242,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
         change: this.change,
         currency: this.paymentService.currency,
         print: this.printTicket,
-        workspaceOid: this.workspaceOid
-      }
+        workspaceOid: this.workspaceOid,
+      },
     });
   }
 
@@ -274,7 +274,10 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   printPreliminary() {
     this.dialog.open(PrintDialogComponent, {
-      data: this.printService.printPreliminary(this.workspaceOid, this.document)
+      data: this.printService.printPreliminary(
+        this.workspaceOid,
+        this.document
+      ),
     });
   }
 
@@ -286,13 +289,13 @@ export class PaymentComponent implements OnInit, OnDestroy {
     if ("discount" in this.document) {
       this.dialog
         .open(DiscountComponent, {
-          data: this.document
+          data: this.document,
         })
         .afterClosed()
         .subscribe({
           next: () => {
             this.paymentService.calculateTotals(this.payments);
-          }
+          },
         });
     }
   }

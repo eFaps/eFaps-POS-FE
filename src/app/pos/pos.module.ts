@@ -47,7 +47,7 @@ import { TotalsComponent } from "./totals/totals.component";
     MatTabsModule,
     PosRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [
     CommandsComponent,
@@ -58,12 +58,12 @@ import { TotalsComponent } from "./totals/totals.component";
     TicketComponent,
     TotalsComponent,
     CategorySelectComponent,
-    RemarkDialogComponent
+    RemarkDialogComponent,
   ],
   entryComponents: [
     OrderDialogComponent,
     CategorySelectComponent,
-    RemarkDialogComponent
-  ]
+    RemarkDialogComponent,
+  ],
 })
 export class PosModule {}

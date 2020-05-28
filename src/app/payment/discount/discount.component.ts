@@ -8,14 +8,14 @@ import {
   Order,
   PaymentService,
   UtilsService,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-discount",
   templateUrl: "./discount.component.html",
-  styleUrls: ["./discount.component.scss"]
+  styleUrls: ["./discount.component.scss"],
 })
 export class DiscountComponent implements OnInit, OnDestroy {
   private document: Order;
@@ -37,14 +37,14 @@ export class DiscountComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.amountForm = this.fb.group({
-      amount: ["0.00", [Validators.min(0), Validators.required]]
+      amount: ["0.00", [Validators.min(0), Validators.required]],
     });
     this.percentForm = this.fb.group({
-      percent: ["0", [Validators.min(0), Validators.required]]
+      percent: ["0", [Validators.min(0), Validators.required]],
     });
 
     this.subscriptions$.add(
-      this.workspaceService.currentWorkspace.subscribe(ws => {
+      this.workspaceService.currentWorkspace.subscribe((ws) => {
         this._discounts = ws.discounts;
       })
     );
@@ -57,7 +57,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
   get percentDiscounts() {
     return this._discounts
       .filter(
-        discount =>
+        (discount) =>
           discount.type == DiscountType.PERCENT &&
           discount.value &&
           discount.value > 0
@@ -68,7 +68,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
   get amountDiscounts() {
     return this._discounts
       .filter(
-        discount =>
+        (discount) =>
           discount.type == DiscountType.AMOUNT &&
           discount.value &&
           discount.value > 0
@@ -78,7 +78,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
 
   get manualPercent(): boolean {
     return this._discounts.some(
-      discount =>
+      (discount) =>
         discount.type == DiscountType.PERCENT &&
         (!discount.value || discount.value <= 0)
     );
@@ -86,7 +86,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
 
   get manualAmount(): boolean {
     return this._discounts.some(
-      discount =>
+      (discount) =>
         discount.type == DiscountType.AMOUNT &&
         (!discount.value || discount.value <= 0)
     );
@@ -96,7 +96,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
     if (this.percentForm.valid) {
       const percent = Number(this.percentForm.get("percent").value);
       const discount = this._discounts.find(
-        discount =>
+        (discount) =>
           discount.type == DiscountType.PERCENT &&
           (!discount.value || discount.value <= 0)
       );
@@ -108,7 +108,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
     if (this.amountForm.valid) {
       const amount = Number(this.amountForm.get("amount").value);
       const discount = this._discounts.find(
-        discount =>
+        (discount) =>
           discount.type == DiscountType.AMOUNT &&
           (!discount.value || discount.value <= 0)
       );

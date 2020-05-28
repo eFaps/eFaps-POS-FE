@@ -7,6 +7,6 @@ import { WorkspaceComponent } from "./workspace.component";
 
 @NgModule({
   imports: [CommonModule, WorkspaceRoutingModule, MatCardModule],
-  declarations: [WorkspaceComponent]
+  declarations: [WorkspaceComponent],
 })
 export class WorkspaceModule {}

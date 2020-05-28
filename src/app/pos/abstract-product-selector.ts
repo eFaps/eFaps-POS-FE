@@ -8,7 +8,7 @@ import {
   Product,
   ProductService,
   ProductType,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 
 import { RemarkDialogComponent } from "./remark-dialog/remark-dialog.component";
@@ -32,19 +32,21 @@ export abstract class AbstractProductSelector implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.posService.currentTicket.subscribe(_ticket => (this.ticket = _ticket));
+    this.posService.currentTicket.subscribe(
+      (_ticket) => (this.ticket = _ticket)
+    );
     this.showInventory = this.workspaceService.showInventory();
   }
 
   select(product: Product) {
-    if (this.remarkMode || product.indicationSets.some(set => set.required)) {
+    if (this.remarkMode || product.indicationSets.some((set) => set.required)) {
       const dialogRef = this.dialog.open(RemarkDialogComponent, {
-        data: product
+        data: product,
       });
       dialogRef.afterClosed().subscribe({
-        next: comment => {
+        next: (comment) => {
           this.selectProduct(product, comment);
-        }
+        },
       });
     } else {
       this.selectProduct(product, null);
@@ -57,7 +59,7 @@ export abstract class AbstractProductSelector implements OnInit {
       product: product,
       quantity: quantity,
       price: 0,
-      remark: remark
+      remark: remark,
     });
     this.syncTicket();
     this.selection.emit(0);
@@ -76,7 +78,7 @@ export abstract class AbstractProductSelector implements OnInit {
       return 0;
     }
     const inventoryEntry = this.inventory.find(
-      entry => entry.product.oid === _product.oid
+      (entry) => entry.product.oid === _product.oid
     );
     return inventoryEntry ? inventoryEntry.quantity : 0;
   }

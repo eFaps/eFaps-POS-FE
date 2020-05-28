@@ -4,7 +4,7 @@ import { PosService } from "@efaps/pos-library";
 @Component({
   selector: "app-totals",
   templateUrl: "./totals.component.html",
-  styleUrls: ["./totals.component.scss"]
+  styleUrls: ["./totals.component.scss"],
 })
 export class TotalsComponent implements OnInit {
   net: number;
@@ -16,12 +16,14 @@ export class TotalsComponent implements OnInit {
 
   ngOnInit() {
     this.posService.currentCurrency.subscribe(
-      _data => (this.currentCurrency = _data)
+      (_data) => (this.currentCurrency = _data)
     );
-    this.posService.currentNetTotal.subscribe(_data => (this.net = _data));
-    this.posService.currentTaxes.subscribe(_data => {
+    this.posService.currentNetTotal.subscribe((_data) => (this.net = _data));
+    this.posService.currentTaxes.subscribe((_data) => {
       this.taxesEntries = Array.from(_data.entries());
     });
-    this.posService.currentCrossTotal.subscribe(_data => (this.cross = _data));
+    this.posService.currentCrossTotal.subscribe(
+      (_data) => (this.cross = _data)
+    );
   }
 }

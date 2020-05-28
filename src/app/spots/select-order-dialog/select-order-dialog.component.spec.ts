@@ -1,5 +1,11 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from "@angular/material/dialog";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
 
 import { SelectOrderDialogComponent } from "./select-order-dialog.component";
 
@@ -9,12 +15,12 @@ describe("SelectOrderDialogComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [],
+      imports: [MatDialogModule, MatFormFieldModule, MatInputModule],
       providers: [
         { provide: MatDialogRef, useValue: {} },
-        { provide: MAT_DIALOG_DATA, useValue: [] }
+        { provide: MAT_DIALOG_DATA, useValue: [] },
       ],
-      declarations: [SelectOrderDialogComponent]
+      declarations: [SelectOrderDialogComponent],
     }).compileComponents();
   }));
 

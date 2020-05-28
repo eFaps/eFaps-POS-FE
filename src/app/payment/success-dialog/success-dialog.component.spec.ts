@@ -1,10 +1,14 @@
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from "@angular/material/dialog";
 import {
   PosConfigToken,
   PosCurrencyPipe,
-  PrintService
+  PrintService,
 } from "@efaps/pos-library";
 import { MockComponent, MockPipe } from "ng-mocks";
 
@@ -19,7 +23,7 @@ describe("SuccessDialogComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
+      imports: [HttpClientTestingModule, MatDialogModule],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         {
@@ -28,18 +32,18 @@ describe("SuccessDialogComponent", () => {
             docType: 0,
             change: 0,
             document: {
-              number: 123
-            }
-          }
+              number: 123,
+            },
+          },
         },
         { provide: PosConfigToken, useValue: {} },
-        { provide: PrintService, useClass: PrintServiceSub }
+        { provide: PrintService, useClass: PrintServiceSub },
       ],
       declarations: [
         MockPipe(PosCurrencyPipe),
         MockComponent(PrintDisplayComponent),
-        SuccessDialogComponent
-      ]
+        SuccessDialogComponent,
+      ],
     }).compileComponents();
   }));
 

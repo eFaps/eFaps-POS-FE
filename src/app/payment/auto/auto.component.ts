@@ -5,7 +5,7 @@ import {
   Collector,
   MsgService,
   PaymentService,
-  UtilsService
+  UtilsService,
 } from "@efaps/pos-library";
 import { Payment, PaymentType } from "@efaps/pos-library";
 
@@ -14,7 +14,7 @@ import { PaymentForm } from "../payment-form";
 @Component({
   selector: "app-auto",
   templateUrl: "./auto.component.html",
-  styleUrls: ["./auto.component.scss"]
+  styleUrls: ["./auto.component.scss"],
 })
 export class AutoComponent extends PaymentForm {
   collecting = false;
@@ -34,14 +34,14 @@ export class AutoComponent extends PaymentForm {
     super.ngOnInit();
     this.paymentForm = this.fb.group({
       amount: ["0.00", Validators.min(0)],
-      collectorFrmCtrl: []
+      collectorFrmCtrl: [],
     });
     this.subscription$.add(
       this.collectService.getCollectors().subscribe({
-        next: collectors => {
+        next: (collectors) => {
           this.collectors = collectors;
           this.paymentForm.patchValue({ collector: this.collectors[0] });
-        }
+        },
       })
     );
   }
@@ -57,11 +57,11 @@ export class AutoComponent extends PaymentForm {
       this.collectService
         .startCollect(this.collectors[0].key, amount, {})
         .subscribe({
-          next: startCollectResp =>
+          next: (startCollectResp) =>
             this.listenForPayment(startCollectResp.collectOrderId),
-          error: err => {
+          error: (err) => {
             console.log(err);
-          }
+          },
         });
     }
   }
@@ -69,7 +69,7 @@ export class AutoComponent extends PaymentForm {
   private listenForPayment(collectOrderId: string) {
     this.subscription$.add(
       this.msgService.subscribeToCollectOrder(collectOrderId).subscribe({
-        next: data => {
+        next: (data) => {
           switch (data.body) {
             case "SUCCESS":
               this.updatePayment4Collection(collectOrderId);
@@ -79,7 +79,7 @@ export class AutoComponent extends PaymentForm {
             case "PENDING":
             default:
           }
-        }
+        },
       })
     );
   }
@@ -88,10 +88,10 @@ export class AutoComponent extends PaymentForm {
     if (this.collecting) {
       this.collecting = false;
       this.collectService.getCollectOrder(collectOrderId).subscribe({
-        next: order => {
+        next: (order) => {
           this.paymentForm.patchValue({ amount: order.collected.toString() });
           super.addPayment();
-        }
+        },
       });
     }
   }

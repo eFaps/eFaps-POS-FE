@@ -9,7 +9,7 @@ import { DocumentDialogComponent } from "../document-dialog/document-dialog.comp
 @Component({
   selector: "app-balance-document-list",
   templateUrl: "./balance-document-list.component.html",
-  styleUrls: ["./balance-document-list.component.scss"]
+  styleUrls: ["./balance-document-list.component.scss"],
 })
 export class BalanceDocumentListComponent {
   DocStatus = DocStatus;
@@ -20,7 +20,7 @@ export class BalanceDocumentListComponent {
     "total",
     "status",
     "order",
-    "cmd"
+    "cmd",
   ];
   dataSource = new MatTableDataSource<PayableHead>();
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -36,7 +36,7 @@ export class BalanceDocumentListComponent {
   show(_payable: PayableHead) {
     this.dialog.open(DocumentDialogComponent, {
       data: _payable,
-      maxHeight: "95vh"
+      maxHeight: "95vh",
     });
   }
 }

@@ -1,5 +1,6 @@
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { PosConfigToken } from "@efaps/pos-library";
 
 import { PrintDisplayComponent } from "./print-display.component";
@@ -10,9 +11,9 @@ describe("PrintDisplayComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
+      imports: [HttpClientTestingModule, MatProgressSpinnerModule],
       providers: [{ provide: PosConfigToken, useValue: {} }],
-      declarations: [PrintDisplayComponent]
+      declarations: [PrintDisplayComponent],
     }).compileComponents();
   }));
 

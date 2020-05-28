@@ -5,7 +5,7 @@ import {
   Order,
   PaymentService,
   PosService,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 
 import { OrderDialogComponent } from "../order-dialog/order-dialog.component";
@@ -13,7 +13,7 @@ import { OrderDialogComponent } from "../order-dialog/order-dialog.component";
 @Component({
   selector: "app-commands",
   templateUrl: "./commands.component.html",
-  styleUrls: ["./commands.component.scss"]
+  styleUrls: ["./commands.component.scss"],
 })
 export class CommandsComponent implements OnInit {
   currentOrder: Order;
@@ -29,7 +29,7 @@ export class CommandsComponent implements OnInit {
 
   ngOnInit() {
     this.posService.currentOrder.subscribe(
-      _order => (this.currentOrder = _order)
+      (_order) => (this.currentOrder = _order)
     );
   }
 
@@ -38,13 +38,13 @@ export class CommandsComponent implements OnInit {
   }
 
   createOrder() {
-    this.posService.createOrder().subscribe(_order => {
+    this.posService.createOrder().subscribe((_order) => {
       this.onUpdate(_order);
     });
   }
 
   updateOrder() {
-    this.posService.updateOrder(this.currentOrder).subscribe(_order => {
+    this.posService.updateOrder(this.currentOrder).subscribe((_order) => {
       this.onUpdate(_order);
     });
   }
@@ -54,9 +54,9 @@ export class CommandsComponent implements OnInit {
     const dialogRef = this.dialog.open(OrderDialogComponent, {
       width: "450px",
       disableClose: true,
-      data: { order: order }
+      data: { order: order },
     });
-    dialogRef.afterClosed().subscribe(_result => {
+    dialogRef.afterClosed().subscribe((_result) => {
       this.posService.reset();
       if (_result) {
         this.paymentService.updateDocument(_result);

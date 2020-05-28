@@ -6,7 +6,7 @@ import {
   DocumentService,
   PosService,
   Spot,
-  SpotConfig
+  SpotConfig,
 } from "@efaps/pos-library";
 
 import { SelectOrderDialogComponent } from "./select-order-dialog/select-order-dialog.component";
@@ -24,15 +24,15 @@ export abstract class AbstractSpotPicker implements OnInit {
     if (spot.orders && spot.orders.length > 0) {
       if (spot.orders.length > 1) {
         const dialogRef = this.dialog.open(SelectOrderDialogComponent, {
-          data: spot.orders
+          data: spot.orders,
         });
         dialogRef.afterClosed().subscribe({
-          next: order => {
+          next: (order) => {
             if (order) {
               this.posService.setOrder(order);
               this.router.navigate(["/pos"]);
             }
-          }
+          },
         });
       } else {
         this.posService.setOrder(spot.orders[0]);
@@ -51,9 +51,9 @@ export abstract class AbstractSpotPicker implements OnInit {
         taxes: [],
         spot: spot,
         discount: null,
-        payableOid: null
+        payableOid: null,
       };
-      this.documentService.createOrder(order).subscribe(_order => {
+      this.documentService.createOrder(order).subscribe((_order) => {
         this.posService.setOrder(_order);
         this.router.navigate(["/pos"]);
       });
@@ -62,9 +62,9 @@ export abstract class AbstractSpotPicker implements OnInit {
 
   showSwapModal() {
     const dialogRef = this.dialog.open(SpotDialogComponent, {
-      data: this.getSpotConfig()
+      data: this.getSpotConfig(),
     });
-    dialogRef.afterClosed().subscribe(_result => {
+    dialogRef.afterClosed().subscribe((_result) => {
       if (_result) {
         this.ngOnInit();
       }

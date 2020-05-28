@@ -8,7 +8,7 @@ import { Indication, Product } from "@efaps/pos-library";
 @Component({
   selector: "app-remark-dialog",
   templateUrl: "./remark-dialog.component.html",
-  styleUrls: ["./remark-dialog.component.scss"]
+  styleUrls: ["./remark-dialog.component.scss"],
 })
 export class RemarkDialogComponent implements OnInit {
   remarkForm: FormGroup;
@@ -26,13 +26,13 @@ export class RemarkDialogComponent implements OnInit {
 
   ngOnInit() {
     this.remarkForm = this.fb.group({
-      remark: []
+      remark: [],
     });
   }
 
   close() {
     const remarks = [];
-    this.indications.forEach(ind => {
+    this.indications.forEach((ind) => {
       remarks.push(ind.value);
     });
     this.matDialogRef.close(remarks.join("\n"));
@@ -66,7 +66,7 @@ export class RemarkDialogComponent implements OnInit {
   }
 
   private addIndication(value: string) {
-    if (!this.indications.some(val => val.value === value)) {
+    if (!this.indications.some((val) => val.value === value)) {
       this.indications.push({ value: value });
     }
   }

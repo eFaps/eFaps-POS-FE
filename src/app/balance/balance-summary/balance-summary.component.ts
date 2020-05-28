@@ -3,7 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import {
   BalanceSummary,
   PrintService,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 
@@ -12,7 +12,7 @@ import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.com
 @Component({
   selector: "app-balance-summary",
   templateUrl: "./balance-summary.component.html",
-  styleUrls: ["./balance-summary.component.scss"]
+  styleUrls: ["./balance-summary.component.scss"],
 })
 export class BalanceSummaryComponent implements OnInit {
   subscription$ = new Subscription();
@@ -29,16 +29,16 @@ export class BalanceSummaryComponent implements OnInit {
   ngOnInit() {
     this.subscription$.add(
       this.workspaceService.currentWorkspace.subscribe({
-        next: workspace => {
+        next: (workspace) => {
           if (workspace) {
             this.printer = workspace.printCmds.some(
-              x => x.target === "BALANCE"
+              (x) => x.target === "BALANCE"
             );
             this.workspaceOid = workspace.oid;
           } else {
             this.printer = false;
           }
-        }
+        },
       })
     );
   }
@@ -48,7 +48,7 @@ export class BalanceSummaryComponent implements OnInit {
       data: this.printService.printBalance(
         this.workspaceOid,
         this.summary.balance.id
-      )
+      ),
     });
   }
 

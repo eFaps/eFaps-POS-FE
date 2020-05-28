@@ -1,16 +1,17 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
-import { PaymentTypeComponent } from "./payment-type.component";
-
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { MatTableModule } from "@angular/material/table";
+import { MatTabsModule } from "@angular/material/tabs";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { PosConfigToken } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
-import { CashComponent } from "../cash/cash.component";
+
+import { AutoComponent } from "../auto/auto.component";
 import { CardComponent } from "../card/card.component";
+import { CashComponent } from "../cash/cash.component";
 import { DiscountComponent } from "../discount/discount.component";
 import { FreeComponent } from "../free/free.component";
-import { AutoComponent } from "../auto/auto.component";
-import { HttpClientModule } from "@angular/common/http";
-import { PosConfigToken } from "@efaps/pos-library";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { PaymentTypeComponent } from "./payment-type.component";
 
 describe("PaymentTypeComponent", () => {
   let component: PaymentTypeComponent;
@@ -18,7 +19,12 @@ describe("PaymentTypeComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, BrowserAnimationsModule],
+      imports: [
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        MatTableModule,
+        MatTabsModule,
+      ],
       providers: [{ provide: PosConfigToken, useValue: {} }],
       declarations: [
         MockComponent(AutoComponent),
@@ -26,8 +32,8 @@ describe("PaymentTypeComponent", () => {
         MockComponent(CardComponent),
         MockComponent(DiscountComponent),
         MockComponent(FreeComponent),
-        PaymentTypeComponent
-      ]
+        PaymentTypeComponent,
+      ],
     }).compileComponents();
   }));
 

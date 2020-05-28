@@ -5,7 +5,7 @@ import { Order } from "@efaps/pos-library";
 @Component({
   selector: "app-select-order-dialog",
   templateUrl: "./select-order-dialog.component.html",
-  styleUrls: ["./select-order-dialog.component.scss"]
+  styleUrls: ["./select-order-dialog.component.scss"],
 })
 export class SelectOrderDialogComponent implements OnInit {
   orders: Order[] = [];

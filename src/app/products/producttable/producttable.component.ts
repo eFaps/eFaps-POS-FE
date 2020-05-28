@@ -11,7 +11,7 @@ import { ProductComponent } from "../../shared/product/product.component";
 @Component({
   selector: "app-producttable",
   templateUrl: "./producttable.component.html",
-  styleUrls: ["./producttable.component.scss"]
+  styleUrls: ["./producttable.component.scss"],
 })
 export class ProducttableComponent implements OnInit, OnDestroy {
   displayedColumns = ["sku", "description", "cmd"];
@@ -27,16 +27,16 @@ export class ProducttableComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.productService.getProducts().subscribe(data => {
+    this.productService.getProducts().subscribe((data) => {
       this.dataSource.data = data;
       this.dataSource.sort = this.sort;
     });
     this.filterForm = this.fb.group({
-      filter: [""]
+      filter: [""],
     });
     this.filterForm
       .get("filter")
-      .valueChanges.subscribe(value => this.applyFilter(value));
+      .valueChanges.subscribe((value) => this.applyFilter(value));
   }
 
   ngOnDestroy() {
@@ -51,7 +51,7 @@ export class ProducttableComponent implements OnInit, OnDestroy {
 
   show(_product: Product) {
     const dialogRef = this.dialog.open(ProductComponent, {
-      data: _product
+      data: _product,
     });
   }
 }

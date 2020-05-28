@@ -3,7 +3,7 @@ import {
   Component,
   Inject,
   OnInit,
-  ViewChild
+  ViewChild,
 } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
@@ -13,7 +13,7 @@ import { Page } from "@efaps/pos-library/lib/model/pageable";
 @Component({
   selector: "app-taxpayer-result",
   templateUrl: "./taxpayer-result.component.html",
-  styleUrls: ["./taxpayer-result.component.scss"]
+  styleUrls: ["./taxpayer-result.component.scss"],
 })
 export class TaxpayerResultComponent implements OnInit, AfterViewInit {
   isLoadingResults = false;
@@ -33,35 +33,35 @@ export class TaxpayerResultComponent implements OnInit, AfterViewInit {
     this.taxpayerService
       .findTaxpayers(this.getTerm(), { page: 0, size: 5 })
       .subscribe({
-        next: result => {
+        next: (result) => {
           this.result = result;
           this.dataSource = result.content;
           if (this.paginator) {
             this.paginator.length = result.totalElements;
           }
           this.isLoadingResults = false;
-        }
+        },
       });
   }
 
   ngAfterViewInit(): void {
     this.paginator.page.subscribe({
-      next: pageEvent => {
+      next: (pageEvent) => {
         this.isLoadingResults = true;
         this.taxpayerService
           .findTaxpayers(this.getTerm(), {
             page: pageEvent.pageIndex,
-            size: pageEvent.pageSize
+            size: pageEvent.pageSize,
           })
           .subscribe({
-            next: result => {
+            next: (result) => {
               this.result = result;
               this.dataSource = result.content;
               this.paginator.length = result.totalElements;
               this.isLoadingResults = false;
-            }
+            },
           });
-      }
+      },
     });
   }
 

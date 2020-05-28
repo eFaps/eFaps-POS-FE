@@ -4,7 +4,7 @@ import {
   DocItem,
   DocumentService,
   Order,
-  PosService
+  PosService,
 } from "@efaps/pos-library";
 import { Observable, Subscription, forkJoin } from "rxjs";
 
@@ -13,7 +13,7 @@ import { ReassignItemComponent } from "../reassign-item/reassign-item.component"
 @Component({
   selector: "app-reassign-dialog",
   templateUrl: "./reassign-dialog.component.html",
-  styleUrls: ["./reassign-dialog.component.scss"]
+  styleUrls: ["./reassign-dialog.component.scss"],
 })
 export class ReassignDialogComponent implements OnInit, OnDestroy {
   orders: Order[] = [];
@@ -37,10 +37,10 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription.add(
       this.documentService.getOpenOrders().subscribe({
-        next: orders => {
+        next: (orders) => {
           if (orders) {
             this.orders = orders
-              .filter(item => {
+              .filter((item) => {
                 return item.spot && item.spot.id == this.data.spot.id;
               })
               .sort((o1, o2) => {
@@ -55,7 +55,7 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
             this.orderLeft = this.orders[0];
             this.orderRight = this.orders[1];
           }
-        }
+        },
       })
     );
   }
@@ -90,7 +90,7 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
   private move(item: DocItem, origin: Order, target: Order) {
     const index: number = origin.items.indexOf(item);
     const targetIndex = target.items.findIndex(
-      it => it.product.oid === item.product.oid
+      (it) => it.product.oid === item.product.oid
     );
     if (targetIndex !== -1) {
       target.items[targetIndex].quantity++;
@@ -117,14 +117,14 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
           netUnitPrice: item.netUnitPrice,
           crossPrice: item.crossPrice,
           crossUnitPrice: item.crossUnitPrice,
-          taxes: item.taxes
+          taxes: item.taxes,
         });
       }
     }
     var idx = 1;
-    origin.items.forEach(item => (item.index = idx++));
+    origin.items.forEach((item) => (item.index = idx++));
     var idx = 1;
-    target.items.forEach(item => (item.index = idx++));
+    target.items.forEach((item) => (item.index = idx++));
 
     // reload in child
     this.left.order = this.orderLeft;
@@ -133,15 +133,15 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
 
   save() {
     const updates: Observable<Order>[] = [];
-    this.orders.forEach(order => {
+    this.orders.forEach((order) => {
       this.posService.setOrder(order);
       updates.push(this.posService.updateOrder(order));
     });
     this.posService.reset();
     forkJoin(...updates).subscribe({
-      next: _ => {
+      next: (_) => {
         this.dialogRef.close();
-      }
+      },
     });
   }
 }

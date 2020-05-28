@@ -65,7 +65,7 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     ReactiveFormsModule,
     ServicesModule,
     TranslateModule,
-    WebStorageModule
+    WebStorageModule,
   ],
   declarations: [
     ConfirmDialogComponent,
@@ -77,7 +77,7 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     PrintDisplayComponent,
     ProductComponent,
     TaxpayerQueryComponent,
-    TaxpayerResultComponent
+    TaxpayerResultComponent,
   ],
   exports: [
     ContactComponent,
@@ -89,14 +89,14 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     TaxpayerQueryComponent,
     TaxpayerResultComponent,
     TranslateModule,
-    WebStorageModule
+    WebStorageModule,
   ],
   entryComponents: [
     ConfirmDialogComponent,
     ImageComponent,
     PrintDialogComponent,
     ProductComponent,
-    TaxpayerResultComponent
-  ]
+    TaxpayerResultComponent,
+  ],
 })
 export class SharedModule {}

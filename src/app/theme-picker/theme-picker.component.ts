@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from "@angular/core";
 import { LocalStorage } from "@efaps/ngx-store";
 
@@ -12,7 +12,7 @@ import { DocsSiteTheme, StyleManagerService } from "../services/index";
   templateUrl: "./theme-picker.component.html",
   styleUrls: ["./theme-picker.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class ThemePickerComponent {
   @LocalStorage() currentTheme;
@@ -21,27 +21,27 @@ export class ThemePickerComponent {
       primary: "#673AB7",
       accent: "#FFC107",
       href: "deeppurple-amber.css",
-      isDark: false
+      isDark: false,
     },
     {
       primary: "#3F51B5",
       accent: "#E91E63",
       href: "indigo-pink.css",
       isDark: false,
-      isDefault: true
+      isDefault: true,
     },
     {
       primary: "#E91E63",
       accent: "#607D8B",
       href: "pink-bluegrey.css",
-      isDark: true
+      isDark: true,
     },
     {
       primary: "#9C27B0",
       accent: "#4CAF50",
       href: "purple-green.css",
-      isDark: true
-    }
+      isDark: true,
+    },
   ];
   constructor(public styleManager: StyleManagerService) {
     if (this.currentTheme) {
@@ -56,6 +56,6 @@ export class ThemePickerComponent {
   }
 
   private _getCurrentThemeFromHref(href: string): DocsSiteTheme {
-    return this.themes.find(theme => theme.href === href);
+    return this.themes.find((theme) => theme.href === href);
   }
 }

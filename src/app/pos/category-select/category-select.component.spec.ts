@@ -22,9 +22,9 @@ describe("CategorySelectComponent", () => {
       providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
-        { provide: ProductService, useClass: ProductServiceStub }
+        { provide: ProductService, useClass: ProductServiceStub },
       ],
-      declarations: [CategorySelectComponent]
+      declarations: [CategorySelectComponent],
     }).compileComponents();
   }));
 

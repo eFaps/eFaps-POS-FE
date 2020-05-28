@@ -6,7 +6,7 @@ import { Subscription } from "rxjs";
 @Component({
   selector: "app-spot-dialog",
   templateUrl: "./spot-dialog.component.html",
-  styleUrls: ["./spot-dialog.component.scss"]
+  styleUrls: ["./spot-dialog.component.scss"],
 })
 export class SpotDialogComponent implements OnInit, OnDestroy {
   spots: Spot[] = [];
@@ -23,13 +23,13 @@ export class SpotDialogComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.data === SpotConfig.EXTENDED) {
       this.spotService.getLayout().subscribe({
-        next: layout =>
-          layout.floors.forEach(floor => {
+        next: (layout) =>
+          layout.floors.forEach((floor) => {
             this.spots = this.spots.concat(floor.spots);
-          })
+          }),
       });
     } else {
-      this.spotService.getSpots().subscribe(_spots => {
+      this.spotService.getSpots().subscribe((_spots) => {
         this.spots = _spots;
       });
     }

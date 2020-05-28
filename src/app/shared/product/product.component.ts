@@ -6,14 +6,14 @@ import {
   Product,
   ProductRelation,
   ProductService,
-  RelationEntry
+  RelationEntry,
 } from "@efaps/pos-library";
 import { PosService, WorkspaceService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-product",
   templateUrl: "./product.component.html",
-  styleUrls: ["./product.component.scss"]
+  styleUrls: ["./product.component.scss"],
 })
 export class ProductComponent implements OnInit {
   product: Product;
@@ -37,9 +37,9 @@ export class ProductComponent implements OnInit {
     this.showInventory = this.workspaceService.showInventory();
     this.loading = true;
     this.posService.currentCurrency.subscribe(
-      _data => (this.currentCurrency = _data)
+      (_data) => (this.currentCurrency = _data)
     );
-    this.productService.getProduct(this.data.oid).subscribe(product => {
+    this.productService.getProduct(this.data.oid).subscribe((product) => {
       this.product = product;
       this.isStockable = ProductService.isStockable(product);
       this.evalCategories(product.categoryOids);
@@ -53,10 +53,10 @@ export class ProductComponent implements OnInit {
     for (const relation of _productRelations) {
       this.productService
         .getProduct(relation.productOid)
-        .subscribe(_product => {
+        .subscribe((_product) => {
           this.relations.push({
             label: relation.label,
-            product: _product
+            product: _product,
           });
         });
     }
@@ -64,7 +64,7 @@ export class ProductComponent implements OnInit {
 
   private evalCategories(_categoryOids: string[]) {
     for (const oid of _categoryOids) {
-      this.productService.getCategory(oid).subscribe(_category => {
+      this.productService.getCategory(oid).subscribe((_category) => {
         this.categories.push(_category.name);
       });
     }
@@ -74,8 +74,8 @@ export class ProductComponent implements OnInit {
     if (this.showInventory && this.isStockable) {
       this.inventoryService
         .getInventory4Product(product.oid)
-        .subscribe(_entry => {
-          _entry.forEach(inv => this.inventory.push(inv));
+        .subscribe((_entry) => {
+          _entry.forEach((inv) => this.inventory.push(inv));
         });
     }
   }

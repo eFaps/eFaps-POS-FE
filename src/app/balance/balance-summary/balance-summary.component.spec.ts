@@ -17,8 +17,8 @@ describe("BalanceSummaryComponent", () => {
       providers: [{ provide: PosConfigToken, useValue: {} }],
       declarations: [
         MockComponent(BalanceSummarySectionComponent),
-        BalanceSummaryComponent
-      ]
+        BalanceSummaryComponent,
+      ],
     }).compileComponents();
   }));
 

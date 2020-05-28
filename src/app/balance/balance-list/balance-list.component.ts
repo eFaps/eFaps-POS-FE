@@ -9,7 +9,7 @@ import { BalanceSummaryDialogComponent } from "../balance-summary-dialog/balance
 @Component({
   selector: "app-balance-list",
   templateUrl: "./balance-list.component.html",
-  styleUrls: ["./balance-list.component.scss"]
+  styleUrls: ["./balance-list.component.scss"],
 })
 export class BalanceListComponent implements OnInit, OnDestroy {
   displayedColumns = ["number", "user", "startAt", "endAt", "status", "cmd"];
@@ -26,10 +26,10 @@ export class BalanceListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscribtions$.add(
       this.balanceService.getBalances().subscribe({
-        next: balances => {
+        next: (balances) => {
           this.dataSource.data = balances;
           this.dataSource.sort = this.sort;
-        }
+        },
       })
     );
   }
@@ -42,9 +42,9 @@ export class BalanceListComponent implements OnInit, OnDestroy {
     console.log(balance);
     this.dialog.open(BalanceSummaryDialogComponent, {
       data: {
-        balance: balance
+        balance: balance,
       },
-      maxHeight: "95vh"
+      maxHeight: "95vh",
     });
   }
 }

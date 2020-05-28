@@ -18,8 +18,8 @@ import { InventoryComponent } from "./inventory/inventory.component";
     MatInputModule,
     MatSortModule,
     MatTableModule,
-    MatTabsModule
+    MatTabsModule,
   ],
-  declarations: [InventoryComponent, InventoryTableComponent]
+  declarations: [InventoryComponent, InventoryTableComponent],
 })
 export class InventoryModule {}

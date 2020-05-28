@@ -2,14 +2,14 @@ import {
   AfterViewChecked,
   ChangeDetectorRef,
   Component,
-  OnInit
+  OnInit,
 } from "@angular/core";
 import { Router } from "@angular/router";
 import {
   AuthService,
   CompanyService,
   Roles,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
 import { Hotkey, HotkeysService } from "angular2-hotkeys";
@@ -20,7 +20,7 @@ import { ElectronUtil } from "./util/electron-util";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit, AfterViewChecked {
   Roles = Roles;
@@ -76,10 +76,11 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this.companyService.company.subscribe({
-      next: data => (data ? (this.company = data.label) : (this.company = null))
+      next: (data) =>
+        data ? (this.company = data.label) : (this.company = null),
     });
 
-    this.workspaceService.currentWorkspace.subscribe(_data => {
+    this.workspaceService.currentWorkspace.subscribe((_data) => {
       if (_data) {
         this.workspace = _data.name;
         this.spots = this.workspaceService.showSpots();

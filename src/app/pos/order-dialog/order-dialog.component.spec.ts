@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
-  MatDialogRef
+  MatDialogRef,
 } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PrintService, WorkspaceService } from "@efaps/pos-library";
@@ -12,11 +12,11 @@ import { OrderDialogComponent } from "./order-dialog.component";
 
 class PrintServiceStub {}
 class WorkspaceServiceStub {
-  currentWorkspace = new Observable(observer => {
+  currentWorkspace = new Observable((observer) => {
     observer.next({
       docTypes: [],
       printCmds: [],
-      oid: "wsOid"
+      oid: "wsOid",
     });
   });
 }
@@ -33,13 +33,13 @@ describe("OrderDialogComponent", () => {
         {
           provide: MAT_DIALOG_DATA,
           useValue: {
-            order: ""
-          }
+            order: "",
+          },
         },
         { provide: PrintService, useClass: PrintServiceStub },
-        { provide: WorkspaceService, useClass: WorkspaceServiceStub }
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
       ],
-      declarations: [OrderDialogComponent]
+      declarations: [OrderDialogComponent],
     }).compileComponents();
   }));
 

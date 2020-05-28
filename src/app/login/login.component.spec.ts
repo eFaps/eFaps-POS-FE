@@ -5,12 +5,14 @@ import {
   ComponentFixture,
   TestBed,
   async,
-  inject
+  inject,
 } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { By } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -23,12 +25,12 @@ import {
   ConfigService,
   User,
   UserService,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import {
   MatKeyboardModule,
-  MatKeyboardService
+  MatKeyboardService,
 } from "angular-onscreen-material-keyboard";
 import { AngularSvgIconModule, SvgIconRegistryService } from "angular-svg-icon";
 import { MockPipe } from "ng-mocks";
@@ -40,7 +42,7 @@ import { LoginComponent } from "./login.component";
 const user = {
   username: "demo",
   firstName: "Firstname",
-  surName: "Lastname"
+  surName: "Lastname",
 };
 
 class MatKeyboardServiceStub {}
@@ -49,7 +51,7 @@ class CompanyServiceStub {
     return false;
   }
   getCompanies(): Observable<Company[]> {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       observer.next([]);
       observer.complete();
     });
@@ -57,7 +59,7 @@ class CompanyServiceStub {
 }
 class UserServiceStub {
   public getUsers(): Observable<User[]> {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       observer.next([user]);
       observer.complete();
     });
@@ -66,7 +68,7 @@ class UserServiceStub {
 class AuthServiceStub {
   logout() {}
   login(_userName: string, password: string) {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       observer.next(password === "password");
       observer.complete();
     });
@@ -105,7 +107,9 @@ describe("LoginComponent", () => {
         MatFormFieldModule,
         MatInputModule,
         ReactiveFormsModule,
-        RouterTestingModule
+        RouterTestingModule,
+        MatSlideToggleModule,
+        MatButtonToggleModule,
       ],
       providers: [
         { provide: CompanyService, useClass: CompanyServiceStub },
@@ -118,15 +122,15 @@ describe("LoginComponent", () => {
         { provide: Router, useClass: RouterStub },
         {
           provide: SvgIconRegistryService,
-          useClass: SvgIconRegistryServiceStub
+          useClass: SvgIconRegistryServiceStub,
         },
-        { provide: LiveAnnouncer, useValue: {} }
+        { provide: LiveAnnouncer, useValue: {} },
       ],
       declarations: [
         VirtKeyboardDirective,
         LoginComponent,
-        MockPipe(TranslatePipe)
-      ]
+        MockPipe(TranslatePipe),
+      ],
     }).compileComponents();
   }));
 

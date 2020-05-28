@@ -34,14 +34,14 @@ import { SplitOrderDialogComponent } from "./split-order-dialog/split-order-dial
     MatTableModule,
     OrdersRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [
     OrderTableComponent,
     ReassignDialogComponent,
     SplitOrderDialogComponent,
-    ReassignItemComponent
+    ReassignItemComponent,
   ],
-  entryComponents: [ReassignDialogComponent, SplitOrderDialogComponent]
+  entryComponents: [ReassignDialogComponent, SplitOrderDialogComponent],
 })
 export class OrdersModule {}

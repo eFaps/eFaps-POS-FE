@@ -5,7 +5,7 @@ import { DocItem, Order } from "@efaps/pos-library";
 @Component({
   selector: "app-reassign-item",
   templateUrl: "./reassign-item.component.html",
-  styleUrls: ["./reassign-item.component.scss"]
+  styleUrls: ["./reassign-item.component.scss"],
 })
 export class ReassignItemComponent implements OnInit {
   private _position: "LEFT" | "RIGHT" = "LEFT";
@@ -27,7 +27,7 @@ export class ReassignItemComponent implements OnInit {
       "quantity",
       "productDesc",
       "crossUnitPrice",
-      "crossPrice"
+      "crossPrice",
     ];
     if (pos === "LEFT") {
       columns.push("cmdLeft");

@@ -3,7 +3,7 @@ import {
   Component,
   OnDestroy,
   OnInit,
-  ViewChild
+  ViewChild,
 } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
@@ -19,7 +19,7 @@ import { CreateContactDialogComponent } from "../create-contact-dialog/create-co
 @Component({
   selector: "app-contact-table",
   templateUrl: "./contact-table.component.html",
-  styleUrls: ["./contact-table.component.scss"]
+  styleUrls: ["./contact-table.component.scss"],
 })
 export class ContactTableComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<Contact>();
@@ -38,38 +38,38 @@ export class ContactTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.searchForm = this.fb.group({
-      search: []
+      search: [],
     });
     this.subscription$.add(
       this.contactService.getContacts().subscribe({
-        next: data => {
+        next: (data) => {
           this.dataSource.data = [];
           this.dataSource.data = data;
           this.dataSource.sort = this.sort;
-        }
+        },
       })
     );
     this.subscription$.add(
       this.configService.getSystemConfig(CONTACT_ACTIVATE_EMAIL).subscribe({
-        next: value => {
+        next: (value) => {
           this.useEmail = "true" === "" + value;
-        }
+        },
       })
     );
 
-    this.searchForm.valueChanges.pipe(debounceTime(400)).subscribe(input => {
+    this.searchForm.valueChanges.pipe(debounceTime(400)).subscribe((input) => {
       this.dataSource.data = [];
       if (input.search) {
         merge(
           this.contactService.searchContacts(input.search, true),
           this.contactService.searchContacts(input.search, false)
         ).subscribe({
-          next: data =>
-            (this.dataSource.data = this.dataSource.data.concat(data))
+          next: (data) =>
+            (this.dataSource.data = this.dataSource.data.concat(data)),
         });
       } else {
         this.contactService.getContacts().subscribe({
-          next: data => (this.dataSource.data = data)
+          next: (data) => (this.dataSource.data = data),
         });
       }
     });
@@ -87,9 +87,9 @@ export class ContactTableComponent implements OnInit, OnDestroy {
 
   createContact() {
     const dialogRef = this.dialog.open(CreateContactDialogComponent, {
-      width: "450px"
+      width: "450px",
     });
-    dialogRef.afterClosed().subscribe(_result => {
+    dialogRef.afterClosed().subscribe((_result) => {
       if (_result) {
         this.dataSource = new MatTableDataSource<Contact>();
         this.ngOnInit();

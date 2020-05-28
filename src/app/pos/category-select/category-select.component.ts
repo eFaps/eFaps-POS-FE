@@ -5,7 +5,7 @@ import { Category, ProductService } from "@efaps/pos-library";
 @Component({
   selector: "app-category-select",
   templateUrl: "./category-select.component.html",
-  styleUrls: ["./category-select.component.scss"]
+  styleUrls: ["./category-select.component.scss"],
 })
 export class CategorySelectComponent implements OnInit {
   categories: Category[] = [];
@@ -18,7 +18,7 @@ export class CategorySelectComponent implements OnInit {
   ngOnInit() {
     this.productService
       .getCategories()
-      .subscribe(_categories => (this.categories = _categories));
+      .subscribe((_categories) => (this.categories = _categories));
   }
 
   selectCategory(index: number) {

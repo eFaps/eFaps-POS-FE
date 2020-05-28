@@ -5,7 +5,7 @@ import { RouterTestingModule } from "@angular/router/testing";
 import {
   PaymentService,
   PosService,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslateDirective, TranslatePipe } from "@ngx-translate/core";
 import { MockDirective, MockPipe } from "ng-mocks";
@@ -14,25 +14,25 @@ import { Observable } from "rxjs/Observable";
 import { CommandsComponent } from "./commands.component";
 
 class PosServiceStub {
-  currentOrder = new Observable(observer => {
+  currentOrder = new Observable((observer) => {
     observer.next({});
   });
 }
 class PaymentServiceStub {
-  currentDocument = new Observable(observer => {
+  currentDocument = new Observable((observer) => {
     observer.next({});
   });
-  currentPayments = new Observable(observer => {
+  currentPayments = new Observable((observer) => {
     observer.next([]);
   });
-  currentTotal = new Observable(observer => {
+  currentTotal = new Observable((observer) => {
     observer.next({});
   });
 }
 class WorkspaceServiceStub {
-  currentWorkspace = new Observable(observer => {
+  currentWorkspace = new Observable((observer) => {
     observer.next({
-      docTypes: []
+      docTypes: [],
     });
   });
 }
@@ -47,13 +47,13 @@ describe("CommandsComponent", () => {
       providers: [
         { provide: PosService, useClass: PosServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
-        { provide: WorkspaceService, useClass: WorkspaceServiceStub }
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
       ],
       declarations: [
         CommandsComponent,
         MockDirective(TranslateDirective),
-        MockPipe(TranslatePipe, (...args) => "Hallo")
-      ]
+        MockPipe(TranslatePipe, (...args) => "Hallo"),
+      ],
     }).compileComponents();
   }));
 

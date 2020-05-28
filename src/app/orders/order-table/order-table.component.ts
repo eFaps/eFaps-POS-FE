@@ -3,7 +3,7 @@ import {
   Component,
   OnDestroy,
   OnInit,
-  ViewChild
+  ViewChild,
 } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
@@ -20,7 +20,7 @@ import {
   OrderWrapper,
   PaymentService,
   PosService,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { AuthService, Roles } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
@@ -33,7 +33,7 @@ import { SplitOrderDialogComponent } from "../split-order-dialog/split-order-dia
 @Component({
   selector: "app-order-table",
   templateUrl: "./order-table.component.html",
-  styleUrls: ["./order-table.component.scss"]
+  styleUrls: ["./order-table.component.scss"],
 })
 export class OrderTableComponent implements OnInit, OnDestroy {
   DocStatus = DocStatus;
@@ -62,7 +62,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.filterForm = this.fb.group({
       filter: [],
-      preload: []
+      preload: [],
     });
     this.displayedColumns = this.workspaceService.showSpots()
       ? ["number", "date", "total", "status", "spot", "cmd"]
@@ -72,7 +72,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
 
     this.formCtrlSub = this.filterForm.valueChanges
       .pipe(debounceTime(500))
-      .subscribe(newValue => this.applyFilter(newValue.filter));
+      .subscribe((newValue) => this.applyFilter(newValue.filter));
     this.initTable();
   }
 
@@ -94,10 +94,10 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   delete(_order: Order) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: "250px",
-      data: { title: "Are you sure?" }
+      data: { title: "Are you sure?" },
     });
 
-    dialogRef.afterClosed().subscribe(_result => {
+    dialogRef.afterClosed().subscribe((_result) => {
       if (_result) {
         this.documentService.deleteOrder(_order).subscribe(() => {
           this.dataSource = new MatTableDataSource<OrderWrapper>();
@@ -113,9 +113,9 @@ export class OrderTableComponent implements OnInit, OnDestroy {
       width: "90%",
       minHeight: "200",
       maxHeight: "90vh",
-      data: order
+      data: order,
     });
-    dialogRef.afterClosed().subscribe(_result => {
+    dialogRef.afterClosed().subscribe((_result) => {
       this.dataSource = new MatTableDataSource<OrderWrapper>();
       this.ngOnInit();
       this.changeDetectorRefs.detectChanges();
@@ -127,9 +127,9 @@ export class OrderTableComponent implements OnInit, OnDestroy {
       width: "90%",
       minHeight: "200",
       maxHeight: "90vh",
-      data: order
+      data: order,
     });
-    dialogRef.afterClosed().subscribe(_result => {
+    dialogRef.afterClosed().subscribe((_result) => {
       this.dataSource = new MatTableDataSource<OrderWrapper>();
       this.ngOnInit();
       this.changeDetectorRefs.detectChanges();
@@ -146,13 +146,13 @@ export class OrderTableComponent implements OnInit, OnDestroy {
       this.documentService
         .findOrders(_filterValue)
         .pipe(
-          map(orders =>
-            orders.map(order => {
+          map((orders) =>
+            orders.map((order) => {
               return this.getOrderWrapper(orders, order);
             })
           )
         )
-        .subscribe(orderWrappers => {
+        .subscribe((orderWrappers) => {
           this.dataSource.data = orderWrappers;
           this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
@@ -168,7 +168,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     return {
       ...order,
       spotLabel: this.evalSpotLabel(orders, order),
-      multiple: this.evalMultiple(orders, order)
+      multiple: this.evalMultiple(orders, order),
     };
   }
 
@@ -179,13 +179,13 @@ export class OrderTableComponent implements OnInit, OnDestroy {
       this.documentService
         .getOpenOrders()
         .pipe(
-          map(orders =>
-            orders.map(order => {
+          map((orders) =>
+            orders.map((order) => {
               return this.getOrderWrapper(orders, order);
             })
           )
         )
-        .subscribe(orderWrappers => {
+        .subscribe((orderWrappers) => {
           this.dataSource.data = orderWrappers;
           this.dataSource.sortingDataAccessor = (item, property) => {
             switch (property) {
@@ -206,7 +206,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
       return "";
     }
     const relatedOrders = orders
-      .filter(item => {
+      .filter((item) => {
         return item.spot && item.spot.id == order.spot.id;
       })
       .sort((o1, o2) => {
@@ -228,7 +228,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   private evalMultiple(orders: Order[], order: Order): boolean {
     return (
       order.spot &&
-      orders.filter(item => {
+      orders.filter((item) => {
         return item.spot && item.spot.id == order.spot.id;
       }).length > 1
     );

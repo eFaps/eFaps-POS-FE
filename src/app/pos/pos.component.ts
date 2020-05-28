@@ -5,7 +5,7 @@ import {
   Inject,
   OnDestroy,
   OnInit,
-  ViewChild
+  ViewChild,
 } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
@@ -16,7 +16,7 @@ import {
   MsgService,
   PosLayout,
   PosService,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 
 import { CategorySelectComponent } from "./category-select/category-select.component";
@@ -26,7 +26,7 @@ import { ProductGridComponent } from "./product-grid/product-grid.component";
 @Component({
   selector: "app-pos",
   templateUrl: "./pos.component.html",
-  styleUrls: ["./pos.component.scss"]
+  styleUrls: ["./pos.component.scss"],
 })
 export class PosComponent implements OnInit, OnDestroy {
   PosLayout = PosLayout;
@@ -56,16 +56,16 @@ export class PosComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.multiplierForm = this.fb.group({
-      multiplier: [""]
+      multiplier: [""],
     });
-    this.posService.currentTicket.subscribe(data => {
+    this.posService.currentTicket.subscribe((data) => {
       this.ticket = data;
       this.changeDetectorRef.detectChanges();
       this.cmdComp.evalSticky();
     });
     this.onResize();
     this.msgService.init();
-    this.posService.currentOrder.subscribe(order => {
+    this.posService.currentOrder.subscribe((order) => {
       if (order && !this.orderId) {
         this.msgService.publishStartEditOrder(order.id);
         this.orderId = order.id;
@@ -146,11 +146,11 @@ export class PosComponent implements OnInit, OnDestroy {
   openCatSelect() {
     let ref = this.dialog.open(CategorySelectComponent, {});
     ref.afterClosed().subscribe({
-      next: index => {
+      next: (index) => {
         if (this.grid) {
           this.grid.selectedIndex = index;
         }
-      }
+      },
     });
   }
 

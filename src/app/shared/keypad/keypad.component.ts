@@ -4,14 +4,14 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output
+  Output,
 } from "@angular/core";
 import { Hotkey, HotkeysService } from "angular2-hotkeys";
 
 @Component({
   selector: "app-keypad",
   templateUrl: "./keypad.component.html",
-  styleUrls: ["./keypad.component.scss"]
+  styleUrls: ["./keypad.component.scss"],
 })
 export class KeypadComponent implements OnInit, OnDestroy {
   @Input() showTopClear: boolean = true;
@@ -35,13 +35,13 @@ export class KeypadComponent implements OnInit, OnDestroy {
         })
       );
     }
-    this.hotkeys.forEach(hotKey => {
+    this.hotkeys.forEach((hotKey) => {
       this.hotkeysService.add(hotKey);
     });
   }
 
   ngOnDestroy() {
-    this.hotkeys.forEach(hotKey => {
+    this.hotkeys.forEach((hotKey) => {
       this.hotkeysService.remove(hotKey);
     });
   }

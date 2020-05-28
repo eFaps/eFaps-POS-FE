@@ -7,7 +7,7 @@ import { Decimal } from "decimal.js";
 @Component({
   selector: "app-ticket",
   templateUrl: "./ticket.component.html",
-  styleUrls: ["./ticket.component.scss"]
+  styleUrls: ["./ticket.component.scss"],
 })
 export class TicketComponent implements OnInit {
   displayedColumns = [
@@ -15,7 +15,7 @@ export class TicketComponent implements OnInit {
     "productDesc",
     "unitPrice",
     "price",
-    "modify"
+    "modify",
   ];
   dataSource = new MatTableDataSource<Item>();
   currentCurrency = "";
@@ -26,10 +26,10 @@ export class TicketComponent implements OnInit {
 
   ngOnInit() {
     this.posService.currentTicket.subscribe(
-      _data => (this.dataSource.data = _data)
+      (_data) => (this.dataSource.data = _data)
     );
     this.posService.currentCurrency.subscribe(
-      _data => (this.currentCurrency = _data)
+      (_data) => (this.currentCurrency = _data)
     );
   }
 

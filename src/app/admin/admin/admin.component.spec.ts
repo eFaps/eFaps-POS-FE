@@ -14,10 +14,10 @@ import { AdminComponent } from "./admin.component";
 
 class AdminServiceStub {
   version(): Observable<Versions> {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       observer.next({
         remote: "Remote1",
-        local: "Local1"
+        local: "Local1",
       });
     });
   }
@@ -34,8 +34,8 @@ describe("AdminComponent", () => {
       declarations: [
         AdminComponent,
         MockPipe(TranslatePipe),
-        MockDirective(NgBusyDirective)
-      ]
+        MockDirective(NgBusyDirective),
+      ],
     }).compileComponents();
   }));
 

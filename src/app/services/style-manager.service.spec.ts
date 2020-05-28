@@ -5,7 +5,7 @@ import { StyleManagerService } from "./style-manager.service";
 describe("StyleManagerService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [StyleManagerService]
+      providers: [StyleManagerService],
     });
   });
 

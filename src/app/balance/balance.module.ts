@@ -52,12 +52,12 @@ import { DocumentListComponent } from "./document-list/document-list.component";
     BalanceSummarySectionComponent,
     BalanceListComponent,
     DocumentListComponent,
-    BalanceSummaryDialogComponent
+    BalanceSummaryDialogComponent,
   ],
   entryComponents: [
     DocumentDialogComponent,
     BalanceSummaryComponent,
-    BalanceSummaryDialogComponent
-  ]
+    BalanceSummaryDialogComponent,
+  ],
 })
 export class BalanceModule {}

@@ -4,13 +4,13 @@ import { MatTableDataSource } from "@angular/material/table";
 import {
   InventoryEntry,
   InventoryService,
-  Warehouse
+  Warehouse,
 } from "@efaps/pos-library";
 
 @Component({
   selector: "app-inventory-table",
   templateUrl: "./inventory-table.component.html",
-  styleUrls: ["./inventory-table.component.scss"]
+  styleUrls: ["./inventory-table.component.scss"],
 })
 export class InventoryTableComponent implements OnInit {
   displayedColumns = ["quantity", "sku", "description"];
@@ -22,12 +22,14 @@ export class InventoryTableComponent implements OnInit {
 
   ngOnInit() {
     if (this.warehouse) {
-      this.inventoryService.getInventory(this.warehouse.oid).subscribe(data => {
-        this.dataSource.data = data;
-        this.dataSource.sort = this.sort;
-        this.dataSource.filterPredicate = this.filterPredicate;
-        this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
-      });
+      this.inventoryService
+        .getInventory(this.warehouse.oid)
+        .subscribe((data) => {
+          this.dataSource.data = data;
+          this.dataSource.sort = this.sort;
+          this.dataSource.filterPredicate = this.filterPredicate;
+          this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
+        });
     }
   }
 

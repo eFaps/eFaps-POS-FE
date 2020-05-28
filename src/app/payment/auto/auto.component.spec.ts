@@ -6,7 +6,7 @@ import {
   CollectService,
   MsgService,
   PaymentService,
-  Collector
+  Collector,
 } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockComponent, MockPipe } from "ng-mocks";
@@ -15,8 +15,8 @@ import { Observable } from "rxjs";
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
 import { AutoComponent } from "./auto.component";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatRadioModule } from '@angular/material/radio';
-import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from "@angular/material/radio";
+import { MatInputModule } from "@angular/material/input";
 
 class CollectServiceStub {
   getCollectors(): Observable<Collector[]> {
@@ -24,13 +24,13 @@ class CollectServiceStub {
   }
 }
 class PaymentServiceStub {
-  currentPayments = new Observable(observer => {
+  currentPayments = new Observable((observer) => {
     observer.next([]);
   });
-  currentDocument = new Observable(observer => {
+  currentDocument = new Observable((observer) => {
     observer.next([]);
   });
-  currentTotal = new Observable(observer => {
+  currentTotal = new Observable((observer) => {
     observer.next([]);
   });
 }
@@ -50,18 +50,18 @@ describe("AutoComponent", () => {
         MatInputModule,
         MatRadioModule,
         HttpClientModule,
-        MatFormFieldModule
+        MatFormFieldModule,
       ],
       providers: [
         { provide: MsgService, useClass: MsgServiceStub },
         { provide: CollectService, useClass: CollectServiceStub },
-        { provide: PaymentService, useClass: PaymentServiceStub }
+        { provide: PaymentService, useClass: PaymentServiceStub },
       ],
       declarations: [
         AutoComponent,
         MockPipe(TranslatePipe),
-        MockComponent(KeypadComponent)
-      ]
+        MockComponent(KeypadComponent),
+      ],
     }).compileComponents();
   }));
 

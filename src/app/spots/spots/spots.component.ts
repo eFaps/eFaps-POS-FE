@@ -5,7 +5,7 @@ import { Subscription } from "rxjs";
 @Component({
   selector: "app-spots",
   templateUrl: "./spots.component.html",
-  styleUrls: ["./spots.component.scss"]
+  styleUrls: ["./spots.component.scss"],
 })
 export class SpotsComponent implements OnInit, OnDestroy {
   spotConfig = SpotConfig.NONE;
@@ -16,7 +16,7 @@ export class SpotsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription$.add(
       this.workspaceService.currentWorkspace.subscribe({
-        next: workspace => (this.spotConfig = workspace.spotConfig)
+        next: (workspace) => (this.spotConfig = workspace.spotConfig),
       })
     );
   }

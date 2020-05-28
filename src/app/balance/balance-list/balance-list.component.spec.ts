@@ -5,6 +5,7 @@ import { Balance, BalanceService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
 import { BalanceListComponent } from "./balance-list.component";
+import { MatTableModule } from "@angular/material/table";
 
 class BalanceServiceStub {
   getBalances(): Observable<Balance[]> {
@@ -18,9 +19,9 @@ describe("BalanceListComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MatDialogModule],
+      imports: [BrowserAnimationsModule, MatDialogModule, MatTableModule],
       providers: [{ provide: BalanceService, useClass: BalanceServiceStub }],
-      declarations: [BalanceListComponent]
+      declarations: [BalanceListComponent],
     }).compileComponents();
   }));
 

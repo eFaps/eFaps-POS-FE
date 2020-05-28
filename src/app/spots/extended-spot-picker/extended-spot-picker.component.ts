@@ -13,7 +13,7 @@ import {
   Spot,
   SpotConfig,
   SpotService,
-  SpotsLayout
+  SpotsLayout,
 } from "@efaps/pos-library";
 import { forkJoin } from "rxjs";
 
@@ -23,7 +23,7 @@ import { SplitDialogComponent } from "../split-dialog/split-dialog.component";
 @Component({
   selector: "app-extended-spot-picker",
   templateUrl: "./extended-spot-picker.component.html",
-  styleUrls: ["./extended-spot-picker.component.scss"]
+  styleUrls: ["./extended-spot-picker.component.scss"],
 })
 export class ExtendedSpotPickerComponent extends AbstractSpotPicker
   implements OnInit {
@@ -49,15 +49,15 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker
 
   ngOnInit() {
     this.spotService.getLayout().subscribe({
-      next: layout => {
+      next: (layout) => {
         this.spotsLayout = layout;
         this.floors = layout.floors;
-        this.floors.forEach(floor => {
+        this.floors.forEach((floor) => {
           this.imageService.getBase64Image(floor.imageOid).subscribe({
-            next: data => this.images.set(floor.imageOid, data)
+            next: (data) => this.images.set(floor.imageOid, data),
           });
         });
-      }
+      },
     });
   }
 
@@ -82,10 +82,10 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker
     if (this.splitMode) {
       if (spot.orders && spot.orders.length > 0) {
         const dialogRef = this.dialog.open(SplitDialogComponent, {
-          data: spot
+          data: spot,
         });
         dialogRef.afterClosed().subscribe({
-          next: quantity => {
+          next: (quantity) => {
             this.splitMode = false;
             const orders2create = [];
             for (let i = spot.orders.length; i < quantity; i++) {
@@ -101,26 +101,26 @@ export class ExtendedSpotPickerComponent extends AbstractSpotPicker
                 taxes: [],
                 spot: spot,
                 discount: null,
-                payableOid: null
+                payableOid: null,
               };
               orders2create.push(this.documentService.createOrder(order));
             }
             forkJoin(orders2create).subscribe({
-              next: _ => {
+              next: (_) => {
                 this.spotService.getLayout().subscribe({
-                  next: layout => {
+                  next: (layout) => {
                     this.spotsLayout = layout;
                     this.floors = layout.floors;
                     this.router.navigate(["/spots"]);
-                  }
+                  },
                 });
-              }
+              },
             });
-          }
+          },
         });
       } else {
         this.snackBar.open("No selecionable", "", {
-          duration: 3000
+          duration: 3000,
         });
       }
     } else if (!this.editMode) {

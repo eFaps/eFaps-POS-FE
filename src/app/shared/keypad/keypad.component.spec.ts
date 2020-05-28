@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatIconModule } from "@angular/material/icon";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HotkeysService, Hotkey } from "angular2-hotkeys";
+import { Hotkey, HotkeysService } from "angular2-hotkeys";
 
 import { KeypadComponent } from "./keypad.component";
 
@@ -16,9 +18,9 @@ describe("KeypadComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule],
+      imports: [BrowserAnimationsModule, MatGridListModule, MatIconModule],
       providers: [{ provide: HotkeysService, useClass: HotkeysServiceStub }],
-      declarations: [KeypadComponent]
+      declarations: [KeypadComponent],
     }).compileComponents();
   }));
 

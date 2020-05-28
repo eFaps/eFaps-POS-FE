@@ -5,7 +5,7 @@ import { BalanceSummary, BalanceService } from "@efaps/pos-library";
 @Component({
   selector: "app-balance-summary-dialog",
   templateUrl: "./balance-summary-dialog.component.html",
-  styleUrls: ["./balance-summary-dialog.component.scss"]
+  styleUrls: ["./balance-summary-dialog.component.scss"],
 })
 export class BalanceSummaryDialogComponent implements OnInit {
   summary: BalanceSummary;
@@ -17,7 +17,7 @@ export class BalanceSummaryDialogComponent implements OnInit {
 
   ngOnInit() {
     this.balanceService.getSummary(this.data.balance).subscribe({
-      next: summary => (this.summary = summary)
+      next: (summary) => (this.summary = summary),
     });
   }
 }

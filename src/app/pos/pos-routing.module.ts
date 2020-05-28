@@ -6,6 +6,6 @@ const routes: Routes = [{ path: "", component: PosComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class PosRoutingModule {}

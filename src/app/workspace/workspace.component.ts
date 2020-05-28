@@ -4,13 +4,13 @@ import {
   Pos,
   PosService,
   Workspace,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 
 @Component({
   selector: "app-workspace",
   templateUrl: "./workspace.component.html",
-  styleUrls: ["./workspace.component.scss"]
+  styleUrls: ["./workspace.component.scss"],
 })
 export class WorkspaceComponent implements OnInit {
   workspaces: Workspace[] = [];
@@ -23,10 +23,10 @@ export class WorkspaceComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.workspaceService.getWorkspaces().subscribe(data => {
+    this.workspaceService.getWorkspaces().subscribe((data) => {
       this.workspaces = data;
     });
-    this.posService.getPoss().subscribe(data => {
+    this.posService.getPoss().subscribe((data) => {
       this.poss = data;
     });
   }
@@ -37,7 +37,7 @@ export class WorkspaceComponent implements OnInit {
   }
 
   getPosName(_workspace: Workspace): string {
-    const ret = this.poss.find(pos => pos.oid === _workspace.posOid);
+    const ret = this.poss.find((pos) => pos.oid === _workspace.posOid);
     return ret ? ret.name : "";
   }
 }

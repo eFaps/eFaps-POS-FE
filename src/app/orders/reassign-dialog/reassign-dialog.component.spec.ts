@@ -1,12 +1,17 @@
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { DocumentService, PosConfigToken, Order } from "@efaps/pos-library";
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from "@angular/material/dialog";
+import { MatIconModule } from "@angular/material/icon";
+import { DocumentService, Order, PosConfigToken } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
+import { Observable } from "rxjs";
 
 import { ReassignItemComponent } from "../reassign-item/reassign-item.component";
 import { ReassignDialogComponent } from "./reassign-dialog.component";
-import { Observable } from "rxjs";
 
 class DocumentServiceStub {
   getOpenOrders(): Observable<Order[]> {
@@ -20,17 +25,17 @@ describe("ReassignDialogComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
+      imports: [HttpClientTestingModule, MatDialogModule, MatIconModule],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
-        { provide: DocumentService, useClass: DocumentServiceStub }
+        { provide: DocumentService, useClass: DocumentServiceStub },
       ],
       declarations: [
         MockComponent(ReassignItemComponent),
-        ReassignDialogComponent
-      ]
+        ReassignDialogComponent,
+      ],
     }).compileComponents();
   }));
 

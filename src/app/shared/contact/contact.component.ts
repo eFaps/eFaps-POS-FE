@@ -6,7 +6,7 @@ import { debounceTime } from "rxjs/operators";
 @Component({
   selector: "app-contact",
   templateUrl: "./contact.component.html",
-  styleUrls: ["./contact.component.scss"]
+  styleUrls: ["./contact.component.scss"],
 })
 export class ContactComponent implements OnInit {
   searchControl: FormControl = new FormControl();
@@ -17,13 +17,15 @@ export class ContactComponent implements OnInit {
   constructor(private contactService: ContactService) {}
 
   ngOnInit() {
-    this.searchControl.valueChanges.pipe(debounceTime(400)).subscribe(data => {
-      this.contactService
-        .searchContacts(data, this.nameSearch)
-        .subscribe(response => {
-          this.searchResult = response;
-        });
-    });
+    this.searchControl.valueChanges
+      .pipe(debounceTime(400))
+      .subscribe((data) => {
+        this.contactService
+          .searchContacts(data, this.nameSearch)
+          .subscribe((response) => {
+            this.searchResult = response;
+          });
+      });
   }
 
   setNameSearch() {

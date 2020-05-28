@@ -5,7 +5,7 @@ import {
   InventoryService,
   PosService,
   ProductService,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 
@@ -14,7 +14,7 @@ import { AbstractProductSelector } from "../abstract-product-selector";
 @Component({
   selector: "app-product-grid",
   templateUrl: "./product-grid.component.html",
-  styleUrls: ["./product-grid.component.scss"]
+  styleUrls: ["./product-grid.component.scss"],
 })
 export class ProductGridComponent extends AbstractProductSelector
   implements OnInit, OnDestroy {
@@ -48,12 +48,12 @@ export class ProductGridComponent extends AbstractProductSelector
     super.ngOnInit();
     this.subscription$.add(
       this.productService.getPosCategories().subscribe({
-        next: _categories => (this.categories = _categories)
+        next: (_categories) => (this.categories = _categories),
       })
     );
 
     this.workspaceService.currentWorkspace.subscribe({
-      next: workspace => {
+      next: (workspace) => {
         if (workspace) {
           this.showPrices = workspace.gridShowPrice;
           this.size = workspace.gridSize
@@ -62,19 +62,19 @@ export class ProductGridComponent extends AbstractProductSelector
           if (this.showPrices) {
             this.subscription$.add(
               this.posService.currentCurrency.subscribe({
-                next: currency => (this.currentCurrency = currency)
+                next: (currency) => (this.currentCurrency = currency),
               })
             );
           }
           if (this.showInventory) {
             this.inventoryService
               .getInventory(this.workspaceService.getWarehouseOid())
-              .subscribe(_entries => {
+              .subscribe((_entries) => {
                 this.inventory = _entries;
               });
           }
         }
-      }
+      },
     });
   }
 

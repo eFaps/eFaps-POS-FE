@@ -12,7 +12,7 @@ import { DocumentDialogComponent } from "../document-dialog/document-dialog.comp
 @Component({
   selector: "app-document-list",
   templateUrl: "./document-list.component.html",
-  styleUrls: ["./document-list.component.scss"]
+  styleUrls: ["./document-list.component.scss"],
 })
 export class DocumentListComponent implements OnInit, OnDestroy {
   searchForm: FormGroup;
@@ -23,7 +23,7 @@ export class DocumentListComponent implements OnInit, OnDestroy {
     "total",
     "status",
     "order",
-    "cmd"
+    "cmd",
   ];
   dataSource = new MatTableDataSource<PayableHead>();
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -37,12 +37,12 @@ export class DocumentListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.searchForm = this.fb.group({
-      term: []
+      term: [],
     });
     this.subscription$.add(
       this.searchForm.valueChanges
         .pipe(debounceTime(500))
-        .subscribe(newValue => this.applyFilter(newValue.term))
+        .subscribe((newValue) => this.applyFilter(newValue.term))
     );
   }
 
@@ -53,10 +53,10 @@ export class DocumentListComponent implements OnInit, OnDestroy {
   applyFilter(_filterValue: string) {
     this.dataSource.data = [];
     this.documentService.findPayables(_filterValue).subscribe({
-      next: payables => {
+      next: (payables) => {
         this.dataSource.data = this.dataSource.data.concat(payables);
         this.dataSource.sort = this.sort;
-      }
+      },
     });
   }
 
@@ -64,9 +64,9 @@ export class DocumentListComponent implements OnInit, OnDestroy {
     this.dialog.open(DocumentDialogComponent, {
       data: {
         id: payable.id,
-        type: payable.type
+        type: payable.type,
       },
-      maxHeight: "95vh"
+      maxHeight: "95vh",
     });
   }
 }

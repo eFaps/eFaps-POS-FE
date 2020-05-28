@@ -34,7 +34,7 @@ import { SpotsComponent } from "./spots/spots.component";
     MatTooltipModule,
     ReactiveFormsModule,
     SharedModule,
-    SpotsRoutingModule
+    SpotsRoutingModule,
   ],
   declarations: [
     BaseSpotPickerComponent,
@@ -42,13 +42,13 @@ import { SpotsComponent } from "./spots/spots.component";
     SelectOrderDialogComponent,
     SplitDialogComponent,
     SpotDialogComponent,
-    SpotsComponent
+    SpotsComponent,
   ],
   entryComponents: [
     SelectOrderDialogComponent,
     SplitDialogComponent,
-    SpotDialogComponent
+    SpotDialogComponent,
   ],
-  providers: []
+  providers: [],
 })
 export class SpotsModule {}

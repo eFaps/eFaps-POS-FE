@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 @Component({
   selector: "app-image",
   templateUrl: "./image.component.html",
-  styleUrls: ["./image.component.scss"]
+  styleUrls: ["./image.component.scss"],
 })
 export class ImageComponent implements OnInit {
   imageUrl: any;
@@ -14,7 +14,7 @@ export class ImageComponent implements OnInit {
 
   ngOnInit() {
     const t = this;
-    this.data.subscribe(image => {
+    this.data.subscribe((image) => {
       const reader = new FileReader();
       reader.addEventListener(
         "load",

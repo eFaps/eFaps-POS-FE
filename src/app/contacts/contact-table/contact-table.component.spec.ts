@@ -3,6 +3,7 @@ import { DebugElement } from "@angular/core";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatTableModule } from "@angular/material/table";
 import { By } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Contact, PosConfigToken } from "@efaps/pos-library";
@@ -12,10 +13,12 @@ import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs/Observable";
 
 import { ContactTableComponent } from "./contact-table.component";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
 
 class ContactServiceStub {
   getContacts(): Observable<Contact[]> {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       observer.next([]);
     });
   }
@@ -31,13 +34,16 @@ describe("ContactTableComponent", () => {
         BrowserAnimationsModule,
         ReactiveFormsModule,
         MatDialogModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
       ],
       providers: [
         { provide: ContactService, useClass: ContactServiceStub },
-        { provide: PosConfigToken, useValue: {} }
+        { provide: PosConfigToken, useValue: {} },
       ],
-      declarations: [MockPipe(TranslatePipe), ContactTableComponent]
+      declarations: [MockPipe(TranslatePipe), ContactTableComponent],
     }).compileComponents();
   }));
 

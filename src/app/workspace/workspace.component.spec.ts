@@ -8,7 +8,7 @@ import { WorkspaceComponent } from "./workspace.component";
 
 class PosServiceStub {
   getPoss() {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       observer.next([]);
     });
   }
@@ -16,12 +16,11 @@ class PosServiceStub {
 
 class WorkspaceServiceStub {
   getWorkspaces() {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       observer.next([]);
     });
   }
 }
-
 describe("WorkspaceComponent", () => {
   let component: WorkspaceComponent;
   let fixture: ComponentFixture<WorkspaceComponent>;
@@ -31,9 +30,9 @@ describe("WorkspaceComponent", () => {
       imports: [BrowserAnimationsModule, RouterTestingModule],
       providers: [
         { provide: PosService, useClass: PosServiceStub },
-        { provide: WorkspaceService, useClass: WorkspaceServiceStub }
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
       ],
-      declarations: [WorkspaceComponent]
+      declarations: [WorkspaceComponent],
     }).compileComponents();
   }));
 

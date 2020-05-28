@@ -1,7 +1,9 @@
 import { HttpClientModule } from "@angular/common/http";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatTableModule } from "@angular/material/table";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { Taxpayer, TaxpayerService } from "@efaps/pos-library";
 import { Page, PageRequest } from "@efaps/pos-library/lib/model/pageable";
@@ -14,7 +16,7 @@ class TaxpayerServiceStub {
     term: string,
     pageable?: PageRequest
   ): Observable<Page<Taxpayer>> {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       observer.next({
         content: [],
         pageable: {
@@ -23,7 +25,7 @@ class TaxpayerServiceStub {
           pageSize: 20,
           offset: 0,
           paged: true,
-          unpaged: true
+          unpaged: true,
         },
         totalPages: 0,
         totalElements: 0,
@@ -33,7 +35,7 @@ class TaxpayerServiceStub {
         numberOfElements: 0,
         size: 0,
         number: 0,
-        empty: true
+        empty: true,
       });
     });
   }
@@ -45,13 +47,18 @@ describe("TaxpayerResultComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, NoopAnimationsModule, MatPaginatorModule],
+      imports: [
+        HttpClientTestingModule,
+        NoopAnimationsModule,
+        MatPaginatorModule,
+        MatTableModule,
+      ],
       declarations: [TaxpayerResultComponent],
       providers: [
         { provide: TaxpayerService, useClass: TaxpayerServiceStub },
         { provide: MatDialogRef, useValue: {} },
-        { provide: MAT_DIALOG_DATA, useValue: [] }
-      ]
+        { provide: MAT_DIALOG_DATA, useValue: [] },
+      ],
     }).compileComponents();
   }));
 

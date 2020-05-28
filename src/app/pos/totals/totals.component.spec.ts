@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { MatListModule } from "@angular/material/list";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import { PosCurrencyPipe, PosService } from "@efaps/pos-library";
@@ -9,22 +10,22 @@ import { Observable } from "rxjs/Observable";
 import { TotalsComponent } from "./totals.component";
 
 class PosServiceStub {
-  currentOrder = new Observable(observer => {
+  currentOrder = new Observable((observer) => {
     observer.next({});
   });
-  currentTicket = new Observable(observer => {
+  currentTicket = new Observable((observer) => {
     observer.next({});
   });
-  currentCurrency = new Observable(observer => {
+  currentCurrency = new Observable((observer) => {
     observer.next("");
   });
-  currentTaxes = new Observable(observer => {
+  currentTaxes = new Observable((observer) => {
     observer.next(new Map());
   });
-  currentCrossTotal = new Observable(observer => {
+  currentCrossTotal = new Observable((observer) => {
     observer.next({});
   });
-  currentNetTotal = new Observable(observer => {
+  currentNetTotal = new Observable((observer) => {
     observer.next({});
   });
 }
@@ -35,13 +36,13 @@ describe("TotalsComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, RouterTestingModule],
+      imports: [BrowserAnimationsModule, RouterTestingModule, MatListModule],
       providers: [{ provide: PosService, useClass: PosServiceStub }],
       declarations: [
         TotalsComponent,
         MockPipe(PosCurrencyPipe),
-        MockPipe(TranslatePipe)
-      ]
+        MockPipe(TranslatePipe),
+      ],
     }).compileComponents();
   }));
 

@@ -6,16 +6,17 @@ import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
 import { BalancePaymentListComponent } from "./balance-payment-list.component";
+import { MatListModule } from "@angular/material/list";
 
 class BalanceServiceStub {
-  currentBalance = new Observable(observer => {
+  currentBalance = new Observable((observer) => {
     observer.next([]);
   });
 }
 
 class DocumentServiceStub {
   getDocuments4Balance() {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       observer.next([]);
     });
   }
@@ -27,12 +28,12 @@ describe("BalancePaymentListComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule],
+      imports: [BrowserAnimationsModule, MatListModule],
       providers: [
         { provide: DocumentService, useClass: DocumentServiceStub },
-        { provide: BalanceService, useClass: BalanceServiceStub }
+        { provide: BalanceService, useClass: BalanceServiceStub },
       ],
-      declarations: [BalancePaymentListComponent, MockPipe(TranslatePipe)]
+      declarations: [BalancePaymentListComponent, MockPipe(TranslatePipe)],
     }).compileComponents();
   }));
 

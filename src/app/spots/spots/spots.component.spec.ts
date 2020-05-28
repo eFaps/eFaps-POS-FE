@@ -19,13 +19,13 @@ describe("SpotsComponent", () => {
     TestBed.configureTestingModule({
       imports: [],
       providers: [
-        { provide: WorkspaceService, useClass: WorkspaceServiceStub }
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
       ],
       declarations: [
         MockComponent(BaseSpotPickerComponent),
         MockComponent(ExtendedSpotPickerComponent),
-        SpotsComponent
-      ]
+        SpotsComponent,
+      ],
     }).compileComponents();
   }));
 

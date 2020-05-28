@@ -4,7 +4,7 @@ import { BalanceSummary, PaymentInfo, PaymentType } from "@efaps/pos-library";
 @Component({
   selector: "app-balance-payment-list",
   templateUrl: "./balance-payment-list.component.html",
-  styleUrls: ["./balance-payment-list.component.scss"]
+  styleUrls: ["./balance-payment-list.component.scss"],
 })
 export class BalancePaymentListComponent {
   PaymentType = PaymentType;
@@ -18,7 +18,7 @@ export class BalancePaymentListComponent {
     this.total = 0;
     this.payments = [];
     if (summary) {
-      summary.detail.paymentInfos.forEach(paymentInfo => {
+      summary.detail.paymentInfos.forEach((paymentInfo) => {
         this.payments.push(paymentInfo);
       });
       this.total = summary.detail.crossTotal;

@@ -6,7 +6,7 @@ import { DocItem, DocStatus, Order, PosService } from "@efaps/pos-library";
 @Component({
   selector: "app-split-order-dialog",
   templateUrl: "./split-order-dialog.component.html",
-  styleUrls: ["./split-order-dialog.component.scss"]
+  styleUrls: ["./split-order-dialog.component.scss"],
 })
 export class SplitOrderDialogComponent implements OnInit {
   originDataSource = new MatTableDataSource<DocItem>();
@@ -17,7 +17,7 @@ export class SplitOrderDialogComponent implements OnInit {
     "productDesc",
     "crossUnitPrice",
     "crossPrice",
-    "cmd"
+    "cmd",
   ];
   targetColumns = [
     "cmd",
@@ -25,7 +25,7 @@ export class SplitOrderDialogComponent implements OnInit {
     "quantity",
     "productDesc",
     "crossUnitPrice",
-    "crossPrice"
+    "crossPrice",
   ];
   originOrder: Order;
   targetOrder: Order;
@@ -55,7 +55,7 @@ export class SplitOrderDialogComponent implements OnInit {
       crossTotal: 0,
       taxes: [],
       discount: null,
-      payableOid: null
+      payableOid: null,
     };
   }
 
@@ -78,7 +78,7 @@ export class SplitOrderDialogComponent implements OnInit {
   }
 
   move(_item: DocItem, _origin: DocItem[], _target: DocItem[]) {
-    const targetItem = _target.find(item => item.index === _item.index);
+    const targetItem = _target.find((item) => item.index === _item.index);
     if (targetItem) {
       targetItem.quantity = targetItem.quantity + 1;
       if (_item.quantity === 1) {
@@ -106,7 +106,7 @@ export class SplitOrderDialogComponent implements OnInit {
           netUnitPrice: _item.netUnitPrice,
           crossPrice: _item.crossPrice,
           crossUnitPrice: _item.crossUnitPrice,
-          taxes: _item.taxes
+          taxes: _item.taxes,
         });
       }
     }

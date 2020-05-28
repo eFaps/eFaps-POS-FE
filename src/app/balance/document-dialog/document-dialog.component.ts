@@ -5,7 +5,7 @@ import { DocumentService } from "@efaps/pos-library";
 @Component({
   selector: "app-document-dialog",
   templateUrl: "./document-dialog.component.html",
-  styleUrls: ["./document-dialog.component.scss"]
+  styleUrls: ["./document-dialog.component.scss"],
 })
 export class DocumentDialogComponent implements OnInit {
   constructor(
@@ -18,17 +18,17 @@ export class DocumentDialogComponent implements OnInit {
     switch (this.data.type) {
       case "RECEIPT":
         this.documentService.getReceipt(this.data.id).subscribe({
-          next: data => (this.data = data)
+          next: (data) => (this.data = data),
         });
         break;
       case "INVOICE":
         this.documentService.getInvoice(this.data.id).subscribe({
-          next: data => (this.data = data)
+          next: (data) => (this.data = data),
         });
         break;
       case "TICKET":
         this.documentService.getTicket(this.data.id).subscribe({
-          next: data => (this.data = data)
+          next: (data) => (this.data = data),
         });
         break;
     }

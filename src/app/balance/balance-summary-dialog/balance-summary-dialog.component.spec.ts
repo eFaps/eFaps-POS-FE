@@ -23,12 +23,12 @@ describe("BalanceSummaryDialogComponent", () => {
       imports: [BrowserAnimationsModule],
       providers: [
         { provide: BalanceService, useClass: BalanceServiceStub },
-        { provide: MAT_DIALOG_DATA, useValue: [] }
+        { provide: MAT_DIALOG_DATA, useValue: [] },
       ],
       declarations: [
         MockComponent(BalanceSummaryComponent),
-        BalanceSummaryDialogComponent
-      ]
+        BalanceSummaryDialogComponent,
+      ],
     }).compileComponents();
   }));
 

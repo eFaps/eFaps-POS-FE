@@ -5,6 +5,6 @@ import { VirtKeyboardDirective } from ".";
 @NgModule({
   declarations: [VirtKeyboardDirective],
   imports: [CommonModule],
-  exports: [VirtKeyboardDirective]
+  exports: [VirtKeyboardDirective],
 })
 export class ServicesModule {}

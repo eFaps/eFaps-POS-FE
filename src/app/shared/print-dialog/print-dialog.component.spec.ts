@@ -1,5 +1,9 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PrintService } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
@@ -16,18 +20,21 @@ describe("PrintDialogComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule],
+      imports: [BrowserAnimationsModule, MatDialogModule],
       providers: [
         { provide: PrintService, useClass: PrintServiceStub },
         { provide: MatDialogRef, useValue: {} },
         {
           provide: MAT_DIALOG_DATA,
-          useValue: new Observable(observer => {
+          useValue: new Observable((observer) => {
             observer.next([]);
-          })
-        }
+          }),
+        },
       ],
-      declarations: [PrintDialogComponent, MockComponent(PrintDisplayComponent)]
+      declarations: [
+        PrintDialogComponent,
+        MockComponent(PrintDisplayComponent),
+      ],
     }).compileComponents();
   }));
 

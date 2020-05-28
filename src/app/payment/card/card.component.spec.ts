@@ -13,7 +13,7 @@ import {
   PaymentService,
   PosService,
   UtilsService,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockComponent, MockPipe } from "ng-mocks";
@@ -32,20 +32,20 @@ class UtilsServiceStub {
   }
 }
 class PaymentServiceStub {
-  currentPayments = new Observable(observer => {
+  currentPayments = new Observable((observer) => {
     observer.next([]);
   });
-  currentDocument = new Observable(observer => {
+  currentDocument = new Observable((observer) => {
     observer.next([]);
   });
-  currentTotal = new Observable(observer => {
+  currentTotal = new Observable((observer) => {
     observer.next([]);
   });
 }
 class WorkspaceServiceStub {
-  currentWorkspace = new Observable(observer => {
+  currentWorkspace = new Observable((observer) => {
     observer.next({
-      cards: ["Something"]
+      cards: ["Something"],
     });
   });
 }
@@ -63,7 +63,7 @@ describe("CardComponent", () => {
         MatInputModule,
         MatRadioModule,
         MatSelectModule,
-        RouterTestingModule
+        RouterTestingModule,
       ],
       providers: [
         { provide: AuthService, useClass: AuthServiceStub },
@@ -72,13 +72,13 @@ describe("CardComponent", () => {
         { provide: PosService, useClass: PosServiceStub },
         { provide: UtilsService, useClass: UtilsServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
-        { provide: WorkspaceService, useClass: WorkspaceServiceStub }
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
       ],
       declarations: [
         CardComponent,
         MockPipe(TranslatePipe),
-        MockComponent(KeypadComponent)
-      ]
+        MockComponent(KeypadComponent),
+      ],
     }).compileComponents();
   }));
 

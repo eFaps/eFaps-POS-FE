@@ -4,7 +4,7 @@ import {
   Payment,
   PaymentService,
   PaymentType,
-  UtilsService
+  UtilsService,
 } from "@efaps/pos-library";
 
 import { PaymentForm } from "../payment-form";
@@ -12,7 +12,7 @@ import { PaymentForm } from "../payment-form";
 @Component({
   selector: "app-cash",
   templateUrl: "./cash.component.html",
-  styleUrls: ["./cash.component.scss"]
+  styleUrls: ["./cash.component.scss"],
 })
 export class CashComponent extends PaymentForm {
   constructor(

@@ -8,7 +8,7 @@ describe("BalanceSummarySectionComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BalanceSummarySectionComponent]
+      declarations: [BalanceSummarySectionComponent],
     }).compileComponents();
   }));
 
@@ -21,7 +21,7 @@ describe("BalanceSummarySectionComponent", () => {
       netTotal: 10,
       crossTotal: 10,
       paymentInfos: [],
-      taxEntries: []
+      taxEntries: [],
     };
     fixture.detectChanges();
   });

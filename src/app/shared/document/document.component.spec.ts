@@ -8,7 +8,7 @@ import {
   PosConfigToken,
   PosCurrencyPipe,
   PrintService,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
@@ -19,9 +19,9 @@ import { DocumentComponent } from "./document.component";
 const routerSpy = jasmine.createSpyObj("Router", ["navigate"]);
 
 class WorkspaceServiceStub {
-  currentWorkspace = new Observable(observer => {
+  currentWorkspace = new Observable((observer) => {
     observer.next({
-      printCmds: []
+      printCmds: [],
     });
   });
 }
@@ -37,19 +37,19 @@ describe("DocumentComponent", () => {
         BrowserAnimationsModule,
         RouterTestingModule,
         HttpClientModule,
-        MatDialogModule
+        MatDialogModule,
       ],
       providers: [
         { provide: PosConfigToken, useValue: {} },
         { provide: Router, useValue: routerSpy },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
-        { provide: PrintService, useClass: PrintServiceStub }
+        { provide: PrintService, useClass: PrintServiceStub },
       ],
       declarations: [
         DocumentComponent,
         MockPipe(TranslatePipe),
-        MockPipe(PosCurrencyPipe)
-      ]
+        MockPipe(PosCurrencyPipe),
+      ],
     }).compileComponents();
   }));
 

@@ -3,11 +3,11 @@ import {
   Directive,
   ElementRef,
   HostListener,
-  Input
+  Input,
 } from "@angular/core";
 
 @Directive({
-  selector: "[appSameHeight]"
+  selector: "[appSameHeight]",
 })
 export class SameHeightDirective implements AfterViewChecked {
   // class name to match height
@@ -45,7 +45,7 @@ export class SameHeightDirective implements AfterViewChecked {
 
     // gather all height
     const itemHeights = Array.from(children).map(
-      x => x.getBoundingClientRect().height
+      (x) => x.getBoundingClientRect().height
     );
 
     // find max height

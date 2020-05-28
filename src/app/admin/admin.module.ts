@@ -13,8 +13,8 @@ import { AdminComponent } from "./admin/admin.component";
     AdminRoutingModule,
     NgBusyModule,
     TranslateModule,
-    MatButtonModule
+    MatButtonModule,
   ],
-  declarations: [AdminComponent]
+  declarations: [AdminComponent],
 })
 export class AdminModule {}

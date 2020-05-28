@@ -4,7 +4,7 @@ import {
   Document,
   Payment,
   PaymentService,
-  UtilsService
+  UtilsService,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 
@@ -27,20 +27,20 @@ export abstract class PaymentForm implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.paymentForm = this.fb.group({
-      amount: ["0.00", Validators.min(0)]
+      amount: ["0.00", Validators.min(0)],
     });
     this.subscription$.add(
       this.paymentService.currentDocument.subscribe(
-        _doc => (this.document = _doc)
+        (_doc) => (this.document = _doc)
       )
     );
     this.subscription$.add(
       this.paymentService.currentPayments.subscribe(
-        _payments => (this.payments = _payments)
+        (_payments) => (this.payments = _payments)
       )
     );
     this.subscription$.add(
-      this.paymentService.currentTotal.subscribe(_total => {
+      this.paymentService.currentTotal.subscribe((_total) => {
         this.change = this.document
           ? _total - this.document.crossTotal
           : _total;
@@ -62,10 +62,7 @@ export abstract class PaymentForm implements OnInit, OnDestroy {
         amount = "" + this.paymentForm.value.amount + _number;
         break;
     }
-    amount = amount
-      .replace(/\./g, "")
-      .replace(/,/g, "")
-      .replace(/^0+/, "");
+    amount = amount.replace(/\./g, "").replace(/,/g, "").replace(/^0+/, "");
     if (amount.length > 2) {
       amount = amount.substr(0, amount.length - 2) + "." + amount.substr(-2, 2);
     } else if (amount.length === 1) {

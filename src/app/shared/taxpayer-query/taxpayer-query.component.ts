@@ -7,7 +7,7 @@ import { TaxpayerResultComponent } from "../taxpayer-result/taxpayer-result.comp
 @Component({
   selector: "app-taxpayer-query",
   templateUrl: "./taxpayer-query.component.html",
-  styleUrls: ["./taxpayer-query.component.scss"]
+  styleUrls: ["./taxpayer-query.component.scss"],
 })
 export class TaxpayerQueryComponent implements OnInit {
   taxpayerForm: FormGroup;
@@ -23,7 +23,7 @@ export class TaxpayerQueryComponent implements OnInit {
 
   ngOnInit(): void {
     this.taxpayerForm = this.fb.group({
-      term: ["", [Validators.required, Validators.pattern("[0-9]{11}")]]
+      term: ["", [Validators.required, Validators.pattern("[0-9]{11}")]],
     });
   }
 
@@ -44,18 +44,18 @@ export class TaxpayerQueryComponent implements OnInit {
     if (this.nameSearch) {
       const dialogRef = this.dialog.open(TaxpayerResultComponent, {
         data: this.taxpayerForm.value.term,
-        maxHeight: "95vh"
+        maxHeight: "95vh",
       });
       dialogRef.afterClosed().subscribe({
-        next: taxpayer => {
+        next: (taxpayer) => {
           this.result.next(taxpayer);
-        }
+        },
       });
     } else {
       this.taxpayerService.getTaxpayer(this.taxpayerForm.value.term).subscribe({
-        next: taxpayer => {
+        next: (taxpayer) => {
           this.result.next(taxpayer);
-        }
+        },
       });
     }
   }

@@ -10,12 +10,12 @@ import {
   Taxpayer,
 } from "@efaps/pos-library";
 
-import { CONTACT_ACTIVATE_EMAIL } from '../../util/keys';
+import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
 
 @Component({
   selector: "app-create-contact-dialog",
   templateUrl: "./create-contact-dialog.component.html",
-  styleUrls: ["./create-contact-dialog.component.scss"]
+  styleUrls: ["./create-contact-dialog.component.scss"],
 })
 export class CreateContactDialogComponent implements OnInit, OnDestroy {
   identificationType = IdentificationType;
@@ -37,10 +37,10 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.configService.getSystemConfig(CONTACT_ACTIVATE_EMAIL).subscribe({
-      next: value => {
+      next: (value) => {
         this.useEmail = "true" === "" + value;
-      }
-    })
+      },
+    });
 
     this.contactForm = this.fb.group({
       idType: ["-1", [Validators.required]],
@@ -48,13 +48,13 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
       name: ["", Validators.required],
       email: ["", Validators.email],
     });
-    this.contactForm.get("idType").valueChanges.subscribe(idType => {
+    this.contactForm.get("idType").valueChanges.subscribe((idType) => {
       if (idType === IdentificationType.RUC) {
         this.contactForm
           .get("idNumber")
           .setValidators([
             Validators.required,
-            Validators.pattern("[0-9]{11}")
+            Validators.pattern("[0-9]{11}"),
           ]);
       } else if (idType === IdentificationType.DNI) {
         this.contactForm
@@ -87,8 +87,8 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
       email: this.contactForm.value.email,
     };
     this.contactService.createContact(contact).subscribe({
-      next: _contact => this.dialogRef.close(_contact),
-      error: err => {
+      next: (_contact) => this.dialogRef.close(_contact),
+      error: (err) => {
         if (err.error && err.error.status == 412) {
           this.snackBar.open(
             "Un contacto con el mismo Numero ya existe!",
@@ -98,7 +98,7 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
         } else {
           this.snackBar.open("Algo inesperado paso", null, { duration: 3000 });
         }
-      }
+      },
     });
   }
 
@@ -106,7 +106,7 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
     if (taxpayer) {
       this.contactForm.patchValue({
         idNumber: taxpayer.id,
-        name: taxpayer.name
+        name: taxpayer.name,
       });
       let msg = "";
       if (taxpayer.homeState != "HABIDO") {

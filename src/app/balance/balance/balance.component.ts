@@ -7,7 +7,7 @@ import {
   DocumentService,
   PayableHead,
   PrintService,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
 import { Subscription } from "rxjs";
@@ -18,7 +18,7 @@ import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.com
 @Component({
   selector: "app-balance",
   templateUrl: "./balance.component.html",
-  styleUrls: ["./balance.component.scss"]
+  styleUrls: ["./balance.component.scss"],
 })
 export class BalanceComponent implements OnInit, OnDestroy {
   currentBalance: Balance;
@@ -40,7 +40,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription$.add(
-      this.balanceService.currentBalance.subscribe(balance => {
+      this.balanceService.currentBalance.subscribe((balance) => {
         if (this.busy) {
           this.busy.unsubscribe();
         }
@@ -50,11 +50,12 @@ export class BalanceComponent implements OnInit, OnDestroy {
           this.busy = this.documentService
             .getDocuments4Balance(balance)
             .subscribe({
-              next: payables => (this.payables = this.payables.concat(payables))
+              next: (payables) =>
+                (this.payables = this.payables.concat(payables)),
             });
           this.subscription$.add(
             this.balanceService.getSummary(balance).subscribe({
-              next: summary => (this.summary = summary)
+              next: (summary) => (this.summary = summary),
             })
           );
         }
@@ -62,12 +63,14 @@ export class BalanceComponent implements OnInit, OnDestroy {
     );
     this.subscription$.add(
       this.workspaceService.currentWorkspace.subscribe({
-        next: workspace => {
+        next: (workspace) => {
           if (workspace) {
-            this.print = workspace.printCmds.some(x => x.target === "BALANCE");
+            this.print = workspace.printCmds.some(
+              (x) => x.target === "BALANCE"
+            );
             this.workspaceOid = workspace.oid;
           }
-        }
+        },
       })
     );
   }
@@ -82,9 +85,9 @@ export class BalanceComponent implements OnInit, OnDestroy {
   init() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: "300px",
-      data: { title: this.translateService.instant("BALANCE.CONFIRM-OPEN") }
+      data: { title: this.translateService.instant("BALANCE.CONFIRM-OPEN") },
     });
-    dialogRef.afterClosed().subscribe(_result => {
+    dialogRef.afterClosed().subscribe((_result) => {
       if (_result) {
         this.balanceService.init();
       }
@@ -94,25 +97,25 @@ export class BalanceComponent implements OnInit, OnDestroy {
   close() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: "300px",
-      data: { title: this.translateService.instant("BALANCE.CONFIRM-CLOSE") }
+      data: { title: this.translateService.instant("BALANCE.CONFIRM-CLOSE") },
     });
     dialogRef.afterClosed().subscribe({
-      next: result => {
+      next: (result) => {
         if (result) {
           this.balanceService.close(this.currentBalance).subscribe({
-            next: balance => {
+            next: (balance) => {
               if (this.print) {
                 this.dialog.open(PrintDialogComponent, {
                   data: this.printService.printBalance(
                     this.workspaceOid,
                     balance.id
-                  )
+                  ),
                 });
               }
-            }
+            },
           });
         }
-      }
+      },
     });
   }
 }

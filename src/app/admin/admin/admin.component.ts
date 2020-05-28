@@ -5,7 +5,7 @@ import { Subscription } from "rxjs";
 @Component({
   selector: "app-admin",
   templateUrl: "./admin.component.html",
-  styleUrls: ["./admin.component.scss"]
+  styleUrls: ["./admin.component.scss"],
 })
 export class AdminComponent implements OnInit {
   busy: Subscription;
@@ -16,7 +16,7 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.adminService
       .version()
-      .subscribe(versions => (this.versions = versions));
+      .subscribe((versions) => (this.versions = versions));
   }
 
   reload() {

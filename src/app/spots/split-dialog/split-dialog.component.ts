@@ -5,7 +5,7 @@ import { MatDialogRef } from "@angular/material/dialog";
 @Component({
   selector: "app-split-dialog",
   templateUrl: "./split-dialog.component.html",
-  styleUrls: ["./split-dialog.component.scss"]
+  styleUrls: ["./split-dialog.component.scss"],
 })
 export class SplitDialogComponent implements OnInit {
   quantityForm: FormGroup;
@@ -18,7 +18,7 @@ export class SplitDialogComponent implements OnInit {
 
   ngOnInit() {
     this.quantityForm = this.fb.group({
-      quantity: [""]
+      quantity: [""],
     });
   }
 

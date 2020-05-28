@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatTableModule } from "@angular/material/table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import {
@@ -12,13 +16,14 @@ import {
   PosCurrencyPipe,
   PosService,
   UtilsService,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs/Observable";
 
 import { OrderTableComponent } from "./order-table.component";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 class AuthServiceStub {
   hasRole(val) {
@@ -28,12 +33,12 @@ class AuthServiceStub {
 class ConfigServiceStub {}
 class DocumentServiceStub {
   getOpenOrders(): Observable<Order[]> {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       observer.next([]);
     });
   }
   findOrders(_term: string): Observable<Order[]> {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       observer.next([]);
     });
   }
@@ -60,7 +65,12 @@ describe("OrderTableComponent", () => {
         BrowserAnimationsModule,
         MatDialogModule,
         RouterTestingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSlideToggleModule,
       ],
       providers: [
         { provide: AuthService, useClass: AuthServiceStub },
@@ -69,13 +79,13 @@ describe("OrderTableComponent", () => {
         { provide: PaymentService, useClass: PaymentServiceStub },
         { provide: PosService, useClass: PosServiceStub },
         { provide: UtilsService, useClass: UtilsServiceStub },
-        { provide: WorkspaceService, useClass: WorkspaceServiceStub }
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
       ],
       declarations: [
         OrderTableComponent,
         MockPipe(PosCurrencyPipe),
-        MockPipe(TranslatePipe)
-      ]
+        MockPipe(TranslatePipe),
+      ],
     }).compileComponents();
   }));
 

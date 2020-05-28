@@ -7,15 +7,16 @@ import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs/Observable";
 
 import { TicketComponent } from "./ticket.component";
+import { MatTableModule } from "@angular/material/table";
 
 class PosServiceStub {
-  currentOrder = new Observable(observer => {
+  currentOrder = new Observable((observer) => {
     observer.next({});
   });
-  currentTicket = new Observable(observer => {
+  currentTicket = new Observable((observer) => {
     observer.next({});
   });
-  currentCurrency = new Observable(observer => {
+  currentCurrency = new Observable((observer) => {
     observer.next("");
   });
 }
@@ -29,10 +30,11 @@ describe("TicketComponent", () => {
       imports: [
         BrowserAnimationsModule,
         RouterTestingModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatTableModule,
       ],
       providers: [{ provide: PosService, useClass: PosServiceStub }],
-      declarations: [TicketComponent, MockPipe(PosCurrencyPipe)]
+      declarations: [TicketComponent, MockPipe(PosCurrencyPipe)],
     }).compileComponents();
   }));
 

@@ -14,7 +14,7 @@ export class TranslateFileLoader implements TranslateLoader {
    * @returns {any}
    */
   public getTranslation(lang: string): Observable<any> {
-    return Observable.create(observer => {
+    return Observable.create((observer) => {
       const fileName = `${__dirname}/${this.prefix}/${lang}${this.suffix}`;
       observer.next(JSON.parse(fs.readFileSync(fileName, "utf8")));
       observer.complete();

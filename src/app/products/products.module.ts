@@ -27,9 +27,9 @@ import { ProducttableComponent } from "./producttable/producttable.component";
     ProductsRoutingModule,
     ReactiveFormsModule,
     ServicesModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [ProducttableComponent],
-  entryComponents: []
+  entryComponents: [],
 })
 export class ProductsModule {}

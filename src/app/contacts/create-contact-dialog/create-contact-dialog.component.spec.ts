@@ -1,11 +1,11 @@
 import { LiveAnnouncer } from "@angular/cdk/a11y";
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
-  MatDialogRef
+  MatDialogRef,
 } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
@@ -15,7 +15,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   ConfigService,
   PosConfigToken,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { MockDirective } from "ng-mocks";
@@ -23,7 +23,7 @@ import { MockDirective } from "ng-mocks";
 import { VirtKeyboardDirective } from "../../services";
 import {
   SharedModule,
-  TranslateLoaderFactory
+  TranslateLoaderFactory,
 } from "../../shared/shared.module";
 import { CreateContactDialogComponent } from "./create-contact-dialog.component";
 
@@ -47,8 +47,8 @@ describe("CreateContactDialogComponent", () => {
           loader: {
             provide: TranslateLoader,
             useFactory: TranslateLoaderFactory,
-          }
-        })
+          },
+        }),
       ],
       providers: [
         ConfigService,
@@ -56,12 +56,12 @@ describe("CreateContactDialogComponent", () => {
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] },
         { provide: LiveAnnouncer, useValue: {} },
-        { provide: PosConfigToken, useValue: {} }
+        { provide: PosConfigToken, useValue: {} },
       ],
       declarations: [
         CreateContactDialogComponent,
-        MockDirective(VirtKeyboardDirective)
-      ]
+        MockDirective(VirtKeyboardDirective),
+      ],
     }).compileComponents();
   }));
 

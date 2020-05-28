@@ -20,9 +20,9 @@ describe("DocumentDialogComponent", () => {
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
-        { provide: DocumentService, useClass: DocumentServiceStub }
+        { provide: DocumentService, useClass: DocumentServiceStub },
       ],
-      declarations: [DocumentDialogComponent, MockComponent(DocumentComponent)]
+      declarations: [DocumentDialogComponent, MockComponent(DocumentComponent)],
     }).compileComponents();
   }));
 

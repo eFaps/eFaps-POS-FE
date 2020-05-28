@@ -1,10 +1,7 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
+import { MatGridListModule } from "@angular/material/grid-list";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { TranslatePipe } from "@ngx-translate/core";
-import { MockComponent, MockPipe } from "ng-mocks";
-import { Observable } from "rxjs/Observable";
-
 import {
   AuthService,
   ConfigService,
@@ -12,10 +9,16 @@ import {
   PaymentService,
   PosService,
   UtilsService,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
+import { MockComponent, MockPipe } from "ng-mocks";
+import { Observable } from "rxjs/Observable";
+
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
 import { CashComponent } from "./cash.component";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 class AuthServiceStub {}
 class ConfigServiceStub {}
@@ -27,13 +30,13 @@ class UtilsServiceStub {
   }
 }
 class PaymentServiceStub {
-  currentPayments = new Observable(observer => {
+  currentPayments = new Observable((observer) => {
     observer.next([]);
   });
-  currentDocument = new Observable(observer => {
+  currentDocument = new Observable((observer) => {
     observer.next([]);
   });
-  currentTotal = new Observable(observer => {
+  currentTotal = new Observable((observer) => {
     observer.next([]);
   });
 }
@@ -45,7 +48,13 @@ describe("CashComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, ReactiveFormsModule],
+      imports: [
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        MatGridListModule,
+        MatFormFieldModule,
+        MatInputModule,
+      ],
       providers: [
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },
@@ -53,13 +62,13 @@ describe("CashComponent", () => {
         { provide: PosService, useClass: PosServiceStub },
         { provide: UtilsService, useClass: UtilsServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
-        { provide: WorkspaceService, useClass: WorkspaceServiceStub }
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
       ],
       declarations: [
         CashComponent,
         MockPipe(TranslatePipe),
-        MockComponent(KeypadComponent)
-      ]
+        MockComponent(KeypadComponent),
+      ],
     }).compileComponents();
   }));
 

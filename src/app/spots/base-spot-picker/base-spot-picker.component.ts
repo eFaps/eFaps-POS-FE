@@ -6,7 +6,7 @@ import {
   PosService,
   Spot,
   SpotConfig,
-  SpotService
+  SpotService,
 } from "@efaps/pos-library";
 
 import { AbstractSpotPicker } from "../abstract-spot-picker";
@@ -14,7 +14,7 @@ import { AbstractSpotPicker } from "../abstract-spot-picker";
 @Component({
   selector: "app-base-spot-picker",
   templateUrl: "./base-spot-picker.component.html",
-  styleUrls: ["./base-spot-picker.component.scss"]
+  styleUrls: ["./base-spot-picker.component.scss"],
 })
 export class BaseSpotPickerComponent extends AbstractSpotPicker
   implements OnInit {
@@ -31,7 +31,7 @@ export class BaseSpotPickerComponent extends AbstractSpotPicker
   }
 
   ngOnInit() {
-    this.spotService.getSpots().subscribe(_spots => {
+    this.spotService.getSpots().subscribe((_spots) => {
       this.spots = _spots;
     });
   }

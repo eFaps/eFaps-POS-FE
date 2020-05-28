@@ -7,7 +7,7 @@ import {
   BalanceService,
   BalanceSummary,
   DocumentService,
-  PosConfigToken
+  PosConfigToken,
 } from "@efaps/pos-library";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { NgBusyDirective } from "ng-busy";
@@ -20,9 +20,10 @@ import { BalancePaymentListComponent } from "../balance-payment-list/balance-pay
 import { BalanceSummaryComponent } from "../balance-summary/balance-summary.component";
 import { DocumentListComponent } from "../document-list/document-list.component";
 import { BalanceComponent } from "./balance.component";
+import { MatTabsModule } from "@angular/material/tabs";
 
 class BalanceServiceStub {
-  currentBalance = new Observable(observer => {
+  currentBalance = new Observable((observer) => {
     observer.next([]);
   });
   getSummary(balance: Balance): Observable<BalanceSummary> {
@@ -32,7 +33,7 @@ class BalanceServiceStub {
 
 class DocumentServiceStub {
   getDocuments4Balance() {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       observer.next([]);
     });
   }
@@ -46,12 +47,17 @@ describe("BalanceComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientModule, MatDialogModule],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatDialogModule,
+        MatTabsModule,
+      ],
       providers: [
         { provide: BalanceService, useClass: BalanceServiceStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
         { provide: TranslateService, useClass: TranslateServiceStub },
-        { provide: PosConfigToken, useValue: {} }
+        { provide: PosConfigToken, useValue: {} },
       ],
       declarations: [
         BalanceComponent,
@@ -61,8 +67,8 @@ describe("BalanceComponent", () => {
         MockComponent(BalancePaymentListComponent),
         MockComponent(DocumentListComponent),
         MockPipe(TranslatePipe),
-        MockDirective(NgBusyDirective)
-      ]
+        MockDirective(NgBusyDirective),
+      ],
     }).compileComponents();
   }));
 
