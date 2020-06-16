@@ -615,6 +615,10 @@
         <source>Stock</source>
         <target>Stock</target>
       </trans-unit>
+      <trans-unit id="contactEmail">
+        <source>Email</source>
+        <target>Email</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
