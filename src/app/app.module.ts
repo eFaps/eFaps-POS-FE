@@ -37,7 +37,7 @@ import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularSvgIconModule,
+    AngularSvgIconModule.forRoot(),
     AppRoutingModule,
     SharedModule,
     MatButtonModule,
