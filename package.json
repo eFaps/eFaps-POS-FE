@@ -43,7 +43,7 @@
     "@angular/platform-browser-dynamic": "^9.1.11",
     "@angular/router": "^9.1.11",
     "@efaps/ngx-store": "^3.0.1",
-    "@efaps/pos-library": "^1.0.0",
+    "@efaps/pos-library": "^1.1.0",
     "@ngx-pwa/local-storage": "^9.0.3",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
