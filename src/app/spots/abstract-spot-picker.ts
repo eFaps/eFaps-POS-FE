@@ -1,4 +1,4 @@
-import { OnInit } from "@angular/core";
+import { OnInit, Directive } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import {
@@ -12,6 +12,7 @@ import {
 import { SelectOrderDialogComponent } from "./select-order-dialog/select-order-dialog.component";
 import { SpotDialogComponent } from "./spot-dialog/spot-dialog.component";
 
+@Directive()
 export abstract class AbstractSpotPicker implements OnInit {
   constructor(
     protected router: Router,
