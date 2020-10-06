@@ -55,7 +55,7 @@
     "electron-browser-storage": "^1.0.6",
     "enum-values": "^1.2.1",
     "jwt-decode": "^3.0.0",
-    "ng-busy": "^9.0.0",
+    "ng-busy": "^10.0.0",
     "ng-event-source": "^1.0.14",
     "ngx-cacheable": "^1.4.3",
     "parse-decimal-number": "^1.0.0",
