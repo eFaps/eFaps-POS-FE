@@ -3,7 +3,7 @@ import {
   ElementRef,
   OnDestroy,
   OnInit,
-  ViewChild,
+  ViewChild
 } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSlideToggleChange } from "@angular/material/slide-toggle";
@@ -14,9 +14,10 @@ import {
   AuthService,
   Company,
   CompanyService,
+  CurrentUser,
   User,
   UserService,
-  WorkspaceService,
+  WorkspaceService
 } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
 import { Subscription } from "rxjs";
@@ -24,7 +25,7 @@ import { Subscription } from "rxjs";
 @Component({
   moduleId: module.id,
   templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"],
+  styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
@@ -34,6 +35,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   loading = false;
   hiddenUser = true;
   @LocalStorage() virtKeyboard = false;
+  @LocalStorage() currentUser: CurrentUser = {
+    username: null,
+    tokens: {
+      accessToken: "",
+      refreshToken: ""
+    },
+    save: () => {
+      console.log("save");
+    }
+  };
   @ViewChild("pwd") pwdField: ElementRef;
 
   showCompanySelection = false;
@@ -47,8 +58,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private translateService: TranslateService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.createForm();
@@ -58,17 +68,17 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (this.companyService.hasCompany()) {
       this.showCompanySelection = false;
       this.subscription.add(
-        this.userService.getUsers().subscribe((data) => (this.users = data))
+        this.userService.getUsers().subscribe(data => (this.users = data))
       );
       this.subscription.add(
         this.companyService.getCompanies().subscribe({
-          next: (companies) => (this.companies = companies),
+          next: companies => (this.companies = companies)
         })
       );
     } else {
       this.subscription.add(
         this.companyService.getCompanies().subscribe({
-          next: (companies) => {
+          next: companies => {
             this.companies = companies;
             if (companies.length > 1) {
               this.showCompanySelection = true;
@@ -76,10 +86,10 @@ export class LoginComponent implements OnInit, OnDestroy {
               this.subscription.add(
                 this.userService
                   .getUsers()
-                  .subscribe((data) => (this.users = data))
+                  .subscribe(data => (this.users = data))
               );
             }
-          },
+          }
         })
       );
     }
@@ -88,7 +98,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   createForm() {
     this.loginForm = this.fb.group({
       userName: ["", Validators.required],
-      password: ["", Validators.required],
+      password: ["", Validators.required]
     });
   }
 
@@ -97,10 +107,11 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.openSnackBar("LOGIN.INVALIDFORM");
     } else {
       this.loading = true;
+      this.authService.currentUser = this.currentUser;
       this.authService
         .login(this.loginForm.value.userName, this.loginForm.value.password)
         .subscribe({
-          next: (result) => {
+          next: result => {
             if (result === true) {
               this.router.navigate(["/"]);
             } else {
@@ -108,11 +119,11 @@ export class LoginComponent implements OnInit, OnDestroy {
               this.loading = false;
             }
           },
-          error: (error) => {
+          error: error => {
             if (error.status && error.status === 401) {
               this.openSnackBar("LOGIN.401");
             }
-          },
+          }
         });
     }
   }
@@ -120,7 +131,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   openSnackBar(key: string) {
     const msg = this.translateService.instant(key);
     this.snackBar.open(msg, "", {
-      duration: 3000,
+      duration: 3000
     });
   }
 
@@ -141,7 +152,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.users = [];
     this.companyService.setCurrentCompany(company);
     this.showCompanySelection = false;
-    this.userService.getUsers().subscribe((data) => (this.users = data));
+    this.userService.getUsers().subscribe(data => (this.users = data));
   }
 
   showCompanies() {
