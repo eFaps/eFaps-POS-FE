@@ -19,7 +19,6 @@ import {
   WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
-import { globalCacheBusterNotifier } from "ngx-cacheable";
 import { Subscription } from "rxjs";
 
 @Component({
@@ -49,7 +48,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     private translateService: TranslateService
   ) {
-    globalCacheBusterNotifier.next();
   }
 
   ngOnInit() {
