@@ -1,5 +1,5 @@
 <div i18n-ngBusy [ngBusy]="{busy: busy, message: 'WAIT' | translate}"></div>
-<div class="adminpage" fxLayout='row' fxLayoutGap="20px">
+<div class="adminpage">
   <div>
     <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="reload()" i18n="@@reload">Reload</button>
   </div>
@@ -7,5 +7,8 @@
     <h1>Versions:</h1>
     <p i18n="@@versionCloud">Cloud: {{ versions?.remote }}</p>
     <p i18n="@@versionLocal">Local: {{ versions?.local }}</p>
+  </div>
+  <div class="mat-elevation-z3 pinpad">
+    <pinpad-element *axLazyElement="pinpadsUrl">favorite</pinpad-element>
   </div>
 </div>

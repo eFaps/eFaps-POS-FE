@@ -10,5 +10,13 @@
     "secure": false,
     "logLevel": "debug",
     "ws": true
+  },
+  "/extensions/": {
+    "target": "http://localhost:4201/",
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "extensions/pinpad-element.js": "main.js"
+    }
   }
 }

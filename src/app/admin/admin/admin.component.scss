@@ -1,8 +1,18 @@
 .adminpage {
   padding: 5px;
+  display: flex;
+
+  div {
+    margin: 15px;
+  }
 }
 
 .versions {
+  padding: 5px;
+  width: 200px;
+}
+
+.pinpad {
   padding: 5px;
   width: 200px;
 }

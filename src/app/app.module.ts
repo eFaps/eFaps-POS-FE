@@ -1,10 +1,11 @@
+import { LazyElementsModule } from "@angular-extensions/elements";
 import { LiveAnnouncer } from "@angular/cdk/a11y";
 import {
   HTTP_INTERCEPTORS,
   HttpClient,
   HttpClientModule
 } from "@angular/common/http";
-import { NgModule } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
@@ -26,11 +27,12 @@ import { environment } from "../environments/environment";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ErrorInterceptor, SameHeightDirective } from "./services/index";
-import { PERSISTENCE } from './services/LocalStoragePersistence';
+import { PERSISTENCE } from "./services/LocalStoragePersistence";
 import { SharedModule, TranslateLoaderFactory } from "./shared/shared.module";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [AppComponent, SameHeightDirective, ThemePickerComponent],
   imports: [
     BrowserAnimationsModule,
@@ -38,6 +40,7 @@ import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    LazyElementsModule,
     AngularSvgIconModule.forRoot(),
     AppRoutingModule,
     SharedModule,

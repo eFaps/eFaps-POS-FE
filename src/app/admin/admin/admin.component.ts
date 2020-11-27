@@ -10,6 +10,7 @@ import { Subscription } from "rxjs";
 export class AdminComponent implements OnInit {
   busy: Subscription;
   versions: Versions;
+  pinpadsUrl = "extensions/pinpad-element.js"
 
   constructor(private adminService: AdminService) {}
 
