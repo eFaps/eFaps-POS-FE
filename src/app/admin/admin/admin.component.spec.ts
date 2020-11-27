@@ -2,23 +2,32 @@ import { DebugElement } from "@angular/core";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { By } from "@angular/platform-browser";
-import { AdminService, Versions } from "@efaps/pos-library";
+import { AdminService, ConfigService, Versions, Extension } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { NgBusyDirective } from "ng-busy";
 import { MockDirective, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs/Observable";
 
-import { environment } from "../../../environments/environment";
-
 import { AdminComponent } from "./admin.component";
 
 class AdminServiceStub {
   version(): Observable<Versions> {
-    return new Observable((observer) => {
+    return new Observable(observer => {
       observer.next({
         remote: "Remote1",
-        local: "Local1",
+        local: "Local1"
       });
+    });
+  }
+}
+class ConfigServiceStub {
+  getExtensions():Observable<Extension[]> {
+    return new Observable(observer => {
+      observer.next([{
+        key: "KEY",
+        tag: "TAG",
+        url: "URL"
+      }]);
     });
   }
 }
@@ -30,12 +39,15 @@ describe("AdminComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FlexLayoutModule],
-      providers: [{ provide: AdminService, useClass: AdminServiceStub }],
+      providers: [
+        { provide: AdminService, useClass: AdminServiceStub },
+        { provide: ConfigService, useClass: ConfigServiceStub }
+      ],
       declarations: [
         AdminComponent,
         MockPipe(TranslatePipe),
-        MockDirective(NgBusyDirective),
-      ],
+        MockDirective(NgBusyDirective)
+      ]
     }).compileComponents();
   }));
 
