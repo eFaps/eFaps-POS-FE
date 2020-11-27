@@ -8,7 +8,10 @@
     <p i18n="@@versionCloud">Cloud: {{ versions?.remote }}</p>
     <p i18n="@@versionLocal">Local: {{ versions?.local }}</p>
   </div>
-  <div class="mat-elevation-z3 pinpad">
-    <pinpad-element *axLazyElement="pinpadsUrl">favorite</pinpad-element>
-  </div>
+  <ng-container *ngFor="let element of lazyElements">
+    <div class="mat-elevation-z3 element">
+      <ax-lazy-element *axLazyElementDynamic="element.tag; url: element.url">
+      </ax-lazy-element>
+    </div>
+  </ng-container>
 </div>
