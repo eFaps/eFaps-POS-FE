@@ -16,7 +16,8 @@ import { AbstractSpotPicker } from "../abstract-spot-picker";
   templateUrl: "./base-spot-picker.component.html",
   styleUrls: ["./base-spot-picker.component.scss"],
 })
-export class BaseSpotPickerComponent extends AbstractSpotPicker
+export class BaseSpotPickerComponent
+  extends AbstractSpotPicker
   implements OnInit {
   spots: Spot[] = [];
 

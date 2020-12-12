@@ -25,7 +25,8 @@ import { SplitDialogComponent } from "../split-dialog/split-dialog.component";
   templateUrl: "./extended-spot-picker.component.html",
   styleUrls: ["./extended-spot-picker.component.scss"],
 })
-export class ExtendedSpotPickerComponent extends AbstractSpotPicker
+export class ExtendedSpotPickerComponent
+  extends AbstractSpotPicker
   implements OnInit {
   spotsLayout: SpotsLayout;
   floors: Floor[] = [];

@@ -3,14 +3,14 @@ import {
   AdminService,
   ConfigService,
   Versions,
-  Extension
+  Extension,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-admin",
   templateUrl: "./admin.component.html",
-  styleUrls: ["./admin.component.scss"]
+  styleUrls: ["./admin.component.scss"],
 })
 export class AdminComponent implements OnInit {
   busy: Subscription;
@@ -25,15 +25,15 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.adminService
       .version()
-      .subscribe(versions => (this.versions = versions));
+      .subscribe((versions) => (this.versions = versions));
     this.configService.getExtensions().subscribe({
-      next: extensions => {
+      next: (extensions) => {
         extensions
-          .filter(extension => extension.key === "admin")
-          .forEach(extension => {
+          .filter((extension) => extension.key === "admin")
+          .forEach((extension) => {
             this.lazyElements.push(extension);
           });
-      }
+      },
     });
   }
 

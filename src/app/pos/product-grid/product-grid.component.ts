@@ -16,7 +16,8 @@ import { AbstractProductSelector } from "../abstract-product-selector";
   templateUrl: "./product-grid.component.html",
   styleUrls: ["./product-grid.component.scss"],
 })
-export class ProductGridComponent extends AbstractProductSelector
+export class ProductGridComponent
+  extends AbstractProductSelector
   implements OnInit, OnDestroy {
   categories = [];
   shownTabs = [0];

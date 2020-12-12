@@ -23,7 +23,8 @@ import { AbstractProductSelector } from "../abstract-product-selector";
   templateUrl: "./product-list.component.html",
   styleUrls: ["./product-list.component.scss"],
 })
-export class ProductListComponent extends AbstractProductSelector
+export class ProductListComponent
+  extends AbstractProductSelector
   implements OnInit, OnDestroy {
   filterForm: FormGroup;
   formCtrlSub: Subscription;

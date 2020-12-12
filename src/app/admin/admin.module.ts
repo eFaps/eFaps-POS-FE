@@ -16,8 +16,8 @@ import { AdminComponent } from "./admin/admin.component";
     LazyElementsModule,
     NgBusyModule,
     TranslateModule,
-    MatButtonModule
+    MatButtonModule,
   ],
-  declarations: [AdminComponent]
+  declarations: [AdminComponent],
 })
 export class AdminModule {}

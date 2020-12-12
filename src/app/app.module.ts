@@ -3,7 +3,7 @@ import { LiveAnnouncer } from "@angular/cdk/a11y";
 import {
   HTTP_INTERCEPTORS,
   HttpClient,
-  HttpClientModule
+  HttpClientModule,
 } from "@angular/common/http";
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -56,35 +56,35 @@ import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
     PosLibraryModule.forRoot({
       baseUrl: "/api",
       socketUrl: "/socket",
-      persistence: PERSISTENCE
+      persistence: PERSISTENCE,
     }),
     HotkeyModule.forRoot({
-      cheatSheetDescription: "Presentar"
+      cheatSheetDescription: "Presentar",
     }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: TranslateLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
+        deps: [HttpClient],
+      },
+    }),
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: SERVER_URL,
-      useValue: environment.electron ? __dirname : ""
+      useValue: environment.electron ? __dirname : "",
     },
     // temporal woraround to deactivate the LiveAnnouncer
     {
       provide: LiveAnnouncer,
-      useValue: {}
-    }
+      useValue: {},
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

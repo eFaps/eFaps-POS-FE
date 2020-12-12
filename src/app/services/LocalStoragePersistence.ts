@@ -3,15 +3,15 @@ import { LocalStorage } from "@efaps/ngx-store";
 
 export class LocalStoragePersistence implements PersistenceService {
   @LocalStorage("workspaces") _workspaces = {
-    save() {}
+    save() {},
   };
 
   @LocalStorage("positions") positions = {
-    save() {}
+    save() {},
   };
-  
+
   @LocalStorage("currentCompany") _currentCompany = {
-    save() {}
+    save() {},
   };
 
   spotPositions() {
