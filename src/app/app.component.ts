@@ -11,8 +11,8 @@ import {
   Roles,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { Hotkey, HotkeysService } from "@giakki/angular2-hotkeys";
 import { TranslateService } from "@ngx-translate/core";
-import { Hotkey, HotkeysService } from "angular2-hotkeys";
 
 import { environment } from "../environments/environment";
 import { ElectronUtil } from "./util/electron-util";

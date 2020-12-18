@@ -19,9 +19,9 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PosLibraryModule } from "@efaps/pos-library";
+import { HotkeyModule } from "@giakki/angular2-hotkeys";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { AngularSvgIconModule, SERVER_URL } from "angular-svg-icon";
-import { HotkeyModule } from "angular2-hotkeys";
 
 import { environment } from "../environments/environment";
 import { AppRoutingModule } from "./app-routing.module";
@@ -87,4 +87,4 @@ import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
