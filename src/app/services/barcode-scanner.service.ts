@@ -15,7 +15,7 @@ export class BarcodeScannerService {
     latency: 50,
     minLength: 3,
     endKeys: ["Enter"],
-    validKey: /^\w$/
+    validKey: /^(\w|\d)$/
   };
 
   constructor() { }
@@ -24,7 +24,7 @@ export class BarcodeScannerService {
     const { key, timeStamp } = event;
     const timeDiff = timeStamp - this.prevTime;
     this.prevTime = timeStamp;
-    if (!(event.altKey || event.shiftKey || event.ctrlKey)) {
+    if (!(event.altKey || event.ctrlKey)) {
       const isValid = this.options.validKey.test(key);
       const isEndKey = this.options.endKeys.includes(key);
       if (timeDiff > this.options.latency) {

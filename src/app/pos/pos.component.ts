@@ -9,6 +9,7 @@ import {
 } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { LocalStorage } from "@efaps/ngx-store";
 import {
   AuthService,
@@ -56,6 +57,7 @@ export class PosComponent implements OnInit, OnDestroy {
     private barcodeScannerService: BarcodeScannerService,
     private fb: FormBuilder,
     private dialog: MatDialog,
+    private snackBar: MatSnackBar,
     @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef
   ) { }
 
@@ -94,6 +96,11 @@ export class PosComponent implements OnInit, OnDestroy {
         next: barcode => {
           if (barcode) {
             console.log("READ: " + barcode);
+            this.snackBar.open(barcode, '', {
+              duration: 500,
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+            });
           }
         }
       })
