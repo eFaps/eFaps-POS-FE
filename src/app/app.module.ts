@@ -27,7 +27,7 @@ import { environment } from "../environments/environment";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ErrorInterceptor, SameHeightDirective } from "./services/index";
-import { PERSISTENCE } from "./services/LocalStoragePersistence";
+import { PERSISTENCE } from './services/local-storage-persistence';
 import { SharedModule, TranslateLoaderFactory } from "./shared/shared.module";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
 

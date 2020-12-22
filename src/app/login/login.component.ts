@@ -35,16 +35,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   loading = false;
   hiddenUser = true;
   @LocalStorage() virtKeyboard = false;
-  @LocalStorage() currentUser: CurrentUser = {
-    username: null,
-    tokens: {
-      accessToken: "",
-      refreshToken: "",
-    },
-    save: () => {
-      console.log("save");
-    },
-  };
   @ViewChild("pwd") pwdField: ElementRef;
 
   showCompanySelection = false;
@@ -58,7 +48,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private translateService: TranslateService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.createForm();
@@ -107,7 +97,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.openSnackBar("LOGIN.INVALIDFORM");
     } else {
       this.loading = true;
-      this.authService.currentUser = this.currentUser;
       this.authService
         .login(this.loginForm.value.userName, this.loginForm.value.password)
         .subscribe({

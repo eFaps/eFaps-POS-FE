@@ -1,17 +1,24 @@
-import { PersistenceService } from "@efaps/pos-library";
+import { PersistenceService, CurrentUser } from "@efaps/pos-library";
 import { LocalStorage } from "@efaps/ngx-store";
 
 export class LocalStoragePersistence implements PersistenceService {
   @LocalStorage("workspaces") _workspaces = {
-    save() { },
+    save() { }
   };
 
   @LocalStorage("positions") _positions = {
-    save() { },
+    save() { }
   };
 
   @LocalStorage("currentCompany") _currentCompany = {
+    save() { }
+  }
+
+  @LocalStorage("currentUser") _currentUser = {
+    username: undefined,
+    tokens: undefined,
     save() { },
+    clean() { }
   };
 
   spotPositions() {
@@ -23,6 +30,14 @@ export class LocalStoragePersistence implements PersistenceService {
   }
   workspaces() {
     return this._workspaces;
+  }
+
+  currentUser(): CurrentUser {
+    const ret = this._currentUser;
+    ret.clean = () => {
+      localStorage.removeItem("synerPOS_currentUser");
+    }
+    return ret;
   }
 }
 export const PERSISTENCE = new LocalStoragePersistence();
