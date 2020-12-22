@@ -2,25 +2,27 @@ import {
   AfterViewChecked,
   ChangeDetectorRef,
   Component,
-  OnInit,
+  HostListener,
+  OnInit
 } from "@angular/core";
 import { Router } from "@angular/router";
 import {
   AuthService,
   CompanyService,
   Roles,
-  WorkspaceService,
+  WorkspaceService
 } from "@efaps/pos-library";
 import { Hotkey, HotkeysService } from "@giakki/angular2-hotkeys";
 import { TranslateService } from "@ngx-translate/core";
 
 import { environment } from "../environments/environment";
+import { BarcodeScannerService } from "./services";
 import { ElectronUtil } from "./util/electron-util";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"],
+  styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit, AfterViewChecked {
   Roles = Roles;
@@ -40,7 +42,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
     private workspaceService: WorkspaceService,
     public auth: AuthService,
     private hotkeysService: HotkeysService,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private barcodeScannerService: BarcodeScannerService
   ) {
     translate.use(workspaceService.getLanguage());
     this.screenWidth = window.innerWidth;
@@ -76,11 +79,10 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this.companyService.company.subscribe({
-      next: (data) =>
-        data ? (this.company = data.label) : (this.company = null),
+      next: data => (data ? (this.company = data.label) : (this.company = null))
     });
 
-    this.workspaceService.currentWorkspace.subscribe((_data) => {
+    this.workspaceService.currentWorkspace.subscribe(_data => {
       if (_data) {
         this.workspace = _data.name;
         this.spots = this.workspaceService.showSpots();
@@ -100,5 +102,10 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
   async close() {
     ElectronUtil.close();
+  }
+
+  @HostListener("document:keypress", ["$event"])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    this.barcodeScannerService.handleKeyboardEvent(event);
   }
 }

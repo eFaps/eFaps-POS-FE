@@ -5,7 +5,7 @@ import {
   Inject,
   OnDestroy,
   OnInit,
-  ViewChild,
+  ViewChild
 } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
@@ -16,9 +16,12 @@ import {
   MsgService,
   PosLayout,
   PosService,
-  WorkspaceService,
+  WorkspaceService
 } from "@efaps/pos-library";
+import { Subscription } from "rxjs";
+import { skip } from 'rxjs/operators';
 
+import { BarcodeScannerService } from "../services";
 import { CategorySelectComponent } from "./category-select/category-select.component";
 import { CommandsComponent } from "./commands/commands.component";
 import { ProductGridComponent } from "./product-grid/product-grid.component";
@@ -26,7 +29,7 @@ import { ProductGridComponent } from "./product-grid/product-grid.component";
 @Component({
   selector: "app-pos",
   templateUrl: "./pos.component.html",
-  styleUrls: ["./pos.component.scss"],
+  styleUrls: ["./pos.component.scss"]
 })
 export class PosComponent implements OnInit, OnDestroy {
   PosLayout = PosLayout;
@@ -43,34 +46,40 @@ export class PosComponent implements OnInit, OnDestroy {
   @ViewChild(CommandsComponent, { static: true }) cmdComp;
   @ViewChild(ProductGridComponent) grid;
   remarkMode = false;
+  private subscriptions = new Subscription();
 
   constructor(
     public workspaceService: WorkspaceService,
     private posService: PosService,
     private msgService: MsgService,
     private authService: AuthService,
+    private barcodeScannerService: BarcodeScannerService,
     private fb: FormBuilder,
     private dialog: MatDialog,
     @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.multiplierForm = this.fb.group({
-      multiplier: [""],
+      multiplier: [""]
     });
-    this.posService.currentTicket.subscribe((data) => {
-      this.ticket = data;
-      this.changeDetectorRef.detectChanges();
-      this.cmdComp.evalSticky();
-    });
+    this.subscriptions.add(
+      this.posService.currentTicket.subscribe(data => {
+        this.ticket = data;
+        this.changeDetectorRef.detectChanges();
+        this.cmdComp.evalSticky();
+      })
+    );
     this.onResize();
     this.msgService.init();
-    this.posService.currentOrder.subscribe((order) => {
-      if (order && !this.orderId) {
-        this.msgService.publishStartEditOrder(order.id);
-        this.orderId = order.id;
-      }
-    });
+    this.subscriptions.add(
+      this.posService.currentOrder.subscribe(order => {
+        if (order && !this.orderId) {
+          this.msgService.publishStartEditOrder(order.id);
+          this.orderId = order.id;
+        }
+      })
+    );
     if (this.workspaceService.getPosLayout() === PosLayout.BOTH) {
       const layout = this.posLayouts[this.authService.getCurrentUsername()];
       if (layout) {
@@ -80,12 +89,22 @@ export class PosComponent implements OnInit, OnDestroy {
       this.currentLayout = this.workspaceService.getPosLayout();
     }
     this.numPad = this.posNumPad[this.authService.getCurrentUsername()];
+    this.subscriptions.add(
+      this.barcodeScannerService.barcode.pipe(skip(1)).subscribe({
+        next: barcode => {
+          if (barcode) {
+            console.log("READ: " + barcode);
+          }
+        }
+      })
+    );
   }
 
   ngOnDestroy() {
     if (this.orderId) {
       this.msgService.publishFinishEditOrder(this.orderId);
     }
+    this.subscriptions.unsubscribe();
   }
 
   @HostListener("window:resize", ["$event"])
@@ -146,11 +165,11 @@ export class PosComponent implements OnInit, OnDestroy {
   openCatSelect() {
     let ref = this.dialog.open(CategorySelectComponent, {});
     ref.afterClosed().subscribe({
-      next: (index) => {
+      next: index => {
         if (this.grid) {
           this.grid.selectedIndex = index;
         }
-      },
+      }
     });
   }
 
