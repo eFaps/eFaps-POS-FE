@@ -9,6 +9,7 @@
   "homepage": "www.eFaps.org",
   "main": "main.js",
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "_build-css": "sass src/scss:src/assets --no-source-map",
     "_build": "tsc -p tsconfig-electron.json && node ./buildutil.js",
     "start": "npm run _build-css && ng serve --proxy-config proxy.conf.json --host 0.0.0.0",
@@ -31,20 +32,20 @@
   "private": true,
   "dependencies": {
     "@angular-extensions/elements": "^11.0.1",
-    "@angular/animations": "^11.0.4",
-    "@angular/cdk": "^11.0.2",
-    "@angular/common": "^11.0.4",
-    "@angular/compiler": "^11.0.4",
-    "@angular/core": "^11.0.4",
+    "@angular/animations": "^11.0.5",
+    "@angular/cdk": "^11.0.3",
+    "@angular/common": "^11.0.5",
+    "@angular/compiler": "^11.0.5",
+    "@angular/core": "^11.0.5",
     "@angular/flex-layout": "^11.0.0-beta.33",
-    "@angular/forms": "^11.0.4",
-    "@angular/localize": "^11.0.4",
-    "@angular/material": "^11.0.2",
-    "@angular/platform-browser": "^11.0.4",
-    "@angular/platform-browser-dynamic": "^11.0.4",
-    "@angular/router": "^11.0.4",
+    "@angular/forms": "^11.0.5",
+    "@angular/localize": "^11.0.5",
+    "@angular/material": "^11.0.3",
+    "@angular/platform-browser": "^11.0.5",
+    "@angular/platform-browser-dynamic": "^11.0.5",
+    "@angular/router": "^11.0.5",
     "@efaps/ngx-store": "^4.0.8",
-    "@efaps/pos-library": "^4.1.0",
+    "@efaps/pos-library": "^4.3.0",
     "@giakki/angular2-hotkeys": "^2.2.1",
     "@ngx-pwa/local-storage": "^11.0.1",
     "@ngx-translate/core": "^13.0.0",
@@ -65,10 +66,10 @@
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.1100.4",
+    "@angular-devkit/build-angular": "^0.1100.5",
     "@angular-guru/electron-builder": "^8.0.0",
-    "@angular/cli": "^11.0.4",
-    "@angular/compiler-cli": "^11.0.4",
+    "@angular/cli": "^11.0.5",
+    "@angular/compiler-cli": "^11.0.5",
     "@types/core-js": "^2.5.4",
     "@types/jasmine": "^3.6.2",
     "@types/jasminewd2": "^2.0.8",
@@ -138,5 +139,8 @@
         }
       ]
     }
+  },
+  "resolutions": {
+    "@angular/core": "^11.0.5"
   }
 }
