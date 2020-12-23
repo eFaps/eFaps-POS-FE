@@ -6,12 +6,14 @@ import {
   OnInit
 } from "@angular/core";
 import { Router } from "@angular/router";
+import { LocalStorage } from "@efaps/ngx-store";
 import {
   AuthService,
+  BarcodeOptions,
   BarcodeScannerService,
   CompanyService,
   Roles,
-  WorkspaceService,
+  WorkspaceService
 } from "@efaps/pos-library";
 import { Hotkey, HotkeysService } from "@giakki/angular2-hotkeys";
 import { TranslateService } from "@ngx-translate/core";
@@ -34,6 +36,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   inventory = false;
   allowPayment = false;
   electron = false;
+  @LocalStorage() barcodeOptions: BarcodeOptions = null;
 
   constructor(
     public router: Router,
@@ -94,6 +97,9 @@ export class AppComponent implements OnInit, AfterViewChecked {
         this.inventory = false;
       }
     });
+    if (this.barcodeOptions != null) {
+      this.barcodeScannerService.setOptions(this.barcodeOptions);
+    }
   }
 
   ngAfterViewChecked() {
