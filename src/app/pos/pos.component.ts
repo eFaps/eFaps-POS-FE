@@ -13,16 +13,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { LocalStorage } from "@efaps/ngx-store";
 import {
   AuthService,
+  BarcodeScannerService,
   Item,
   MsgService,
   PosLayout,
   PosService,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 import { skip } from 'rxjs/operators';
 
-import { BarcodeScannerService } from "../services";
 import { CategorySelectComponent } from "./category-select/category-select.component";
 import { CommandsComponent } from "./commands/commands.component";
 import { ProductGridComponent } from "./product-grid/product-grid.component";

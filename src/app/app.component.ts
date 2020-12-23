@@ -8,15 +8,15 @@ import {
 import { Router } from "@angular/router";
 import {
   AuthService,
+  BarcodeScannerService,
   CompanyService,
   Roles,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { Hotkey, HotkeysService } from "@giakki/angular2-hotkeys";
 import { TranslateService } from "@ngx-translate/core";
 
 import { environment } from "../environments/environment";
-import { BarcodeScannerService } from "./services";
 import { ElectronUtil } from "./util/electron-util";
 
 @Component({
