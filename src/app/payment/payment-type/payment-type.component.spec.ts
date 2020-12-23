@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { PosConfigToken } from "@efaps/pos-library";
+import { AuthService, PosConfigToken } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 
 import { AutoComponent } from "../auto/auto.component";
@@ -12,6 +12,12 @@ import { CashComponent } from "../cash/cash.component";
 import { DiscountComponent } from "../discount/discount.component";
 import { FreeComponent } from "../free/free.component";
 import { PaymentTypeComponent } from "./payment-type.component";
+
+class AuthServiceStub {
+  getCurrentUsername() {
+    return "usename";
+  }
+}
 
 describe("PaymentTypeComponent", () => {
   let component: PaymentTypeComponent;
@@ -25,7 +31,10 @@ describe("PaymentTypeComponent", () => {
         MatTableModule,
         MatTabsModule,
       ],
-      providers: [{ provide: PosConfigToken, useValue: {} }],
+      providers: [
+        { provide: PosConfigToken, useValue: {} },
+        { provide: AuthService, useClass: AuthServiceStub },
+      ],
       declarations: [
         MockComponent(AutoComponent),
         MockComponent(CashComponent),

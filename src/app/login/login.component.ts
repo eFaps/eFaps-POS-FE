@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private translateService: TranslateService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.createForm();

@@ -3,10 +3,12 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatIconModule } from "@angular/material/icon";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import {
   AuthService,
+  BarcodeScannerService,
   MsgService,
   PosLayout,
   PosService,
@@ -49,7 +51,11 @@ class WorkspaceServiceStub {
     return PosLayout.GRID;
   }
 }
-
+class BarcodeScannerServiceStub {
+  barcode = new Observable((observer) => {
+    observer.next({});
+  });
+}
 describe("PosComponent", () => {
   let component: PosComponent;
   let fixture: ComponentFixture<PosComponent>;
@@ -64,12 +70,14 @@ describe("PosComponent", () => {
         MatIconModule,
         MatButtonToggleModule,
         MatButtonModule,
+        MatSnackBarModule,
       ],
       providers: [
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: PosService, useClass: PosServiceStub },
         { provide: MsgService, useClass: MsgServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
+        { provide: BarcodeScannerService, useClass: BarcodeScannerServiceStub },
       ],
       declarations: [
         PosComponent,

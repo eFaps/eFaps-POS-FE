@@ -8,17 +8,16 @@ import {
   BarcodeScannerService,
   ConfigService,
   Extension,
-  Versions
+  Versions,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-admin",
   templateUrl: "./admin.component.html",
-  styleUrls: ["./admin.component.scss"]
+  styleUrls: ["./admin.component.scss"],
 })
 export class AdminComponent implements OnInit, OnDestroy {
-
   busy: Subscription;
   versions: Versions;
   pinpadsUrl = "extensions/pinpad-element.js";
@@ -31,7 +30,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     private configService: ConfigService,
     private barcodeScannerService: BarcodeScannerService,
     private fb: FormBuilder
-  ) { }
+  ) {}
 
   get hasBarcodeScanner(): boolean {
     return this.barcodeOptions != null;
@@ -40,30 +39,30 @@ export class AdminComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.adminService
       .version()
-      .subscribe(versions => (this.versions = versions));
+      .subscribe((versions) => (this.versions = versions));
     this.configService.getExtensions().subscribe({
-      next: extensions => {
+      next: (extensions) => {
         extensions
-          .filter(extension => extension.key === "admin")
-          .forEach(extension => {
+          .filter((extension) => extension.key === "admin")
+          .forEach((extension) => {
             this.lazyElements.push(extension);
           });
-      }
+      },
     });
     this.barcodeOptionsForm = this.fb.group({
       latency: [""],
       minLength: [""],
       endKeys: [],
-      validKey: ""
+      validKey: "",
     });
     if (this.barcodeOptions) {
       this.barcodeOptionsForm.setValue(this.barcodeOptions);
     }
     this.barcodeOptionsForm.valueChanges.subscribe({
-      next: values => {
-        this.barcodeOptions = values
-      }
-    })
+      next: (values) => {
+        this.barcodeOptions = values;
+      },
+    });
   }
 
   ngOnDestroy(): void {
@@ -81,7 +80,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       this.barcodeOptions = null;
     } else {
       this.barcodeOptions = this.barcodeScannerService.getDefaultOptions();
-      this.barcodeOptionsForm.setValue(this.barcodeOptions)
+      this.barcodeOptionsForm.setValue(this.barcodeOptions);
     }
   }
 

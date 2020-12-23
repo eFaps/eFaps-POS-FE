@@ -7,9 +7,9 @@ import { Hotkey, HotkeysService } from "@giakki/angular2-hotkeys";
 import { KeypadComponent } from "./keypad.component";
 
 class HotkeysServiceStub {
-  add() { }
-  get() { }
-  remove(_hotkey: Hotkey) { }
+  add() {}
+  get() {}
+  remove(_hotkey: Hotkey) {}
 }
 
 describe("KeypadComponent", () => {

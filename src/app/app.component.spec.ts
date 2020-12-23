@@ -9,7 +9,7 @@ import { RouterTestingModule } from "@angular/router/testing";
 import {
   AuthService,
   PosConfigToken,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { HotkeyModule, HotkeysService } from "@giakki/angular2-hotkeys";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
@@ -20,14 +20,14 @@ import { Observable } from "rxjs";
 import { AppComponent } from "./app.component";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
 
-class AuthServiceStub { }
+class AuthServiceStub {}
 class WorkspaceServiceStub {
   getLanguage() {
     return "en";
   }
 }
 class TranslateServiceSub {
-  use(_lang) { }
+  use(_lang) {}
 }
 class SvgIconRegistryServiceStub {
   loadSvg(): Observable<any> {
@@ -35,7 +35,7 @@ class SvgIconRegistryServiceStub {
   }
 }
 class HotkeysServiceStub {
-  add() { }
+  add() {}
 }
 describe("AppComponent", () => {
   beforeEach(async(() => {
@@ -49,7 +49,7 @@ describe("AppComponent", () => {
         MatSidenavModule,
         MatListModule,
         MatIconModule,
-        MatToolbarModule
+        MatToolbarModule,
       ],
       providers: [
         { provide: AuthService, useClass: AuthServiceStub },
@@ -58,20 +58,20 @@ describe("AppComponent", () => {
         { provide: TranslateService, useClass: TranslateServiceSub },
         {
           provide: SvgIconRegistryService,
-          useClass: SvgIconRegistryServiceStub
+          useClass: SvgIconRegistryServiceStub,
         },
         {
           provide: PosConfigToken,
           useValue: {
-            order: ""
-          }
-        }
+            order: "",
+          },
+        },
       ],
       declarations: [
         AppComponent,
         MockComponent(ThemePickerComponent),
-        MockPipe(TranslatePipe)
-      ]
+        MockPipe(TranslatePipe),
+      ],
     }).compileComponents();
   }));
   it("should create the app", async(() => {

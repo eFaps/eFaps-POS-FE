@@ -20,7 +20,7 @@ export class KeypadComponent implements OnInit, OnDestroy {
   @Output() number = new EventEmitter<string>();
   private hotkeys: Hotkey[] = [];
 
-  constructor(private hotkeysService: HotkeysService) { }
+  constructor(private hotkeysService: HotkeysService) {}
 
   ngOnInit() {
     for (var i = 0; i < 10; i++) {
