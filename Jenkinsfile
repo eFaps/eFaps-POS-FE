@@ -8,7 +8,7 @@ pipeline {
     stage('Install - LTS') {
       steps {
         nodejs('NodeJS-LTS') {
-          sh 'npm clean-install'
+          sh 'npm install'
         }
       }
     }
@@ -22,7 +22,7 @@ pipeline {
     stage('Install - Latest') {
       steps {
         nodejs('NodeJS-Latest') {
-          sh 'npm clean-install'
+          sh 'npm install'
         }
       }
     }
