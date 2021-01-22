@@ -7,6 +7,7 @@ pipeline {
   stages {
     stage('Install - LTS') {
       steps {
+        sh 'rm -r node_modules/'
         nodejs('NodeJS-LTS') {
           sh 'npm install'
         }
@@ -21,6 +22,7 @@ pipeline {
     }
     stage('Install - Latest') {
       steps {
+        sh 'rm -r node_modules/'
         nodejs('NodeJS-Latest') {
           sh 'npm install'
         }
