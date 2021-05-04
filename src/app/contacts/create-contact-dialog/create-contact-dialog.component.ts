@@ -43,7 +43,7 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
     });
 
     this.contactForm = this.fb.group({
-      idType: ["-1", [Validators.required]],
+      idType: ["", [Validators.required]],
       idNumber: ["", [Validators.required]],
       name: ["", Validators.required],
       email: ["", Validators.email],
