@@ -15,12 +15,12 @@
           <mat-icon class="posIcon-36">dialpad</mat-icon>
         </mat-button-toggle>
         <div class='numPad-form-wrapper' *ngIf="numPad">
-          <form [formGroup]="multiplierForm">
-            <mat-form-field>
-              <input matInput type="number" formControlName="multiplier" autocomplete="off" class="right-align">
-            </mat-form-field>
-          </form>
+          <div>
+            <span class="right-align">{{multiplierLabel}}</span>
+          </div>
           <app-keypad [showTopClear]="false" [showBottomClear]="true" (number)="setMultiplier($event)"></app-keypad>
+          <div>
+          </div>
         </div>
       </div>
       <app-ticket [multiplier]="multiplier" (multiplierClick)="resetMultiplier()"></app-ticket>

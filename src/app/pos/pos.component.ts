@@ -7,7 +7,6 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { LocalStorage } from "@efaps/ngx-store";
@@ -19,6 +18,7 @@ import {
   PosLayout,
   PosService,
   WorkspaceService,
+  ProductService,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 import { skip } from "rxjs/operators";
@@ -26,6 +26,7 @@ import { skip } from "rxjs/operators";
 import { CategorySelectComponent } from "./category-select/category-select.component";
 import { CommandsComponent } from "./commands/commands.component";
 import { ProductGridComponent } from "./product-grid/product-grid.component";
+import { ProductListComponent } from './product-list/product-list.component';
 
 @Component({
   selector: "app-pos",
@@ -34,7 +35,6 @@ import { ProductGridComponent } from "./product-grid/product-grid.component";
 })
 export class PosComponent implements OnInit, OnDestroy {
   PosLayout = PosLayout;
-  multiplierForm: FormGroup;
   ticket: Item[];
   screenHeight: number;
   screenWidth: number;
@@ -44,8 +44,10 @@ export class PosComponent implements OnInit, OnDestroy {
   numPad = false;
   @LocalStorage() posNumPad: any = {};
   multiplier = 1;
+  multiplierLabel = "";
   @ViewChild(CommandsComponent, { static: true }) cmdComp;
-  @ViewChild(ProductGridComponent) grid;
+  @ViewChild(ProductGridComponent) productGrid;
+  @ViewChild(ProductListComponent) productList;
   remarkMode = false;
   private subscriptions = new Subscription();
 
@@ -55,16 +57,13 @@ export class PosComponent implements OnInit, OnDestroy {
     private msgService: MsgService,
     private authService: AuthService,
     private barcodeScannerService: BarcodeScannerService,
-    private fb: FormBuilder,
+    private productService: ProductService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.multiplierForm = this.fb.group({
-      multiplier: [""],
-    });
     this.subscriptions.add(
       this.posService.currentTicket.subscribe((data) => {
         this.ticket = data;
@@ -95,16 +94,36 @@ export class PosComponent implements OnInit, OnDestroy {
       this.barcodeScannerService.barcode.pipe(skip(1)).subscribe({
         next: (barcode) => {
           if (barcode) {
-            console.log("READ: " + barcode);
-            this.snackBar.open(barcode, "", {
-              duration: 500,
-              horizontalPosition: "center",
-              verticalPosition: "top",
-            });
+            this.onBarcode(barcode)
           }
         },
       })
     );
+  }
+
+  onBarcode(barcode: string) {
+    console.log("READ: " + barcode);
+    this.snackBar.open(barcode, "", {
+      duration: 800,
+      horizontalPosition: "center",
+      verticalPosition: "top",
+    });
+    this.productService.getProductsByBarcode(barcode).subscribe({
+      next: products => {
+        if (products) {
+          if (products.length == 1) {
+            if (this.productGrid) {
+              this.productGrid.select(products[0])
+            } else {
+              this.productList.select(products[0])
+            }
+            this.afterSelection();
+          } else if (products.length > 1) {
+            console.log("NOT YET")
+          }
+        }
+      }
+    })
   }
 
   ngOnDestroy() {
@@ -136,17 +155,15 @@ export class PosComponent implements OnInit, OnDestroy {
   }
 
   setMultiplier(_number: string) {
-    let multi;
     switch (_number) {
       case "clear":
-        multi = "";
+        this.multiplierLabel = ""
         break;
       default:
-        multi = "" + this.multiplierForm.value.multiplier + _number;
+        this.multiplierLabel = "" + this.multiplierLabel + _number;
         break;
     }
-    this.multiplierForm.patchValue({ multiplier: multi });
-    this.multiplier = Number(multi);
+    this.multiplier = Number(this.multiplierLabel);
   }
 
   afterSelection() {
@@ -158,7 +175,7 @@ export class PosComponent implements OnInit, OnDestroy {
 
   resetMultiplier() {
     this.multiplier = 0;
-    this.multiplierForm.patchValue({ multiplier: "" });
+    this.multiplierLabel = "";
   }
 
   toggleNumPad() {
@@ -173,8 +190,8 @@ export class PosComponent implements OnInit, OnDestroy {
     let ref = this.dialog.open(CategorySelectComponent, {});
     ref.afterClosed().subscribe({
       next: (index) => {
-        if (this.grid) {
-          this.grid.selectedIndex = index;
+        if (this.productGrid) {
+          this.productGrid.selectedIndex = index;
         }
       },
     });
