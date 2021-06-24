@@ -40,7 +40,7 @@ export class AutoComponent extends PaymentForm {
       this.collectService.getCollectors().subscribe({
         next: (collectors) => {
           this.collectors = collectors;
-          this.paymentForm.patchValue({ collector: this.collectors[0] });
+          this.paymentForm.patchValue({ collectorFrmCtrl: this.collectors[0] });
         },
       })
     );
@@ -52,10 +52,10 @@ export class AutoComponent extends PaymentForm {
 
   addPayment() {
     const amount = this.utilsService.parse(this.paymentForm.value.amount);
-    if (amount > 0) {
+    if (amount > 0 && this.paymentForm.value.collectorFrmCtrl) {
       this.collecting = true;
       this.collectService
-        .startCollect(this.collectors[0].key, amount, {})
+        .startCollect(this.paymentForm.value.collectorFrmCtrl.key, amount, {})
         .subscribe({
           next: (startCollectResp) =>
             this.listenForPayment(startCollectResp.collectOrderId),
