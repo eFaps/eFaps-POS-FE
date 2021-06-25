@@ -47,7 +47,7 @@ export class AutoComponent extends PaymentForm {
   }
 
   getPayment(): Payment {
-    return { type: PaymentType.AUTO, amount: 0 };
+    return { type: PaymentType.ELECTRONIC, amount: 0 };
   }
 
   addPayment() {
