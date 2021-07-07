@@ -14,7 +14,6 @@ import {
   AuthService,
   Company,
   CompanyService,
-  CurrentUser,
   User,
   UserService,
   WorkspaceService,
@@ -48,7 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private translateService: TranslateService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.createForm();
@@ -56,10 +55,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authService.logout();
     this.workspaceService.logout();
     if (this.companyService.hasCompany()) {
-      this.showCompanySelection = false;
-      this.subscription.add(
-        this.userService.getUsers().subscribe((data) => (this.users = data))
-      );
+      this.setCompany(this.companyService.currentCompany)
       this.subscription.add(
         this.companyService.getCompanies().subscribe({
           next: (companies) => (this.companies = companies),
@@ -70,7 +66,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.companyService.getCompanies().subscribe({
           next: (companies) => {
             this.companies = companies;
-            if (companies.length > 1) {
+            if (companies.length == 1) {
+              this.setCompany(this.companies[0])
+            } else if (companies.length > 1) {
               this.showCompanySelection = true;
             } else {
               this.subscription.add(
