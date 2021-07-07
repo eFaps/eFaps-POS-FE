@@ -4,40 +4,45 @@ import {
   Input,
   Output,
   HostListener,
+  OnInit,
+  OnDestroy,
 } from "@angular/core";
+import { KeypadService } from '../../services';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "app-keypad",
   templateUrl: "./keypad.component.html",
   styleUrls: ["./keypad.component.scss"],
 })
-export class KeypadComponent {
+export class KeypadComponent implements OnInit, OnDestroy {
   @Input() showTopClear: boolean = true;
   @Input() showBottomClear: boolean = false;
   @Input() showDoubleZero: boolean = true;
   @Output() number = new EventEmitter<string>();
-  regex = new RegExp("\\d")
-  keyboardEvent: KeyboardEvent;
-  block = false;
-  constructor() { }
+  private subscriptions = new Subscription();
+  constructor(private keypadService: KeypadService) { }
+
+  ngOnInit() {
+    this.subscriptions.add(
+      this.keypadService.currentKey.subscribe((data) => {
+        this.clickBtn(data)
+      })
+    );
+  }
 
   clickBtn(_number: string) {
     this.number.emit(_number);
   }
 
+  ngOnDestroy() {
+
+    this.subscriptions.unsubscribe();
+  }
+
+
   @HostListener("document:keypress", ["$event"])
   handleKeyboardEvent(event: KeyboardEvent) {
-    if (this.block) {
-      this.keyboardEvent = null;
-    } else {
-      this.block = true;
-      this.keyboardEvent = event;
-      setTimeout(() => {
-        if (this.keyboardEvent && this.regex.test(event.key)) {
-          this.clickBtn(this.keyboardEvent.key);
-        }
-        this.block = false;
-      }, 200);
-    }
+    this.keypadService.handleKeyboardEvent(event)
   }
 }

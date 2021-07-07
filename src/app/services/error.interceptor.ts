@@ -4,7 +4,6 @@ import {
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
-  HttpResponse,
 } from "@angular/common/http";
 
 import { Injectable } from "@angular/core";
@@ -14,7 +13,7 @@ import { tap } from "rxjs/operators";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   intercept(
     request: HttpRequest<any>,
@@ -22,7 +21,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       tap(
-        (event: HttpEvent<any>) => {},
+        (event: HttpEvent<any>) => { },
         (err: any) => {
           if (err instanceof HttpErrorResponse) {
             if (err.status === 401) {

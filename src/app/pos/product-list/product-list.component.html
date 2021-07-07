@@ -1,6 +1,6 @@
 <form [formGroup]="filterForm">
   <mat-form-field>
-    <input matInput placeholder="Filter" formControlName="filter" autocomplete="off">
+    <input matInput placeholder="Filter" formControlName="filter" autocomplete="off" (blur)="onBlur()" (focus)="onFocus()">
   </mat-form-field>
 </form>
 <div class="product-list mat-elevation-z8">
