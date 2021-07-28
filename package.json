@@ -32,18 +32,18 @@
   "private": true,
   "dependencies": {
     "@angular-extensions/elements": "^11.0.1",
-    "@angular/animations": "^11.2.14",
+    "@angular/animations": "^12.1.3",
     "@angular/cdk": "^11.2.13",
-    "@angular/common": "^11.2.14",
-    "@angular/compiler": "^11.2.14",
-    "@angular/core": "^11.2.14",
+    "@angular/common": "^12.1.3",
+    "@angular/compiler": "^12.1.3",
+    "@angular/core": "^12.1.3",
     "@angular/flex-layout": "^11.0.0-beta.33",
-    "@angular/forms": "^11.2.14",
-    "@angular/localize": "^11.2.14",
+    "@angular/forms": "^12.1.3",
+    "@angular/localize": "^12.1.3",
     "@angular/material": "^11.2.13",
-    "@angular/platform-browser": "^11.2.14",
-    "@angular/platform-browser-dynamic": "^11.2.14",
-    "@angular/router": "^11.2.14",
+    "@angular/platform-browser": "^12.1.3",
+    "@angular/platform-browser-dynamic": "^12.1.3",
+    "@angular/router": "^12.1.3",
     "@efaps/ngx-store": "^4.0.8",
     "@efaps/pos-library": "^4.7.0",
     "@giakki/angular2-hotkeys": "^2.2.1",
@@ -63,13 +63,13 @@
     "rxjs": "^6.6.7",
     "rxjs-compat": "^6.6.7",
     "tslib": "^2.3.0",
-    "zone.js": "~0.10.3"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.1101.0",
+    "@angular-devkit/build-angular": "^12.1.3",
     "@angular-guru/electron-builder": "^8.0.0",
     "@angular/cli": "^11.2.14",
-    "@angular/compiler-cli": "^11.2.14",
+    "@angular/compiler-cli": "^12.1.3",
     "@types/core-js": "^2.5.4",
     "@types/jasmine": "^3.7.8",
     "@types/jasminewd2": "^2.0.10",
@@ -84,7 +84,7 @@
     "import-sort-style-module": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
-    "karma": "~5.1.1",
+    "karma": "~6.3.4",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "^4.0.1",
@@ -96,7 +96,7 @@
     "sass": "^1.35.2",
     "ts-node": "^8.10.2",
     "tslint": "^6.1.3",
-    "typescript": "~4.1.6"
+    "typescript": "~4.3.5"
   },
   "importSort": {
     ".js, .jsx, .es6, .es": {
