@@ -1,8 +1,9 @@
+@use '~@angular/material' as mat;
 @mixin login-theme($theme) {
   $background: map-get($theme, background);
 
   .companies {
-    background-color: mat-color($background, card);
+    background-color: mat.get-color-from-palette($background, card);
   }
 }
 
