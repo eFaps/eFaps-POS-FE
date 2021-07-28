@@ -10,11 +10,10 @@
   "main": "main.js",
   "scripts": {
     "preinstall": "npx npm-force-resolutions",
-    "_build-css": "sass src/scss:src/assets --no-source-map",
     "_build": "tsc -p tsconfig-electron.json && node ./buildutil.js",
-    "start": "npm run _build-css && ng serve --proxy-config proxy.conf.json --host 0.0.0.0",
-    "start-es": "npm run _build-css && ng serve --configuration es --proxy-config proxy.conf.json --host 0.0.0.0",
-    "build": "node ./buildutil.js && npm run _build-css && ng build --configuration production --localize",
+    "start": "ng serve --proxy-config proxy.conf.json --host 0.0.0.0",
+    "start-es": "ng serve --configuration es --proxy-config proxy.conf.json --host 0.0.0.0",
+    "build": "node ./buildutil.js && ng build --configuration production --localize",
     "build2": "node ./buildutil.js && npm run _build-css && ng build --aot --source-map false",
     "test": "ng test --browsers ChromeHeadlessNoSandbox --no-progress --no-watch",
     "lint": "ng lint",
@@ -71,10 +70,10 @@
     "@angular/cli": "^12.1.3",
     "@angular/compiler-cli": "^12.1.3",
     "@types/core-js": "^2.5.4",
-    "@types/jasmine": "^3.7.8",
+    "@types/jasmine": "^3.8.1",
     "@types/jasminewd2": "^2.0.10",
     "@types/mousetrap": "1.6.3",
-    "@types/node": "^14.17.5",
+    "@types/node": "^14.17.6",
     "@types/sockjs-client": "^1.5.1",
     "@types/stompjs": "^2.3.5",
     "codelyzer": "^6.0.2",
@@ -141,6 +140,6 @@
     }
   },
   "resolutions": {
-    "@angular/core": "^11.1.0"
+    "@angular/core": "^12.1.3"
   }
 }

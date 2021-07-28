@@ -52,7 +52,7 @@ export class ThemePickerComponent {
   }
   installTheme(theme: DocsSiteTheme) {
     this.currentTheme = this._getCurrentThemeFromHref(theme.href);
-    this.styleManager.setStyle("theme", `assets/${theme.href}`);
+    this.styleManager.setStyle("theme", `${theme.href}`);
   }
 
   private _getCurrentThemeFromHref(href: string): DocsSiteTheme {

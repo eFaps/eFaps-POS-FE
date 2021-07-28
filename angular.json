@@ -39,27 +39,31 @@
               },
               {
                 "inject": false,
-                "input": "src/assets/pink-bluegrey.css",
+                "input": "src/scss/pink-bluegrey.scss",
                 "bundleName": "pink-bluegrey"
               },
               {
                 "inject": false,
-                "input": "src/assets/deeppurple-amber.css",
+                "input": "src/scss/deeppurple-amber.scss",
                 "bundleName": "deeppurple-amber"
               },
               {
                 "inject": false,
-                "input": "src/assets/indigo-pink.css",
+                "input": "src/scss/indigo-pink.scss",
                 "bundleName": "indigo-pink"
               },
               {
                 "inject": false,
-                "input": "src/assets/purple-green.css",
+                "input": "src/scss/purple-green.scss",
                 "bundleName": "purple-green"
               }
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["./", "./themes"]
+              "includePaths": [
+                "node_modules",
+                "src",
+                "src/scss",
+             ]
             },
             "scripts": [],
             "fileReplacements": [{
