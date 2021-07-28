@@ -47,7 +47,7 @@
     "@efaps/ngx-store": "^4.0.8",
     "@efaps/pos-library": "^4.7.0",
     "@giakki/angular2-hotkeys": "^2.2.1",
-    "@ngx-pwa/local-storage": "^11.0.1",
+    "@ngx-pwa/local-storage": "^12.0.0",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "@stomp/ng2-stompjs": "^8.0.0",
