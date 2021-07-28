@@ -70,7 +70,14 @@
                 "replace": "src/app/util/electron-util.ts",
                 "with": "src/app/util/electron-util.noop.ts"
               }
-            ]
+            ],
+            "aot": false,
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -110,7 +117,8 @@
                 "es"
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "build-electron": {
           "builder": "@angular-guru/electron-builder:build",

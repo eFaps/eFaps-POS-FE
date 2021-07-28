@@ -14,7 +14,7 @@
     "_build": "tsc -p tsconfig-electron.json && node ./buildutil.js",
     "start": "npm run _build-css && ng serve --proxy-config proxy.conf.json --host 0.0.0.0",
     "start-es": "npm run _build-css && ng serve --configuration es --proxy-config proxy.conf.json --host 0.0.0.0",
-    "build": "node ./buildutil.js && npm run _build-css && ng build --prod --localize",
+    "build": "node ./buildutil.js && npm run _build-css && ng build --configuration production --localize",
     "build2": "node ./buildutil.js && npm run _build-css && ng build --aot --source-map false",
     "test": "ng test --browsers ChromeHeadlessNoSandbox --no-progress --no-watch",
     "lint": "ng lint",
@@ -68,7 +68,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^12.1.3",
     "@angular-guru/electron-builder": "^8.0.0",
-    "@angular/cli": "^11.2.14",
+    "@angular/cli": "^12.1.3",
     "@angular/compiler-cli": "^12.1.3",
     "@types/core-js": "^2.5.4",
     "@types/jasmine": "^3.7.8",
