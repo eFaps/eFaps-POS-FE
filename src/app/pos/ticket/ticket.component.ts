@@ -1,4 +1,4 @@
-import { Item, PosService, ProductRelation, ProductService } from "@efaps/pos-library";
+import { Item, PosService } from "@efaps/pos-library";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTableDataSource } from "@angular/material/table";

@@ -29,6 +29,7 @@ import { ContactComponent } from "./contact/contact.component";
 import { DocumentComponent } from "./document/document.component";
 import { ImageComponent } from "./image/image.component";
 import { KeypadComponent } from "./keypad/keypad.component";
+import { PartListRelationComponent } from "./part-list-relation/part-list-relation.component";
 import { PrintDialogComponent } from "./print-dialog/print-dialog.component";
 import { PrintDisplayComponent } from "./print-display/print-display.component";
 import { ProductComponent } from "./product/product.component";
@@ -78,6 +79,7 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     ProductComponent,
     TaxpayerQueryComponent,
     TaxpayerResultComponent,
+    PartListRelationComponent,
   ],
   exports: [
     ContactComponent,
@@ -90,13 +92,14 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     TaxpayerResultComponent,
     TranslateModule,
     WebStorageModule,
+    PartListRelationComponent,
   ],
   entryComponents: [
     ConfirmDialogComponent,
     ImageComponent,
     PrintDialogComponent,
     ProductComponent,
-    TaxpayerResultComponent,
-  ],
+    TaxpayerResultComponent
+  ]
 })
-export class SharedModule {}
+export class SharedModule { }

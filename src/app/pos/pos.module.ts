@@ -27,7 +27,6 @@ import { ProductListComponent } from "./product-list/product-list.component";
 import { RemarkDialogComponent } from "./remark-dialog/remark-dialog.component";
 import { TicketComponent } from "./ticket/ticket.component";
 import { TotalsComponent } from "./totals/totals.component";
-import { PartListRelationComponent } from './ticket/part-list-relation/part-list-relation.component';
 
 @NgModule({
   imports: [
@@ -59,8 +58,7 @@ import { PartListRelationComponent } from './ticket/part-list-relation/part-list
     TicketComponent,
     TotalsComponent,
     CategorySelectComponent,
-    RemarkDialogComponent,
-    PartListRelationComponent,
+    RemarkDialogComponent
   ],
   entryComponents: [
     OrderDialogComponent,
@@ -68,4 +66,4 @@ import { PartListRelationComponent } from './ticket/part-list-relation/part-list
     RemarkDialogComponent,
   ],
 })
-export class PosModule {}
+export class PosModule { }

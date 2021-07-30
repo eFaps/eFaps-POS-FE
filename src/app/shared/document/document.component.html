@@ -1,7 +1,7 @@
 <div *ngIf="document" class="mat-typography">
   <h3>{{this.document.type | translate}}: {{document.number}}</h3>
   <div class="pos-doc-container mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource" matSort matSortActive="index" matSortDirection="asc">
+    <mat-table #table [dataSource]="dataSource" matSort matSortActive="index" matSortDirection="asc" multiTemplateDataRows>
       <ng-container matColumnDef="index">
         <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
         <mat-cell *matCellDef="let item"> {{item.index}} </mat-cell>
@@ -22,8 +22,18 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> Precio </mat-header-cell>
         <mat-cell *matCellDef="let item"> {{item.crossPrice | posCurrency:document.currency}} </mat-cell>
       </ng-container>
+      <ng-container matColumnDef="relationDetail">
+        <mat-cell *matCellDef="let item" [attr.colspan]="displayedColumns.length" class="relation-detail">
+          <ng-container *ngFor="let relation of item.product.relations ">
+            <ng-container *ngIf="relation.type =='SALESBOM'">
+              <app-part-list-relation [productOid]="relation.productOid"></app-part-list-relation>
+            </ng-container>
+          </ng-container>
+        </mat-cell>
+      </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-row *matRowDef="let row; columns: ['relationDetail']" class="details-row" [class.details-partlist]="row.product.type == 'PARTLIST'"></mat-row>
     </mat-table>
   </div>
   <div class="footer">
