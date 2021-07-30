@@ -44,7 +44,7 @@
     "@angular/platform-browser-dynamic": "^12.1.4",
     "@angular/router": "^12.1.4",
     "@efaps/ngx-store": "^4.0.8",
-    "@efaps/pos-library": "^4.8.1",
+    "@efaps/pos-library": "^4.8.2",
     "@giakki/angular2-hotkeys": "^2.2.1",
     "@ngx-pwa/local-storage": "^12.0.0",
     "@ngx-translate/core": "^13.0.0",
