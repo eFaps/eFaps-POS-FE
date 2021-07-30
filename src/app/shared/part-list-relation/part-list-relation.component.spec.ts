@@ -1,16 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { PartListRelationComponent } from './part-list-relation.component';
+import { PartListRelationComponent } from "./part-list-relation.component";
+import { ProductService } from "@efaps/pos-library";
 
-describe('PartListRelationComponent', () => {
+class ProductServiceStub { }
+
+describe("PartListRelationComponent", () => {
   let component: PartListRelationComponent;
   let fixture: ComponentFixture<PartListRelationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PartListRelationComponent ]
-    })
-    .compileComponents();
+      declarations: [PartListRelationComponent],
+      providers: [{ provide: ProductService, useClass: ProductServiceStub }]
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +22,7 @@ describe('PartListRelationComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
