@@ -27,6 +27,7 @@ import { ProductListComponent } from "./product-list/product-list.component";
 import { RemarkDialogComponent } from "./remark-dialog/remark-dialog.component";
 import { TicketComponent } from "./ticket/ticket.component";
 import { TotalsComponent } from "./totals/totals.component";
+import { PartListRelationComponent } from './ticket/part-list-relation/part-list-relation.component';
 
 @NgModule({
   imports: [
@@ -59,6 +60,7 @@ import { TotalsComponent } from "./totals/totals.component";
     TotalsComponent,
     CategorySelectComponent,
     RemarkDialogComponent,
+    PartListRelationComponent,
   ],
   entryComponents: [
     OrderDialogComponent,

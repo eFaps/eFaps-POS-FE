@@ -1,4 +1,4 @@
-import { Item, PosService } from "@efaps/pos-library";
+import { Item, PosService, ProductRelation, ProductService } from "@efaps/pos-library";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTableDataSource } from "@angular/material/table";
@@ -22,7 +22,7 @@ export class TicketComponent implements OnInit {
   @Input() multiplier: number;
   @Output() multiplierClick = new EventEmitter<any>();
 
-  constructor(private posService: PosService, private snackBar: MatSnackBar) {}
+  constructor(private posService: PosService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.posService.currentTicket.subscribe(

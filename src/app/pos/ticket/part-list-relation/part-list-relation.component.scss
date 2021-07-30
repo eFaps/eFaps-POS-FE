@@ -1,0 +1,21 @@
+@use '~@angular/material' as mat;
+@mixin part-list-relation-theme($theme) {
+  .partlist-product::before {
+    background-color: mat.get-color-from-palette($primary);
+  }
+}
+
+.partlist-product {
+  height: 35px;
+  line-height: 35px;
+  padding-left: 20px;
+}
+
+.partlist-product::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+}

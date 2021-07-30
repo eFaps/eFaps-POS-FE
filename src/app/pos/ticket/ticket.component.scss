@@ -1,20 +1,43 @@
 .pos-ticket-container {
-    width: 100%;
+  width: 100%;
 
-    .mat-column-quantity {
-      flex: 0 0 22px;
-    }
+  .mat-column-quantity {
+    flex: 0 0 22px;
+  }
 
-    .mat-column-unitPrice {
-      flex: 0 0 58px;
-    }
+  .mat-column-unitPrice {
+    flex: 0 0 58px;
+  }
 
-    .mat-column-price {
-      flex: 0 0 65px;
-    }
+  .mat-column-price {
+    flex: 0 0 65px;
+  }
 
-    .mat-column-modify {
-      flex: 0 0 120px;
-      padding-right: 5px;
-    }
+  .mat-column-modify {
+    flex: 0 0 120px;
+    padding-right: 5px;
+  }
+}
+
+.details-row {
+  height: 0;
+  min-height: 0;
+
+  mat-cell {
+    height: 0;
+  }
+}
+
+.details-partlist {
+  height: unset;
+  min-height: unset;
+
+  mat-cell {
+    height: unset;
+  }
+}
+
+.relation-detail {
+  flex-direction: column;
+  align-items: flex-start;
 }

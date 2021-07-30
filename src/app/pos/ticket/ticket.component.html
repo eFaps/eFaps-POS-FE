@@ -1,5 +1,5 @@
 <div class="pos-ticket-container mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource">
+  <mat-table #table [dataSource]="dataSource" multiTemplateDataRows>
     <ng-container matColumnDef="quantity">
       <mat-header-cell *matHeaderCellDef> C. </mat-header-cell>
       <mat-cell *matCellDef="let item"> {{item.quantity}} </mat-cell>
@@ -25,14 +25,25 @@
       <mat-header-cell *matHeaderCellDef> Modificar </mat-header-cell>
       <mat-cell *matCellDef="let item">
         <button (click)="add(item)">
-            <mat-icon  class="posIcon-36">control_point</mat-icon>
-          </button>
+          <mat-icon class="posIcon-36">control_point</mat-icon>
+        </button>
         <button (click)="subtract(item)">
-          <mat-icon  class="posIcon-36">indeterminate_check_box</mat-icon>
-      </button>
+          <mat-icon class="posIcon-36">indeterminate_check_box</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="relationDetail">
+      <mat-cell *matCellDef="let item" [attr.colspan]="displayedColumns.length" class="relation-detail">
+        <ng-container *ngFor="let relation of item.product.relations ">
+          <ng-container *ngIf="relation.type =='SALESBOM'">
+            <app-part-list-relation [productOid]="relation.productOid"></app-part-list-relation>
+          </ng-container>
+        </ng-container>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: ['relationDetail']" class="details-row" [class.details-partlist]="row.product.type == 'PARTLIST'">
+    </mat-row>
   </mat-table>
 </div>
