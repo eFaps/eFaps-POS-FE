@@ -15,7 +15,7 @@ export abstract class PaymentForm implements OnInit, OnDestroy {
   @Input() protected change: number;
   public currency: string;
   protected subscription$ = new Subscription();
-  private document: Document;
+  protected document: Document;
 
   constructor(
     protected paymentService: PaymentService,

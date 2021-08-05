@@ -60,7 +60,7 @@ export class AutoComponent extends PaymentForm {
     if (amount > 0 && this.paymentForm.value.collectorFrmCtrl) {
       this.collecting = true;
       this.collectService
-        .startCollect(this.paymentForm.value.collectorFrmCtrl.key, amount, {})
+        .startCollect(this.paymentForm.value.collectorFrmCtrl.key, amount, {}, this.document.id)
         .subscribe({
           next: startCollectResp =>
             this.listenForPayment(startCollectResp.collectOrderId),
