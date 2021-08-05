@@ -36,7 +36,7 @@
       <mat-cell *matCellDef="let item" [attr.colspan]="displayedColumns.length" class="relation-detail">
         <ng-container *ngFor="let relation of item.product.relations ">
           <ng-container *ngIf="relation.type =='SALESBOM'">
-            <app-part-list-relation [productOid]="relation.productOid"></app-part-list-relation>
+            <app-part-list-relation [productRelation]="relation"></app-part-list-relation>
           </ng-container>
         </ng-container>
       </mat-cell>

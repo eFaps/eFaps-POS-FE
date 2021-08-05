@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { ProductService, Product } from "@efaps/pos-library";
+import { ProductService, Product, ProductRelation } from "@efaps/pos-library";
 
 @Component({
   selector: "app-part-list-relation",
@@ -7,25 +7,24 @@ import { ProductService, Product } from "@efaps/pos-library";
   styleUrls: ["./part-list-relation.component.scss"]
 })
 export class PartListRelationComponent implements OnInit {
-  _productOid: string;
+  _productRelation: ProductRelation;
   product: Product;
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void { }
 
   @Input()
-  set productOid(oid: string) {
-    this._productOid = oid;
-    this.evalRelation(this._productOid);
+  set productRelation(productRelation: ProductRelation) {
+    this._productRelation = productRelation;
+    this.evalRelation(this._productRelation);
   }
 
-  get productOid() {
-    return this._productOid;
+  get productRelation() {
+    return this._productRelation;
   }
 
-  private evalRelation(productOid: string) {
-    this.productService.getProduct(productOid).subscribe(product => {
-      console.log("xxx")
+  private evalRelation(productRelation: ProductRelation) {
+    this.productService.getProduct(productRelation.productOid).subscribe(product => {
       this.product = product;
     });
   }
