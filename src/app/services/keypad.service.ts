@@ -1,21 +1,20 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
   providedIn: "root",
 })
 export class KeypadService {
-
   block = false;
   keyboardEvent: KeyboardEvent;
-  regex = new RegExp("\\d")
+  regex = new RegExp("\\d");
   private currentSource = new BehaviorSubject<string>("");
   currentKey = this.currentSource.asObservable();
-  deactivated = false
+  deactivated = false;
 
   handleKeyboardEvent(event: KeyboardEvent) {
     if (this.deactivated) {
-      return
+      return;
     }
     if (this.block) {
       this.keyboardEvent = null;
@@ -24,7 +23,7 @@ export class KeypadService {
       this.keyboardEvent = event;
       setTimeout(() => {
         if (this.keyboardEvent && this.regex.test(event.key)) {
-          this.currentSource.next(this.keyboardEvent.key)
+          this.currentSource.next(this.keyboardEvent.key);
         }
         this.block = false;
       }, 200);
@@ -32,9 +31,9 @@ export class KeypadService {
   }
 
   deactivate() {
-    this.deactivated = true
+    this.deactivated = true;
   }
   activate() {
-    this.deactivated = false
+    this.deactivated = false;
   }
 }

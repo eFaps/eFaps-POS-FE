@@ -99,7 +99,7 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     ImageComponent,
     PrintDialogComponent,
     ProductComponent,
-    TaxpayerResultComponent
-  ]
+    TaxpayerResultComponent,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

@@ -7,8 +7,8 @@ import {
   OnInit,
   OnDestroy,
 } from "@angular/core";
-import { KeypadService } from '../../services';
-import { Subscription } from 'rxjs';
+import { KeypadService } from "../../services";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-keypad",
@@ -21,12 +21,12 @@ export class KeypadComponent implements OnInit, OnDestroy {
   @Input() showDoubleZero: boolean = true;
   @Output() number = new EventEmitter<string>();
   private subscriptions = new Subscription();
-  constructor(private keypadService: KeypadService) { }
+  constructor(private keypadService: KeypadService) {}
 
   ngOnInit() {
     this.subscriptions.add(
       this.keypadService.currentKey.subscribe((data) => {
-        this.clickBtn(data)
+        this.clickBtn(data);
       })
     );
   }
@@ -36,13 +36,11 @@ export class KeypadComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
     this.subscriptions.unsubscribe();
   }
 
-
   @HostListener("document:keypress", ["$event"])
   handleKeyboardEvent(event: KeyboardEvent) {
-    this.keypadService.handleKeyboardEvent(event)
+    this.keypadService.handleKeyboardEvent(event);
   }
 }

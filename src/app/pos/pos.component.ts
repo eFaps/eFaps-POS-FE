@@ -5,7 +5,7 @@ import {
   Inject,
   OnDestroy,
   OnInit,
-  ViewChild
+  ViewChild,
 } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -20,7 +20,7 @@ import {
   PosService,
   Product,
   ProductService,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 import { skip } from "rxjs/operators";
@@ -33,7 +33,7 @@ import { ProductListComponent } from "./product-list/product-list.component";
 @Component({
   selector: "app-pos",
   templateUrl: "./pos.component.html",
-  styleUrls: ["./pos.component.scss"]
+  styleUrls: ["./pos.component.scss"],
 })
 export class PosComponent implements OnInit, OnDestroy {
   PosLayout = PosLayout;
@@ -64,11 +64,11 @@ export class PosComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.subscriptions.add(
-      this.posService.currentTicket.subscribe(data => {
+      this.posService.currentTicket.subscribe((data) => {
         this.ticket = data;
         this.changeDetectorRef.detectChanges();
         this.cmdComp.evalSticky();
@@ -77,7 +77,7 @@ export class PosComponent implements OnInit, OnDestroy {
     this.onResize();
     this.msgService.init();
     this.subscriptions.add(
-      this.posService.currentOrder.subscribe(order => {
+      this.posService.currentOrder.subscribe((order) => {
         if (order && !this.orderId) {
           this.msgService.publishStartEditOrder(order.id);
           this.orderId = order.id;
@@ -95,20 +95,20 @@ export class PosComponent implements OnInit, OnDestroy {
     this.numPad = this.posNumPad[this.authService.getCurrentUsername()];
     this.subscriptions.add(
       this.barcodeScannerService.barcode.pipe(skip(1)).subscribe({
-        next: barcode => {
+        next: (barcode) => {
           if (barcode) {
             this.onBarcode(barcode);
           }
-        }
+        },
       })
     );
     this.subscriptions.add(
       this.partListService.detectedPartList.subscribe({
-        next: partList => {
+        next: (partList) => {
           if (partList) {
             this.onPartList(partList);
           }
-        }
+        },
       })
     );
   }
@@ -118,7 +118,7 @@ export class PosComponent implements OnInit, OnDestroy {
     this.snackBar.open(msg, "", {
       duration: 1500,
       horizontalPosition: "center",
-      verticalPosition: "top"
+      verticalPosition: "top",
     });
   }
 
@@ -127,10 +127,10 @@ export class PosComponent implements OnInit, OnDestroy {
     this.snackBar.open(barcode, "", {
       duration: 800,
       horizontalPosition: "center",
-      verticalPosition: "top"
+      verticalPosition: "top",
     });
     this.productService.getProductsByBarcode(barcode).subscribe({
-      next: products => {
+      next: (products) => {
         if (products) {
           if (products.length == 1) {
             if (this.productGrid) {
@@ -143,7 +143,7 @@ export class PosComponent implements OnInit, OnDestroy {
             console.log("NOT YET");
           }
         }
-      }
+      },
     });
   }
 
@@ -210,11 +210,11 @@ export class PosComponent implements OnInit, OnDestroy {
   openCatSelect() {
     let ref = this.dialog.open(CategorySelectComponent, {});
     ref.afterClosed().subscribe({
-      next: index => {
+      next: (index) => {
         if (this.productGrid) {
           this.productGrid.selectedIndex = index;
         }
-      }
+      },
     });
   }
 

@@ -58,7 +58,7 @@ import { TotalsComponent } from "./totals/totals.component";
     TicketComponent,
     TotalsComponent,
     CategorySelectComponent,
-    RemarkDialogComponent
+    RemarkDialogComponent,
   ],
   entryComponents: [
     OrderDialogComponent,
@@ -66,4 +66,4 @@ import { TotalsComponent } from "./totals/totals.component";
     RemarkDialogComponent,
   ],
 })
-export class PosModule { }
+export class PosModule {}

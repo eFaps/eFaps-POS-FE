@@ -18,7 +18,8 @@ import { AbstractSpotPicker } from "../abstract-spot-picker";
 })
 export class BaseSpotPickerComponent
   extends AbstractSpotPicker
-  implements OnInit {
+  implements OnInit
+{
   spots: Spot[] = [];
 
   constructor(

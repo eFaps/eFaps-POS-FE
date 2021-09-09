@@ -1,4 +1,3 @@
-
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
@@ -15,7 +14,7 @@ import {
   PosService,
   WorkspaceService,
   PosConfigToken,
-  ProductService
+  ProductService,
 } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs/Observable";
@@ -27,12 +26,15 @@ import { ProductGridComponent } from "./product-grid/product-grid.component";
 import { ProductListComponent } from "./product-list/product-list.component";
 import { TicketComponent } from "./ticket/ticket.component";
 import { TotalsComponent } from "./totals/totals.component";
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 class AuthServiceStub {
   getCurrentUsername() {
     return "blabla";
   }
+  currentEvent = new Observable((observer) => {
+    observer.next({});
+  });
 }
 class PosServiceStub {
   currentOrder = new Observable((observer) => {
@@ -46,9 +48,9 @@ class MsgServiceStub {
   currentOrder = new Observable((observer) => {
     observer.next();
   });
-  init() { }
-  publishStartEditOrder(_id) { }
-  publishFinishEditOrder(_id) { }
+  init() {}
+  publishStartEditOrder(_id) {}
+  publishFinishEditOrder(_id) {}
 }
 class WorkspaceServiceStub {
   getPosLayout() {
@@ -62,7 +64,11 @@ class BarcodeScannerServiceStub {
 }
 
 class ProductServiceStub {
-
+  getProductsByType(type) {
+    return new Observable((observer) => {
+      observer.next([]);
+    });
+  }
 }
 describe("PosComponent", () => {
   let component: PosComponent;
@@ -88,7 +94,7 @@ describe("PosComponent", () => {
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: BarcodeScannerService, useClass: BarcodeScannerServiceStub },
         { provide: ProductService, useClass: ProductServiceStub },
-        { provide: PosConfigToken, useValue: {} }
+        { provide: PosConfigToken, useValue: {} },
       ],
       declarations: [
         PosComponent,

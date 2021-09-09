@@ -4,14 +4,14 @@ import { ProductService, Product, ProductRelation } from "@efaps/pos-library";
 @Component({
   selector: "app-part-list-relation",
   templateUrl: "./part-list-relation.component.html",
-  styleUrls: ["./part-list-relation.component.scss"]
+  styleUrls: ["./part-list-relation.component.scss"],
 })
 export class PartListRelationComponent implements OnInit {
   _productRelation: ProductRelation;
   product: Product;
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   @Input()
   set productRelation(productRelation: ProductRelation) {
@@ -24,8 +24,10 @@ export class PartListRelationComponent implements OnInit {
   }
 
   private evalRelation(productRelation: ProductRelation) {
-    this.productService.getProduct(productRelation.productOid).subscribe(product => {
-      this.product = product;
-    });
+    this.productService
+      .getProduct(productRelation.productOid)
+      .subscribe((product) => {
+        this.product = product;
+      });
   }
 }

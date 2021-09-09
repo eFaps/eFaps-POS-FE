@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { PartListRelationComponent } from "./part-list-relation.component";
 import { ProductService } from "@efaps/pos-library";
 
-class ProductServiceStub { }
+class ProductServiceStub {}
 
 describe("PartListRelationComponent", () => {
   let component: PartListRelationComponent;
@@ -12,7 +12,7 @@ describe("PartListRelationComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PartListRelationComponent],
-      providers: [{ provide: ProductService, useClass: ProductServiceStub }]
+      providers: [{ provide: ProductService, useClass: ProductServiceStub }],
     }).compileComponents();
   });
 

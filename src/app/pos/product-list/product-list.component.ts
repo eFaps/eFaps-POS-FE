@@ -10,7 +10,7 @@ import {
   Product,
   ProductService,
   Roles,
-  WorkspaceService
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 import { debounceTime } from "rxjs/operators";
@@ -22,10 +22,12 @@ import { KeypadService } from "../../services";
 @Component({
   selector: "app-product-list",
   templateUrl: "./product-list.component.html",
-  styleUrls: ["./product-list.component.scss"]
+  styleUrls: ["./product-list.component.scss"],
 })
-export class ProductListComponent extends AbstractProductSelector
-  implements OnInit, OnDestroy {
+export class ProductListComponent
+  extends AbstractProductSelector
+  implements OnInit, OnDestroy
+{
   filterForm: FormGroup;
   formCtrlSub: Subscription;
   dataSource = new MatTableDataSource();
@@ -53,16 +55,16 @@ export class ProductListComponent extends AbstractProductSelector
   ngOnInit() {
     super.ngOnInit();
     this.filterForm = this.fb.group({
-      filter: []
+      filter: [],
     });
     this.formCtrlSub = this.filterForm.valueChanges
       .pipe(debounceTime(500))
-      .subscribe(newValue => this.applyFilter(newValue.filter));
+      .subscribe((newValue) => this.applyFilter(newValue.filter));
 
     if (this.showInventory) {
       this.inventoryService
         .getInventory(this.workspaceService.getWarehouseOid())
-        .subscribe(_entries => {
+        .subscribe((_entries) => {
           this.inventory = _entries;
         });
     }
@@ -75,7 +77,7 @@ export class ProductListComponent extends AbstractProductSelector
   }
 
   applyFilter(_filterValue: string) {
-    this.productService.findProducts(_filterValue).subscribe(_products => {
+    this.productService.findProducts(_filterValue).subscribe((_products) => {
       this.dataSource.data = _products;
       this.dataSource.sort = this.sort;
     });
@@ -83,7 +85,7 @@ export class ProductListComponent extends AbstractProductSelector
 
   show(_product: Product) {
     const dialogRef = this.dialog.open(ProductComponent, {
-      data: _product
+      data: _product,
     });
   }
 

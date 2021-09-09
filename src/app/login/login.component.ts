@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private translateService: TranslateService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.createForm();
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authService.logout();
     this.workspaceService.logout();
     if (this.companyService.hasCompany()) {
-      this.setCompany(this.companyService.currentCompany)
+      this.setCompany(this.companyService.currentCompany);
       this.subscription.add(
         this.companyService.getCompanies().subscribe({
           next: (companies) => (this.companies = companies),
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           next: (companies) => {
             this.companies = companies;
             if (companies.length == 1) {
-              this.setCompany(this.companies[0])
+              this.setCompany(this.companies[0]);
             } else if (companies.length > 1) {
               this.showCompanySelection = true;
             } else {

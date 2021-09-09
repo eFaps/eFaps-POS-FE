@@ -18,7 +18,8 @@ import { AbstractProductSelector } from "../abstract-product-selector";
 })
 export class ProductGridComponent
   extends AbstractProductSelector
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy
+{
   categories = [];
   shownTabs = [0];
   selectedIndex;
