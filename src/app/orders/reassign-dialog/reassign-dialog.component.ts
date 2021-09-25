@@ -117,6 +117,8 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
           netUnitPrice: item.netUnitPrice,
           crossPrice: item.crossPrice,
           crossUnitPrice: item.crossUnitPrice,
+          currency: item.currency,
+          exchangeRate: item.exchangeRate,
           taxes: item.taxes,
         });
       }

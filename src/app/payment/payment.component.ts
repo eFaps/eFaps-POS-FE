@@ -163,6 +163,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
       this.payments.push({
         type: PaymentType.CHANGE,
         amount: this.change,
+        currency: this.document.currency,
+        exchangeRate: this.document.exchangeRate,
       });
     }
     const payable = {
@@ -170,6 +172,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
       oid: null,
       number: null,
       currency: this.document.currency,
+      exchangeRate: this.document.exchangeRate,
       items: this.document.items,
       status: DocStatus.OPEN,
       payments: this.payments,

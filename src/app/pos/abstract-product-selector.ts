@@ -60,6 +60,8 @@ export abstract class AbstractProductSelector implements OnInit {
       quantity: quantity,
       price: 0,
       remark: remark,
+      currency: this.posService.currency,
+      exchangeRate: this.posService.exchangeRate,
     });
     this.syncTicket();
     this.selection.emit(0);

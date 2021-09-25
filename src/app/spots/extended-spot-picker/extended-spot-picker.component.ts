@@ -96,6 +96,7 @@ export class ExtendedSpotPickerComponent
                 oid: null,
                 number: null,
                 currency: this.posService.currency,
+                exchangeRate: this.posService.exchangeRate,
                 items: [],
                 status: DocStatus.OPEN,
                 netTotal: 0,

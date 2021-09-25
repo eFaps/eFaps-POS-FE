@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import {
+  Currency,
   CollectService,
   Collector,
   MsgService,
@@ -51,6 +52,8 @@ export class AutoComponent extends PaymentForm {
     return {
       type: PaymentType.ELECTRONIC,
       amount: 0,
+      currency: Currency.PEN,
+      exchangeRate: 0,
       mappingKey: this.mappingKey,
     };
   }

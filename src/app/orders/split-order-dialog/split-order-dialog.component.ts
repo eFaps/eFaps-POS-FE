@@ -49,6 +49,7 @@ export class SplitOrderDialogComponent implements OnInit {
       oid: null,
       number: null,
       currency: this.originOrder.currency,
+      exchangeRate: this.originOrder.exchangeRate,
       items: [],
       status: DocStatus.OPEN,
       netTotal: 0,
@@ -106,6 +107,8 @@ export class SplitOrderDialogComponent implements OnInit {
           netUnitPrice: _item.netUnitPrice,
           crossPrice: _item.crossPrice,
           crossUnitPrice: _item.crossUnitPrice,
+          currency: _item.currency,
+          exchangeRate: _item.exchangeRate,
           taxes: _item.taxes,
         });
       }

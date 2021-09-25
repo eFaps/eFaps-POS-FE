@@ -45,6 +45,7 @@ export abstract class AbstractSpotPicker implements OnInit {
         oid: null,
         number: null,
         currency: this.posService.currency,
+        exchangeRate: this.posService.exchangeRate,
         items: [],
         status: DocStatus.OPEN,
         netTotal: 0,

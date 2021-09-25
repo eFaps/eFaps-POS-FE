@@ -35,6 +35,15 @@
   }
 }
 
+.details-row {
+  height: 0;
+  min-height: 0;
+
+  mat-cell {
+    height: 0;
+  }
+}
+
 .details-partlist {
   height: unset;
   min-height: unset;

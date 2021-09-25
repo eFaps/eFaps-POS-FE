@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import {
   Card,
+  Currency,
   Payment,
   PaymentService,
   PaymentType,
@@ -44,6 +45,8 @@ export class CardComponent extends PaymentForm {
     return {
       type: PaymentType.CARD,
       amount: 0,
+      currency: Currency.PEN,
+      exchangeRate: 0,
       cardTypeId: this.paymentForm.value.card.cardTypeId,
       cardLabel: this.paymentForm.value.card.label,
     };
