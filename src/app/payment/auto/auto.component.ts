@@ -66,6 +66,7 @@ export class AutoComponent extends PaymentForm {
         .startCollect(
           this.paymentForm.value.collectorFrmCtrl.key,
           amount,
+          Currency.PEN,
           {},
           this.document.id
         )
