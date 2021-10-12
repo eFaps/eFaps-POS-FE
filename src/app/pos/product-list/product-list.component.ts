@@ -26,11 +26,11 @@ import { KeypadService } from "../../services";
 })
 export class ProductListComponent
   extends AbstractProductSelector
-  implements OnInit, OnDestroy
-{
+  implements OnInit, OnDestroy {
   filterForm: FormGroup;
   formCtrlSub: Subscription;
   dataSource = new MatTableDataSource();
+  scanning: boolean = false;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
@@ -103,5 +103,11 @@ export class ProductListComponent
 
   onFocus() {
     this.keypadService.deactivate();
+  }
+
+  select(product: Product) {
+    if (!this.scanning) {
+      super.select(product);
+    }
   }
 }
