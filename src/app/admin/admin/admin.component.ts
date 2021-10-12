@@ -20,7 +20,6 @@ import { Subscription } from "rxjs";
 export class AdminComponent implements OnInit, OnDestroy {
   busy: Subscription;
   versions: Versions;
-  pinpadsUrl = "extensions/pinpad-element.js";
   lazyElements: Extension[] = [];
   @LocalStorage() barcodeOptions: BarcodeOptions = null;
   barcodeOptionsForm: FormGroup;

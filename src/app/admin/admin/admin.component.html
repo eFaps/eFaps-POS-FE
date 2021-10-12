@@ -39,8 +39,7 @@
   </div>
   <ng-container *ngFor="let element of lazyElements">
     <div class="mat-elevation-z3 element">
-      <ax-lazy-element *axLazyElementDynamic="element.tag; url: element.url">
-      </ax-lazy-element>
+      <ax-lazy-element *axLazyElementDynamic="element.tag; url: element.url"></ax-lazy-element>
     </div>
   </ng-container>
 </div>
