@@ -89,7 +89,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "^4.0.1",
     "karma-jasmine-html-reporter": "^1.6.0",
-    "ng-mocks": "^11.11.2",
+    "ng-mocks": "^12.5.0",
     "prettier": "^2.4.1",
     "protractor": "~7.0.0",
     "replace-in-file": "^6.1.0",
