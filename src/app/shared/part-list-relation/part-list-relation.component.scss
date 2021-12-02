@@ -1,4 +1,4 @@
-@use '~@angular/material' as mat;
+@use '@angular/material' as mat;
 @mixin part-list-relation-theme($theme) {
   .partlist-product::before {
     background-color: mat.get-color-from-palette($primary);
