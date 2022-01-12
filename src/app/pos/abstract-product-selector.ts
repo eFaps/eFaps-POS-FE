@@ -21,6 +21,7 @@ export abstract class AbstractProductSelector implements OnInit {
   @Output() selection = new EventEmitter<number>();
 
   showInventory = false;
+  scanning: boolean = false;
   inventory: InventoryEntry[] = [];
 
   constructor(

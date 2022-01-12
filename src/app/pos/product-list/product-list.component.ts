@@ -30,7 +30,7 @@ export class ProductListComponent
   filterForm: FormGroup;
   formCtrlSub: Subscription;
   dataSource = new MatTableDataSource();
-  scanning: boolean = false;
+  
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(

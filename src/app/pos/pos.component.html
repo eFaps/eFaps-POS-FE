@@ -1,7 +1,7 @@
 <div class="content">
   <div [ngSwitch]="currentLayout" class="selector" [ngStyle]="{'height.px': screenHeight - 64 }">
-    <app-product-grid *ngSwitchCase="PosLayout.GRID" (selection)="afterSelection()" [multiplier]="multiplier" [remarkMode]="remarkMode"></app-product-grid>
-    <app-product-list *ngSwitchCase="PosLayout.LIST" (selection)="afterSelection()" [multiplier]="multiplier" [remarkMode]="remarkMode"></app-product-list>
+    <app-product-grid *ngSwitchCase="PosLayout.GRID" (selection)="afterSelection()" [multiplier]="multiplier" [remarkMode]="remarkMode" [scanning]="scanning"></app-product-grid>
+    <app-product-list *ngSwitchCase="PosLayout.LIST" (selection)="afterSelection()" [multiplier]="multiplier" [remarkMode]="remarkMode" [scanning]="scanning"></app-product-list>
     <button *ngIf="currentLayout === PosLayout.GRID" mat-fab color="primary" (click)="openCatSelect()" class="catSelect">Cat.</button>
     <button class="remarkCmd" (click)="toggleRemarkMode()" mat-fab color="{{remarkMode ? 'accent' : 'primary' }}">
       <mat-icon class="posIcon-36">description</mat-icon>
@@ -23,7 +23,7 @@
           </div>
         </div>
       </div>
-      <app-ticket [multiplier]="multiplier" (multiplierClick)="resetMultiplier()"></app-ticket>
+      <app-ticket [multiplier]="multiplier" (multiplierClick)="resetMultiplier()" [scanning]="scanning"></app-ticket>
       <app-totals></app-totals>
     </div>
     <app-commands></app-commands>

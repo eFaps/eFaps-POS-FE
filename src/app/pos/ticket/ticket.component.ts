@@ -20,9 +20,10 @@ export class TicketComponent implements OnInit {
   dataSource = new MatTableDataSource<Item>();
   currentCurrency = "";
   @Input() multiplier: number;
+  @Input() scanning: boolean = false;
   @Output() multiplierClick = new EventEmitter<any>();
 
-  constructor(private posService: PosService, private snackBar: MatSnackBar) {}
+  constructor(private posService: PosService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.posService.currentTicket.subscribe(
@@ -34,11 +35,13 @@ export class TicketComponent implements OnInit {
   }
 
   add(item: Item) {
-    item.quantity = new Decimal(item.quantity)
-      .plus(this.getQuantity())
-      .toNumber();
-    this.syncTicket();
-    this.multiplierClick.emit();
+    if (!this.scanning) {
+      item.quantity = new Decimal(item.quantity)
+        .plus(this.getQuantity())
+        .toNumber();
+      this.syncTicket();
+      this.multiplierClick.emit();
+    }
   }
 
   subtract(item: Item) {

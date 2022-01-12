@@ -52,6 +52,7 @@ export class PosComponent implements OnInit, OnDestroy {
   @ViewChild(ProductListComponent) productList;
   remarkMode = false;
   private subscriptions = new Subscription();
+  scanning = false;
 
   constructor(
     public workspaceService: WorkspaceService,
@@ -64,7 +65,7 @@ export class PosComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.subscriptions.add(
@@ -125,9 +126,7 @@ export class PosComponent implements OnInit, OnDestroy {
   onBarcode(barcode: string) {
     console.log("READ: " + barcode);
     // prevent any other clicks until we are done
-    if (this.productList) {
-      this.productList.scanning = true;
-    }
+    this.scanning = true;
     this.snackBar.open(barcode, "", {
       duration: 800,
       horizontalPosition: "center",
@@ -135,9 +134,7 @@ export class PosComponent implements OnInit, OnDestroy {
     });
     this.productService.getProductsByBarcode(barcode).subscribe({
       next: (products) => {
-        if (this.productList) {
-          this.productList.scanning = false;
-        }
+        this.scanning = false;
         if (products) {
           if (products.length == 1) {
             if (this.productGrid) {
@@ -151,10 +148,8 @@ export class PosComponent implements OnInit, OnDestroy {
           }
         }
       },
-      error: _=> {
-        if (this.productList) {
-          this.productList.scanning = false;
-        }
+      error: _ => {
+        this.scanning = false;
       }
     });
   }
