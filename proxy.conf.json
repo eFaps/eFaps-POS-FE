@@ -11,13 +11,21 @@
     "logLevel": "debug",
     "ws": true
   },
-  "/extensions/": {
+  "/extensions/izipay-pinpad-element.js": {
     "target": "http://localhost:4201/",
     "secure": false,
     "logLevel": "debug",
     "pathRewrite": {
-      "extensions/izipay-pinpad-element.js": "main.js",
-      "extensions/niubiz-element.js": "main.js"
+      "/extensions/izipay-pinpad-element.js": "main.js",
+    }
+  },
+  "/extensions/niubiz-element.js": {
+    "target": "http://localhost:4202/",
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "/extensions/niubiz-element.js": "main.js"
     }
   }
+
 }
