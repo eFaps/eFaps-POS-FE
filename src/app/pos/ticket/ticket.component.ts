@@ -45,21 +45,23 @@ export class TicketComponent implements OnInit {
   }
 
   subtract(item: Item) {
-    item.quantity = new Decimal(item.quantity)
-      .minus(this.getQuantity())
-      .toNumber();
-    if (item.quantity < 1) {
-      const ticket = this.dataSource.data;
-      if (ticket.includes(item)) {
-        const index = ticket.indexOf(item);
-        if (index > -1) {
-          ticket[ticket.indexOf(item)].quantity = 1;
-          ticket.splice(index, 1);
+    if (!this.scanning) {
+      item.quantity = new Decimal(item.quantity)
+        .minus(this.getQuantity())
+        .toNumber();
+      if (item.quantity < 1) {
+        const ticket = this.dataSource.data;
+        if (ticket.includes(item)) {
+          const index = ticket.indexOf(item);
+          if (index > -1) {
+            ticket[ticket.indexOf(item)].quantity = 1;
+            ticket.splice(index, 1);
+          }
         }
       }
+      this.syncTicket();
+      this.multiplierClick.emit();
     }
-    this.syncTicket();
-    this.multiplierClick.emit();
   }
 
   syncTicket() {
