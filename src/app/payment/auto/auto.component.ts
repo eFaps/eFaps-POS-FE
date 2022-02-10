@@ -21,6 +21,7 @@ export class AutoComponent extends PaymentForm {
   collecting = false;
   collectors: Collector[] = [];
   mappingKey = "";
+  buttonTimeout = false;
 
   constructor(
     paymentService: PaymentService,
@@ -61,6 +62,7 @@ export class AutoComponent extends PaymentForm {
   addPayment() {
     const amount = this.utilsService.parse(this.paymentForm.value.amount);
     if (amount > 0 && this.paymentForm.value.collectorFrmCtrl) {
+      this.buttonTimeout = true;
       this.collecting = true;
       this.collectService
         .startCollect(
@@ -77,6 +79,9 @@ export class AutoComponent extends PaymentForm {
             console.log(err);
           },
         });
+      setTimeout(_ => {
+        this.buttonTimeout = false;
+      }, 3000);
     }
   }
 

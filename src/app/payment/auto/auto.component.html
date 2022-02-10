@@ -15,7 +15,7 @@
         </mat-radio-group>
       </div>
     </form>
-    <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="addPayment()">Add Pago</button>
+    <button type="submit" class="btn btn-success" mat-raised-button color="primary" [disabled]="buttonTimeout"  (click)="addPayment()">Add Pago</button>
   </div>
   <div>
     <mat-spinner *ngIf="collecting"></mat-spinner>
