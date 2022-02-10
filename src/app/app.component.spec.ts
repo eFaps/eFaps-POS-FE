@@ -11,7 +11,7 @@ import {
   PosConfigToken,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { HotkeyModule, HotkeysService } from "@giakki/angular2-hotkeys";
+import { HotkeyModule, HotkeysService } from "angular2-hotkeys";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { AngularSvgIconModule, SvgIconRegistryService } from "angular-svg-icon";
 import { MockComponent, MockPipe } from "ng-mocks";

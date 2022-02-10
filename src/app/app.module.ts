@@ -19,7 +19,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PosLibraryModule } from "@efaps/pos-library";
-import { HotkeyModule } from "@giakki/angular2-hotkeys";
+import { HotkeyModule } from "angular2-hotkeys";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { AngularSvgIconModule, SERVER_URL } from "angular-svg-icon";
 
