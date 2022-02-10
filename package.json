@@ -32,20 +32,20 @@
   "private": true,
   "dependencies": {
     "@angular-extensions/elements": "^13.0.0",
-    "@angular/animations": "^13.0.3",
-    "@angular/cdk": "^13.0.3",
-    "@angular/common": "^13.0.3",
-    "@angular/compiler": "^13.0.3",
-    "@angular/core": "^13.0.3",
+    "@angular/animations": "^13.2.2",
+    "@angular/cdk": "^13.2.2",
+    "@angular/common": "^13.2.2",
+    "@angular/compiler": "^13.2.2",
+    "@angular/core": "^13.2.2",
     "@angular/flex-layout": "^13.0.0-beta.36",
-    "@angular/forms": "^13.0.3",
-    "@angular/localize": "^13.0.3",
-    "@angular/material": "^13.0.3",
-    "@angular/platform-browser": "^13.0.3",
-    "@angular/platform-browser-dynamic": "^13.0.3",
-    "@angular/router": "^13.0.3",
+    "@angular/forms": "^13.2.2",
+    "@angular/localize": "^13.2.2",
+    "@angular/material": "^13.2.2",
+    "@angular/platform-browser": "^13.2.2",
+    "@angular/platform-browser-dynamic": "^13.2.2",
+    "@angular/router": "^13.2.2",
     "@efaps/ngx-store": "^4.2.0",
-    "@efaps/pos-library": "^5.1.0",
+    "@efaps/pos-library": "^5.2.0",
     "@giakki/angular2-hotkeys": "^2.2.1",
     "@ngx-pwa/local-storage": "^13.0.2",
     "@ngx-translate/core": "^14.0.0",
@@ -68,10 +68,10 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^13.1.2",
+    "@angular-devkit/build-angular": "^13.2.3",
     "@angular-guru/electron-builder": "^8.0.0",
-    "@angular/cli": "^13.1.2",
-    "@angular/compiler-cli": "^13.0.3",
+    "@angular/cli": "^13.2.3",
+    "@angular/compiler-cli": "^13.2.2",
     "@types/core-js": "^2.5.5",
     "@types/jasmine": "^3.9.1",
     "@types/jasminewd2": "^2.0.10",
@@ -91,7 +91,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "^4.0.1",
     "karma-jasmine-html-reporter": "^1.6.0",
-    "ng-mocks": "^12.5.0",
+    "ng-mocks": "^13.0.2",
     "prettier": "^2.4.1",
     "protractor": "~7.0.0",
     "replace-in-file": "^6.1.0",
@@ -143,6 +143,6 @@
     }
   },
   "resolutions": {
-    "@angular/core": "^13.0.3"
+    "@angular/core": "^13.2.2"
   }
 }

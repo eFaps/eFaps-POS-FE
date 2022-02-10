@@ -21,34 +21,29 @@ import { SpotsRoutingModule } from "./spots-routing.module";
 import { SpotsComponent } from "./spots/spots.component";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    DragDropModule,
-    FlexLayoutModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatTabsModule,
-    MatTooltipModule,
-    ReactiveFormsModule,
-    SharedModule,
-    SpotsRoutingModule,
-  ],
-  declarations: [
-    BaseSpotPickerComponent,
-    ExtendedSpotPickerComponent,
-    SelectOrderDialogComponent,
-    SplitDialogComponent,
-    SpotDialogComponent,
-    SpotsComponent,
-  ],
-  entryComponents: [
-    SelectOrderDialogComponent,
-    SplitDialogComponent,
-    SpotDialogComponent,
-  ],
-  providers: [],
+    imports: [
+        CommonModule,
+        DragDropModule,
+        FlexLayoutModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatTabsModule,
+        MatTooltipModule,
+        ReactiveFormsModule,
+        SharedModule,
+        SpotsRoutingModule,
+    ],
+    declarations: [
+        BaseSpotPickerComponent,
+        ExtendedSpotPickerComponent,
+        SelectOrderDialogComponent,
+        SplitDialogComponent,
+        SpotDialogComponent,
+        SpotsComponent,
+    ],
+    providers: []
 })
 export class SpotsModule {}
