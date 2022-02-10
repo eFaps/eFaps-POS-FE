@@ -51,7 +51,7 @@
     "@ngx-translate/http-loader": "^7.0.0",
     "@stomp/ng2-stompjs": "^8.0.0",
     "ajv-keywords": "^5.1.0",
-    "angular-onscreen-material-keyboard": "^0.5.1",
+    "angular-onscreen-material-keyboard": "^0.6.0",
     "angular-svg-icon": "^13.0.0",
     "angular2-hotkeys": "^13.1.0",
     "decimal.js": "^10.3.1",
