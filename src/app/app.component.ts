@@ -111,7 +111,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
     ElectronUtil.close();
   }
 
-  @HostListener("document:keypress", ["$event"])
+  @HostListener("document:keydown", ["$event"])
   handleKeyboardEvent(event: KeyboardEvent) {
     this.barcodeScannerService.handleKeyboardEvent(event);
   }

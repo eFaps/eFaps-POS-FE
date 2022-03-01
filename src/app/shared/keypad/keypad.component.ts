@@ -39,7 +39,7 @@ export class KeypadComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  @HostListener("document:keypress", ["$event"])
+  @HostListener("document:keydown", ["$event"])
   handleKeyboardEvent(event: KeyboardEvent) {
     this.keypadService.handleKeyboardEvent(event);
   }
