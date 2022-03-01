@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild, Input } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
@@ -30,7 +30,8 @@ export class ProductListComponent
   filterForm: FormGroup;
   formCtrlSub: Subscription;
   dataSource = new MatTableDataSource();
-  
+
+  @Input() isBarcode: boolean = false;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
@@ -106,7 +107,7 @@ export class ProductListComponent
   }
 
   select(product: Product) {
-    if (!this.scanning) {
+    if (!this.isBarcode) {
       super.select(product);
     }
   }

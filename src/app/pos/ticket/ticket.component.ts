@@ -20,7 +20,7 @@ export class TicketComponent implements OnInit {
   dataSource = new MatTableDataSource<Item>();
   currentCurrency = "";
   @Input() multiplier: number;
-  @Input() scanning: boolean = false;
+  @Input() isBarcode: boolean = false;
   @Output() multiplierClick = new EventEmitter<any>();
 
   constructor(private posService: PosService, private snackBar: MatSnackBar) { }
@@ -35,7 +35,7 @@ export class TicketComponent implements OnInit {
   }
 
   add(item: Item) {
-    if (!this.scanning) {
+    if (!this.isBarcode) {
       item.quantity = new Decimal(item.quantity)
         .plus(this.getQuantity())
         .toNumber();
@@ -45,7 +45,7 @@ export class TicketComponent implements OnInit {
   }
 
   subtract(item: Item) {
-    if (!this.scanning) {
+    if (!this.isBarcode) {
       item.quantity = new Decimal(item.quantity)
         .minus(this.getQuantity())
         .toNumber();
