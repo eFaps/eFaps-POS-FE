@@ -140,6 +140,7 @@ export class PosComponent implements OnInit, OnDestroy {
             if (this.productGrid) {
               this.productGrid.select(products[0]);
             } else {
+              this.productList.isBarcode = false;
               this.productList.select(products[0]);
             }
             this.afterSelection();
