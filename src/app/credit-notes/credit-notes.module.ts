@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CreditNotesRoutingModule } from './credit-notes-routing.module';
 import { CreateCreditNoteComponent } from './create-credit-note/create-credit-note.component';
+import { SharedModule } from "../shared/shared.module";
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { CreateCreditNoteComponent } from './create-credit-note/create-credit-no
   ],
   imports: [
     CommonModule,
-    CreditNotesRoutingModule
+    CreditNotesRoutingModule,
+    SharedModule
   ]
 })
 export class CreditNotesModule { }
