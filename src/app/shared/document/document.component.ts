@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
@@ -31,10 +31,12 @@ export class DocumentComponent implements OnInit {
   private workspaceOid: string;
   @Input() permitPrint = false;
   hasCopyPrintCmd = false;
+  permitCreditNote = true;
 
   constructor(
     private router: Router,
     private dialog: MatDialog,
+    private matDialogRef: MatDialogRef<DocumentComponent>,
     private workspaceService: WorkspaceService,
     private printService: PrintService
   ) {}
@@ -74,5 +76,10 @@ export class DocumentComponent implements OnInit {
     this.dialog.open(PrintDialogComponent, {
       data: this.printService.printCopy(this.workspaceOid, this._document),
     });
+  }
+
+  createCreditNote() {
+    this.router.navigate(["/credit-notes"]);
+    this.matDialogRef.close();
   }
 }

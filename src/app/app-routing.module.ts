@@ -67,6 +67,12 @@ const routes: Routes = [
     loadChildren: () =>
       import("./workspace/workspace.module").then((m) => m.WorkspaceModule),
   },
+  {
+    path: "credit-notes",
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import("./credit-notes/credit-notes.module").then((m) => m.CreditNotesModule),
+  },
   { path: "**", redirectTo: "pos" },
 ];
 

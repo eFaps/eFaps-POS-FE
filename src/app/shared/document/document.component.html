@@ -1,5 +1,5 @@
 <div *ngIf="document" class="mat-typography">
-  <h3>{{this.document.type | translate}}: {{document.number}}</h3>
+  <h3>{{this.document.type | translate}}: {{document.number}} - {{document.status}}</h3>
   <div class="pos-doc-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource" matSort matSortActive="index" matSortDirection="asc" multiTemplateDataRows>
       <ng-container matColumnDef="index">
@@ -73,5 +73,8 @@
         </mat-list-item>
       </mat-list>
     </div>
+  </div>
+  <div>
+    <button mat-raised-button color="primary" *ngIf="permitCreditNote" (click)="createCreditNote()">Nota de Credito</button>
   </div>
 </div>
