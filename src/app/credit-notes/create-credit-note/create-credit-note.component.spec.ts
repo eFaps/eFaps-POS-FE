@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CreateCreditNoteComponent } from './create-credit-note.component';
+import { CreateCreditNoteComponent } from "./create-credit-note.component";
 
-describe('CreateCreditNoteComponent', () => {
+describe("CreateCreditNoteComponent", () => {
   let component: CreateCreditNoteComponent;
   let fixture: ComponentFixture<CreateCreditNoteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreateCreditNoteComponent ]
-    })
-    .compileComponents();
+      declarations: [CreateCreditNoteComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('CreateCreditNoteComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

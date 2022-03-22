@@ -79,7 +79,7 @@ export class AutoComponent extends PaymentForm {
             console.log(err);
           },
         });
-      setTimeout(_ => {
+      setTimeout((_) => {
         this.buttonTimeout = false;
       }, 3000);
     }

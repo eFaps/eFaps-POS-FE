@@ -25,7 +25,12 @@ export class CashComponent extends PaymentForm {
   }
 
   getPayment(): Payment {
-    return { type: PaymentType.CASH, amount: 0, currency: Currency.PEN, exchangeRate: 0 };
+    return {
+      type: PaymentType.CASH,
+      amount: 0,
+      currency: Currency.PEN,
+      exchangeRate: 0,
+    };
   }
 
   addNumber(_number: number) {

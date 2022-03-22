@@ -15,7 +15,7 @@
     "start-elements": "ng serve --live-reload false --proxy-config proxy.conf.json --host 0.0.0.0",
     "start-es": "ng serve --configuration es --proxy-config proxy.conf.json --host 0.0.0.0",
     "build": "ng build --configuration production --localize",
-    "build2": "node ./buildutil.js && npm run _build-css && ng build --aot --source-map false",
+    "build2": "ng build --aot --source-map false",
     "test": "ng test --browsers ChromeHeadlessNoSandbox --no-progress --no-watch",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -45,7 +45,7 @@
     "@angular/platform-browser-dynamic": "^13.3.0",
     "@angular/router": "^13.3.0",
     "@efaps/ngx-store": "^4.2.0",
-    "@efaps/pos-library": "^5.2.0",
+    "@efaps/pos-library": "file:../eFaps-POS-Library/dist/efaps/pos-library",
     "@ngx-pwa/local-storage": "^13.0.2",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
@@ -143,6 +143,6 @@
     }
   },
   "resolutions": {
-    "@angular/core": "^13.2.2"
+    "@angular/core": "^13.3.0"
   }
 }

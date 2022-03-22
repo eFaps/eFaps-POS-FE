@@ -20,27 +20,27 @@ import { ReassignItemComponent } from "./reassign-item/reassign-item.component";
 import { SplitOrderDialogComponent } from "./split-order-dialog/split-order-dialog.component";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FlexLayoutModule,
-        MatButtonModule,
-        MatDialogModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatPaginatorModule,
-        MatSlideToggleModule,
-        MatSortModule,
-        MatTableModule,
-        OrdersRoutingModule,
-        ReactiveFormsModule,
-        SharedModule,
-    ],
-    declarations: [
-        OrderTableComponent,
-        ReassignDialogComponent,
-        SplitOrderDialogComponent,
-        ReassignItemComponent,
-    ]
+  imports: [
+    CommonModule,
+    FlexLayoutModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatSlideToggleModule,
+    MatSortModule,
+    MatTableModule,
+    OrdersRoutingModule,
+    ReactiveFormsModule,
+    SharedModule,
+  ],
+  declarations: [
+    OrderTableComponent,
+    ReassignDialogComponent,
+    SplitOrderDialogComponent,
+    ReassignItemComponent,
+  ],
 })
 export class OrdersModule {}

@@ -71,7 +71,9 @@ const routes: Routes = [
     path: "credit-notes",
     canActivate: [AuthGuard],
     loadChildren: () =>
-      import("./credit-notes/credit-notes.module").then((m) => m.CreditNotesModule),
+      import("./credit-notes/credit-notes.module").then(
+        (m) => m.CreditNotesModule
+      ),
   },
   { path: "**", redirectTo: "pos" },
 ];

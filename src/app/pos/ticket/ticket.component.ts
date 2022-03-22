@@ -23,7 +23,7 @@ export class TicketComponent implements OnInit {
   @Input() isBarcode: boolean = false;
   @Output() multiplierClick = new EventEmitter<any>();
 
-  constructor(private posService: PosService, private snackBar: MatSnackBar) { }
+  constructor(private posService: PosService, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.posService.currentTicket.subscribe(

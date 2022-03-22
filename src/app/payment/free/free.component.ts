@@ -25,6 +25,11 @@ export class FreeComponent extends PaymentForm {
   }
 
   getPayment(): Payment {
-    return { type: PaymentType.FREE, amount: 0, currency: Currency.PEN, exchangeRate: 0 };
+    return {
+      type: PaymentType.FREE,
+      amount: 0,
+      currency: Currency.PEN,
+      exchangeRate: 0,
+    };
   }
 }

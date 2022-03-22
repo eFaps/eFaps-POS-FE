@@ -65,7 +65,7 @@ export class PosComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.subscriptions.add(
@@ -149,9 +149,9 @@ export class PosComponent implements OnInit, OnDestroy {
           }
         }
       },
-      error: _ => {
+      error: (_) => {
         this.isBarcode = false;
-      }
+      },
     });
   }
 

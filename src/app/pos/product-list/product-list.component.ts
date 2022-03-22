@@ -26,7 +26,8 @@ import { KeypadService } from "../../services";
 })
 export class ProductListComponent
   extends AbstractProductSelector
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy
+{
   filterForm: FormGroup;
   formCtrlSub: Subscription;
   dataSource = new MatTableDataSource();

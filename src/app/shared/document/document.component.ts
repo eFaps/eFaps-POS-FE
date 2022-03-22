@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, ViewChild, Optional, AfterContentInit } from "@angular/core";
+import {
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+  Optional,
+  AfterContentInit,
+} from "@angular/core";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -38,9 +45,9 @@ export class DocumentComponent implements OnInit {
     private dialog: MatDialog,
     private workspaceService: WorkspaceService,
     private printService: PrintService,
-    @Optional() private matDialogRef?: MatDialogRef<DocumentComponent>,
-  ) { }
-  
+    @Optional() private matDialogRef?: MatDialogRef<DocumentComponent>
+  ) {}
+
   ngOnInit() {
     if (this.matDialogRef && !this._document) {
       this.router.navigate(["/pos"]);
@@ -53,7 +60,6 @@ export class DocumentComponent implements OnInit {
         );
       },
     });
-    
   }
 
   @Input()
@@ -80,7 +86,12 @@ export class DocumentComponent implements OnInit {
   }
 
   createCreditNote() {
-    this.router.navigate(["/credit-notes"], { queryParams: { sourceId: this.document.id, sourceType: this.document.type } });
+    this.router.navigate(["/credit-notes"], {
+      queryParams: {
+        sourceId: this.document.id,
+        sourceType: this.document.type,
+      },
+    });
     this.matDialogRef.close();
   }
 }

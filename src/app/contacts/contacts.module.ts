@@ -17,22 +17,22 @@ import { ContactsRoutingModule } from "./contacts-routing.module";
 import { CreateContactDialogComponent } from "./create-contact-dialog/create-contact-dialog.component";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        ContactsRoutingModule,
-        FormsModule,
-        MatButtonModule,
-        MatDialogModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSelectModule,
-        MatSnackBarModule,
-        MatSortModule,
-        MatTableModule,
-        ReactiveFormsModule,
-        ServicesModule,
-        SharedModule,
-    ],
-    declarations: [ContactTableComponent, CreateContactDialogComponent]
+  imports: [
+    CommonModule,
+    ContactsRoutingModule,
+    FormsModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    ReactiveFormsModule,
+    ServicesModule,
+    SharedModule,
+  ],
+  declarations: [ContactTableComponent, CreateContactDialogComponent],
 })
 export class ContactsModule {}
