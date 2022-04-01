@@ -31,6 +31,11 @@ export class DocumentDialogComponent implements OnInit {
           next: (data) => (this.data = data),
         });
         break;
+      case "CREDITNOTE":
+        this.documentService.getCreditNote(this.data.id).subscribe({
+          next: (data) => (this.data = data),
+        });
+        break;
     }
   }
 }

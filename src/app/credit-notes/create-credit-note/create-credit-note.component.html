@@ -4,7 +4,7 @@
         <app-document [document]='sourceDocument'></app-document>
     </div>
     <div>
-        <h2>&nbsp;</h2>
+        <h2 *ngIf="balance" i18n>Balance - {{ balance?.number }}</h2>
         <app-document [document]='creditNote'></app-document>
         <div>
             <button mat-raised-button color="primary" (click)="createCreditNote()">Crear</button>

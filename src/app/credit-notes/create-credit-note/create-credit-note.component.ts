@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { CreditNote, DocumentService, Document } from "@efaps/pos-library";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Balance, CreditNote, DocumentService, Document, BalanceService } from "@efaps/pos-library";
 import clone from "just-clone";
 
 @Component({
@@ -11,13 +11,18 @@ import clone from "just-clone";
 export class CreateCreditNoteComponent implements OnInit {
   sourceDocument: Document;
   creditNote: CreditNote;
-
+  balance: Balance;
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
-    private documentService: DocumentService
+    private documentService: DocumentService,
+    private balanceService: BalanceService
   ) {}
 
   ngOnInit(): void {
+    this.balanceService.currentBalance.subscribe(
+      (_balance) => (this.balance = _balance)
+    )
     this.route.queryParams.subscribe((params) => {
       const sourceId = params["sourceId"];
       const sourceType = params["sourceType"];
@@ -45,9 +50,11 @@ export class CreateCreditNoteComponent implements OnInit {
   initCreditNote() {
     this.creditNote = {
       ...clone(this.sourceDocument),
-      balanceOid: null,
+      balanceOid: this.balance.oid ? this.balance.oid : this.balance.id,
+      baseDocOid: this.sourceDocument.oid ? this.sourceDocument.oid : this.sourceDocument.id,
       payments: [],
       type: "CREDITNOTE",
+      id: null,
       oid: null,
       number: null,
     };
@@ -55,7 +62,9 @@ export class CreateCreditNoteComponent implements OnInit {
 
   createCreditNote() {
     this.documentService.createCreditNote(this.creditNote).subscribe({
-      next: (creditNote) => console.log(creditNote),
+      next: (creditNote) => {
+        this.router.navigate(["/balance"]);
+      }
     });
   }
 }

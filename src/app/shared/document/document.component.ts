@@ -94,4 +94,8 @@ export class DocumentComponent implements OnInit {
     });
     this.matDialogRef.close();
   }
+
+  get showCreditNoteBtn(): boolean {
+    return this.permitCreditNote && this._document.type != "CREDITNOTE"
+  }
 }
