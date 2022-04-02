@@ -11,8 +11,10 @@ import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
 import {
+  CreditNote,
   DocItem,
   Document,
+  DocumentService,
   PrintService,
   WorkspaceService,
 } from "@efaps/pos-library";
@@ -39,12 +41,15 @@ export class DocumentComponent implements OnInit {
   @Input() permitPrint = false;
   hasCopyPrintCmd = false;
   @Input() permitCreditNote = false;
+  creditNotes: CreditNote[] = [];
+  sourceDoc: Document;
 
   constructor(
     private router: Router,
     private dialog: MatDialog,
     private workspaceService: WorkspaceService,
     private printService: PrintService,
+    private documentService: DocumentService,
     @Optional() private matDialogRef?: MatDialogRef<DocumentComponent>
   ) {}
 
@@ -70,13 +75,43 @@ export class DocumentComponent implements OnInit {
         a.index < b.index ? -1 : 1
       );
       this.dataSource.sort = this.sort;
+      this.loadCreditNote();
     } else {
       this.dataSource.data = [];
+      this.creditNotes = [];
     }
   }
 
   get document(): Document {
     return this._document;
+  }
+
+  loadCreditNote() {
+    if (this._document.type != "CREDITNOTE") {
+      this.documentService
+        .getCreditNotes4SourceDocument(
+          this._document.oid ? this._document.oid : this._document.id
+        )
+        .subscribe({
+          next: (docs) => {
+            this.creditNotes = docs;
+          },
+        });
+    } else {
+      this.creditNotes = [];
+      this.documentService
+        .getPayableByIdent((<CreditNote>this._document).sourceDocOid)
+        .subscribe({
+          next: (doc) => {
+            if (doc) {
+              this.sourceDoc = doc;
+            }
+            error: (_err) => {
+              console.log(_err);
+            };
+          },
+        });
+    }
   }
 
   printCopy() {
@@ -96,6 +131,10 @@ export class DocumentComponent implements OnInit {
   }
 
   get showCreditNoteBtn(): boolean {
-    return this.permitCreditNote && this._document.type != "CREDITNOTE"
+    return (
+      this.permitCreditNote &&
+      this._document.type != "CREDITNOTE" &&
+      this.creditNotes.length == 0
+    );
   }
 }

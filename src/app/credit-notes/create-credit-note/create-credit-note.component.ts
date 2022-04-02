@@ -1,6 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Balance, CreditNote, DocumentService, Document, BalanceService } from "@efaps/pos-library";
+import {
+  Balance,
+  CreditNote,
+  DocumentService,
+  Document,
+  BalanceService,
+} from "@efaps/pos-library";
 import clone from "just-clone";
 
 @Component({
@@ -22,7 +28,7 @@ export class CreateCreditNoteComponent implements OnInit {
   ngOnInit(): void {
     this.balanceService.currentBalance.subscribe(
       (_balance) => (this.balance = _balance)
-    )
+    );
     this.route.queryParams.subscribe((params) => {
       const sourceId = params["sourceId"];
       const sourceType = params["sourceType"];
@@ -51,7 +57,9 @@ export class CreateCreditNoteComponent implements OnInit {
     this.creditNote = {
       ...clone(this.sourceDocument),
       balanceOid: this.balance.oid ? this.balance.oid : this.balance.id,
-      baseDocOid: this.sourceDocument.oid ? this.sourceDocument.oid : this.sourceDocument.id,
+      sourceDocOid: this.sourceDocument.oid
+        ? this.sourceDocument.oid
+        : this.sourceDocument.id,
       payments: [],
       type: "CREDITNOTE",
       id: null,
@@ -64,7 +72,7 @@ export class CreateCreditNoteComponent implements OnInit {
     this.documentService.createCreditNote(this.creditNote).subscribe({
       next: (creditNote) => {
         this.router.navigate(["/balance"]);
-      }
+      },
     });
   }
 }

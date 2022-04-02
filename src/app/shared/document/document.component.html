@@ -76,5 +76,10 @@
   </div>
   <div>
     <button mat-raised-button color="primary" *ngIf="showCreditNoteBtn" (click)="createCreditNote()">Nota de Credito</button>
+    <ng-container *ngFor="let creditNote of creditNotes">
+      <span>Nota de Credito {{creditNote.number}}</span>
+    </ng-container>
+    <span *ngIf="document?.type=='CREDITNOTE'">{{sourceDoc?.type | translate}}: {{sourceDoc?.number}}</span>
+    
   </div>
 </div>
