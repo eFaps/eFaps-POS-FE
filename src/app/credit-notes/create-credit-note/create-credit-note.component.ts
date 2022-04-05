@@ -4,8 +4,11 @@ import {
   Balance,
   CreditNote,
   DocumentService,
-  Document,
   BalanceService,
+  Payment,
+  Payable,
+  PaymentService,
+  PaymentType,
 } from "@efaps/pos-library";
 import clone from "just-clone";
 
@@ -15,15 +18,19 @@ import clone from "just-clone";
   styleUrls: ["./create-credit-note.component.scss"],
 })
 export class CreateCreditNoteComponent implements OnInit {
-  sourceDocument: Document;
+  sourceDocument: Payable;
   creditNote: CreditNote;
   balance: Balance;
+  payments: Payment[] = [];
+  PaymentType = PaymentType;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private documentService: DocumentService,
-    private balanceService: BalanceService
-  ) {}
+    private balanceService: BalanceService,
+    public paymentService: PaymentService,
+  ) { }
 
   ngOnInit(): void {
     this.balanceService.currentBalance.subscribe(
@@ -57,22 +64,33 @@ export class CreateCreditNoteComponent implements OnInit {
     this.creditNote = {
       ...clone(this.sourceDocument),
       balanceOid: this.balance.oid ? this.balance.oid : this.balance.id,
-      sourceDocOid: this.sourceDocument.oid
-        ? this.sourceDocument.oid
-        : this.sourceDocument.id,
-      payments: [],
       type: "CREDITNOTE",
+      sourceDocOid: null,
+      payments: [],
       id: null,
       oid: null,
       number: null,
     };
+    this.sourceDocument.payments.forEach(payment => {
+      payment.amount = - payment.amount
+      this.payments.push(payment)
+    })
   }
 
   createCreditNote() {
+    this.creditNote.sourceDocOid = this.sourceDocument.oid ? this.sourceDocument.oid : this.sourceDocument.id
+    this.creditNote.payments = this.payments
     this.documentService.createCreditNote(this.creditNote).subscribe({
       next: (creditNote) => {
         this.router.navigate(["/balance"]);
       },
     });
+  }
+
+  delPayment(_payment: Payment) {
+    const index: number = this.payments.indexOf(_payment);
+    if (index !== -1) {
+      this.payments.splice(index, 1);
+    }
   }
 }
