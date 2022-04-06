@@ -81,7 +81,7 @@ export class CreateCreditNoteComponent implements OnInit {
     this.creditNote.sourceDocOid = this.sourceDocument.oid ? this.sourceDocument.oid : this.sourceDocument.id
     this.creditNote.payments = this.payments
     this.documentService.createCreditNote(this.creditNote).subscribe({
-      next: (creditNote) => {
+      next: () => {
         this.router.navigate(["/balance"]);
       },
     });
