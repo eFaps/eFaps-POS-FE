@@ -1,0 +1,19 @@
+<form class="payment-form" [formGroup]="paymentForm">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Monto" type="text" formControlName="amount" class="right-align">
+    <span matPrefix>{{currency}}&nbsp;</span>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Tipo de pago</mat-label>
+    <mat-select name="paymentTypes" formControlName="paymentType">
+      <mat-option *ngFor="let paymentType of paymentTypes" [value]="paymentType">
+        {{('PAYMENT.' + paymentType) | translate}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+<mat-dialog-actions align="end">
+  <button (click)="save()" mat-button>
+    <mat-icon class="posIcon-36">save</mat-icon>
+  </button>
+</mat-dialog-actions>

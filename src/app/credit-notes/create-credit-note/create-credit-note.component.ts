@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
   Balance,
@@ -11,6 +12,7 @@ import {
   PaymentType,
 } from "@efaps/pos-library";
 import clone from "just-clone";
+import { AddPaymentDialogComponent } from "../add-payment-dialog/add-payment-dialog.component";
 
 @Component({
   selector: "app-create-credit-note",
@@ -27,6 +29,7 @@ export class CreateCreditNoteComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private dialog: MatDialog,
     private documentService: DocumentService,
     private balanceService: BalanceService,
     public paymentService: PaymentService,
@@ -92,5 +95,23 @@ export class CreateCreditNoteComponent implements OnInit {
     if (index !== -1) {
       this.payments.splice(index, 1);
     }
+  }
+
+  openPaymentDialog() {
+    let amount = this.sourceDocument.crossTotal;
+    this.payments.forEach(payment => {
+      amount = amount + payment.amount
+    })
+    let dialogRef = this.dialog.open(AddPaymentDialogComponent, { data: amount })
+    dialogRef.afterClosed().subscribe({
+      next: info => {
+        this.payments.push({
+          amount: - info.amount,
+          currency: this.creditNote.currency,
+          exchangeRate: this.creditNote.exchangeRate,
+          type: info.paymentType
+        })
+      }
+    })
   }
 }

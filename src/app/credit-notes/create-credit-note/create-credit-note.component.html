@@ -9,6 +9,9 @@
     </div>
   </div>
   <div class="paymentsRegistered">
+    <div>
+      <button mat-raised-button color="secondary" (click)="openPaymentDialog()">Anadir Pago</button>
+    </div>
     <mat-list dense>
       <mat-list-item *ngFor="let payment of payments">
         <span matLine>{{ payment.cardTypeId ? payment.cardLabel : ('PAYMENT.' + payment.type) |

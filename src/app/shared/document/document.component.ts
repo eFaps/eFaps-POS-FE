@@ -11,11 +11,14 @@ import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
 import {
+  AuthService,
   CreditNote,
   DocItem,
   Document,
   DocumentService,
   PrintService,
+  Roles,
+  UserService,
   WorkspaceService,
 } from "@efaps/pos-library";
 
@@ -47,6 +50,7 @@ export class DocumentComponent implements OnInit {
   constructor(
     private router: Router,
     private dialog: MatDialog,
+    private authService: AuthService,
     private workspaceService: WorkspaceService,
     private printService: PrintService,
     private documentService: DocumentService,
@@ -133,6 +137,7 @@ export class DocumentComponent implements OnInit {
   get showCreditNoteBtn(): boolean {
     return (
       this.permitCreditNote &&
+      this.authService.hasRole(Roles.ADMIN) &&
       this._document.type != "CREDITNOTE" &&
       this.creditNotes.length == 0
     );
