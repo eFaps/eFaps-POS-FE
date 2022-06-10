@@ -619,6 +619,13 @@
         <source>Email</source>
         <target>Email</target>
       </trans-unit>
+       <trans-unit id="creditNoteSuccessDialogHeader" datatype="html">
+        <source>Nota de Credito: <x id="INTERPOLATION" equiv-text="{{data.document.number}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/credit-notes/success-dialog/success-dialog.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

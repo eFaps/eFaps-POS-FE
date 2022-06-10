@@ -10,9 +10,11 @@ import {
   Payable,
   PaymentService,
   PaymentType,
+  WorkspaceService,
 } from "@efaps/pos-library";
 import clone from "just-clone";
 import { AddPaymentDialogComponent } from "../add-payment-dialog/add-payment-dialog.component";
+import { SuccessDialogComponent } from "../success-dialog/success-dialog.component";
 
 @Component({
   selector: "app-create-credit-note",
@@ -25,6 +27,8 @@ export class CreateCreditNoteComponent implements OnInit {
   balance: Balance;
   payments: Payment[] = [];
   PaymentType = PaymentType;
+  workspaceOid: string;
+  print: boolean;
 
   constructor(
     private router: Router,
@@ -32,6 +36,7 @@ export class CreateCreditNoteComponent implements OnInit {
     private dialog: MatDialog,
     private documentService: DocumentService,
     private balanceService: BalanceService,
+    private workspaceService: WorkspaceService,
     public paymentService: PaymentService,
   ) { }
 
@@ -39,6 +44,10 @@ export class CreateCreditNoteComponent implements OnInit {
     this.balanceService.currentBalance.subscribe(
       (_balance) => (this.balance = _balance)
     );
+    this.workspaceService.currentWorkspace.subscribe((_data) => {
+      this.workspaceOid = _data.oid;
+      this.print = _data.printCmds.some((x) => x.target === "TICKET");
+    })
     this.route.queryParams.subscribe((params) => {
       const sourceId = params["sourceId"];
       const sourceType = params["sourceType"];
@@ -84,11 +93,26 @@ export class CreateCreditNoteComponent implements OnInit {
     this.creditNote.sourceDocOid = this.sourceDocument.oid ? this.sourceDocument.oid : this.sourceDocument.id
     this.creditNote.payments = this.payments
     this.documentService.createCreditNote(this.creditNote).subscribe({
-      next: () => {
+      next: (doc) => {
         this.router.navigate(["/balance"]);
+        this.showSuccess(doc);
       },
     });
   }
+
+  showSuccess(document: CreditNote) {
+    this.dialog.open(SuccessDialogComponent, {
+      width: "450px",
+      disableClose: false,
+      data: {
+        document: document,
+        currency: this.paymentService.currency,
+        print: this.print,
+        workspaceOid: this.workspaceOid,
+      },
+    });
+  }
+
 
   delPayment(_payment: Payment) {
     const index: number = this.payments.indexOf(_payment);

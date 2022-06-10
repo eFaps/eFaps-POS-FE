@@ -14,9 +14,10 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatSelectModule } from "@angular/material/select";
 import { MatOptionModule } from "@angular/material/core";
 import { MatDialogModule } from "@angular/material/dialog";
+import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
 
 @NgModule({
-  declarations: [CreateCreditNoteComponent, AddPaymentDialogComponent],
+  declarations: [CreateCreditNoteComponent, AddPaymentDialogComponent, SuccessDialogComponent],
   imports: [
     CommonModule,
     CreditNotesRoutingModule,

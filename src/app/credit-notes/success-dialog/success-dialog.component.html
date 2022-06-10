@@ -1,0 +1,11 @@
+<h1 mat-dialog-title i18n="@@creditNoteSuccessDialogHeader">CreditNote: {{data.document.number}}</h1>
+<mat-dialog-content>
+  <div class="content">
+    <div *ngIf="data.print">
+      <app-print-display [printObservable]="printObservable"></app-print-display>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>OK</button>
+</mat-dialog-actions>

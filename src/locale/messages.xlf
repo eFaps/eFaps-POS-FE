@@ -2,527 +2,587 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-US" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="taxpayer-query" datatype="html">
-        <source>Taxpayer Registry Query</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/taxpayer-query/taxpayer-query.component.html</context>
-          <context context-type="linenumber">2</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="taxpayer-query-nameSearch-false" datatype="html">
-        <source>Search by Name</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/taxpayer-query/taxpayer-query.component.html</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="taxpayer-query-nameSearch-true" datatype="html">
-        <source>Search by Taxpayer-ID</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/taxpayer-query/taxpayer-query.component.html</context>
-          <context context-type="linenumber">9</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="search" datatype="html">
-        <source>Search</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/taxpayer-query/taxpayer-query.component.html</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/document-list/document-list.component.html</context>
-          <context context-type="linenumber">4</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/contacts/contact-table/contact-table.component.html</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="pos" datatype="html">
-        <source>Register</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="products" datatype="html">
-        <source>Products</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">19</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="orders" datatype="html">
-        <source>Orders</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">24</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
-          <context context-type="linenumber">35</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="spots" datatype="html">
-        <source>Tables</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">29</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="inventory" datatype="html">
-        <source>Inventory</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">34</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="contacts" datatype="html">
-        <source>Contacts</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">39</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="balance" datatype="html">
-        <source>Balance</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">44</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="workspaces" datatype="html">
-        <source>Workspaces</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">49</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="admin" datatype="html">
-        <source>Admin</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">53</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="loginlogout" datatype="html">
-        <source>Login / Logout</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">59</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="reload" datatype="html">
         <source>Reload</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/admin/admin.component.html</context>
+          <context context-type="sourcefile">src/app/admin/admin/admin.component.html</context>
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="versionCloud" datatype="html">
         <source>Cloud: <x id="INTERPOLATION" equiv-text="{{ versions?.remote }}"/></source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/admin/admin.component.html</context>
+          <context context-type="sourcefile">src/app/admin/admin/admin.component.html</context>
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="versionLocal" datatype="html">
         <source>Local: <x id="INTERPOLATION" equiv-text="{{ versions?.local }}"/></source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/admin/admin.component.html</context>
+          <context context-type="sourcefile">src/app/admin/admin/admin.component.html</context>
           <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="balanceWithNumber" datatype="html">
-        <source>Balance - <x id="INTERPOLATION" equiv-text="{{currentBalance?.number}}"/></source>
+      <trans-unit id="pos" datatype="html">
+        <source>Register</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance/balance.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="initBalance" datatype="html">
-        <source>Init</source>
+      <trans-unit id="products" datatype="html">
+        <source>Products</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance/balance.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="closeBalance" datatype="html">
-        <source>Close</source>
+      <trans-unit id="orders" datatype="html">
+        <source>Orders</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance/balance.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/orders/order-table/order-table.component.html</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="currentBalance" datatype="html">
-        <source>Current Balance</source>
+      <trans-unit id="spots" datatype="html">
+        <source>Tables</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance/balance.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="balanceSummary" datatype="html">
-        <source>Summary</source>
+      <trans-unit id="inventory" datatype="html">
+        <source>Inventory</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance/balance.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="balances" datatype="html">
-        <source>Balances</source>
+      <trans-unit id="contacts" datatype="html">
+        <source>Contacts</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance/balance.component.html</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="documents" datatype="html">
-        <source>Documents</source>
+      <trans-unit id="balance" datatype="html">
+        <source>Balance</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance/balance.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="workspaces" datatype="html">
+        <source>Workspaces</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="admin" datatype="html">
+        <source>Admin</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="loginlogout" datatype="html">
+        <source>Login / Logout</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="total" datatype="html">
         <source>Total</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance-payment-list/balance-payment-list.component.html</context>
+          <context context-type="sourcefile">src/app/balance/balance-payment-list/balance-payment-list.component.html</context>
           <context context-type="linenumber">10</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="bs-number" datatype="html">
-        <source>Number: <x id="INTERPOLATION" equiv-text="{{summary?.balance.number}}"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
-          <context context-type="linenumber">4</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="bs-started" datatype="html">
-        <source>Started: <x id="INTERPOLATION" equiv-text="{{summary?.balance.startAt | date:&apos;dd/MM/yy HH:mm&apos; }}"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="bs-invoices" datatype="html">
-        <source>Invoices</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="bs-receipts" datatype="html">
-        <source>Receipts</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="bs-tickets" datatype="html">
-        <source>Tickets</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="bs-overall" datatype="html">
-        <source>Over all</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance-summary/balance-summary.component.html</context>
-          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bs-documents" datatype="html">
         <source>Documents:</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
+          <context context-type="sourcefile">src/app/balance/balance-summary-section/balance-summary-section.component.html</context>
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bs-nettotal" datatype="html">
         <source>Net Total:</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
+          <context context-type="sourcefile">src/app/balance/balance-summary-section/balance-summary-section.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bs-crosstotal" datatype="html">
         <source>Cross Total:</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
+          <context context-type="sourcefile">src/app/balance/balance-summary-section/balance-summary-section.component.html</context>
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bs-payments" datatype="html">
         <source>Payments:</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
+          <context context-type="sourcefile">src/app/balance/balance-summary-section/balance-summary-section.component.html</context>
           <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="paymentType" datatype="html">
-        <source><x id="ICU" equiv-text="{info.type, select, CASH {...} FREE {...} CARD {...} CHANGE {...} AUTO {...}}"/> <x id="INTERPOLATION" equiv-text="{{info.cardLabel}}"/></source>
+      <trans-unit id="a8bdced8a4d361a0a3aa960b859d0a347134721a" datatype="html">
+        <source>{VAR_SELECT, select, CASH {Cash} FREE {Free} CARD {} CHANGE {Change} AUTO {Auto}}</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
+          <context context-type="sourcefile">src/app/balance/balance-summary-section/balance-summary-section.component.html</context>
           <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="a8bdced8a4d361a0a3aa960b859d0a347134721a" datatype="html">
-        <source>{VAR_SELECT, select, CASH {Cash} FREE {Free} CARD {} CHANGE {Change} AUTO {Auto} }</source>
+      <trans-unit id="paymentType" datatype="html">
+        <source><x id="ICU" equiv-text="{info.type, select, CASH {Cash} FREE {Free} CARD {} CHANGE {Change} AUTO {Auto}}"/> <x id="INTERPOLATION" equiv-text="{{info.cardLabel}}"/></source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
+          <context context-type="sourcefile">src/app/balance/balance-summary-section/balance-summary-section.component.html</context>
           <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bs-count" datatype="html">
         <source>Count:</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
+          <context context-type="sourcefile">src/app/balance/balance-summary-section/balance-summary-section.component.html</context>
           <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bs-amount" datatype="html">
         <source>Amount:</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/balance/balance-summary-section/balance-summary-section.component.html</context>
+          <context context-type="sourcefile">src/app/balance/balance-summary-section/balance-summary-section.component.html</context>
           <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bs-number" datatype="html">
+        <source>Number: <x id="INTERPOLATION" equiv-text="{{summary?.balance.number}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/balance/balance-summary/balance-summary.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bs-started" datatype="html">
+        <source>Started: <x id="INTERPOLATION" equiv-text="{{summary?.balance.startAt | date:&apos;dd/MM/yy HH:mm&apos; }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/balance/balance-summary/balance-summary.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bs-invoices" datatype="html">
+        <source>Invoices</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/balance/balance-summary/balance-summary.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bs-receipts" datatype="html">
+        <source>Receipts</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/balance/balance-summary/balance-summary.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bs-tickets" datatype="html">
+        <source>Tickets</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/balance/balance-summary/balance-summary.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bs-overall" datatype="html">
+        <source>Over all</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/balance/balance-summary/balance-summary.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="currentBalance" datatype="html">
+        <source>Current Balance</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/balance/balance/balance.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="balanceWithNumber" datatype="html">
+        <source>Balance - <x id="INTERPOLATION" equiv-text="{{currentBalance?.number}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/balance/balance/balance.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="initBalance" datatype="html">
+        <source>Init</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/balance/balance/balance.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="closeBalance" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/balance/balance/balance.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="balanceSummary" datatype="html">
+        <source>Summary</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/balance/balance/balance.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="balances" datatype="html">
+        <source>Balances</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/balance/balance/balance.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="documents" datatype="html">
+        <source>Documents</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/balance/balance/balance.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="search" datatype="html">
+        <source>Search</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/balance/document-list/document-list.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contacts/contact-table/contact-table.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/taxpayer-query/taxpayer-query.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="addcontact" datatype="html">
+        <source>Add Contact</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contacts/contact-table/contact-table.component.html</context>
+          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="documentIdType" datatype="html">
         <source>Document Type</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/contacts/create-contact-dialog/create-contact-dialog.component.html</context>
+          <context context-type="sourcefile">src/app/contacts/create-contact-dialog/create-contact-dialog.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="documentId" datatype="html">
         <source>ID</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/contacts/create-contact-dialog/create-contact-dialog.component.html</context>
+          <context context-type="sourcefile">src/app/contacts/create-contact-dialog/create-contact-dialog.component.html</context>
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contactName" datatype="html">
         <source>Name</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/contacts/create-contact-dialog/create-contact-dialog.component.html</context>
+          <context context-type="sourcefile">src/app/contacts/create-contact-dialog/create-contact-dialog.component.html</context>
           <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="addcontact" datatype="html">
-        <source>Add Contact</source>
+      <trans-unit id="contactEmail" datatype="html">
+        <source>Email</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/contacts/contact-table/contact-table.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="sourcefile">src/app/contacts/create-contact-dialog/create-contact-dialog.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="taxpayerQuery-empty" datatype="html">
+        <source>No results for the given ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contacts/create-contact-dialog/create-contact-dialog.component.ts</context>
+          <context context-type="linenumber">127</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="61b5125ef686f5575a7d14393bbbdbd372947b70" datatype="html">
+        <source>Balance - <x id="INTERPOLATION" equiv-text="{{ balance?.number }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/credit-notes/create-credit-note/create-credit-note.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/payment/payment.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="creditNoteSuccessDialogHeader" datatype="html">
+        <source>CreditNote: <x id="INTERPOLATION" equiv-text="{{data.document.number}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/credit-notes/success-dialog/success-dialog.component.html</context>
+          <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="user" datatype="html">
         <source>User</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/login/login.component.html</context>
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
           <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="password" datatype="html">
         <source>Password</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/login/login.component.html</context>
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
           <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="login" datatype="html">
         <source>Login</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/login/login.component.html</context>
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
           <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="virtualKeyboard" datatype="html">
         <source>Virtual Keyboard</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/login/login.component.html</context>
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
           <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="hiddenUser" datatype="html">
         <source>hidden User</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/login/login.component.html</context>
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
           <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="selectCompany" datatype="html">
         <source>Select Company</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/login/login.component.html</context>
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
           <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="filter" datatype="html">
         <source>Filter</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="sourcefile">src/app/orders/order-table/order-table.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="orderNumber" datatype="html">
         <source> No </source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="sourcefile">src/app/orders/order-table/order-table.component.html</context>
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="orderDate" datatype="html">
         <source> Date </source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="sourcefile">src/app/orders/order-table/order-table.component.html</context>
           <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="orderStatus" datatype="html">
         <source> Status </source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="sourcefile">src/app/orders/order-table/order-table.component.html</context>
           <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="orderCrossTotal" datatype="html">
         <source> Cross Total </source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="sourcefile">src/app/orders/order-table/order-table.component.html</context>
           <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="spot" datatype="html">
         <source> Spot </source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="sourcefile">src/app/orders/order-table/order-table.component.html</context>
           <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="payment" datatype="html">
         <source>Payment</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="sourcefile">src/app/orders/order-table/order-table.component.html</context>
           <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cancel" datatype="html">
         <source>Cancel</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="sourcefile">src/app/orders/order-table/order-table.component.html</context>
           <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="splitIntoNew" datatype="html">
         <source>Split</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="sourcefile">src/app/orders/order-table/order-table.component.html</context>
           <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
       <trans-unit id="reassign" datatype="html">
         <source>Reassign</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/orders/order-table/order-table.component.html</context>
+          <context context-type="sourcefile">src/app/orders/order-table/order-table.component.html</context>
           <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="percentage" datatype="html">
         <source>Percentage</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/discount/discount.component.html</context>
+          <context context-type="sourcefile">src/app/payment/discount/discount.component.html</context>
           <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="amount" datatype="html">
         <source>Amount</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/discount/discount.component.html</context>
+          <context context-type="sourcefile">src/app/payment/discount/discount.component.html</context>
           <context context-type="linenumber">33</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="paymentSuccessDialogHeader" datatype="html">
-        <source><x id="ICU" equiv-text="{data.docType, select, 0 {...} 1 {...} 2 {...}}"/>: <x id="INTERPOLATION" equiv-text="{{data.document.number}}"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/success-dialog/success-dialog.component.html</context>
-          <context context-type="linenumber">1</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="9d6cec9eab443e73d43b30cccd5189267fceaaa7" datatype="html">
-        <source>{VAR_SELECT, select, 0 {Receipt} 1 {Invoice} 2 {Ticket} }</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/success-dialog/success-dialog.component.html</context>
-          <context context-type="linenumber">1</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="paymentType-CHANGE" datatype="html">
-        <source>Change: <x id="INTERPOLATION" equiv-text="{{ data.change | posCurrency:data.currency}}"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/success-dialog/success-dialog.component.html</context>
-          <context context-type="linenumber">4</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="61b5125ef686f5575a7d14393bbbdbd372947b70" datatype="html">
-        <source>Balance - <x id="INTERPOLATION" equiv-text="{{ balance?.number }}"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/payment.component.html</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="payment-total" datatype="html">
-        <source>Total: <x id="INTERPOLATION" equiv-text="{{total | posCurrency:paymentService.currency}}"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/payment.component.html</context>
-          <context context-type="linenumber">37</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="payment-change" datatype="html">
-        <source>Change: <x id="INTERPOLATION" equiv-text="{{change | posCurrency:paymentService.currency}}"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/payment.component.html</context>
-          <context context-type="linenumber">38</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="payment-submit" datatype="html">
-        <source>Submit</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/payment.component.html</context>
-          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cash-payment" datatype="html">
         <source>Cash</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/payment-type/payment-type.component.html</context>
+          <context context-type="sourcefile">src/app/payment/payment-type/payment-type.component.html</context>
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="card-payment" datatype="html">
         <source>Cards</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/payment-type/payment-type.component.html</context>
+          <context context-type="sourcefile">src/app/payment/payment-type/payment-type.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="free-payment" datatype="html">
         <source>Free</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/payment-type/payment-type.component.html</context>
+          <context context-type="sourcefile">src/app/payment/payment-type/payment-type.component.html</context>
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="auto-payment" datatype="html">
         <source>Auto</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/payment-type/payment-type.component.html</context>
+          <context context-type="sourcefile">src/app/payment/payment-type/payment-type.component.html</context>
           <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="payment-total" datatype="html">
+        <source>Total: <x id="INTERPOLATION" equiv-text="{{total | posCurrency:paymentService.currency}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/payment/payment.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="payment-change" datatype="html">
+        <source>Change: <x id="INTERPOLATION" equiv-text="{{change | posCurrency:paymentService.currency}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/payment/payment.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="payment-submit" datatype="html">
+        <source>Submit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/payment/payment.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9d6cec9eab443e73d43b30cccd5189267fceaaa7" datatype="html">
+        <source>{VAR_SELECT, select, 0 {Receipt} 1 {Invoice} 2 {Ticket}}</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/payment/success-dialog/success-dialog.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="paymentSuccessDialogHeader" datatype="html">
+        <source><x id="ICU" equiv-text="{data.docType, select, 0 {Receipt} 1 {Invoice} 2 {Ticket}}"/>: <x id="INTERPOLATION" equiv-text="{{data.document.number}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/payment/success-dialog/success-dialog.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="paymentType-CHANGE" datatype="html">
+        <source>Change: <x id="INTERPOLATION" equiv-text="{{ data.change | posCurrency:data.currency}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/payment/success-dialog/success-dialog.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product-SKU" datatype="html">
+        <source>SKU</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pos/product-list/product-list.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product-Description" datatype="html">
+        <source>Description</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pos/product-list/product-list.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product-Stock" datatype="html">
+        <source>Stock</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pos/product-list/product-list.component.html</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="remark" datatype="html">
         <source>Remark</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/pos/remark-dialog/remark-dialog.component.html</context>
+          <context context-type="sourcefile">src/app/pos/remark-dialog/remark-dialog.component.html</context>
           <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="taxpayer-query" datatype="html">
+        <source>Taxpayer Registry Query</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/taxpayer-query/taxpayer-query.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="taxpayer-query-nameSearch-false" datatype="html">
+        <source>Search by Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/taxpayer-query/taxpayer-query.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="taxpayer-query-nameSearch-true" datatype="html">
+        <source>Search by Taxpayer-ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/taxpayer-query/taxpayer-query.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="taxpayer-ID" datatype="html">
+        <source>Taxpayer-ID </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/taxpayer-result/taxpayer-result.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="taxpayer-Name" datatype="html">
+        <source>Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/taxpayer-result/taxpayer-result.component.html</context>
+          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
     </body>
