@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import { TaxpayerService, Taxpayer } from "@efaps/pos-library";
 import { MatDialog } from "@angular/material/dialog";
 import { TaxpayerResultComponent } from "../taxpayer-result/taxpayer-result.component";
@@ -10,13 +10,13 @@ import { TaxpayerResultComponent } from "../taxpayer-result/taxpayer-result.comp
   styleUrls: ["./taxpayer-query.component.scss"],
 })
 export class TaxpayerQueryComponent implements OnInit {
-  taxpayerForm: FormGroup;
+  taxpayerForm: UntypedFormGroup;
   nameSearch = false;
   @Output()
   result: EventEmitter<Taxpayer> = new EventEmitter<Taxpayer>();
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private taxpayerService: TaxpayerService,
     private dialog: MatDialog
   ) {}

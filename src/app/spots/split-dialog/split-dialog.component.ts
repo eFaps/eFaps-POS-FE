@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
 
 @Component({
@@ -8,11 +8,11 @@ import { MatDialogRef } from "@angular/material/dialog";
   styleUrls: ["./split-dialog.component.scss"],
 })
 export class SplitDialogComponent implements OnInit {
-  quantityForm: FormGroup;
+  quantityForm: UntypedFormGroup;
   quantity: number;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private dialogRef: MatDialogRef<SplitDialogComponent>
   ) {}
 

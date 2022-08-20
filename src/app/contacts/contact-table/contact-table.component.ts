@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -24,7 +24,7 @@ import { CreateContactDialogComponent } from "../create-contact-dialog/create-co
 export class ContactTableComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<Contact>();
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  searchForm: FormGroup;
+  searchForm: UntypedFormGroup;
   subscription$ = new Subscription();
   useEmail: boolean = false;
 
@@ -32,7 +32,7 @@ export class ContactTableComponent implements OnInit, OnDestroy {
     private configService: ConfigService,
     private contactService: ContactService,
     private dialog: MatDialog,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private changeDetectorRefs: ChangeDetectorRef
   ) {}
 

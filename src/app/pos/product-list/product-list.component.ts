@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild, Input } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -28,7 +28,7 @@ export class ProductListComponent
   extends AbstractProductSelector
   implements OnInit, OnDestroy
 {
-  filterForm: FormGroup;
+  filterForm: UntypedFormGroup;
   formCtrlSub: Subscription;
   dataSource = new MatTableDataSource();
 
@@ -43,7 +43,7 @@ export class ProductListComponent
     private keypadService: KeypadService,
     dialog: MatDialog,
     private authService: AuthService,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) {
     super(
       workspaceService,

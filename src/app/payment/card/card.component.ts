@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormBuilder, Validators } from "@angular/forms";
 import {
   Card,
   Currency,
@@ -23,7 +23,7 @@ export class CardComponent extends PaymentForm {
   constructor(
     paymentService: PaymentService,
     utilsService: UtilsService,
-    fb: FormBuilder,
+    fb: UntypedFormBuilder,
     private workspaceService: WorkspaceService
   ) {
     super(paymentService, utilsService, fb);

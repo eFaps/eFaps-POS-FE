@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSlideToggleChange } from "@angular/material/slide-toggle";
@@ -37,7 +37,7 @@ import { SplitOrderDialogComponent } from "../split-order-dialog/split-order-dia
 })
 export class OrderTableComponent implements OnInit, OnDestroy {
   DocStatus = DocStatus;
-  filterForm: FormGroup;
+  filterForm: UntypedFormGroup;
   formCtrlSub: Subscription;
   displayedColumns = [];
   dataSource = new MatTableDataSource<OrderWrapper>();
@@ -54,7 +54,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     private posService: PosService,
     private workspaceService: WorkspaceService,
     private paymentService: PaymentService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private dialog: MatDialog,
     private changeDetectorRefs: ChangeDetectorRef
   ) {}

@@ -1,6 +1,6 @@
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
 import { Component, Inject, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 import { MatChipInputEvent } from "@angular/material/chips";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Indication, Product } from "@efaps/pos-library";
@@ -11,7 +11,7 @@ import { Indication, Product } from "@efaps/pos-library";
   styleUrls: ["./remark-dialog.component.scss"],
 })
 export class RemarkDialogComponent implements OnInit {
-  remarkForm: FormGroup;
+  remarkForm: UntypedFormGroup;
   indications = [];
   visible = true;
   removable = true;
@@ -19,7 +19,7 @@ export class RemarkDialogComponent implements OnInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private matDialogRef: MatDialogRef<RemarkDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Product
   ) {}

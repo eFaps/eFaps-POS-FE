@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import {
   Discount,
@@ -20,8 +20,8 @@ import { Subscription } from "rxjs";
 export class DiscountComponent implements OnInit, OnDestroy {
   private document: Order;
   private subscriptions$ = new Subscription();
-  amountForm: FormGroup;
-  percentForm: FormGroup;
+  amountForm: UntypedFormGroup;
+  percentForm: UntypedFormGroup;
   _discounts: Discount[] = [];
   currency: string;
 
@@ -32,7 +32,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
     public paymentService: PaymentService,
     private discountService: DiscountService,
     private utilsService: UtilsService,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) {}
 
   ngOnInit() {

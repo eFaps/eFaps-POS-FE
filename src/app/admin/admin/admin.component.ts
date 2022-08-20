@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 import { MatChipInputEvent } from "@angular/material/chips";
 import { LocalStorage } from "@efaps/ngx-store";
 import {
@@ -22,13 +22,13 @@ export class AdminComponent implements OnInit, OnDestroy {
   versions: Versions;
   lazyElements: Extension[] = [];
   @LocalStorage() barcodeOptions: BarcodeOptions = null;
-  barcodeOptionsForm: FormGroup;
+  barcodeOptionsForm: UntypedFormGroup;
 
   constructor(
     private adminService: AdminService,
     private configService: ConfigService,
     private barcodeScannerService: BarcodeScannerService,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) {}
 
   get hasBarcodeScanner(): boolean {

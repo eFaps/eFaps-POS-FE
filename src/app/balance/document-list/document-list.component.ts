@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -15,7 +15,7 @@ import { DocumentDialogComponent } from "../document-dialog/document-dialog.comp
   styleUrls: ["./document-list.component.scss"],
 })
 export class DocumentListComponent implements OnInit, OnDestroy {
-  searchForm: FormGroup;
+  searchForm: UntypedFormGroup;
   displayedColumns = [
     "type",
     "number",
@@ -30,7 +30,7 @@ export class DocumentListComponent implements OnInit, OnDestroy {
   private subscription$ = new Subscription();
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private documentService: DocumentService,
     private dialog: MatDialog
   ) {}

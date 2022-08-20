@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormBuilder, Validators } from "@angular/forms";
 import {
   Currency,
   CollectService,
@@ -26,7 +26,7 @@ export class AutoComponent extends PaymentForm {
   constructor(
     paymentService: PaymentService,
     utilsService: UtilsService,
-    fb: FormBuilder,
+    fb: UntypedFormBuilder,
     private collectService: CollectService,
     private msgService: MsgService
   ) {

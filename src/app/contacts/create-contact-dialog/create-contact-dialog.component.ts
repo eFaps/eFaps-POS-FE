@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { LocalStorage } from "@efaps/ngx-store";
@@ -20,7 +20,7 @@ import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
 export class CreateContactDialogComponent implements OnInit, OnDestroy {
   identificationType = IdentificationType;
   idTypes: string[] = [];
-  contactForm: FormGroup;
+  contactForm: UntypedFormGroup;
   @LocalStorage() virtKeyboard = false;
   useEmail: boolean = false;
 
@@ -28,7 +28,7 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
     public dialogRef: MatDialogRef<CreateContactDialogComponent>,
     private configService: ConfigService,
     private contactService: ContactService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {

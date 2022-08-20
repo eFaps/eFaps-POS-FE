@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { MatSlideToggleChange } from "@angular/material/slide-toggle";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
   companies: Company[] = [];
   users: User[] = [];
-  loginForm: FormGroup;
+  loginForm: UntypedFormGroup;
   loading = false;
   hiddenUser = true;
   @LocalStorage() virtKeyboard = false;
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private authService: AuthService,
     private workspaceService: WorkspaceService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private snackBar: MatSnackBar,
     private translateService: TranslateService
   ) {}

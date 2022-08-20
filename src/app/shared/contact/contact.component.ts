@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { UntypedFormControl } from "@angular/forms";
 import { Contact, ContactService } from "@efaps/pos-library";
 import { debounceTime } from "rxjs/operators";
 
@@ -9,7 +9,7 @@ import { debounceTime } from "rxjs/operators";
   styleUrls: ["./contact.component.scss"],
 })
 export class ContactComponent implements OnInit {
-  searchControl: FormControl = new FormControl();
+  searchControl: UntypedFormControl = new UntypedFormControl();
   searchResult = [];
   nameSearch = false;
   @Output() contactSelected = new EventEmitter<Contact>();

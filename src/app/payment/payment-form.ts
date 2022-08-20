@@ -1,5 +1,5 @@
 import { Input, OnDestroy, OnInit, Directive } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import {
   Document,
   Payment,
@@ -10,7 +10,7 @@ import { Subscription } from "rxjs";
 
 @Directive()
 export abstract class PaymentForm implements OnInit, OnDestroy {
-  public paymentForm: FormGroup;
+  public paymentForm: UntypedFormGroup;
   protected payments: Payment[];
   @Input() protected change: number;
   public currency: string;
@@ -20,7 +20,7 @@ export abstract class PaymentForm implements OnInit, OnDestroy {
   constructor(
     protected paymentService: PaymentService,
     protected utilsService: UtilsService,
-    protected fb: FormBuilder
+    protected fb: UntypedFormBuilder
   ) {
     this.currency = utilsService.getCurrencySymbol("PEN");
   }
