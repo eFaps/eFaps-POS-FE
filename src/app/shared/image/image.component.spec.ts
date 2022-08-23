@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 import { ImageComponent } from "./image.component";
 

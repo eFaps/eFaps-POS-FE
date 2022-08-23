@@ -7,17 +7,21 @@ import { SharedModule } from "../shared/shared.module";
 import { MatButtonModule } from "@angular/material/button";
 import { MatListModule } from "@angular/material/list";
 import { MatIconModule } from "@angular/material/icon";
-import { AddPaymentDialogComponent } from './add-payment-dialog/add-payment-dialog.component';
+import { AddPaymentDialogComponent } from "./add-payment-dialog/add-payment-dialog.component";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatSelectModule } from "@angular/material/select";
 import { MatOptionModule } from "@angular/material/core";
 import { MatDialogModule } from "@angular/material/dialog";
-import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
+import { SuccessDialogComponent } from "./success-dialog/success-dialog.component";
 
 @NgModule({
-  declarations: [CreateCreditNoteComponent, AddPaymentDialogComponent, SuccessDialogComponent],
+  declarations: [
+    CreateCreditNoteComponent,
+    AddPaymentDialogComponent,
+    SuccessDialogComponent,
+  ],
   imports: [
     CommonModule,
     CreditNotesRoutingModule,

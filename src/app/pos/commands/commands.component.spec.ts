@@ -9,7 +9,7 @@ import {
 } from "@efaps/pos-library";
 import { TranslateDirective, TranslatePipe } from "@ngx-translate/core";
 import { MockDirective, MockPipe } from "ng-mocks";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 import { CommandsComponent } from "./commands.component";
 

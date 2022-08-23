@@ -6,7 +6,7 @@ import {
 } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PrintService, WorkspaceService } from "@efaps/pos-library";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 import { OrderDialogComponent } from "./order-dialog.component";
 

@@ -1,5 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
+import {
+  UntypedFormGroup,
+  UntypedFormBuilder,
+  Validators,
+} from "@angular/forms";
 import { TaxpayerService, Taxpayer } from "@efaps/pos-library";
 import { MatDialog } from "@angular/material/dialog";
 import { TaxpayerResultComponent } from "../taxpayer-result/taxpayer-result.component";

@@ -14,7 +14,7 @@ import {
   MatKeyboardComponent,
   MatKeyboardRef,
   MatKeyboardService,
-} from "angular-onscreen-material-keyboard";
+} from "@efaps/angular-onscreen-material-keyboard";
 
 @Directive({
   selector: "input[appVirtKeyboard], textarea[appVirtKeyboard]",

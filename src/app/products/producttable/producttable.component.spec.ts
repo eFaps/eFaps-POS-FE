@@ -8,9 +8,9 @@ import { MatInputModule } from "@angular/material/input";
 import { MatTableModule } from "@angular/material/table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ProductService } from "@efaps/pos-library";
-import { MatKeyboardModule } from "angular-onscreen-material-keyboard";
+import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
 import { MockComponent } from "ng-mocks";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 import { VirtKeyboardDirective } from "../../services";
 import { ProductComponent } from "../../shared/product/product.component";

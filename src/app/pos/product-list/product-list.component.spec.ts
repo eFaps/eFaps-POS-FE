@@ -14,7 +14,7 @@ import {
   WorkspaceService,
 } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 import { ProductComponent } from "../../shared/product/product.component";
 import { ProductListComponent } from "./product-list.component";

@@ -18,7 +18,7 @@ import { WebStorageModule } from "@efaps/ngx-store";
 import { PosLibraryModule } from "@efaps/pos-library";
 import { TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-import { MatKeyboardModule } from "angular-onscreen-material-keyboard";
+import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
 import { NgBusyModule } from "ng-busy";
 
 import { environment } from "../../environments/environment";

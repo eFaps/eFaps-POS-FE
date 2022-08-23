@@ -7,7 +7,7 @@ import {
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PrintService } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 import { PrintDisplayComponent } from "../print-display/print-display.component";
 import { PrintDialogComponent } from "./print-dialog.component";

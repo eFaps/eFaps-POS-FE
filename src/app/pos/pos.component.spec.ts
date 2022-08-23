@@ -17,7 +17,7 @@ import {
   ProductService,
 } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 import { SharedModule } from "../shared/shared.module";
 import { CommandsComponent } from "./commands/commands.component";

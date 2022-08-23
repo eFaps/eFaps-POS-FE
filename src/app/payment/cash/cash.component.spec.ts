@@ -13,7 +13,7 @@ import {
 } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockComponent, MockPipe } from "ng-mocks";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
 import { CashComponent } from "./cash.component";

@@ -81,7 +81,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
       this.busy.unsubscribe();
     }
   }
-credit
+  credit;
   init() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: "300px",

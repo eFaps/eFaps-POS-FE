@@ -31,10 +31,10 @@ import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import {
   MatKeyboardModule,
   MatKeyboardService,
-} from "angular-onscreen-material-keyboard";
+} from "@efaps/angular-onscreen-material-keyboard";
 import { AngularSvgIconModule, SvgIconRegistryService } from "angular-svg-icon";
 import { MockPipe } from "ng-mocks";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 import { VirtKeyboardDirective } from "../services";
 import { LoginComponent } from "./login.component";

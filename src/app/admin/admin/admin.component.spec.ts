@@ -11,10 +11,11 @@ import {
 import { TranslatePipe } from "@ngx-translate/core";
 import { NgBusyDirective } from "ng-busy";
 import { MockDirective, MockPipe } from "ng-mocks";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 import { AdminComponent } from "./admin.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 class AdminServiceStub {
   version(): Observable<Versions> {
@@ -46,7 +47,7 @@ describe("AdminComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FlexLayoutModule, ReactiveFormsModule],
+      imports: [FlexLayoutModule, ReactiveFormsModule, MatSlideToggleModule],
       providers: [
         { provide: AdminService, useClass: AdminServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },

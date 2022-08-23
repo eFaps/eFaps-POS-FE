@@ -1,21 +1,29 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PaymentType } from '@efaps/pos-library';
+import { Component, Inject, OnInit } from "@angular/core";
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from "@angular/forms";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { PaymentType } from "@efaps/pos-library";
 
 @Component({
-  selector: 'app-add-payment-dialog',
-  templateUrl: './add-payment-dialog.component.html',
-  styleUrls: ['./add-payment-dialog.component.scss']
+  selector: "app-add-payment-dialog",
+  templateUrl: "./add-payment-dialog.component.html",
+  styleUrls: ["./add-payment-dialog.component.scss"],
 })
 export class AddPaymentDialogComponent implements OnInit {
   paymentType = PaymentType;
   paymentTypes = [];
   paymentForm: UntypedFormGroup;
-  constructor(private fb: UntypedFormBuilder, 
+  constructor(
+    private fb: UntypedFormBuilder,
     private dialogRef: MatDialogRef<AddPaymentDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.paymentTypes = Object.keys(this.paymentType).filter(f => isNaN(Number(f)));
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.paymentTypes = Object.keys(this.paymentType).filter((f) =>
+      isNaN(Number(f))
+    );
   }
 
   ngOnInit(): void {
@@ -26,7 +34,9 @@ export class AddPaymentDialogComponent implements OnInit {
   }
 
   save() {
-    this.dialogRef.close({ amount: this.paymentForm.get("amount").value, paymentType : this.paymentForm.get("paymentType").value})
+    this.dialogRef.close({
+      amount: this.paymentForm.get("amount").value,
+      paymentType: this.paymentForm.get("paymentType").value,
+    });
   }
-
 }

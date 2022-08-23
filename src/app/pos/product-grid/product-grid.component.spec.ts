@@ -12,7 +12,7 @@ import {
   SecurePipe,
 } from "@efaps/pos-library";
 import { MockPipe } from "ng-mocks";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 import { ProductGridComponent } from "./product-grid.component";
 

@@ -37,8 +37,8 @@ export class CreateCreditNoteComponent implements OnInit {
     private documentService: DocumentService,
     private balanceService: BalanceService,
     private workspaceService: WorkspaceService,
-    public paymentService: PaymentService,
-  ) { }
+    public paymentService: PaymentService
+  ) {}
 
   ngOnInit(): void {
     this.balanceService.currentBalance.subscribe(
@@ -47,7 +47,7 @@ export class CreateCreditNoteComponent implements OnInit {
     this.workspaceService.currentWorkspace.subscribe((_data) => {
       this.workspaceOid = _data.oid;
       this.print = _data.printCmds.some((x) => x.target === "TICKET");
-    })
+    });
     this.route.queryParams.subscribe((params) => {
       const sourceId = params["sourceId"];
       const sourceType = params["sourceType"];
@@ -83,15 +83,17 @@ export class CreateCreditNoteComponent implements OnInit {
       oid: null,
       number: null,
     };
-    this.sourceDocument.payments.forEach(payment => {
-      payment.amount = - payment.amount
-      this.payments.push(payment)
-    })
+    this.sourceDocument.payments.forEach((payment) => {
+      payment.amount = -payment.amount;
+      this.payments.push(payment);
+    });
   }
 
   createCreditNote() {
-    this.creditNote.sourceDocOid = this.sourceDocument.oid ? this.sourceDocument.oid : this.sourceDocument.id
-    this.creditNote.payments = this.payments
+    this.creditNote.sourceDocOid = this.sourceDocument.oid
+      ? this.sourceDocument.oid
+      : this.sourceDocument.id;
+    this.creditNote.payments = this.payments;
     this.documentService.createCreditNote(this.creditNote).subscribe({
       next: (doc) => {
         this.router.navigate(["/balance"]);
@@ -113,7 +115,6 @@ export class CreateCreditNoteComponent implements OnInit {
     });
   }
 
-
   delPayment(_payment: Payment) {
     const index: number = this.payments.indexOf(_payment);
     if (index !== -1) {
@@ -123,19 +124,21 @@ export class CreateCreditNoteComponent implements OnInit {
 
   openPaymentDialog() {
     let amount = this.sourceDocument.crossTotal;
-    this.payments.forEach(payment => {
-      amount = amount + payment.amount
-    })
-    let dialogRef = this.dialog.open(AddPaymentDialogComponent, { data: amount })
+    this.payments.forEach((payment) => {
+      amount = amount + payment.amount;
+    });
+    let dialogRef = this.dialog.open(AddPaymentDialogComponent, {
+      data: amount,
+    });
     dialogRef.afterClosed().subscribe({
-      next: info => {
+      next: (info) => {
         this.payments.push({
-          amount: - info.amount,
+          amount: -info.amount,
           currency: this.creditNote.currency,
           exchangeRate: this.creditNote.exchangeRate,
-          type: info.paymentType
-        })
-      }
-    })
+          type: info.paymentType,
+        });
+      },
+    });
   }
 }

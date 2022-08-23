@@ -10,7 +10,7 @@ import { Contact, PosConfigToken } from "@efaps/pos-library";
 import { ContactService } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 import { ContactTableComponent } from "./contact-table.component";
 import { MatFormFieldModule } from "@angular/material/form-field";
