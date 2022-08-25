@@ -36,6 +36,8 @@ export class LocalStoragePersistence implements PersistenceService {
     const ret = this._currentUser;
     ret.clean = () => {
       localStorage.removeItem("synerPOS_currentUser");
+      ret.username = undefined
+      ret.tokens= undefined
     };
     return ret;
   }
