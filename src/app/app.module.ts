@@ -75,11 +75,7 @@ import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
       useClass: ErrorInterceptor,
       multi: true,
     },
-    {
-      provide: SERVER_URL,
-      useValue: environment.electron ? __dirname : "",
-    },
-    // temporal woraround to deactivate the LiveAnnouncer
+    // temporal workaround to deactivate the LiveAnnouncer
     {
       provide: LiveAnnouncer,
       useValue: {},

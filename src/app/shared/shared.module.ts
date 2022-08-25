@@ -37,11 +37,7 @@ import { TaxpayerQueryComponent } from "./taxpayer-query/taxpayer-query.componen
 import { TaxpayerResultComponent } from "./taxpayer-result/taxpayer-result.component";
 
 export function TranslateLoaderFactory(_httpClient: HttpClient) {
-  if (environment.electron) {
-    return new TranslateFileLoader();
-  } else {
-    return new TranslateHttpLoader(_httpClient, "./assets/i18n/");
-  }
+  return new TranslateHttpLoader(_httpClient, "./assets/i18n/");
 }
 
 @NgModule({

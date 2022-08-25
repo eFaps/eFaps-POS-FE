@@ -70,10 +70,6 @@
             "fileReplacements": [{
                 "replace": "src/app/util/translate-file-loader.ts",
                 "with": "src/app/util/translate-file-loader.noop.ts"
-              },
-              {
-                "replace": "src/app/util/electron-util.ts",
-                "with": "src/app/util/electron-util.noop.ts"
               }
             ],
             "aot": false,
@@ -105,10 +101,6 @@
                 {
                   "replace": "src/app/util/translate-file-loader.ts",
                   "with": "src/app/util/translate-file-loader.noop.ts"
-                },
-                {
-                  "replace": "src/app/util/electron-util.ts",
-                  "with": "src/app/util/electron-util.noop.ts"
                 }
               ]
             },
@@ -124,83 +116,6 @@
             }
           },
           "defaultConfiguration": ""
-        },
-        "build-electron": {
-          "builder": "@angular-guru/electron-builder:build",
-          "options": {
-            "outputPath": "dist",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "polyfills": "src/polyfills.ts",
-            "assets": [{
-                "glob": "**/*",
-                "input": "src/assets",
-                "output": "/assets"
-              },
-              {
-                "glob": "favicon.ico",
-                "input": "src",
-                "output": "/"
-              }
-            ],
-            "styles": [{
-                "input": "src/styles.scss"
-              },
-              {
-                "input": "src/scss/pink-bluegrey.scss",
-                "lazy": true,
-                "bundleName": "pink-bluegrey"
-              },
-              {
-                "input": "src/scss/deeppurple-amber.scss",
-                "lazy": true,
-                "bundleName": "deeppurple-amber"
-              },
-              {
-                "input": "src/scss/indigo-pink.scss",
-                "lazy": true,
-                "bundleName": "indigo-pink"
-              },
-              {
-                "input": "src/scss/purple-green.scss",
-                "lazy": true,
-                "bundleName": "purple-green"
-              }
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "node_modules",
-                "src",
-                "src/scss",
-              ]
-            },
-            "scripts": [
-
-            ]
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.electron.prod.ts"
-              }]
-            },
-            "development": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.electron.ts"
-              }]
-            }
-          }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -270,10 +185,6 @@
             "fileReplacements": [{
                 "replace": "src/app/util/translate-file-loader.ts",
                 "with": "src/app/util/translate-file-loader.noop.ts"
-              },
-              {
-                "replace": "src/app/util/electron-util.ts",
-                "with": "src/app/util/electron-util.noop.ts"
               }
             ]
           }

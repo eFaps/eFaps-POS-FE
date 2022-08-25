@@ -19,7 +19,6 @@ import { Hotkey, HotkeysService } from "angular2-hotkeys";
 import { TranslateService } from "@ngx-translate/core";
 
 import { environment } from "../environments/environment";
-import { ElectronUtil } from "./util/electron-util";
 
 @Component({
   selector: "app-root",
@@ -35,7 +34,6 @@ export class AppComponent implements OnInit, AfterViewChecked {
   spots = false;
   inventory = false;
   allowPayment = false;
-  electron = false;
   @LocalStorage() barcodeOptions: BarcodeOptions = null;
 
   constructor(
@@ -53,7 +51,6 @@ export class AppComponent implements OnInit, AfterViewChecked {
     window.onresize = () => {
       this.screenWidth = window.innerWidth;
     };
-    this.electron = environment.electron;
     this.hotkeysService.add(
       new Hotkey(
         "shift+f1",
@@ -105,10 +102,6 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked() {
     this.cdRef.detectChanges();
-  }
-
-  async close() {
-    ElectronUtil.close();
   }
 
   @HostListener("document:keydown", ["$event"])
