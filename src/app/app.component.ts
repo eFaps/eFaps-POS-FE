@@ -13,6 +13,8 @@ import {
   BarcodeScannerService,
   CompanyService,
   Roles,
+  User,
+  UserService,
   WorkspaceService,
 } from "@efaps/pos-library";
 import { Hotkey, HotkeysService } from "angular2-hotkeys";
@@ -35,13 +37,15 @@ export class AppComponent implements OnInit, AfterViewChecked {
   inventory = false;
   allowPayment = false;
   @LocalStorage() barcodeOptions: BarcodeOptions = null;
+  userInfo: User;
 
   constructor(
     public router: Router,
     private cdRef: ChangeDetectorRef,
+    public authService: AuthService,
     public translate: TranslateService,
     private workspaceService: WorkspaceService,
-    public auth: AuthService,
+    public userService: UserService,
     private hotkeysService: HotkeysService,
     private companyService: CompanyService,
     private barcodeScannerService: BarcodeScannerService
@@ -98,6 +102,19 @@ export class AppComponent implements OnInit, AfterViewChecked {
     if (this.barcodeOptions != null) {
       this.barcodeScannerService.setOptions(this.barcodeOptions);
     }
+    this.authService.currentEvent.subscribe({
+      next: (event) => {
+        if ("login" == event) {
+          this.userService.current().subscribe({
+            next: user => this.userInfo = user
+          })
+        } else {
+          this.userInfo = null
+        }
+      }
+    }
+    )
+    
   }
 
   ngAfterViewChecked() {

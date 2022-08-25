@@ -3,7 +3,7 @@
     <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
     <svg-icon src="./assets/synercom_logo.svg" class="logo white" *ngIf="!router.url.includes('login')"></svg-icon>
     <div fxFlex fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
-      <span class="workspace"> {{workspace}} {{workspace && company ? ' - ' : ''}} {{company}}</span>
+      <span class="workspace">{{userInfo?.firstName}} {{userInfo?.surName}} {{userInfo && company ? ' - ' : ''}} {{workspace}} {{workspace && company ? ' - ' : ''}} {{company}}</span>
       <app-theme-picker></app-theme-picker>
     </div>
   </mat-toolbar>
@@ -50,7 +50,7 @@
               <mat-icon aria-label="Workspaces" class="posIcon-36">devices</mat-icon>
           </button>
         </mat-list-item>
-        <mat-list-item *ngIf="auth.hasRole(Roles['ADMIN'])" i18n-matTooltip="@@admin" matTooltip="Admin" matTooltipPosition="right">
+        <mat-list-item *ngIf="authService.hasRole(Roles['ADMIN'])" i18n-matTooltip="@@admin" matTooltip="Admin" matTooltipPosition="right">
           <button routerLink="/admin">
               <mat-icon aria-label="Admin" class="posIcon-36">build</mat-icon>
           </button>
