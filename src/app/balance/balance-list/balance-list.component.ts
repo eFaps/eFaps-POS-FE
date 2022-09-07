@@ -39,7 +39,6 @@ export class BalanceListComponent implements OnInit, OnDestroy {
   }
 
   show(balance: Balance) {
-    console.log(balance);
     this.dialog.open(BalanceSummaryDialogComponent, {
       data: {
         balance: balance,

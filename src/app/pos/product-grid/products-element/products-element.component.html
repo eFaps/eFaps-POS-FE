@@ -1,0 +1,17 @@
+<div class="pos-productgrid" [ngClass]="size">
+  <mat-card class="pos-card" (click)="select(product)" *ngFor="let product of products">
+    <mat-card-header>
+      <mat-card-title>{{product.sku}}</mat-card-title>
+    </mat-card-header>
+    <div class="pos-card-image" [matBadge]="stock(product)" [matBadgeHidden]="!showInventory || !isStockable(product)"
+      [matBadgeColor]="hasStock(product) ? 'primary' : 'warn'">
+      <img mat-card-image [src]="product.imageOid | secure" alt="{{product.description}}">
+      <div class="pos-card-price" *ngIf="showPrices">
+        {{ product.crossPrice | posCurrency:currency}}
+      </div>
+    </div>
+    <mat-card-content>
+      {{product.description}}
+    </mat-card-content>
+  </mat-card>
+</div>

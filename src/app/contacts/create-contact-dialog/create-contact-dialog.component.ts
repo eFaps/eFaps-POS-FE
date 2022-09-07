@@ -80,7 +80,6 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    console.log(this.contactForm);
     const contact = {
       id: null,
       oid: null,

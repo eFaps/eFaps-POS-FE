@@ -3,7 +3,9 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import {
   InventoryService,
+  PosCategory,
   PosService,
+  Product,
   ProductService,
   WorkspaceService,
 } from "@efaps/pos-library";
@@ -20,14 +22,17 @@ export class ProductGridComponent
   extends AbstractProductSelector
   implements OnInit, OnDestroy
 {
-  categories = [];
-  shownTabs = [0];
-  selectedIndex;
+  categories: PosCategory[] = [];
+  selectedIndex = 0;
   currentCurrency: string;
   //size = 'small';
   //size = 'medium' | big;
   size = "large";
   showPrices = true;
+
+  currentCategory: PosCategory;
+  products: Product[] = [];
+
   private subscription$ = new Subscription();
 
   constructor(
@@ -50,7 +55,9 @@ export class ProductGridComponent
     super.ngOnInit();
     this.subscription$.add(
       this.productService.getPosCategories().subscribe({
-        next: (_categories) => (this.categories = _categories),
+        next: (_categories) => {
+          this.categories = _categories;
+        },
       })
     );
 
@@ -84,9 +91,17 @@ export class ProductGridComponent
     this.subscription$.unsubscribe();
   }
 
-  tabChanged(_tabChangeEvent: MatTabChangeEvent): void {
-    if (!this.shownTabs.includes(_tabChangeEvent.index)) {
-      this.shownTabs.push(_tabChangeEvent.index);
+  tabChanged(event: MatTabChangeEvent): void {
+    this.currentCategory = this.categories[event.index];
+    this.products = this.categories[event.index].products;
+    event.tab.isActive;
+  }
+
+  onChildCategorySelected(childCategory: PosCategory) {
+    if (childCategory == null) {
+      this.products = this.currentCategory.products;
+    } else {
+      this.products = [];
     }
   }
 }

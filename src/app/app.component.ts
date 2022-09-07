@@ -106,15 +106,13 @@ export class AppComponent implements OnInit, AfterViewChecked {
       next: (event) => {
         if ("login" == event) {
           this.userService.current().subscribe({
-            next: user => this.userInfo = user
-          })
+            next: (user) => (this.userInfo = user),
+          });
         } else {
-          this.userInfo = null
+          this.userInfo = null;
         }
-      }
-    }
-    )
-    
+      },
+    });
   }
 
   ngAfterViewChecked() {

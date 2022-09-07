@@ -22,7 +22,7 @@ export abstract class AbstractProductSelector implements OnInit {
 
   showInventory = false;
   scanning: boolean = false;
-  inventory: InventoryEntry[] = [];
+  _inventory: InventoryEntry[] = [];
 
   constructor(
     protected workspaceService: WorkspaceService,
@@ -88,5 +88,13 @@ export abstract class AbstractProductSelector implements OnInit {
 
   hasStock(product: Product): boolean {
     return this.stock(product) > 0;
+  }
+
+  get inventory(): InventoryEntry[] {
+    return this._inventory;
+  }
+
+  set inventory(inventory: InventoryEntry[]) {
+    this._inventory = inventory;
   }
 }

@@ -1,21 +1,15 @@
 <mat-tab-group appSameHeight="mat-card-image" (selectedTabChange)="tabChanged($event)" [selectedIndex]="selectedIndex">
   <mat-tab *ngFor="let category of categories; let i = index" label="{{categories[i].name}}">
-    <div class="pos-productgrid" [ngClass]="size">
-      <mat-card class="pos-card" (click)="select(product)" *ngFor="let product of category.products">
-        <mat-card-header>
-          <mat-card-title>{{product.sku}}</mat-card-title>
-        </mat-card-header>
-        <div class="pos-card-image" [matBadge]="stock(product)" [matBadgeHidden]="!showInventory || !isStockable(product)"
-             [matBadgeColor]="hasStock(product) ? 'primary' : 'warn'">
-          <img *ngIf="shownTabs.includes(i)" mat-card-image [src]="product.imageOid | secure" alt="{{product.description}}">
-          <div class="pos-card-price" *ngIf="showPrices">
-            {{ product.crossPrice | posCurrency:currentCurrency}}
-          </div>
-        </div>
-        <mat-card-content>
-          {{product.description}}
-        </mat-card-content>
-      </mat-card>
-    </div>
+    <ng-template matTabContent>
+      <ng-container *ngIf="category.categories.length">
+        <app-grid-element [categories]="category.categories" (categorySelected)="onChildCategorySelected($event)"
+          [currency]="currentCurrency" [showInventory]="showInventory" [size]="size" [showPrices]="showPrices"
+          [inventory]="inventory">
+        </app-grid-element>
+      </ng-container>
+      <app-products-element [products]="products" (stock)="stock(product)" [currency]="currentCurrency"
+        [showInventory]="showInventory" [size]="size" [showPrices]="showPrices" [inventory]="inventory">
+      </app-products-element>
+    </ng-template>
   </mat-tab>
 </mat-tab-group>

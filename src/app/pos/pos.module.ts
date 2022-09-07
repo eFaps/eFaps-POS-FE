@@ -27,6 +27,8 @@ import { ProductListComponent } from "./product-list/product-list.component";
 import { RemarkDialogComponent } from "./remark-dialog/remark-dialog.component";
 import { TicketComponent } from "./ticket/ticket.component";
 import { TotalsComponent } from "./totals/totals.component";
+import { GridElementComponent } from "./product-grid/grid-element/grid-element.component";
+import { ProductsElementComponent } from "./product-grid/products-element/products-element.component";
 
 @NgModule({
   imports: [
@@ -59,6 +61,8 @@ import { TotalsComponent } from "./totals/totals.component";
     TotalsComponent,
     CategorySelectComponent,
     RemarkDialogComponent,
+    GridElementComponent,
+    ProductsElementComponent,
   ],
 })
 export class PosModule {}
