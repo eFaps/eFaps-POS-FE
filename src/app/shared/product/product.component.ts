@@ -4,6 +4,7 @@ import {
   InventoryEntry,
   InventoryService,
   Product,
+  Product2Category,
   ProductRelation,
   ProductService,
   RelationEntry,
@@ -42,7 +43,7 @@ export class ProductComponent implements OnInit {
     this.productService.getProduct(this.data.oid).subscribe((product) => {
       this.product = product;
       this.isStockable = ProductService.isStockable(product);
-      this.evalCategories(product.categoryOids);
+      this.evalCategories(product.categories);
       this.loading = false;
       this.evalRelations(product.relations);
       this.evalInventory(product);
@@ -62,11 +63,13 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  private evalCategories(_categoryOids: string[]) {
-    for (const oid of _categoryOids) {
-      this.productService.getCategory(oid).subscribe((_category) => {
-        this.categories.push(_category.name);
-      });
+  private evalCategories(categories: Product2Category[]) {
+    for (const prod2cat of categories) {
+      this.productService
+        .getCategory(prod2cat.categoryOid)
+        .subscribe((category) => {
+          this.categories.push(category.name);
+        });
     }
   }
 
