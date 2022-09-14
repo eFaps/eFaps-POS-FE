@@ -45,7 +45,6 @@ export class PosComponent implements OnInit, OnDestroy {
   @LocalStorage() posLayouts: any = {};
   numPad = false;
   @LocalStorage() posNumPad: any = {};
-  multiplier = 1;
   multiplierLabel = "";
   @ViewChild(CommandsComponent, { static: true }) cmdComp;
   @ViewChild(ProductGridComponent) productGrid;
@@ -192,7 +191,7 @@ export class PosComponent implements OnInit, OnDestroy {
         this.multiplierLabel = "" + this.multiplierLabel + _number;
         break;
     }
-    this.multiplier = Number(this.multiplierLabel);
+    this.posService.setMultiplier(Number(this.multiplierLabel))
   }
 
   afterSelection() {
@@ -203,7 +202,7 @@ export class PosComponent implements OnInit, OnDestroy {
   }
 
   resetMultiplier() {
-    this.multiplier = 0;
+    this.posService.setMultiplier(Number(0))
     this.multiplierLabel = "";
   }
 

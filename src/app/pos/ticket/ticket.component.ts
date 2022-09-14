@@ -19,7 +19,7 @@ export class TicketComponent implements OnInit {
   ];
   dataSource = new MatTableDataSource<Item>();
   currentCurrency = "";
-  @Input() multiplier: number;
+  multiplier = 0;
   @Input() isBarcode: boolean = false;
   @Output() multiplierClick = new EventEmitter<any>();
 
@@ -32,6 +32,9 @@ export class TicketComponent implements OnInit {
     this.posService.currentCurrency.subscribe(
       (_data) => (this.currentCurrency = _data)
     );
+    this.posService.multiplier.subscribe({
+      next: (multiplier) => this.multiplier = multiplier
+    }) 
   }
 
   add(item: Item) {
