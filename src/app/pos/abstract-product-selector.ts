@@ -37,8 +37,8 @@ export abstract class AbstractProductSelector implements OnInit {
       (_ticket) => (this.ticket = _ticket)
     );
     this.posService.multiplier.subscribe({
-      next: (multiplier) => this.multiplier = multiplier
-    })
+      next: (multiplier) => (this.multiplier = multiplier),
+    });
     this.showInventory = this.workspaceService.showInventory();
   }
 

@@ -191,7 +191,7 @@ export class PosComponent implements OnInit, OnDestroy {
         this.multiplierLabel = "" + this.multiplierLabel + _number;
         break;
     }
-    this.posService.setMultiplier(Number(this.multiplierLabel))
+    this.posService.setMultiplier(Number(this.multiplierLabel));
   }
 
   afterSelection() {
@@ -202,7 +202,7 @@ export class PosComponent implements OnInit, OnDestroy {
   }
 
   resetMultiplier() {
-    this.posService.setMultiplier(Number(0))
+    this.posService.setMultiplier(Number(0));
     this.multiplierLabel = "";
   }
 

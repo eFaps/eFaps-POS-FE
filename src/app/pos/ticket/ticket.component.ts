@@ -33,8 +33,8 @@ export class TicketComponent implements OnInit {
       (_data) => (this.currentCurrency = _data)
     );
     this.posService.multiplier.subscribe({
-      next: (multiplier) => this.multiplier = multiplier
-    }) 
+      next: (multiplier) => (this.multiplier = multiplier),
+    });
   }
 
   add(item: Item) {

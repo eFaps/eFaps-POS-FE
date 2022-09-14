@@ -26,6 +26,9 @@ class PosServiceStub {
   currentTicket = new Observable((observer) => {
     observer.next({});
   });
+  multiplier = new Observable((observer) => {
+    observer.next({});
+  });
 }
 class ProductServiceStub {}
 class WorkspaceServiceStub {

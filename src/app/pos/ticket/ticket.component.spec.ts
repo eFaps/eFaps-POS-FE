@@ -19,6 +19,9 @@ class PosServiceStub {
   currentCurrency = new Observable((observer) => {
     observer.next("");
   });
+  multiplier = new Observable((observer) => {
+    observer.next({});
+  });
 }
 
 describe("TicketComponent", () => {

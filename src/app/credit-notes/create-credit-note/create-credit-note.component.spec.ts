@@ -11,8 +11,10 @@ import {
   PosConfigToken,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { MockDirective, MockInstance } from "ng-mocks";
+import { Mock, MockComponent, MockDirective, MockInstance } from "ng-mocks";
 import { Observable } from "rxjs";
+import { DocumentComponent } from "../../shared/document/document.component";
+import { SharedModule } from "../../shared/shared.module";
 
 import { CreateCreditNoteComponent } from "./create-credit-note.component";
 
@@ -41,7 +43,10 @@ describe("CreateCreditNoteComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, MatDialogModule, MatListModule],
-      declarations: [CreateCreditNoteComponent],
+      declarations: [
+        CreateCreditNoteComponent,
+        MockComponent(DocumentComponent),
+      ],
       providers: [
         { provide: ActivatedRoute, useClass: ActivatedRouteStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
