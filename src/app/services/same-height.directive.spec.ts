@@ -3,7 +3,7 @@ import { SameHeightDirective } from "./same-height.directive";
 
 class MockElementRef extends ElementRef {
   constructor() {
-    super({})
+    super({});
   }
 }
 

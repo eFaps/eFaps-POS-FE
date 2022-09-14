@@ -1,6 +1,11 @@
 import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { MatTabChangeEvent } from "@angular/material/tabs";
-import { Currency, InventoryEntry, PosCategory, Product } from "@efaps/pos-library";
+import {
+  Currency,
+  InventoryEntry,
+  PosCategory,
+  Product,
+} from "@efaps/pos-library";
 
 const placeHolder: PosCategory = {
   products: [],

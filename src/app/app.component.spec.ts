@@ -38,7 +38,7 @@ class HotkeysServiceStub {
   add() {}
 }
 describe("AppComponent", () => {
-  beforeEach(async() => {
+  beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         HotkeyModule,

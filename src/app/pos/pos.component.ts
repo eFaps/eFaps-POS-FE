@@ -119,9 +119,9 @@ export class PosComponent implements OnInit, OnDestroy {
     );
     this.posSyncService.afterProductSelected.subscribe({
       next: () => {
-        this.afterSelection()
-      }
-    })
+        this.afterSelection();
+      },
+    });
   }
 
   onPartList(partList: Product) {

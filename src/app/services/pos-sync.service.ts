@@ -1,17 +1,18 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class PosSyncService {
- 
-  private afterProductSelectedSource = new BehaviorSubject("afterProductSelected");
+  private afterProductSelectedSource = new BehaviorSubject(
+    "afterProductSelected"
+  );
   afterProductSelected = this.afterProductSelectedSource.asObservable();
-  
-  constructor() { }
+
+  constructor() {}
 
   productSelected() {
-    this.afterProductSelectedSource.next("")
+    this.afterProductSelectedSource.next("");
   }
 }

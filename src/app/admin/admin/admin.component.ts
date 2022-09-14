@@ -31,18 +31,20 @@ export class AdminComponent implements OnInit, OnDestroy {
     private fb: FormBuilder
   ) {
     this.barcodeOptionsForm = this.fb.group({
-      latency: '',
-      minLength: '',
-      endKeys: '',
-      validKey: '',
+      latency: "",
+      minLength: "",
+      endKeys: "",
+      validKey: "",
     });
   }
 
   get hasBarcodeScanner(): boolean {
-    return this.barcodeOptions?.latency != undefined || 
-    this.barcodeOptions?.minLength != undefined ||
-    this.barcodeOptions?.endKeys != undefined ||
-    this.barcodeOptions?.validKey != undefined;
+    return (
+      this.barcodeOptions?.latency != undefined ||
+      this.barcodeOptions?.minLength != undefined ||
+      this.barcodeOptions?.endKeys != undefined ||
+      this.barcodeOptions?.validKey != undefined
+    );
   }
 
   ngOnInit() {

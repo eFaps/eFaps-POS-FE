@@ -57,7 +57,7 @@ export class InventoryTableComponent implements OnInit {
   }
 
   applyFilter(event: KeyboardEvent) {
-    let filterValue = (event.target as HTMLInputElement).value
+    let filterValue = (event.target as HTMLInputElement).value;
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;

@@ -45,7 +45,7 @@ describe("AdminComponent", () => {
   let component: AdminComponent;
   let fixture: ComponentFixture<AdminComponent>;
 
-  beforeEach(async() => {
+  beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FlexLayoutModule, ReactiveFormsModule, MatSlideToggleModule],
       providers: [

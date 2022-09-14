@@ -46,7 +46,7 @@ import { SuccessDialogComponent } from "./success-dialog/success-dialog.componen
     PaymentRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   declarations: [
     AutoComponent,

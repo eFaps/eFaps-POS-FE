@@ -34,7 +34,7 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.idTypes =  EnumValues.getValues(IdentificationType);
+    this.idTypes = EnumValues.getValues(IdentificationType);
     this.contactForm = this.fb.group({
       idType: ["", [Validators.required]],
       idNumber: ["", [Validators.required]],

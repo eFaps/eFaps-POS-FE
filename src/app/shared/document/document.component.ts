@@ -93,11 +93,11 @@ export class DocumentComponent implements OnInit {
   }
 
   isPayable(): boolean {
-    return "payments" in this._document
+    return "payments" in this._document;
   }
 
   get payments(): Payment[] {
-    return this.isPayable() ? (<Payable>this._document).payments : []
+    return this.isPayable() ? (<Payable>this._document).payments : [];
   }
 
   loadCreditNote() {

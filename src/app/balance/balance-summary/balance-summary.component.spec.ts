@@ -31,8 +31,8 @@ describe("BalanceSummaryComponent", () => {
       netTotal: 0,
       crossTotal: 0,
       paymentInfos: [],
-      taxEntries: []
-    }
+      taxEntries: [],
+    };
     component.summary = {
       balance: {
         id: "",
@@ -40,13 +40,13 @@ describe("BalanceSummaryComponent", () => {
         number: "",
         startAt: new Date(),
         endAt: new Date(),
-        status: "OPEN"
+        status: "OPEN",
       },
       detail: detail,
       invoiceDetail: detail,
       receiptDetail: detail,
-      ticketDetail: detail
-    }
+      ticketDetail: detail,
+    };
     fixture.detectChanges();
   });
 

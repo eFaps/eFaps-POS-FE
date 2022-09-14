@@ -43,6 +43,7 @@ class PosServiceStub {
   currentTicket = new Observable((observer) => {
     observer.next({});
   });
+  setMultiplier(multiplier: number): void {}
 }
 class MsgServiceStub {
   currentOrder = new Observable((observer) => {

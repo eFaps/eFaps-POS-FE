@@ -18,7 +18,7 @@ export class TicketComponent implements OnInit {
     "modify",
   ];
   dataSource = new MatTableDataSource<Item>();
-  currentCurrency : Currency= Currency.PEN;
+  currentCurrency: Currency = Currency.PEN;
   multiplier = 0;
   @Input() isBarcode: boolean = false;
   @Output() multiplierClick = new EventEmitter<any>();
