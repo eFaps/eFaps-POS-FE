@@ -21,9 +21,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
 import { NgBusyModule } from "ng-busy";
 
-import { environment } from "../../environments/environment";
 import { ServicesModule } from "../services/services.module";
-import { TranslateFileLoader } from "../util/translate-file-loader";
 import { ConfirmDialogComponent } from "./confirm-dialog/confirm-dialog.component";
 import { ContactComponent } from "./contact/contact.component";
 import { DocumentComponent } from "./document/document.component";
@@ -35,6 +33,7 @@ import { PrintDisplayComponent } from "./print-display/print-display.component";
 import { ProductComponent } from "./product/product.component";
 import { TaxpayerQueryComponent } from "./taxpayer-query/taxpayer-query.component";
 import { TaxpayerResultComponent } from "./taxpayer-result/taxpayer-result.component";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 export function TranslateLoaderFactory(_httpClient: HttpClient) {
   return new TranslateHttpLoader(_httpClient, "./assets/i18n/");
@@ -63,6 +62,7 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     ServicesModule,
     TranslateModule,
     WebStorageModule,
+    MatProgressSpinnerModule,
   ],
   declarations: [
     ConfirmDialogComponent,
