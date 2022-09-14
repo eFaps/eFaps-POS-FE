@@ -15,6 +15,7 @@ import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.com
   styleUrls: ["./balance-summary.component.scss"],
 })
 export class BalanceSummaryComponent implements OnInit {
+  [x: string]: {};
   subscription$ = new Subscription();
   @Input()
   summary!: BalanceSummary;
