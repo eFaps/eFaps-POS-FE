@@ -24,7 +24,7 @@ class ConfigServiceStub {}
 class DocumentServiceStub {}
 class PosServiceStub {}
 class UtilsServiceStub {
-  getCurrencySymbol(som) {
+  getCurrencySymbol(som: any) {
     return "PEN";
   }
 }

@@ -45,8 +45,8 @@ describe("AdminComponent", () => {
   let component: AdminComponent;
   let fixture: ComponentFixture<AdminComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [FlexLayoutModule, ReactiveFormsModule, MatSlideToggleModule],
       providers: [
         { provide: AdminService, useClass: AdminServiceStub },
@@ -58,7 +58,7 @@ describe("AdminComponent", () => {
         MockDirective(NgBusyDirective),
       ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AdminComponent);

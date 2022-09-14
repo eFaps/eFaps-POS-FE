@@ -49,8 +49,8 @@ class MsgServiceStub {
     observer.next();
   });
   init() {}
-  publishStartEditOrder(_id) {}
-  publishFinishEditOrder(_id) {}
+  publishStartEditOrder(_id: any) {}
+  publishFinishEditOrder(_id: any) {}
 }
 class WorkspaceServiceStub {
   getPosLayout() {
@@ -64,7 +64,7 @@ class BarcodeScannerServiceStub {
 }
 
 class ProductServiceStub {
-  getProductsByType(type) {
+  getProductsByType(type: any) {
     return new Observable((observer) => {
       observer.next([]);
     });

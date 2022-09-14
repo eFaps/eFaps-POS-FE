@@ -27,7 +27,7 @@ class WorkspaceServiceStub {
   }
 }
 class TranslateServiceSub {
-  use(_lang) {}
+  use(_lang: string) {}
 }
 class SvgIconRegistryServiceStub {
   loadSvg(): Observable<any> {
@@ -38,8 +38,8 @@ class HotkeysServiceStub {
   add() {}
 }
 describe("AppComponent", () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         HotkeyModule,
         RouterTestingModule,
@@ -73,7 +73,7 @@ describe("AppComponent", () => {
         MockPipe(TranslatePipe),
       ],
     }).compileComponents();
-  }));
+  });
   it("should create the app", async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;

@@ -40,7 +40,7 @@ export class VirtKeyboardDirective implements OnDestroy {
 
   constructor(
     private _elementRef: ElementRef,
-    private _keyboardService: MatKeyboardService,
+    private _keyboardService?: MatKeyboardService,
     @Optional() @Self() private _control?: NgControl
   ) {}
 
@@ -51,7 +51,7 @@ export class VirtKeyboardDirective implements OnDestroy {
   @HostListener("focus", ["$event"])
   private _showKeyboard() {
     if (this.activateKeyboard) {
-      this._keyboardRef = this._keyboardService.open(this.appVirtKeyboard, {
+      this._keyboardRef = this._keyboardService!.open(this.appVirtKeyboard, {
         darkTheme: this.darkTheme,
         duration: this.duration,
       });

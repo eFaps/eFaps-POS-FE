@@ -31,15 +31,18 @@ export class AdminComponent implements OnInit, OnDestroy {
     private fb: FormBuilder
   ) {
     this.barcodeOptionsForm = this.fb.group({
-      latency: [""],
-      minLength: [""],
-      endKeys: [],
-      validKey: "",
+      latency: '',
+      minLength: '',
+      endKeys: '',
+      validKey: '',
     });
   }
 
   get hasBarcodeScanner(): boolean {
-    return this.barcodeOptions != null;
+    return this.barcodeOptions?.latency != undefined || 
+    this.barcodeOptions?.minLength != undefined ||
+    this.barcodeOptions?.endKeys != undefined ||
+    this.barcodeOptions?.validKey != undefined;
   }
 
   ngOnInit() {
@@ -56,7 +59,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       },
     });
 
-    if (this.barcodeOptions) {
+    if (this.hasBarcodeScanner) {
       this.barcodeOptionsForm.setValue(this.barcodeOptions);
     }
     this.barcodeOptionsForm.valueChanges.subscribe({
