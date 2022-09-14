@@ -12,7 +12,7 @@
         </mat-radio-group>
         <mat-button-toggle [value]="showContact" (change)="toggleContact()" [disabled]="!permitToggleContact">{{ showContact ? 'Desc.' : 'Cliente'}}</mat-button-toggle>
         <div class="balance" fxFlex="250px">
-          <span *ngIf="balance" i18n>Balance - {{ balance?.number }}</span>
+          <span *ngIf="balance" i18n>Balance - {{ balance.number }}</span>
         </div>
       </div>
       <app-document></app-document>

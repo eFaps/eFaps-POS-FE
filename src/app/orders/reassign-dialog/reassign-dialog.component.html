@@ -4,7 +4,7 @@
       <ng-container *ngFor="let order of orders; let i = index">
         <div class="orderbutton">
           <span>{{i + 1}}</span>
-          <button mat-fab (click)="selectOrderLeft(order)" [color]="(order.id == orderLeft?.id) ? 'primary' : 'basic'">
+          <button mat-fab (click)="selectOrderLeft(order)" [color]="(order.id == orderLeft.id) ? 'primary' : 'basic'">
             {{order.number}}
           </button>
         </div>
@@ -19,8 +19,8 @@
       <ng-container *ngFor="let order of orders; let i = index">
         <div class="orderbutton">
           <span>{{i + 1}}</span>
-          <button mat-fab (click)="selectOrderRight(order)" [color]="(order.id == orderRight?.id) ? 'primary' : 'basic'"
-            [disabled]="order.id == orderLeft?.id">
+          <button mat-fab (click)="selectOrderRight(order)" [color]="(order.id == orderRight.id) ? 'primary' : 'basic'"
+            [disabled]="order.id == orderLeft.id">
             {{order.number}}
           </button>
         </div>

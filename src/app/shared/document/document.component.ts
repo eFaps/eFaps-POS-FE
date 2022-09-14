@@ -22,6 +22,8 @@ import {
   UserService,
   WorkspaceService,
   Payment,
+  Currency,
+  DocStatus,
 } from "@efaps/pos-library";
 
 import { PrintDialogComponent } from "../print-dialog/print-dialog.component";
@@ -40,7 +42,7 @@ export class DocumentComponent implements OnInit {
     "crossPrice",
   ];
   dataSource = new MatTableDataSource<DocItem>();
-  _document!: Document;
+  _document: Document;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   private workspaceOid: string = "";
   @Input() permitPrint = false;
@@ -57,7 +59,22 @@ export class DocumentComponent implements OnInit {
     private printService: PrintService,
     private documentService: DocumentService,
     @Optional() private matDialogRef?: MatDialogRef<DocumentComponent>
-  ) {}
+  ) {
+    this._document = this.sourceDoc ={
+      type: "ORDER",
+      id: null,
+      oid: null,
+      number: null,
+      currency: Currency.PEN,
+      items: [],
+      status: DocStatus.OPEN,
+      netTotal: 0,
+      crossTotal: 0,
+      exchangeRate: 0,
+      taxes: [],
+      discount: null
+    }
+  }
 
   ngOnInit() {
     if (this.matDialogRef && !this._document) {

@@ -79,7 +79,6 @@
     <ng-container *ngFor="let creditNote of creditNotes">
       <span>Nota de Credito {{creditNote.number}}</span>
     </ng-container>
-    <span *ngIf="document?.type!=='CREDITNOTE'">{{sourceDoc?.type! | translate}}: {{sourceDoc?.number}}</span>
-    
+    <span *ngIf="document?.type!=='CREDITNOTE'">{{sourceDoc.type! | translate}}: {{sourceDoc.number}}</span>
   </div>
 </div>
