@@ -43,8 +43,8 @@ describe("ProductListComponent", () => {
   let component: ProductListComponent;
   let fixture: ComponentFixture<ProductListComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async( ) => {
+    await TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
         ReactiveFormsModule,
@@ -63,7 +63,7 @@ describe("ProductListComponent", () => {
       ],
       declarations: [MockComponent(ProductComponent), ProductListComponent],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductListComponent);

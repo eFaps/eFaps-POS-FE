@@ -39,8 +39,8 @@ describe("ProductgridComponent", () => {
   let component: ProductGridComponent;
   let fixture: ComponentFixture<ProductGridComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
         RouterTestingModule,
@@ -59,7 +59,7 @@ describe("ProductgridComponent", () => {
         MockPipe(SecurePipe),
       ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductGridComponent);

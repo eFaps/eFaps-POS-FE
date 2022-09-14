@@ -21,7 +21,7 @@
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "tsConfig": "tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
             "preserveSymlinks": true,
             "assets": [{
@@ -63,7 +63,7 @@
               "includePaths": [
                 "node_modules",
                 "src",
-                "src/scss",
+                "src/scss"
               ]
             },
             "scripts": [],
@@ -143,7 +143,7 @@
             "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
+            "tsConfig": "tsconfig.spec.json",
             "scripts": [
 
             ],

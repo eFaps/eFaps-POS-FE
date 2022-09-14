@@ -26,8 +26,8 @@ describe("BalancePaymentListComponent", () => {
   let component: BalancePaymentListComponent;
   let fixture: ComponentFixture<BalancePaymentListComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, MatListModule],
       providers: [
         { provide: DocumentService, useClass: DocumentServiceStub },
@@ -35,7 +35,7 @@ describe("BalancePaymentListComponent", () => {
       ],
       declarations: [BalancePaymentListComponent, MockPipe(TranslatePipe)],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BalancePaymentListComponent);
