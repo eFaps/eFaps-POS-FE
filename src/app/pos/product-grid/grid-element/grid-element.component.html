@@ -4,13 +4,13 @@
             <mat-icon *ngIf="category.name=='PLACEHOLDER'" class="example-tab-icon">turned_in_not</mat-icon>
             {{category?.name}}
         </ng-template>
-        <ng-container *ngIf="category?.categories.length">
+        <ng-container *ngIf="category?.categories?.length">
             <app-grid-element [categories]="category.categories" (categorySelected)="onChildCategorySelected($event)"
                 [currency]="currency" [showInventory]="showInventory" [size]="size" [showPrices]="showPrices"
                 [inventory]="inventory">
             </app-grid-element>
         </ng-container>
-        <app-products-element [products]="products" (stock)="stock(product)" [currency]="currency"
+        <app-products-element [products]="products" [currency]="currency"
             [showInventory]="showInventory" [size]="size" [showPrices]="showPrices" [inventory]="inventory" [remarkMode]="remarkMode">
         </app-products-element>
     </mat-tab>

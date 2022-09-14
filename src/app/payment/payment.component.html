@@ -5,8 +5,9 @@
       <app-contact *ngIf="showContact" (contactSelected)="selectContact($event)"></app-contact>
       <div fxLayout="row">
         <mat-radio-group class="docType-radio-group" [(ngModel)]="docType" fxFlex>
-          <mat-radio-button class="docType-radio-button" *ngFor="let type of docTypes; let idx = index" [value]="DocumentType[type]" (click)="setDocType(DocumentType[type])">
-            {{type | translate}}
+          <mat-radio-button class="docType-radio-button" *ngFor="let type of docTypes; let idx = index" [value]="DocumentType[type]" 
+          (click)="setDocType(type)">
+            {{type.toString() | translate}}
           </mat-radio-button>
         </mat-radio-group>
         <mat-button-toggle [value]="showContact" (change)="toggleContact()" [disabled]="!permitToggleContact">{{ showContact ? 'Desc.' : 'Cliente'}}</mat-button-toggle>

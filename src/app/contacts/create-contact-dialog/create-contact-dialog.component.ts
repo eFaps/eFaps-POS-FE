@@ -21,7 +21,7 @@ import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
 })
 export class CreateContactDialogComponent implements OnInit, OnDestroy {
   identificationType = IdentificationType;
-  idTypes: string[] = [];
+  idTypes: IdentificationType[] = [];
   contactForm: FormGroup;
   @LocalStorage() virtKeyboard = false;
   useEmail: boolean = false;
@@ -34,7 +34,7 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.idTypes = Object.keys(this.identificationType);
+    this.idTypes =  EnumValues.getValues(IdentificationType);
     this.contactForm = this.fb.group({
       idType: ["", [Validators.required]],
       idNumber: ["", [Validators.required]],

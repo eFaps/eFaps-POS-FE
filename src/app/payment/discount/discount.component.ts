@@ -121,7 +121,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
     }
   }
 
-  applyDiscount(discount: Discount) {
+  applyDiscount(discount: Discount | null) {
     const docWithDiscount = this.discountService.applyDiscount(
       this.document,
       discount

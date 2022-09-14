@@ -4,7 +4,7 @@
     <mat-form-field>
       <mat-select i18n-placeholder="@@documentIdType" placeholder="Document Type" formControlName="idType">
         <mat-option *ngFor="let idType of idTypes" [value]="idType">
-          {{ 'IDTYPE.' + identificationType[idType] | translate }}
+          {{ 'IDTYPE.' + idType | translate }}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -21,6 +21,6 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button type="button " [disabled]="contactForm.invalid" (click)="submit() ">{{ "CMD.CREATE" | translate }}</button>
-  <button mat-button type="button " mat-dialog-close>{{ "CMD.CANCEL" | translate }}</button>
+  <button mat-button type="button" [disabled]="contactForm.invalid" (click)="submit() ">{{ "CMD.CREATE" | translate }}</button>
+  <button mat-button type="button" mat-dialog-close>{{ "CMD.CANCEL" | translate }}</button>
 </mat-dialog-actions>

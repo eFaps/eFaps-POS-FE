@@ -18,8 +18,9 @@ export class PrintDisplayComponent implements OnInit {
   ngOnInit() {}
 
   @Input()
-  set printObservable(printObservable: Observable<any>) {
+  set printObservable(printObservable: Observable<any> | undefined) {
     const t = this;
+    if (printObservable) {
     printObservable.subscribe((_printResponses) => {
       if (_printResponses.length < 1) {
         t.loaded = true;
@@ -49,6 +50,8 @@ export class PrintDisplayComponent implements OnInit {
           }
         );
       }
+    
     });
+  }
   }
 }

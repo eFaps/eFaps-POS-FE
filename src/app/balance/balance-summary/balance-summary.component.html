@@ -1,8 +1,8 @@
 <div class="wrapper">
   <div class="header" *ngIf="hasBalance()">
     <div>
-      <p i18n="@@bs-number">Number: {{summary?.balance.number}}</p>
-      <p i18n="@@bs-started">Started: {{summary?.balance.startAt | date:'dd/MM/yy HH:mm' }}</p>
+      <p i18n="@@bs-number">Number: {{summary.balance.number}}</p>
+      <p i18n="@@bs-started">Started: {{summary.balance.startAt | date:'dd/MM/yy HH:mm' }}</p>
     </div>
     <div>
       <button mat-button (click)="print()" *ngIf="printer">
@@ -10,19 +10,19 @@
       </button>
     </div>
   </div>
-  <div class="section" *ngIf="summary?.invoiceDetail.documentCount > 0">
+  <div class="section" *ngIf="summary.invoiceDetail.documentCount > 0">
     <p i18n="@@bs-invoices">Invoices</p>
     <app-balance-summary-section [detail]="summary.invoiceDetail"></app-balance-summary-section>
   </div>
-  <div class="section" *ngIf="summary?.receiptDetail.documentCount > 0">
+  <div class="section" *ngIf="summary.receiptDetail.documentCount > 0">
     <p i18n="@@bs-receipts">Receipts</p>
     <app-balance-summary-section [detail]="summary.receiptDetail"></app-balance-summary-section>
   </div>
-  <div class="section" *ngIf="summary?.ticketDetail.documentCount > 0">
+  <div class="section" *ngIf="summary.ticketDetail.documentCount > 0">
     <p i18n="@@bs-tickets">Tickets</p>
     <app-balance-summary-section [detail]="summary.ticketDetail"></app-balance-summary-section>
   </div>
-  <div class="section" *ngIf="summary?.detail.documentCount > 0">
+  <div class="section" *ngIf="summary.detail.documentCount > 0">
     <p i18n="@@bs-overall">Over all</p>
     <app-balance-summary-section [detail]="summary.detail"></app-balance-summary-section>
   </div>

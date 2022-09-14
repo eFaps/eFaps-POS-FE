@@ -56,9 +56,10 @@ export class InventoryTableComponent implements OnInit {
     return dataStr.indexOf(_filter) !== -1;
   }
 
-  applyFilter(_filterValue: string) {
-    _filterValue = _filterValue.trim();
-    _filterValue = _filterValue.toLowerCase();
-    this.dataSource.filter = _filterValue;
+  applyFilter(event: KeyboardEvent) {
+    let filterValue = (event.target as HTMLInputElement).value
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
   }
 }

@@ -23,7 +23,7 @@ import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.com
 })
 export class BalanceComponent implements OnInit, OnDestroy {
   currentBalance!: Balance;
-  payables: Payable[] = [];
+  payables: PayableHead[] = [];
   summary!: BalanceSummary;
   busy!: Subscription;
   subscription$ = new Subscription();

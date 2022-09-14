@@ -28,7 +28,7 @@
             {{endKey}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
-          <input [matChipInputFor]="chipList" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addEndKey($event)">
+          <input [matChipInputFor]="chipList" [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addEndKey($event)">
         </mat-chip-list>
       </mat-form-field>
       <mat-form-field>
