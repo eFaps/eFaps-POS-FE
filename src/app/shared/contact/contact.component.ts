@@ -32,8 +32,8 @@ export class ContactComponent implements OnInit {
     this.nameSearch = !this.nameSearch;
   }
 
-  displayFn(_contact?: Contact): string | undefined {
-    return _contact ? _contact.name : undefined;
+  displayFn(_contact?: Contact): string  {
+    return _contact ? _contact.name : "";
   }
 
   selectContact(_event: any) {

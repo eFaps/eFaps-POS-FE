@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import {
+  Currency,
   InventoryEntry,
   InventoryService,
   PosService,
@@ -19,7 +20,7 @@ export class ProductsElementComponent extends AbstractProductSelector {
   @Input()
   products: Product[] = [];
   @Input()
-  currency: String = "";
+  currency: Currency = Currency.PEN;
 
   //size = 'small';
   //size = 'medium' | big;

@@ -22,7 +22,7 @@ import {
 export class VirtKeyboardDirective implements OnDestroy {
   private _keyboardRef!: MatKeyboardRef<MatKeyboardComponent>;
 
-  @Input() appVirtKeyboard!: string;
+  @Input() appVirtKeyboard!: string | undefined;
 
   @Input() darkTheme: boolean = false;
 

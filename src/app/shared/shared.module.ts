@@ -34,7 +34,7 @@ import { ProductComponent } from "./product/product.component";
 import { TaxpayerQueryComponent } from "./taxpayer-query/taxpayer-query.component";
 import { TaxpayerResultComponent } from "./taxpayer-result/taxpayer-result.component";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-
+import {MatTooltipModule} from '@angular/material/tooltip'
 export function TranslateLoaderFactory(_httpClient: HttpClient) {
   return new TranslateHttpLoader(_httpClient, "./assets/i18n/");
 }
@@ -49,6 +49,7 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     MatDialogModule,
     MatFormFieldModule,
     MatGridListModule,
+    MatTooltipModule,
     MatIconModule,
     MatInputModule,
     MatKeyboardModule,

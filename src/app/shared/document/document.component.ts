@@ -18,8 +18,10 @@ import {
   DocumentService,
   PrintService,
   Roles,
+  Payable,
   UserService,
   WorkspaceService,
+  Payment,
 } from "@efaps/pos-library";
 
 import { PrintDialogComponent } from "../print-dialog/print-dialog.component";
@@ -88,6 +90,14 @@ export class DocumentComponent implements OnInit {
 
   get document(): Document {
     return this._document;
+  }
+
+  isPayable(): boolean {
+    return "payments" in this._document
+  }
+
+  get payments(): Payment[] {
+    return this.isPayable() ? (<Payable>this._document).payments : []
   }
 
   loadCreditNote() {

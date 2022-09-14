@@ -1,7 +1,7 @@
 <div fxLayout='row' fxLayoutGap="20px">
   <mat-spinner *ngIf="loading"></mat-spinner>
   <div>
-    <img [src]="product?.imageOid | secure" alt="{{product?.description}}">
+    <img [src]="product?.imageOid! | secure" alt="{{product?.description}}">
   </div>
   <div>
     <p>

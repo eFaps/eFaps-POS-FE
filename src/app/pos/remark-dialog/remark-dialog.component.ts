@@ -15,6 +15,7 @@ export class RemarkDialogComponent {
   indications: Indication[] = [];
   visible = true;
   removable = true;
+  selectable = true;
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 

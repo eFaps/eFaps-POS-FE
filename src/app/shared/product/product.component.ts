@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import {
+  Currency,
   InventoryEntry,
   InventoryService,
   Product,
@@ -17,8 +18,8 @@ import { PosService, WorkspaceService } from "@efaps/pos-library";
   styleUrls: ["./product.component.scss"],
 })
 export class ProductComponent implements OnInit {
-  product: Product | undefined;
-  currentCurrency: string | undefined;
+  product!: Product;
+  currentCurrency: Currency = Currency.PEN;
   categories: string[] = [];
   loading: boolean = true;
   showInventory: boolean = false;

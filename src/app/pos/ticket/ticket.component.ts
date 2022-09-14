@@ -1,4 +1,4 @@
-import { Item, PosService } from "@efaps/pos-library";
+import { Currency, Item, PosService } from "@efaps/pos-library";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTableDataSource } from "@angular/material/table";
@@ -18,7 +18,7 @@ export class TicketComponent implements OnInit {
     "modify",
   ];
   dataSource = new MatTableDataSource<Item>();
-  currentCurrency = "";
+  currentCurrency : Currency= Currency.PEN;
   multiplier = 0;
   @Input() isBarcode: boolean = false;
   @Output() multiplierClick = new EventEmitter<any>();

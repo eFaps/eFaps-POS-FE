@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { MatTabChangeEvent } from "@angular/material/tabs";
-import { InventoryEntry, PosCategory, Product } from "@efaps/pos-library";
+import { Currency, InventoryEntry, PosCategory, Product } from "@efaps/pos-library";
 
 const placeHolder: PosCategory = {
   products: [],
@@ -19,7 +19,8 @@ export class GridElementComponent implements OnInit {
 
   @Output() categorySelected = new EventEmitter<PosCategory>();
   @Input()
-  currency: String = "";
+  currency: Currency = Currency.PEN;
+  @Input() remarkMode = false;
   @Input() showInventory = false;
   @Input() size = "large";
   @Input() showPrices = true;

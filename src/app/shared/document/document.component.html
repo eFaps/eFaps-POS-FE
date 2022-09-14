@@ -1,5 +1,5 @@
 <div *ngIf="document" class="mat-typography">
-  <h3>{{this.document.type | translate}}: {{document.number}}</h3>
+  <h3>{{document.type! | translate}}: {{document.number}}</h3>
   <div class="pos-doc-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource" matSort matSortActive="index" matSortDirection="asc" multiTemplateDataRows>
       <ng-container matColumnDef="index">
@@ -38,9 +38,9 @@
   </div>
   <div class="footer">
     <div>
-      <ng-container *ngIf="document?.payments">
+      <ng-container *ngIf="isPayable()">
         <mat-list dense>
-          <mat-list-item *ngFor="let payment of document.payments">
+          <mat-list-item *ngFor="let payment of payments">
             <p matLine>
               <span class="paymentType">{{ payment.cardTypeId ? payment.cardLabel : ('PAYMENT.' + payment.type) | translate}}: </span>
               <span class="amount">{{payment.amount | number:'1.2-2'}}</span>
@@ -79,7 +79,7 @@
     <ng-container *ngFor="let creditNote of creditNotes">
       <span>Nota de Credito {{creditNote.number}}</span>
     </ng-container>
-    <span *ngIf="document?.type=='CREDITNOTE'">{{sourceDoc?.type | translate}}: {{sourceDoc?.number}}</span>
+    <span *ngIf="document?.type!=='CREDITNOTE'">{{sourceDoc?.type! | translate}}: {{sourceDoc?.number}}</span>
     
   </div>
 </div>
