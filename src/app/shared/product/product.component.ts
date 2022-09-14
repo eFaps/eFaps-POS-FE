@@ -17,12 +17,12 @@ import { PosService, WorkspaceService } from "@efaps/pos-library";
   styleUrls: ["./product.component.scss"],
 })
 export class ProductComponent implements OnInit {
-  product: Product;
-  currentCurrency: string;
+  product: Product | undefined;
+  currentCurrency: string | undefined;
   categories: string[] = [];
-  loading: boolean;
-  showInventory: boolean;
-  isStockable: boolean;
+  loading: boolean = true;
+  showInventory: boolean = false;
+  isStockable: boolean = false;
   inventory: InventoryEntry[] = [];
   relations: RelationEntry[] = [];
 
@@ -36,7 +36,6 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this.showInventory = this.workspaceService.showInventory();
-    this.loading = true;
     this.posService.currentCurrency.subscribe(
       (_data) => (this.currentCurrency = _data)
     );

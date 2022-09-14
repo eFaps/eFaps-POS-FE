@@ -22,13 +22,13 @@ import { SuccessDialogComponent } from "../success-dialog/success-dialog.compone
   styleUrls: ["./create-credit-note.component.scss"],
 })
 export class CreateCreditNoteComponent implements OnInit {
-  sourceDocument: Payable;
-  creditNote: CreditNote;
-  balance: Balance;
+  sourceDocument!: Payable;
+  creditNote!: CreditNote;
+  balance!: Balance;
   payments: Payment[] = [];
   PaymentType = PaymentType;
-  workspaceOid: string;
-  print: boolean;
+  workspaceOid!: string;
+  print: boolean = false;
 
   constructor(
     private router: Router,
@@ -77,7 +77,7 @@ export class CreateCreditNoteComponent implements OnInit {
       ...clone(this.sourceDocument),
       balanceOid: this.balance.oid ? this.balance.oid : this.balance.id,
       type: "CREDITNOTE",
-      sourceDocOid: null,
+      sourceDocOid: "",
       payments: [],
       id: null,
       oid: null,
@@ -92,7 +92,7 @@ export class CreateCreditNoteComponent implements OnInit {
   createCreditNote() {
     this.creditNote.sourceDocOid = this.sourceDocument.oid
       ? this.sourceDocument.oid
-      : this.sourceDocument.id;
+      : this.sourceDocument.id!;
     this.creditNote.payments = this.payments;
     this.documentService.createCreditNote(this.creditNote).subscribe({
       next: (doc) => {

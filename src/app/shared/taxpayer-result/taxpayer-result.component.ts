@@ -19,8 +19,8 @@ export class TaxpayerResultComponent implements OnInit, AfterViewInit {
   isLoadingResults = false;
   displayedColumns = ["id", "name", "warnings", "cmd"];
   dataSource: Taxpayer[] = [];
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  result: Page<Taxpayer>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  result!: Page<Taxpayer>;
 
   constructor(
     private dialogRef: MatDialogRef<TaxpayerResultComponent>,
@@ -46,7 +46,7 @@ export class TaxpayerResultComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.paginator.page.subscribe({
-      next: (pageEvent) => {
+      next: (pageEvent: { pageIndex: any; pageSize: any }) => {
         this.isLoadingResults = true;
         this.taxpayerService
           .findTaxpayers(this.getTerm(), {
@@ -70,6 +70,7 @@ export class TaxpayerResultComponent implements OnInit, AfterViewInit {
       const term = (<string>this.data).split(" ").join('" "');
       return `"${term}""`;
     }
+    return "";
   }
 
   select(item: Taxpayer) {

@@ -53,7 +53,6 @@ export abstract class AbstractSpotPicker implements OnInit {
         taxes: [],
         spot: spot,
         discount: null,
-        payableOid: null,
       };
       this.documentService.createOrder(order).subscribe((_order) => {
         this.posService.setOrder(_order);

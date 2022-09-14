@@ -5,6 +5,7 @@ import {
   BalanceService,
   BalanceSummary,
   DocumentService,
+  Payable,
   PayableHead,
   PrintService,
   WorkspaceService,
@@ -21,13 +22,13 @@ import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.com
   styleUrls: ["./balance.component.scss"],
 })
 export class BalanceComponent implements OnInit, OnDestroy {
-  currentBalance: Balance;
-  payables: PayableHead[] = [];
-  summary: BalanceSummary;
-  busy: Subscription;
+  currentBalance!: Balance;
+  payables: Payable[] = [];
+  summary!: BalanceSummary;
+  busy!: Subscription;
   subscription$ = new Subscription();
   private print = false;
-  private workspaceOid: string;
+  private workspaceOid!: string;
 
   constructor(
     private balanceService: BalanceService,
@@ -81,7 +82,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
       this.busy.unsubscribe();
     }
   }
-  credit;
+
   init() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: "300px",

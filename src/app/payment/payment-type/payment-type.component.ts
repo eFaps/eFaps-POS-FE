@@ -37,7 +37,7 @@ export class PaymentTypeComponent implements OnInit, OnDestroy {
     return 0;
   }
 
-  setIndex(data) {
+  setIndex(data: any) {
     this.selectedPayment[this.authService.getCurrentUsername()] = data;
     this.selectedPayment.save();
   }

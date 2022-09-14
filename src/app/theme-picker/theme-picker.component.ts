@@ -15,8 +15,8 @@ import { DocsSiteTheme, StyleManagerService } from "../services/index";
   encapsulation: ViewEncapsulation.None,
 })
 export class ThemePickerComponent {
-  @LocalStorage() currentTheme;
-  themes = [
+  @LocalStorage() currentTheme: DocsSiteTheme | undefined;
+  themes: DocsSiteTheme[] = [
     {
       primary: "#673AB7",
       accent: "#FFC107",
@@ -55,7 +55,7 @@ export class ThemePickerComponent {
     this.styleManager.setStyle("theme", `${theme.href}`);
   }
 
-  private _getCurrentThemeFromHref(href: string): DocsSiteTheme {
+  private _getCurrentThemeFromHref(href: string): DocsSiteTheme | undefined {
     return this.themes.find((theme) => theme.href === href);
   }
 }

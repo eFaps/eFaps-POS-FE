@@ -6,7 +6,7 @@ import { BehaviorSubject } from "rxjs";
 })
 export class KeypadService {
   block = false;
-  keyboardEvent: KeyboardEvent;
+  keyboardEvent: KeyboardEvent | null = null;
   regex = new RegExp("\\d");
   private currentSource = new BehaviorSubject<string>("");
   currentKey = this.currentSource.asObservable();

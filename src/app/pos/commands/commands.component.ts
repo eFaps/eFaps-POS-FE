@@ -16,7 +16,7 @@ import { OrderDialogComponent } from "../order-dialog/order-dialog.component";
   styleUrls: ["./commands.component.scss"],
 })
 export class CommandsComponent implements OnInit {
-  currentOrder: Order;
+  currentOrder: Order | undefined;
   sticky = false;
   constructor(
     private router: Router,
@@ -44,9 +44,11 @@ export class CommandsComponent implements OnInit {
   }
 
   updateOrder() {
-    this.posService.updateOrder(this.currentOrder).subscribe((_order) => {
-      this.onUpdate(_order);
-    });
+    if (this.currentOrder) {
+      this.posService.updateOrder(this.currentOrder).subscribe((_order) => {
+        this.onUpdate(_order);
+      });
+    }
   }
 
   onUpdate(_order: Order) {

@@ -1,5 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
 import {
+  FormGroup,
   UntypedFormBuilder,
   UntypedFormGroup,
   Validators,
@@ -22,12 +23,12 @@ import { Subscription } from "rxjs";
   styleUrls: ["./discount.component.scss"],
 })
 export class DiscountComponent implements OnInit, OnDestroy {
-  private document: Order;
+  private document!: Order;
   private subscriptions$ = new Subscription();
-  amountForm: UntypedFormGroup;
-  percentForm: UntypedFormGroup;
+  amountForm: FormGroup;
+  percentForm: FormGroup;
   _discounts: Discount[] = [];
-  currency: string;
+  currency!: string;
 
   constructor(
     public dialogRef: MatDialogRef<DiscountComponent>,
@@ -37,16 +38,16 @@ export class DiscountComponent implements OnInit, OnDestroy {
     private discountService: DiscountService,
     private utilsService: UtilsService,
     private fb: UntypedFormBuilder
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.amountForm = this.fb.group({
       amount: ["0.00", [Validators.min(0), Validators.required]],
     });
     this.percentForm = this.fb.group({
       percent: ["0", [Validators.min(0), Validators.required]],
     });
+  }
 
+  ngOnInit() {
     this.subscriptions$.add(
       this.workspaceService.currentWorkspace.subscribe((ws) => {
         this._discounts = ws.discounts;
@@ -98,25 +99,25 @@ export class DiscountComponent implements OnInit, OnDestroy {
 
   applyPercentAmount() {
     if (this.percentForm.valid) {
-      const percent = Number(this.percentForm.get("percent").value);
+      const percent = Number(this.percentForm.get("percent")!.value);
       const discount = this._discounts.find(
         (discount) =>
           discount.type == DiscountType.PERCENT &&
           (!discount.value || discount.value <= 0)
       );
-      this.applyDiscount({ ...discount, value: percent });
+      this.applyDiscount({ ...discount!, value: percent });
     }
   }
 
   applyManualAmount() {
     if (this.amountForm.valid) {
-      const amount = Number(this.amountForm.get("amount").value);
+      const amount = Number(this.amountForm.get("amount")!.value);
       const discount = this._discounts.find(
         (discount) =>
           discount.type == DiscountType.AMOUNT &&
           (!discount.value || discount.value <= 0)
       );
-      this.applyDiscount({ ...discount, value: amount });
+      this.applyDiscount({ ...discount!, value: amount });
     }
   }
 

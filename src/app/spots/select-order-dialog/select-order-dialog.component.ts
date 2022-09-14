@@ -16,11 +16,11 @@ export class SelectOrderDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.orders = this.data.sort((o1, o2) => {
-      if (o1.number < o2.number) {
+    this.orders = this.data.sort((o1: Order, o2: Order) => {
+      if (o1.number! < o2.number!) {
         return -1;
       }
-      if (o1.number > o2.number) {
+      if (o1.number! > o2.number!) {
         return 1;
       }
       return 0;

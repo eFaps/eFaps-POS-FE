@@ -32,7 +32,7 @@ export class BaseSpotPickerComponent
     super(router, posService, documentService, dialog);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.spotService.getSpots().subscribe((_spots) => {
       this.spots = _spots;
     });

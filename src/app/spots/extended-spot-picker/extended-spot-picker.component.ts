@@ -9,6 +9,7 @@ import {
   DocumentService,
   Floor,
   ImageService,
+  Order,
   PosService,
   Spot,
   SpotConfig,
@@ -29,7 +30,7 @@ export class ExtendedSpotPickerComponent
   extends AbstractSpotPicker
   implements OnInit
 {
-  spotsLayout: SpotsLayout;
+  spotsLayout: SpotsLayout | undefined;
   floors: Floor[] = [];
   editMode = false;
   splitMode = false;
@@ -49,7 +50,7 @@ export class ExtendedSpotPickerComponent
     super(router, posService, documentService, dialog);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.spotService.getLayout().subscribe({
       next: (layout) => {
         this.spotsLayout = layout;
@@ -80,7 +81,7 @@ export class ExtendedSpotPickerComponent
     this.splitMode = !this.splitMode;
   }
 
-  selectSpot(spot: Spot) {
+  override selectSpot(spot: Spot) {
     if (this.splitMode) {
       if (spot.orders && spot.orders.length > 0) {
         const dialogRef = this.dialog.open(SplitDialogComponent, {
@@ -90,8 +91,8 @@ export class ExtendedSpotPickerComponent
           next: (quantity) => {
             this.splitMode = false;
             const orders2create = [];
-            for (let i = spot.orders.length; i < quantity; i++) {
-              const order = {
+            for (let i = spot.orders!.length; i < quantity; i++) {
+              const order: Order = {
                 id: null,
                 oid: null,
                 number: null,
@@ -104,7 +105,6 @@ export class ExtendedSpotPickerComponent
                 taxes: [],
                 spot: spot,
                 discount: null,
-                payableOid: null,
               };
               orders2create.push(this.documentService.createOrder(order));
             }

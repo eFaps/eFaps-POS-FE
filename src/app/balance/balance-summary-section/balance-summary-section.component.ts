@@ -7,8 +7,8 @@ import { PaymentInfo, SummaryDetail } from "@efaps/pos-library";
   styleUrls: ["./balance-summary-section.component.scss"],
 })
 export class BalanceSummarySectionComponent implements OnInit {
-  @Input() detail: SummaryDetail;
-  infos: PaymentInfo[];
+  @Input() detail!: SummaryDetail;
+  infos: PaymentInfo[] = [];
   constructor() {}
 
   ngOnInit() {}

@@ -39,8 +39,8 @@ export class SameHeightDirective implements AfterViewChecked {
     }
 
     // reset all children height
-    Array.from(children).forEach((x: HTMLElement) => {
-      x.style.height = "initial";
+    Array.from(children).forEach((x: Element) => {
+      (<HTMLElement>x).style.height = "initial";
     });
 
     // gather all height
@@ -55,7 +55,7 @@ export class SameHeightDirective implements AfterViewChecked {
 
     // apply max height
     Array.from(children).forEach(
-      (x: HTMLElement) => (x.style.height = `${maxHeight}px`)
+      (x: Element) => ((<HTMLElement>x).style.height = `${maxHeight}px`)
     );
   }
 }

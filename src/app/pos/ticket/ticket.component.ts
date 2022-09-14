@@ -76,6 +76,6 @@ export class TicketComponent implements OnInit {
   }
 
   showRemark(remark: string) {
-    this.snackBar.open(remark, null, { duration: 3000 });
+    this.snackBar.open(remark, undefined, { duration: 3000 });
   }
 }

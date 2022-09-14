@@ -20,15 +20,15 @@ import {
   selector: "input[appVirtKeyboard], textarea[appVirtKeyboard]",
 })
 export class VirtKeyboardDirective implements OnDestroy {
-  private _keyboardRef: MatKeyboardRef<MatKeyboardComponent>;
+  private _keyboardRef!: MatKeyboardRef<MatKeyboardComponent>;
 
-  @Input() appVirtKeyboard: string;
+  @Input() appVirtKeyboard!: string;
 
-  @Input() darkTheme: boolean;
+  @Input() darkTheme: boolean = false;
 
-  @Input() duration: number;
+  @Input() duration: number = 10;
 
-  @Input() activateKeyboard: boolean;
+  @Input() activateKeyboard: boolean = false;
 
   @Output() enterClick: EventEmitter<void> = new EventEmitter<void>();
 
@@ -59,7 +59,7 @@ export class VirtKeyboardDirective implements OnDestroy {
       this._keyboardRef.instance.setInputInstance(this._elementRef);
 
       if (this._control) {
-        this._keyboardRef.instance.attachControl(this._control.control);
+        this._keyboardRef.instance.attachControl(this._control.control!);
       }
 
       this._keyboardRef.instance.enterClick.subscribe(() =>

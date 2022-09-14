@@ -1,5 +1,10 @@
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
-import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
+import {
+  FormBuilder,
+  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormGroup,
+} from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -16,26 +21,28 @@ import { ProductComponent } from "../../shared/product/product.component";
 export class ProducttableComponent implements OnInit, OnDestroy {
   displayedColumns = ["sku", "description", "cmd"];
   dataSource = new MatTableDataSource();
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
   @LocalStorage() virtKeyboard = false;
-  filterForm: UntypedFormGroup;
+  filterForm: FormGroup;
 
   constructor(
     private productService: ProductService,
     private dialog: MatDialog,
-    private fb: UntypedFormBuilder
-  ) {}
+    fb: FormBuilder
+  ) {
+    this.filterForm = fb.group({
+      filter: [""],
+    });
+  }
 
   ngOnInit() {
     this.productService.getProducts().subscribe((data) => {
       this.dataSource.data = data;
       this.dataSource.sort = this.sort;
     });
-    this.filterForm = this.fb.group({
-      filter: [""],
-    });
+
     this.filterForm
-      .get("filter")
+      .get("filter")!
       .valueChanges.subscribe((value) => this.applyFilter(value));
   }
 

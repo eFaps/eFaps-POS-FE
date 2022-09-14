@@ -31,13 +31,13 @@ export class AppComponent implements OnInit, AfterViewChecked {
   Roles = Roles;
   title = "app";
   screenWidth: number;
-  workspace: string;
-  company: string;
+  workspace!: string;
+  company!: string | null;
   spots = false;
   inventory = false;
   allowPayment = false;
-  @LocalStorage() barcodeOptions: BarcodeOptions = null;
-  userInfo: User;
+  @LocalStorage() barcodeOptions: BarcodeOptions | null = null;
+  userInfo: User | null = null;
 
   constructor(
     public router: Router,

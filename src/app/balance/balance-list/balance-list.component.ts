@@ -14,7 +14,7 @@ import { BalanceSummaryDialogComponent } from "../balance-summary-dialog/balance
 export class BalanceListComponent implements OnInit, OnDestroy {
   displayedColumns = ["number", "user", "startAt", "endAt", "status", "cmd"];
   dataSource = new MatTableDataSource<Balance>();
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   private subscribtions$ = new Subscription();
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { PosService } from "@efaps/pos-library";
+import { Currency, PosService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-totals",
@@ -7,10 +7,10 @@ import { PosService } from "@efaps/pos-library";
   styleUrls: ["./totals.component.scss"],
 })
 export class TotalsComponent implements OnInit {
-  net: number;
-  taxesEntries: [string, number][];
-  cross: number;
-  currentCurrency: string;
+  net: number = 0;
+  taxesEntries: [string, number][] = [];
+  cross: number = 0;
+  currentCurrency: Currency = Currency.PEN;
 
   constructor(private posService: PosService) {}
 

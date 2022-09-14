@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
-import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -15,7 +15,7 @@ import { DocumentDialogComponent } from "../document-dialog/document-dialog.comp
   styleUrls: ["./document-list.component.scss"],
 })
 export class DocumentListComponent implements OnInit, OnDestroy {
-  searchForm: UntypedFormGroup;
+  searchForm: FormGroup;
   displayedColumns = [
     "type",
     "number",
@@ -26,19 +26,20 @@ export class DocumentListComponent implements OnInit, OnDestroy {
     "cmd",
   ];
   dataSource = new MatTableDataSource<PayableHead>();
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
   private subscription$ = new Subscription();
 
   constructor(
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private documentService: DocumentService,
     private dialog: MatDialog
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.searchForm = this.fb.group({
       term: [],
     });
+  }
+
+  ngOnInit() {
     this.subscription$.add(
       this.searchForm.valueChanges
         .pipe(debounceTime(500))

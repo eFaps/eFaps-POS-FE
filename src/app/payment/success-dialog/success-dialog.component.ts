@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
   styleUrls: ["./success-dialog.component.scss"],
 })
 export class SuccessDialogComponent implements OnInit {
-  printObservable: Observable<any> = null;
+  printObservable: Observable<any> | undefined = undefined;
 
   constructor(
     private printService: PrintService,

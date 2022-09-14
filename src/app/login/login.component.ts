@@ -6,6 +6,8 @@ import {
   ViewChild,
 } from "@angular/core";
 import {
+  FormBuilder,
+  FormGroup,
   UntypedFormBuilder,
   UntypedFormGroup,
   Validators,
@@ -34,11 +36,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
   companies: Company[] = [];
   users: User[] = [];
-  loginForm: UntypedFormGroup;
+  loginForm: FormGroup;
   loading = false;
   hiddenUser = true;
   @LocalStorage() virtKeyboard = false;
-  @ViewChild("pwd") pwdField: ElementRef;
+  @ViewChild("pwd") pwdField!: ElementRef;
 
   showCompanySelection = false;
 
@@ -48,13 +50,17 @@ export class LoginComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private authService: AuthService,
     private workspaceService: WorkspaceService,
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private translateService: TranslateService
-  ) {}
+  ) {
+    this.loginForm = this.fb.group({
+      userName: ["", Validators.required],
+      password: ["", Validators.required],
+    });
+  }
 
   ngOnInit() {
-    this.createForm();
     // reset login status
     this.authService.logout();
     this.workspaceService.logout();
@@ -85,13 +91,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         })
       );
     }
-  }
-
-  createForm() {
-    this.loginForm = this.fb.group({
-      userName: ["", Validators.required],
-      password: ["", Validators.required],
-    });
   }
 
   login() {

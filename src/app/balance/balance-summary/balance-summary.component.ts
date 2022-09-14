@@ -16,9 +16,9 @@ import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.com
 })
 export class BalanceSummaryComponent implements OnInit {
   subscription$ = new Subscription();
-  @Input() summary: BalanceSummary;
-  printer: boolean;
-  private workspaceOid: string;
+  @Input() summary!: BalanceSummary;
+  printer: boolean = false;
+  private workspaceOid!: string;
 
   constructor(
     private workspaceService: WorkspaceService,

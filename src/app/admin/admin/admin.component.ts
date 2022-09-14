@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatChipInputEvent } from "@angular/material/chips";
 import { LocalStorage } from "@efaps/ngx-store";
 import {
@@ -18,18 +18,25 @@ import { Subscription } from "rxjs";
   styleUrls: ["./admin.component.scss"],
 })
 export class AdminComponent implements OnInit, OnDestroy {
-  busy: Subscription;
-  versions: Versions;
+  busy!: Subscription;
+  versions!: Versions;
   lazyElements: Extension[] = [];
-  @LocalStorage() barcodeOptions: BarcodeOptions = null;
-  barcodeOptionsForm: UntypedFormGroup;
+  @LocalStorage() barcodeOptions: BarcodeOptions = {};
+  barcodeOptionsForm: FormGroup;
 
   constructor(
     private adminService: AdminService,
     private configService: ConfigService,
     private barcodeScannerService: BarcodeScannerService,
-    private fb: UntypedFormBuilder
-  ) {}
+    private fb: FormBuilder
+  ) {
+    this.barcodeOptionsForm = this.fb.group({
+      latency: [""],
+      minLength: [""],
+      endKeys: [],
+      validKey: "",
+    });
+  }
 
   get hasBarcodeScanner(): boolean {
     return this.barcodeOptions != null;
@@ -48,12 +55,7 @@ export class AdminComponent implements OnInit, OnDestroy {
           });
       },
     });
-    this.barcodeOptionsForm = this.fb.group({
-      latency: [""],
-      minLength: [""],
-      endKeys: [],
-      validKey: "",
-    });
+
     if (this.barcodeOptions) {
       this.barcodeOptionsForm.setValue(this.barcodeOptions);
     }
@@ -76,7 +78,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   toggleBarcodeScanner() {
     if (this.hasBarcodeScanner) {
-      this.barcodeOptions = null;
+      this.barcodeOptions = {};
     } else {
       this.barcodeOptions = this.barcodeScannerService.getDefaultOptions();
       this.barcodeOptionsForm.setValue(this.barcodeOptions);
@@ -84,11 +86,11 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   addEndKey(event: MatChipInputEvent): void {
-    const input = event.input;
+    const input = event.chipInput.inputElement;
     const value = event.value;
 
     if ((value || "").trim()) {
-      this.barcodeOptions.endKeys.push(value.trim());
+      this.barcodeOptions.endKeys?.push(value.trim());
     }
 
     if (input) {
@@ -97,10 +99,10 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   removeEndKey(endkey: string): void {
-    const index = this.barcodeOptions.endKeys.indexOf(endkey);
+    const index = this.barcodeOptions.endKeys?.indexOf(endkey);
 
-    if (index >= 0) {
-      this.barcodeOptions.endKeys.splice(index, 1);
+    if (index && index >= 0) {
+      this.barcodeOptions.endKeys?.splice(index, 1);
     }
   }
 }

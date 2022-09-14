@@ -37,18 +37,22 @@ import { ProductListComponent } from "./product-list/product-list.component";
 })
 export class PosComponent implements OnInit, OnDestroy {
   PosLayout = PosLayout;
-  ticket: Item[];
-  screenHeight: number;
-  screenWidth: number;
-  private orderId: string;
+  ticket: Item[] = [];
+  screenHeight: number = 0;
+  screenWidth: number = 0;
+  private orderId: string | null = null;
   currentLayout: PosLayout = PosLayout.GRID;
   @LocalStorage() posLayouts: any = {};
   numPad = false;
   @LocalStorage() posNumPad: any = {};
   multiplierLabel = "";
-  @ViewChild(CommandsComponent, { static: true }) cmdComp;
-  @ViewChild(ProductGridComponent) productGrid;
-  @ViewChild(ProductListComponent) productList;
+  @ViewChild(CommandsComponent, { static: true }) cmdComp!: CommandsComponent;
+  @ViewChild(ProductGridComponent) productGrid:
+    | ProductGridComponent
+    | undefined;
+  @ViewChild(ProductListComponent) productList:
+    | ProductListComponent
+    | undefined;
   remarkMode = false;
   private subscriptions = new Subscription();
   isBarcode = false;
@@ -79,7 +83,7 @@ export class PosComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.posService.currentOrder.subscribe((order) => {
         if (order && !this.orderId) {
-          this.msgService.publishStartEditOrder(order.id);
+          this.msgService.publishStartEditOrder(order.id!);
           this.orderId = order.id;
         }
       })
@@ -138,7 +142,7 @@ export class PosComponent implements OnInit, OnDestroy {
           if (products.length == 1) {
             if (this.productGrid) {
               this.productGrid.select(products[0]);
-            } else {
+            } else if (this.productList) {
               this.productList.isBarcode = false;
               this.productList.select(products[0]);
             }
@@ -162,7 +166,7 @@ export class PosComponent implements OnInit, OnDestroy {
   }
 
   @HostListener("window:resize", ["$event"])
-  onResize(event?) {
+  onResize(_event?: undefined) {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
     this.cmdComp.evalSticky();

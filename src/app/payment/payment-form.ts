@@ -1,5 +1,6 @@
 import { Input, OnDestroy, OnInit, Directive } from "@angular/core";
 import {
+  FormGroup,
   UntypedFormBuilder,
   UntypedFormGroup,
   Validators,
@@ -14,12 +15,12 @@ import { Subscription } from "rxjs";
 
 @Directive()
 export abstract class PaymentForm implements OnInit, OnDestroy {
-  public paymentForm: UntypedFormGroup;
-  protected payments: Payment[];
-  @Input() protected change: number;
+  public paymentForm: FormGroup;
+  protected payments: Payment[] = [];
+  @Input() protected change: number = 0;
   public currency: string;
   protected subscription$ = new Subscription();
-  protected document: Document;
+  protected document!: Document;
 
   constructor(
     protected paymentService: PaymentService,
@@ -27,12 +28,12 @@ export abstract class PaymentForm implements OnInit, OnDestroy {
     protected fb: UntypedFormBuilder
   ) {
     this.currency = utilsService.getCurrencySymbol("PEN");
-  }
-
-  ngOnInit() {
     this.paymentForm = this.fb.group({
       amount: ["0.00", Validators.min(0)],
     });
+  }
+
+  ngOnInit() {
     this.subscription$.add(
       this.paymentService.currentDocument.subscribe(
         (_doc) => (this.document = _doc)

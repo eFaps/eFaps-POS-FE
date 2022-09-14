@@ -36,22 +36,22 @@ import { SuccessDialogComponent } from "./success-dialog/success-dialog.componen
   styleUrls: ["./payment.component.scss"],
 })
 export class PaymentComponent implements OnInit, OnDestroy {
-  @ViewChild(MatTabGroup, { static: true }) tabGroup: MatTabGroup;
+  @ViewChild(MatTabGroup, { static: true }) tabGroup!: MatTabGroup;
   @ViewChild(DocumentComponent, { static: true })
-  documentComponent: DocumentComponent;
+  documentComponent!: DocumentComponent;
   @LocalStorage() selectedPaymentTypeItem: number = 0;
   DocumentType = DocumentType;
   PaymentType = PaymentType;
-  document: Document;
-  payments: Payment[];
+  document!: Document;
+  payments: Payment[] = [];
   total = 0;
   change = 0;
   docType: DocumentType = DocumentType.RECEIPT;
   docTypes: string[] = [];
-  busy: Subscription;
-  contact: Contact;
-  workspaceOid: string;
-  balance: Balance;
+  busy!: Subscription;
+  contact: Contact | null = null;
+  workspaceOid!: string;
+  balance!: Balance;
   showContact = false;
   permitToggleContact = true;
   private subscriptions$ = new Subscription();
@@ -192,17 +192,17 @@ export class PaymentComponent implements OnInit, OnDestroy {
     switch (this.docType) {
       case DocumentType.RECEIPT:
         this.busy = this.documentService
-          .createReceipt(this.document.id, payable)
+          .createReceipt(this.document.id!, <Receipt>payable)
           .subscribe(this.getObserver<Receipt>(DocumentType.RECEIPT));
         break;
       case DocumentType.INVOICE:
         this.busy = this.documentService
-          .createInvoice(this.document.id, payable)
+          .createInvoice(this.document.id!, <Invoice>payable)
           .subscribe(this.getObserver<Invoice>(DocumentType.INVOICE));
         break;
       case DocumentType.TICKET:
         this.busy = this.documentService
-          .createTicket(this.document.id, payable)
+          .createTicket(this.document.id!, <Ticket>payable)
           .subscribe(this.getObserver<Ticket>(DocumentType.TICKET));
         break;
     }
@@ -266,7 +266,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.showContact = !this.showContact;
   }
 
-  setDocType(_docTypeIdx) {
+  setDocType(_docTypeIdx: number) {
     if (DocumentType.INVOICE === _docTypeIdx) {
       this.showContact = true;
       this.permitToggleContact = false;

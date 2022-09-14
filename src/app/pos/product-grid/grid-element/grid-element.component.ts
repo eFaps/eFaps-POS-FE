@@ -2,6 +2,13 @@ import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import { InventoryEntry, PosCategory, Product } from "@efaps/pos-library";
 
+const placeHolder: PosCategory = {
+  products: [],
+  categories: [],
+  oid: "",
+  name: "PLACEHOLDER",
+};
+
 @Component({
   selector: "app-grid-element",
   templateUrl: "./grid-element.component.html",
@@ -19,7 +26,7 @@ export class GridElementComponent implements OnInit {
   @Input() inventory: InventoryEntry[] = [];
 
   selectedTabIndex = 0;
-  currentCategory: PosCategory;
+  currentCategory!: PosCategory;
   products: Product[] = [];
 
   constructor() {}
@@ -39,7 +46,7 @@ export class GridElementComponent implements OnInit {
 
   @Input()
   set categories(categories: PosCategory[]) {
-    this._categories = [null].concat(categories);
+    this._categories = [placeHolder].concat(categories);
     this.selectedTabIndex = 0;
   }
 

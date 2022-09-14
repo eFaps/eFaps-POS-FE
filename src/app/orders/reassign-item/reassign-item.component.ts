@@ -9,10 +9,10 @@ import { DocItem, Order } from "@efaps/pos-library";
 })
 export class ReassignItemComponent implements OnInit {
   private _position: "LEFT" | "RIGHT" = "LEFT";
-  private _order: Order;
+  private _order!: Order;
 
   dataSource = new MatTableDataSource<DocItem>();
-  displayedColumns = [];
+  displayedColumns: string[] = [];
   @Output() moveItem: EventEmitter<DocItem> = new EventEmitter<DocItem>();
 
   constructor() {}

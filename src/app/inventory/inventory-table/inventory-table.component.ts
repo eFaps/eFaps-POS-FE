@@ -14,9 +14,9 @@ import {
 })
 export class InventoryTableComponent implements OnInit {
   displayedColumns = ["quantity", "sku", "description"];
-  dataSource = new MatTableDataSource();
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @Input() warehouse: Warehouse;
+  dataSource = new MatTableDataSource<InventoryEntry>();
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @Input() warehouse!: Warehouse;
 
   constructor(private inventoryService: InventoryService) {}
 

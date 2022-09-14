@@ -15,8 +15,8 @@ import { RemarkDialogComponent } from "./remark-dialog/remark-dialog.component";
 
 @Directive()
 export abstract class AbstractProductSelector implements OnInit {
-  ticket: Item[];
-  multiplier: number;
+  ticket: Item[] = [];
+  multiplier: number = 1;
   @Input() remarkMode = false;
   @Output() selection = new EventEmitter<number>();
 
@@ -57,7 +57,7 @@ export abstract class AbstractProductSelector implements OnInit {
     }
   }
 
-  private selectProduct(product: Product, remark: string) {
+  private selectProduct(product: Product, remark: string | null) {
     const quantity = this.multiplier > 0 ? this.multiplier : 1;
     this.ticket.push({
       product: product,

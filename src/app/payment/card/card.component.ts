@@ -29,7 +29,7 @@ export class CardComponent extends PaymentForm {
     super(paymentService, utilsService, fb);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     super.ngOnInit();
     this.paymentForm = this.fb.group({
       amount: ["0.00", Validators.min(0)],

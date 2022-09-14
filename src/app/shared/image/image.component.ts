@@ -14,7 +14,7 @@ export class ImageComponent implements OnInit {
 
   ngOnInit() {
     const t = this;
-    this.data.subscribe((image) => {
+    this.data.subscribe((image: Blob) => {
       const reader = new FileReader();
       reader.addEventListener(
         "load",

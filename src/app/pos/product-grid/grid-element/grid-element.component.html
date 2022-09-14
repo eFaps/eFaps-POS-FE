@@ -1,7 +1,7 @@
 <mat-tab-group (selectedTabChange)="tabChanged($event)" [selectedIndex]="selectedTabIndex">
     <mat-tab *ngFor="let category of categories; let i = index">
         <ng-template mat-tab-label>
-            <mat-icon *ngIf="!category?.name" class="example-tab-icon">turned_in_not</mat-icon>
+            <mat-icon *ngIf="category.name=='PLACEHOLDER'" class="example-tab-icon">turned_in_not</mat-icon>
             {{category?.name}}
         </ng-template>
         <ng-container *ngIf="category?.categories.length">

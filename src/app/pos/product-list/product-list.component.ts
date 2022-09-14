@@ -1,5 +1,9 @@
 import { Component, OnDestroy, OnInit, ViewChild, Input } from "@angular/core";
-import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
+import {
+  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormGroup,
+} from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -28,12 +32,12 @@ export class ProductListComponent
   extends AbstractProductSelector
   implements OnInit, OnDestroy
 {
-  filterForm: UntypedFormGroup;
+  filterForm: FormGroup;
   formCtrlSub: Subscription;
   dataSource = new MatTableDataSource();
 
   @Input() isBarcode: boolean = false;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   constructor(
     workspaceService: WorkspaceService,
@@ -52,16 +56,16 @@ export class ProductListComponent
       inventoryService,
       dialog
     );
-  }
-
-  ngOnInit() {
-    super.ngOnInit();
     this.filterForm = this.fb.group({
       filter: [],
     });
     this.formCtrlSub = this.filterForm.valueChanges
       .pipe(debounceTime(500))
       .subscribe((newValue) => this.applyFilter(newValue.filter));
+  }
+
+  override ngOnInit() {
+    super.ngOnInit();
 
     if (this.showInventory) {
       this.inventoryService
@@ -107,7 +111,7 @@ export class ProductListComponent
     this.keypadService.deactivate();
   }
 
-  select(product: Product) {
+  override select(product: Product) {
     if (!this.isBarcode) {
       super.select(product);
     }

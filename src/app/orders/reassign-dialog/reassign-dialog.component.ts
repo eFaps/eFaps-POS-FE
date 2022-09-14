@@ -17,13 +17,13 @@ import { ReassignItemComponent } from "../reassign-item/reassign-item.component"
 })
 export class ReassignDialogComponent implements OnInit, OnDestroy {
   orders: Order[] = [];
-  orderLeft: Order;
-  orderRight: Order;
+  orderLeft!: Order;
+  orderRight!: Order;
 
   @ViewChild("left")
-  private left: ReassignItemComponent;
+  private left!: ReassignItemComponent;
   @ViewChild("right")
-  private right: ReassignItemComponent;
+  private right!: ReassignItemComponent;
 
   private subscription = new Subscription();
 
@@ -43,11 +43,11 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
               .filter((item) => {
                 return item.spot && item.spot.id == this.data.spot.id;
               })
-              .sort((o1, o2) => {
-                if (o1.number < o2.number) {
+              .sort((o1: Order, o2: Order) => {
+                if (o1.number! < o2.number!) {
                   return -1;
                 }
-                if (o1.number > o2.number) {
+                if (o1.number! > o2.number!) {
                   return 1;
                 }
                 return 0;

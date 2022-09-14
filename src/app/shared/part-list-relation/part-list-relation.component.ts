@@ -7,8 +7,8 @@ import { ProductService, Product, ProductRelation } from "@efaps/pos-library";
   styleUrls: ["./part-list-relation.component.scss"],
 })
 export class PartListRelationComponent implements OnInit {
-  _productRelation: ProductRelation;
-  product: Product;
+  _productRelation!: ProductRelation;
+  product: Product | undefined;
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {}

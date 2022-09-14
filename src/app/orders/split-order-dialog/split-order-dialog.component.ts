@@ -28,7 +28,7 @@ export class SplitOrderDialogComponent implements OnInit {
     "crossPrice",
   ];
   originOrder: Order;
-  targetOrder: Order;
+  targetOrder!: Order;
   saveable = false;
 
   constructor(
@@ -40,8 +40,8 @@ export class SplitOrderDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.originDataSource.data = this.data.items.sort((a, b) =>
-      a.index < b.index ? -1 : 1
+    this.originDataSource.data = this.data.items.sort(
+      (a: DocItem, b: DocItem) => (a.index < b.index ? -1 : 1)
     );
     this.targetOrder = {
       type: "ORDER",
@@ -56,7 +56,6 @@ export class SplitOrderDialogComponent implements OnInit {
       crossTotal: 0,
       taxes: [],
       discount: null,
-      payableOid: null,
     };
   }
 

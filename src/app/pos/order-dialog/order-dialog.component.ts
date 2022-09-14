@@ -14,9 +14,9 @@ import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.com
   styleUrls: ["./order-dialog.component.scss"],
 })
 export class OrderDialogComponent implements OnInit {
-  allowPayment: boolean;
-  allowPrintJobs: boolean;
-  workspaceOid: string;
+  allowPayment: boolean = false;
+  allowPrintJobs: boolean = false;
+  workspaceOid!: string;
 
   constructor(
     private workspaceService: WorkspaceService,

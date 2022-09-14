@@ -33,7 +33,7 @@ export class AutoComponent extends PaymentForm {
     super(paymentService, utilsService, fb);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     super.ngOnInit();
     this.paymentForm = this.fb.group({
       amount: ["0.00", Validators.min(0)],
@@ -59,7 +59,7 @@ export class AutoComponent extends PaymentForm {
     };
   }
 
-  addPayment() {
+  override addPayment() {
     const amount = this.utilsService.parse(this.paymentForm.value.amount);
     if (amount > 0 && this.paymentForm.value.collectorFrmCtrl) {
       this.buttonTimeout = true;
@@ -70,7 +70,7 @@ export class AutoComponent extends PaymentForm {
           amount,
           Currency.PEN,
           {},
-          this.document.id
+          this.document.id!
         )
         .subscribe({
           next: (startCollectResp) =>
@@ -79,7 +79,7 @@ export class AutoComponent extends PaymentForm {
             console.log(err);
           },
         });
-      setTimeout((_) => {
+      setTimeout(() => {
         this.buttonTimeout = false;
       }, 3000);
     }
@@ -95,6 +95,7 @@ export class AutoComponent extends PaymentForm {
               break;
             case "CANCELED":
               this.collecting = false;
+              break;
             case "PENDING":
             default:
           }
@@ -108,8 +109,8 @@ export class AutoComponent extends PaymentForm {
       this.collecting = false;
       this.collectService.getCollectOrder(collectOrderId).subscribe({
         next: (order) => {
-          this.paymentForm.patchValue({ amount: order.collected.toString() });
-          this.mappingKey = order.collectorKey;
+          this.paymentForm.patchValue({ amount: order.collected!.toString() });
+          this.mappingKey = order.collectorKey!;
           super.addPayment();
           this.mappingKey = "";
         },

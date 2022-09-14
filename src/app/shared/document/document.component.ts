@@ -38,14 +38,14 @@ export class DocumentComponent implements OnInit {
     "crossPrice",
   ];
   dataSource = new MatTableDataSource<DocItem>();
-  _document: Document;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  private workspaceOid: string;
+  _document!: Document;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  private workspaceOid: string = "";
   @Input() permitPrint = false;
   hasCopyPrintCmd = false;
   @Input() permitCreditNote = false;
   creditNotes: CreditNote[] = [];
-  sourceDoc: Document;
+  sourceDoc!: Document;
 
   constructor(
     private router: Router,
@@ -94,7 +94,7 @@ export class DocumentComponent implements OnInit {
     if (this._document.type != "CREDITNOTE") {
       this.documentService
         .getCreditNotes4SourceDocument(
-          this._document.oid ? this._document.oid : this._document.id
+          this._document.oid ? this._document.oid : this._document.id!
         )
         .subscribe({
           next: (docs) => {
@@ -110,7 +110,7 @@ export class DocumentComponent implements OnInit {
             if (doc) {
               this.sourceDoc = doc;
             }
-            error: (_err) => {
+            error: (_err: any) => {
               console.log(_err);
             };
           },
@@ -131,7 +131,7 @@ export class DocumentComponent implements OnInit {
         sourceType: this.document.type,
       },
     });
-    this.matDialogRef.close();
+    this.matDialogRef?.close();
   }
 
   get showCreditNoteBtn(): boolean {

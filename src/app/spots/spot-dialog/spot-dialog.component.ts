@@ -11,7 +11,7 @@ import { Subscription } from "rxjs";
 export class SpotDialogComponent implements OnInit, OnDestroy {
   spots: Spot[] = [];
   select = true;
-  origin: Spot;
+  origin!: Spot;
   private subscription$ = new Subscription();
 
   constructor(

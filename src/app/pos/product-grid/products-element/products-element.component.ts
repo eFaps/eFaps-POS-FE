@@ -25,7 +25,7 @@ export class ProductsElementComponent extends AbstractProductSelector {
   //size = 'medium' | big;
   @Input() size = "large";
   @Input() showPrices = true;
-  @Input() showInventory = false;
+  @Input() override showInventory = false;
 
   constructor(
     workspaceService: WorkspaceService,
@@ -43,12 +43,12 @@ export class ProductsElementComponent extends AbstractProductSelector {
     );
   }
 
-  get inventory(): InventoryEntry[] {
+  override get inventory(): InventoryEntry[] {
     return super.inventory;
   }
 
   @Input()
-  set inventory(inventory: InventoryEntry[]) {
+  override set inventory(inventory: InventoryEntry[]) {
     super.inventory = inventory;
   }
 }

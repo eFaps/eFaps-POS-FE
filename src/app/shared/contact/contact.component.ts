@@ -10,7 +10,7 @@ import { debounceTime } from "rxjs/operators";
 })
 export class ContactComponent implements OnInit {
   searchControl: UntypedFormControl = new UntypedFormControl();
-  searchResult = [];
+  searchResult: Contact[] = [];
   nameSearch = false;
   @Output() contactSelected = new EventEmitter<Contact>();
 
@@ -36,7 +36,7 @@ export class ContactComponent implements OnInit {
     return _contact ? _contact.name : undefined;
   }
 
-  selectContact(_event) {
+  selectContact(_event: any) {
     this.contactSelected.emit(_event.option.value);
   }
 }

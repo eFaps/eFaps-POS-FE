@@ -23,7 +23,7 @@ export class BalanceDocumentListComponent {
     "cmd",
   ];
   dataSource = new MatTableDataSource<PayableHead>();
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   constructor(private dialog: MatDialog) {}
 

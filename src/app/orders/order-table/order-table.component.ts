@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSlideToggleChange } from "@angular/material/slide-toggle";
@@ -37,12 +37,12 @@ import { SplitOrderDialogComponent } from "../split-order-dialog/split-order-dia
 })
 export class OrderTableComponent implements OnInit, OnDestroy {
   DocStatus = DocStatus;
-  filterForm: UntypedFormGroup;
-  formCtrlSub: Subscription;
-  displayedColumns = [];
+  filterForm: FormGroup;
+  formCtrlSub!: Subscription;
+  displayedColumns: string[] = [];
   dataSource = new MatTableDataSource<OrderWrapper>();
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
   isAdmin = false;
   allowPayment = false;
   @LocalStorage() lazyLoadOrders = false;
@@ -54,16 +54,17 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     private posService: PosService,
     private workspaceService: WorkspaceService,
     private paymentService: PaymentService,
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private dialog: MatDialog,
     private changeDetectorRefs: ChangeDetectorRef
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.filterForm = this.fb.group({
       filter: [],
       preload: [],
     });
+  }
+
+  ngOnInit() {
     this.displayedColumns = this.workspaceService.showSpots()
       ? ["number", "date", "total", "status", "spot", "cmd"]
       : ["number", "date", "total", "status", "cmd"];
@@ -187,12 +188,18 @@ export class OrderTableComponent implements OnInit, OnDestroy {
         )
         .subscribe((orderWrappers) => {
           this.dataSource.data = orderWrappers;
-          this.dataSource.sortingDataAccessor = (item, property) => {
-            switch (property) {
+          this.dataSource.sortingDataAccessor = (data, sortHeaderId) => {
+            switch (sortHeaderId) {
               case "spot":
-                return item.spotLabel;
+                return data.spotLabel;
               default:
-                return item[property];
+                let crit = data[sortHeaderId as keyof OrderWrapper];
+                if (typeof crit === "string") {
+                  return crit;
+                } else if (typeof crit === "number") {
+                  return crit;
+                }
+                return 0;
             }
           };
           this.dataSource.sort = this.sort;
@@ -207,13 +214,13 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     }
     const relatedOrders = orders
       .filter((item) => {
-        return item.spot && item.spot.id == order.spot.id;
+        return item.spot && item.spot.id == order.spot!.id;
       })
       .sort((o1, o2) => {
-        if (o1.number < o2.number) {
+        if (o1.number! < o2.number!) {
           return -1;
         }
-        if (o1.number > o2.number) {
+        if (o1.number! > o2.number!) {
           return 1;
         }
         return 0;
@@ -227,9 +234,9 @@ export class OrderTableComponent implements OnInit, OnDestroy {
 
   private evalMultiple(orders: Order[], order: Order): boolean {
     return (
-      order.spot &&
+      order.spot != undefined &&
       orders.filter((item) => {
-        return item.spot && item.spot.id == order.spot.id;
+        return item.spot && item.spot.id == order.spot!.id;
       }).length > 1
     );
   }

@@ -8,8 +8,8 @@ import { MatDialogRef } from "@angular/material/dialog";
   styleUrls: ["./split-dialog.component.scss"],
 })
 export class SplitDialogComponent implements OnInit {
-  quantityForm: UntypedFormGroup;
-  quantity: number;
+  quantityForm!: UntypedFormGroup;
+  quantity: number = 0;
 
   constructor(
     private fb: UntypedFormBuilder,
