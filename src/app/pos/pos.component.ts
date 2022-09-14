@@ -24,6 +24,7 @@ import {
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 import { skip } from "rxjs/operators";
+import { PosSyncService } from "../services/pos-sync.service";
 
 import { CategorySelectComponent } from "./category-select/category-select.component";
 import { CommandsComponent } from "./commands/commands.component";
@@ -65,6 +66,7 @@ export class PosComponent implements OnInit, OnDestroy {
     private barcodeScannerService: BarcodeScannerService,
     private productService: ProductService,
     private partListService: PartListService,
+    private posSyncService: PosSyncService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef
@@ -115,6 +117,11 @@ export class PosComponent implements OnInit, OnDestroy {
         },
       })
     );
+    this.posSyncService.afterProductSelected.subscribe({
+      next: () => {
+        this.afterSelection()
+      }
+    })
   }
 
   onPartList(partList: Product) {

@@ -22,6 +22,7 @@ import { debounceTime } from "rxjs/operators";
 import { ProductComponent } from "../../shared/product/product.component";
 import { AbstractProductSelector } from "../abstract-product-selector";
 import { KeypadService } from "../../services";
+import { PosSyncService } from "src/app/services/pos-sync.service";
 
 @Component({
   selector: "app-product-list",
@@ -44,6 +45,7 @@ export class ProductListComponent
     productService: ProductService,
     posService: PosService,
     inventoryService: InventoryService,
+    posSyncService: PosSyncService,
     private keypadService: KeypadService,
     dialog: MatDialog,
     private authService: AuthService,
@@ -54,6 +56,7 @@ export class ProductListComponent
       productService,
       posService,
       inventoryService,
+      posSyncService,
       dialog
     );
     this.filterForm = this.fb.group({

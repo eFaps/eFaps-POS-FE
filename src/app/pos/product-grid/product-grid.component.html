@@ -4,7 +4,7 @@
       <ng-container *ngIf="category.categories.length">
         <app-grid-element [categories]="category.categories" (categorySelected)="onChildCategorySelected($event)"
           [currency]="currentCurrency" [showInventory]="showInventory" [size]="size" [showPrices]="showPrices"
-          [inventory]="inventory">
+          [inventory]="inventory" [remarkMode]="remarkMode">
         </app-grid-element>
       </ng-container>
       <app-products-element [products]="products" [currency]="currentCurrency"

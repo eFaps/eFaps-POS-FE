@@ -1,7 +1,7 @@
 <div class="content">
   <div [ngSwitch]="currentLayout" class="selector" [ngStyle]="{'height.px': screenHeight - 64 }">
-    <app-product-grid *ngSwitchCase="PosLayout.GRID" (selection)="afterSelection()" [remarkMode]="remarkMode"></app-product-grid>
-    <app-product-list *ngSwitchCase="PosLayout.LIST" (selection)="afterSelection()" [remarkMode]="remarkMode" [isBarcode]="isBarcode"></app-product-list>
+    <app-product-grid *ngSwitchCase="PosLayout.GRID" [remarkMode]="remarkMode"></app-product-grid>
+    <app-product-list *ngSwitchCase="PosLayout.LIST" [remarkMode]="remarkMode" [isBarcode]="isBarcode"></app-product-list>
     <button *ngIf="currentLayout === PosLayout.GRID" mat-fab color="primary" (click)="openCatSelect()" class="catSelect">Cat.</button>
     <button class="remarkCmd" (click)="toggleRemarkMode()" mat-fab color="{{remarkMode ? 'accent' : 'primary' }}">
       <mat-icon class="posIcon-36">description</mat-icon>

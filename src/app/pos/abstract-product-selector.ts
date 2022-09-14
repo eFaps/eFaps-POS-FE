@@ -10,6 +10,7 @@ import {
   ProductType,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { PosSyncService } from "../services/pos-sync.service";
 
 import { RemarkDialogComponent } from "./remark-dialog/remark-dialog.component";
 
@@ -18,7 +19,6 @@ export abstract class AbstractProductSelector implements OnInit {
   ticket: Item[] = [];
   multiplier: number = 1;
   @Input() remarkMode = false;
-  @Output() selection = new EventEmitter<number>();
 
   showInventory = false;
   scanning: boolean = false;
@@ -29,6 +29,7 @@ export abstract class AbstractProductSelector implements OnInit {
     protected productService: ProductService,
     protected posService: PosService,
     protected inventoryService: InventoryService,
+    protected posSyncService: PosSyncService,
     protected dialog: MatDialog
   ) {}
 
@@ -68,7 +69,7 @@ export abstract class AbstractProductSelector implements OnInit {
       exchangeRate: this.posService.exchangeRate,
     });
     this.syncTicket();
-    this.selection.emit(0);
+    this.posSyncService.productSelected();
   }
 
   syncTicket() {

@@ -9,6 +9,7 @@ import {
   ProductService,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { PosSyncService } from "src/app/services/pos-sync.service";
 import { AbstractProductSelector } from "../../abstract-product-selector";
 
 @Component({
@@ -33,6 +34,7 @@ export class ProductsElementComponent extends AbstractProductSelector {
     productService: ProductService,
     posService: PosService,
     inventoryService: InventoryService,
+    posSyncService: PosSyncService,
     dialog: MatDialog
   ) {
     super(
@@ -40,6 +42,7 @@ export class ProductsElementComponent extends AbstractProductSelector {
       productService,
       posService,
       inventoryService,
+      posSyncService,
       dialog
     );
   }
