@@ -1,4 +1,7 @@
 import {
+  AfterContentChecked,
+  AfterViewChecked,
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   HostListener,
@@ -36,7 +39,7 @@ import { ProductListComponent } from "./product-list/product-list.component";
   templateUrl: "./pos.component.html",
   styleUrls: ["./pos.component.scss"],
 })
-export class PosComponent implements OnInit, OnDestroy {
+export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   PosLayout = PosLayout;
   ticket: Item[] = [];
   screenHeight: number = 0;
@@ -71,13 +74,12 @@ export class PosComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef
   ) {}
-
+ 
+  
   ngOnInit() {
     this.subscriptions.add(
       this.posService.currentTicket.subscribe((data) => {
         this.ticket = data;
-        this.changeDetectorRef.detectChanges();
-        this.cmdComp.evalSticky();
       })
     );
     this.onResize();
@@ -123,6 +125,12 @@ export class PosComponent implements OnInit, OnDestroy {
       },
     });
   }
+
+  ngAfterContentChecked() {
+    this.changeDetectorRef.detectChanges();
+    this.cmdComp.evalSticky();
+  }
+ 
 
   onPartList(partList: Product) {
     const msg = "Paquete: " + partList.sku + "-" + partList.description;
