@@ -49,7 +49,7 @@ export class DocumentComponent implements OnInit {
   hasCopyPrintCmd = false;
   @Input() permitCreditNote = false;
   creditNotes: CreditNote[] = [];
-  sourceDoc!: Document;
+  sourceDoc: Document | undefined;
 
   constructor(
     private router: Router,
@@ -60,7 +60,7 @@ export class DocumentComponent implements OnInit {
     private documentService: DocumentService,
     @Optional() private matDialogRef?: MatDialogRef<DocumentComponent>
   ) {
-    this._document = this.sourceDoc ={
+    this._document = {
       type: "ORDER",
       id: null,
       oid: null,
