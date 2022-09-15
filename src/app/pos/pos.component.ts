@@ -74,8 +74,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef
   ) {}
- 
-  
+
   ngOnInit() {
     this.subscriptions.add(
       this.posService.currentTicket.subscribe((data) => {
@@ -130,7 +129,6 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     this.changeDetectorRef.detectChanges();
     this.cmdComp.evalSticky();
   }
- 
 
   onPartList(partList: Product) {
     const msg = "Paquete: " + partList.sku + "-" + partList.description;

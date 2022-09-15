@@ -72,8 +72,8 @@ export class DocumentComponent implements OnInit {
       crossTotal: 0,
       exchangeRate: 0,
       taxes: [],
-      discount: null
-    }
+      discount: null,
+    };
   }
 
   ngOnInit() {

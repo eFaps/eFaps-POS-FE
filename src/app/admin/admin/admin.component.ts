@@ -19,7 +19,7 @@ import { Subscription } from "rxjs";
 })
 export class AdminComponent implements OnInit, OnDestroy {
   busy!: Subscription;
-  versions: Versions|undefined;
+  versions: Versions | undefined;
   lazyElements: Extension[] = [];
   @LocalStorage() barcodeOptions: BarcodeOptions = {};
   barcodeOptionsForm: FormGroup;

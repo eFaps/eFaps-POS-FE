@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { PartListRelationComponent } from "./part-list-relation.component";
-import { ProductService } from "@efaps/pos-library";
+import { ProductRelationType, ProductService } from "@efaps/pos-library";
 
 class ProductServiceStub {}
 
@@ -19,6 +19,12 @@ describe("PartListRelationComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PartListRelationComponent);
     component = fixture.componentInstance;
+    component._productRelation = {
+      type: ProductRelationType.ALTERNATIVE,
+      label: "",
+      productOid: "",
+      quantity: 1,
+    };
     fixture.detectChanges();
   });
 
