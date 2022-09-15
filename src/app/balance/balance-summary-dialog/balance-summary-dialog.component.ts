@@ -8,7 +8,7 @@ import { BalanceSummary, BalanceService } from "@efaps/pos-library";
   styleUrls: ["./balance-summary-dialog.component.scss"],
 })
 export class BalanceSummaryDialogComponent implements OnInit {
-  summary!: BalanceSummary;
+  summary: BalanceSummary | undefined;
 
   constructor(
     private balanceService: BalanceService,
