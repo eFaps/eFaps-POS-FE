@@ -4,9 +4,15 @@
   .header {
     display: flex;
 
-    div:last-child {
+    .opening {
       display: flex;
+      flex-direction: column;
       margin-left: 50px;
+      
+      .cashEntry {
+        display: flex;
+      }
+
     }
   }
 

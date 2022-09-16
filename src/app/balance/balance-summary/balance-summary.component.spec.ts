@@ -42,6 +42,7 @@ describe("BalanceSummaryComponent", () => {
         endAt: new Date(),
         status: "OPEN",
       },
+      cashEntries: [],
       detail: detail,
       invoiceDetail: detail,
       receiptDetail: detail,

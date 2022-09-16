@@ -1,8 +1,14 @@
 <div class="wrapper">
   <div class="header" *ngIf="hasBalance()">
-    <div>
+    <div class="info">
       <p i18n="@@bs-number">Number: {{summary.balance.number}}</p>
       <p i18n="@@bs-started">Started: {{summary.balance.startAt | date:'dd/MM/yy HH:mm' }}</p>
+    </div>
+    <div class="opening" *ngIf="summary.cashEntries.length > 0">
+      <span>Opening</span>
+      <div class="cashEntry" *ngFor="let cashEntry of summary.cashEntries">
+        {{cashEntry.currency}} {{cashEntry.amount}}
+      </div>
     </div>
     <div>
       <button mat-button (click)="print()" *ngIf="printer">

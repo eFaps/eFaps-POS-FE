@@ -1,20 +1,26 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import {
   Balance,
   BalanceService,
   BalanceSummary,
+  CashEntry,
+  ConfigService,
   DocumentService,
   Payable,
+  CashEntryType,
   PayableHead,
   PrintService,
   WorkspaceService,
+  Currency,
 } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
 import { Subscription } from "rxjs";
+import { BALANCE_ACTIVATE_CASHENTRY } from "src/app/util/keys";
 
 import { ConfirmDialogComponent } from "../../shared/confirm-dialog/confirm-dialog.component";
 import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
+import { OpeningBalanceDialogComponent } from "../opening-balance-dialog/opening-balance-dialog.component";
 
 @Component({
   selector: "app-balance",
@@ -29,6 +35,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
   subscription$ = new Subscription();
   private print = false;
   private workspaceOid!: string;
+  private useCashEntry: boolean = false;
 
   constructor(
     private balanceService: BalanceService,
@@ -36,6 +43,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
     private printService: PrintService,
     private workspaceService: WorkspaceService,
     private translateService: TranslateService,
+    private configService: ConfigService,
     private dialog: MatDialog
   ) {}
 
@@ -74,6 +82,13 @@ export class BalanceComponent implements OnInit, OnDestroy {
         },
       })
     );
+    this.subscription$.add(
+      this.configService.getSystemConfig(BALANCE_ACTIVATE_CASHENTRY).subscribe({
+        next: (value) => {
+          this.useCashEntry = "true" === "" + value;
+        },
+      })
+    );
   }
 
   ngOnDestroy() {
@@ -84,13 +99,43 @@ export class BalanceComponent implements OnInit, OnDestroy {
   }
 
   init() {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: "300px",
-      data: { title: this.translateService.instant("BALANCE.CONFIRM-OPEN") },
-    });
-    dialogRef.afterClosed().subscribe((_result) => {
+    let dialogRef: MatDialogRef<any, any>;
+    if (this.useCashEntry) {
+      dialogRef = this.dialog.open(OpeningBalanceDialogComponent, {
+        width: "500px",
+        data: { title: this.translateService.instant("BALANCE.CONFIRM-OPEN") },
+      });
+    } else {
+      dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        width: "300px",
+        data: { title: this.translateService.instant("BALANCE.CONFIRM-OPEN") },
+      });
+    }
+    dialogRef.afterClosed().subscribe((_result: any) => {
       if (_result) {
+        const propertyNames = Object.getOwnPropertyNames(_result);
         this.balanceService.init();
+        if (propertyNames.length > 0) {
+          const sub = this.balanceService.currentBalance.subscribe(
+            (balance) => {
+              if (balance != null) {
+                const cashEntries: CashEntry[] = [];
+                for (const property of propertyNames) {
+                  cashEntries.push({
+                    balanceOid: balance.id,
+                    entryType: CashEntryType.OPENING,
+                    amount: Number.parseFloat(_result[property]),
+                    currency: Currency[property as keyof typeof Currency],
+                  });
+                }
+                this.balanceService
+                  .addCashEntries(balance, cashEntries)
+                  .subscribe();
+                sub.unsubscribe();
+              }
+            }
+          );
+        }
       }
     });
   }

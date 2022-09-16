@@ -24,6 +24,7 @@ import { BalanceSummaryComponent } from "./balance-summary/balance-summary.compo
 import { BalanceComponent } from "./balance/balance.component";
 import { DocumentDialogComponent } from "./document-dialog/document-dialog.component";
 import { DocumentListComponent } from "./document-list/document-list.component";
+import { OpeningBalanceDialogComponent } from "./opening-balance-dialog/opening-balance-dialog.component";
 
 @NgModule({
   imports: [
@@ -53,6 +54,7 @@ import { DocumentListComponent } from "./document-list/document-list.component";
     BalanceListComponent,
     DocumentListComponent,
     BalanceSummaryDialogComponent,
+    OpeningBalanceDialogComponent,
   ],
 })
 export class BalanceModule {}
