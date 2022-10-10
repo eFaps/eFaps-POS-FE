@@ -1,4 +1,4 @@
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -49,7 +49,7 @@ describe("BalanceComponent", () => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         MatDialogModule,
         MatTabsModule,
       ],
