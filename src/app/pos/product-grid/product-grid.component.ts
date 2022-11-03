@@ -3,11 +3,13 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import {
   Currency,
+  hasFlag,
   InventoryService,
   PosCategory,
   PosService,
   Product,
   ProductService,
+  WorkspaceFlag,
   WorkspaceService,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
@@ -68,7 +70,7 @@ export class ProductGridComponent
     this.workspaceService.currentWorkspace.subscribe({
       next: (workspace) => {
         if (workspace) {
-          this.showPrices = workspace.gridShowPrice;
+          this.showPrices = hasFlag(workspace, WorkspaceFlag.gridShowPrice)
           this.size = workspace.gridSize
             ? workspace.gridSize.toLowerCase()
             : "large";
