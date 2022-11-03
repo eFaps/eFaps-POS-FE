@@ -29,6 +29,7 @@ import { TicketComponent } from "./ticket/ticket.component";
 import { TotalsComponent } from "./totals/totals.component";
 import { GridElementComponent } from "./product-grid/grid-element/grid-element.component";
 import { ProductsElementComponent } from "./product-grid/products-element/products-element.component";
+import { ContactDialogComponent } from './contact-dialog/contact-dialog.component';
 
 @NgModule({
   imports: [
@@ -63,6 +64,7 @@ import { ProductsElementComponent } from "./product-grid/products-element/produc
     RemarkDialogComponent,
     GridElementComponent,
     ProductsElementComponent,
+    ContactDialogComponent,
   ],
 })
 export class PosModule {}

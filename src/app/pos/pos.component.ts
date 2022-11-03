@@ -1,7 +1,5 @@
 import {
   AfterContentChecked,
-  AfterViewChecked,
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   HostListener,
@@ -10,12 +8,16 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { Router } from "@angular/router";
 import { LocalStorage } from "@efaps/ngx-store";
 import {
   AuthService,
   BarcodeScannerService,
+  Contact,
+  ContactService,
+  hasFlag,
   Item,
   MsgService,
   PartListService,
@@ -23,14 +25,16 @@ import {
   PosService,
   Product,
   ProductService,
+  WorkspaceFlag,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { Subscription } from "rxjs";
+import {  forkJoin, Subscription } from "rxjs";
 import { skip } from "rxjs/operators";
 import { PosSyncService } from "../services/pos-sync.service";
 
 import { CategorySelectComponent } from "./category-select/category-select.component";
 import { CommandsComponent } from "./commands/commands.component";
+import { ContactDialogComponent } from "./contact-dialog/contact-dialog.component";
 import { ProductGridComponent } from "./product-grid/product-grid.component";
 import { ProductListComponent } from "./product-list/product-list.component";
 
@@ -60,6 +64,9 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   remarkMode = false;
   private subscriptions = new Subscription();
   isBarcode = false;
+  private requiresContact = false;
+  private contactDialogRef: MatDialogRef<ContactDialogComponent,any> | null = null;
+  private _contact: Contact | null = null;
 
   constructor(
     public workspaceService: WorkspaceService,
@@ -72,23 +79,29 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     private posSyncService: PosSyncService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
+    private router: Router,
+    private contactService: ContactService,
     @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef
   ) {}
+  
 
   ngOnInit() {
     this.subscriptions.add(
       this.posService.currentTicket.subscribe((data) => {
-        this.ticket = data;
+        this.ticket = data;  
       })
     );
     this.onResize();
     this.msgService.init();
+
     this.subscriptions.add(
       this.posService.currentOrder.subscribe((order) => {
         if (order && !this.orderId) {
           this.msgService.publishStartEditOrder(order.id!);
           this.orderId = order.id;
+          this.contact = order.contactOid? order.contactOid : null
         }
+        this.evalContact()
       })
     );
     if (this.workspaceService.getPosLayout() === PosLayout.BOTH) {
@@ -99,6 +112,14 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     } else {
       this.currentLayout = this.workspaceService.getPosLayout();
     }
+
+    this.workspaceService.currentWorkspace.subscribe({
+      next: (workspace) => {
+        this.requiresContact = hasFlag(workspace, WorkspaceFlag.orderRequiresContact)
+        this.evalContact()
+      }
+    })
+
     this.numPad = this.posNumPad[this.authService.getCurrentUsername()];
     this.subscriptions.add(
       this.barcodeScannerService.barcode.pipe(skip(1)).subscribe({
@@ -123,6 +144,46 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
         this.afterSelection();
       },
     });
+  }
+
+  evalContact() {
+    // not dialog open
+    if (this.contactDialogRef == null) {
+      if (this.requiresContact && this.contact == null) {
+        this.contactDialogRef = this.dialog.open(ContactDialogComponent, {disableClose: true});
+      }
+    } else {
+      console.log("check")
+    }
+
+    this.contactDialogRef?.afterClosed().subscribe({
+      next: (contactOid) => {
+        if (contactOid) {
+          this.contact = contactOid
+        } else {
+          this.router.navigate(["orders"])
+        }
+        this.contactDialogRef = null
+      }
+    })
+  }
+
+  set contact(contact: string | null | Contact) {
+    if (contact == null) {
+      this._contact = null;
+    } else if (typeof contact == "string") {
+      this.contactService.getContact(contact).subscribe({
+        next: contactResp => {
+          this._contact = contactResp 
+        }
+      })
+    } else {
+      this._contact = contact
+    }
+  }
+
+  get contact() {
+    return this._contact
   }
 
   ngAfterContentChecked() {

@@ -1,5 +1,6 @@
 <div class="content">
   <div [ngSwitch]="currentLayout" class="selector" [ngStyle]="{'height.px': screenHeight - 64 }">
+    <div class="contact" *ngIf="contact != null">{{contact.idType}}: {{contact.idNumber}} - {{contact.name}}</div>
     <app-product-grid *ngSwitchCase="PosLayout.GRID" [remarkMode]="remarkMode"></app-product-grid>
     <app-product-list *ngSwitchCase="PosLayout.LIST" [remarkMode]="remarkMode" [isBarcode]="isBarcode"></app-product-list>
     <button *ngIf="currentLayout === PosLayout.GRID" mat-fab color="primary" (click)="openCatSelect()" class="catSelect">Cat.</button>

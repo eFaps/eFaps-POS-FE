@@ -5,6 +5,11 @@ $ticketWith: 450px;
   flex-direction: row;
 }
 
+.contact {
+  padding: 5px;
+  text-align: center;
+}
+
 .ticket {
   border: 1px solid rgba(0,0,0,.12);
   overflow-y: auto;
