@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MockComponent } from "ng-mocks";
+import { ContactComponent } from "src/app/shared/contact/contact.component";
 
 import { ContactDialogComponent } from "./contact-dialog.component";
 
@@ -8,7 +11,8 @@ describe("ContactDialogComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ContactDialogComponent],
+      imports: [MatDialogModule],
+      declarations: [ContactDialogComponent, MockComponent(ContactComponent)],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ContactDialogComponent);

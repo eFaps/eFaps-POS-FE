@@ -1,5 +1,9 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { FormBuilder } from "@angular/forms";
+import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 
 import { OpeningBalanceDialogComponent } from "./opening-balance-dialog.component";
 
@@ -9,6 +13,13 @@ describe("OpeningBalanceDialogComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+      ],
       declarations: [OpeningBalanceDialogComponent],
       providers: [FormBuilder],
     }).compileComponents();

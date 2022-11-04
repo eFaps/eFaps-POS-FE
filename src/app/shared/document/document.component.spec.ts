@@ -1,6 +1,8 @@
 import { HttpClientModule } from "@angular/common/http";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatListModule } from "@angular/material/list";
+import { MatTableModule } from "@angular/material/table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Router } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
@@ -38,6 +40,8 @@ describe("DocumentComponent", () => {
         RouterTestingModule,
         HttpClientModule,
         MatDialogModule,
+        MatListModule,
+        MatTableModule,
       ],
       providers: [
         { provide: PosConfigToken, useValue: {} },
