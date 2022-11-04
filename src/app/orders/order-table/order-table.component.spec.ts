@@ -10,12 +10,17 @@ import { RouterTestingModule } from "@angular/router/testing";
 import {
   AuthService,
   ConfigService,
+  ContactService,
   DocumentService,
   Order,
   PaymentService,
   PosCurrencyPipe,
+  PosLayout,
   PosService,
+  SpotConfig,
+  PosGridSize,
   UtilsService,
+  Workspace,
   WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
@@ -52,8 +57,27 @@ class WorkspaceServiceStub {
   allowPayment() {
     return true;
   }
+  currentWorkspace: Observable<Workspace> = new Observable((observer) => {
+    observer.next({
+      oid: "string",
+      name: "string",
+      posOid: "string",
+      docTypes: [],
+      spotConfig: SpotConfig.NONE,
+      spotCount: 0,
+      warehouseOid: "string",
+      printCmds: [],
+      posLayout: PosLayout.BOTH,
+      discounts: [],
+      cards: [],
+      gridSize: PosGridSize.SMALL,
+      floors: [],
+      flags: 0,
+    });
+  });
 }
 class PaymentServiceStub {}
+class ContactServiceStub {}
 
 describe("OrderTableComponent", () => {
   let component: OrderTableComponent;
@@ -75,6 +99,7 @@ describe("OrderTableComponent", () => {
       providers: [
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },
+        { provide: ContactService, useClass: ContactServiceStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
         { provide: PosService, useClass: PosServiceStub },

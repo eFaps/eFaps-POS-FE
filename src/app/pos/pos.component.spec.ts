@@ -15,6 +15,10 @@ import {
   WorkspaceService,
   PosConfigToken,
   ProductService,
+  ContactService,
+  Workspace,
+  SpotConfig,
+  PosGridSize,
 } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
@@ -57,6 +61,24 @@ class WorkspaceServiceStub {
   getPosLayout() {
     return PosLayout.GRID;
   }
+  currentWorkspace: Observable<Workspace> = new Observable((observer) => {
+    observer.next({
+      oid: "string",
+      name: "string",
+      posOid: "string",
+      docTypes: [],
+      spotConfig: SpotConfig.NONE,
+      spotCount: 0,
+      warehouseOid: "string",
+      printCmds: [],
+      posLayout: PosLayout.BOTH,
+      discounts: [],
+      cards: [],
+      gridSize: PosGridSize.SMALL,
+      floors: [],
+      flags: 0,
+    });
+  });
 }
 class BarcodeScannerServiceStub {
   barcode = new Observable((observer) => {
@@ -71,6 +93,9 @@ class ProductServiceStub {
     });
   }
 }
+
+class ContactServiceStub {}
+
 describe("PosComponent", () => {
   let component: PosComponent;
   let fixture: ComponentFixture<PosComponent>;
@@ -90,6 +115,7 @@ describe("PosComponent", () => {
       ],
       providers: [
         { provide: AuthService, useClass: AuthServiceStub },
+        { provide: ContactService, useClass: ContactServiceStub },
         { provide: PosService, useClass: PosServiceStub },
         { provide: MsgService, useClass: MsgServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
