@@ -70,7 +70,7 @@ export class ProductGridComponent
     this.workspaceService.currentWorkspace.subscribe({
       next: (workspace) => {
         if (workspace) {
-          this.showPrices = hasFlag(workspace, WorkspaceFlag.gridShowPrice)
+          this.showPrices = hasFlag(workspace, WorkspaceFlag.gridShowPrice);
           this.size = workspace.gridSize
             ? workspace.gridSize.toLowerCase()
             : "large";

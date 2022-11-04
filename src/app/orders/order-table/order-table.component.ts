@@ -14,17 +14,21 @@ import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
 import { LocalStorage } from "@efaps/ngx-store";
 import {
+  Contact,
+  ContactService,
   DocStatus,
   DocumentService,
+  hasFlag,
   Order,
   OrderWrapper,
   PaymentService,
   PosService,
+  WorkspaceFlag,
   WorkspaceService,
 } from "@efaps/pos-library";
 import { AuthService, Roles } from "@efaps/pos-library";
-import { Subscription } from "rxjs";
-import { debounceTime, map } from "rxjs/operators";
+import { Observable, Observer, Subscription } from "rxjs";
+import { debounceTime, map, mergeMap } from "rxjs/operators";
 
 import { ConfirmDialogComponent } from "../../shared/confirm-dialog/confirm-dialog.component";
 import { ReassignDialogComponent } from "../reassign-dialog/reassign-dialog.component";
@@ -40,12 +44,13 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   filterForm: FormGroup;
   formCtrlSub!: Subscription;
   displayedColumns: string[] = [];
-  dataSource = new MatTableDataSource<OrderWrapper>();
+  dataSource = new MatTableDataSource<OrderTableRow>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   isAdmin = false;
   allowPayment = false;
   @LocalStorage() lazyLoadOrders = false;
+  private subscriptions = new Subscription();
 
   constructor(
     private router: Router,
@@ -54,6 +59,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     private posService: PosService,
     private workspaceService: WorkspaceService,
     private paymentService: PaymentService,
+    private contactService: ContactService,
     private fb: FormBuilder,
     private dialog: MatDialog,
     private changeDetectorRefs: ChangeDetectorRef
@@ -74,11 +80,23 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     this.formCtrlSub = this.filterForm.valueChanges
       .pipe(debounceTime(500))
       .subscribe((newValue) => this.applyFilter(newValue.filter));
+
+    this.subscriptions.add(
+      this.workspaceService.currentWorkspace.subscribe({
+        next: (workspace) => {
+          if (hasFlag(workspace, WorkspaceFlag.orderRequiresContact)) {
+            this.displayedColumns.splice(3, 0, "contact");
+          }
+        },
+      })
+    );
+
     this.initTable();
   }
 
   ngOnDestroy() {
     this.formCtrlSub.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 
   pos(_order: Order) {
@@ -101,7 +119,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe((_result) => {
       if (_result) {
         this.documentService.deleteOrder(_order).subscribe(() => {
-          this.dataSource = new MatTableDataSource<OrderWrapper>();
+          this.dataSource = new MatTableDataSource<OrderTableRow>();
           this.ngOnInit();
           this.changeDetectorRefs.detectChanges();
         });
@@ -117,7 +135,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
       data: order,
     });
     dialogRef.afterClosed().subscribe((_result) => {
-      this.dataSource = new MatTableDataSource<OrderWrapper>();
+      this.dataSource = new MatTableDataSource<OrderTableRow>();
       this.ngOnInit();
       this.changeDetectorRefs.detectChanges();
     });
@@ -131,7 +149,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
       data: order,
     });
     dialogRef.afterClosed().subscribe((_result) => {
-      this.dataSource = new MatTableDataSource<OrderWrapper>();
+      this.dataSource = new MatTableDataSource<OrderTableRow>();
       this.ngOnInit();
       this.changeDetectorRefs.detectChanges();
     });
@@ -149,7 +167,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
         .pipe(
           map((orders) =>
             orders.map((order) => {
-              return this.getOrderWrapper(orders, order);
+              return this.getRow(orders, order);
             })
           )
         )
@@ -165,12 +183,15 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     }
   }
 
-  private getOrderWrapper(orders: Order[], order: Order): OrderWrapper {
-    return {
+  private getRow(orders: Order[], order: Order): OrderTableRow {
+    const row = {
       ...order,
       spotLabel: this.evalSpotLabel(orders, order),
       multiple: this.evalMultiple(orders, order),
+      contact: null,
     };
+    this.evalContact(row);
+    return row;
   }
 
   initTable() {
@@ -182,7 +203,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
         .pipe(
           map((orders) =>
             orders.map((order) => {
-              return this.getOrderWrapper(orders, order);
+              return this.getRow(orders, order);
             })
           )
         )
@@ -193,7 +214,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
               case "spot":
                 return data.spotLabel;
               default:
-                let crit = data[sortHeaderId as keyof OrderWrapper];
+                let crit = data[sortHeaderId as keyof OrderTableRow];
                 if (typeof crit === "string") {
                   return crit;
                 } else if (typeof crit === "number") {
@@ -240,4 +261,16 @@ export class OrderTableComponent implements OnInit, OnDestroy {
       }).length > 1
     );
   }
+
+  evalContact(row: OrderTableRow) {
+    if (row.contactOid) {
+      this.contactService.getContact(row.contactOid).subscribe({
+        next: (contact) => (row.contact = contact),
+      });
+    }
+    row.contact = null;
+  }
+}
+interface OrderTableRow extends OrderWrapper {
+  contact: Contact | null;
 }

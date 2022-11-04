@@ -28,7 +28,7 @@ import {
   WorkspaceFlag,
   WorkspaceService,
 } from "@efaps/pos-library";
-import {  forkJoin, Subscription } from "rxjs";
+import { combineLatest, Subscription } from "rxjs";
 import { skip } from "rxjs/operators";
 import { PosSyncService } from "../services/pos-sync.service";
 
@@ -65,7 +65,6 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   private subscriptions = new Subscription();
   isBarcode = false;
   private requiresContact = false;
-  private contactDialogRef: MatDialogRef<ContactDialogComponent,any> | null = null;
   private _contact: Contact | null = null;
 
   constructor(
@@ -83,27 +82,50 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     private contactService: ContactService,
     @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef
   ) {}
-  
 
   ngOnInit() {
     this.subscriptions.add(
       this.posService.currentTicket.subscribe((data) => {
-        this.ticket = data;  
+        this.ticket = data;
       })
     );
     this.onResize();
     this.msgService.init();
 
     this.subscriptions.add(
-      this.posService.currentOrder.subscribe((order) => {
-        if (order && !this.orderId) {
-          this.msgService.publishStartEditOrder(order.id!);
-          this.orderId = order.id;
-          this.contact = order.contactOid? order.contactOid : null
-        }
-        this.evalContact()
+      combineLatest({
+        order: this.posService.currentOrder,
+        workspace: this.workspaceService.currentWorkspace,
+      }).subscribe({
+        next: ({ order, workspace }) => {
+          this.requiresContact = hasFlag(
+            workspace,
+            WorkspaceFlag.orderRequiresContact
+          );
+          if (order && !this.orderId) {
+            this.msgService.publishStartEditOrder(order.id!);
+            this.orderId = order.id;
+            if (order.contactOid) {
+              this.contactService.getContact(order.contactOid).subscribe({
+                next: (contactResp) => {
+                  this.contact = contactResp;
+                  this.posService.contactOid =
+                    contactResp.oid == null ? contactResp.id : contactResp.oid;
+                  this.assignContact();
+                },
+              });
+            } else {
+              this.contact = null;
+              this.assignContact();
+            }
+          } else {
+            this.contact = null;
+            this.assignContact();
+          }
+        },
       })
     );
+
     if (this.workspaceService.getPosLayout() === PosLayout.BOTH) {
       const layout = this.posLayouts[this.authService.getCurrentUsername()];
       if (layout) {
@@ -112,13 +134,6 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     } else {
       this.currentLayout = this.workspaceService.getPosLayout();
     }
-
-    this.workspaceService.currentWorkspace.subscribe({
-      next: (workspace) => {
-        this.requiresContact = hasFlag(workspace, WorkspaceFlag.orderRequiresContact)
-        this.evalContact()
-      }
-    })
 
     this.numPad = this.posNumPad[this.authService.getCurrentUsername()];
     this.subscriptions.add(
@@ -146,44 +161,36 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     });
   }
 
-  evalContact() {
-    // not dialog open
-    if (this.contactDialogRef == null) {
-      if (this.requiresContact && this.contact == null) {
-        this.contactDialogRef = this.dialog.open(ContactDialogComponent, {disableClose: true});
-      }
-    } else {
-      console.log("check")
+  assignContact() {
+    if (this.requiresContact && this.contact == null) {
+      const ref = this.dialog.open(ContactDialogComponent, {
+        disableClose: true,
+      });
+      ref.afterClosed().subscribe({
+        next: (contactOid) => {
+          if (contactOid) {
+            this.contact = contactOid;
+          } else {
+            this.router.navigate(["orders"]);
+          }
+        },
+      });
     }
-
-    this.contactDialogRef?.afterClosed().subscribe({
-      next: (contactOid) => {
-        if (contactOid) {
-          this.contact = contactOid
-        } else {
-          this.router.navigate(["orders"])
-        }
-        this.contactDialogRef = null
-      }
-    })
   }
 
-  set contact(contact: string | null | Contact) {
+  set contact(contact: Contact | null) {
     if (contact == null) {
       this._contact = null;
-    } else if (typeof contact == "string") {
-      this.contactService.getContact(contact).subscribe({
-        next: contactResp => {
-          this._contact = contactResp 
-        }
-      })
+      this.posService.contactOid = null;
     } else {
-      this._contact = contact
+      this._contact = contact;
+      this.posService.contactOid =
+        contact.oid == null ? contact.id : contact.oid;
     }
   }
 
   get contact() {
-    return this._contact
+    return this._contact;
   }
 
   ngAfterContentChecked() {
@@ -233,10 +240,11 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.subscriptions.unsubscribe();
     if (this.orderId) {
       this.msgService.publishFinishEditOrder(this.orderId);
+      this.posService.reset();
     }
-    this.subscriptions.unsubscribe();
   }
 
   @HostListener("window:resize", ["$event"])

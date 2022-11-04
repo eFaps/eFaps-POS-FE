@@ -24,6 +24,10 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@orderCrossTotal"> Cross Total </mat-header-cell>
       <mat-cell *matCellDef="let order"> {{order.crossTotal | posCurrency:order.currency}} </mat-cell>
     </ng-container>
+    <ng-container matColumnDef="contact">
+      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@orderCrossTotal"> Contacto </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.contact?.name}} </mat-cell>
+    </ng-container>
     <ng-container matColumnDef="spot">
       <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@spot"> Spot </mat-header-cell>
       <mat-cell *matCellDef="let order">{{order.spotLabel}}</mat-cell>

@@ -63,10 +63,10 @@ export class CommandsComponent implements OnInit {
       if (_result) {
         this.paymentService.updateDocument(_result);
         this.router.navigate(["/payment"]);
+      } else if (this.workspaceService.showSpots()) {
+        this.router.navigate(["/spots"]);
       } else {
-        if (this.workspaceService.showSpots()) {
-          this.router.navigate(["/spots"]);
-        }
+        this.router.navigate(["/pos"]);
       }
     });
   }
