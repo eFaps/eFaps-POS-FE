@@ -65,8 +65,6 @@ export class CommandsComponent implements OnInit {
         this.router.navigate(["/payment"]);
       } else if (this.workspaceService.showSpots()) {
         this.router.navigate(["/spots"]);
-      } else {
-        this.router.navigate(["/pos"]);
       }
     });
   }
