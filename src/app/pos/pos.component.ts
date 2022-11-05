@@ -111,16 +111,16 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
                   this.contact = contactResp;
                   this.posService.contactOid =
                     contactResp.oid == null ? contactResp.id : contactResp.oid;
-                  this.assignContact();
+                  this.assignContact(false);
                 },
               });
             } else {
               this.contact = null;
-              this.assignContact();
+              this.assignContact(false);
             }
           } else {
             this.contact = null;
-            this.assignContact();
+            this.assignContact(false);
           }
         },
       })
@@ -161,8 +161,8 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     });
   }
 
-  assignContact() {
-    if (this.requiresContact && this.contact == null) {
+  assignContact(update: boolean) {
+    if (update || (this.requiresContact && this.contact == null)) {
       const ref = this.dialog.open(ContactDialogComponent, {
         disableClose: true,
       });

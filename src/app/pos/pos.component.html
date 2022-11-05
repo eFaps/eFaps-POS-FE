@@ -1,6 +1,9 @@
 <div class="content">
   <div [ngSwitch]="currentLayout" class="selector" [ngStyle]="{'height.px': screenHeight - 64 }">
-    <div class="contact" *ngIf="contact != null">{{contact.idType}}: {{contact.idNumber}} - {{contact.name}}</div>
+    <div class="contact" *ngIf="contact != null">
+      <span>{{contact.idType}}: {{contact.idNumber}} - {{contact.name}}</span>
+      <button mat-stroked-button (click)="assignContact(true)">Cambiar</button>
+    </div>
     <app-product-grid *ngSwitchCase="PosLayout.GRID" [remarkMode]="remarkMode"></app-product-grid>
     <app-product-list *ngSwitchCase="PosLayout.LIST" [remarkMode]="remarkMode" [isBarcode]="isBarcode"></app-product-list>
     <button *ngIf="currentLayout === PosLayout.GRID" mat-fab color="primary" (click)="openCatSelect()" class="catSelect">Cat.</button>
