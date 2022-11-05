@@ -49,7 +49,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   docType: DocumentType = DocumentType.RECEIPT;
   docTypes: DocumentType[] = [];
   busy!: Subscription;
-  contact: Contact | null = null;
+  contact: Contact | undefined;
   workspaceOid!: string;
   balance!: Balance;
   showContact = false;
@@ -108,7 +108,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
         this.printTicket = _data.printCmds.some((x) => x.target === "TICKET");
         this.docTypes = [];
         _data.docTypes.forEach((_value) => {
-          this.docTypes.push(_value);
+          if (_value != DocumentType.CREDITNOTE) {
+            this.docTypes.push(_value);
+          }
         });
       })
     );
