@@ -2,7 +2,7 @@
 <div fxLayout="row" fxLayoutGap="20px">
   <div fxLayout="column" fxFlex="50">
     <div class="leftwrapper">
-      <app-contact *ngIf="showContact" (contactSelected)="selectContact($event)"></app-contact>
+      <app-contact *ngIf="showContact" (contactSelected)="selectContact($event)" [contact]="contact"></app-contact>
       <div fxLayout="row">
         <mat-radio-group class="docType-radio-group" [(ngModel)]="docType" fxFlex>
           <mat-radio-button class="docType-radio-button" *ngFor="let type of docTypes; let idx = index" [value]="DocumentType[type]" 
