@@ -255,7 +255,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   evalContact(row: OrderTableRow) {
     if (row.contactOid) {
       if (!this.displayContact) {
-        this.displayContact = true
+        this.displayContact = true;
         this.displayedColumns.splice(3, 0, "contact");
       }
       this.contactService.getContact(row.contactOid).subscribe({

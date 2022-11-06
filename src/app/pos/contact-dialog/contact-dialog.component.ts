@@ -10,8 +10,10 @@ import { CreateContactDialogComponent } from "src/app/contacts/create-contact-di
 })
 export class ContactDialogComponent implements OnInit {
   contact: Contact | null = null;
-  constructor(public dialogRef: MatDialogRef<ContactDialogComponent>,
-    private dialog: MatDialog) {}
+  constructor(
+    private dialogRef: MatDialogRef<ContactDialogComponent>,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {}
 
@@ -27,7 +29,7 @@ export class ContactDialogComponent implements OnInit {
     });
     ref.afterClosed().subscribe((_result) => {
       if (_result) {
-        this.dialogRef.close(_result)
+        this.dialogRef.close(_result);
       }
     });
   }
