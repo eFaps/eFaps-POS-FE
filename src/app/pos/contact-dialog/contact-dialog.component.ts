@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Contact } from "@efaps/pos-library";
+import { CreateContactDialogComponent } from "src/app/contacts/create-contact-dialog/create-contact-dialog.component";
 
 @Component({
   selector: "app-contact-dialog",
@@ -8,7 +10,8 @@ import { Contact } from "@efaps/pos-library";
 })
 export class ContactDialogComponent implements OnInit {
   contact: Contact | null = null;
-  constructor() {}
+  constructor(public dialogRef: MatDialogRef<ContactDialogComponent>,
+    private dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
@@ -16,5 +19,16 @@ export class ContactDialogComponent implements OnInit {
     if (contact) {
       this.contact = contact;
     }
+  }
+
+  openCreateContact() {
+    const ref = this.dialog.open(CreateContactDialogComponent, {
+      width: "450px",
+    });
+    ref.afterClosed().subscribe((_result) => {
+      if (_result) {
+        this.dialogRef.close(_result)
+      }
+    });
   }
 }

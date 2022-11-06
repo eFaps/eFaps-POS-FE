@@ -30,6 +30,7 @@ import { TotalsComponent } from "./totals/totals.component";
 import { GridElementComponent } from "./product-grid/grid-element/grid-element.component";
 import { ProductsElementComponent } from "./product-grid/products-element/products-element.component";
 import { ContactDialogComponent } from "./contact-dialog/contact-dialog.component";
+import { ContactsModule } from "../contacts/contacts.module";
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { ContactDialogComponent } from "./contact-dialog/contact-dialog.componen
     MatTabsModule,
     PosRoutingModule,
     ReactiveFormsModule,
+    ContactsModule,
     SharedModule,
   ],
   declarations: [

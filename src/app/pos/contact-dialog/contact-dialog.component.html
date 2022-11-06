@@ -1,6 +1,7 @@
 <h2 mat-dialog-title>Contacto</h2>
 <mat-dialog-content>
     <app-contact (contactSelected)="selectContact($event)"></app-contact>
+    <button mat-raised-button color="accent" (click)="openCreateContact()">Crear nuevo</button>
 </mat-dialog-content>    
 <mat-dialog-actions align="end">
     <button mat-button [mat-dialog-close]="contact" [disabled]="contact == null" >Submit</button>
