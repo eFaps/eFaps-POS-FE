@@ -28,6 +28,10 @@
     <p i18n="@@bs-tickets">Tickets</p>
     <app-balance-summary-section [detail]="summary.ticketDetail"></app-balance-summary-section>
   </div>
+  <div class="section" *ngIf="summary.creditNoteDetail.documentCount > 0">
+    <p i18n="@@bs-creditNotes">Credit Notes</p>
+    <app-balance-summary-section [detail]="summary.creditNoteDetail"></app-balance-summary-section>
+  </div>
   <div class="section" *ngIf="summary.detail.documentCount > 0">
     <p i18n="@@bs-overall">Over all</p>
     <app-balance-summary-section [detail]="summary.detail"></app-balance-summary-section>
