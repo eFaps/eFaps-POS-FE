@@ -43,7 +43,7 @@ export class ContactComponent implements OnInit {
   }
 
   @Input()
-  set contact(contact: Contact) {
+  set contact(contact: Contact | undefined) {
     if (contact) {
       this.searchResult = [contact];
       this.changeDetectorRefs.detectChanges();
