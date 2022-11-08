@@ -1,20 +1,16 @@
 import {
   Component,
   EventEmitter,
-  AfterViewInit,
   OnInit,
   Output,
   ViewChild,
   Input,
+  ChangeDetectorRef,
 } from "@angular/core";
 import { UntypedFormControl } from "@angular/forms";
 import { MatAutocomplete } from "@angular/material/autocomplete";
-import { MatOption } from "@angular/material/core";
-import {
-  Contact,
-  ContactService,
-  IdentificationType,
-} from "@efaps/pos-library";
+
+import { Contact, ContactService } from "@efaps/pos-library";
 import { debounceTime } from "rxjs/operators";
 
 @Component({
@@ -22,15 +18,17 @@ import { debounceTime } from "rxjs/operators";
   templateUrl: "./contact.component.html",
   styleUrls: ["./contact.component.scss"],
 })
-export class ContactComponent implements OnInit, AfterViewInit {
+export class ContactComponent implements OnInit {
   searchControl: UntypedFormControl = new UntypedFormControl();
   searchResult: Contact[] = [];
   nameSearch = false;
   @Output() contactSelected = new EventEmitter<Contact>();
-  @Input() contact: Contact | undefined;
   @ViewChild(MatAutocomplete) autoComplete: MatAutocomplete | undefined;
 
-  constructor(private contactService: ContactService) {}
+  constructor(
+    private contactService: ContactService,
+    private changeDetectorRefs: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.searchControl.valueChanges
@@ -42,14 +40,13 @@ export class ContactComponent implements OnInit, AfterViewInit {
             this.searchResult = response;
           });
       });
-    if (this.contact) {
-      this.searchResult = [this.contact];
-      this.contact = undefined;
-    }
   }
 
-  ngAfterViewInit(): void {
-    if (this.autoComplete!!.options.length > 0) {
+  @Input()
+  set contact(contact: Contact) {
+    if (contact) {
+      this.searchResult = [contact];
+      this.changeDetectorRefs.detectChanges();
       this.searchControl.setValue(this.autoComplete!!.options.first.value);
     }
   }

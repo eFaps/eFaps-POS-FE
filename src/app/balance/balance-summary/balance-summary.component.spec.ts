@@ -47,6 +47,7 @@ describe("BalanceSummaryComponent", () => {
       invoiceDetail: detail,
       receiptDetail: detail,
       ticketDetail: detail,
+      creditNoteDetail: detail,
     };
     fixture.detectChanges();
   });

@@ -3,7 +3,7 @@
     <input matInput placeholder="{{nameSearch ? 'Nombre' : 'Numero de Doc.' }}" aria-label="Contacto" [matAutocomplete]="auto" [formControl]="searchControl">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selectContact($event)">
       <mat-option *ngFor="let item of searchResult" [value]="item">
-        {{nameSearch ? item.name + ' - ' + item.idNumber : item.idNumber + ' - ' + item.name}}
+        {{nameSearch ? item?.name + ' - ' + item?.idNumber : item?.idNumber + ' - ' + item?.name}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

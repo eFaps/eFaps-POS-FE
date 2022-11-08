@@ -66,6 +66,8 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   isBarcode = false;
   private requiresContact = false;
   private _contact: Contact | null = null;
+  private closing = false;
+  private dialogRef: MatDialogRef<ContactDialogComponent, any> | undefined;
 
   constructor(
     public workspaceService: WorkspaceService,
@@ -162,11 +164,14 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   }
 
   assignContact(update: boolean) {
-    if (update || (this.requiresContact && this.contact == null)) {
-      const ref = this.dialog.open(ContactDialogComponent, {
+    if (
+      update ||
+      (!this.closing && this.requiresContact && this.contact == null)
+    ) {
+      this.dialogRef = this.dialog.open(ContactDialogComponent, {
         disableClose: true,
       });
-      ref.afterClosed().subscribe({
+      this.dialogRef.afterClosed().subscribe({
         next: (contactOid) => {
           if (contactOid) {
             this.contact = contactOid;
@@ -244,6 +249,9 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     if (this.orderId) {
       this.msgService.publishFinishEditOrder(this.orderId);
       this.posService.reset();
+    }
+    if (this.dialogRef) {
+      this.dialogRef.close("OnDestroy");
     }
   }
 

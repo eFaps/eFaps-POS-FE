@@ -8,6 +8,7 @@ import {
   Balance,
   BalanceService,
   Contact,
+  ContactService,
   DocStatus,
   Document,
   DocumentService,
@@ -66,6 +67,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     private documentService: DocumentService,
     private balanceService: BalanceService,
     private printService: PrintService,
+    private contactService: ContactService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
   ) {}
@@ -77,7 +79,13 @@ export class PaymentComponent implements OnInit, OnDestroy {
         this.documentComponent.document = _doc;
         if (this.document.contactOid) {
           this.showContact = true;
-          this.contact = (this.document as any).contact;
+          if ((this.document as any).contact) {
+            this.contact = (this.document as any).contact;
+          } else {
+            this.contactService.getContact(this.document.contactOid).subscribe({
+              next: (contact) => (this.contact = contact),
+            });
+          }
         }
       })
     );
