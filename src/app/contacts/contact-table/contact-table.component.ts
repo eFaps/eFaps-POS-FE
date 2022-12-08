@@ -12,11 +12,17 @@ import {
   UntypedFormGroup,
 } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
+import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
-import { ConfigService, Contact, ContactService } from "@efaps/pos-library";
+import {
+  ConfigService,
+  Contact,
+  ContactService,
+  PageRequest,
+} from "@efaps/pos-library";
 import { Subscription, merge } from "rxjs";
-import { debounceTime } from "rxjs/operators";
+import { debounceTime, tap } from "rxjs/operators";
 
 import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
 import { CreateContactDialogComponent } from "../create-contact-dialog/create-contact-dialog.component";
@@ -28,6 +34,7 @@ import { CreateContactDialogComponent } from "../create-contact-dialog/create-co
 })
 export class ContactTableComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<Contact>();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   searchForm: FormGroup;
   subscription$ = new Subscription();
@@ -47,15 +54,6 @@ export class ContactTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription$.add(
-      this.contactService.getContacts().subscribe({
-        next: (data) => {
-          this.dataSource.data = [];
-          this.dataSource.data = data;
-          this.dataSource.sort = this.sort;
-        },
-      })
-    );
-    this.subscription$.add(
       this.configService.getSystemConfig(CONTACT_ACTIVATE_EMAIL).subscribe({
         next: (value) => {
           this.useEmail = "true" === "" + value;
@@ -71,14 +69,24 @@ export class ContactTableComponent implements OnInit, OnDestroy {
           this.contactService.searchContacts(input.search, false)
         ).subscribe({
           next: (data) =>
-            (this.dataSource.data = this.dataSource.data.concat(data)),
+            {
+              this.dataSource.data = this.dataSource.data.concat(data);
+              this.dataSource.sort = this.sort;
+              this.dataSource.paginator = this.paginator;
+            }
+              ,
         });
       } else {
-        this.contactService.getContacts().subscribe({
-          next: (data) => (this.dataSource.data = data),
-        });
+        this.loadContacts();
       }
     });
+  }
+
+  ngAfterViewInit() {
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(tap(() => this.loadContacts()))
+      .subscribe();
+    this.loadContacts();
   }
 
   get displayedColumns() {
@@ -89,6 +97,25 @@ export class ContactTableComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription$.unsubscribe();
+  }
+
+  loadContacts() {
+    var pageRequest: PageRequest = {
+      size: this.paginator.pageSize,
+      page: this.paginator.pageIndex,
+    };
+    if (this.sort.active) {
+      pageRequest.sort = [this.sort.active + "," + this.sort.direction];
+    }
+    this.contactService.getContacts(pageRequest).subscribe({
+      next: (page) => {
+        this.dataSource.data = [];
+        this.dataSource.paginator = null;
+        this.dataSource.sort = null;
+        this.dataSource.data = page.content;
+        this.paginator.length = page.totalElements;
+      },
+    });
   }
 
   createContact() {
@@ -102,5 +129,24 @@ export class ContactTableComponent implements OnInit, OnDestroy {
         this.changeDetectorRefs.detectChanges();
       }
     });
+  }
+
+  getPaginatorData(event: PageEvent) {
+    console.log(event);
+    return;
+    this.contactService
+      .getContacts({
+        size: this.paginator.pageSize,
+        page: this.paginator.pageIndex,
+      })
+      .subscribe({
+        next: (page) => {
+          this.dataSource.data = [];
+          this.dataSource.data = page.content;
+          this.dataSource.sort = this.sort;
+          //this.dataSource.paginator = this.paginator;
+          this.paginator.length = page.totalElements;
+        },
+      });
   }
 }
