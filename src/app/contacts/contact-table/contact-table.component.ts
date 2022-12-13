@@ -8,8 +8,6 @@ import {
 import {
   FormBuilder,
   FormGroup,
-  UntypedFormBuilder,
-  UntypedFormGroup,
 } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
@@ -34,7 +32,7 @@ import { CreateContactDialogComponent } from "../create-contact-dialog/create-co
 })
 export class ContactTableComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<Contact>();
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  _paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   searchForm: FormGroup;
   subscription$ = new Subscription();
@@ -52,6 +50,16 @@ export class ContactTableComponent implements OnInit, OnDestroy {
     });
   }
 
+  @ViewChild(MatPaginator, {static: false})
+  set paginator(paginator: MatPaginator) {
+    this._paginator = paginator;
+       merge(this.sort.sortChange, this._paginator.page)
+      .pipe(tap(() => this.loadContacts()))
+      .subscribe();
+    this.loadContacts();
+  }
+
+
   ngOnInit() {
     this.subscription$.add(
       this.configService.getSystemConfig(CONTACT_ACTIVATE_EMAIL).subscribe({
@@ -68,25 +76,16 @@ export class ContactTableComponent implements OnInit, OnDestroy {
           this.contactService.searchContacts(input.search, true),
           this.contactService.searchContacts(input.search, false)
         ).subscribe({
-          next: (data) =>
-            {
-              this.dataSource.data = this.dataSource.data.concat(data);
-              this.dataSource.sort = this.sort;
-              this.dataSource.paginator = this.paginator;
-            }
-              ,
+          next: (data) => {
+            this.dataSource.data = this.dataSource.data.concat(data);
+            this.dataSource.sort = this.sort;
+            this.dataSource.paginator = this._paginator;
+          },
         });
       } else {
         this.loadContacts();
       }
     });
-  }
-
-  ngAfterViewInit() {
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(tap(() => this.loadContacts()))
-      .subscribe();
-    this.loadContacts();
   }
 
   get displayedColumns() {
@@ -101,8 +100,8 @@ export class ContactTableComponent implements OnInit, OnDestroy {
 
   loadContacts() {
     var pageRequest: PageRequest = {
-      size: this.paginator.pageSize,
-      page: this.paginator.pageIndex,
+      size: this._paginator.pageSize,
+      page: this._paginator.pageIndex,
     };
     if (this.sort.active) {
       pageRequest.sort = [this.sort.active + "," + this.sort.direction];
@@ -113,7 +112,8 @@ export class ContactTableComponent implements OnInit, OnDestroy {
         this.dataSource.paginator = null;
         this.dataSource.sort = null;
         this.dataSource.data = page.content;
-        this.paginator.length = page.totalElements;
+        this._paginator.length = page.totalElements;
+        this.changeDetectorRefs.detectChanges();
       },
     });
   }
@@ -129,24 +129,5 @@ export class ContactTableComponent implements OnInit, OnDestroy {
         this.changeDetectorRefs.detectChanges();
       }
     });
-  }
-
-  getPaginatorData(event: PageEvent) {
-    console.log(event);
-    return;
-    this.contactService
-      .getContacts({
-        size: this.paginator.pageSize,
-        page: this.paginator.pageIndex,
-      })
-      .subscribe({
-        next: (page) => {
-          this.dataSource.data = [];
-          this.dataSource.data = page.content;
-          this.dataSource.sort = this.sort;
-          //this.dataSource.paginator = this.paginator;
-          this.paginator.length = page.totalElements;
-        },
-      });
   }
 }

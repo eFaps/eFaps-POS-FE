@@ -6,7 +6,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatTableModule } from "@angular/material/table";
 import { By } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { Contact, PosConfigToken } from "@efaps/pos-library";
+import { Contact, Page, PosConfigToken } from "@efaps/pos-library";
 import { ContactService } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
@@ -15,11 +15,32 @@ import { Observable } from "rxjs";
 import { ContactTableComponent } from "./contact-table.component";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatSortModule } from "@angular/material/sort";
 
 class ContactServiceStub {
-  getContacts(): Observable<Contact[]> {
+  getContacts(): Observable<Page<Contact>> {
     return new Observable((observer) => {
-      observer.next([]);
+      observer.next({
+        content: [],
+        pageable: {
+          sort: { sorted: true, unsorted: true, empty: true },
+          pageNumber: 1,
+          pageSize: 1,
+          offset: 1,
+          paged: true,
+          unpaged: true,
+        },
+        totalPages: 1,
+        totalElements: 1,
+        last: true,
+        first: true,
+        sort: { sorted: true, unsorted: true, empty: true },
+        numberOfElements: 1,
+        size: 1,
+        number: 1,
+        empty: true,
+      });
     });
   }
 }
@@ -38,6 +59,8 @@ describe("ContactTableComponent", () => {
         MatTableModule,
         MatFormFieldModule,
         MatInputModule,
+        MatPaginatorModule,
+        MatSortModule,
       ],
       providers: [
         { provide: ContactService, useClass: ContactServiceStub },
