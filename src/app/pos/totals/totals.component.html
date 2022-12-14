@@ -14,7 +14,7 @@
       Total: {{cross | posCurrency:currentCurrency}}
     </div>
   </mat-list-item>
-  <ng-container *ngIf="payableAmount && payableAmount > 0 && payableAmount != crossTotal">
+  <ng-container *ngIf="payableAmount && payableAmount > 0 && payableAmount != cross">
     <mat-list-item class="amount">
       <div matLine>
         Redondeo: {{payableAmount - cross | posCurrency:currentCurrency}}
