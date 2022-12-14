@@ -50,6 +50,7 @@ export abstract class AbstractSpotPicker implements OnInit {
         status: DocStatus.OPEN,
         netTotal: 0,
         crossTotal: 0,
+        payableAmount: 0,
         taxes: [],
         spot: spot,
         discount: null,

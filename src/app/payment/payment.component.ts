@@ -102,8 +102,12 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.subscriptions$.add(
       this.paymentService.currentTotal.subscribe((_total) => {
         this.total = _total;
+        let payableAmount = 0;
+        if (this.document) {
+          payableAmount = this.document.payableAmount ?  this.document.payableAmount : this.document.crossTotal
+        }
         this.change = this.document
-          ? _total - this.document.crossTotal
+          ? _total - payableAmount
           : _total;
       })
     );
@@ -192,6 +196,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
       payments: this.payments,
       netTotal: this.document.netTotal,
       crossTotal: this.document.crossTotal,
+      payableAmount: this.document.payableAmount,
       taxes: this.document.taxes,
       contactOid: this.contact
         ? this.contact.oid

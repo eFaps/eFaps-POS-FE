@@ -28,6 +28,9 @@ class PosServiceStub {
   currentNetTotal = new Observable((observer) => {
     observer.next({});
   });
+  currentPayableAmount = new Observable((observer) => {
+    observer.next({});
+  });
 }
 
 describe("TotalsComponent", () => {

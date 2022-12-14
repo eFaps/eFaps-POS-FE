@@ -71,6 +71,18 @@
             Total: {{document.crossTotal | posCurrency:document.currency}}
           </div>
         </mat-list-item>
+        <ng-container *ngIf="document.payableAmount && document.payableAmount > 0 && document.payableAmount != document.crossTotal">
+        <mat-list-item class="amount">
+          <div matLine>
+            Redondeo: {{document.payableAmount - document.crossTotal | posCurrency:document.currency}}
+          </div>
+        </mat-list-item>
+        <mat-list-item class="amount">
+          <div matLine>
+            Por pagar: {{document.payableAmount | posCurrency:document.currency}}
+          </div>
+        </mat-list-item>
+      </ng-container>
       </mat-list>
     </div>
   </div>

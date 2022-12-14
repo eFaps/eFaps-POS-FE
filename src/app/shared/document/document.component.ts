@@ -71,6 +71,7 @@ export class DocumentComponent implements OnInit {
       netTotal: 0,
       crossTotal: 0,
       exchangeRate: 0,
+      payableAmount: 0,
       taxes: [],
       discount: null,
     };

@@ -10,6 +10,7 @@ export class TotalsComponent implements OnInit {
   net: number = 0;
   taxesEntries: [string, number][] = [];
   cross: number = 0;
+  payableAmount: number = 0;
   currentCurrency: Currency = Currency.PEN;
 
   constructor(private posService: PosService) {}
@@ -24,6 +25,9 @@ export class TotalsComponent implements OnInit {
     });
     this.posService.currentCrossTotal.subscribe(
       (_data) => (this.cross = _data)
+    );
+    this.posService.currentPayableAmount.subscribe(
+      (_data) => (this.payableAmount = _data)
     );
   }
 }
