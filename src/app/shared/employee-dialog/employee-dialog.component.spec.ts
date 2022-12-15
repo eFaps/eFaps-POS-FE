@@ -1,6 +1,13 @@
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { ReactiveFormsModule } from "@angular/forms";
+import {
+  MatDialogModule,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from "@angular/material/dialog";
+import { MatSelectModule } from "@angular/material/select";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { EmployeeService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
@@ -20,7 +27,13 @@ describe("EmployeeDialogComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [
+        HttpClientTestingModule,
+        NoopAnimationsModule,
+        MatSelectModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+      ],
       declarations: [EmployeeDialogComponent],
       providers: [
         { provide: EmployeeService, useClass: EmployeeServiceStub },
