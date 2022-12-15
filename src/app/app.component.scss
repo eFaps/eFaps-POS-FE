@@ -7,9 +7,16 @@
   left: 0;
   right: 0;
 
+  mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+  }
+
   & div {
     text-align: right;
   }
+
+
 }
 
 .pos-sidenav {

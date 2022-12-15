@@ -48,11 +48,11 @@ export abstract class PaymentForm implements OnInit, OnDestroy {
       this.paymentService.currentTotal.subscribe((_total) => {
         let payableAmount = 0;
         if (this.document) {
-          payableAmount = this.document.payableAmount ?  this.document.payableAmount : this.document.crossTotal
+          payableAmount = this.document.payableAmount
+            ? this.document.payableAmount
+            : this.document.crossTotal;
         }
-        this.change = this.document
-          ? _total - payableAmount
-          : _total;
+        this.change = this.document ? _total - payableAmount : _total;
       })
     );
   }

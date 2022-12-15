@@ -1,12 +1,12 @@
-<div fxLayout="row">
-  <div>
+<div class="content">
+  <div class="payment-form-wrapper">
     <form class="payment-form" [formGroup]="paymentForm">
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Monto" type="text" formControlName="amount" class="right-align">
         <span matPrefix>{{currency}}&nbsp;</span>
       </mat-form-field>
       <button type="button" mat-raised-button (click)="setChange()">{{'<<'}}</button>
-      <div fxLayout="row" fxLayoutGap="20px">
+      <div class="keypad-warpper">
         <app-keypad (number)="setNumber($event)"></app-keypad>
         <mat-radio-group class="collector-radio-group" formControlName="collectorFrmCtrl">
           <mat-radio-button class="collector-radio-button" *ngFor="let collector of collectors; let idx = index" [value]="collector">

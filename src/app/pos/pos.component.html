@@ -6,11 +6,16 @@
     </div>
     <app-product-grid *ngSwitchCase="PosLayout.GRID" [remarkMode]="remarkMode"></app-product-grid>
     <app-product-list *ngSwitchCase="PosLayout.LIST" [remarkMode]="remarkMode" [isBarcode]="isBarcode"></app-product-list>
-    <button *ngIf="currentLayout === PosLayout.GRID" mat-fab color="primary" (click)="openCatSelect()" class="catSelect">Cat.</button>
-    <button class="remarkCmd" (click)="toggleRemarkMode()" mat-fab color="{{remarkMode ? 'accent' : 'primary' }}">
-      <mat-icon class="posIcon-36">description</mat-icon>
-    </button>
-    <button mat-fab color="primary" (click)="switchLayout()" *ngIf="this.workspaceService.getPosLayout() === PosLayout.BOTH" class="switch">Switch</button>
+    <div class="button-list">
+      <button *ngIf="currentLayout === PosLayout.GRID" mat-fab color="primary" (click)="openCatSelect()" class="catSelect">Cat.</button>
+      <button class="remark-btn" (click)="toggleRemarkMode()" mat-fab color="{{remarkMode ? 'accent' : 'primary' }}">
+        <mat-icon class="posIcon-36">description</mat-icon>
+      </button>
+      <button mat-fab color="primary" (click)="switchLayout()" *ngIf="this.workspaceService.getPosLayout() === PosLayout.BOTH" class="switch">Switch</button>
+      <button  mat-fab color="primary" class="employee-btn">
+        <mat-icon class="posIcon-36">person_pin</mat-icon>
+      </button>
+  </div>
   </div>
   <div class='ticket' [ngStyle]="{'height.px': screenHeight - 64 - 6}">
     <div>

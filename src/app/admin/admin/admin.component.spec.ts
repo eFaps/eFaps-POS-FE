@@ -1,6 +1,5 @@
 import { DebugElement } from "@angular/core";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
-import { FlexLayoutModule } from "@angular/flex-layout";
 import { By } from "@angular/platform-browser";
 import {
   AdminService,
@@ -47,7 +46,7 @@ describe("AdminComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FlexLayoutModule, ReactiveFormsModule, MatSlideToggleModule],
+      imports: [ReactiveFormsModule, MatSlideToggleModule],
       providers: [
         { provide: AdminService, useClass: AdminServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },

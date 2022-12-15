@@ -1,3 +1,27 @@
+
+.content {
+  display: flex;
+  gap: 10px;
+
+  .doc-wrapper {
+    flex-grow: 1;
+
+    .leftwrapper {
+      div {
+        display: flex;
+        justify-content:flex-start;
+        gap: 20px;
+      }
+    }
+  }
+  .paymentsContainer {
+    max-width: 50%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 50%;
+  }
+}
+
 .right-align {
   text-align: right;
 }
@@ -14,9 +38,7 @@
   color: red;
 }
 
-.paymentsContainer {
-  max-width: 50%;
-}
+
 
 .paymentsRegistered,
 .paymentsTypes {

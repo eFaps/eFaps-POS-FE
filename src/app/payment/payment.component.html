@@ -1,17 +1,17 @@
 <div [ngBusy]="{busy: busy, message: 'WAIT' | translate}"></div>
-<div fxLayout="row" fxLayoutGap="20px">
-  <div fxLayout="column" fxFlex="50">
+<div class="content">
+  <div class="doc-wrapper">
     <div class="leftwrapper">
       <app-contact *ngIf="showContact" (contactSelected)="selectContact($event)" [contact]="contact"></app-contact>
-      <div fxLayout="row">
-        <mat-radio-group class="docType-radio-group" [(ngModel)]="docType" fxFlex>
+      <div>
+        <mat-radio-group class="docType-radio-group" [(ngModel)]="docType">
           <mat-radio-button class="docType-radio-button" *ngFor="let type of docTypes; let idx = index" [value]="DocumentType[type]" 
           (click)="setDocType(type)">
             {{type.toString() | translate}}
           </mat-radio-button>
         </mat-radio-group>
         <mat-button-toggle [value]="showContact" (change)="toggleContact()" [disabled]="!permitToggleContact">{{ showContact ? 'Desc.' : 'Cliente'}}</mat-button-toggle>
-        <div class="balance" fxFlex="250px">
+        <div class="balance">
           <span *ngIf="balance" i18n>Balance - {{ balance.number }}</span>
         </div>
       </div>
@@ -19,7 +19,7 @@
     </div>
     <button mat-fab color="primary" (click)="showDiscount()" class="discount">Desc.</button>
   </div>
-  <div fxFlex class="paymentsContainer">
+  <div class="paymentsContainer">
     <div class="paymentsTypes">
       <app-payment-type></app-payment-type>
     </div>
@@ -33,7 +33,7 @@
           </button>
         </mat-list-item>
       </mat-list>
-      <div fxLayout="row" fxLayoutGap="20px">
+      <div>
         <div class="payTotal">
           <h1 i18n="@@payment-total">Total: {{total | posCurrency:paymentService.currency}}</h1>
           <h1 [ngClass]="{'negative': change < 0}" i18n="@@payment-change">Change: {{change | posCurrency:paymentService.currency}}</h1>

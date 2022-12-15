@@ -1,3 +1,12 @@
+.content {
+  display: flex;
+
+  .payment-form-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .right-align {
   text-align: right;
 }

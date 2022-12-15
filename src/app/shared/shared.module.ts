@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 import { NgModule } from "@angular/core";
-import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatButtonModule } from "@angular/material/button";
@@ -42,7 +41,6 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
 @NgModule({
   imports: [
     CommonModule,
-    FlexLayoutModule,
     FormsModule,
     MatAutocompleteModule,
     MatButtonModule,

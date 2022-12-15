@@ -5,10 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import {
-  FormBuilder,
-  FormGroup,
-} from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
@@ -50,15 +47,14 @@ export class ContactTableComponent implements OnInit, OnDestroy {
     });
   }
 
-  @ViewChild(MatPaginator, {static: false})
+  @ViewChild(MatPaginator, { static: false })
   set paginator(paginator: MatPaginator) {
     this._paginator = paginator;
-       merge(this.sort.sortChange, this._paginator.page)
+    merge(this.sort.sortChange, this._paginator.page)
       .pipe(tap(() => this.loadContacts()))
       .subscribe();
     this.loadContacts();
   }
-
 
   ngOnInit() {
     this.subscription$.add(

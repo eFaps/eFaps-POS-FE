@@ -1,3 +1,18 @@
+.content {
+  display: flex;
+
+  .payment-form-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    .keypad-warpper {
+      display: flex;
+      gap: 20px;
+    }
+  }
+}
+
+
 .right-align {
   text-align: right;
 }

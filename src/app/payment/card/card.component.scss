@@ -1,3 +1,17 @@
+.content {
+  display: flex;
+
+  .payment-form-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    .keypad-warpper {
+      display: flex;
+      gap: 20px;
+    }
+  }
+}
+
 .card-radio-group {
   display: inline-flex;
   flex-direction: column;

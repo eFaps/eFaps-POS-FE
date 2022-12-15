@@ -104,11 +104,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
         this.total = _total;
         let payableAmount = 0;
         if (this.document) {
-          payableAmount = this.document.payableAmount ?  this.document.payableAmount : this.document.crossTotal
+          payableAmount = this.document.payableAmount
+            ? this.document.payableAmount
+            : this.document.crossTotal;
         }
-        this.change = this.document
-          ? _total - payableAmount
-          : _total;
+        this.change = this.document ? _total - payableAmount : _total;
       })
     );
     this.subscriptions$.add(

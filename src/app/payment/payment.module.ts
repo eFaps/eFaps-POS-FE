@@ -1,6 +1,5 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
@@ -29,7 +28,6 @@ import { SuccessDialogComponent } from "./success-dialog/success-dialog.componen
 @NgModule({
   imports: [
     CommonModule,
-    FlexLayoutModule,
     FormsModule,
     MatButtonModule,
     MatButtonToggleModule,

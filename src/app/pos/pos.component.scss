@@ -44,31 +44,31 @@ $ticketWith: 450px;
   width: calc(100% - #{$ticketWith});
 }
 
-.switch {
+.button-list {
   position: absolute;
-  bottom: 10px;
-  right: $ticketWith + 15px;
-  z-index: 200;
-}
-
-.catSelect {
-  position: absolute;
-  bottom: 10px;
   left: 15px;
+  bottom: 15px;
   z-index: 200;
-}
+  display: flex;
 
-.remarkCmd {
-  position: absolute;
-  bottom: 10px;
-  left: 80px;
-  z-index: 200;
-
-  & .posIcon-36 {
-    top: -5px;
-    position: relative;
+  button {
+    margin-right: 5px;
   }
-}
+
+  .employee-btn {
+    & .posIcon-36 {
+      top: -5px;
+      position: relative;
+    }
+  }
+
+  .remark-btn {
+    & .posIcon-36 {
+      top: -5px;
+      position: relative;
+    }
+  }
+ }
 
 input {
   text-align: right;
@@ -78,3 +78,4 @@ mat-form-field {
   width: 50px;
   font-size: x-large;
 }
+
