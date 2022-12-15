@@ -330,6 +330,6 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   }
 
   assignSeller() {
-    let ref = this.dialog.open(EmployeeDialogComponent, {});
+    let ref = this.dialog.open(EmployeeDialogComponent, { width: "400px" });
   }
 }

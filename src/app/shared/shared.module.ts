@@ -35,6 +35,8 @@ import { TaxpayerResultComponent } from "./taxpayer-result/taxpayer-result.compo
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { EmployeeDialogComponent } from "./employee-dialog/employee-dialog.component";
+import { MatSelectModule } from "@angular/material/select";
+
 export function TranslateLoaderFactory(_httpClient: HttpClient) {
   return new TranslateHttpLoader(_httpClient, "./assets/i18n/");
 }
@@ -63,6 +65,7 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     TranslateModule,
     WebStorageModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
   ],
   declarations: [
     ConfirmDialogComponent,

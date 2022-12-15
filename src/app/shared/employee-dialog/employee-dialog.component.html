@@ -1,1 +1,13 @@
-<p>employee-dialog works!</p>
+<h1 mat-dialog-title>Empleados</h1>
+<mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Vendedor</mat-label>
+    <mat-select>
+      <mat-option></mat-option>
+      <mat-option [value]="option.oid" *ngFor="let option of employees">{{option.firstName}} {{option.surName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="true">OK</button>
+</mat-dialog-actions>
