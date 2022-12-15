@@ -63,13 +63,13 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     | ProductListComponent
     | undefined;
   remarkMode = false;
-  private subscriptions = new Subscription();
+  allowAssignSeller = false;
   isBarcode = false;
+  private subscriptions = new Subscription();
   private requiresContact = false;
   private _contact: Contact | null = null;
   private closing = false;
   private dialogRef: MatDialogRef<ContactDialogComponent, any> | undefined;
-  private allowAssignSeller = false;
 
   constructor(
     public workspaceService: WorkspaceService,
