@@ -12,7 +12,7 @@
         <mat-icon class="posIcon-36">description</mat-icon>
       </button>
       <button mat-fab color="primary" (click)="switchLayout()" *ngIf="this.workspaceService.getPosLayout() === PosLayout.BOTH" class="switch">Switch</button>
-      <button  mat-fab color="primary" class="employee-btn">
+      <button  mat-fab color="primary" class="employee-btn" (click)="assignSeller()" *ngIf="allowAssignSeller">
         <mat-icon class="posIcon-36">person_pin</mat-icon>
       </button>
   </div>

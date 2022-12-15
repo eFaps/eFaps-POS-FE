@@ -31,6 +31,7 @@ import {
 import { combineLatest, Subscription } from "rxjs";
 import { skip } from "rxjs/operators";
 import { PosSyncService } from "../services/pos-sync.service";
+import { EmployeeDialogComponent } from "../shared/employee-dialog/employee-dialog.component";
 
 import { CategorySelectComponent } from "./category-select/category-select.component";
 import { CommandsComponent } from "./commands/commands.component";
@@ -68,6 +69,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   private _contact: Contact | null = null;
   private closing = false;
   private dialogRef: MatDialogRef<ContactDialogComponent, any> | undefined;
+  private allowAssignSeller = false;
 
   constructor(
     public workspaceService: WorkspaceService,
@@ -103,6 +105,10 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
           this.requiresContact = hasFlag(
             workspace,
             WorkspaceFlag.orderRequiresContact
+          );
+          this.allowAssignSeller = hasFlag(
+            workspace,
+            WorkspaceFlag.assignSeller
           );
           if (order && !this.orderId) {
             this.msgService.publishStartEditOrder(order.id!);
@@ -321,5 +327,9 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
 
   toggleRemarkMode() {
     this.remarkMode = !this.remarkMode;
+  }
+
+  assignSeller() {
+    let ref = this.dialog.open(EmployeeDialogComponent, {});
   }
 }
