@@ -34,7 +34,7 @@ import { TaxpayerQueryComponent } from "./taxpayer-query/taxpayer-query.componen
 import { TaxpayerResultComponent } from "./taxpayer-result/taxpayer-result.component";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatTooltipModule } from "@angular/material/tooltip";
-import { EmployeeDialogComponent } from './employee-dialog/employee-dialog.component';
+import { EmployeeDialogComponent } from "./employee-dialog/employee-dialog.component";
 export function TranslateLoaderFactory(_httpClient: HttpClient) {
   return new TranslateHttpLoader(_httpClient, "./assets/i18n/");
 }
