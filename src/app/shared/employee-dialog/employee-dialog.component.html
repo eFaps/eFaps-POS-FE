@@ -2,12 +2,12 @@
 <mat-dialog-content>
   <mat-form-field appearance="fill">
     <mat-label>Vendedor</mat-label>
-    <mat-select>
+    <mat-select [formControl]="employee">
       <mat-option></mat-option>
-      <mat-option [value]="option.oid" *ngFor="let option of employees">{{option.firstName}} {{option.surName}}</mat-option>
+      <mat-option [value]="option" *ngFor="let option of employees">{{option.firstName}} {{option.surName}}</mat-option>
     </mat-select>
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="true">OK</button>
+  <button mat-button (click)="closeDialog()">OK</button>
 </mat-dialog-actions>

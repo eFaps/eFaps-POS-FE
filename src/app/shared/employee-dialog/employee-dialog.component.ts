@@ -24,4 +24,8 @@ export class EmployeeDialogComponent implements OnInit {
       next: (employees) => (this.employees = employees),
     });
   }
+
+  closeDialog() {
+    this.dialogRef.close(this.employee.value);
+  }
 }
