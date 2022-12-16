@@ -18,6 +18,8 @@ import {
   Contact,
   ContactService,
   Employee,
+  EmployeeRelationType,
+  EmployeeService,
   hasFlag,
   Item,
   MsgService,
@@ -32,7 +34,10 @@ import {
 import { combineLatest, Subscription } from "rxjs";
 import { skip } from "rxjs/operators";
 import { PosSyncService } from "../services/pos-sync.service";
-import { EmployeeDialogComponent, EmployeeDialogData } from "../shared/employee-dialog/employee-dialog.component";
+import {
+  EmployeeDialogComponent,
+  EmployeeDialogData,
+} from "../shared/employee-dialog/employee-dialog.component";
 
 import { CategorySelectComponent } from "./category-select/category-select.component";
 import { CommandsComponent } from "./commands/commands.component";
@@ -71,7 +76,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   private _contact: Contact | null = null;
   private closing = false;
   private dialogRef: MatDialogRef<ContactDialogComponent, any> | undefined;
-  private seller: Employee | null = null;
+  private _seller: Employee | null = null;
 
   constructor(
     public workspaceService: WorkspaceService,
@@ -82,6 +87,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     private productService: ProductService,
     private partListService: PartListService,
     private posSyncService: PosSyncService,
+    private employeeService: EmployeeService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     private router: Router,
@@ -127,6 +133,20 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
             } else {
               this.contact = null;
               this.assignContact(false);
+            }
+            if (order.employeeRelations) {
+              const relations = order.employeeRelations.filter((relation) => {
+                return relation.type == EmployeeRelationType.SELLER;
+              });
+              if (relations.length > 0) {
+                this.subscriptions.add(
+                  this.employeeService
+                    .getEmployee(relations[0].employeeOid)
+                    .subscribe({
+                      next: (employee) => (this.seller = employee),
+                    })
+                );
+              }
             }
           } else {
             this.contact = null;
@@ -332,11 +352,14 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   }
 
   assignSeller() {
-    const data :EmployeeDialogData = {
+    const data: EmployeeDialogData = {
       titel: "Assignar Vendedor",
-      employee: this.seller
-    }
-    let ref = this.dialog.open(EmployeeDialogComponent, { width: "400px", data });
+      employee: this.seller,
+    };
+    let ref = this.dialog.open(EmployeeDialogComponent, {
+      width: "400px",
+      data,
+    });
     ref.afterClosed().subscribe({
       next: (employee) => {
         if (employee) {
@@ -346,5 +369,28 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
         }
       },
     });
+  }
+
+  set seller(seller: Employee | null) {
+    if (this._seller) {
+      this.posService.removeEmployeeRelation({
+        employeeOid: this._seller.oid,
+        type: EmployeeRelationType.SELLER,
+      });
+    }
+    if (seller == null) {
+      this.posService.contactOid = null;
+      this._seller = null;
+    } else {
+      this._seller = seller;
+      this.posService.addEmployeeRelation({
+        employeeOid: this._seller.oid,
+        type: EmployeeRelationType.SELLER,
+      });
+    }
+  }
+
+  get seller(): Employee | null {
+    return this._seller;
   }
 }

@@ -13,16 +13,16 @@ export class EmployeeDialogComponent implements OnInit {
   employees: Employee[] = [];
   employeeCtrl: FormControl<Employee | null>;
   selectedEmployee: Employee | undefined;
-  
+
   constructor(
     private employeeService: EmployeeService,
     public dialogRef: MatDialogRef<EmployeeDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: EmployeeDialogData
   ) {
     this.employeeCtrl = new FormControl<Employee | null>(null);
-    this.title = data.titel
+    this.title = data.titel;
     if (data && data.employee) {
-      this.employeeCtrl.patchValue(data.employee)
+      this.employeeCtrl.patchValue(data.employee);
     }
   }
 
@@ -33,15 +33,17 @@ export class EmployeeDialogComponent implements OnInit {
   }
 
   closeDialog() {
-    this.dialogRef.close(this.employeeCtrl.value ? this.employeeCtrl.value : null);
+    this.dialogRef.close(
+      this.employeeCtrl.value ? this.employeeCtrl.value : null
+    );
   }
 
   compareFunction(o1: any, o2: any) {
-    return (o1.oid == o2.oid);
-   }
+    return o1.oid == o2.oid;
+  }
 }
 
 export interface EmployeeDialogData {
-  titel: string,
-  employee?: Employee | null
+  titel: string;
+  employee?: Employee | null;
 }
