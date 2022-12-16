@@ -17,7 +17,16 @@
       </div>
       <app-document></app-document>
     </div>
-    <button mat-fab color="primary" (click)="showDiscount()" class="discount">Desc.</button>
+    <div class="button-list">
+      <button mat-fab color="primary" (click)="showDiscount()" class="discount-btn">Desc.</button>
+    
+    <div *ngIf="allowAssignSeller" class="seller">
+      <button mat-fab color="primary" class="employee-btn" (click)="assignSeller()">
+        <mat-icon class="posIcon-36">person_pin</mat-icon>
+      </button>
+      <div class="seller-label" *ngIf="seller"><span>{{seller.firstName}} {{seller.surName}}</span></div>
+    </div>
+  </div>
   </div>
   <div class="paymentsContainer">
     <div class="paymentsTypes">

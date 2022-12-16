@@ -68,8 +68,28 @@
   overflow: auto;
 }
 
-.discount {
+
+.button-list {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  left: 15px;
+  bottom: 15px;
+  z-index: 200;
+  display: flex;
+  
+  button {
+    margin-right: 5px;
+  }
+
+  .employee-btn {
+    & .posIcon-36 {
+      top: -5px;
+      position: relative;
+    }
+  }
+  
+  .discount-btn {
+  
+  }
+  
 }
+

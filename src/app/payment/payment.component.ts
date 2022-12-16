@@ -13,6 +13,10 @@ import {
   Document,
   DocumentService,
   DocumentType,
+  Employee,
+  EmployeeRelationType,
+  EmployeeService,
+  hasFlag,
   Invoice,
   Payment,
   PaymentService,
@@ -20,6 +24,7 @@ import {
   PrintService,
   Receipt,
   Ticket,
+  WorkspaceFlag,
   WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
@@ -27,6 +32,10 @@ import { PartialObserver, Subscription } from "rxjs";
 
 import { ConfirmDialogComponent } from "../shared/confirm-dialog/confirm-dialog.component";
 import { DocumentComponent } from "../shared/document/document.component";
+import {
+  EmployeeDialogComponent,
+  EmployeeDialogData,
+} from "../shared/employee-dialog/employee-dialog.component";
 import { PrintDialogComponent } from "../shared/print-dialog/print-dialog.component";
 import { DiscountComponent } from "./discount/discount.component";
 import { SuccessDialogComponent } from "./success-dialog/success-dialog.component";
@@ -55,9 +64,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
   balance!: Balance;
   showContact = false;
   permitToggleContact = true;
-  private subscriptions$ = new Subscription();
   allowPrintPreliminary = true;
+  allowAssignSeller = true;
+  private subscriptions$ = new Subscription();
   private printTicket = false;
+  private _seller: Employee | null = null;
 
   constructor(
     private router: Router,
@@ -68,6 +79,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     private balanceService: BalanceService,
     private printService: PrintService,
     private contactService: ContactService,
+    private employeeService: EmployeeService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
   ) {}
@@ -85,6 +97,22 @@ export class PaymentComponent implements OnInit, OnDestroy {
             this.contactService.getContact(this.document.contactOid).subscribe({
               next: (contact) => (this.contact = contact),
             });
+          }
+        }
+        if (this.document.employeeRelations) {
+          const relations = this.document.employeeRelations.filter(
+            (relation) => {
+              return relation.type == EmployeeRelationType.SELLER;
+            }
+          );
+          if (relations.length > 0) {
+            this.subscriptions$.add(
+              this.employeeService
+                .getEmployee(relations[0].employeeOid)
+                .subscribe({
+                  next: (employee) => (this._seller = employee),
+                })
+            );
           }
         }
       })
@@ -114,6 +142,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.subscriptions$.add(
       this.workspaceService.currentWorkspace.subscribe((_data) => {
         this.workspaceOid = _data.oid;
+        this.allowAssignSeller = hasFlag(_data, WorkspaceFlag.assignSeller);
         this.allowPrintPreliminary = _data.printCmds.some(
           (x) => x.target === "PRELIMINARY"
         );
@@ -206,6 +235,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
       workspaceOid: this.workspaceOid,
       balanceOid: this.balance.oid ? this.balance.oid : this.balance.id,
       discount: this.document.discount,
+      employeeRelations: this.seller
+        ? [{ employeeOid: this.seller.oid, type: EmployeeRelationType.SELLER }]
+        : undefined,
     };
 
     switch (this.docType) {
@@ -320,5 +352,37 @@ export class PaymentComponent implements OnInit, OnDestroy {
           },
         });
     }
+  }
+
+  assignSeller() {
+    const data: EmployeeDialogData = {
+      titel: "Assignar Vendedor",
+      employee: this.seller,
+    };
+    let ref = this.dialog.open(EmployeeDialogComponent, {
+      width: "400px",
+      data,
+    });
+    ref.afterClosed().subscribe({
+      next: (employee) => {
+        if (employee) {
+          this.seller = employee;
+        } else if (employee === null) {
+          this.seller = null;
+        }
+      },
+    });
+  }
+
+  set seller(seller: Employee | null) {
+    if (seller == null) {
+      this._seller = null;
+    } else {
+      this._seller = seller;
+    }
+  }
+
+  get seller(): Employee | null {
+    return this._seller;
   }
 }

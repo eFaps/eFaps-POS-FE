@@ -143,7 +143,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
                   this.employeeService
                     .getEmployee(relations[0].employeeOid)
                     .subscribe({
-                      next: (employee) => (this.seller = employee),
+                      next: (employee) => (this._seller = employee),
                     })
                 );
               }
@@ -372,12 +372,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   }
 
   set seller(seller: Employee | null) {
-    if (this._seller) {
-      this.posService.removeEmployeeRelation({
-        employeeOid: this._seller.oid,
-        type: EmployeeRelationType.SELLER,
-      });
-    }
+    this.posService.removeEmployeeRelationsByType(EmployeeRelationType.SELLER);
     if (seller == null) {
       this.posService.contactOid = null;
       this._seller = null;
