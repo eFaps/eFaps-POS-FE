@@ -12,9 +12,12 @@
         <mat-icon class="posIcon-36">description</mat-icon>
       </button>
       <button mat-fab color="primary" (click)="switchLayout()" *ngIf="this.workspaceService.getPosLayout() === PosLayout.BOTH" class="switch">Switch</button>
-      <button  mat-fab color="primary" class="employee-btn" (click)="assignSeller()" *ngIf="allowAssignSeller">
-        <mat-icon class="posIcon-36">person_pin</mat-icon>
-      </button>
+      <div *ngIf="allowAssignSeller" class="seller">
+        <button  mat-fab color="primary" class="employee-btn" (click)="assignSeller()" >
+          <mat-icon class="posIcon-36">person_pin</mat-icon>
+        </button>
+        <div class="seller-label" *ngIf="seller"><span>{{seller?.firstName}} {{seller?.surName}}</span></div>
+    </div>
   </div>
   </div>
   <div class='ticket' [ngStyle]="{'height.px': screenHeight - 64 - 6}">

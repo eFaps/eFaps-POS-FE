@@ -1,3 +1,12 @@
+@use '@angular/material' as mat;
+@mixin pos-component-theme($theme) {
+  .seller-label {
+    span {
+      background-color: mat.get-color-from-palette($primary);
+    }
+  }
+}
+
 $ticketWith: 450px;
 
 .content {
@@ -73,9 +82,26 @@ $ticketWith: 450px;
 input {
   text-align: right;
 }
-
+/*
 mat-form-field {
   width: 50px;
   font-size: x-large;
+}
+*/
+
+.seller {
+  display: flex;
+  .seller-label {
+    span {
+      color: white;
+      left: -15px;
+      position: relative;
+      top: 20px;
+      padding: 10px;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+      z-index: -1;
+    }
+  }
 }
 
