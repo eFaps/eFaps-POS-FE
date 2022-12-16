@@ -9,14 +9,21 @@ import { Employee, EmployeeService } from "@efaps/pos-library";
   styleUrls: ["./employee-dialog.component.scss"],
 })
 export class EmployeeDialogComponent implements OnInit {
+  title = "";
   employees: Employee[] = [];
-  employee: FormControl<string | null>;
+  employeeCtrl: FormControl<Employee | null>;
+  selectedEmployee: Employee | undefined;
+  
   constructor(
     private employeeService: EmployeeService,
     public dialogRef: MatDialogRef<EmployeeDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: EmployeeDialogData
   ) {
-    this.employee = new FormControl("");
+    this.employeeCtrl = new FormControl<Employee | null>(null);
+    this.title = data.titel
+    if (data && data.employee) {
+      this.employeeCtrl.patchValue(data.employee)
+    }
   }
 
   ngOnInit(): void {
@@ -26,6 +33,15 @@ export class EmployeeDialogComponent implements OnInit {
   }
 
   closeDialog() {
-    this.dialogRef.close(this.employee.value);
+    this.dialogRef.close(this.employeeCtrl.value ? this.employeeCtrl.value : null);
   }
+
+  compareFunction(o1: any, o2: any) {
+    return (o1.oid == o2.oid);
+   }
+}
+
+export interface EmployeeDialogData {
+  titel: string,
+  employee?: Employee | null
 }

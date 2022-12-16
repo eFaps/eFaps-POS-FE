@@ -17,6 +17,7 @@ import {
   BarcodeScannerService,
   Contact,
   ContactService,
+  Employee,
   hasFlag,
   Item,
   MsgService,
@@ -31,7 +32,7 @@ import {
 import { combineLatest, Subscription } from "rxjs";
 import { skip } from "rxjs/operators";
 import { PosSyncService } from "../services/pos-sync.service";
-import { EmployeeDialogComponent } from "../shared/employee-dialog/employee-dialog.component";
+import { EmployeeDialogComponent, EmployeeDialogData } from "../shared/employee-dialog/employee-dialog.component";
 
 import { CategorySelectComponent } from "./category-select/category-select.component";
 import { CommandsComponent } from "./commands/commands.component";
@@ -70,6 +71,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   private _contact: Contact | null = null;
   private closing = false;
   private dialogRef: MatDialogRef<ContactDialogComponent, any> | undefined;
+  private seller: Employee | null = null;
 
   constructor(
     public workspaceService: WorkspaceService,
@@ -330,11 +332,17 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   }
 
   assignSeller() {
-    let ref = this.dialog.open(EmployeeDialogComponent, { width: "400px" });
+    const data :EmployeeDialogData = {
+      titel: "Assignar Vendedor",
+      employee: this.seller
+    }
+    let ref = this.dialog.open(EmployeeDialogComponent, { width: "400px", data });
     ref.afterClosed().subscribe({
       next: (employee) => {
         if (employee) {
-          console.log(employee);
+          this.seller = employee;
+        } else if (employee === null) {
+          this.seller = null;
         }
       },
     });
