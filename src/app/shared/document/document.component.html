@@ -37,13 +37,27 @@
     </mat-table>
   </div>
   <div class="footer">
-    <div>
+    <div class="payment-employee-info">
       <ng-container *ngIf="isPayable()">
+        <div>
+          <span>Pagos:</span>  
+          <mat-list dense>
+            <mat-list-item *ngFor="let payment of payments">
+              <p matLine>
+                <span class="paymentType">{{ payment.cardTypeId ? payment.cardLabel : ('PAYMENT.' + payment.type) | translate}}: </span>
+                <span class="amount">{{payment.amount | number:'1.2-2'}}</span>
+              </p>
+            </mat-list-item>
+          </mat-list>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="hasEmployeeRelations()">
+        <div>Empleados:</div>
         <mat-list dense>
-          <mat-list-item *ngFor="let payment of payments">
+          <mat-list-item *ngFor="let relation of employeeRelations">
             <p matLine>
-              <span class="paymentType">{{ payment.cardTypeId ? payment.cardLabel : ('PAYMENT.' + payment.type) | translate}}: </span>
-              <span class="amount">{{payment.amount | number:'1.2-2'}}</span>
+              <span class="employeeRealtionType">{{ relation.type}}: </span>
+              <span class="employee">{{ relation.employee?.firstName}} {{ relation.employee?.surName}}</span>
             </p>
           </mat-list-item>
         </mat-list>

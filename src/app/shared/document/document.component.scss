@@ -28,6 +28,12 @@
   display: flex;
   justify-content: space-between;
 
+  .payment-employee-info {
+    margin-top: 8px;
+    .mat-line {
+      text-align: left;
+    }
+  }
   .print-container {
     button {
       top: calc(50% - 18px);

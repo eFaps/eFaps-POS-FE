@@ -1,11 +1,4 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  ViewChild,
-  Optional,
-  AfterContentInit,
-} from "@angular/core";
+import { Component, Input, OnInit, ViewChild, Optional } from "@angular/core";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -19,12 +12,15 @@ import {
   PrintService,
   Roles,
   Payable,
-  UserService,
   WorkspaceService,
   Payment,
   Currency,
   DocStatus,
+  EmployeeRelationType,
+  EmployeeService,
+  Employee,
 } from "@efaps/pos-library";
+import { EmployeeDialogData } from "../employee-dialog/employee-dialog.component";
 
 import { PrintDialogComponent } from "../print-dialog/print-dialog.component";
 
@@ -50,6 +46,7 @@ export class DocumentComponent implements OnInit {
   @Input() permitCreditNote = false;
   creditNotes: CreditNote[] = [];
   sourceDoc: Document | undefined;
+  employeeRelations: EmployeeRelationDisplay[] = [];
 
   constructor(
     private router: Router,
@@ -58,6 +55,7 @@ export class DocumentComponent implements OnInit {
     private workspaceService: WorkspaceService,
     private printService: PrintService,
     private documentService: DocumentService,
+    private employeeService: EmployeeService,
     @Optional() private matDialogRef?: MatDialogRef<DocumentComponent>
   ) {
     this._document = {
@@ -100,9 +98,11 @@ export class DocumentComponent implements OnInit {
       );
       this.dataSource.sort = this.sort;
       this.loadCreditNote();
+      this.loadEmployeeRelations();
     } else {
       this.dataSource.data = [];
       this.creditNotes = [];
+      this.employeeRelations = [];
     }
   }
 
@@ -170,4 +170,27 @@ export class DocumentComponent implements OnInit {
       this.creditNotes.length == 0
     );
   }
+
+  loadEmployeeRelations() {
+    if (this._document.employeeRelations) {
+      this._document.employeeRelations.forEach((entry) => {
+        const relation: EmployeeRelationDisplay = {
+          type: entry.type,
+        };
+        this.employeeService.getEmployee(entry.employeeOid).subscribe({
+          next: (employee) => (relation.employee = employee),
+        });
+        this.employeeRelations.push(relation);
+      });
+    }
+  }
+
+  hasEmployeeRelations(): boolean {
+    return this.employeeRelations.length > 0;
+  }
+}
+
+export interface EmployeeRelationDisplay {
+  employee?: Employee;
+  type: EmployeeRelationType;
 }
