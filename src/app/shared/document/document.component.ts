@@ -131,18 +131,20 @@ export class DocumentComponent implements OnInit {
         });
     } else {
       this.creditNotes = [];
-      this.documentService
-        .getPayableByIdent((<CreditNote>this._document).sourceDocOid)
-        .subscribe({
-          next: (doc) => {
-            if (doc) {
-              this.sourceDoc = doc;
-            }
-            error: (_err: any) => {
-              console.log(_err);
-            };
-          },
-        });
+      if ((<CreditNote>this._document).sourceDocOid) {
+        this.documentService
+          .getPayableByIdent((<CreditNote>this._document).sourceDocOid)
+          .subscribe({
+            next: (doc) => {
+              if (doc) {
+                this.sourceDoc = doc;
+              }
+              error: (_err: any) => {
+                console.log(_err);
+              };
+            },
+          });
+      }
     }
   }
 
