@@ -89,30 +89,34 @@ export class PaymentComponent implements OnInit, OnDestroy {
       this.paymentService.currentDocument.subscribe((_doc) => {
         this.document = _doc;
         this.documentComponent.document = _doc;
-        if (this.document.contactOid) {
-          this.showContact = true;
-          if ((this.document as any).contact) {
-            this.contact = (this.document as any).contact;
-          } else {
-            this.contactService.getContact(this.document.contactOid).subscribe({
-              next: (contact) => (this.contact = contact),
-            });
-          }
-        }
-        if (this.document.employeeRelations) {
-          const relations = this.document.employeeRelations.filter(
-            (relation) => {
-              return relation.type == EmployeeRelationType.SELLER;
-            }
-          );
-          if (relations.length > 0) {
-            this.subscriptions$.add(
-              this.employeeService
-                .getEmployee(relations[0].employeeOid)
+        if (this.document) {
+          if (this.document.contactOid) {
+            this.showContact = true;
+            if ((this.document as any).contact) {
+              this.contact = (this.document as any).contact;
+            } else {
+              this.contactService
+                .getContact(this.document.contactOid)
                 .subscribe({
-                  next: (employee) => (this._seller = employee),
-                })
+                  next: (contact) => (this.contact = contact),
+                });
+            }
+          }
+          if (this.document.employeeRelations) {
+            const relations = this.document.employeeRelations.filter(
+              (relation) => {
+                return relation.type == EmployeeRelationType.SELLER;
+              }
             );
+            if (relations.length > 0) {
+              this.subscriptions$.add(
+                this.employeeService
+                  .getEmployee(relations[0].employeeOid)
+                  .subscribe({
+                    next: (employee) => (this._seller = employee),
+                  })
+              );
+            }
           }
         }
       })
