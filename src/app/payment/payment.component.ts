@@ -7,6 +7,7 @@ import { LocalStorage } from "@efaps/ngx-store";
 import {
   Balance,
   BalanceService,
+  ConfigService,
   Contact,
   ContactService,
   DocStatus,
@@ -39,6 +40,7 @@ import {
 import { PrintDialogComponent } from "../shared/print-dialog/print-dialog.component";
 import { DiscountComponent } from "./discount/discount.component";
 import { SuccessDialogComponent } from "./success-dialog/success-dialog.component";
+import { PAYMENT_REQUIRE } from "src/app/util/keys";
 
 @Component({
   selector: "app-payment",
@@ -69,19 +71,21 @@ export class PaymentComponent implements OnInit, OnDestroy {
   private subscriptions$ = new Subscription();
   private printTicket = false;
   private _seller: Employee | null = null;
+  private requirePayment = false;
 
   constructor(
     private router: Router,
     private translateService: TranslateService,
     private workspaceService: WorkspaceService,
-    public paymentService: PaymentService,
     private documentService: DocumentService,
     private balanceService: BalanceService,
     private printService: PrintService,
     private contactService: ContactService,
     private employeeService: EmployeeService,
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private configService: ConfigService
+,    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    public paymentService: PaymentService,
   ) {}
 
   ngOnInit() {
@@ -159,6 +163,15 @@ export class PaymentComponent implements OnInit, OnDestroy {
         });
       })
     );
+    this.subscriptions$.add(
+      this.configService.getSystemConfig(PAYMENT_REQUIRE).subscribe({
+        next: (value) => {
+          if (value) {
+            this.requirePayment = JSON.parse(value)
+          }
+        }
+      })
+    )
   }
 
   ngOnDestroy() {
@@ -186,6 +199,15 @@ export class PaymentComponent implements OnInit, OnDestroy {
       );
       ret = false;
     }
+    if (this.requirePayment && this.change < 0) {
+      this.snackBar.open(
+        "Falta de pago",
+        "",
+        { duration: 3000 }
+      );
+      ret = false;
+    }
+
     return ret;
   }
 
