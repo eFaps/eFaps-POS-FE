@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
-import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { RouterTestingModule } from "@angular/router/testing";
@@ -49,6 +49,7 @@ describe("ExtendedSpotPickerComponent", () => {
         { provide: SpotService, useClass: SpotServiceStub },
         { provide: ImageService, useClass: ImageServiceStub },
         { provide: PosConfigToken, useValue: {} },
+        { provide: MatSnackBar, useClass: MatSnackBar },
       ],
       declarations: [ExtendedSpotPickerComponent, MockPipe(TranslatePipe)],
     }).compileComponents();

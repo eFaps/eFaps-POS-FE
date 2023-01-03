@@ -3,7 +3,11 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatIconModule } from "@angular/material/icon";
-import { MatSnackBarModule } from "@angular/material/snack-bar";
+import {
+  MatSnackBar,
+  MatSnackBarModule,
+  MAT_SNACK_BAR_DATA,
+} from "@angular/material/snack-bar";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import {
@@ -122,6 +126,7 @@ describe("PosComponent", () => {
         { provide: BarcodeScannerService, useClass: BarcodeScannerServiceStub },
         { provide: ProductService, useClass: ProductServiceStub },
         { provide: PosConfigToken, useValue: {} },
+        { provide: MatSnackBar, useClass: MatSnackBar },
       ],
       declarations: [
         PosComponent,

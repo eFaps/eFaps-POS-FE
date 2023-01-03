@@ -17,8 +17,14 @@ import {
   PosConfigToken,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
-import { MockDirective } from "ng-mocks";
+import {
+  TranslateLoader,
+  TranslateModule,
+  TranslatePipe,
+  TranslateService,
+} from "@ngx-translate/core";
+import { MockDirective, MockPipe } from "ng-mocks";
+import { Observable } from "rxjs";
 
 import { VirtKeyboardDirective } from "../../services";
 import {
@@ -27,11 +33,19 @@ import {
 } from "../../shared/shared.module";
 import { CreateContactDialogComponent } from "./create-contact-dialog.component";
 
+class TranslateServiceStub {
+  get() {
+    return new Observable((observer) => {
+      observer.next("");
+    });
+  }
+}
+
 describe("CreateContactDialogComponent", () => {
   let component: CreateContactDialogComponent;
   let fixture: ComponentFixture<CreateContactDialogComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -57,13 +71,15 @@ describe("CreateContactDialogComponent", () => {
         { provide: MAT_DIALOG_DATA, useValue: [] },
         { provide: LiveAnnouncer, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
+        { provide: TranslateService, useClass: TranslateServiceStub },
       ],
       declarations: [
         CreateContactDialogComponent,
         MockDirective(VirtKeyboardDirective),
+        MockPipe(TranslatePipe),
       ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CreateContactDialogComponent);

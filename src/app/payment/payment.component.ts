@@ -82,10 +82,10 @@ export class PaymentComponent implements OnInit, OnDestroy {
     private printService: PrintService,
     private contactService: ContactService,
     private employeeService: EmployeeService,
-    private configService: ConfigService
-,    private dialog: MatDialog,
+    private configService: ConfigService,
+    private dialog: MatDialog,
     private snackBar: MatSnackBar,
-    public paymentService: PaymentService,
+    public paymentService: PaymentService
   ) {}
 
   ngOnInit() {
@@ -167,11 +167,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
       this.configService.getSystemConfig(PAYMENT_REQUIRE).subscribe({
         next: (value) => {
           if (value) {
-            this.requirePayment = JSON.parse(value)
+            this.requirePayment = JSON.parse(value);
           }
-        }
+        },
       })
-    )
+    );
   }
 
   ngOnDestroy() {
@@ -200,11 +200,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
       ret = false;
     }
     if (this.requirePayment && this.change < 0) {
-      this.snackBar.open(
-        "Falta de pago",
-        "",
-        { duration: 3000 }
-      );
+      this.snackBar.open("Falta de pago", "", { duration: 3000 });
       ret = false;
     }
 
