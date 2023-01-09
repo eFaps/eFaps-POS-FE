@@ -113,9 +113,10 @@ export class AutoComponent extends PaymentForm {
         next: (order) => {
           this.paymentForm.patchValue({ amount: order.collected!.toString() });
           this.mappingKey = order.collectorKey!;
-          this.mappingKey = "";
           this.collectOrderId = collectOrderId;
           super.addPayment();
+          this.mappingKey = "";
+          this.collectOrderId = "";
         },
       });
     }
