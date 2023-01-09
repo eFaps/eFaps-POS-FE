@@ -21,6 +21,7 @@ export class AutoComponent extends PaymentForm {
   collecting = false;
   collectors: Collector[] = [];
   mappingKey = "";
+  collectOrderId = "";
   buttonTimeout = false;
 
   constructor(
@@ -56,6 +57,7 @@ export class AutoComponent extends PaymentForm {
       currency: Currency.PEN,
       exchangeRate: 0,
       mappingKey: this.mappingKey,
+      collectOrderId: this.collectOrderId
     };
   }
 
@@ -111,8 +113,9 @@ export class AutoComponent extends PaymentForm {
         next: (order) => {
           this.paymentForm.patchValue({ amount: order.collected!.toString() });
           this.mappingKey = order.collectorKey!;
-          super.addPayment();
           this.mappingKey = "";
+          this.collectOrderId = collectOrderId;
+          super.addPayment();
         },
       });
     }
