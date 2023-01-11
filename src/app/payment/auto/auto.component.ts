@@ -7,6 +7,7 @@ import {
   MsgService,
   PaymentService,
   UtilsService,
+  CollectOrder,
 } from "@efaps/pos-library";
 import { Payment, PaymentType } from "@efaps/pos-library";
 
@@ -23,6 +24,7 @@ export class AutoComponent extends PaymentForm {
   mappingKey = "";
   collectOrderId = "";
   buttonTimeout = false;
+  paymentType = PaymentType.ELECTRONIC;
 
   constructor(
     paymentService: PaymentService,
@@ -52,12 +54,12 @@ export class AutoComponent extends PaymentForm {
 
   getPayment(): Payment {
     return {
-      type: PaymentType.ELECTRONIC,
+      type: this.paymentType,
       amount: 0,
       currency: Currency.PEN,
       exchangeRate: 0,
       mappingKey: this.mappingKey,
-      collectOrderId: this.collectOrderId
+      collectOrderId: this.collectOrderId,
     };
   }
 
@@ -111,14 +113,39 @@ export class AutoComponent extends PaymentForm {
       this.collecting = false;
       this.collectService.getCollectOrder(collectOrderId).subscribe({
         next: (order) => {
+          this.evalPaymentType(order);
           this.paymentForm.patchValue({ amount: order.collected!.toString() });
           this.mappingKey = order.collectorKey!;
           this.collectOrderId = collectOrderId;
           super.addPayment();
+          // reset the payment
           this.mappingKey = "";
           this.collectOrderId = "";
+          this.paymentType = PaymentType.ELECTRONIC;
         },
       });
+    }
+  }
+
+  private evalPaymentType(order: CollectOrder) {
+    if (order.additionalInfo && order.additionalInfo.PaymentType) {
+      switch (order.additionalInfo.PaymentType) {
+        case "CARD":
+          this.paymentType = PaymentType.CARD;
+          break;
+        case "ELECTRONIC":
+          this.paymentType = PaymentType.ELECTRONIC;
+          break;
+        case "CASH":
+          this.paymentType = PaymentType.CASH;
+          break;
+        case "CHANGE":
+          this.paymentType = PaymentType.CHANGE;
+          break;
+        case "FREE":
+          this.paymentType = PaymentType.FREE;
+          break;
+      }
     }
   }
 }
