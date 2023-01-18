@@ -33,6 +33,7 @@ import {
 } from "@efaps/pos-library";
 import { combineLatest, Subscription } from "rxjs";
 import { skip } from "rxjs/operators";
+import { KeypadService } from "../services";
 import { PosSyncService } from "../services/pos-sync.service";
 import {
   EmployeeDialogComponent,
@@ -92,6 +93,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     private router: Router,
     private contactService: ContactService,
+    private keypadService: KeypadService,
     @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef
   ) {}
 
@@ -196,11 +198,13 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
       update ||
       (!this.closing && this.requiresContact && this.contact == null)
     ) {
+      this.keypadService.deactivate();
       this.dialogRef = this.dialog.open(ContactDialogComponent, {
         disableClose: true,
       });
       this.dialogRef.afterClosed().subscribe({
         next: (contactOid) => {
+          this.keypadService.activate();
           if (contactOid) {
             this.contact = contactOid;
           } else {
