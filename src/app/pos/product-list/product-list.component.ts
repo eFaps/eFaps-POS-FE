@@ -36,6 +36,7 @@ export class ProductListComponent
   filterForm: FormGroup;
   formCtrlSub: Subscription;
   dataSource = new MatTableDataSource();
+  textSearch = false;
 
   @Input() isBarcode: boolean = false;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
@@ -86,10 +87,12 @@ export class ProductListComponent
   }
 
   applyFilter(_filterValue: string) {
-    this.productService.findProducts(_filterValue).subscribe((_products) => {
-      this.dataSource.data = _products;
-      this.dataSource.sort = this.sort;
-    });
+    this.productService
+      .findProducts(_filterValue, this.textSearch)
+      .subscribe((_products) => {
+        this.dataSource.data = _products;
+        this.dataSource.sort = this.sort;
+      });
   }
 
   show(_product: Product) {
@@ -118,5 +121,9 @@ export class ProductListComponent
     if (!this.isBarcode) {
       super.select(product);
     }
+  }
+  setTextSearch() {
+    this.textSearch = !this.textSearch;
+    this.applyFilter(this.filterForm.value["filter"]);
   }
 }

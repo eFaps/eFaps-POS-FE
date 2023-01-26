@@ -2,6 +2,9 @@
   <mat-form-field>
     <input matInput placeholder="Filter" formControlName="filter" autocomplete="off" (blur)="onBlur()" (focus)="onFocus()">
   </mat-form-field>
+  <mat-slide-toggle [checked]="textSearch" (change)="setTextSearch()">
+    {{textSearch ? 'Buscar por texto' : 'Buscar exacto' }}
+  </mat-slide-toggle>
 </form>
 <div class="product-list mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource" matSort>

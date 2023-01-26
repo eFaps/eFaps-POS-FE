@@ -31,6 +31,7 @@ import { GridElementComponent } from "./product-grid/grid-element/grid-element.c
 import { ProductsElementComponent } from "./product-grid/products-element/products-element.component";
 import { ContactDialogComponent } from "./contact-dialog/contact-dialog.component";
 import { ContactsModule } from "../contacts/contacts.module";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { ContactsModule } from "../contacts/contacts.module";
     MatListModule,
     MatProgressSpinnerModule,
     MatSortModule,
+    MatSlideToggleModule,
     MatTableModule,
     MatTabsModule,
     PosRoutingModule,
