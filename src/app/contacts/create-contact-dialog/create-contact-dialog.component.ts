@@ -44,9 +44,9 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.configService.getSystemConfig(CONTACT_ACTIVATE_EMAIL).subscribe({
+    this.configService.getSystemConfig<boolean>(CONTACT_ACTIVATE_EMAIL).subscribe({
       next: (value) => {
-        this.useEmail = "true" === "" + value;
+        this.useEmail = value;
       },
     });
 

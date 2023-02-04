@@ -164,10 +164,10 @@ export class PaymentComponent implements OnInit, OnDestroy {
       })
     );
     this.subscriptions$.add(
-      this.configService.getSystemConfig(PAYMENT_REQUIRE).subscribe({
+      this.configService.getSystemConfig<boolean>(PAYMENT_REQUIRE).subscribe({
         next: (value) => {
           if (value) {
-            this.requirePayment = JSON.parse(value);
+            this.requirePayment = value;
           }
         },
       })
