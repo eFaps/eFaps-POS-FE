@@ -1,4 +1,4 @@
-import { Directive, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Directive, Input, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import {
   InventoryEntry,
@@ -7,10 +7,10 @@ import {
   PosService,
   Product,
   ProductService,
-  ProductType,
   WorkspaceService,
 } from "@efaps/pos-library";
 import { PosSyncService } from "../services/pos-sync.service";
+import { ConfigDialogComponent } from "./config-dialog/config-dialog.component";
 
 import { RemarkDialogComponent } from "./remark-dialog/remark-dialog.component";
 
@@ -53,6 +53,16 @@ export abstract class AbstractProductSelector implements OnInit {
           this.selectProduct(product, comment);
         },
       });
+    } else if (product.bomGroupConfigs.length > 0) {
+      const dialogRef = this.dialog.open(ConfigDialogComponent, {
+        data: product,
+      });
+      dialogRef.afterClosed().subscribe({
+        next: (comment) => {
+          this.selectProduct(product, comment);
+        },
+      })
+
     } else {
       this.selectProduct(product, null);
     }

@@ -32,6 +32,8 @@ import { ProductsElementComponent } from "./product-grid/products-element/produc
 import { ContactDialogComponent } from "./contact-dialog/contact-dialog.component";
 import { ContactsModule } from "../contacts/contacts.module";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { ConfigDialogComponent } from './config-dialog/config-dialog.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   imports: [
@@ -54,6 +56,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
     PosRoutingModule,
     ReactiveFormsModule,
     ContactsModule,
+    MatExpansionModule,
     SharedModule,
   ],
   declarations: [
@@ -69,6 +72,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
     GridElementComponent,
     ProductsElementComponent,
     ContactDialogComponent,
+    ConfigDialogComponent,
   ],
 })
 export class PosModule {}

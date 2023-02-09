@@ -1,0 +1,18 @@
+<mat-accordion>
+    <ng-container *ngFor="let bomGroup of data?.bomGroupConfigs">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{bomGroup.name}}
+        </mat-panel-title>
+        <mat-panel-description>
+            {{bomGroup.description}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-container *ngFor="let product of getProducts4BOMGroup(bomGroup.oid)">
+       <p> {{product.sku}}</p>
+    </ng-container>     
+    </mat-expansion-panel>
+   </ng-container>
+ </mat-accordion>
+  
