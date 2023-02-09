@@ -61,8 +61,7 @@ export abstract class AbstractProductSelector implements OnInit {
         next: (comment) => {
           this.selectProduct(product, comment);
         },
-      })
-
+      });
     } else {
       this.selectProduct(product, null);
     }

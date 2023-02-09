@@ -58,11 +58,13 @@ export class ContactTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription$.add(
-      this.configService.getSystemConfig<boolean>(CONTACT_ACTIVATE_EMAIL).subscribe({
-        next: (value) => {
-          this.useEmail = value;
-        },
-      })
+      this.configService
+        .getSystemConfig<boolean>(CONTACT_ACTIVATE_EMAIL)
+        .subscribe({
+          next: (value) => {
+            this.useEmail = value;
+          },
+        })
     );
 
     this.searchForm.valueChanges.pipe(debounceTime(400)).subscribe((input) => {

@@ -44,11 +44,13 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.configService.getSystemConfig<boolean>(CONTACT_ACTIVATE_EMAIL).subscribe({
-      next: (value) => {
-        this.useEmail = value;
-      },
-    });
+    this.configService
+      .getSystemConfig<boolean>(CONTACT_ACTIVATE_EMAIL)
+      .subscribe({
+        next: (value) => {
+          this.useEmail = value;
+        },
+      });
 
     this.contactForm.get("idType")!.valueChanges.subscribe((idType) => {
       if (idType === IdentificationType.RUC) {

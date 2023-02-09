@@ -83,11 +83,13 @@ export class BalanceComponent implements OnInit, OnDestroy {
       })
     );
     this.subscription$.add(
-      this.configService.getSystemConfig<boolean>(BALANCE_ACTIVATE_CASHENTRY).subscribe({
-        next: (value) => {
-          this.useCashEntry = value;
-        },
-      })
+      this.configService
+        .getSystemConfig<boolean>(BALANCE_ACTIVATE_CASHENTRY)
+        .subscribe({
+          next: (value) => {
+            this.useCashEntry = value;
+          },
+        })
     );
   }
 
