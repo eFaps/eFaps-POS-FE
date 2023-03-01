@@ -70,6 +70,7 @@ export abstract class AbstractProductSelector implements OnInit {
   private selectProduct(product: Product, remark: string | null) {
     const quantity = this.multiplier > 0 ? this.multiplier : 1;
     this.ticket.push({
+      index: this.ticket.length + 1,
       product: product,
       quantity: quantity,
       price: 0,

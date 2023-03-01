@@ -34,7 +34,7 @@ import { ContactsModule } from "../contacts/contacts.module";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { ConfigDialogComponent } from "./config-dialog/config-dialog.component";
 import { MatExpansionModule } from "@angular/material/expansion";
-
+import {MatStepperModule} from '@angular/material/stepper';
 @NgModule({
   imports: [
     CommonModule,
@@ -53,6 +53,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
     MatSlideToggleModule,
     MatTableModule,
     MatTabsModule,
+    MatStepperModule,
     PosRoutingModule,
     ReactiveFormsModule,
     ContactsModule,
