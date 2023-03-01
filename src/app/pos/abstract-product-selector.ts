@@ -44,22 +44,20 @@ export abstract class AbstractProductSelector implements OnInit {
   }
 
   select(product: Product) {
-    if (this.remarkMode || product.indicationSets.some((set) => set.required)) {
-      const dialogRef = this.dialog.open(RemarkDialogComponent, {
-        data: product,
-      });
-      dialogRef.afterClosed().subscribe({
-        next: (comment) => {
-          this.selectProduct(product, comment);
+    if (
+      this.remarkMode ||
+      product.indicationSets.some((set) => set.required) ||
+      product.bomGroupConfigs.length > 0
+    ) {
+      const dialogRef = this.dialog.open(ConfigDialogComponent, {
+        data: {
+          product: product,
+          remarkMode: this.remarkMode
         },
       });
-    } else if (product.bomGroupConfigs.length > 0) {
-      const dialogRef = this.dialog.open(ConfigDialogComponent, {
-        data: product,
-      });
       dialogRef.afterClosed().subscribe({
-        next: (comment) => {
-          this.selectProduct(product, comment);
+        next: (selection) => {
+          this.selectProduct(product, selection.remark);
         },
       });
     } else {

@@ -1,8 +1,45 @@
-<mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
-  <ng-container *ngFor="let bomGroup of data?.bomGroupConfigs">
-    <mat-step [stepControl]="formGroup2" >
-      <ng-template matStepLabel>{{bomGroup.description}}</ng-template>
-    </mat-step>
-  </ng-container>
-</mat-stepper>   
-
+<h2 mat-dialog-title>Composición</h2>
+<mat-dialog-content>
+  <form [formGroup]="formGroup" autocomplete="off">
+    <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+      <ng-container *ngFor="let bomGroup of product?.bomGroupConfigs">
+        <mat-step>
+          <ng-template matStepLabel>{{bomGroup.description}}</ng-template>
+          <mat-button-toggle-group [formControlName]="bomGroup.oid" multiple="true">
+            <ng-container *ngFor="let bomProduct of getProducts4BOMGroup(bomGroup.oid)">
+              <mat-button-toggle [value]="bomProduct.oid">{{bomProduct.description}}</mat-button-toggle>
+            </ng-container>
+          </mat-button-toggle-group>
+        </mat-step>
+      </ng-container>
+      <mat-step *ngIf="remarkMode || product?.indicationSets.length > 0">
+        <ng-template matStepLabel>Indicaciones / Comentarios</ng-template>
+        <div class="indicationSet">
+          <ng-container *ngFor="let indicationSet of product?.indicationSets">
+            <div>{{indicationSet.name}}</div>
+            <div>
+              <ng-container *ngFor="let indication of indicationSet.indications">
+                <button mat-button (click)="select(indication)">{{indication.value}}</button>
+              </ng-container>
+            </div>
+          </ng-container>
+        </div>
+        <mat-form-field>
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let indication of indications" [selectable]="selectable" [removable]="removable"
+              (removed)="remove(indication)">
+              {{indication.value}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="add($event)" placeholder="Remark"
+              i18n-placeholder="@@remark" formControlName="remark">
+          </mat-chip-list>
+        </mat-form-field>
+      </mat-step>
+    </mat-stepper>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="close()">OK</button>
+</mat-dialog-actions>
