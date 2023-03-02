@@ -1,14 +1,27 @@
 <div *ngIf="document" class="mat-typography">
   <h3>{{document.type! | translate}}: {{document.number}}</h3>
   <div class="pos-doc-container mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource" matSort matSortActive="index" matSortDirection="asc" multiTemplateDataRows>
+    <mat-table #table [dataSource]="dataSource" matSort matSortActive="index" matSortDirection="asc"
+      multiTemplateDataRows>
       <ng-container matColumnDef="index">
         <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
         <mat-cell *matCellDef="let item"> {{item.index}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="quantity">
         <mat-header-cell *matHeaderCellDef mat-sort-header> C. </mat-header-cell>
-        <mat-cell *matCellDef="let item"> {{item.quantity}} </mat-cell>
+        <mat-cell *matCellDef="let item">
+          <ng-container *ngIf="!isChild(item)">
+            {{item.quantity}}
+          </ng-container>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="childQuantity">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          <ng-container *ngIf="isChild(item)">
+            {{item.quantity}}
+          </ng-container>
+        </mat-cell>
       </ng-container>
       <ng-container matColumnDef="productDesc">
         <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
@@ -16,11 +29,19 @@
       </ng-container>
       <ng-container matColumnDef="crossUnitPrice">
         <mat-header-cell *matHeaderCellDef> P.U. </mat-header-cell>
-        <mat-cell *matCellDef="let item"> {{item.crossUnitPrice | posCurrency:document.currency}} </mat-cell>
+        <mat-cell *matCellDef="let item">
+          <ng-container *ngIf="!isChild(item)">
+            {{item.crossUnitPrice | posCurrency:document.currency}}
+          </ng-container>
+        </mat-cell>
       </ng-container>
       <ng-container matColumnDef="crossPrice">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Precio </mat-header-cell>
-        <mat-cell *matCellDef="let item"> {{item.crossPrice | posCurrency:document.currency}} </mat-cell>
+        <mat-cell *matCellDef="let item">
+          <ng-container *ngIf="!isChild(item)">
+            {{item.crossPrice | posCurrency:document.currency}}
+          </ng-container>
+        </mat-cell>
       </ng-container>
       <ng-container matColumnDef="relationDetail">
         <mat-cell *matCellDef="let item" [attr.colspan]="displayedColumns.length" class="relation-detail">
@@ -33,18 +54,20 @@
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      <mat-row *matRowDef="let row; columns: ['relationDetail']" class="details-row" [class.details-partlist]="row.product.type == 'PARTLIST'"></mat-row>
+      <mat-row *matRowDef="let row; columns: ['relationDetail']" class="details-row"
+        [class.details-partlist]="row.product.type == 'PARTLIST'"></mat-row>
     </mat-table>
   </div>
   <div class="footer">
     <div class="payment-employee-info">
       <ng-container *ngIf="isPayable()">
         <div>
-          <span>Pagos:</span>  
+          <span>Pagos:</span>
           <mat-list dense>
             <mat-list-item *ngFor="let payment of payments">
               <p matLine>
-                <span class="paymentType">{{ payment.cardTypeId ? payment.cardLabel : ('PAYMENT.' + payment.type) | translate}}: </span>
+                <span class="paymentType">{{ payment.cardTypeId ? payment.cardLabel : ('PAYMENT.' + payment.type) |
+                  translate}}: </span>
                 <span class="amount">{{payment.amount | number:'1.2-2'}}</span>
               </p>
             </mat-list-item>
@@ -85,23 +108,25 @@
             Total: {{document.crossTotal | posCurrency:document.currency}}
           </div>
         </mat-list-item>
-        <ng-container *ngIf="document.payableAmount && document.payableAmount > 0 && document.payableAmount != document.crossTotal">
-        <mat-list-item class="amount">
-          <div matLine>
-            Redondeo: {{document.payableAmount - document.crossTotal | posCurrency:document.currency}}
-          </div>
-        </mat-list-item>
-        <mat-list-item class="amount">
-          <div matLine>
-            Por pagar: {{document.payableAmount | posCurrency:document.currency}}
-          </div>
-        </mat-list-item>
-      </ng-container>
+        <ng-container
+          *ngIf="document.payableAmount && document.payableAmount > 0 && document.payableAmount != document.crossTotal">
+          <mat-list-item class="amount">
+            <div matLine>
+              Redondeo: {{document.payableAmount - document.crossTotal | posCurrency:document.currency}}
+            </div>
+          </mat-list-item>
+          <mat-list-item class="amount">
+            <div matLine>
+              Por pagar: {{document.payableAmount | posCurrency:document.currency}}
+            </div>
+          </mat-list-item>
+        </ng-container>
       </mat-list>
     </div>
   </div>
   <div>
-    <button mat-raised-button color="primary" *ngIf="showCreditNoteBtn" (click)="createCreditNote()">Nota de Credito</button>
+    <button mat-raised-button color="primary" *ngIf="showCreditNoteBtn" (click)="createCreditNote()">Nota de
+      Credito</button>
     <ng-container *ngFor="let creditNote of creditNotes">
       <span>Nota de Credito {{creditNote.number}}</span>
     </ng-container>

@@ -18,7 +18,7 @@ import {
   DocStatus,
   EmployeeRelationType,
   EmployeeService,
-  Employee,
+  Employee
 } from "@efaps/pos-library";
 import { EmployeeDialogData } from "../employee-dialog/employee-dialog.component";
 
@@ -33,6 +33,7 @@ export class DocumentComponent implements OnInit {
   displayedColumns = [
     "index",
     "quantity",
+    "childQuantity",
     "productDesc",
     "crossUnitPrice",
     "crossPrice",
@@ -189,6 +190,10 @@ export class DocumentComponent implements OnInit {
 
   hasEmployeeRelations(): boolean {
     return this.employeeRelations.length > 0;
+  }
+
+  isChild(docItem: DocItem) {
+    return docItem?.parentIdx != null
   }
 }
 
