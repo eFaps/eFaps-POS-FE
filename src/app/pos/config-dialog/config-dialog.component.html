@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Composición</h2>
 <mat-dialog-content>
   <form [formGroup]="formGroup" autocomplete="off">
-    <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+    <mat-stepper orientation="vertical" [linear]="false" #stepper>
       <ng-container *ngFor="let bomGroup of product?.bomGroupConfigs">
         <mat-step>
           <ng-template matStepLabel>{{bomGroup.description}}</ng-template>
@@ -12,7 +12,7 @@
           </mat-button-toggle-group>
         </mat-step>
       </ng-container>
-      <mat-step *ngIf="remarkMode || product?.indicationSets.length > 0">
+      <mat-step *ngIf="remarkMode || (product?.indicationSets && product!!.indicationSets!!.length > 0)">
         <ng-template matStepLabel>Indicaciones / Comentarios</ng-template>
         <div class="indicationSet">
           <ng-container *ngFor="let indicationSet of product?.indicationSets">

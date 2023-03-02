@@ -12,8 +12,6 @@ import {
 import { PosSyncService } from "../services/pos-sync.service";
 import { ConfigDialogComponent } from "./config-dialog/config-dialog.component";
 
-import { RemarkDialogComponent } from "./remark-dialog/remark-dialog.component";
-
 @Directive()
 export abstract class AbstractProductSelector implements OnInit {
   ticket: Item[] = [];

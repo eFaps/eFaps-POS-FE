@@ -24,7 +24,6 @@ import { PosRoutingModule } from "./pos-routing.module";
 import { PosComponent } from "./pos.component";
 import { ProductGridComponent } from "./product-grid/product-grid.component";
 import { ProductListComponent } from "./product-list/product-list.component";
-import { RemarkDialogComponent } from "./remark-dialog/remark-dialog.component";
 import { TicketComponent } from "./ticket/ticket.component";
 import { TotalsComponent } from "./totals/totals.component";
 import { GridElementComponent } from "./product-grid/grid-element/grid-element.component";
@@ -70,7 +69,6 @@ import { MatStepperModule } from "@angular/material/stepper";
     TicketComponent,
     TotalsComponent,
     CategorySelectComponent,
-    RemarkDialogComponent,
     GridElementComponent,
     ProductsElementComponent,
     ContactDialogComponent,

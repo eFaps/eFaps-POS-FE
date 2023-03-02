@@ -1,3 +1,4 @@
+import { COMMA, ENTER } from "@angular/cdk/keycodes";
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { MatChipInputEvent } from "@angular/material/chips";
@@ -10,9 +11,11 @@ import { Indication, Product, ProductService } from "@efaps/pos-library";
   styleUrls: ["./config-dialog.component.scss"],
 })
 export class ConfigDialogComponent implements OnInit {
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  private products: Map<String, Product[]> = new Map();
+  
   product: Product;
   remarkMode: boolean;
-  private products: Map<String, Product[]> = new Map();
   formGroup: FormGroup<any>;
   indications: Indication[] = [];
   visible = true;
