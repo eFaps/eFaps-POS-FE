@@ -13,7 +13,7 @@ import { Indication, Product, ProductService } from "@efaps/pos-library";
 export class ConfigDialogComponent implements OnInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   private products: Map<String, Product[]> = new Map();
-  
+
   product: Product;
   remarkMode: boolean;
   formGroup: FormGroup<any>;

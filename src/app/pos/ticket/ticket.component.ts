@@ -24,7 +24,7 @@ export class TicketComponent implements OnInit {
   @Input() isBarcode: boolean = false;
   @Output() multiplierClick = new EventEmitter<any>();
 
-  constructor(private posService: PosService, private snackBar: MatSnackBar) { }
+  constructor(private posService: PosService, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.posService.currentTicket.subscribe(
@@ -43,12 +43,13 @@ export class TicketComponent implements OnInit {
       item.quantity = new Decimal(item.quantity)
         .plus(this.getQuantity())
         .toNumber();
-      this.dataSource.data.filter(entry => entry.parentIdx == item.index)
-        .forEach(childItem => {
+      this.dataSource.data
+        .filter((entry) => entry.parentIdx == item.index)
+        .forEach((childItem) => {
           childItem.quantity = new Decimal(childItem.quantity)
             .plus(this.getQuantity())
             .toNumber();
-        })
+        });
 
       this.syncTicket();
       this.multiplierClick.emit();
@@ -69,33 +70,36 @@ export class TicketComponent implements OnInit {
             ticket.splice(index, 1);
           }
         }
-        const childItems = ticket.filter(entry => entry.parentIdx == item.index)
-        childItems.forEach( childItem => {
+        const childItems = ticket.filter(
+          (entry) => entry.parentIdx == item.index
+        );
+        childItems.forEach((childItem) => {
           const index = ticket.indexOf(childItem);
           if (index > -1) {
             ticket[ticket.indexOf(childItem)].quantity = 1;
             ticket.splice(index, 1);
           }
-        })
+        });
       } else {
-        this.dataSource.data.filter(entry => entry.parentIdx == item.index)
-        .forEach(childItem => {
-          childItem.quantity = new Decimal(childItem.quantity)
-            .minus(this.getQuantity())
-            .toNumber();
-        })
+        this.dataSource.data
+          .filter((entry) => entry.parentIdx == item.index)
+          .forEach((childItem) => {
+            childItem.quantity = new Decimal(childItem.quantity)
+              .minus(this.getQuantity())
+              .toNumber();
+          });
       }
       let currentId = 1;
       let currentParent = 1;
-      this.dataSource.data.forEach(entry => {
-        entry.index = currentId
+      this.dataSource.data.forEach((entry) => {
+        entry.index = currentId;
         if (entry.parentIdx) {
-          entry.parentIdx = currentParent
+          entry.parentIdx = currentParent;
         } else {
-          currentParent = currentId
+          currentParent = currentId;
         }
-        currentId++
-      })
+        currentId++;
+      });
       this.syncTicket();
       this.multiplierClick.emit();
     }
@@ -114,6 +118,6 @@ export class TicketComponent implements OnInit {
   }
 
   isChild(item: Item) {
-    return isChildItem(item)
+    return isChildItem(item);
   }
 }

@@ -18,7 +18,7 @@ import {
   DocStatus,
   EmployeeRelationType,
   EmployeeService,
-  Employee
+  Employee,
 } from "@efaps/pos-library";
 import { EmployeeDialogData } from "../employee-dialog/employee-dialog.component";
 
@@ -193,7 +193,7 @@ export class DocumentComponent implements OnInit {
   }
 
   isChild(docItem: DocItem) {
-    return docItem?.parentIdx != null
+    return docItem?.parentIdx != null;
   }
 }
 
