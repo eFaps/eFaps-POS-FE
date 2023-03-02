@@ -2,32 +2,53 @@
   <mat-table #table [dataSource]="dataSource" multiTemplateDataRows>
     <ng-container matColumnDef="quantity">
       <mat-header-cell *matHeaderCellDef> C. </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.quantity}} </mat-cell>
+      <mat-cell *matCellDef="let item">
+        <span *ngIf="!isChild(item)">{{item.quantity}}</span>
+      </mat-cell>
     </ng-container>
+    <ng-container matColumnDef="childQuantity">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let item">
+        <span *ngIf="isChild(item)">{{item.quantity}}</span>
+      </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="productDesc">
       <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
-      <mat-cell *matCellDef="let item">
+      <mat-cell *matCellDef="let item" [attr.colspan]="isChild(item) ? 2 : 0">
+        <div class="description">
         {{item.product.description}}
         <button mat-icon-button *ngIf="item.remark" (click)="showRemark(item.remark)">
           <mat-icon>description</mat-icon>
         </button>
+      </div>
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="unitPrice">
       <mat-header-cell *matHeaderCellDef> P.U. </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.product.crossPrice | posCurrency:currentCurrency}} </mat-cell>
-    </ng-container>
+     
+      <mat-cell *matCellDef="let item">
+        <ng-container *ngIf="!isChild(item)">
+          {{item.product.crossPrice |posCurrency:currentCurrency}}
+        </ng-container>
+      </mat-cell>
+    
+  </ng-container>
     <ng-container matColumnDef="price">
       <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.price | posCurrency:currentCurrency}} </mat-cell>
+      <mat-cell *matCellDef="let item">
+        <ng-container *ngIf="!isChild(item)">
+          {{item.price | posCurrency:currentCurrency}}
+        </ng-container>
+      </mat-cell>
     </ng-container>
     <ng-container matColumnDef="modify">
       <mat-header-cell *matHeaderCellDef> Modificar </mat-header-cell>
       <mat-cell *matCellDef="let item">
-        <button (click)="add(item)">
+        <button (click)="add(item)" *ngIf="!isChild(item)">
           <mat-icon class="posIcon-36">control_point</mat-icon>
         </button>
-        <button (click)="subtract(item)">
+        <button (click)="subtract(item)" *ngIf="!isChild(item)">
           <mat-icon class="posIcon-36">indeterminate_check_box</mat-icon>
         </button>
       </mat-cell>
@@ -43,7 +64,7 @@
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    <mat-row *matRowDef="let row; columns: ['relationDetail']" class="details-row" [class.details-partlist]="row.product.type == 'PARTLIST'">
-    </mat-row>
+    <mat-row *matRowDef="let row; columns: ['relationDetail']" class="details-row"
+      [class.details-partlist]="row.product.type == 'PARTLIST'"></mat-row>
   </mat-table>
 </div>

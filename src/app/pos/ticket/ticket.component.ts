@@ -1,4 +1,4 @@
-import { Currency, Item, PosService } from "@efaps/pos-library";
+import { Currency, isChildItem, Item, PosService } from "@efaps/pos-library";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTableDataSource } from "@angular/material/table";
@@ -12,6 +12,7 @@ import { Decimal } from "decimal.js";
 export class TicketComponent implements OnInit {
   displayedColumns = [
     "quantity",
+    "childQuantity",
     "productDesc",
     "unitPrice",
     "price",
@@ -77,5 +78,9 @@ export class TicketComponent implements OnInit {
 
   showRemark(remark: string) {
     this.snackBar.open(remark, undefined, { duration: 3000 });
+  }
+
+  isChild(item: Item) {
+    return isChildItem(item)
   }
 }
