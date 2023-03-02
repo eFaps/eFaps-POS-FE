@@ -7,7 +7,7 @@
           <ng-template matStepLabel>{{bomGroup.description}}</ng-template>
           <mat-button-toggle-group [formControlName]="bomGroup.oid" multiple="true">
             <ng-container *ngFor="let bomProduct of getProducts4BOMGroup(bomGroup.oid)">
-              <mat-button-toggle [value]="bomProduct.oid">{{bomProduct.description}}</mat-button-toggle>
+              <mat-button-toggle [value]="bomProduct">{{bomProduct.description}}</mat-button-toggle>
             </ng-container>
           </mat-button-toggle-group>
         </mat-step>

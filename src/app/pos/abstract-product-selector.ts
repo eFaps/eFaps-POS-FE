@@ -52,30 +52,53 @@ export abstract class AbstractProductSelector implements OnInit {
       const dialogRef = this.dialog.open(ConfigDialogComponent, {
         data: {
           product: product,
-          remarkMode: this.remarkMode
+          remarkMode: this.remarkMode,
         },
       });
       dialogRef.afterClosed().subscribe({
         next: (selection) => {
-          this.selectProduct(product, selection.remark);
+          this.selectProduct(
+            product,
+            selection.remark,
+            selection.childProducts
+          );
         },
       });
     } else {
-      this.selectProduct(product, null);
+      this.selectProduct(product);
     }
   }
 
-  private selectProduct(product: Product, remark: string | null) {
+  private selectProduct(
+    product: Product,
+    remark?: string | null,
+    childProducts?: Product[] | null
+  ) {
     const quantity = this.multiplier > 0 ? this.multiplier : 1;
+    const idx = this.ticket.length + 1;
     this.ticket.push({
-      index: this.ticket.length + 1,
+      index: idx,
       product: product,
       quantity: quantity,
       price: 0,
-      remark: remark,
+      remark: remark ? remark : null,
       currency: this.posService.currency,
       exchangeRate: this.posService.exchangeRate,
     });
+    if (childProducts) {
+      childProducts.forEach((childProduct) => {
+        this.ticket.push({
+          index: this.ticket.length + 1,
+          parentIdx: idx,
+          product: childProduct,
+          quantity: 1,
+          price: 0,
+          remark: null,
+          currency: this.posService.currency,
+          exchangeRate: this.posService.exchangeRate,
+        });
+      });
+    }
     this.syncTicket();
     this.posSyncService.productSelected();
   }

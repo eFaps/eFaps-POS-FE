@@ -25,14 +25,14 @@ export class ConfigDialogComponent implements OnInit {
     fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
-    this.product = data.product
-    this.remarkMode = data.remarkMode
+    this.product = data.product;
+    this.remarkMode = data.remarkMode;
     this.formGroup = fb.group({});
-    
+
     this.product.bomGroupConfigs.forEach((element) => {
-      const formName = element.oid as string
-      this.formGroup.addControl(formName, new FormControl<any>(""))
-    })
+      const formName = element.oid as string;
+      this.formGroup.addControl(formName, new FormControl<any>(""));
+    });
   }
 
   ngOnInit(): void {
@@ -88,25 +88,25 @@ export class ConfigDialogComponent implements OnInit {
 
   close() {
     const remarks: string[] = [];
-    const productOids: string[] = [];
+    const childProducts: Product[] = [];
 
     this.indications.forEach((ind) => {
       remarks.push(ind.value);
     });
     this.product.bomGroupConfigs.forEach((element) => {
-      var value = this.formGroup.value[element.oid as string]
+      var value = this.formGroup.value[element.oid as string];
       if (Array.isArray(value)) {
-        value.forEach(val => {
-          productOids.push(val)
-        })
-      } else if (value){
-        productOids.push(value)
+        value.forEach((val) => {
+          childProducts.push(val);
+        });
+      } else if (value) {
+        childProducts.push(value);
       }
-    })
+    });
 
     this.matDialogRef.close({
       remark: remarks.join("\n"),
-      productOids: productOids
+      childProducts: childProducts,
     });
   }
- }
+}
