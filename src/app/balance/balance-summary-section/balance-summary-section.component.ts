@@ -7,9 +7,31 @@ import { PaymentInfo, SummaryDetail } from "@efaps/pos-library";
   styleUrls: ["./balance-summary-section.component.scss"],
 })
 export class BalanceSummarySectionComponent implements OnInit {
-  @Input() detail!: SummaryDetail;
+  _detail: SummaryDetail = {
+    documentCount: 0,
+    paymentCount: 0,
+    netTotal: 0,
+    crossTotal: 0,
+    paymentInfos: [],
+    taxEntries: [],
+  };
   infos: PaymentInfo[] = [];
   constructor() {}
 
   ngOnInit() {}
+
+  @Input()
+  set detail(detail: SummaryDetail) {
+    detail.paymentInfos.sort((info1, info2) => {
+      if (info1.type == info2.type) {
+        return info1.label > info2.label ? 1 : -1;
+      }
+      return info1.type > info2.type ? 1 : -1;
+    });
+    this._detail = detail;
+  }
+
+  get detail() {
+    return this._detail;
+  }
 }

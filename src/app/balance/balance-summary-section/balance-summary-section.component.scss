@@ -4,6 +4,7 @@
 
   .document {
     width: 150px;
+    min-width: 150px;
     margin-right: 25px;
 
     div {
@@ -15,14 +16,23 @@
   .payment {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 
     div {
-      width: 150px;
+      width: 170px;
       margin-right: 25px;
+
+      &.paymentInfo {
+        height: 80px;
+      }
 
       div {
         display: flex;
         justify-content: space-between;
+
+        &.paymentInfoType {
+          font-weight: bold;
+        }
       }
     }
   }

@@ -1,6 +1,9 @@
 <div class="wrapper">
   <div class="document">
     <div>
+      <span i18n="@@bs-payments">Payments:</span><span>{{detail.paymentCount}}</span>
+    </div>
+    <div>
       <span i18n="@@bs-documents">Documents:</span><span>{{detail.documentCount}}</span>
     </div>
     <div>
@@ -14,14 +17,9 @@
     </div>
   </div>
   <div class="payment">
-    <div>
-      <div>
-        <span i18n="@@bs-payments">Payments:</span><span>{{detail.paymentCount}}</span>
-      </div>
-    </div>
-    <div *ngFor="let info of detail.paymentInfos">
-      <div>
-        <span i18n="@@paymentType">{info.type, select, CASH {Cash} FREE {Free} CARD {} CHANGE {Change} AUTO {Auto}} {{info.cardLabel}}</span>
+    <div *ngFor="let info of detail.paymentInfos" class="paymentInfo">
+      <div class="paymentInfoType">
+        <span i18n="@@paymentType">{info.type, select, CASH {Cash} FREE {Free} CARD {Cards} CHANGE {Change} AUTO {Auto} ELECTRONIC {Auto} } {{info.label ? " - " + info.label : ""}}</span>
       </div>
       <div>
         <span i18n="@@bs-count">Count:</span><span>{{info.count}}</span>
