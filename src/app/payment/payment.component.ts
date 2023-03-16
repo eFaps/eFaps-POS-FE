@@ -18,6 +18,7 @@ import {
   EmployeeRelationType,
   EmployeeService,
   hasFlag,
+  IdentificationType,
   Invoice,
   Payment,
   PaymentService,
@@ -183,6 +184,16 @@ export class PaymentComponent implements OnInit, OnDestroy {
     if (DocumentType.INVOICE === this.docType && this.contact == null) {
       this.snackBar.open(
         this.translateService.instant("PAYMENT.NOCONTACTMSG"),
+        "",
+        { duration: 3000 }
+      );
+      ret = false;
+    } else if (
+      DocumentType.INVOICE === this.docType &&
+      this.contact && this.contact.idType != IdentificationType.RUC
+    ) {
+      this.snackBar.open(
+        "Factura solo se puded generar para cliente con RUC valido",
         "",
         { duration: 3000 }
       );
