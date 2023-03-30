@@ -190,7 +190,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
       ret = false;
     } else if (
       DocumentType.INVOICE === this.docType &&
-      this.contact && this.contact.idType != IdentificationType.RUC
+      this.contact &&
+      this.contact.idType != IdentificationType.RUC
     ) {
       this.snackBar.open(
         "Factura solo se puded generar para cliente con RUC valido",

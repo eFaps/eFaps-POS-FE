@@ -47,7 +47,7 @@ export class ProductListComponent
     posService: PosService,
     inventoryService: InventoryService,
     posSyncService: PosSyncService,
-    private keypadService: KeypadService,
+    keypadService: KeypadService,
     dialog: MatDialog,
     private authService: AuthService,
     private fb: UntypedFormBuilder
@@ -58,6 +58,7 @@ export class ProductListComponent
       posService,
       inventoryService,
       posSyncService,
+      keypadService,
       dialog
     );
     this.filterForm = this.fb.group({

@@ -9,7 +9,7 @@ import {
   ProductService,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { PosSyncService } from "../services/pos-sync.service";
+import { KeypadService, PosSyncService } from "../services";
 import { ConfigDialogComponent } from "./config-dialog/config-dialog.component";
 
 @Directive()
@@ -28,6 +28,7 @@ export abstract class AbstractProductSelector implements OnInit {
     protected posService: PosService,
     protected inventoryService: InventoryService,
     protected posSyncService: PosSyncService,
+    protected keypadService: KeypadService,
     protected dialog: MatDialog
   ) {}
 
@@ -47,6 +48,7 @@ export abstract class AbstractProductSelector implements OnInit {
       product.indicationSets.some((set) => set.required) ||
       product.bomGroupConfigs.length > 0
     ) {
+      this.keypadService.deactivate();
       const dialogRef = this.dialog.open(ConfigDialogComponent, {
         data: {
           product: product,
@@ -55,11 +57,15 @@ export abstract class AbstractProductSelector implements OnInit {
       });
       dialogRef.afterClosed().subscribe({
         next: (selection) => {
+          this.keypadService.activate();
           this.selectProduct(
             product,
             selection.remark,
             selection.childProducts
           );
+        },
+        error: (err: any) => {
+          this.keypadService.activate();
         },
       });
     } else {

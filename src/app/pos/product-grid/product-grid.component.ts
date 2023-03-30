@@ -13,7 +13,7 @@ import {
   WorkspaceService,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
-import { PosSyncService } from "src/app/services/pos-sync.service";
+import { KeypadService, PosSyncService } from "src/app/services";
 
 import { AbstractProductSelector } from "../abstract-product-selector";
 
@@ -45,6 +45,7 @@ export class ProductGridComponent
     posService: PosService,
     inventoryService: InventoryService,
     posSyncService: PosSyncService,
+    keypadService: KeypadService,
     dialog: MatDialog
   ) {
     super(
@@ -53,6 +54,7 @@ export class ProductGridComponent
       posService,
       inventoryService,
       posSyncService,
+      keypadService,
       dialog
     );
   }
