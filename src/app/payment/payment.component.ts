@@ -194,7 +194,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
       this.contact.idType != IdentificationType.RUC
     ) {
       this.snackBar.open(
-        "Factura solo se puded generar para cliente con RUC valido",
+        "Solo se puede generar facturas con un número de RUC válido.",
         "",
         { duration: 3000 }
       );
