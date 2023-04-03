@@ -20,7 +20,6 @@ import {
   EmployeeService,
   Employee,
 } from "@efaps/pos-library";
-import { EmployeeDialogData } from "../employee-dialog/employee-dialog.component";
 
 import { PrintDialogComponent } from "../print-dialog/print-dialog.component";
 
@@ -43,6 +42,7 @@ export class DocumentComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   private workspaceOid: string = "";
   @Input() permitPrint = false;
+  @Input() showContact = false;
   hasCopyPrintCmd = false;
   @Input() permitCreditNote = false;
   creditNotes: CreditNote[] = [];

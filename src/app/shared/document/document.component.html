@@ -1,5 +1,9 @@
 <div *ngIf="document" class="mat-typography">
   <h3>{{document.type! | translate}}: {{document.number}}</h3>
+  <div *ngIf="showContact && document.contact" class="contact-document">
+    <span>Cliente:</span>
+    <span>{{ 'IDTYPE.' + document.contact.idType | translate}}: {{document.contact.idNumber}} - {{document.contact.name}}</span>
+  </div>
   <div class="pos-doc-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource" matSort matSortActive="index" matSortDirection="asc"
       multiTemplateDataRows>
