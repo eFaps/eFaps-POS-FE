@@ -75,6 +75,14 @@ const routes: Routes = [
         (m) => m.CreditNotesModule
       ),
   },
+  {
+    path: "stocktaking",
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import("./stocktaking/stocktaking.module").then(
+        (m) => m.StocktakingModule
+      ),
+  },
   { path: "**", redirectTo: "pos" },
 ];
 

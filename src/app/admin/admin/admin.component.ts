@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatChipInputEvent } from "@angular/material/chips";
+import { Router } from "@angular/router";
 import { LocalStorage } from "@efaps/ngx-store";
 import {
   AdminService,
@@ -25,6 +26,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   barcodeOptionsForm: FormGroup;
 
   constructor(
+    private router: Router,
     private adminService: AdminService,
     private configService: ConfigService,
     private barcodeScannerService: BarcodeScannerService,
@@ -109,5 +111,9 @@ export class AdminComponent implements OnInit, OnDestroy {
     if (index && index >= 0) {
       this.barcodeOptions.endKeys?.splice(index, 1);
     }
+  }
+
+  stocktaking() {
+    this.router.navigate(["stocktaking"]);
   }
 }

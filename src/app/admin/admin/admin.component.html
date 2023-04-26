@@ -3,6 +3,9 @@
   <div>
     <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="reload()" i18n="@@reload">Reload</button>
   </div>
+  <div>
+    <button class="btn btn-success" mat-raised-button color="primary" (click)="stocktaking()" >Stocktaking</button>
+  </div>
   <div class="mat-elevation-z3 versions">
     <h1>Versions:</h1>
     <p i18n="@@versionCloud">Cloud: {{ versions?.remote }}</p>

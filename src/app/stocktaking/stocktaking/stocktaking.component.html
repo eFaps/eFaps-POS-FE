@@ -1,0 +1,16 @@
+<div class="mat-elevation-z8">
+  <form [formGroup]="searchForm">
+    <mat-form-field appearance="outline" class="searchInput">
+      <input matInput placeholder="Buscar" autocomplete="off" [formControl]="searchControl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selectProduct($event)">
+        <mat-option *ngFor="let item of searchResult" [value]="item">
+          {{item.sku + " " + item.description}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <button mat-icon-button (click)="clear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </form>
+  
+</div>
