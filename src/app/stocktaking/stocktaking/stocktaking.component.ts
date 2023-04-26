@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
-import { Product, ProductService } from "@efaps/pos-library";
-import { debounceTime } from "rxjs";
+import { BarcodeScannerService, Product, ProductService } from "@efaps/pos-library";
+import { Subscription, debounceTime, skip } from "rxjs";
 
 @Component({
   selector: "app-stocktaking",
@@ -12,9 +12,11 @@ import { debounceTime } from "rxjs";
 export class StocktakingComponent implements OnInit {
   searchForm: FormGroup;
   searchControl: FormControl = new FormControl();
-  searchResult: Product[] = [];
+  _searchResult: Product[] = [];
   textsearch = false;
-  constructor(private productService: ProductService, fb: FormBuilder) {
+  private subscriptions = new Subscription();
+  
+  constructor(private productService: ProductService,    private barcodeScannerService: BarcodeScannerService, fb: FormBuilder) {
     this.searchForm = fb.group({});
   }
 
@@ -26,11 +28,20 @@ export class StocktakingComponent implements OnInit {
           this.productService
             .findProducts(data, this.textsearch)
             .subscribe((response) => {
-              console.log(response);
               this.searchResult = response;
             });
         }
       });
+
+      this.subscriptions.add(
+        this.barcodeScannerService.barcode.pipe(skip(1)).subscribe({
+          next: (barcode) => {
+            if (barcode) {
+              this.onBarcode(barcode);
+            }
+          },
+        })
+      );  
   }
 
   displayFn(product?: Product): string {
@@ -43,5 +54,25 @@ export class StocktakingComponent implements OnInit {
 
   selectProduct(event: MatAutocompleteSelectedEvent) {
     console.log(event.option.value);
+  }
+
+  onBarcode(barcode: string) {
+    console.log(barcode)
+    this.productService
+            .getProductsByBarcode(barcode)
+            .subscribe((response) => {
+              this.searchResult = response;
+            });
+  }
+
+  get searchResult() {
+    return this._searchResult;
+  }
+
+  set searchResult(products: Product[] ) {
+    this._searchResult = products
+    if (this._searchResult.length == 1) {
+      this.searchControl.setValue(this._searchResult[0]);
+    }
   }
 }
