@@ -12,5 +12,13 @@
       <mat-icon>close</mat-icon>
     </button>
   </form>
-  
+</div>
+<div class="selection">
+  <app-keypad [showTopClear]="false" (number)="setQuantity($event)"></app-keypad>
+  <div class="confirmation">
+    <div class="quantity">{{quantity}}</div>
+    <div class="confirmation-btn">
+      <button mat-raised-button color="accent" [disabled]="disabled" (click)="save()">Confirmar</button>
+    </div>
+  </div>
 </div>
