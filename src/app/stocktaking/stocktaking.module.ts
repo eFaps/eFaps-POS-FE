@@ -11,9 +11,16 @@ import { MatOptionModule } from "@angular/material/core";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { SharedModule } from "../shared/shared.module";
+import { StocktakingInitComponent } from "./stocktaking-init/stocktaking-init.component";
+import { StocktakingTableComponent } from "./stocktaking-table/stocktaking-table.component";
+import { MatSelectModule } from "@angular/material/select";
 
 @NgModule({
-  declarations: [StocktakingComponent],
+  declarations: [
+    StocktakingComponent,
+    StocktakingInitComponent,
+    StocktakingTableComponent,
+  ],
   imports: [
     CommonModule,
     StocktakingRoutingModule,
@@ -24,6 +31,7 @@ import { SharedModule } from "../shared/shared.module";
     MatOptionModule,
     MatIconModule,
     MatButtonModule,
+    MatSelectModule,
     SharedModule,
   ],
 })

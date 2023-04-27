@@ -1,10 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
+import { Router } from "@angular/router";
 import {
   BarcodeScannerService,
   Product,
   ProductService,
+  Stocktaking,
+  StocktakingService,
 } from "@efaps/pos-library";
 import { Subscription, debounceTime, skip } from "rxjs";
 
@@ -23,7 +26,11 @@ export class StocktakingComponent implements OnInit {
 
   quantity: number | undefined;
 
+  stocktaking: Stocktaking | undefined;
+
   constructor(
+    private router: Router,
+    private stocktakingService: StocktakingService,
     private productService: ProductService,
     private barcodeScannerService: BarcodeScannerService,
     fb: FormBuilder
@@ -53,6 +60,19 @@ export class StocktakingComponent implements OnInit {
         },
       })
     );
+
+    this.stocktakingService.getCurrent().subscribe({
+      next: (stocktaking) => {
+        if (stocktaking) {
+          this.stocktaking = stocktaking;
+        }
+      },
+      error: (err: any) => {
+        if (err.status == 404) {
+          this.router.navigate(["stocktaking", "init"]);
+        }
+      },
+    });
   }
 
   displayFn(product?: Product): string {
