@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
-import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
-import { Router } from "@angular/router";
+import { MatAutocomplete, MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { ActivatedRoute, Router } from "@angular/router";
 import {
   BarcodeScannerService,
   Product,
@@ -9,7 +10,7 @@ import {
   Stocktaking,
   StocktakingService,
 } from "@efaps/pos-library";
-import { Subscription, debounceTime, skip } from "rxjs";
+import { Subscription, debounceTime, skip, switchMap } from "rxjs";
 
 @Component({
   selector: "app-stocktaking",
@@ -27,9 +28,12 @@ export class StocktakingComponent implements OnInit {
   quantity: number | undefined;
 
   stocktaking: Stocktaking | undefined;
-
+  @ViewChild(MatAutocomplete) autoComplete: MatAutocomplete | undefined;
+  
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
     private stocktakingService: StocktakingService,
     private productService: ProductService,
     private barcodeScannerService: BarcodeScannerService,
@@ -61,18 +65,24 @@ export class StocktakingComponent implements OnInit {
       })
     );
 
-    this.stocktakingService.getCurrent().subscribe({
-      next: (stocktaking) => {
-        if (stocktaking) {
-          this.stocktaking = stocktaking;
-        }
-      },
-      error: (err: any) => {
-        if (err.status == 404) {
-          this.router.navigate(["stocktaking", "init"]);
-        }
-      },
-    });
+    this.route.params
+      .pipe(
+        switchMap((params) => {
+          return this.stocktakingService.getCurrent(params["oid"]);
+        })
+      )
+      .subscribe({
+        next: (stocktaking) => {
+          if (stocktaking) {
+            this.stocktaking = stocktaking;
+          }
+        },
+        error: (err: any) => {
+          if (err.status == 404) {
+            this.router.navigate(["stocktaking", "init"]);
+          }
+        },
+      });
   }
 
   displayFn(product?: Product): string {
@@ -121,7 +131,20 @@ export class StocktakingComponent implements OnInit {
   }
 
   save() {
-    console.log(this.quantity + " - " + this.searchControl.value.oid);
+    this.stocktakingService
+      .addEntry(this.stocktaking!.id, {
+        productOid: this.searchControl.value.oid,
+        quantity: this.quantity!,
+      })
+      .subscribe({
+        next: (id) => {
+          console.log(id);
+          this.snackBar.open("Archivado");
+        },
+        error: (e) => {
+          console.log(e);
+        },
+      });
     this.clear();
     this.quantity = undefined;
   }

@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Crear Toma de Inventario</h1>
+<mat-dialog-content>
+  <form [formGroup]="stocktakingForm">
+    <mat-form-field>
+        <mat-select formControlName="warehouse">
+            <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse">
+                {{ warehouse.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button type="button" [disabled]="stocktakingForm.invalid" (click)="submit()">Crear</button>
+  <button mat-button type="button" mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>

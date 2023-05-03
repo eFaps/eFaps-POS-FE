@@ -12,6 +12,7 @@ import {
   Versions,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
+import { STOCKTAKING_ACTIVATE } from "src/app/util/keys";
 
 @Component({
   selector: "app-admin",
@@ -24,6 +25,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   lazyElements: Extension[] = [];
   @LocalStorage() barcodeOptions: BarcodeOptions = {};
   barcodeOptionsForm: FormGroup;
+  stocktakingActivate = false;
 
   constructor(
     private router: Router,
@@ -53,6 +55,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.adminService
       .version()
       .subscribe((versions) => (this.versions = versions));
+
     this.configService.getExtensions().subscribe({
       next: (extensions) => {
         extensions
@@ -62,6 +65,13 @@ export class AdminComponent implements OnInit, OnDestroy {
           });
       },
     });
+    this.configService
+      .getSystemConfig<boolean>(STOCKTAKING_ACTIVATE)
+      .subscribe({
+        next: (value) => {
+          this.stocktakingActivate = value;
+        },
+      });
 
     if (this.hasBarcodeScanner) {
       this.barcodeOptionsForm.setValue(this.barcodeOptions);

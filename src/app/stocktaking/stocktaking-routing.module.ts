@@ -5,8 +5,8 @@ import { StocktakingInitComponent } from "./stocktaking-init/stocktaking-init.co
 import { StocktakingTableComponent } from "./stocktaking-table/stocktaking-table.component";
 
 const routes: Routes = [
-  { path: "process", component: StocktakingComponent },
   { path: "init", component: StocktakingInitComponent },
+  { path: ":oid", component: StocktakingComponent },
   { path: "", component: StocktakingTableComponent },
 ];
 

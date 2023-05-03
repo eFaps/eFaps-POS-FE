@@ -178,7 +178,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
       ...order,
       spotLabel: this.evalSpotLabel(orders, order),
       multiple: this.evalMultiple(orders, order),
-      contact: null,
+      contact: undefined,
     };
     this.evalContact(row);
     return row;
@@ -262,9 +262,9 @@ export class OrderTableComponent implements OnInit, OnDestroy {
         next: (contact) => (row.contact = contact),
       });
     }
-    row.contact = null;
+    row.contact = undefined;
   }
 }
 interface OrderTableRow extends OrderWrapper {
-  contact: Contact | null;
+  contact?: Contact;
 }

@@ -14,12 +14,17 @@ import { SharedModule } from "../shared/shared.module";
 import { StocktakingInitComponent } from "./stocktaking-init/stocktaking-init.component";
 import { StocktakingTableComponent } from "./stocktaking-table/stocktaking-table.component";
 import { MatSelectModule } from "@angular/material/select";
+import { MatTableModule } from "@angular/material/table";
+import { CreateStocktakingDialogComponent } from "./create-stocktaking-dialog/create-stocktaking-dialog.component";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
     StocktakingComponent,
     StocktakingInitComponent,
     StocktakingTableComponent,
+    CreateStocktakingDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -32,7 +37,10 @@ import { MatSelectModule } from "@angular/material/select";
     MatIconModule,
     MatButtonModule,
     MatSelectModule,
+    MatTableModule,
     SharedModule,
+    MatDialogModule,
+    MatSnackBarModule,
   ],
 })
 export class StocktakingModule {}

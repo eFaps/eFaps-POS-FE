@@ -39,10 +39,6 @@ export class StocktakingInitComponent implements OnInit {
 
   submit() {
     const warehouse = this.initForm.value.warehouse;
-    this.stocktakingService.createStocktaking(warehouse.oid).subscribe({
-      next: (stocktacking) => {
-        this.router.navigate(["stocktaking", "process"]);
-      },
-    });
+    this.router.navigate(["stocktaking", warehouse.oid]);
   }
 }

@@ -38,6 +38,11 @@ class ConfigServiceStub {
       ]);
     });
   }
+  getSystemConfig(): Observable<boolean> {
+    return new Observable((observer) => {
+      observer.next(false);
+    });
+  }
 }
 
 describe("AdminComponent", () => {
