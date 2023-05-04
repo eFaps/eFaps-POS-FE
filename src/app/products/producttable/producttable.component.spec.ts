@@ -15,6 +15,8 @@ import { Observable } from "rxjs";
 import { VirtKeyboardDirective } from "../../services";
 import { ProductComponent } from "../../shared/product/product.component";
 import { ProducttableComponent } from "./producttable.component";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatSortModule } from "@angular/material/sort";
 
 class ProductServiceStub {
   getProducts() {
@@ -28,7 +30,7 @@ describe("ProducttableComponent", () => {
   let component: ProducttableComponent;
   let fixture: ComponentFixture<ProducttableComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -39,6 +41,8 @@ describe("ProducttableComponent", () => {
         MatFormFieldModule,
         MatInputModule,
         MatIconModule,
+        MatPaginatorModule,
+        MatSortModule
       ],
       providers: [
         { provide: ProductService, useClass: ProductServiceStub },
@@ -50,7 +54,7 @@ describe("ProducttableComponent", () => {
         ProducttableComponent,
       ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProducttableComponent);

@@ -1,17 +1,17 @@
-import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
-  UntypedFormBuilder,
-  UntypedFormGroup,
 } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { LocalStorage } from "@efaps/ngx-store";
-import { Product, ProductService } from "@efaps/pos-library";
+import { PageRequest, Product, ProductService } from "@efaps/pos-library";
 
 import { ProductComponent } from "../../shared/product/product.component";
+import { MatPaginator } from "@angular/material/paginator";
+import { debounceTime, merge, tap } from "rxjs";
 
 @Component({
   selector: "app-producttable",
@@ -20,14 +20,17 @@ import { ProductComponent } from "../../shared/product/product.component";
 })
 export class ProducttableComponent implements OnInit, OnDestroy {
   displayedColumns = ["sku", "description", "cmd"];
-  dataSource = new MatTableDataSource();
+  dataSource = new MatTableDataSource<Product>();
+  _paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   @LocalStorage() virtKeyboard = false;
   filterForm: FormGroup;
+  textSearch = false;
 
   constructor(
     private productService: ProductService,
     private dialog: MatDialog,
+    private changeDetectorRefs: ChangeDetectorRef,
     fb: FormBuilder
   ) {
     this.filterForm = fb.group({
@@ -35,25 +38,63 @@ export class ProducttableComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() {
-    this.productService.getProducts().subscribe((data) => {
-      this.dataSource.data = data;
-      this.dataSource.sort = this.sort;
-    });
+  @ViewChild(MatPaginator, { static: false })
+  set paginator(paginator: MatPaginator) {
+    this._paginator = paginator;
+    merge(this.sort.sortChange, this._paginator.page)
+      .pipe(tap(() => this.loadProducts()))
+      .subscribe();
+    this.loadProducts();
+  }
 
+  ngOnInit() {
     this.filterForm
       .get("filter")!
-      .valueChanges.subscribe((value) => this.applyFilter(value));
+      .valueChanges.pipe(debounceTime(400)).subscribe((value) => this.applyFilter(value));
   }
 
   ngOnDestroy() {
     // event empty method is needed to allow ngx-store handle class destruction
   }
 
-  applyFilter(_filterValue: string) {
-    _filterValue = _filterValue.trim();
-    _filterValue = _filterValue.toLowerCase();
-    this.dataSource.filter = _filterValue;
+  loadProducts() {
+    var pageRequest: PageRequest = {
+      size: this._paginator.pageSize,
+      page: this._paginator.pageIndex,
+    };
+    if (this.sort.active) {
+      pageRequest.sort = [this.sort.active + "," + this.sort.direction];
+    }
+    this.productService.getProducts(pageRequest).subscribe({
+      next: (page) => {
+        this.dataSource.data = [];
+        this.dataSource.paginator = null;
+        this.dataSource.sort = null;
+        this.dataSource.data = page.content;
+        this._paginator.length = page.totalElements;
+        this.changeDetectorRefs.detectChanges();
+      },
+    });
+  }
+
+  applyFilter(term: string) {
+    this.dataSource.data = [];
+    if (term.length > 0) {
+        this.productService.findProducts(term, this.textSearch).subscribe({
+        next: (data) => {
+          this.dataSource.data = this.dataSource.data.concat(data);
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this._paginator;
+        },
+      });
+    } else {
+      this.loadProducts();
+    }
+  }
+
+  setTextSearch() {
+    this.textSearch = !this.textSearch;
+    this.applyFilter(this.filterForm.value["filter"]);
   }
 
   show(_product: Product) {
