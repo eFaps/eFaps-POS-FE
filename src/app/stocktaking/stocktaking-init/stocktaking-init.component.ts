@@ -23,7 +23,6 @@ export class StocktakingInitComponent implements OnInit {
   constructor(
     private router: Router,
     private inventoryService: InventoryService,
-    private stocktakingService: StocktakingService,
     fb: FormBuilder
   ) {
     this.initForm = fb.group({

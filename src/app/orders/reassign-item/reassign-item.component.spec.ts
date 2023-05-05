@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
-import { MatTableModule } from "@angular/material/table";
+import { MatLegacyTableModule as MatTableModule } from "@angular/material/legacy-table";
 import { PosCurrencyPipe } from "@efaps/pos-library";
 import { MockPipe } from "ng-mocks";
 

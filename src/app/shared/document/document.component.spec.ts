@@ -1,8 +1,8 @@
 import { HttpClientModule } from "@angular/common/http";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
-import { MatDialogModule } from "@angular/material/dialog";
-import { MatListModule } from "@angular/material/list";
-import { MatTableModule } from "@angular/material/table";
+import { MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
+import { MatLegacyListModule as MatListModule } from "@angular/material/legacy-list";
+import { MatLegacyTableModule as MatTableModule } from "@angular/material/legacy-table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Router } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";

@@ -3,21 +3,21 @@ import { CommonModule } from "@angular/common";
 
 import { StocktakingRoutingModule } from "./stocktaking-routing.module";
 import { StocktakingComponent } from "./stocktaking/stocktaking.component";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
-import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatLegacyFormFieldModule as MatFormFieldModule } from "@angular/material/legacy-form-field";
+import { MatLegacyInputModule as MatInputModule } from "@angular/material/legacy-input";
+import { MatLegacyAutocompleteModule as MatAutocompleteModule } from "@angular/material/legacy-autocomplete";
 import { ReactiveFormsModule } from "@angular/forms";
-import { MatOptionModule } from "@angular/material/core";
+import { MatLegacyOptionModule as MatOptionModule } from "@angular/material/legacy-core";
 import { MatIconModule } from "@angular/material/icon";
-import { MatButtonModule } from "@angular/material/button";
+import { MatLegacyButtonModule as MatButtonModule } from "@angular/material/legacy-button";
 import { SharedModule } from "../shared/shared.module";
 import { StocktakingInitComponent } from "./stocktaking-init/stocktaking-init.component";
 import { StocktakingTableComponent } from "./stocktaking-table/stocktaking-table.component";
-import { MatSelectModule } from "@angular/material/select";
-import { MatTableModule } from "@angular/material/table";
+import { MatLegacySelectModule as MatSelectModule } from "@angular/material/legacy-select";
+import { MatLegacyTableModule as MatTableModule } from "@angular/material/legacy-table";
 import { CreateStocktakingDialogComponent } from "./create-stocktaking-dialog/create-stocktaking-dialog.component";
-import { MatDialogModule } from "@angular/material/dialog";
-import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
+import { MatLegacySnackBarModule as MatSnackBarModule } from "@angular/material/legacy-snack-bar";
 
 @NgModule({
   declarations: [

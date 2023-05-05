@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
-import { MatTabsModule } from "@angular/material/tabs";
+import { MatLegacyTabsModule as MatTabsModule } from "@angular/material/legacy-tabs";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { InventoryService } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";

@@ -1,18 +1,18 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MatButtonModule } from "@angular/material/button";
+import { MatLegacyButtonModule as MatButtonModule } from "@angular/material/legacy-button";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
-import { MatDialogModule } from "@angular/material/dialog";
+import { MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
 import { MatDividerModule } from "@angular/material/divider";
-import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatLegacyFormFieldModule as MatFormFieldModule } from "@angular/material/legacy-form-field";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatIconModule } from "@angular/material/icon";
-import { MatInputModule } from "@angular/material/input";
-import { MatListModule } from "@angular/material/list";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { MatRadioModule } from "@angular/material/radio";
-import { MatTabsModule } from "@angular/material/tabs";
+import { MatLegacyInputModule as MatInputModule } from "@angular/material/legacy-input";
+import { MatLegacyListModule as MatListModule } from "@angular/material/legacy-list";
+import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from "@angular/material/legacy-progress-spinner";
+import { MatLegacyRadioModule as MatRadioModule } from "@angular/material/legacy-radio";
+import { MatLegacyTabsModule as MatTabsModule } from "@angular/material/legacy-tabs";
 
 import { SharedModule } from "../shared/shared.module";
 import { AutoComponent } from "./auto/auto.component";

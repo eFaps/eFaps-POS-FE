@@ -1,10 +1,29 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { CreateStocktakingDialogComponent } from "./create-stocktaking-dialog.component";
-import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import {
+  MatLegacyDialogModule as MatDialogModule,
+  MatLegacyDialogRef as MatDialogRef,
+} from "@angular/material/legacy-dialog";
 import { FormBuilder } from "@angular/forms";
-import { PosConfigToken } from "@efaps/pos-library";
+import {
+  InventoryService,
+  PosConfigToken,
+  StocktakingService,
+  Warehouse,
+} from "@efaps/pos-library";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { Observable } from "rxjs";
+
+class InventoryServiceStub {
+  getWarehouses() {
+    return new Observable((observer) => {
+      observer.next([]);
+    });
+  }
+}
+
+class StocktakingServiceStub {}
 
 describe("CreateStocktakingDialogComponent", () => {
   let component: CreateStocktakingDialogComponent;
@@ -17,6 +36,8 @@ describe("CreateStocktakingDialogComponent", () => {
       providers: [
         FormBuilder,
         { provide: MatDialogRef, useValue: {} },
+        { provide: InventoryService, useClass: InventoryServiceStub },
+        { provide: StocktakingService, useClass: StocktakingServiceStub },
         { provide: PosConfigToken, useValue: {} },
       ],
     }).compileComponents();

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
-import { MatDialogModule } from "@angular/material/dialog";
+import { MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   BalanceService,
@@ -11,7 +11,7 @@ import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
 import { BalanceDocumentListComponent } from "./balance-document-list.component";
-import { MatTableModule } from "@angular/material/table";
+import { MatLegacyTableModule as MatTableModule } from "@angular/material/legacy-table";
 
 class BalanceServiceStub {
   currentBalance = new Observable((observer) => {
