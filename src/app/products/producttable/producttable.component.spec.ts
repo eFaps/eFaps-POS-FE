@@ -42,7 +42,7 @@ describe("ProducttableComponent", () => {
         MatInputModule,
         MatIconModule,
         MatPaginatorModule,
-        MatSortModule
+        MatSortModule,
       ],
       providers: [
         { provide: ProductService, useClass: ProductServiceStub },

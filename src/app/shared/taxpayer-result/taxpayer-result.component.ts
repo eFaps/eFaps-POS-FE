@@ -5,7 +5,10 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef } from "@angular/material/legacy-dialog";
+import {
+  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
+  MatLegacyDialogRef as MatDialogRef,
+} from "@angular/material/legacy-dialog";
 import { MatLegacyPaginator as MatPaginator } from "@angular/material/legacy-paginator";
 import { Taxpayer, TaxpayerService } from "@efaps/pos-library";
 import { Page } from "@efaps/pos-library/lib/model/pageable";

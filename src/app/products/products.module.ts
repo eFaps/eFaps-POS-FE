@@ -29,7 +29,7 @@ import { MatLegacySlideToggleModule as MatSlideToggleModule } from "@angular/mat
     ServicesModule,
     SharedModule,
     MatPaginatorModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
   ],
   declarations: [ProducttableComponent],
 })

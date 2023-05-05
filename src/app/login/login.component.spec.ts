@@ -13,7 +13,10 @@ import { MatLegacyCardModule as MatCardModule } from "@angular/material/legacy-c
 import { MatLegacyFormFieldModule as MatFormFieldModule } from "@angular/material/legacy-form-field";
 import { MatLegacyInputModule as MatInputModule } from "@angular/material/legacy-input";
 import { MatLegacySlideToggleModule as MatSlideToggleModule } from "@angular/material/legacy-slide-toggle";
-import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarModule as MatSnackBarModule } from "@angular/material/legacy-snack-bar";
+import {
+  MatLegacySnackBar as MatSnackBar,
+  MatLegacySnackBarModule as MatSnackBarModule,
+} from "@angular/material/legacy-snack-bar";
 import { By } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Router } from "@angular/router";

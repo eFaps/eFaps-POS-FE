@@ -14,9 +14,7 @@ class ActivatedRouteStub {
   params = new Observable((observer) => {});
 }
 
-class StocktakingServiceStub {
-  
-}
+class StocktakingServiceStub {}
 
 describe("StocktakingComponent", () => {
   let component: StocktakingComponent;
@@ -30,7 +28,7 @@ describe("StocktakingComponent", () => {
         MatSnackBar,
         FormBuilder,
         { provide: ActivatedRoute, useClass: ActivatedRouteStub },
-        { provide: StocktakingService, useClass: StocktakingServiceStub},
+        { provide: StocktakingService, useClass: StocktakingServiceStub },
         { provide: PosConfigToken, useValue: {} },
       ],
     }).compileComponents();

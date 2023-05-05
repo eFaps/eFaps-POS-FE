@@ -2,7 +2,10 @@ import { COMMA, ENTER } from "@angular/cdk/keycodes";
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { MatLegacyChipInputEvent as MatChipInputEvent } from "@angular/material/legacy-chips";
-import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from "@angular/material/legacy-dialog";
+import {
+  MatLegacyDialogRef as MatDialogRef,
+  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
+} from "@angular/material/legacy-dialog";
 import { Indication, Product, ProductService } from "@efaps/pos-library";
 
 @Component({

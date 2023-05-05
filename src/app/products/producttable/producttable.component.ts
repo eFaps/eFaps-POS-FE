@@ -1,8 +1,11 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import {
-  FormBuilder,
-  FormGroup,
-} from "@angular/forms";
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatLegacyDialog as MatDialog } from "@angular/material/legacy-dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatLegacyTableDataSource as MatTableDataSource } from "@angular/material/legacy-table";
@@ -50,7 +53,8 @@ export class ProducttableComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.filterForm
       .get("filter")!
-      .valueChanges.pipe(debounceTime(400)).subscribe((value) => this.applyFilter(value));
+      .valueChanges.pipe(debounceTime(400))
+      .subscribe((value) => this.applyFilter(value));
   }
 
   ngOnDestroy() {
@@ -80,7 +84,7 @@ export class ProducttableComponent implements OnInit, OnDestroy {
   applyFilter(term: string) {
     this.dataSource.data = [];
     if (term.length > 0) {
-        this.productService.findProducts(term, this.textSearch).subscribe({
+      this.productService.findProducts(term, this.textSearch).subscribe({
         next: (data) => {
           this.dataSource.data = this.dataSource.data.concat(data);
           this.dataSource.sort = this.sort;

@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
-import { MatLegacyAutocomplete as MatAutocomplete, MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent } from "@angular/material/legacy-autocomplete";
+import {
+  MatLegacyAutocomplete as MatAutocomplete,
+  MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent,
+} from "@angular/material/legacy-autocomplete";
 import { MatLegacySnackBar as MatSnackBar } from "@angular/material/legacy-snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
@@ -29,7 +32,7 @@ export class StocktakingComponent implements OnInit {
 
   stocktaking: Stocktaking | undefined;
   @ViewChild(MatAutocomplete) autoComplete: MatAutocomplete | undefined;
-  
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,

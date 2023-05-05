@@ -1,5 +1,8 @@
 import { Component, Input, OnInit, ViewChild, Optional } from "@angular/core";
-import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef } from "@angular/material/legacy-dialog";
+import {
+  MatLegacyDialog as MatDialog,
+  MatLegacyDialogRef as MatDialogRef,
+} from "@angular/material/legacy-dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatLegacyTableDataSource as MatTableDataSource } from "@angular/material/legacy-table";
 import { Router } from "@angular/router";

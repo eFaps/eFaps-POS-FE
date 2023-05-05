@@ -7,7 +7,10 @@ import {
 } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatLegacyDialog as MatDialog } from "@angular/material/legacy-dialog";
-import { MatLegacyPaginator as MatPaginator, LegacyPageEvent as PageEvent } from "@angular/material/legacy-paginator";
+import {
+  MatLegacyPaginator as MatPaginator,
+  LegacyPageEvent as PageEvent,
+} from "@angular/material/legacy-paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatLegacyTableDataSource as MatTableDataSource } from "@angular/material/legacy-table";
 import {
