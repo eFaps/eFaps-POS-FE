@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
-import { MatButtonModule } from "@angular/material/button";
+import { MatLegacyButtonModule as MatButtonModule } from "@angular/material/legacy-button";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatIconModule } from "@angular/material/icon";
 import {
-  MatSnackBar,
-  MatSnackBarModule,
-  MAT_SNACK_BAR_DATA,
-} from "@angular/material/snack-bar";
+  MatLegacySnackBar as MatSnackBar,
+  MatLegacySnackBarModule as MatSnackBarModule,
+  MAT_LEGACY_SNACK_BAR_DATA as MAT_SNACK_BAR_DATA,
+} from "@angular/material/legacy-snack-bar";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import {

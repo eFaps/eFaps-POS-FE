@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
-import { MatDialogModule } from "@angular/material/dialog";
+import { MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Balance, BalanceService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
 import { BalanceListComponent } from "./balance-list.component";
-import { MatTableModule } from "@angular/material/table";
+import { MatLegacyTableModule as MatTableModule } from "@angular/material/legacy-table";
 
 class BalanceServiceStub {
   getBalances(): Observable<Balance[]> {

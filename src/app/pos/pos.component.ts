@@ -8,8 +8,8 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { MatDialog, MatDialogRef } from "@angular/material/dialog";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef } from "@angular/material/legacy-dialog";
+import { MatLegacySnackBar as MatSnackBar } from "@angular/material/legacy-snack-bar";
 import { Router } from "@angular/router";
 import { LocalStorage } from "@efaps/ngx-store";
 import {

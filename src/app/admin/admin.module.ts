@@ -2,12 +2,12 @@ import { LazyElementsModule } from "@angular-extensions/elements";
 import { CommonModule } from "@angular/common";
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
-import { MatButtonModule } from "@angular/material/button";
-import { MatChipsModule } from "@angular/material/chips";
-import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatLegacyButtonModule as MatButtonModule } from "@angular/material/legacy-button";
+import { MatLegacyChipsModule as MatChipsModule } from "@angular/material/legacy-chips";
+import { MatLegacyFormFieldModule as MatFormFieldModule } from "@angular/material/legacy-form-field";
 import { MatIconModule } from "@angular/material/icon";
-import { MatInputModule } from "@angular/material/input";
-import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatLegacyInputModule as MatInputModule } from "@angular/material/legacy-input";
+import { MatLegacySlideToggleModule as MatSlideToggleModule } from "@angular/material/legacy-slide-toggle";
 import { TranslateModule } from "@ngx-translate/core";
 import { NgBusyModule } from "ng-busy";
 

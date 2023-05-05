@@ -6,7 +6,7 @@ import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
 import { BalancePaymentListComponent } from "./balance-payment-list.component";
-import { MatListModule } from "@angular/material/list";
+import { MatLegacyListModule as MatListModule } from "@angular/material/legacy-list";
 
 class BalanceServiceStub {
   currentBalance = new Observable((observer) => {

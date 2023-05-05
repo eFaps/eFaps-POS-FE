@@ -1,6 +1,6 @@
 import { HttpClientModule } from "@angular/common/http";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
-import { MatDialogModule } from "@angular/material/dialog";
+import { MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
 import { PosConfigToken } from "@efaps/pos-library";
 import { Mock, MockComponent } from "ng-mocks";
 

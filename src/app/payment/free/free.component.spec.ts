@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
+import { MatLegacyFormFieldModule as MatFormFieldModule } from "@angular/material/legacy-form-field";
+import { MatLegacyInputModule as MatInputModule } from "@angular/material/legacy-input";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   AuthService,

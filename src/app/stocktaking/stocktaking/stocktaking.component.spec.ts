@@ -2,13 +2,13 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { StocktakingComponent } from "./stocktaking.component";
 import { PosConfigToken } from "@efaps/pos-library";
-import { MatDialogModule } from "@angular/material/dialog";
+import { MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
 import { ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatLegacySnackBar as MatSnackBar } from "@angular/material/legacy-snack-bar";
 import { FormBuilder } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
-import { MatAutocomplete } from "@angular/material/autocomplete";
+import { MatLegacyAutocomplete as MatAutocomplete } from "@angular/material/legacy-autocomplete";
 
 class ActivatedRouteStub {
   params = new Observable((observer) => {});

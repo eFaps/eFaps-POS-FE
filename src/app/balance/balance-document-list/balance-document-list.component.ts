@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
+import { MatLegacyDialog as MatDialog } from "@angular/material/legacy-dialog";
 import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
+import { MatLegacyTableDataSource as MatTableDataSource } from "@angular/material/legacy-table";
 import { DocStatus, PayableHead } from "@efaps/pos-library";
 
 import { DocumentDialogComponent } from "../document-dialog/document-dialog.component";
