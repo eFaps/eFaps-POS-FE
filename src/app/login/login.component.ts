@@ -12,8 +12,8 @@ import {
   UntypedFormGroup,
   Validators,
 } from "@angular/forms";
-import { MatLegacySlideToggleChange as MatSlideToggleChange } from "@angular/material/legacy-slide-toggle";
-import { MatLegacySnackBar as MatSnackBar } from "@angular/material/legacy-snack-bar";
+import { MatSlideToggleChange } from "@angular/material/slide-toggle";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { LocalStorage } from "@efaps/ngx-store";
 import {
