@@ -26,13 +26,13 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>End Keys</mat-label>
-        <mat-chip-list #chipList aria-label="Fruit selection">
-          <mat-chip *ngFor="let endKey of barcodeOptions.endKeys" (removed)="removeEndKey(endKey)">
+        <mat-chip-grid #chipList aria-label="Fruit selection">
+          <mat-chip-row *ngFor="let endKey of barcodeOptions.endKeys" (removed)="removeEndKey(endKey)">
             {{endKey}}
             <mat-icon matChipRemove>cancel</mat-icon>
-          </mat-chip>
+          </mat-chip-row>
           <input [matChipInputFor]="chipList" [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addEndKey($event)">
-        </mat-chip-list>
+        </mat-chip-grid>
       </mat-form-field>
       <mat-form-field>
         <mat-label>ValidKey Regex</mat-label>
