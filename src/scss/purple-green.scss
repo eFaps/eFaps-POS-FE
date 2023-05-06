@@ -5,17 +5,34 @@
 @import '../app/login/login.component.scss';
 @import '../app/pos/pos.component.scss';
 
-$primary: mat.define-palette(mat.$purple-palette);
-$accent: mat.define-palette(mat.$green-palette, A200, A100, A400);
-$theme: mat.define-dark-theme($primary, $accent);
+@include mat.core();
 
-@include mat.all-legacy-component-themes($theme);
-@include material-docs-app-theme($theme);
-@include productgrid-theme($theme);
-@include login-theme($theme);
-@include part-list-relation-theme($theme);
-@include pos-component-theme($theme);
+$my-primary: mat.define-palette(mat.$purple-palette);
+$my-accent: mat.define-palette(mat.$green-palette, A200, A100, A400);
+$my-warn: mat.define-palette(mat.$red-palette);
+
+$my-theme: mat.define-dark-theme((
+  color: (
+    primary: $my-primary,
+    accent: $my-accent,
+    warn: $my-warn
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+ ));
+
+@include mat.core-theme($my-theme);
+@include mat.all-component-themes($my-theme);
+
+
+@include productgrid-theme($my-theme);
+@include login-theme($my-theme);
+@include part-list-relation-theme($my-theme);
+@include pos-component-theme($my-theme);
 
 svg-icon.logo {
   fill: #9c27b0;
 }
+
+@include mat.all-legacy-component-themes($my-theme);
+@include mat.all-legacy-component-typographies();

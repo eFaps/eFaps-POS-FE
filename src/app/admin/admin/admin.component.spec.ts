@@ -14,7 +14,7 @@ import { Observable } from "rxjs";
 
 import { AdminComponent } from "./admin.component";
 import { ReactiveFormsModule } from "@angular/forms";
-import { MatLegacySlideToggleModule as MatSlideToggleModule } from "@angular/material/legacy-slide-toggle";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 class AdminServiceStub {
   version(): Observable<Versions> {
