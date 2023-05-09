@@ -3,11 +3,11 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { StocktakingInitComponent } from "./stocktaking-init.component";
 import { InventoryService, PosConfigToken } from "@efaps/pos-library";
 import { HttpClientModule } from "@angular/common/http";
-import { MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
+import { MatDialogModule } from "@angular/material/dialog";
 import {
-  MatLegacySnackBar as MatSnackBar,
-  MatLegacySnackBarModule as MatSnackBarModule,
-} from "@angular/material/legacy-snack-bar";
+  MatSnackBar,
+  MatSnackBarModule,
+} from "@angular/material/snack-bar";
 import { FormBuilder } from "@angular/forms";
 import { Observable } from "rxjs";
 

@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { CreateStocktakingDialogComponent } from "./create-stocktaking-dialog.component";
 import {
-  MatLegacyDialogModule as MatDialogModule,
-  MatLegacyDialogRef as MatDialogRef,
-} from "@angular/material/legacy-dialog";
+  MatDialogModule,
+  MatDialogRef,
+} from "@angular/material/dialog";
 import { FormBuilder } from "@angular/forms";
 import {
   InventoryService,
