@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
-import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from "@angular/material/legacy-progress-spinner";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { PosConfigToken } from "@efaps/pos-library";
 
 import { PrintDisplayComponent } from "./print-display.component";

@@ -2,11 +2,11 @@ import { HttpClientModule } from "@angular/common/http";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import {
-  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
-  MatLegacyDialogRef as MatDialogRef,
-} from "@angular/material/legacy-dialog";
-import { MatLegacyPaginatorModule as MatPaginatorModule } from "@angular/material/legacy-paginator";
-import { MatLegacyTableModule as MatTableModule } from "@angular/material/legacy-table";
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+} from "@angular/material/dialog";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatTableModule } from "@angular/material/table";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { Taxpayer, TaxpayerService } from "@efaps/pos-library";
 import { Page, PageRequest } from "@efaps/pos-library/lib/model/pageable";

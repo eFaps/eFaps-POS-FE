@@ -8,7 +8,7 @@ import {
   ChangeDetectorRef,
 } from "@angular/core";
 import { UntypedFormControl } from "@angular/forms";
-import { MatLegacyAutocomplete as MatAutocomplete } from "@angular/material/legacy-autocomplete";
+import { MatAutocomplete } from "@angular/material/autocomplete";
 
 import { Contact, ContactService } from "@efaps/pos-library";
 import { debounceTime } from "rxjs/operators";

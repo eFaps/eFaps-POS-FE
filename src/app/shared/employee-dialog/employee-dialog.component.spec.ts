@@ -2,11 +2,11 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import {
-  MatLegacyDialogModule as MatDialogModule,
-  MatLegacyDialogRef as MatDialogRef,
-  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
-} from "@angular/material/legacy-dialog";
-import { MatLegacySelectModule as MatSelectModule } from "@angular/material/legacy-select";
+  MatDialogModule,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from "@angular/material/dialog";
+import { MatSelectModule } from "@angular/material/select";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { EmployeeService } from "@efaps/pos-library";
 import { Observable } from "rxjs";

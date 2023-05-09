@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import {
-  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
-  MatLegacyDialogModule as MatDialogModule,
-  MatLegacyDialogRef as MatDialogRef,
-} from "@angular/material/legacy-dialog";
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { ConfirmDialogComponent } from "./confirm-dialog.component";

@@ -8,7 +8,7 @@ import {
   FormGroup,
 } from "@angular/forms";
 import { TaxpayerService, Taxpayer } from "@efaps/pos-library";
-import { MatLegacyDialog as MatDialog } from "@angular/material/legacy-dialog";
+import { MatDialog } from "@angular/material/dialog";
 import { TaxpayerResultComponent } from "../taxpayer-result/taxpayer-result.component";
 
 @Component({
