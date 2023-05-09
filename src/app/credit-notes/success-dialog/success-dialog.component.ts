@@ -1,8 +1,5 @@
 import { Component, Inject, OnInit } from "@angular/core";
-import {
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from "@angular/material/dialog";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { PrintService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 

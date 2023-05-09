@@ -1,9 +1,6 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
-import {
-  MatDialogModule,
-  MatDialogRef,
-} from "@angular/material/dialog";
+import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatPaginatorModule } from "@angular/material/paginator";

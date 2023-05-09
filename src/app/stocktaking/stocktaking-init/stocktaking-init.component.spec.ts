@@ -4,10 +4,7 @@ import { StocktakingInitComponent } from "./stocktaking-init.component";
 import { InventoryService, PosConfigToken } from "@efaps/pos-library";
 import { HttpClientModule } from "@angular/common/http";
 import { MatDialogModule } from "@angular/material/dialog";
-import {
-  MatSnackBar,
-  MatSnackBarModule,
-} from "@angular/material/snack-bar";
+import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { FormBuilder } from "@angular/forms";
 import { Observable } from "rxjs";
 

@@ -26,6 +26,7 @@ export class StocktakingTableComponent implements OnInit {
     "startAt",
     "endAt",
     "status",
+    "cmd",
   ];
   dataSource = new MatTableDataSource<Stocktaking>();
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
@@ -67,5 +68,11 @@ export class StocktakingTableComponent implements OnInit {
     return this.warehouses.find((warehous) => {
       warehous.oid == stocktaking.warehouseOid;
     })?.name;
+  }
+
+  show(stocktaking: Stocktaking) {
+    this.router.navigate(["stocktaking", "entries"], {
+      state: stocktaking,
+    });
   }
 }

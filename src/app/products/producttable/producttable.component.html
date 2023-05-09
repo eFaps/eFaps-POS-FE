@@ -1,7 +1,7 @@
 <div class="example-container mat-elevation-z8">
   <form [formGroup]="filterForm">
     <mat-form-field>
-      <input matInput formControlName="filter" placeholder="Filter" [appVirtKeyboard] [activateKeyboard]="virtKeyboard" autocomplete="off">
+      <input matInput formControlName="filter" placeholder="Filter" [appVirtKeyboard] [activateKeyboard]="virtKeyboard" autocomplete="off" class="left">
     </mat-form-field>
     <mat-slide-toggle [checked]="textSearch" (change)="setTextSearch()">
       {{textSearch ? 'Buscar por texto' : 'Buscar exacto' }}

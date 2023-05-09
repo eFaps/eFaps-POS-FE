@@ -1,8 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import {
-  MatDialog,
-  MatDialogRef,
-} from "@angular/material/dialog";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import {
   Balance,
   BalanceService,

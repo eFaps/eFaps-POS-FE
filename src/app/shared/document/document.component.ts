@@ -1,8 +1,5 @@
 import { Component, Input, OnInit, ViewChild, Optional } from "@angular/core";
-import {
-  MatDialog,
-  MatDialogRef,
-} from "@angular/material/dialog";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";

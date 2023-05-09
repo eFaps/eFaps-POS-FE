@@ -5,10 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import {
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-} from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { Taxpayer, TaxpayerService } from "@efaps/pos-library";
 import { Page } from "@efaps/pos-library/lib/model/pageable";

@@ -1,8 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
-import {
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-} from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Spot, SpotConfig, SpotService } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 

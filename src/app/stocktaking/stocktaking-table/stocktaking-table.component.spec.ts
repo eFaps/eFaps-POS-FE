@@ -4,9 +4,7 @@ import { StocktakingTableComponent } from "./stocktaking-table.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import {
   PosConfigToken,
-  Stocktaking,
   StocktakingService,
-  Page,
   PageRequest,
 } from "@efaps/pos-library";
 import { HttpClientTestingModule } from "@angular/common/http/testing";

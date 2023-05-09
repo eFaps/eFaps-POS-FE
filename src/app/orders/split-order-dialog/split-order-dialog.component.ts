@@ -1,8 +1,5 @@
 import { Component, Inject, OnInit } from "@angular/core";
-import {
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-} from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatTableDataSource } from "@angular/material/table";
 import { DocItem, DocStatus, Order, PosService } from "@efaps/pos-library";
 

@@ -3,10 +3,7 @@ import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
-import {
-  MatSnackBar,
-  MatSnackBarModule,
-} from "@angular/material/snack-bar";
+import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { RouterTestingModule } from "@angular/router/testing";
