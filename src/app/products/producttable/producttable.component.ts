@@ -6,14 +6,14 @@ import {
   ViewChild,
 } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { MatLegacyDialog as MatDialog } from "@angular/material/legacy-dialog";
+import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
-import { MatLegacyTableDataSource as MatTableDataSource } from "@angular/material/legacy-table";
+import { MatTableDataSource } from "@angular/material/table";
 import { LocalStorage } from "@efaps/ngx-store";
 import { PageRequest, Product, ProductService } from "@efaps/pos-library";
 
 import { ProductComponent } from "../../shared/product/product.component";
-import { MatLegacyPaginator as MatPaginator } from "@angular/material/legacy-paginator";
+import { MatPaginator } from "@angular/material/paginator";
 import { debounceTime, merge, tap } from "rxjs";
 
 @Component({
