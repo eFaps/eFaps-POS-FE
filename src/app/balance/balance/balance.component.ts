@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import {
-  MatLegacyDialog as MatDialog,
-  MatLegacyDialogRef as MatDialogRef,
-} from "@angular/material/legacy-dialog";
+  MatDialog,
+  MatDialogRef,
+} from "@angular/material/dialog";
 import {
   Balance,
   BalanceService,

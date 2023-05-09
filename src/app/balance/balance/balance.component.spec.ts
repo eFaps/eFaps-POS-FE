@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
-import { MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
+import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   Balance,
@@ -20,7 +20,7 @@ import { BalancePaymentListComponent } from "../balance-payment-list/balance-pay
 import { BalanceSummaryComponent } from "../balance-summary/balance-summary.component";
 import { DocumentListComponent } from "../document-list/document-list.component";
 import { BalanceComponent } from "./balance.component";
-import { MatLegacyTabsModule as MatTabsModule } from "@angular/material/legacy-tabs";
+import { MatTabsModule } from "@angular/material/tabs";
 
 class BalanceServiceStub {
   currentBalance = new Observable((observer) => {
