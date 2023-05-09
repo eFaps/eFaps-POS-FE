@@ -104,6 +104,8 @@ export class ProducttableComponent implements OnInit, OnDestroy {
   show(_product: Product) {
     const dialogRef = this.dialog.open(ProductComponent, {
       data: _product,
+      minWidth: '50%',
+      minHeight: '70%',
     });
   }
 }

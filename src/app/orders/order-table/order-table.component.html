@@ -1,6 +1,6 @@
 <form [formGroup]="filterForm">
   <mat-form-field>
-    <input matInput i18n-placeholder="@@filter" placeholder="Filter" formControlName="filter">
+    <input matInput i18n-placeholder="@@filter" placeholder="Filter" formControlName="filter" class="left">
   </mat-form-field>
   <mat-slide-toggle [checked]="lazyLoadOrders" (change)="toggleLazyLoadOrders($event)">
     {{ (lazyLoadOrders ? "ORDERS.LAZYLOADON" : "ORDERS.LAZYLOADOFF") | translate}}
