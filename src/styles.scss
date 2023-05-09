@@ -10,8 +10,6 @@ $roboto-font-path: "~roboto-fontface/fonts" !default;
 $material-icons-font-path: '~material-icons/iconfont/';
 @import 'material-icons/iconfont/material-icons.scss';
 
-$primary: mat.define-palette(mat.$indigo-palette);
-
 @include mat.core();
 
 body {
@@ -50,8 +48,8 @@ input.left {
 }
 
 .ng-busy,
-.ng-busy > *,
-.ng-busy > ng-component > * {
+.ng-busy>*,
+.ng-busy>ng-component>* {
   position: absolute;
   top: 0;
   left: 0;
@@ -202,6 +200,7 @@ input.left {
   -webkit-animation-delay: -0.08333333s;
   animation-delay: -0.08333333s;
 }
+
 @-webkit-keyframes busy-spinner-anim {
   from {
     opacity: 1;
@@ -211,6 +210,7 @@ input.left {
     opacity: 0.25;
   }
 }
+
 @keyframes busy-spinner-anim {
   from {
     opacity: 1;

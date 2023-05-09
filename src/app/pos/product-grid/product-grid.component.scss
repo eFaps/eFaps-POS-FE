@@ -1,7 +1,9 @@
 @use '@angular/material' as mat;
+
 @mixin productgrid-theme($theme) {
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
+  $primary: map-get($theme, primary);
 
   button {
     color: mat.get-color-from-palette($foreground, text);
@@ -16,6 +18,7 @@
     }
   }
 }
+
 $small-size: 100px;
 $medium-size: 140px;
 $big-size: 170px;
