@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
-import { MatLegacyTabChangeEvent as MatTabChangeEvent } from "@angular/material/legacy-tabs";
+import { MatTabChangeEvent } from "@angular/material/tabs";
 import {
   Currency,
   InventoryEntry,

@@ -25,16 +25,16 @@
           </ng-container>
         </div>
         <mat-form-field>
-          <mat-chip-list #chipList>
-            <mat-chip *ngFor="let indication of indications" [selectable]="selectable" [removable]="removable"
+          <mat-chip-grid #chipList>
+            <mat-chip-row *ngFor="let indication of indications" [selectable]="selectable" [removable]="removable"
               (removed)="remove(indication)">
               {{indication.value}}
               <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-            </mat-chip>
+            </mat-chip-row>
             <input [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
               [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="add($event)" placeholder="Remark"
               i18n-placeholder="@@remark" formControlName="remark">
-          </mat-chip-list>
+          </mat-chip-grid>
         </mat-form-field>
       </mat-step>
     </mat-stepper>

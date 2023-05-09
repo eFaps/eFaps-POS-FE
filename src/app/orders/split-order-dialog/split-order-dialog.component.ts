@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import {
-  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
-  MatLegacyDialogRef as MatDialogRef,
-} from "@angular/material/legacy-dialog";
-import { MatLegacyTableDataSource as MatTableDataSource } from "@angular/material/legacy-table";
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+} from "@angular/material/dialog";
+import { MatTableDataSource } from "@angular/material/table";
 import { DocItem, DocStatus, Order, PosService } from "@efaps/pos-library";
 
 @Component({

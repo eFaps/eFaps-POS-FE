@@ -34,5 +34,5 @@ svg-icon.logo {
   fill: #9c27b0;
 }
 
-@include mat.all-legacy-component-themes($my-theme);
-@include mat.all-legacy-component-typographies();
+@include mat.all-component-themes($my-theme);
+@include mat.all-component-typographies();

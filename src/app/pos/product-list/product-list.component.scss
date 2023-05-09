@@ -5,11 +5,11 @@ form {
   gap: 15px;
   flex-wrap: wrap;
   
-  .mat-form-field {
+  .mat-mdc-form-field {
     padding-left: 10px;
     flex-grow: 2; 
   }
-  .mat-slide-toggle {
+  .mat-mdc-slide-toggle {
     flex-grow: 1; 
     margin-top: auto;
     margin-bottom: auto;
@@ -28,6 +28,7 @@ form {
 .mat-column-cmd {
   flex: 0 0 145px;
 }
+/* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version. */
 mat-table button {
   min-width: fit-content;
 }

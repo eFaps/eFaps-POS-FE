@@ -29,7 +29,7 @@ $big-size: 170px;
     margin-right: 5px;
     margin-left: 2px;
 
-    .mat-card-header {
+    .mat-mdc-card-header {
       justify-content: center;
     }
 
@@ -48,7 +48,7 @@ $big-size: 170px;
     }
   }
 
-  .mat-card-content {
+  .mat-mdc-card-content {
     text-align: center;
   }
 
@@ -57,7 +57,7 @@ $big-size: 170px;
       width: $small-size;
       padding: 5px;
 
-      .mat-card-header .mat-card-title {
+      .mat-mdc-card-header .mat-mdc-card-title {
         font-size: 14px;
         text-align: center;
       }
@@ -65,7 +65,7 @@ $big-size: 170px;
       .pos-card-image {
         height: $small-size + 5px;
 
-        .mat-card-image {
+        .mat-mdc-card-image {
           max-width: $small-size;
           max-height: $small-size;
           margin: 0;
@@ -79,7 +79,7 @@ $big-size: 170px;
       width: $medium-size;
       padding: 5px;
 
-      .mat-card-header .mat-card-title {
+      .mat-mdc-card-header .mat-mdc-card-title {
         font-size: 16px;
         text-align: center;
       }
@@ -87,7 +87,7 @@ $big-size: 170px;
       .pos-card-image {
         height: $medium-size + 5px;
 
-        .mat-card-image {
+        .mat-mdc-card-image {
           max-width: $medium-size;
           max-height: $medium-size;
           margin: 0;
@@ -101,7 +101,7 @@ $big-size: 170px;
       width: $big-size;
       padding: 5px;
 
-      .mat-card-header .mat-card-title {
+      .mat-mdc-card-header .mat-mdc-card-title {
         font-size: 16px;
         text-align: center;
       }
@@ -109,7 +109,7 @@ $big-size: 170px;
       .pos-card-image {
         height: $big-size + 5px;
 
-        .mat-card-image {
+        .mat-mdc-card-image {
           max-width: $big-size;
           max-height: $big-size;
           margin: 0;

@@ -1,6 +1,6 @@
 import { HttpClientModule } from "@angular/common/http";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
-import { MatLegacyDialogRef as MatDialogRef } from "@angular/material/legacy-dialog";
+import { MatDialogRef } from "@angular/material/dialog";
 import { PosConfigToken, ProductService, Category } from "@efaps/pos-library";
 
 import { CategorySelectComponent } from "./category-select.component";

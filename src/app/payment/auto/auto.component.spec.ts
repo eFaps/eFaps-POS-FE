@@ -14,9 +14,9 @@ import { Observable } from "rxjs";
 
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
 import { AutoComponent } from "./auto.component";
-import { MatLegacyFormFieldModule as MatFormFieldModule } from "@angular/material/legacy-form-field";
-import { MatLegacyRadioModule as MatRadioModule } from "@angular/material/legacy-radio";
-import { MatLegacyInputModule as MatInputModule } from "@angular/material/legacy-input";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatInputModule } from "@angular/material/input";
 
 class CollectServiceStub {
   getCollectors(): Observable<Collector[]> {

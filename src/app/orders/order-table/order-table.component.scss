@@ -3,15 +3,16 @@ mat-form-field {
   padding-top: 5px;
 }
 
-.mat-header-cell.mat-sort-header-sorted {
+.mat-mdc-header-cell.mat-sort-header-sorted {
   color: black;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version. */
 mat-table button {
   min-width: fit-content;
 }
 
-.pos-order-container .mat-table {
+.pos-order-container .mat-mdc-table {
   .mat-column-number {
     flex: 0 0 100px;
   }
