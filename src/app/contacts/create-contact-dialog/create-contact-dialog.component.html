@@ -10,13 +10,16 @@
     </mat-form-field>
     <app-taxpayer-query *ngIf="showTaxpayerQuery" (result)="onTaxpayerQuery($event)"></app-taxpayer-query>
     <mat-form-field>
-      <input matInput i18n-placeholder="@@documentId" placeholder="ID" formControlName="idNumber" [appVirtKeyboard] [activateKeyboard]="virtKeyboard" autocomplete="off">
+      <mat-label i18n="@@documentId" >ID</mat-label>
+      <input matInput formControlName="idNumber" [appVirtKeyboard] [activateKeyboard]="virtKeyboard" autocomplete="off" class="left">
     </mat-form-field>
     <mat-form-field>
-      <input matInput i18n-placeholder="@@contactName" placeholder="Name" formControlName="name" [appVirtKeyboard] [activateKeyboard]="virtKeyboard" autocomplete="off">
+      <mat-label i18n="@@contactName">Name</mat-label>
+      <input matInput  formControlName="name" [appVirtKeyboard] [activateKeyboard]="virtKeyboard" autocomplete="off" class="left">
     </mat-form-field>
     <mat-form-field *ngIf="useEmail">
-      <input matInput i18n-placeholder="@@contactEmail" placeholder="Email" formControlName="email" [appVirtKeyboard] [activateKeyboard]="virtKeyboard" autocomplete="off">
+      <mat-label i18n="@@contactEmail">Email</mat-label>
+      <input matInput  formControlName="email" [appVirtKeyboard] [activateKeyboard]="virtKeyboard" autocomplete="off" class="left">
     </mat-form-field>
   </form>
 </mat-dialog-content>

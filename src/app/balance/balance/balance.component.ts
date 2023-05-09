@@ -10,7 +10,6 @@ import {
   CashEntry,
   ConfigService,
   DocumentService,
-  Payable,
   CashEntryType,
   PayableHead,
   PrintService,

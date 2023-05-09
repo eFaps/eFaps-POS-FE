@@ -1,6 +1,7 @@
-<div class="example-form">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="{{nameSearch ? 'Nombre' : 'Numero de Doc.' }}" aria-label="Contacto" [matAutocomplete]="auto" [formControl]="searchControl">
+<div class="contact-form">
+  <mat-form-field class="contact-full-width">
+    <mat-label>{{nameSearch ? 'Nombre' : 'Numero de Doc.' }}</mat-label>
+    <input matInput aria-label="Contacto" [matAutocomplete]="auto" [formControl]="searchControl" class="left">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selectContact($event)">
       <mat-option *ngFor="let item of searchResult" [value]="item">
         {{nameSearch ? item?.name + ' - ' + item?.idNumber : item?.idNumber + ' - ' + item?.name}}
