@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { UntypedFormGroup, UntypedFormBuilder } from "@angular/forms";
-import { MatLegacyDialogRef as MatDialogRef } from "@angular/material/legacy-dialog";
+import { MatDialogRef } from "@angular/material/dialog";
 
 @Component({
   selector: "app-split-dialog",
