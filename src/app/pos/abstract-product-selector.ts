@@ -54,6 +54,7 @@ export abstract class AbstractProductSelector implements OnInit {
           product: product,
           remarkMode: this.remarkMode,
         },
+        minWidth: "50%"
       });
       dialogRef.afterClosed().subscribe({
         next: (selection) => {

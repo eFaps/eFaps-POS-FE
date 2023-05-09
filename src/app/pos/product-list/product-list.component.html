@@ -1,6 +1,6 @@
 <form [formGroup]="filterForm">
   <mat-form-field>
-    <input matInput placeholder="Filter" formControlName="filter" autocomplete="off" (blur)="onBlur()" (focus)="onFocus()">
+    <input matInput placeholder="Filter" formControlName="filter" autocomplete="off" (blur)="onBlur()" (focus)="onFocus()" class="left">
   </mat-form-field>
   <mat-slide-toggle [checked]="textSearch" (change)="setTextSearch()">
     {{textSearch ? 'Buscar por texto' : 'Buscar exacto' }}

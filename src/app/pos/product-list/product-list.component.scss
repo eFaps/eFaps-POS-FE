@@ -5,12 +5,12 @@ form {
   gap: 15px;
   flex-wrap: wrap;
   
-  .mat-mdc-form-field {
+  mat-form-field {
     padding-left: 10px;
-    flex-grow: 2; 
+    flex-grow: 3; 
   }
-  .mat-mdc-slide-toggle {
-    flex-grow: 1; 
+  mat-slide-toggle {
+    flex-grow: 2; 
     margin-top: auto;
     margin-bottom: auto;
   }

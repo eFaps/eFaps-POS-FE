@@ -33,7 +33,7 @@
             </mat-chip-row>
             <input [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
               [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="add($event)" placeholder="Remark"
-              i18n-placeholder="@@remark" formControlName="remark">
+              i18n-placeholder="@@remark" formControlName="remark" class="left">
           </mat-chip-grid>
         </mat-form-field>
       </mat-step>

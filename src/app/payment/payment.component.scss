@@ -45,10 +45,8 @@
   padding: 5px;
 }
 
-.createDocument button {
-  top: 50%;
-  position: relative;
-  transform: translateY(-50%);
+.createDocument  {
+ 
 }
 
 .payTotal h1 {
@@ -82,7 +80,6 @@
 
   .employee-btn {
     & .posIcon-36 {
-      top: -5px;
       position: relative;
     }
   }

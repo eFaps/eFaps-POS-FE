@@ -17,7 +17,7 @@
         *ngIf="this.workspaceService.getPosLayout() === PosLayout.BOTH" class="switch">Switch</button>
       <div *ngIf="allowAssignSeller" class="seller">
         <button mat-fab color="primary" class="employee-btn" (click)="assignSeller()">
-          <mat-icon class="posIcon-36">person_pin</mat-icon>
+          <mat-icon class="posIcon-36" fontIcon="person_pin"></mat-icon>
         </button>
         <div class="seller-label" *ngIf="seller"><span>{{seller.firstName}} {{seller.surName}}</span></div>
       </div>
@@ -27,7 +27,7 @@
     <div>
       <div class='numPad-wrapper'>
         <mat-button-toggle [checked]="numPad" (click)="toggleNumPad()">
-          <mat-icon class="posIcon-36">dialpad</mat-icon>
+          <mat-icon class="posIcon-36" fontIcon="dialpad"></mat-icon>
         </mat-button-toggle>
         <div class='numPad-form-wrapper' *ngIf="numPad">
           <div>
