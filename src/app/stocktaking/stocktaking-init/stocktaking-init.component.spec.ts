@@ -1,7 +1,11 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { StocktakingInitComponent } from "./stocktaking-init.component";
-import { InventoryService, PosConfigToken } from "@efaps/pos-library";
+import {
+  InventoryService,
+  PosConfigToken,
+  StocktakingService,
+} from "@efaps/pos-library";
 import { HttpClientModule } from "@angular/common/http";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
@@ -12,6 +16,16 @@ class InventoryServiceStub {
   getWarehouses() {
     return new Observable((observer) => {
       observer.next([]);
+    });
+  }
+}
+
+class StocktakingServiceStub {
+  getOpenStocktakings() {
+    return new Observable((observer) => {
+      observer.next({
+        content: [],
+      });
     });
   }
 }
@@ -29,6 +43,7 @@ describe("StocktakingInitComponent", () => {
         FormBuilder,
         MatSnackBar,
         { provide: InventoryService, useClass: InventoryServiceStub },
+        { provide: StocktakingService, useClass: StocktakingServiceStub },
         { provide: PosConfigToken, useValue: {} },
       ],
     }).compileComponents();
