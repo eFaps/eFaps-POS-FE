@@ -8,16 +8,14 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { MatSortModule } from "@angular/material/sort";
 
-
 class RouterStub {
   getCurrentNavigation() {
     return {
       extras: {
-        state: {}
-      }
-    }
+        state: {},
+      },
+    };
   }
-  
 }
 
 class StocktakingServiceStub {
@@ -36,10 +34,12 @@ describe("StocktakingEntryTableComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports:[MatPaginatorModule, NoopAnimationsModule, MatSortModule],
+      imports: [MatPaginatorModule, NoopAnimationsModule, MatSortModule],
       declarations: [StocktakingEntryTableComponent],
-      providers: [{ provide: StocktakingService, useClass: StocktakingServiceStub },
-      {provide: Router, useClass: RouterStub}]
+      providers: [
+        { provide: StocktakingService, useClass: StocktakingServiceStub },
+        { provide: Router, useClass: RouterStub },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(StocktakingEntryTableComponent);

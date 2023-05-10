@@ -22,6 +22,7 @@ import { Subscription, debounceTime, skip, switchMap } from "rxjs";
 })
 export class StocktakingComponent implements OnInit {
   searchForm: FormGroup;
+  commentForm: FormGroup;
   searchControl: FormControl = new FormControl();
   _searchResult: Product[] = [];
   textsearch = false;
@@ -33,6 +34,10 @@ export class StocktakingComponent implements OnInit {
   stocktaking: Stocktaking | undefined;
   @ViewChild(MatAutocomplete) autoComplete: MatAutocomplete | undefined;
 
+  private defaultComment = "";
+
+  private preventKeyPad = true;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -42,7 +47,14 @@ export class StocktakingComponent implements OnInit {
     private barcodeScannerService: BarcodeScannerService,
     fb: FormBuilder
   ) {
+    const state = router.getCurrentNavigation()!!.extras.state;
+    if (state != undefined) {
+      this.defaultComment = state["comment"];
+    }
     this.searchForm = fb.group({});
+    this.commentForm = fb.group({
+      comment: [this.defaultComment],
+    });
   }
 
   ngOnInit(): void {
@@ -93,7 +105,9 @@ export class StocktakingComponent implements OnInit {
   }
 
   clear() {
+    this.quantity = undefined;
     this.searchControl.setValue(null);
+    this.commentForm.controls["comment"].setValue(this.defaultComment);
   }
 
   selectProduct(event: MatAutocompleteSelectedEvent) {
@@ -118,10 +132,12 @@ export class StocktakingComponent implements OnInit {
   }
 
   setQuantity(number: string) {
-    if (typeof this.quantity == "number") {
-      this.quantity = new Number("" + this.quantity + number).valueOf();
-    } else {
-      this.quantity = new Number(number).valueOf();
+    if (!this.preventKeyPad) {
+      if (typeof this.quantity == "number") {
+        this.quantity = new Number("" + this.quantity + number).valueOf();
+      } else {
+        this.quantity = new Number(number).valueOf();
+      }
     }
   }
 
@@ -138,6 +154,7 @@ export class StocktakingComponent implements OnInit {
       .addEntry(this.stocktaking!.id, {
         productOid: this.searchControl.value.oid,
         quantity: this.quantity!,
+        comment: this.commentForm.controls["comment"].value,
       })
       .subscribe({
         next: (id) => {
@@ -150,5 +167,13 @@ export class StocktakingComponent implements OnInit {
       });
     this.clear();
     this.quantity = undefined;
+  }
+
+  onFocusEvent(event: Event) {
+    this.preventKeyPad = true;
+  }
+
+  onBlurEvent(event: Event) {
+    this.preventKeyPad = false;
   }
 }

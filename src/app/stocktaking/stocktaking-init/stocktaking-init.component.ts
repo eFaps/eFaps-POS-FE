@@ -27,6 +27,7 @@ export class StocktakingInitComponent implements OnInit {
   ) {
     this.initForm = fb.group({
       warehouse: ["", [Validators.required]],
+      comment: ["", []],
     });
   }
 
@@ -38,6 +39,11 @@ export class StocktakingInitComponent implements OnInit {
 
   submit() {
     const warehouse = this.initForm.value.warehouse;
-    this.router.navigate(["stocktaking", warehouse.oid]);
+    const comment = this.initForm.value.comment;
+    this.router.navigate(["stocktaking", warehouse.oid], {
+      state: {
+        comment: comment,
+      },
+    });
   }
 }

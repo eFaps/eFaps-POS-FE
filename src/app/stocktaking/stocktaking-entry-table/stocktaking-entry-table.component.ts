@@ -18,7 +18,14 @@ import { merge, tap } from "rxjs";
 })
 export class StocktakingEntryTableComponent {
   stocktaking: Stocktaking;
-  displayedColumns = ["quantity", "uom", "sku", "description"];
+  displayedColumns = [
+    "quantity",
+    "uom",
+    "sku",
+    "description",
+    "comment",
+    "createdAt",
+  ];
   dataSource = new MatTableDataSource<StocktakingEntry>();
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   _paginator!: MatPaginator;
@@ -48,14 +55,20 @@ export class StocktakingEntryTableComponent {
       page: this._paginator.pageIndex,
     };
     if (this.sort.active) {
-      pageRequest.sort = [this.sort.active + "," + this.sort.direction];
+      let sortField;
+      if ("createdAt" == this.sort.active) {
+        sortField = "createdDate";
+      } else {
+        sortField = this.sort.active;
+      }
+      pageRequest.sort = [sortField + "," + this.sort.direction];
     }
     this.stocktakingService
       .getEntries(this.stocktaking.id, pageRequest)
       .subscribe({
         next: (page) => {
           this.dataSource.data = [];
-          //this.dataSource.paginator = null;
+          this.dataSource.paginator = null;
           this.dataSource.sort = null;
           this.dataSource.data = page.content;
           this._paginator.length = page.totalElements;

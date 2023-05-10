@@ -7,5 +7,9 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Comentario</mat-label>
+        <input matInput formControlName="comment" class="left"/>
+    </mat-form-field>
 </form>
 <button mat-raised-button color="accent" [disabled]="initForm.invalid" (click)="submit()">Iniciar</button>

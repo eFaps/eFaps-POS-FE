@@ -2,7 +2,8 @@
   Inventario :{{stocktaking?.number}}
   <form [formGroup]="searchForm">
     <mat-form-field appearance="outline" class="searchInput">
-      <input matInput placeholder="Buscar" autocomplete="off" [formControl]="searchControl" [matAutocomplete]="auto" class="left">
+      <input matInput placeholder="Buscar" autocomplete="off" [formControl]="searchControl" [matAutocomplete]="auto"
+        class="left" (focus)="onFocusEvent($event)" (blur)="onBlurEvent($event)">
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selectProduct($event)">
         <mat-option *ngFor="let item of searchResult" [value]="item">
           {{item.sku + " " + item.description}}
@@ -22,4 +23,12 @@
       <button mat-raised-button color="accent" [disabled]="disabled" (click)="save()">Confirmar</button>
     </div>
   </div>
+</div>
+<div class="comment">
+  <form [formGroup]="commentForm">
+    <mat-form-field appearance="outline" class="searchInput">
+      <mat-label>Comentario</mat-label>
+      <input matInput formControlName="comment" class="left">
+    </mat-form-field>
+  </form>
 </div>
