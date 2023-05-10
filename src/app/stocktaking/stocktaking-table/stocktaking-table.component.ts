@@ -12,6 +12,7 @@ import {
 } from "@efaps/pos-library";
 import { CreateStocktakingDialogComponent } from "../create-stocktaking-dialog/create-stocktaking-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
+import { ConfirmDialogComponent } from "src/app/shared/confirm-dialog/confirm-dialog.component";
 
 @Component({
   selector: "app-stocktaking-table",
@@ -74,5 +75,21 @@ export class StocktakingTableComponent implements OnInit {
     this.router.navigate(["stocktaking", "entries"], {
       state: stocktaking,
     });
+  }
+
+  close(stocktaking: Stocktaking) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: "300px",
+      data: { title: "Cerrar inventario" },
+    });
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        this.stocktakingService.closeStocktaking(stocktaking.id).subscribe({
+          next: () => {
+            this.ngOnInit();
+          }
+        })
+      }
+    })
   }
 }

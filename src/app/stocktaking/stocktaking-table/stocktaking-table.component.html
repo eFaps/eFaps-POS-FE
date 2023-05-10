@@ -31,6 +31,9 @@
             <button (click)="show(element)" mat-stroked-button>
                 <mat-icon fontIcon="list" class="posIcon-36"></mat-icon>
             </button>
+            <button (click)="close(element)" mat-stroked-button [disabled]="element.status!='OPEN'">
+                <mat-icon fontIcon="close" class="posIcon-36"></mat-icon>
+            </button>
         </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>

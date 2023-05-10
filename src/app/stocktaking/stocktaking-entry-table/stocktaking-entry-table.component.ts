@@ -33,6 +33,7 @@ export class StocktakingEntryTableComponent {
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   _paginator!: MatPaginator;
 
+  allowDelete = false;
   constructor(
     router: Router,
     private changeDetectorRefs: ChangeDetectorRef,
@@ -42,8 +43,9 @@ export class StocktakingEntryTableComponent {
     this.stocktaking = <Stocktaking>(
       router.getCurrentNavigation()!!.extras.state
     );
+    this.allowDelete = this.stocktaking.status == "OPEN"
   }
-
+  
   @ViewChild(MatPaginator, { static: false })
   set paginator(paginator: MatPaginator) {
     this._paginator = paginator;
@@ -76,7 +78,7 @@ export class StocktakingEntryTableComponent {
           this.dataSource.sort = null;
           this.dataSource.data = page.content;
           this._paginator.length = page.totalElements;
-          this.changeDetectorRefs.detectChanges();
+        //  this.changeDetectorRefs.detectChanges();
         },
       });
   }
