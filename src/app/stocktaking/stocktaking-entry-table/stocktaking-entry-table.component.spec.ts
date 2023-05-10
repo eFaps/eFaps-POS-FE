@@ -7,6 +7,7 @@ import { Router } from "@angular/router";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { MatSortModule } from "@angular/material/sort";
+import { MatDialogModule } from "@angular/material/dialog";
 
 class RouterStub {
   getCurrentNavigation() {
@@ -34,7 +35,12 @@ describe("StocktakingEntryTableComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatPaginatorModule, NoopAnimationsModule, MatSortModule],
+      imports: [
+        MatPaginatorModule,
+        NoopAnimationsModule,
+        MatSortModule,
+        MatDialogModule,
+      ],
       declarations: [StocktakingEntryTableComponent],
       providers: [
         { provide: StocktakingService, useClass: StocktakingServiceStub },

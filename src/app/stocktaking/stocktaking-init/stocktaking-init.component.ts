@@ -11,6 +11,7 @@ import {
   StocktakingService,
   Warehouse,
 } from "@efaps/pos-library";
+import { forkJoin } from "rxjs";
 
 @Component({
   selector: "app-stocktaking-init",
@@ -23,6 +24,7 @@ export class StocktakingInitComponent implements OnInit {
   constructor(
     private router: Router,
     private inventoryService: InventoryService,
+    private stocktakingService: StocktakingService,
     fb: FormBuilder
   ) {
     this.initForm = fb.group({
@@ -32,8 +34,22 @@ export class StocktakingInitComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.inventoryService.getWarehouses().subscribe({
-      next: (warehouses) => (this.warehouses = warehouses),
+    forkJoin([
+      this.stocktakingService.getOpenStocktakings(),
+      this.inventoryService.getWarehouses(),
+    ]).subscribe({
+      next: (responses) => {
+        let stocktakings = responses[0];
+        let warehouses = responses[1];
+
+        this.warehouses = warehouses.filter((warehouse) => {
+          return (
+            stocktakings.findIndex((stocktaking) => {
+              return stocktaking.warehouseOid == warehouse.oid;
+            }) > -1
+          );
+        });
+      },
     });
   }
 

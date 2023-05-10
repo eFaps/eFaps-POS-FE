@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { StocktakingComponent } from "./stocktaking.component";
 import { PosConfigToken, StocktakingService } from "@efaps/pos-library";
 import { MatDialogModule } from "@angular/material/dialog";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { FormBuilder } from "@angular/forms";
@@ -15,7 +15,15 @@ class ActivatedRouteStub {
 }
 
 class StocktakingServiceStub {}
-
+class RouterStub {
+  getCurrentNavigation() {
+    return {
+      extras: {
+        state: {},
+      },
+    };
+  }
+}
 describe("StocktakingComponent", () => {
   let component: StocktakingComponent;
   let fixture: ComponentFixture<StocktakingComponent>;
@@ -27,6 +35,7 @@ describe("StocktakingComponent", () => {
       providers: [
         MatSnackBar,
         FormBuilder,
+        { provide: Router, useClass: RouterStub },
         { provide: ActivatedRoute, useClass: ActivatedRouteStub },
         { provide: StocktakingService, useClass: StocktakingServiceStub },
         { provide: PosConfigToken, useValue: {} },

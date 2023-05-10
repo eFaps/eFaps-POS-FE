@@ -87,9 +87,9 @@ export class StocktakingTableComponent implements OnInit {
         this.stocktakingService.closeStocktaking(stocktaking.id).subscribe({
           next: () => {
             this.ngOnInit();
-          }
-        })
+          },
+        });
       }
-    })
+    });
   }
 }

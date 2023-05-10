@@ -27,7 +27,7 @@ export class StocktakingEntryTableComponent {
     "description",
     "comment",
     "createdAt",
-    "cmd"
+    "cmd",
   ];
   dataSource = new MatTableDataSource<StocktakingEntry>();
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
@@ -43,9 +43,9 @@ export class StocktakingEntryTableComponent {
     this.stocktaking = <Stocktaking>(
       router.getCurrentNavigation()!!.extras.state
     );
-    this.allowDelete = this.stocktaking.status == "OPEN"
+    this.allowDelete = this.stocktaking.status == "OPEN";
   }
-  
+
   @ViewChild(MatPaginator, { static: false })
   set paginator(paginator: MatPaginator) {
     this._paginator = paginator;
@@ -78,7 +78,7 @@ export class StocktakingEntryTableComponent {
           this.dataSource.sort = null;
           this.dataSource.data = page.content;
           this._paginator.length = page.totalElements;
-        //  this.changeDetectorRefs.detectChanges();
+          this.changeDetectorRefs.detectChanges();
         },
       });
   }
@@ -90,12 +90,14 @@ export class StocktakingEntryTableComponent {
     });
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
-        this.stocktakingService.deleteEntry(this.stocktaking.id, entry.id!!).subscribe({
-          next: () => {
-            this.loadEntries();
-          }
-        })
+        this.stocktakingService
+          .deleteEntry(this.stocktaking.id, entry.id!!)
+          .subscribe({
+            next: () => {
+              this.loadEntries();
+            },
+          });
       }
-    })
+    });
   }
 }
