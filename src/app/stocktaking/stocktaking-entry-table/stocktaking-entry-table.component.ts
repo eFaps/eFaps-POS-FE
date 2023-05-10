@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -10,6 +11,7 @@ import {
   StocktakingService,
 } from "@efaps/pos-library";
 import { merge, tap } from "rxjs";
+import { ConfirmDialogComponent } from "src/app/shared/confirm-dialog/confirm-dialog.component";
 
 @Component({
   selector: "app-stocktaking-entry-table",
@@ -25,6 +27,7 @@ export class StocktakingEntryTableComponent {
     "description",
     "comment",
     "createdAt",
+    "cmd"
   ];
   dataSource = new MatTableDataSource<StocktakingEntry>();
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
@@ -33,7 +36,8 @@ export class StocktakingEntryTableComponent {
   constructor(
     router: Router,
     private changeDetectorRefs: ChangeDetectorRef,
-    private stocktakingService: StocktakingService
+    private stocktakingService: StocktakingService,
+    private dialog: MatDialog
   ) {
     this.stocktaking = <Stocktaking>(
       router.getCurrentNavigation()!!.extras.state
@@ -75,5 +79,21 @@ export class StocktakingEntryTableComponent {
           this.changeDetectorRefs.detectChanges();
         },
       });
+  }
+
+  delete(entry: StocktakingEntry) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: "300px",
+      data: { title: "Borrar registro" },
+    });
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        this.stocktakingService.deleteEntry(this.stocktaking.id, entry.id!!).subscribe({
+          next: () => {
+            this.loadEntries();
+          }
+        })
+      }
+    })
   }
 }

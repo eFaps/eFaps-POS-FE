@@ -28,11 +28,11 @@
     <ng-container matColumnDef="cmd">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <button (click)="show(element)" mat-stroked-button>
-            <mat-icon fontIcon="list" class="posIcon-36"></mat-icon>
-          </button>
+            <button (click)="show(element)" mat-stroked-button>
+                <mat-icon fontIcon="list" class="posIcon-36"></mat-icon>
+            </button>
         </mat-cell>
-      </ng-container>
+    </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
