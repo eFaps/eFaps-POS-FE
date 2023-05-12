@@ -159,7 +159,7 @@ export class StocktakingComponent implements OnInit {
       .subscribe({
         next: (id) => {
           console.log(id);
-          this.snackBar.open("Archivado");
+          this.snackBar.open("Archivado", undefined, { duration: 1500 });
         },
         error: (e) => {
           console.log(e);
