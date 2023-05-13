@@ -4,8 +4,8 @@
             <mat-icon *ngIf="category.name=='PLACEHOLDER'" class="example-tab-icon">turned_in_not</mat-icon>
             {{category?.name}}
         </ng-template>
-        <ng-container *ngIf="category?.categories?.length">
-            <app-grid-element [categories]="category.categories" (categorySelected)="onChildCategorySelected($event)"
+        <ng-container *ngIf="category?.children?.length">
+            <app-grid-element [categories]="category.children" (categorySelected)="onChildCategorySelected($event)"
                 [currency]="currency" [showInventory]="showInventory" [size]="size" [showPrices]="showPrices"
                 [inventory]="inventory">
             </app-grid-element>
