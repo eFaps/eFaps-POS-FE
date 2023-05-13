@@ -12,7 +12,7 @@ import {
 const placeHolder: CategoryNode = {
   oid: "",
   name: "PLACEHOLDER",
-  children: []
+  children: [],
 };
 
 @Component({
@@ -46,10 +46,10 @@ export class GridElementComponent implements OnInit {
     this.currentCategory = this.categories[event.index];
     if (this.currentCategory) {
       this.productService
-      .getProductsByCategory(this.currentCategory.oid)
-      .subscribe({
-        next: (products) => (this.products = products),
-      });
+        .getProductsByCategory(this.currentCategory.oid)
+        .subscribe({
+          next: (products) => (this.products = products),
+        });
     } else {
       this.products = [];
     }
@@ -57,7 +57,7 @@ export class GridElementComponent implements OnInit {
 
   @Input()
   set categories(categories: CategoryNode[]) {
-    placeHolder.oid = categories[0].parentOid!
+    placeHolder.oid = categories[0].parentOid!;
     this._categories = [placeHolder].concat(categories);
     this.selectedTabIndex = 0;
   }
@@ -69,10 +69,10 @@ export class GridElementComponent implements OnInit {
   onChildCategorySelected(childCategory: Category) {
     if (childCategory == null) {
       this.productService
-      .getProductsByCategory(this.currentCategory.oid)
-      .subscribe({
-        next: (products) => (this.products = products),
-      });
+        .getProductsByCategory(this.currentCategory.oid)
+        .subscribe({
+          next: (products) => (this.products = products),
+        });
     } else {
       this.products = [];
     }

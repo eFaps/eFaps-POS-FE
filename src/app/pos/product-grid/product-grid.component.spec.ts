@@ -28,7 +28,7 @@ class PosServiceStub {
   });
 }
 class ProductServiceStub {
-  getPosCategories() {
+  getCategoryTree() {
     return new Observable((observer) => {
       observer.next([]);
     });
