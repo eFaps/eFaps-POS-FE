@@ -2,10 +2,11 @@ import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import {
+  Category,
+  CategoryNode,
   Currency,
   hasFlag,
   InventoryService,
-  PosCategory,
   PosService,
   Product,
   ProductService,
@@ -26,7 +27,7 @@ export class ProductGridComponent
   extends AbstractProductSelector
   implements OnInit, OnDestroy
 {
-  categories: PosCategory[] = [];
+  categories: CategoryNode[] = [];
   selectedIndex = 0;
   currentCurrency: Currency = Currency.PEN;
   //size = 'small';
@@ -34,7 +35,7 @@ export class ProductGridComponent
   size = "large";
   showPrices = true;
 
-  currentCategory: PosCategory | undefined;
+  currentCategory: CategoryNode | undefined;
   products: Product[] = [];
 
   private subscription$ = new Subscription();
@@ -62,7 +63,7 @@ export class ProductGridComponent
   override ngOnInit() {
     super.ngOnInit();
     this.subscription$.add(
-      this.productService.getPosCategories().subscribe({
+      this.productService.getCategoryTree().subscribe({
         next: (_categories) => {
           this.categories = _categories;
         },
@@ -101,13 +102,21 @@ export class ProductGridComponent
 
   tabChanged(event: MatTabChangeEvent): void {
     this.currentCategory = this.categories[event.index];
-    this.products = this.categories[event.index].products;
     event.tab.isActive;
+    this.productService
+      .getProductsByCategory(this.currentCategory.oid)
+      .subscribe({
+        next: (products) => (this.products = products),
+      });
   }
 
-  onChildCategorySelected(childCategory: PosCategory) {
+  onChildCategorySelected(childCategory: Category) {
     if (childCategory == null) {
-      this.products = this.currentCategory!.products;
+      this.productService
+        .getProductsByCategory(this.currentCategory!!.oid)
+        .subscribe({
+          next: (products) => (this.products = products),
+        });
     } else {
       this.products = [];
     }

@@ -12,111 +12,11 @@
 
   .pos-productgrid {
     .pos-card {
+      .pos-card-image {
+        background-color: mat.get-color-from-palette($background, selected-button);
+      }
       .pos-card-price {
         background-color: mat.get-color-from-palette($primary);
-      }
-    }
-  }
-}
-
-$small-size: 100px;
-$medium-size: 140px;
-$big-size: 170px;
-
-.pos-productgrid {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-
-  .pos-card {
-    margin-right: 5px;
-    margin-left: 2px;
-
-    .mat-mdc-card-header {
-      justify-content: center;
-    }
-
-    .pos-card-image {
-      position: relative;
-    }
-
-    .pos-card-price {
-      bottom: 0;
-      border-radius: 2px;
-      color: white;
-      text-align: center;
-      position: absolute;
-      height: 20px;
-      width: 100%;
-    }
-  }
-
-  .mat-mdc-card-content {
-    text-align: center;
-  }
-
-  &.small {
-    .pos-card {
-      width: $small-size;
-      padding: 5px;
-
-      .mat-mdc-card-header .mat-mdc-card-title {
-        font-size: 14px;
-        text-align: center;
-      }
-
-      .pos-card-image {
-        height: $small-size + 5px;
-
-        .mat-mdc-card-image {
-          max-width: $small-size;
-          max-height: $small-size;
-          margin: 0;
-        }
-      }
-    }
-  }
-
-  &.medium {
-    .pos-card {
-      width: $medium-size;
-      padding: 5px;
-
-      .mat-mdc-card-header .mat-mdc-card-title {
-        font-size: 16px;
-        text-align: center;
-      }
-
-      .pos-card-image {
-        height: $medium-size + 5px;
-
-        .mat-mdc-card-image {
-          max-width: $medium-size;
-          max-height: $medium-size;
-          margin: 0;
-        }
-      }
-    }
-  }
-
-  &.large {
-    .pos-card {
-      width: $big-size;
-      padding: 5px;
-
-      .mat-mdc-card-header .mat-mdc-card-title {
-        font-size: 16px;
-        text-align: center;
-      }
-
-      .pos-card-image {
-        height: $big-size + 5px;
-
-        .mat-mdc-card-image {
-          max-width: $big-size;
-          max-height: $big-size;
-          margin: 0;
-        }
       }
     }
   }

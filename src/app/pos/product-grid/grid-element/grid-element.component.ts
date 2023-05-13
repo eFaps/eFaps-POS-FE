@@ -1,17 +1,18 @@
 import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import {
+  Category,
+  CategoryNode,
   Currency,
   InventoryEntry,
-  PosCategory,
   Product,
+  ProductService,
 } from "@efaps/pos-library";
 
-const placeHolder: PosCategory = {
-  products: [],
-  categories: [],
+const placeHolder: CategoryNode = {
   oid: "",
   name: "PLACEHOLDER",
+  children: []
 };
 
 @Component({
@@ -20,9 +21,9 @@ const placeHolder: PosCategory = {
   styleUrls: ["./grid-element.component.scss"],
 })
 export class GridElementComponent implements OnInit {
-  _categories: PosCategory[] = [];
+  _categories: CategoryNode[] = [];
 
-  @Output() categorySelected = new EventEmitter<PosCategory>();
+  @Output() categorySelected = new EventEmitter<CategoryNode>();
   @Input()
   currency: Currency = Currency.PEN;
   @Input() remarkMode = false;
@@ -32,10 +33,10 @@ export class GridElementComponent implements OnInit {
   @Input() inventory: InventoryEntry[] = [];
 
   selectedTabIndex = 0;
-  currentCategory!: PosCategory;
+  currentCategory!: CategoryNode;
   products: Product[] = [];
 
-  constructor() {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {}
 
@@ -44,14 +45,19 @@ export class GridElementComponent implements OnInit {
     this.categorySelected.emit(category);
     this.currentCategory = this.categories[event.index];
     if (this.currentCategory) {
-      this.products = this.currentCategory.products;
+      this.productService
+      .getProductsByCategory(this.currentCategory.oid)
+      .subscribe({
+        next: (products) => (this.products = products),
+      });
     } else {
       this.products = [];
     }
   }
 
   @Input()
-  set categories(categories: PosCategory[]) {
+  set categories(categories: CategoryNode[]) {
+    placeHolder.oid = categories[0].parentOid!
     this._categories = [placeHolder].concat(categories);
     this.selectedTabIndex = 0;
   }
@@ -60,9 +66,13 @@ export class GridElementComponent implements OnInit {
     return this._categories;
   }
 
-  onChildCategorySelected(childCategory: PosCategory) {
+  onChildCategorySelected(childCategory: Category) {
     if (childCategory == null) {
-      this.products = this.currentCategory.products;
+      this.productService
+      .getProductsByCategory(this.currentCategory.oid)
+      .subscribe({
+        next: (products) => (this.products = products),
+      });
     } else {
       this.products = [];
     }
