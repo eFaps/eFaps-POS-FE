@@ -156,15 +156,19 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
             this.contact = null;
             this.assignContact(false);
             if (this.allowAssignSeller) {
-              this.subscriptions.add( this.userService.current().subscribe({
-                next: (user) => {
-                  if (user.employeeOid) {
-                    this.employeeService.getEmployee(user.employeeOid).subscribe({
-                      next: (employee) => this.seller=employee,
-                    })
-                  }
-                }
-              }))
+              this.subscriptions.add(
+                this.userService.current().subscribe({
+                  next: (user) => {
+                    if (user.employeeOid) {
+                      this.employeeService
+                        .getEmployee(user.employeeOid)
+                        .subscribe({
+                          next: (employee) => (this.seller = employee),
+                        });
+                    }
+                  },
+                })
+              );
             }
           }
         },
