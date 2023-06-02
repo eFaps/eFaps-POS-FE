@@ -28,6 +28,7 @@ import {
   PosService,
   Product,
   ProductService,
+  UserService,
   WorkspaceFlag,
   WorkspaceService,
 } from "@efaps/pos-library";
@@ -89,6 +90,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     private partListService: PartListService,
     private posSyncService: PosSyncService,
     private employeeService: EmployeeService,
+    private userService: UserService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     private router: Router,
@@ -153,6 +155,17 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
           } else {
             this.contact = null;
             this.assignContact(false);
+            if (this.allowAssignSeller) {
+              this.subscriptions.add( this.userService.current().subscribe({
+                next: (user) => {
+                  if (user.employeeOid) {
+                    this.employeeService.getEmployee(user.employeeOid).subscribe({
+                      next: (employee) => this.seller=employee,
+                    })
+                  }
+                }
+              }))
+            }
           }
         },
       })
