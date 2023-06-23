@@ -2,7 +2,8 @@
   <h3>{{document.type! | translate}}: {{document.number}}</h3>
   <div *ngIf="showContact && document.contact" class="contact-document">
     <span>Cliente:</span>
-    <span>{{ 'IDTYPE.' + document.contact.idType | translate}}: {{document.contact.idNumber}} - {{document.contact.name}}</span>
+    <span>{{ 'IDTYPE.' + document.contact.idType | translate}}: {{document.contact.idNumber}} -
+      {{document.contact.name}}</span>
   </div>
   <div class="pos-doc-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource" matSort matSortActive="index" matSortDirection="asc"
@@ -88,6 +89,16 @@
             </p>
           </mat-list-item>
         </mat-list>
+      </ng-container>
+      <ng-container *ngIf="document.note">
+        <div>
+          <span>Nota:</span>
+          <mat-list dense>
+            <mat-list-item>
+              <p matLine><span>{{document.note}}</span></p>
+            </mat-list-item>
+          </mat-list>
+        </div>
       </ng-container>
     </div>
     <div class="print-container" *ngIf="permitPrint && hasCopyPrintCmd">

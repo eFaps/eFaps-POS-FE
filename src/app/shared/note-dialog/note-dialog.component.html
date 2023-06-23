@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Nota</h1>
+<mat-dialog-content>
+    <mat-form-field appearance="fill" class="note">
+        <mat-label>Nota</mat-label>
+        <textarea matInput [formControl]="noteCtrl"></textarea>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="closeDialog()">OK</button>
+</mat-dialog-actions>
+  

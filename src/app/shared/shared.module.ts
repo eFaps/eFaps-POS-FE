@@ -36,6 +36,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { EmployeeDialogComponent } from "./employee-dialog/employee-dialog.component";
 import { MatSelectModule } from "@angular/material/select";
+import { NoteDialogComponent } from "./note-dialog/note-dialog.component";
 
 export function TranslateLoaderFactory(_httpClient: HttpClient) {
   return new TranslateHttpLoader(_httpClient, "./assets/i18n/");
@@ -80,6 +81,7 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     TaxpayerResultComponent,
     PartListRelationComponent,
     EmployeeDialogComponent,
+    NoteDialogComponent,
   ],
   exports: [
     ContactComponent,

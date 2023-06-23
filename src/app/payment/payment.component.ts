@@ -41,7 +41,8 @@ import {
 import { PrintDialogComponent } from "../shared/print-dialog/print-dialog.component";
 import { DiscountComponent } from "./discount/discount.component";
 import { SuccessDialogComponent } from "./success-dialog/success-dialog.component";
-import { PAYMENT_REQUIRE } from "src/app/util/keys";
+import { PAYABLE_ACTIVATENOTE, PAYMENT_REQUIRE } from "src/app/util/keys";
+import { NoteDialogComponent } from "../shared/note-dialog/note-dialog.component";
 
 @Component({
   selector: "app-payment",
@@ -65,10 +66,13 @@ export class PaymentComponent implements OnInit, OnDestroy {
   contact: Contact | undefined;
   workspaceOid!: string;
   balance!: Balance;
+  note: string | undefined;
   showContact = false;
   permitToggleContact = true;
   allowPrintPreliminary = true;
   allowAssignSeller = true;
+  activateNote = true;
+
   private subscriptions$ = new Subscription();
   private printTicket = false;
   private _seller: Employee | null = null;
@@ -167,11 +171,26 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.subscriptions$.add(
       this.configService.getSystemConfig<boolean>(PAYMENT_REQUIRE).subscribe({
         next: (value) => {
-          if (value) {
+          if (value != null) {
             this.requirePayment = value;
+          } else {
+            this.requirePayment = false;
           }
         },
       })
+    );
+    this.subscriptions$.add(
+      this.configService
+        .getSystemConfig<boolean>(PAYABLE_ACTIVATENOTE)
+        .subscribe({
+          next: (value) => {
+            if (value != null) {
+              this.activateNote = value;
+            } else {
+              this.activateNote = false;
+            }
+          },
+        })
     );
   }
 
@@ -272,6 +291,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
       employeeRelations: this.seller
         ? [{ employeeOid: this.seller.oid, type: EmployeeRelationType.SELLER }]
         : undefined,
+      note: this.note,
     };
 
     switch (this.docType) {
@@ -418,5 +438,21 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   get seller(): Employee | null {
     return this._seller;
+  }
+
+  addNote() {
+    let ref = this.dialog.open(NoteDialogComponent, {
+      width: "400px",
+      data: this.note,
+    });
+    ref.afterClosed().subscribe({
+      next: (content) => {
+        if (content) {
+          this.note = content;
+        } else if (content === null) {
+          this.note = undefined;
+        }
+      },
+    });
   }
 }
