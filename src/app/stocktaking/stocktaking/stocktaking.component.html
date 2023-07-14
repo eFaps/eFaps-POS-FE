@@ -2,7 +2,7 @@
   <div class="header">
     <div>Inventario :{{stocktaking?.number}}</div>
     <div>
-      <mat-slide-toggle [checked]="searchByBarcode" (change)="toggleSearchByBarcode($event)">
+      <mat-slide-toggle [checked]="searchByBarcode" (change)="toggleSearchByBarcode()">
         {{ (searchByBarcode ? "Codigo de Barras" : "Búsqueda general")}}
       </mat-slide-toggle>
     </div>

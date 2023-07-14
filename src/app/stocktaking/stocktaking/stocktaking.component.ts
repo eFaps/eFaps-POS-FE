@@ -181,7 +181,7 @@ export class StocktakingComponent implements OnInit {
     this.preventKeyPad = false;
   }
 
-  toggleSearchByBarcode(event: Event) {
+  toggleSearchByBarcode() {
     this.searchByBarcode = !this.searchByBarcode
   }
 }
