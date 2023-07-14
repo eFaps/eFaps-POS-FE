@@ -13,6 +13,8 @@ import {
 import { CreateStocktakingDialogComponent } from "../create-stocktaking-dialog/create-stocktaking-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
 import { ConfirmDialogComponent } from "src/app/shared/confirm-dialog/confirm-dialog.component";
+import { MatProgressSpinner } from "@angular/material/progress-spinner";
+import { CloseStocktakingDialogComponent } from "../close-stocktaking-dialog/close-stocktaking-dialog.component";
 
 @Component({
   selector: "app-stocktaking-table",
@@ -39,7 +41,7 @@ export class StocktakingTableComponent implements OnInit {
     private dialog: MatDialog,
     private changeDetectorRefs: ChangeDetectorRef,
     private stocktakingService: StocktakingService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.stocktakingService.getStocktakings(true).subscribe((data) => {
@@ -78,18 +80,13 @@ export class StocktakingTableComponent implements OnInit {
   }
 
   close(stocktaking: Stocktaking) {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: "300px",
-      data: { title: "Cerrar inventario" },
+    const dialogRef = this.dialog.open(CloseStocktakingDialogComponent, {
+      width: "400px",
+      disableClose: true,
+      data: { stocktaking: stocktaking },
     });
     dialogRef.afterClosed().subscribe((result: any) => {
-      if (result) {
-        this.stocktakingService.closeStocktaking(stocktaking.id).subscribe({
-          next: () => {
-            this.ngOnInit();
-          },
-        });
-      }
+      this.ngOnInit();
     });
   }
 }

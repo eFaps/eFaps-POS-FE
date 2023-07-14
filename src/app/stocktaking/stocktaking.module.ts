@@ -22,6 +22,8 @@ import { StocktakingEntryTableComponent } from "./stocktaking-entry-table/stockt
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { CloseStocktakingDialogComponent } from './close-stocktaking-dialog/close-stocktaking-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
     StocktakingTableComponent,
     CreateStocktakingDialogComponent,
     StocktakingEntryTableComponent,
+    CloseStocktakingDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -48,7 +51,8 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
     MatSnackBarModule,
     MatPaginatorModule,
     MatSortModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatProgressSpinnerModule
   ],
 })
 export class StocktakingModule {}
