@@ -26,7 +26,7 @@ export class StocktakingComponent implements OnInit {
   searchControl: FormControl = new FormControl();
   _searchResult: Product[] = [];
   textsearch = false;
-
+  searchByBarcode = false;
   private subscriptions = new Subscription();
 
   quantity: number | undefined;
@@ -62,11 +62,15 @@ export class StocktakingComponent implements OnInit {
       .pipe(debounceTime(400))
       .subscribe((data) => {
         if (data != null && typeof data == "string") {
+          if (this.searchByBarcode) {
+            this.onBarcode(data);
+          } else {
           this.productService
             .findProducts(data, this.textsearch)
             .subscribe((response) => {
               this.searchResult = response;
             });
+          }
         }
       });
 
@@ -175,5 +179,9 @@ export class StocktakingComponent implements OnInit {
 
   onBlurEvent(event: Event) {
     this.preventKeyPad = false;
+  }
+
+  toggleSearchByBarcode(event: Event) {
+    this.searchByBarcode = !this.searchByBarcode
   }
 }

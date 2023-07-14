@@ -21,6 +21,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { StocktakingEntryTableComponent } from "./stocktaking-entry-table/stocktaking-entry-table.component";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { MatSortModule } from "@angular/material/sort";
     MatSnackBarModule,
     MatPaginatorModule,
     MatSortModule,
+    MatSlideToggleModule
   ],
 })
 export class StocktakingModule {}
