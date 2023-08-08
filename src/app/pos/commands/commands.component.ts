@@ -2,9 +2,13 @@ import { Component, ElementRef, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import {
+  AuthService,
+  InventoryService,
+  Item,
   Order,
   PaymentService,
   PosService,
+  Roles,
   WorkspaceService,
 } from "@efaps/pos-library";
 
@@ -18,19 +22,28 @@ import { OrderDialogComponent } from "../order-dialog/order-dialog.component";
 export class CommandsComponent implements OnInit {
   currentOrder: Order | undefined;
   sticky = false;
+  disabled = true;
+  showInventory: boolean = false;
+  
   constructor(
     private router: Router,
+    private authService: AuthService,
     private posService: PosService,
     private paymentService: PaymentService,
     private workspaceService: WorkspaceService,
+    private inventoryService: InventoryService,
     private dialog: MatDialog,
     private el: ElementRef
   ) {}
 
   ngOnInit() {
+    this.showInventory = this.workspaceService.showInventory();
     this.posService.currentOrder.subscribe(
       (_order) => (this.currentOrder = _order)
     );
+    this.posService.currentTicket.subscribe(
+      ticket => this.disabled = !(ticket.length > 0 && this.validateTicket(ticket))
+    )
   }
 
   hasOrder(): boolean {
@@ -72,5 +85,22 @@ export class CommandsComponent implements OnInit {
   evalSticky() {
     this.sticky =
       this.el.nativeElement.offsetTop - window.innerHeight + 100 > 0;
+  }
+
+  validateTicket(items: Item[]): boolean {
+    if (!this.showInventory || !this.authService.hasRole(Roles.ADMIN)) {
+      return true
+    }
+    this.inventoryService.validateStock({
+      warehouseOid: this.workspaceService.getWarehouseOid(),
+      entries: items.map(item => { return {productOid: item.product.oid, quantity: item.quantity} }) 
+    }).subscribe({
+      next: result => {
+        if (result.stock == true) {
+          this.disabled = false
+        }
+      }
+    })
+    return false
   }
 }
