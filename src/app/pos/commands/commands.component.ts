@@ -13,6 +13,7 @@ import {
 } from "@efaps/pos-library";
 
 import { OrderDialogComponent } from "../order-dialog/order-dialog.component";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-commands",
@@ -24,7 +25,7 @@ export class CommandsComponent implements OnInit {
   sticky = false;
   disabled = true;
   showInventory: boolean = false;
-  
+
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -32,6 +33,7 @@ export class CommandsComponent implements OnInit {
     private paymentService: PaymentService,
     private workspaceService: WorkspaceService,
     private inventoryService: InventoryService,
+    private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private el: ElementRef
   ) {}
@@ -42,8 +44,9 @@ export class CommandsComponent implements OnInit {
       (_order) => (this.currentOrder = _order)
     );
     this.posService.currentTicket.subscribe(
-      ticket => this.disabled = !(ticket.length > 0 && this.validateTicket(ticket))
-    )
+      (ticket) =>
+        (this.disabled = !(ticket.length > 0 && this.validateTicket(ticket)))
+    );
   }
 
   hasOrder(): boolean {
@@ -88,19 +91,45 @@ export class CommandsComponent implements OnInit {
   }
 
   validateTicket(items: Item[]): boolean {
-    if (!this.showInventory || !this.authService.hasRole(Roles.ADMIN)) {
-      return true
+    if (!this.showInventory || this.authService.hasRole(Roles.ADMIN)) {
+      return true;
     }
-    this.inventoryService.validateStock({
-      warehouseOid: this.workspaceService.getWarehouseOid(),
-      entries: items.map(item => { return {productOid: item.product.oid, quantity: item.quantity} }) 
-    }).subscribe({
-      next: result => {
-        if (result.stock == true) {
-          this.disabled = false
-        }
-      }
-    })
-    return false
+    this.inventoryService
+      .validateStock({
+        warehouseOid: this.workspaceService.getWarehouseOid(),
+        entries: items.map((item) => {
+          return { productOid: item.product.oid, quantity: item.quantity };
+        }),
+      })
+      .subscribe({
+        next: (result) => {
+          if (result.stock == true) {
+            this.disabled = false;
+          } else {
+            let msg = "No hay Stock:";
+            result.entries.forEach((entry) => {
+              const item = items.find((item) => {
+                return item.product.oid == entry.productOid;
+              });
+              if (item != null) {
+                msg =
+                  msg +
+                  " " +
+                  item.product.description +
+                  " (" +
+                  item.quantity +
+                  ")";
+              }
+            });
+
+            this.snackBar.open(msg, "", {
+              duration: 1500,
+              horizontalPosition: "center",
+              verticalPosition: "top",
+            });
+          }
+        },
+      });
+    return false;
   }
 }

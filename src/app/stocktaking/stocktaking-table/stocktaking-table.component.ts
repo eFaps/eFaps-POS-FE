@@ -41,7 +41,7 @@ export class StocktakingTableComponent implements OnInit {
     private dialog: MatDialog,
     private changeDetectorRefs: ChangeDetectorRef,
     private stocktakingService: StocktakingService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.stocktakingService.getStocktakings(true).subscribe((data) => {

@@ -65,11 +65,11 @@ export class StocktakingComponent implements OnInit {
           if (this.searchByBarcode) {
             this.onBarcode(data);
           } else {
-          this.productService
-            .findProducts(data, this.textsearch)
-            .subscribe((response) => {
-              this.searchResult = response;
-            });
+            this.productService
+              .findProducts(data, this.textsearch)
+              .subscribe((response) => {
+                this.searchResult = response;
+              });
           }
         }
       });
@@ -182,6 +182,6 @@ export class StocktakingComponent implements OnInit {
   }
 
   toggleSearchByBarcode() {
-    this.searchByBarcode = !this.searchByBarcode
+    this.searchByBarcode = !this.searchByBarcode;
   }
 }

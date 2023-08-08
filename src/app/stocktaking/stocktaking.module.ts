@@ -23,7 +23,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { CloseStocktakingDialogComponent } from './close-stocktaking-dialog/close-stocktaking-dialog.component';
+import { CloseStocktakingDialogComponent } from "./close-stocktaking-dialog/close-stocktaking-dialog.component";
 
 @NgModule({
   declarations: [
@@ -52,7 +52,7 @@ import { CloseStocktakingDialogComponent } from './close-stocktaking-dialog/clos
     MatPaginatorModule,
     MatSortModule,
     MatSlideToggleModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
 })
 export class StocktakingModule {}
