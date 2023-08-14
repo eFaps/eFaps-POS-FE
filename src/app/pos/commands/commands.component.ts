@@ -8,6 +8,7 @@ import {
   Order,
   PaymentService,
   PosService,
+  ProductService,
   Roles,
   WorkspaceService,
 } from "@efaps/pos-library";
@@ -33,6 +34,7 @@ export class CommandsComponent implements OnInit {
     private paymentService: PaymentService,
     private workspaceService: WorkspaceService,
     private inventoryService: InventoryService,
+    private productService: ProductService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private el: ElementRef
@@ -108,24 +110,22 @@ export class CommandsComponent implements OnInit {
           } else {
             let msg = "No hay Stock:";
             result.entries.forEach((entry) => {
-              const item = items.find((item) => {
-                return item.product.oid == entry.productOid;
-              });
-              if (item != null) {
-                msg =
+              this.productService.getProduct(entry.productOid).subscribe({
+                next: product => {
+                  msg =
                   msg +
                   " " +
-                  item.product.description +
+                  product.description +
                   " (" +
-                  item.quantity +
+                  entry.quantity +
                   ")";
-              }
-            });
-
-            this.snackBar.open(msg, "", {
-              duration: 1500,
-              horizontalPosition: "center",
-              verticalPosition: "top",
+                  this.snackBar.open(msg, "", {
+                    duration: 1500,
+                    horizontalPosition: "center",
+                    verticalPosition: "top",
+                  });
+                }
+              })
             });
           }
         },
