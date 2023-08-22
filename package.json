@@ -34,7 +34,7 @@
     "@angular/platform-browser": "^16.2.1",
     "@angular/platform-browser-dynamic": "^16.2.1",
     "@angular/router": "^16.2.1",
-    "@efaps/angular-onscreen-material-keyboard": "^0.15.0",
+    "@efaps/angular-onscreen-material-keyboard": "^0.16.0",
     "@efaps/ngx-store": "^6.0.0",
     "@efaps/pos-library": "^7.1.0",
     "@ngx-pwa/local-storage": "^15.0.0",
