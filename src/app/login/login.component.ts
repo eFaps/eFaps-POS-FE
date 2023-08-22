@@ -28,7 +28,6 @@ import { TranslateService } from "@ngx-translate/core";
 import { Subscription } from "rxjs";
 
 @Component({
-  moduleId: module.id,
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
 })
