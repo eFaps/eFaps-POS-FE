@@ -10,7 +10,7 @@
   <mat-sidenav-container class="pos-sidenav">
     <mat-sidenav #sidenav [mode]="(screenWidth > 840) ? 'side' : 'over'">
       <mat-list>
-        <mat-list-item>
+        <mat-list-item *ngIf="hasPermission(Permission.ORDER)">
           <button routerLink="/pos" i18n-matTooltip="@@pos" matTooltip="Register" matTooltipPosition="right">
               <mat-icon aria-label="POS" class="posIcon-36">shop</mat-icon>
           </button>
@@ -50,7 +50,7 @@
               <mat-icon aria-label="Workspaces" class="posIcon-36">devices</mat-icon>
           </button>
         </mat-list-item>
-        <mat-list-item *ngIf="authService.hasRole(Roles['ADMIN'])" i18n-matTooltip="@@admin" matTooltip="Admin" matTooltipPosition="right">
+        <mat-list-item *ngIf="hasPermission(Permission.ADMIN)" i18n-matTooltip="@@admin" matTooltip="Admin" matTooltipPosition="right">
           <button routerLink="/admin">
               <mat-icon aria-label="Admin" class="posIcon-36">build</mat-icon>
           </button>

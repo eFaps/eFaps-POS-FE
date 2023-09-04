@@ -14,19 +14,19 @@ import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
 import { LocalStorage } from "@efaps/ngx-store";
 import {
+  AuthService,
   Contact,
   ContactService,
   DocStatus,
   DocumentService,
-  hasFlag,
   Order,
   OrderWrapper,
   PaymentService,
   PosService,
-  WorkspaceFlag,
+  Permission,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { AuthService, Roles } from "@efaps/pos-library";
+
 import { Observable, Observer, Subscription } from "rxjs";
 import { debounceTime, map, mergeMap } from "rxjs/operators";
 
@@ -49,6 +49,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   isAdmin = false;
   allowPayment = false;
+  allowPos = false;
   @LocalStorage() lazyLoadOrders = false;
   private subscriptions = new Subscription();
   private displayContact = false;
@@ -75,8 +76,11 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     this.displayedColumns = this.workspaceService.showSpots()
       ? ["number", "date", "total", "status", "spot", "cmd"]
       : ["number", "date", "total", "status", "cmd"];
-    this.isAdmin = this.authService.hasRole(Roles.ADMIN);
-    this.allowPayment = this.workspaceService.allowPayment();
+    this.isAdmin = this.authService.hasPermission(Permission.ADMIN);
+    this.allowPayment =
+      this.workspaceService.allowPayment() &&
+      this.authService.hasPermission(Permission.COLLECT);
+    this.allowPos = this.authService.hasPermission(Permission.ORDER);
 
     this.formCtrlSub = this.filterForm.valueChanges
       .pipe(debounceTime(500))

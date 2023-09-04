@@ -12,10 +12,10 @@ import {
   BarcodeOptions,
   BarcodeScannerService,
   CompanyService,
-  Roles,
   User,
   UserService,
   WorkspaceService,
+  Permission,
 } from "@efaps/pos-library";
 import { Hotkey, HotkeysService } from "angular2-hotkeys";
 import { TranslateService } from "@ngx-translate/core";
@@ -28,7 +28,7 @@ import { environment } from "../environments/environment";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit, AfterViewChecked {
-  Roles = Roles;
+  Permission = Permission;
   title = "app";
   screenWidth: number;
   workspace!: string;
@@ -122,5 +122,9 @@ export class AppComponent implements OnInit, AfterViewChecked {
   @HostListener("document:keydown", ["$event"])
   handleKeyboardEvent(event: KeyboardEvent) {
     this.barcodeScannerService.handleKeyboardEvent(event);
+  }
+
+  hasPermission(...permission: Permission[]): boolean {
+    return this.authService.hasPermission(...permission);
   }
 }

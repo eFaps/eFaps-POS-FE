@@ -9,7 +9,7 @@ import {
   PaymentService,
   PosService,
   ProductService,
-  Roles,
+  Permission,
   WorkspaceService,
 } from "@efaps/pos-library";
 
@@ -93,7 +93,10 @@ export class CommandsComponent implements OnInit {
   }
 
   validateTicket(items: Item[]): boolean {
-    if (!this.showInventory || this.authService.hasRole(Roles.ADMIN)) {
+    if (
+      !this.showInventory ||
+      this.authService.hasPermission(Permission.ADMIN)
+    ) {
       return true;
     }
     this.inventoryService
@@ -111,21 +114,21 @@ export class CommandsComponent implements OnInit {
             let msg = "No hay Stock:";
             result.entries.forEach((entry) => {
               this.productService.getProduct(entry.productOid).subscribe({
-                next: product => {
+                next: (product) => {
                   msg =
-                  msg +
-                  " " +
-                  product.description +
-                  " (" +
-                  entry.quantity +
-                  ")";
+                    msg +
+                    " " +
+                    product.description +
+                    " (" +
+                    entry.quantity +
+                    ")";
                   this.snackBar.open(msg, "", {
                     duration: 1500,
                     horizontalPosition: "center",
                     verticalPosition: "top",
                   });
-                }
-              })
+                },
+              });
             });
           }
         },

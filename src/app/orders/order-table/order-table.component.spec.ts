@@ -31,7 +31,7 @@ import { OrderTableComponent } from "./order-table.component";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 class AuthServiceStub {
-  hasRole(val: any) {
+  hasPermission(val: any) {
     return false;
   }
 }

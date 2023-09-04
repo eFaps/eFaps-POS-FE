@@ -10,7 +10,7 @@ import {
   Document,
   DocumentService,
   PrintService,
-  Roles,
+  Permission,
   Payable,
   WorkspaceService,
   Payment,
@@ -168,7 +168,7 @@ export class DocumentComponent implements OnInit {
   get showCreditNoteBtn(): boolean {
     return (
       this.permitCreditNote &&
-      this.authService.hasRole(Roles.ADMIN) &&
+      this.authService.hasPermission(Permission.ADMIN) &&
       this._document.type != "CREDITNOTE" &&
       this.creditNotes.length == 0
     );

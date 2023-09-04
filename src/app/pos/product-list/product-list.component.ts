@@ -13,7 +13,7 @@ import {
   PosService,
   Product,
   ProductService,
-  Roles,
+  Permission,
   WorkspaceService,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
@@ -103,7 +103,11 @@ export class ProductListComponent
   }
 
   selectable(_product: Product) {
-    return !this.isStockable(_product) || this.hasStock(_product) || this.authService.hasRole(Roles.ADMIN);
+    return (
+      !this.isStockable(_product) ||
+      this.hasStock(_product) ||
+      this.authService.hasPermission(Permission.ADMIN)
+    );
   }
 
   ngOnDestroy() {
