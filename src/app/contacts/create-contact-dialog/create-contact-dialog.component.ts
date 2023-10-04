@@ -94,7 +94,7 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
     this.contactService.createContact(contact).subscribe({
       next: (_contact) => this.dialogRef.close(_contact),
       error: (err) => {
-        if (err.error && err.error.status == 412) {
+        if (err && err.status == 412) {
           this.snackBar.open(
             "Un contacto con el mismo Numero ya existe!",
             undefined,
