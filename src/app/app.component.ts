@@ -127,4 +127,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
   hasPermission(...permission: Permission[]): boolean {
     return this.authService.hasPermission(...permission);
   }
+
+  isLoggedIn() {
+    return this.authService.getCurrentUsername() !== undefined
+  }
 }

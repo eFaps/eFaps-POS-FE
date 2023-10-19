@@ -15,12 +15,12 @@
               <mat-icon aria-label="POS" class="posIcon-36">shop</mat-icon>
           </button>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item *ngIf="isLoggedIn()">
           <button routerLink="/products" i18n-matTooltip="@@products" matTooltip="Products" matTooltipPosition="right">
             <mat-icon aria-label="products" class="posIcon-36">store</mat-icon>
           </button>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item *ngIf="isLoggedIn()">
           <button routerLink="/orders" i18n-matTooltip="@@orders" matTooltip="Orders" matTooltipPosition="right">
             <mat-icon aria-label="Orders" class="posIcon-36">dns</mat-icon>
           </button>
@@ -35,7 +35,7 @@
             <mat-icon aria-label="inventory" class="posIcon-36">domain</mat-icon>
           </button>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item *ngIf="isLoggedIn()">
           <button routerLink="/contacts"  i18n-matTooltip="@@contacts" matTooltip="Contacts" matTooltipPosition="right">
             <mat-icon aria-label="Contacts" class="posIcon-36">contacts</mat-icon>
           </button>
@@ -45,7 +45,7 @@
             <mat-icon aria-label="Balance" class="posIcon-36">account_balance</mat-icon>
           </button>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item *ngIf="isLoggedIn()">
           <button routerLink="/workspaces" i18n-matTooltip="@@workspaces" matTooltip="Workspaces" matTooltipPosition="right">
               <mat-icon aria-label="Workspaces" class="posIcon-36">devices</mat-icon>
           </button>
