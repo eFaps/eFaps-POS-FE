@@ -40,7 +40,7 @@
             <mat-icon aria-label="Contacts" class="posIcon-36">contacts</mat-icon>
           </button>
         </mat-list-item>
-        <mat-list-item *ngIf="allowPayment">
+        <mat-list-item *ngIf="isLoggedIn() && allowPayment">
           <button routerLink="/balance" i18n-matTooltip="@@balance" matTooltip="Balance" matTooltipPosition="right">
             <mat-icon aria-label="Balance" class="posIcon-36">account_balance</mat-icon>
           </button>
