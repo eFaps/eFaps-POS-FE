@@ -129,6 +129,6 @@ export class AppComponent implements OnInit, AfterViewChecked {
   }
 
   isLoggedIn() {
-    return this.authService.getCurrentUsername() !== undefined
+    return this.authService.getCurrentUsername() !== undefined;
   }
 }
