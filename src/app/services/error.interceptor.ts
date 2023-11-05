@@ -26,7 +26,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           this.router.navigate(["/login"]);
         } else {
           this.snackBar.open(error.statusText, "close", {
-            duration: 2000
+            duration: 2000,
           });
         }
         return throwError(() => new Error(error.message));

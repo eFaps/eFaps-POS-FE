@@ -119,13 +119,23 @@ export class SplitOrderDialogComponent implements OnInit {
 
   update() {
     this.posService.setOrder(this.originOrder);
-    this.originOrder = this.posService.calculateOrder(this.originOrder);
-    this.posService.setOrder(this.targetOrder);
-    this.targetOrder = this.posService.calculateOrder(this.targetOrder);
-    this.originDataSource.data = this.originOrder.items;
-    this.targetDataSource.data = this.targetOrder.items;
-    this.saveable =
-      this.originOrder.items.length > 0 && this.targetOrder.items.length > 0;
+    this.posService.calculateOrder(this.originOrder).subscribe({
+      next: (order) => {
+        this.originOrder = order;
+        this.originDataSource.data = this.originOrder.items;
+
+        this.posService.setOrder(this.targetOrder);
+        this.posService.calculateOrder(this.targetOrder).subscribe({
+          next: (order2) => {
+            this.targetOrder = order2;
+            this.targetDataSource.data = this.targetOrder.items;
+            this.saveable =
+              this.originOrder.items.length > 0 &&
+              this.targetOrder.items.length > 0;
+          },
+        });
+      },
+    });
   }
 
   save() {
