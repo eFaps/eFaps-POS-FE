@@ -17,19 +17,19 @@ const routes: Routes = [
   },
   {
     path: "balance",
-    canActivate: [authGuard],
+    canActivate: [authGuard, workspaceGuard],
     loadChildren: () =>
       import("./balance/balance.module").then((m) => m.BalanceModule),
   },
   {
     path: "contacts",
-    canActivate: [authGuard],
+    canActivate: [authGuard, workspaceGuard],
     loadChildren: () =>
       import("./contacts/contacts.module").then((m) => m.ContactsModule),
   },
   {
     path: "inventory",
-    canActivate: [authGuard],
+    canActivate: [authGuard, workspaceGuard],
     loadChildren: () =>
       import("./inventory/inventory.module").then((m) => m.InventoryModule),
   },
@@ -40,7 +40,7 @@ const routes: Routes = [
   },
   {
     path: "orders",
-    canActivate: [authGuard],
+    canActivate: [authGuard, workspaceGuard],
     loadChildren: () =>
       import("./orders/orders.module").then((m) => m.OrdersModule),
   },
@@ -65,7 +65,7 @@ const routes: Routes = [
   },
   {
     path: "spots",
-    canActivate: [authGuard],
+    canActivate: [authGuard, workspaceGuard],
     loadChildren: () =>
       import("./spots/spots.module").then((m) => m.SpotsModule),
   },
@@ -77,7 +77,7 @@ const routes: Routes = [
   },
   {
     path: "credit-notes",
-    canActivate: [authGuard],
+    canActivate: [authGuard, workspaceGuard],
     loadChildren: () =>
       import("./credit-notes/credit-notes.module").then(
         (m) => m.CreditNotesModule
@@ -85,7 +85,7 @@ const routes: Routes = [
   },
   {
     path: "stocktaking",
-    canActivate: [authGuard],
+    canActivate: [authGuard, workspaceGuard],
     loadChildren: () =>
       import("./stocktaking/stocktaking.module").then(
         (m) => m.StocktakingModule
