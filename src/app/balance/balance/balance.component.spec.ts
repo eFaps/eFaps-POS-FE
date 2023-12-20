@@ -10,7 +10,6 @@ import {
   PosConfigToken,
 } from "@efaps/pos-library";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
-import { NgBusyDirective } from "ng-busy";
 import { MockComponent, MockDirective, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
@@ -67,7 +66,6 @@ describe("BalanceComponent", () => {
         MockComponent(BalancePaymentListComponent),
         MockComponent(DocumentListComponent),
         MockPipe(TranslatePipe),
-        MockDirective(NgBusyDirective),
       ],
     }).compileComponents();
   }));

@@ -40,7 +40,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   allowPayment = false;
   @LocalStorage() barcodeOptions: BarcodeOptions | null = null;
   userInfo: User | null = null;
-  isLoading = this.loaderService.isLoading
+  isLoading = this.loaderService.isLoading;
 
   constructor(
     public router: Router,

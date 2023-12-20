@@ -8,8 +8,7 @@ import {
   Extension,
 } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
-import { NgBusyDirective } from "ng-busy";
-import { MockDirective, MockPipe } from "ng-mocks";
+import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
 import { AdminComponent } from "./admin.component";
@@ -59,7 +58,6 @@ describe("AdminComponent", () => {
       declarations: [
         AdminComponent,
         MockPipe(TranslatePipe),
-        MockDirective(NgBusyDirective),
       ],
     }).compileComponents();
   });

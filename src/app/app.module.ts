@@ -21,7 +21,7 @@ import { PosLibraryModule, LoaderInterceptor } from "@efaps/pos-library";
 import { HotkeyModule } from "angular2-hotkeys";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { AngularSvgIconModule } from "angular-svg-icon";
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -76,7 +76,7 @@ import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass : LoaderInterceptor,
+      useClass: LoaderInterceptor,
       multi: true,
     },
     // temporal workaround to deactivate the LiveAnnouncer
