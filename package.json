@@ -16,7 +16,6 @@
     "build2": "ng build --aot --source-map false",
     "test": "ng test --browsers ChromeHeadlessNoSandbox --no-progress --no-watch",
     "lint": "ng lint",
-    "e2e": "ng e2e",
     "i18n": "ng extract-i18n --output-path src/locale",
     "prettier": "prettier --write \"src/**/*.ts\""
   },
@@ -86,7 +85,6 @@
     "karma-jasmine-html-reporter": "~2.0.0",
     "ng-mocks": "^14.12.1",
     "prettier": "^2.8.8",
-    "protractor": "~7.0.0",
     "replace-in-file": "^6.3.5",
     "sass": "^1.69.5",
     "ts-node": "^10.9.2",
