@@ -11,7 +11,6 @@ import {
   Extension,
   Versions,
 } from "@efaps/pos-library";
-import { Subscription } from "rxjs";
 import { STOCKTAKING_ACTIVATE } from "src/app/util/keys";
 
 @Component({
@@ -20,7 +19,6 @@ import { STOCKTAKING_ACTIVATE } from "src/app/util/keys";
   styleUrls: ["./admin.component.scss"],
 })
 export class AdminComponent implements OnInit, OnDestroy {
-  busy!: Subscription;
   versions: Versions | undefined;
   lazyElements: Extension[] = [];
   @LocalStorage() barcodeOptions: BarcodeOptions = {};
@@ -90,7 +88,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   reload() {
-    this.busy = this.adminService.reload().subscribe();
+    this.adminService.reload().subscribe();
   }
 
   toggleBarcodeScanner() {

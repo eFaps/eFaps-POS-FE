@@ -55,10 +55,7 @@ describe("AdminComponent", () => {
         { provide: AdminService, useClass: AdminServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },
       ],
-      declarations: [
-        AdminComponent,
-        MockPipe(TranslatePipe),
-      ],
+      declarations: [AdminComponent, MockPipe(TranslatePipe)],
     }).compileComponents();
   });
 

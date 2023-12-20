@@ -62,7 +62,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
   change = 0;
   docType: DocumentType = DocumentType.RECEIPT;
   docTypes: DocumentType[] = [];
-  busy!: Subscription;
   contact: Contact | undefined;
   workspaceOid!: string;
   balance!: Balance;
@@ -296,17 +295,17 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
     switch (this.docType) {
       case DocumentType.RECEIPT:
-        this.busy = this.documentService
+        this.documentService
           .createReceipt(this.document.id!, <Receipt>payable)
           .subscribe(this.getObserver<Receipt>(DocumentType.RECEIPT));
         break;
       case DocumentType.INVOICE:
-        this.busy = this.documentService
+        this.documentService
           .createInvoice(this.document.id!, <Invoice>payable)
           .subscribe(this.getObserver<Invoice>(DocumentType.INVOICE));
         break;
       case DocumentType.TICKET:
-        this.busy = this.documentService
+        this.documentService
           .createTicket(this.document.id!, <Ticket>payable)
           .subscribe(this.getObserver<Ticket>(DocumentType.TICKET));
         break;

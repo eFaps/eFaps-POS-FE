@@ -30,7 +30,6 @@ export class BalanceComponent implements OnInit, OnDestroy {
   currentBalance!: Balance;
   payables: PayableHead[] = [];
   summary: BalanceSummary | undefined;
-  busy!: Subscription;
   subscription$ = new Subscription();
   private print = false;
   private workspaceOid!: string;
@@ -49,18 +48,13 @@ export class BalanceComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription$.add(
       this.balanceService.currentBalance.subscribe((balance) => {
-        if (this.busy) {
-          this.busy.unsubscribe();
-        }
         this.currentBalance = balance;
         this.payables = [];
         if (balance) {
-          this.busy = this.documentService
-            .getDocuments4Balance(balance)
-            .subscribe({
-              next: (payables) =>
-                (this.payables = this.payables.concat(payables)),
-            });
+          this.documentService.getDocuments4Balance(balance).subscribe({
+            next: (payables) =>
+              (this.payables = this.payables.concat(payables)),
+          });
           this.subscription$.add(
             this.balanceService.getSummary(balance).subscribe({
               next: (summary) => (this.summary = summary),
@@ -94,9 +88,6 @@ export class BalanceComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription$.unsubscribe();
-    if (this.busy) {
-      this.busy.unsubscribe();
-    }
   }
 
   init() {
