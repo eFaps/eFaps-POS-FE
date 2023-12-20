@@ -18,7 +18,6 @@ import { PosLibraryModule } from "@efaps/pos-library";
 import { TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
-import { NgBusyModule } from "ng-busy";
 
 import { ServicesModule } from "../services/services.module";
 import { ConfirmDialogComponent } from "./confirm-dialog/confirm-dialog.component";
@@ -59,7 +58,6 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     MatPaginatorModule,
     MatSlideToggleModule,
     MatTableModule,
-    NgBusyModule,
     PosLibraryModule,
     ReactiveFormsModule,
     ServicesModule,
@@ -87,7 +85,6 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
     ContactComponent,
     DocumentComponent,
     KeypadComponent,
-    NgBusyModule,
     PosLibraryModule,
     PrintDisplayComponent,
     TaxpayerQueryComponent,

@@ -17,12 +17,12 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { PosLibraryModule } from "@efaps/pos-library";
+import { PosLibraryModule, LoaderInterceptor } from "@efaps/pos-library";
 import { HotkeyModule } from "angular2-hotkeys";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
-import { AngularSvgIconModule, SERVER_URL } from "angular-svg-icon";
+import { AngularSvgIconModule } from "angular-svg-icon";
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
-import { environment } from "../environments/environment";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ErrorInterceptor, SameHeightDirective } from "./services/index";
@@ -47,6 +47,7 @@ import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
     MatIconModule,
     MatListModule,
     MatMenuModule,
+    MatProgressBarModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
@@ -71,6 +72,11 @@ import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass : LoaderInterceptor,
       multi: true,
     },
     // temporal workaround to deactivate the LiveAnnouncer

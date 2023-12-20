@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@use "../app/app.component-theme" as app;
 @import '../styles';
 @import '../app/pos/product-grid/product-grid.component.scss';
 @import '../app/shared/part-list-relation/part-list-relation.component.scss';
@@ -29,6 +30,7 @@ $my-theme: mat.define-light-theme((
 @include login-theme($my-theme);
 @include part-list-relation-theme($my-theme);
 @include pos-component-theme($my-theme);
+@include app.app($my-theme);
 
 svg-icon.logo {
   fill: #3f51b5;

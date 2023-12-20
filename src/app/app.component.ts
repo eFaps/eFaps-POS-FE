@@ -4,6 +4,7 @@ import {
   Component,
   HostListener,
   OnInit,
+  computed,
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { LocalStorage } from "@efaps/ngx-store";
@@ -16,6 +17,7 @@ import {
   UserService,
   WorkspaceService,
   Permission,
+  LoaderService,
 } from "@efaps/pos-library";
 import { Hotkey, HotkeysService } from "angular2-hotkeys";
 import { TranslateService } from "@ngx-translate/core";
@@ -38,6 +40,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   allowPayment = false;
   @LocalStorage() barcodeOptions: BarcodeOptions | null = null;
   userInfo: User | null = null;
+  isLoading = this.loaderService.isLoading
 
   constructor(
     public router: Router,
@@ -48,8 +51,11 @@ export class AppComponent implements OnInit, AfterViewChecked {
     public userService: UserService,
     private hotkeysService: HotkeysService,
     private companyService: CompanyService,
-    private barcodeScannerService: BarcodeScannerService
+    private barcodeScannerService: BarcodeScannerService,
+    private loaderService: LoaderService
   ) {
+    computed(() => console.log(this.loaderService.isLoading()));
+
     translate.use(workspaceService.getLanguage());
     this.screenWidth = window.innerWidth;
     window.onresize = () => {

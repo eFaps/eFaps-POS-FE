@@ -11,7 +11,6 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
 import { PosLibraryModule } from "@efaps/pos-library";
-import { NgBusyModule } from "ng-busy";
 
 import { SharedModule } from "../shared/shared.module";
 import { BalanceDocumentListComponent } from "./balance-document-list/balance-document-list.component";
@@ -39,7 +38,6 @@ import { OpeningBalanceDialogComponent } from "./opening-balance-dialog/opening-
     MatSortModule,
     MatTableModule,
     MatTabsModule,
-    NgBusyModule,
     PosLibraryModule,
     ReactiveFormsModule,
     SharedModule,

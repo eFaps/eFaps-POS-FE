@@ -1,0 +1,9 @@
+@use '@angular/material' as mat;
+
+@mixin app($theme) {
+  .progress {
+    z-index: 1;
+    background-color: mat.get-theme-color($theme, background, dialog);
+    height: 3px !important;
+  }
+}

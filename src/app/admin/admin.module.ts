@@ -9,7 +9,6 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { TranslateModule } from "@ngx-translate/core";
-import { NgBusyModule } from "ng-busy";
 
 import { AdminRoutingModule } from "./admin-routing.module";
 import { AdminComponent } from "./admin/admin.component";
@@ -20,7 +19,6 @@ import { AdminComponent } from "./admin/admin.component";
     CommonModule,
     AdminRoutingModule,
     LazyElementsModule,
-    NgBusyModule,
     TranslateModule,
     MatButtonModule,
     MatSlideToggleModule,
