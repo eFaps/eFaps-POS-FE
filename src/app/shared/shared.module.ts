@@ -36,6 +36,7 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { EmployeeDialogComponent } from "./employee-dialog/employee-dialog.component";
 import { MatSelectModule } from "@angular/material/select";
 import { NoteDialogComponent } from "./note-dialog/note-dialog.component";
+import { DNIQueryComponent } from "./dniquery/dniquery.component";
 
 export function TranslateLoaderFactory(_httpClient: HttpClient) {
   return new TranslateHttpLoader(_httpClient, "./assets/i18n/");
@@ -69,6 +70,7 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
   declarations: [
     ConfirmDialogComponent,
     ContactComponent,
+    DNIQueryComponent,
     DocumentComponent,
     ImageComponent,
     KeypadComponent,
@@ -83,6 +85,7 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
   ],
   exports: [
     ContactComponent,
+    DNIQueryComponent,
     DocumentComponent,
     KeypadComponent,
     PosLibraryModule,

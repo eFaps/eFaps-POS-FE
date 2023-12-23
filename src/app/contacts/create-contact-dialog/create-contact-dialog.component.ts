@@ -7,6 +7,7 @@ import {
   ConfigService,
   Contact,
   ContactService,
+  DNI,
   IdentificationType,
   Taxpayer,
 } from "@efaps/pos-library";
@@ -136,7 +137,20 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
     }
   }
 
+  onDNIQuery(dni:DNI) {
+    if (dni) {
+      this.contactForm.patchValue({
+        idNumber: dni.number,
+        name: dni.fullName,
+      });
+    }
+  }
+
   get showTaxpayerQuery() {
     return this.contactForm.value.idType == IdentificationType.RUC;
+  }
+
+  get showDNIQuery() {
+    return this.contactForm.value.idType == IdentificationType.DNI;
   }
 }

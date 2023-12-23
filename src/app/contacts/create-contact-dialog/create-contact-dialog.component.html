@@ -9,6 +9,7 @@
       </mat-select>
     </mat-form-field>
     <app-taxpayer-query *ngIf="showTaxpayerQuery" (result)="onTaxpayerQuery($event)"></app-taxpayer-query>
+    <app-dniquery *ngIf="showDNIQuery" (result)="onDNIQuery($event)"></app-dniquery>
     <mat-form-field>
       <mat-label i18n="@@documentId" >ID</mat-label>
       <input matInput formControlName="idNumber" [appVirtKeyboard] [activateKeyboard]="virtKeyboard" autocomplete="off" class="left">
