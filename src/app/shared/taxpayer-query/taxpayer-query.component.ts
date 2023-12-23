@@ -1,9 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import {
-  Validators,
-  NonNullableFormBuilder,
-  FormGroup,
-} from "@angular/forms";
+import { Validators, NonNullableFormBuilder, FormGroup } from "@angular/forms";
 import { EnquiryService, Taxpayer } from "@efaps/pos-library";
 import { MatDialog } from "@angular/material/dialog";
 import { TaxpayerResultComponent } from "../taxpayer-result/taxpayer-result.component";

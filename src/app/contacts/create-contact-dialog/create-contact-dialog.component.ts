@@ -137,7 +137,7 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
     }
   }
 
-  onDNIQuery(dni:DNI) {
+  onDNIQuery(dni: DNI) {
     if (dni) {
       this.contactForm.patchValue({
         idNumber: dni.number,

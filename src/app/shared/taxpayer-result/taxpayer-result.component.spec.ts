@@ -5,13 +5,13 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatTableModule } from "@angular/material/table";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { Taxpayer, TaxpayerService } from "@efaps/pos-library";
+import { Taxpayer, EnquiryService } from "@efaps/pos-library";
 import { Page, PageRequest } from "@efaps/pos-library/lib/model/pageable";
 import { Observable } from "rxjs";
 
 import { TaxpayerResultComponent } from "./taxpayer-result.component";
 
-class TaxpayerServiceStub {
+class EnquiryServiceStub {
   public findTaxpayers(
     term: string,
     pageable?: PageRequest
@@ -55,7 +55,7 @@ describe("TaxpayerResultComponent", () => {
       ],
       declarations: [TaxpayerResultComponent],
       providers: [
-        { provide: TaxpayerService, useClass: TaxpayerServiceStub },
+        { provide: EnquiryService, useClass: EnquiryServiceStub },
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] },
       ],

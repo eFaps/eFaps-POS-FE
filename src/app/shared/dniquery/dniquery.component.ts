@@ -1,14 +1,12 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { DNI, EnquiryService } from '@efaps/pos-library';
+import { Component, EventEmitter, Output } from "@angular/core";
+import { FormGroup, NonNullableFormBuilder, Validators } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { DNI, EnquiryService } from "@efaps/pos-library";
 
 @Component({
-  selector: 'app-dniquery',
-  imports: [],
-  templateUrl: './dniquery.component.html',
-  styleUrl: './dniquery.component.scss'
+  selector: "app-dniquery",
+  templateUrl: "./dniquery.component.html",
+  styleUrl: "./dniquery.component.scss",
 })
 export class DNIQueryComponent {
   dniForm: FormGroup;
@@ -24,17 +22,16 @@ export class DNIQueryComponent {
       number: ["", [Validators.required, Validators.pattern("[0-9]{8}")]],
     });
   }
-  
+
   query() {
-        this.enquiryService.getDNI(this.dniForm.value.number).subscribe({
-        next: (dni) => {
-          if (dni) {
-            this.result.next(dni);
-          } else {
-            this.snackBar.open("no hay resultados")
-          }
-        },
-      });
-    
+    this.enquiryService.getDNI(this.dniForm.value.number).subscribe({
+      next: (dni) => {
+        if (dni) {
+          this.result.next(dni);
+        } else {
+          this.snackBar.open("no hay resultados");
+        }
+      },
+    });
   }
 }

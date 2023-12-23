@@ -6,11 +6,11 @@ import { MatInputModule } from "@angular/material/input";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { TaxpayerService } from "@efaps/pos-library";
+import { EnquiryService } from "@efaps/pos-library";
 
 import { TaxpayerQueryComponent } from "./taxpayer-query.component";
 
-class TaxpayerServiceStub {}
+class EnquiryServiceStub {}
 
 describe("TaxpayerQueryComponent", () => {
   let component: TaxpayerQueryComponent;
@@ -29,7 +29,7 @@ describe("TaxpayerQueryComponent", () => {
       ],
       declarations: [TaxpayerQueryComponent],
       providers: [
-        { provide: TaxpayerService, useClass: TaxpayerServiceStub },
+        { provide: EnquiryService, useClass: EnquiryServiceStub },
         { provide: MatDialogRef, useValue: {} },
       ],
     }).compileComponents();
