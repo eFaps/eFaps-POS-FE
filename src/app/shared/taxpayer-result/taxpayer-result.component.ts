@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
-import { Taxpayer, TaxpayerService } from "@efaps/pos-library";
+import { Taxpayer, EnquiryService } from "@efaps/pos-library";
 import { Page } from "@efaps/pos-library/lib/model/pageable";
 
 @Component({
@@ -25,12 +25,12 @@ export class TaxpayerResultComponent implements OnInit, AfterViewInit {
   constructor(
     private dialogRef: MatDialogRef<TaxpayerResultComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any,
-    private taxpayerService: TaxpayerService
+    private enquiryService: EnquiryService
   ) {}
 
   ngOnInit(): void {
     this.isLoadingResults = true;
-    this.taxpayerService
+    this.enquiryService
       .findTaxpayers(this.getTerm(), { page: 0, size: 5 })
       .subscribe({
         next: (result) => {
@@ -48,7 +48,7 @@ export class TaxpayerResultComponent implements OnInit, AfterViewInit {
     this.paginator.page.subscribe({
       next: (pageEvent: { pageIndex: any; pageSize: any }) => {
         this.isLoadingResults = true;
-        this.taxpayerService
+        this.enquiryService
           .findTaxpayers(this.getTerm(), {
             page: pageEvent.pageIndex,
             size: pageEvent.pageSize,

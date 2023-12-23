@@ -1,13 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import {
-  UntypedFormGroup,
-  UntypedFormBuilder,
   Validators,
-  FormBuilder,
   NonNullableFormBuilder,
   FormGroup,
 } from "@angular/forms";
-import { TaxpayerService, Taxpayer } from "@efaps/pos-library";
+import { EnquiryService, Taxpayer } from "@efaps/pos-library";
 import { MatDialog } from "@angular/material/dialog";
 import { TaxpayerResultComponent } from "../taxpayer-result/taxpayer-result.component";
 
@@ -24,7 +21,7 @@ export class TaxpayerQueryComponent {
 
   constructor(
     private fb: NonNullableFormBuilder,
-    private taxpayerService: TaxpayerService,
+    private enquiryService: EnquiryService,
     private dialog: MatDialog
   ) {
     this.taxpayerForm = this.fb.group({
@@ -57,7 +54,7 @@ export class TaxpayerQueryComponent {
         },
       });
     } else {
-      this.taxpayerService.getTaxpayer(this.taxpayerForm.value.term).subscribe({
+      this.enquiryService.getTaxpayer(this.taxpayerForm.value.term).subscribe({
         next: (taxpayer) => {
           this.result.next(taxpayer);
         },
