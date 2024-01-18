@@ -43,23 +43,24 @@ export class BalanceComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     private configService: ConfigService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.subscription$.add(
       this.balanceService.currentBalance.subscribe((balance) => {
-        this.currentBalance = balance;
-        this.payables = [];
-        if (balance) {
-          this.documentService.getDocuments4Balance(balance).subscribe({
+        if (balance != null && (this.currentBalance == undefined || this.currentBalance.id != balance.id)) {
+          this.payables = [];
+          this.currentBalance = balance;
+          this.subscription$.add(this.documentService.getDocuments4Balance(balance).subscribe({
             next: (payables) =>
               (this.payables = this.payables.concat(payables)),
-          });
+          }));
           this.subscription$.add(
             this.balanceService.getSummary(balance).subscribe({
               next: (summary) => (this.summary = summary),
             })
           );
+
         }
       })
     );
