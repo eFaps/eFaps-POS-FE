@@ -7,8 +7,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { FormBuilder } from "@angular/forms";
-import { MatAutocomplete } from "@angular/material/autocomplete";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 
 class ActivatedRouteStub {
   params = new Observable((observer) => {});
@@ -30,8 +30,12 @@ describe("StocktakingComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [StocktakingComponent, MatAutocomplete],
-      imports: [MatDialogModule, HttpClientTestingModule],
+      declarations: [StocktakingComponent],
+      imports: [
+        MatDialogModule,
+        MatAutocompleteModule,
+        HttpClientTestingModule,
+      ],
       providers: [
         MatSnackBar,
         FormBuilder,
