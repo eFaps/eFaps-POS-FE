@@ -1,4 +1,4 @@
-<mat-tab-group [class.header-less-tabs]="floors.length <= 1" animationDuration="0ms">
+<mat-tab-group [class.header-less-tabs]="floors.length <= 1" animationDuration="0ms" dynamicHeight>
   <mat-tab *ngFor="let floor of floors; let i = index" label="{{floor?.name}}" >
     <div class="floor" [class.sidenav]="sidenav" [style.background-image]="image(floor)">
       <ng-container *ngFor="let spot of floor.spots;let i = index">
