@@ -30,7 +30,7 @@ import {
   WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
-import { PartialObserver, Subscription } from "rxjs";
+import { PartialObserver, Subject, Subscription, debounceTime } from "rxjs";
 
 import { ConfirmDialogComponent } from "../shared/confirm-dialog/confirm-dialog.component";
 import { DocumentComponent } from "../shared/document/document.component";
@@ -71,11 +71,13 @@ export class PaymentComponent implements OnInit, OnDestroy {
   allowPrintPreliminary = true;
   allowAssignSeller = true;
   activateNote = true;
+  submitDisabled = false;
 
   private subscriptions$ = new Subscription();
   private printTicket = false;
   private _seller: Employee | null = null;
   private requirePayment = false;
+  private submitClicked = new Subject<void>();
 
   constructor(
     private router: Router,
@@ -90,7 +92,12 @@ export class PaymentComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     public paymentService: PaymentService
-  ) {}
+  ) {
+
+    this.submitClicked.pipe(debounceTime(200)).subscribe(() =>
+      this.createDocument()
+    );
+  }
 
   ngOnInit() {
     this.subscriptions$.add(
@@ -237,7 +244,12 @@ export class PaymentComponent implements OnInit, OnDestroy {
     return ret;
   }
 
-  createDocument() {
+  submitDocument() {
+    this.submitDisabled = true;
+    this.submitClicked.next();
+  }
+
+  private createDocument() {
     if (this.validate()) {
       if (this.change !== 0) {
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -254,6 +266,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
       } else {
         this.executeCreateDocument();
       }
+    } else {
+      this.submitDisabled = false;
     }
   }
 
