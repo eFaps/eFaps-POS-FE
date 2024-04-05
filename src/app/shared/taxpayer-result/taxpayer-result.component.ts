@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
-import { Taxpayer, EnquiryService } from "@efaps/pos-library";
+import { RUC, EnquiryService } from "@efaps/pos-library";
 import { Page } from "@efaps/pos-library/lib/model/pageable";
 
 @Component({
@@ -18,9 +18,9 @@ import { Page } from "@efaps/pos-library/lib/model/pageable";
 export class TaxpayerResultComponent implements OnInit, AfterViewInit {
   isLoadingResults = false;
   displayedColumns = ["id", "name", "warnings", "cmd"];
-  dataSource: Taxpayer[] = [];
+  dataSource: RUC[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  result!: Page<Taxpayer>;
+  result!: Page<RUC>;
 
   constructor(
     private dialogRef: MatDialogRef<TaxpayerResultComponent>,
@@ -31,7 +31,7 @@ export class TaxpayerResultComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.isLoadingResults = true;
     this.enquiryService
-      .findTaxpayers(this.getTerm(), { page: 0, size: 5 })
+      .findRUCs(this.getTerm(), { page: 0, size: 5 })
       .subscribe({
         next: (result) => {
           this.result = result;
@@ -49,7 +49,7 @@ export class TaxpayerResultComponent implements OnInit, AfterViewInit {
       next: (pageEvent: { pageIndex: any; pageSize: any }) => {
         this.isLoadingResults = true;
         this.enquiryService
-          .findTaxpayers(this.getTerm(), {
+          .findRUCs(this.getTerm(), {
             page: pageEvent.pageIndex,
             size: pageEvent.pageSize,
           })
@@ -73,7 +73,7 @@ export class TaxpayerResultComponent implements OnInit, AfterViewInit {
     return "";
   }
 
-  select(item: Taxpayer) {
+  select(item: RUC) {
     this.dialogRef.close(item);
   }
 }

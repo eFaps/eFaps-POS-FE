@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { Validators, NonNullableFormBuilder, FormGroup } from "@angular/forms";
-import { EnquiryService, Taxpayer } from "@efaps/pos-library";
+import { EnquiryService, RUC } from "@efaps/pos-library";
 import { MatDialog } from "@angular/material/dialog";
 import { TaxpayerResultComponent } from "../taxpayer-result/taxpayer-result.component";
 
@@ -13,7 +13,7 @@ export class TaxpayerQueryComponent {
   taxpayerForm: FormGroup;
   nameSearch = false;
   @Output()
-  result: EventEmitter<Taxpayer> = new EventEmitter<Taxpayer>();
+  result: EventEmitter<RUC> = new EventEmitter<RUC>();
 
   constructor(
     private fb: NonNullableFormBuilder,
@@ -50,7 +50,7 @@ export class TaxpayerQueryComponent {
         },
       });
     } else {
-      this.enquiryService.getTaxpayer(this.taxpayerForm.value.term).subscribe({
+      this.enquiryService.getRUC(this.taxpayerForm.value.term).subscribe({
         next: (taxpayer) => {
           this.result.next(taxpayer);
         },

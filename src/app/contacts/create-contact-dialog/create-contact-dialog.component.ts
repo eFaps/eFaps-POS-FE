@@ -9,7 +9,7 @@ import {
   ContactService,
   DNI,
   IdentificationType,
-  Taxpayer,
+  RUC,
 } from "@efaps/pos-library";
 import { EnumValues } from "enum-values";
 
@@ -110,10 +110,10 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
     });
   }
 
-  onTaxpayerQuery(taxpayer: Taxpayer) {
+  onTaxpayerQuery(taxpayer: RUC) {
     if (taxpayer) {
       this.contactForm.patchValue({
-        idNumber: taxpayer.id,
+        idNumber: taxpayer.number,
         name: taxpayer.name,
       });
       let msg = "";

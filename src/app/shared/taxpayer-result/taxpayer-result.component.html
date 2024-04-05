@@ -3,7 +3,7 @@
   <mat-table #table [dataSource]="dataSource">
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef i18n="@@taxpayer-ID">Taxpayer-ID </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.id}} </mat-cell>
+      <mat-cell *matCellDef="let item"> {{item.number}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef i18n="@@taxpayer-Name">Name</mat-header-cell>
