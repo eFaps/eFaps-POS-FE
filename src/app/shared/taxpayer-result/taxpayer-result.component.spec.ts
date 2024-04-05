@@ -5,7 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatTableModule } from "@angular/material/table";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { Taxpayer, EnquiryService } from "@efaps/pos-library";
+import { RUC, EnquiryService } from "@efaps/pos-library";
 import { Page, PageRequest } from "@efaps/pos-library/lib/model/pageable";
 import { Observable } from "rxjs";
 
@@ -15,7 +15,7 @@ class EnquiryServiceStub {
   public findTaxpayers(
     term: string,
     pageable?: PageRequest
-  ): Observable<Page<Taxpayer>> {
+  ): Observable<Page<RUC>> {
     return new Observable((observer) => {
       observer.next({
         content: [],
