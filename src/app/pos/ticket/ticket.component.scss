@@ -2,24 +2,43 @@
   width: 100%;
 
   .mat-column-quantity {
-    flex: 0 0 22px;
+    width: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .mat-column-childQuantity {
-    flex: 0 0 22px;
+    width: 20px;
+    padding-left: 0px;
+    padding-right: 5px;
+  }
+
+  .mat-column-productDesc {
+    padding-left: 0px;
+    padding-right: 5px;
   }
 
   .mat-column-unitPrice {
-    flex: 0 0 58px;
+    text-align: right;
+    padding-left: 0px;
+    padding-right: 5px;
   }
 
   .mat-column-price {
-    flex: 0 0 65px;
+    padding-left: 0px;
+    text-align: right;
+    padding-right: 5px;
   }
 
   .mat-column-modify {
-    flex: 0 0 120px;
-    padding-right: 5px;
+    padding: 0;
+    //width: 120px;
+  }
+
+  table .buttons {
+    width: 101px;
+    display: block;
+    background: aliceblue;
   }
 }
 
