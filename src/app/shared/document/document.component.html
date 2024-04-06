@@ -33,18 +33,22 @@
         <mat-cell *matCellDef="let item"> {{item.product.description}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="crossUnitPrice">
-        <mat-header-cell *matHeaderCellDef> P.U. </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef><div> P.U. </div></mat-header-cell>
         <mat-cell *matCellDef="let item">
           <ng-container *ngIf="!isChild(item)">
-            {{item.crossUnitPrice | posCurrency:document.currency}}
+            <div>
+              {{item.crossUnitPrice | posCurrency:document.currency}}
+            </div>
           </ng-container>
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="crossPrice">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Precio </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> <div>Precio</div></mat-header-cell>
         <mat-cell *matCellDef="let item">
           <ng-container *ngIf="!isChild(item)">
-            {{item.crossPrice | posCurrency:document.currency}}
+            <div>
+              {{item.crossPrice | posCurrency:document.currency}}
+            </div>
           </ng-container>
         </mat-cell>
       </ng-container>

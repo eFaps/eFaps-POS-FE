@@ -16,22 +16,42 @@
 }
 
 .mat-column-index {
-  flex: 0 0 40px;
+  width: 40px;
+  min-width: 60px;
+  flex-grow: 0;
 }
 
 .mat-column-quantity {
-  flex: 0 0 60px;
+  width: 60px;
+  min-width: 60px;
+  flex-grow: 0;
 }
 .mat-column-childQuantity {
-  flex: 0 0 20px;
+  width: 60px;
+  min-width: 60px;
+  flex-grow: 0;
+}
+
+.mat-column-productDesc {
+  flex-grow: 4;
 }
 .mat-column-crossUnitPrice {
-  flex: 0 0 60px;
+  min-width: 100px;
+  flex-shrink: 0;
+  text-align: right;
+  div {
+    width: 99%;
+  }
 }
 
 .mat-column-crossPrice {
-  flex: 0 0 60px;
+  min-width: 100px;
+  flex-shrink: 0;
+  text-align: right;
   margin-right: 5px;
+  div {
+    width: 99%;
+  }
 }
 
 .footer {
