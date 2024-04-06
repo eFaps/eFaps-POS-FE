@@ -73,7 +73,10 @@ export abstract class PaymentForm implements OnInit, OnDestroy {
     }
     amount = amount.replace(/\./g, "").replace(/,/g, "").replace(/^0+/, "");
     if (amount.length > 2) {
-      amount = amount.substring(0, amount.length - 2) + "." + amount.substring(amount.length - 2);
+      amount =
+        amount.substring(0, amount.length - 2) +
+        "." +
+        amount.substring(amount.length - 2);
     } else if (amount.length === 1) {
       amount = "0.0" + amount;
     } else {

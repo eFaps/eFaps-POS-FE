@@ -1,13 +1,18 @@
-<div class="wrapper">
-  <div class="quantity">
-    <form [formGroup]="quantityForm">
-      <mat-form-field>
-        <input matInput formControlName="quantity" autocomplete="off" class="right-align">
-      </mat-form-field>
-    </form>
-    <app-keypad [showTopClear]="false" [showBottomClear]="true" [showDoubleZero]="false" (number)="setQuantity($event)"></app-keypad>
-  </div>
+<mat-dialog-content>
+  <div class="wrapper">
+    <div class="quantity">
+      <form [formGroup]="quantityForm">
+        <mat-form-field>
+          <input matInput formControlName="quantity" autocomplete="off" class="right-align">
+        </mat-form-field>
+      </form>
+      <app-keypad [showTopClear]="false" [showBottomClear]="true" [showDoubleZero]="false"
+        (number)="setQuantity($event)"></app-keypad>
+    </div>
+  </div>  
+</mat-dialog-content>
+<mat-dialog-actions>
   <div class="footer">
-    <button mat-raised-button color="primary" (click)="split()" >Dividir</button>
+    <button mat-raised-button color="primary" (click)="split()">Dividir</button>
   </div>
-</div>
+</mat-dialog-actions>

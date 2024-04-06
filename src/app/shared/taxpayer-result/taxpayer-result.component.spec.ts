@@ -12,10 +12,7 @@ import { Observable } from "rxjs";
 import { TaxpayerResultComponent } from "./taxpayer-result.component";
 
 class EnquiryServiceStub {
-  public findRUCs(
-    term: string,
-    pageable?: PageRequest
-  ): Observable<Page<RUC>> {
+  public findRUCs(term: string, pageable?: PageRequest): Observable<Page<RUC>> {
     return new Observable((observer) => {
       observer.next({
         content: [],

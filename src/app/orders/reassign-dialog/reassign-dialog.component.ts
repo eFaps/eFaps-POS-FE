@@ -5,8 +5,9 @@ import {
   DocumentService,
   Order,
   PosService,
+  CalculatorService,
 } from "@efaps/pos-library";
-import { Observable, Subscription, forkJoin } from "rxjs";
+import { Subscription } from "rxjs";
 
 import { ReassignItemComponent } from "../reassign-item/reassign-item.component";
 
@@ -30,6 +31,7 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
   constructor(
     private documentService: DocumentService,
     private posService: PosService,
+    private calculatorService: CalculatorService,
     private dialogRef: MatDialogRef<ReassignDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {}
@@ -134,16 +136,13 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
   }
 
   save() {
-    const updates: Observable<Order>[] = [];
     this.orders.forEach((order) => {
-      this.posService.setOrder(order);
-      updates.push(this.posService.updateOrder(order));
+      this.calculatorService.calculateDoc(order).subscribe({
+        next: (doc) => {
+          this.documentService.updateOrder(doc).subscribe({});
+        },
+      });
     });
-    this.posService.reset();
-    forkJoin(...updates).subscribe({
-      next: (_) => {
-        this.dialogRef.close();
-      },
-    });
+    this.dialogRef.close();
   }
 }

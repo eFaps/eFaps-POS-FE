@@ -93,10 +93,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     public paymentService: PaymentService
   ) {
-
-    this.submitClicked.pipe(debounceTime(200)).subscribe(() =>
-      this.createDocument()
-    );
+    this.submitClicked
+      .pipe(debounceTime(200))
+      .subscribe(() => this.createDocument());
   }
 
   ngOnInit() {
