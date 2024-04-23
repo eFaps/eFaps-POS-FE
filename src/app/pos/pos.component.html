@@ -34,12 +34,10 @@
             <span class="right-align">{{multiplierLabel}}</span>
           </div>
           <app-keypad [showTopClear]="false" [showBottomClear]="true" (number)="setMultiplier($event)"></app-keypad>
-          <div>
-          </div>
         </div>
       </div>
       <app-ticket (multiplierClick)="resetMultiplier()" [isBarcode]="isBarcode"></app-ticket>
-      <app-totals></app-totals>
+      <app-totals [ngStyle]="{'display': (sticky ? 'block' : 'unset')}"></app-totals>
     </div>
     <app-commands></app-commands>
   </div>

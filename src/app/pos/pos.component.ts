@@ -73,6 +73,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   remarkMode = false;
   allowAssignSeller = false;
   isBarcode = false;
+  sticky = false;
   private subscriptions = new Subscription();
   private requiresContact = false;
   private _contact: Contact | null = null;
@@ -250,6 +251,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   ngAfterContentChecked() {
     this.changeDetectorRef.detectChanges();
     this.cmdComp.evalSticky();
+    this.sticky = this.cmdComp.sticky;
   }
 
   onPartList(partList: Product) {
@@ -309,6 +311,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
     this.cmdComp.evalSticky();
+    this.sticky = this.cmdComp.sticky;
   }
 
   switchLayout() {
@@ -355,6 +358,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     this.posNumPad.save();
     this.changeDetectorRef.detectChanges();
     this.cmdComp.evalSticky();
+    this.sticky = this.cmdComp.sticky;
   }
 
   openCatSelect() {

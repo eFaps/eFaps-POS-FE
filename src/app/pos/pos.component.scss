@@ -54,6 +54,11 @@ $ticketWith: 450px;
   }
 }
 
+app-totals {
+  padding-bottom: 50px;
+  display: block;
+}
+
 .selector {
   overflow-y: auto;
   width: calc(100% - #{$ticketWith});
