@@ -8,6 +8,7 @@ import {
   Product2Category,
   ProductRelation,
   ProductService,
+  ProductType,
   RelationEntry,
 } from "@efaps/pos-library";
 import { PosService, WorkspaceService } from "@efaps/pos-library";
@@ -54,10 +55,22 @@ export class ProductComponent implements OnInit {
     for (const relation of _productRelations) {
       this.productService
         .getProduct(relation.productOid)
-        .subscribe((_product) => {
+        .subscribe((product) => {
+          let label
+          if (relation.label == null) {
+            switch (relation.type) {
+              case 'BATCH' :
+                label  = product.type == ProductType.BATCH ? "Lote" : "Base"
+                break;
+              default:
+                label = ""
+            } 
+          } else {
+            label = relation.label
+          }
           this.relations.push({
-            label: relation.label,
-            product: _product,
+            label,
+            product
           });
         });
     }
