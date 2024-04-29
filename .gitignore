@@ -63,3 +63,4 @@ typings/
 
 main.js
 main.js.map
+.nx/
