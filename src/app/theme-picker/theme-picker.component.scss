@@ -15,6 +15,7 @@ $theme-picker-accent-stripe-size: 6px;
     flex: 0 0 auto;
     padding: 0;
     overflow: hidden;
+    padding-left: 0 !important;
   }
 
   .docs-theme-picker-swatch {
@@ -28,7 +29,8 @@ $theme-picker-accent-stripe-size: 6px;
     .docs-theme-chosen-icon {
       color: white;
       position: absolute;
-      left: 50%; top: 50%;
+      left: 50%; 
+      top: 50%;
       transform: translate(-50%, -50%);
     }
 
