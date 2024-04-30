@@ -10,11 +10,11 @@
   <mat-table #table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="sku">
       <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@product-SKU">SKU</mat-header-cell>
-      <mat-cell *matCellDef="let product"> {{product.sku}} </mat-cell>
+      <mat-cell *matCellDef="let product" [ngClass]="product.type"> {{product.sku}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="description">
       <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@product-Description">Description</mat-header-cell>
-      <mat-cell *matCellDef="let product"> {{product.description}} </mat-cell>
+      <mat-cell *matCellDef="let product" [ngClass]="product.type"> {{product.description}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="stock">
       <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@product-Stock">Stock</mat-header-cell>

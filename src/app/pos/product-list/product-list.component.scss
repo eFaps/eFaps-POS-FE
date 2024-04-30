@@ -32,3 +32,8 @@ form {
 mat-table button {
   min-width: fit-content;
 }
+
+mat-cell.BATCH {
+  font-style: italic;
+  font-weight: bolder;
+}
