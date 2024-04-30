@@ -35,7 +35,7 @@
     "@angular/router": "^17.3.6",
     "@efaps/angular-onscreen-material-keyboard": "^0.17.0",
     "@efaps/ngx-store": "^8.0.0",
-    "@efaps/pos-library": "file:../eFaps-POS-Library/dist/efaps/pos-library",
+    "@efaps/pos-library": "^9.3.3",
     "@ngx-pwa/local-storage": "^17.0.0",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
