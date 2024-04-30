@@ -34,6 +34,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { ConfigDialogComponent } from "./config-dialog/config-dialog.component";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatStepperModule } from "@angular/material/stepper";
+import { MatRadioModule } from "@angular/material/radio";
 
 @NgModule({
   imports: [
@@ -54,6 +55,7 @@ import { MatStepperModule } from "@angular/material/stepper";
     MatTableModule,
     MatTabsModule,
     MatStepperModule,
+    MatRadioModule,
     PosRoutingModule,
     ReactiveFormsModule,
     ContactsModule,

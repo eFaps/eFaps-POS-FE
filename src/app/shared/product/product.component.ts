@@ -56,21 +56,21 @@ export class ProductComponent implements OnInit {
       this.productService
         .getProduct(relation.productOid)
         .subscribe((product) => {
-          let label
+          let label;
           if (relation.label == null) {
             switch (relation.type) {
-              case 'BATCH' :
-                label  = product.type == ProductType.BATCH ? "Lote" : "Base"
+              case "BATCH":
+                label = product.type == ProductType.BATCH ? "Lote" : "Base";
                 break;
               default:
-                label = ""
-            } 
+                label = "";
+            }
           } else {
-            label = relation.label
+            label = relation.label;
           }
           this.relations.push({
             label,
-            product
+            product,
           });
         });
     }

@@ -2,6 +2,16 @@
 <mat-dialog-content>
   <form [formGroup]="formGroup" autocomplete="off">
     <mat-stepper orientation="vertical" [linear]="false" #stepper>
+      <ng-container *ngIf="individualProducts.length > 0">
+        <mat-step>
+          <ng-template matStepLabel>Selecionar Lote / No de serie</ng-template>
+          <mat-radio-group formControlName="selectedIndividual">
+            @for (product of individualProducts; track product) {
+              <mat-radio-button class="example-radio-button" [value]="product">{{product.sku}} - {{product.description}}</mat-radio-button>
+            }
+          </mat-radio-group>
+        </mat-step>
+      </ng-container>
       <ng-container *ngFor="let bomGroup of product?.bomGroupConfigs">
         <mat-step>
           <ng-template matStepLabel>{{bomGroup.description}}</ng-template>

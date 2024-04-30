@@ -1,9 +1,21 @@
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
 import { Component, Inject, OnInit } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
 import { MatChipInputEvent } from "@angular/material/chips";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { Indication, Product, ProductService } from "@efaps/pos-library";
+import {
+  Indication,
+  Product,
+  ProductIndividual,
+  ProductRelationType,
+  ProductService,
+  ProductType,
+} from "@efaps/pos-library";
 
 @Component({
   selector: "app-config-dialog",
@@ -15,6 +27,7 @@ export class ConfigDialogComponent implements OnInit {
   private products: Map<String, Product[]> = new Map();
 
   product: Product;
+  individualProducts: Product[] = [];
   remarkMode: boolean;
   formGroup: FormGroup<any>;
   indications: Indication[] = [];
@@ -31,7 +44,12 @@ export class ConfigDialogComponent implements OnInit {
     this.product = data.product;
     this.remarkMode = data.remarkMode;
     this.formGroup = fb.group({});
-
+    if (this.isSelectIndividual()) {
+      this.formGroup.addControl(
+        "selectedIndividual",
+        new FormControl<Product | undefined>(undefined, [Validators.required])
+      );
+    }
     this.product.bomGroupConfigs.forEach((element) => {
       const formName = element.oid as string;
       this.formGroup.addControl(formName, new FormControl<any>(""));
@@ -50,6 +68,28 @@ export class ConfigDialogComponent implements OnInit {
         },
       });
     });
+    if (this.isSelectIndividual()) {
+      this.product.relations
+        .filter((relation) => {
+          return (
+            relation.type == ProductRelationType.BATCH ||
+            relation.type == ProductRelationType.INDIVIDUAL
+          );
+        })
+        .forEach((relation) => {
+          this.productService
+            .getProduct(relation.productOid)
+            .subscribe({ next: (prod) => this.individualProducts.push(prod) });
+        });
+    }
+  }
+
+  isSelectIndividual(): boolean {
+    return (
+      ProductType.STANDART == this.product.type &&
+      (this.product.individual == ProductIndividual.BATCH ||
+        this.product.individual == ProductIndividual.INDIVIDUAL)
+    );
   }
 
   getProducts4BOMGroup(oid: String): Product[] {
@@ -90,26 +130,29 @@ export class ConfigDialogComponent implements OnInit {
   }
 
   close() {
-    const remarks: string[] = [];
-    const childProducts: Product[] = [];
+    if (this.formGroup.valid) {
+      const remarks: string[] = [];
+      const childProducts: Product[] = [];
 
-    this.indications.forEach((ind) => {
-      remarks.push(ind.value);
-    });
-    this.product.bomGroupConfigs.forEach((element) => {
-      var value = this.formGroup.value[element.oid as string];
-      if (Array.isArray(value)) {
-        value.forEach((val) => {
-          childProducts.push(val);
-        });
-      } else if (value) {
-        childProducts.push(value);
-      }
-    });
+      this.indications.forEach((ind) => {
+        remarks.push(ind.value);
+      });
+      this.product.bomGroupConfigs.forEach((element) => {
+        var value = this.formGroup.value[element.oid as string];
+        if (Array.isArray(value)) {
+          value.forEach((val) => {
+            childProducts.push(val);
+          });
+        } else if (value) {
+          childProducts.push(value);
+        }
+      });
 
-    this.matDialogRef.close({
-      remark: remarks.join("\n"),
-      childProducts: childProducts,
-    });
+      this.matDialogRef.close({
+        remark: remarks.join("\n"),
+        childProducts: childProducts,
+        selectedIndividual: this.formGroup.value.selectedIndividual,
+      });
+    }
   }
 }

@@ -6,7 +6,9 @@ import {
   Item,
   PosService,
   Product,
+  ProductIndividual,
   ProductService,
+  ProductType,
   WorkspaceService,
 } from "@efaps/pos-library";
 import { KeypadService, PosSyncService } from "../services";
@@ -46,7 +48,8 @@ export abstract class AbstractProductSelector implements OnInit {
     if (
       this.remarkMode ||
       product.indicationSets.some((set) => set.required) ||
-      product.bomGroupConfigs.length > 0
+      product.bomGroupConfigs.length > 0 ||
+      this.isSelectIndividual(product)
     ) {
       this.keypadService.deactivate();
       const dialogRef = this.dialog.open(ConfigDialogComponent, {
@@ -59,11 +62,19 @@ export abstract class AbstractProductSelector implements OnInit {
       dialogRef.afterClosed().subscribe({
         next: (selection) => {
           this.keypadService.activate();
-          this.selectProduct(
-            product,
-            selection.remark,
-            selection.childProducts
-          );
+          if (selection.selectedIndividual != null) {
+            this.selectProduct(
+              selection.selectedIndividual,
+              selection.remark,
+              selection.childProducts
+            );
+          } else {
+            this.selectProduct(
+              product,
+              selection.remark,
+              selection.childProducts
+            );
+          }
         },
         error: (err: any) => {
           this.keypadService.activate();
@@ -72,6 +83,14 @@ export abstract class AbstractProductSelector implements OnInit {
     } else {
       this.selectProduct(product);
     }
+  }
+
+  private isSelectIndividual(product: Product): boolean {
+    return (
+      ProductType.STANDART == product.type &&
+      (product.individual == ProductIndividual.BATCH ||
+        product.individual == ProductIndividual.INDIVIDUAL)
+    );
   }
 
   private selectProduct(
