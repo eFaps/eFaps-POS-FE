@@ -62,19 +62,12 @@ export abstract class AbstractProductSelector implements OnInit {
       dialogRef.afterClosed().subscribe({
         next: (selection) => {
           this.keypadService.activate();
-          if (selection.selectedIndividual != null) {
-            this.selectProduct(
-              selection.selectedIndividual,
-              selection.remark,
-              selection.childProducts
-            );
-          } else {
-            this.selectProduct(
-              product,
-              selection.remark,
-              selection.childProducts
-            );
-          }
+          this.selectProduct(
+            product,
+            selection.selectedIndividual,
+            selection.remark,
+            selection.childProducts
+          );
         },
         error: (err: any) => {
           this.keypadService.activate();
@@ -95,6 +88,7 @@ export abstract class AbstractProductSelector implements OnInit {
 
   private selectProduct(
     product: Product,
+    standIn?: Product,
     remark?: string | null,
     childProducts?: Product[] | null
   ) {
@@ -103,6 +97,7 @@ export abstract class AbstractProductSelector implements OnInit {
     this.ticket.push({
       index: idx,
       product: product,
+      standIn: standIn,
       quantity: quantity,
       price: 0,
       remark: remark ? remark : null,
