@@ -75,21 +75,24 @@ export abstract class AbstractProductSelector implements OnInit {
         },
       });
     } else {
-      if (product.type == ProductType.BATCH || product.type == ProductType.INDIVIDUAL) {
+      if (
+        product.type == ProductType.BATCH ||
+        product.type == ProductType.INDIVIDUAL
+      ) {
         const standIn = product;
+        standIn.relations;
         standIn.relations
-        standIn.relations
-        .filter((relation) => {
-          return (
-            relation.type == ProductRelationType.BATCH ||
-            relation.type == ProductRelationType.INDIVIDUAL
-          );
-        })
-        .find((relation) => {
-          this.productService
-            .getProduct(relation.productOid)
-            .subscribe({ next: (prod) => this.selectProduct(prod, standIn) });
-        });
+          .filter((relation) => {
+            return (
+              relation.type == ProductRelationType.BATCH ||
+              relation.type == ProductRelationType.INDIVIDUAL
+            );
+          })
+          .find((relation) => {
+            this.productService
+              .getProduct(relation.productOid)
+              .subscribe({ next: (prod) => this.selectProduct(prod, standIn) });
+          });
       } else {
         this.selectProduct(product);
       }
