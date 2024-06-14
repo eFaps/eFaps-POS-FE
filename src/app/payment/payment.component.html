@@ -20,11 +20,11 @@
     <div class="button-list">
       <button mat-fab color="primary" (click)="showDiscount()" class="discount-btn">Desc.</button>
       <button mat-fab color="primary" (click)="addNote()" class="discount-btn" *ngIf="activateNote">
-        <mat-icon class="posIcon-36">note</mat-icon>
+        <mat-icon>note</mat-icon>
       </button>
       <div *ngIf="allowAssignSeller" class="seller">
         <button mat-fab color="primary" class="employee-btn" (click)="assignSeller()">
-          <mat-icon class="posIcon-36">person_pin</mat-icon>
+          <mat-icon>person_pin</mat-icon>
         </button>
         <div class="seller-label" *ngIf="seller"><span>{{seller.firstName}} {{seller.surName}}</span></div>
       </div>

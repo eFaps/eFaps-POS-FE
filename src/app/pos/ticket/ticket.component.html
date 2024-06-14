@@ -45,10 +45,10 @@
       <td mat-cell *matCellDef="let item">
         <div class="buttons">
         <button (click)="add(item)" *ngIf="!isChild(item)">
-          <mat-icon class="posIcon-36">control_point</mat-icon>
+          <mat-icon>control_point</mat-icon>
         </button>
         <button (click)="subtract(item)" *ngIf="!isChild(item)">
-          <mat-icon class="posIcon-36">indeterminate_check_box</mat-icon>
+          <mat-icon>indeterminate_check_box</mat-icon>
         </button>
       </div>
       </td>

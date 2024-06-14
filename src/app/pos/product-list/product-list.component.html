@@ -23,11 +23,11 @@
     <ng-container matColumnDef="cmd">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let product">
-        <button (click)="show(product)" mat-stroked-button>
-          <mat-icon  class="posIcon-36">info</mat-icon>
+        <button (click)="show(product)" mat-icon-button>
+          <mat-icon>info</mat-icon>
         </button>
-        <button (click)="select(product)" [disabled]="!selectable(product)" mat-stroked-button>
-          <mat-icon class="posIcon-36" [class.mat-warn]="isStockable(product) && !hasStock(product)">check_circle_outline</mat-icon>
+        <button (click)="select(product)" [disabled]="!selectable(product)" mat-icon-button>
+          <mat-icon [class.mat-warn]="isStockable(product) && !hasStock(product)">check_circle_outline</mat-icon>
         </button>
       </mat-cell>
     </ng-container>
