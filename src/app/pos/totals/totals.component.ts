@@ -1,5 +1,7 @@
 import { Component, OnInit, effect } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { Currency, PosService } from "@efaps/pos-library";
+import { PromoDialogComponent } from "src/app/shared/promo-dialog/promo-dialog.component";
 
 @Component({
   selector: "app-totals",
@@ -14,7 +16,7 @@ export class TotalsComponent implements OnInit {
   totalDiscount: number = 0;
   currentCurrency: Currency = Currency.PEN;
 
-  constructor(private posService: PosService) {
+  constructor( private dialog: MatDialog, private posService: PosService) {
     effect(() => {
       let promoInfo = this.posService.promotionInfo();
       if (promoInfo != null) {
@@ -39,5 +41,9 @@ export class TotalsComponent implements OnInit {
     this.posService.currentPayableAmount.subscribe(
       (_data) => (this.payableAmount = _data)
     );
+  }
+
+  showPromoInfo() {
+    this.dialog.open(PromoDialogComponent)
   }
 }

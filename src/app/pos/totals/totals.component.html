@@ -12,7 +12,7 @@
   <ng-container *ngIf="totalDiscount && totalDiscount > 0">
     <mat-list-item class="amount">
       <div matLine class="totalDiscount">
-        Descuento: {{totalDiscount | posCurrency:currentCurrency}}
+        <button mat-button (click)="showPromoInfo()">Descuento: {{totalDiscount | posCurrency:currentCurrency}}</button>
       </div>
     </mat-list-item>
   </ng-container>

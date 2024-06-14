@@ -1,9 +1,11 @@
-
-
 .totalDiscount {
-  color: var(--mat-badge-background-color);
+  ::ng-deep .mdc-button__label {
+    color: var(--mat-badge-background-color);
+  }
+  ::ng-deep button {
+    left: -8px;
+  }
 }
-
 
 .mat-mdc-list-item {
   height: 32px;

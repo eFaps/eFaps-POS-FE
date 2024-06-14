@@ -16,6 +16,8 @@ import {
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTableDataSource } from "@angular/material/table";
 import { Decimal } from "decimal.js";
+import { MatDialog } from "@angular/material/dialog";
+import { PromoDialogComponent } from "src/app/shared/promo-dialog/promo-dialog.component";
 
 @Component({
   selector: "app-ticket",
@@ -40,7 +42,7 @@ export class TicketComponent implements OnInit {
   @Input() isBarcode: boolean = false;
   @Output() multiplierClick = new EventEmitter<any>();
 
-  constructor(private posService: PosService, private snackBar: MatSnackBar) {
+  constructor(private posService: PosService, private snackBar: MatSnackBar, private dialog: MatDialog) {
     effect(() => {
       this.displayedColumns = this.displayedColumns.filter(
         (name) => "discount" != name
@@ -155,5 +157,9 @@ export class TicketComponent implements OnInit {
       return this.promoDetails[index].discount;
     }
     return 0;
+  }
+
+  showPromoInfo(index: number) {
+    this.dialog.open(PromoDialogComponent)
   }
 }

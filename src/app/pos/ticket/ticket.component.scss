@@ -70,6 +70,9 @@
   flex-direction: column;
   align-items: flex-start;
 }
+
 .discount {
-  color: var(--mat-badge-background-color);
+  ::ng-deep .mdc-button__label {
+    color: var(--mat-badge-background-color) !important;
+  }
 }
