@@ -33,7 +33,7 @@
     "@angular/platform-browser": "^18.0.3",
     "@angular/platform-browser-dynamic": "^18.0.3",
     "@angular/router": "^18.0.3",
-    "@efaps/angular-onscreen-material-keyboard": "^0.17.0",
+    "@efaps/angular-onscreen-material-keyboard": "^0.18.0",
     "@efaps/ngx-store": "^9.0.0",
     "@efaps/pos-library": "^10.0.0",
     "@ngx-pwa/local-storage": "^17.0.0",
