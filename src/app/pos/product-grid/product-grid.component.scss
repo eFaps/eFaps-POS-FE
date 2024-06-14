@@ -6,17 +6,17 @@
   $primary: map-get($theme, primary);
 
   button {
-    color: mat.get-color-from-palette($foreground, text);
-    background-color: mat.get-color-from-palette($background, card);
+    color: mat.m2-get-color-from-palette($foreground, text);
+    background-color: mat.m2-get-color-from-palette($background, card);
   }
 
   .pos-productgrid {
     .pos-card {
       .pos-card-image {
-        background-color: mat.get-color-from-palette($background, selected-button);
+        background-color: mat.m2-get-color-from-palette($background, selected-button);
       }
       .pos-card-price {
-        background-color: mat.get-color-from-palette($primary);
+        background-color: mat.m2-get-color-from-palette($primary);
       }
     }
   }
