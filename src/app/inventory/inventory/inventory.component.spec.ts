@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatTabsModule } from "@angular/material/tabs";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { InventoryService } from "@efaps/pos-library";
@@ -20,7 +20,7 @@ describe("InventoryComponent", () => {
   let component: InventoryComponent;
   let fixture: ComponentFixture<InventoryComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, MatTabsModule],
       providers: [
@@ -31,7 +31,7 @@ describe("InventoryComponent", () => {
         MockComponent(InventoryTableComponent),
       ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(InventoryComponent);

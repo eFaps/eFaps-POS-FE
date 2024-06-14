@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -51,7 +51,7 @@ describe("DiscountComponent", () => {
   let component: DiscountComponent;
   let fixture: ComponentFixture<DiscountComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, ReactiveFormsModule],
       providers: [
@@ -72,7 +72,7 @@ describe("DiscountComponent", () => {
         MockComponent(KeypadComponent),
       ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DiscountComponent);

@@ -5,7 +5,10 @@ import { PosConfigToken, PosService, ProductService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
 import { ProductsElementComponent } from "./products-element.component";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 class PosServiceStub {
   currentOrder = new Observable((observer) => {
     observer.next({});
@@ -28,18 +31,18 @@ describe("ProductsElementComponent", () => {
   let component: ProductsElementComponent;
   let fixture: ComponentFixture<ProductsElementComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-    declarations: [ProductsElementComponent],
-    imports: [MatDialogModule],
-    providers: [
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [ProductsElementComponent],
+      imports: [MatDialogModule],
+      providers: [
         { provide: PosConfigToken, useValue: {} },
         { provide: PosService, useClass: PosServiceStub },
         { provide: ProductService, useClass: ProductServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ]
-}).compileComponents();
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ProductsElementComponent);
     component = fixture.componentInstance;

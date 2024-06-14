@@ -1,5 +1,8 @@
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
@@ -41,27 +44,29 @@ describe("AutoComponent", () => {
   let component: AutoComponent;
   let fixture: ComponentFixture<AutoComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         AutoComponent,
         MockPipe(TranslatePipe),
         MockComponent(KeypadComponent),
-    ],
-    imports: [BrowserAnimationsModule,
+      ],
+      imports: [
+        BrowserAnimationsModule,
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule,
         MatRadioModule,
-        MatFormFieldModule],
-    providers: [
+        MatFormFieldModule,
+      ],
+      providers: [
         { provide: MsgService, useClass: MsgServiceStub },
         { provide: CollectService, useClass: CollectServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
-    ]
-}).compileComponents();
-  }));
+      ],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AutoComponent);

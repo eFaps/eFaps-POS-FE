@@ -33,8 +33,8 @@ describe("StocktakingEntryTableComponent", () => {
   let component: StocktakingEntryTableComponent;
   let fixture: ComponentFixture<StocktakingEntryTableComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [
         MatPaginatorModule,
         NoopAnimationsModule,

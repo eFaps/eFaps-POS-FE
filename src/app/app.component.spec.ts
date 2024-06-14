@@ -1,5 +1,8 @@
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
-import { TestBed, async } from "@angular/core/testing";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
+import { TestBed } from "@angular/core/testing";
 import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MatSidenavModule } from "@angular/material/sidenav";
@@ -38,43 +41,45 @@ class HotkeysServiceStub {
   add() {}
 }
 describe("AppComponent", () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-    declarations: [
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
         AppComponent,
         MockComponent(ThemePickerComponent),
         MockPipe(TranslatePipe),
-    ],
-    imports: [HotkeyModule,
+      ],
+      imports: [
+        HotkeyModule,
         RouterTestingModule,
         AngularSvgIconModule,
         BrowserAnimationsModule,
         MatSidenavModule,
         MatListModule,
         MatIconModule,
-        MatToolbarModule],
-    providers: [
+        MatToolbarModule,
+      ],
+      providers: [
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: HotkeysService, useClass: HotkeysServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: TranslateService, useClass: TranslateServiceSub },
         {
-            provide: SvgIconRegistryService,
-            useClass: SvgIconRegistryServiceStub,
+          provide: SvgIconRegistryService,
+          useClass: SvgIconRegistryServiceStub,
         },
         {
-            provide: PosConfigToken,
-            useValue: {
-                order: "",
-            },
+          provide: PosConfigToken,
+          useValue: {
+            order: "",
+          },
         },
         provideHttpClient(withInterceptorsFromDi()),
-    ]
-}).compileComponents();
+      ],
+    }).compileComponents();
   });
-  it("should create the app", async(() => {
+  it("should create the app", () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  }));
+  });
 });

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BalanceService, DocumentService } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
@@ -26,8 +26,8 @@ describe("BalancePaymentListComponent", () => {
   let component: BalancePaymentListComponent;
   let fixture: ComponentFixture<BalancePaymentListComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, MatListModule],
       providers: [
         { provide: DocumentService, useClass: DocumentServiceStub },

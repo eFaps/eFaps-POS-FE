@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
@@ -15,7 +15,10 @@ import { Observable } from "rxjs";
 import { CommandsComponent } from "./commands.component";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 
 class PosServiceStub {
   currentOrder = new Observable((observer) => {
@@ -51,18 +54,20 @@ describe("CommandsComponent", () => {
   let component: CommandsComponent;
   let fixture: ComponentFixture<CommandsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         CommandsComponent,
         MockDirective(TranslateDirective),
         MockPipe(TranslatePipe, (...args) => "Hallo"),
-    ],
-    imports: [BrowserAnimationsModule,
+      ],
+      imports: [
+        BrowserAnimationsModule,
         RouterTestingModule,
         MatDialogModule,
-        MatSnackBarModule],
-    providers: [
+        MatSnackBarModule,
+      ],
+      providers: [
         { provide: PosConfigToken, useValue: {} },
         { provide: PosService, useClass: PosServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
@@ -70,9 +75,9 @@ describe("CommandsComponent", () => {
         { provide: MatSnackBar, useClass: MatSnackBar },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ]
-}).compileComponents();
-  }));
+      ],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CommandsComponent);

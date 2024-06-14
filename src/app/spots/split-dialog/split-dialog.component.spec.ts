@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -13,7 +13,7 @@ describe("SplitDialogComponent", () => {
   let component: SplitDialogComponent;
   let fixture: ComponentFixture<SplitDialogComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
@@ -24,7 +24,7 @@ describe("SplitDialogComponent", () => {
       providers: [{ provide: MatDialogRef, useValue: {} }],
       declarations: [SplitDialogComponent, MockComponent(KeypadComponent)],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SplitDialogComponent);

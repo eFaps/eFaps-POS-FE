@@ -9,8 +9,8 @@ describe("ContactDialogComponent", () => {
   let component: ContactDialogComponent;
   let fixture: ComponentFixture<ContactDialogComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [MatDialogModule],
       declarations: [ContactDialogComponent, MockComponent(ContactComponent)],
       providers: [{ provide: MatDialogRef, useValue: {} }],

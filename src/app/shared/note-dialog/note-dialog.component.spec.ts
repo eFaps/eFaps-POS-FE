@@ -7,8 +7,8 @@ describe("NoteDialogComponent", () => {
   let component: NoteDialogComponent;
   let fixture: ComponentFixture<NoteDialogComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       declarations: [NoteDialogComponent],
       providers: [
         { provide: MatDialogRef, useValue: {} },

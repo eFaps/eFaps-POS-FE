@@ -19,8 +19,8 @@ describe("AddPaymentDialogComponent", () => {
   let component: AddPaymentDialogComponent;
   let fixture: ComponentFixture<AddPaymentDialogComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
         MatSelectModule,

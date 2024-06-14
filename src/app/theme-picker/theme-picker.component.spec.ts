@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatIconModule } from "@angular/material/icon";
 import { MatMenuModule } from "@angular/material/menu";
@@ -11,7 +11,7 @@ describe("ThemePickerComponent", () => {
   let component: ThemePickerComponent;
   let fixture: ComponentFixture<ThemePickerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -23,7 +23,7 @@ describe("ThemePickerComponent", () => {
       providers: [],
       declarations: [ThemePickerComponent],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ThemePickerComponent);

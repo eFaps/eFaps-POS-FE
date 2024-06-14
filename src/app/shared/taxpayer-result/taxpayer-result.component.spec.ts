@@ -1,6 +1,9 @@
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatTableModule } from "@angular/material/table";
@@ -42,21 +45,19 @@ describe("TaxpayerResultComponent", () => {
   let component: TaxpayerResultComponent;
   let fixture: ComponentFixture<TaxpayerResultComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TaxpayerResultComponent],
-    imports: [NoopAnimationsModule,
-        MatPaginatorModule,
-        MatTableModule],
-    providers: [
+      declarations: [TaxpayerResultComponent],
+      imports: [NoopAnimationsModule, MatPaginatorModule, MatTableModule],
+      providers: [
         { provide: EnquiryService, useClass: EnquiryServiceStub },
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ]
-}).compileComponents();
-  }));
+      ],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TaxpayerResultComponent);

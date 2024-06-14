@@ -1,12 +1,10 @@
 import { LiveAnnouncer } from "@angular/cdk/a11y";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
-import { DebugElement } from "@angular/core";
 import {
-  ComponentFixture,
-  TestBed,
-  async,
-  inject,
-} from "@angular/core/testing";
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
+import { DebugElement } from "@angular/core";
+import { ComponentFixture, TestBed, inject } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatCardModule } from "@angular/material/card";
@@ -95,14 +93,15 @@ describe("LoginComponent", () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         VirtKeyboardDirective,
         LoginComponent,
         MockPipe(TranslatePipe),
-    ],
-    imports: [AngularSvgIconModule,
+      ],
+      imports: [
+        AngularSvgIconModule,
         BrowserAnimationsModule,
         MatCardModule,
         MatKeyboardModule,
@@ -112,8 +111,9 @@ describe("LoginComponent", () => {
         ReactiveFormsModule,
         RouterTestingModule,
         MatSlideToggleModule,
-        MatButtonToggleModule],
-    providers: [
+        MatButtonToggleModule,
+      ],
+      providers: [
         { provide: CompanyService, useClass: CompanyServiceStub },
         { provide: MatKeyboardService, useClass: MatKeyboardServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
@@ -123,14 +123,14 @@ describe("LoginComponent", () => {
         { provide: UserService, useClass: UserServiceStub },
         { provide: Router, useClass: RouterStub },
         {
-            provide: SvgIconRegistryService,
-            useClass: SvgIconRegistryServiceStub,
+          provide: SvgIconRegistryService,
+          useClass: SvgIconRegistryServiceStub,
         },
         { provide: LiveAnnouncer, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
-    ]
-}).compileComponents();
-  }));
+      ],
+    }).compileComponents();
+  });
 
   describe("Standard Login", () => {
     beforeEach(() => {

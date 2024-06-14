@@ -90,7 +90,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
-    this.matIconReg.setDefaultFontSetClass('material-symbols-sharp');
+    this.matIconReg.setDefaultFontSetClass("material-symbols-sharp");
     this.companyService.company.subscribe({
       next: (data) =>
         data ? (this.company = data.label) : (this.company = null),

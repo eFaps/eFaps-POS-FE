@@ -1,5 +1,5 @@
 import { provideHttpClientTesting } from "@angular/common/http/testing";
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
@@ -20,7 +20,10 @@ import { BalanceSummaryComponent } from "../balance-summary/balance-summary.comp
 import { DocumentListComponent } from "../document-list/document-list.component";
 import { BalanceComponent } from "./balance.component";
 import { MatTabsModule } from "@angular/material/tabs";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 
 class BalanceServiceStub {
   currentBalance = new Observable((observer) => {
@@ -45,9 +48,9 @@ describe("BalanceComponent", () => {
   let component: BalanceComponent;
   let fixture: ComponentFixture<BalanceComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         BalanceComponent,
         MockComponent(BalanceSummaryComponent),
         MockComponent(BalanceListComponent),
@@ -55,20 +58,18 @@ describe("BalanceComponent", () => {
         MockComponent(BalancePaymentListComponent),
         MockComponent(DocumentListComponent),
         MockPipe(TranslatePipe),
-    ],
-    imports: [BrowserAnimationsModule,
-        MatDialogModule,
-        MatTabsModule],
-    providers: [
+      ],
+      imports: [BrowserAnimationsModule, MatDialogModule, MatTabsModule],
+      providers: [
         { provide: BalanceService, useClass: BalanceServiceStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
         { provide: TranslateService, useClass: TranslateServiceStub },
         { provide: PosConfigToken, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ]
-}).compileComponents();
-  }));
+      ],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BalanceComponent);

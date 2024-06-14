@@ -1,5 +1,8 @@
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import { PosConfigToken } from "@efaps/pos-library";
 import { Mock, MockComponent } from "ng-mocks";
@@ -11,16 +14,19 @@ describe("BalanceSummaryComponent", () => {
   let component: BalanceSummaryComponent;
   let fixture: ComponentFixture<BalanceSummaryComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         MockComponent(BalanceSummarySectionComponent),
         BalanceSummaryComponent,
-    ],
-    imports: [MatDialogModule],
-    providers: [{ provide: PosConfigToken, useValue: {} }, provideHttpClient(withInterceptorsFromDi())]
-}).compileComponents();
-  }));
+      ],
+      imports: [MatDialogModule],
+      providers: [
+        { provide: PosConfigToken, useValue: {} },
+        provideHttpClient(withInterceptorsFromDi()),
+      ],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BalanceSummaryComponent);

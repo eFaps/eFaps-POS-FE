@@ -10,8 +10,8 @@ describe("GridElementComponent", () => {
   let component: GridElementComponent;
   let fixture: ComponentFixture<GridElementComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [MatTabsModule],
       declarations: [GridElementComponent],
       providers: [{ provide: ProductService, useClass: ProductServiceStub }],

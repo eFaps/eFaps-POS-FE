@@ -1,6 +1,9 @@
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -17,22 +20,28 @@ describe("DocumentListComponent", () => {
   let component: DocumentListComponent;
   let fixture: ComponentFixture<DocumentListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         DocumentListComponent,
         MockPipe(TranslatePipe),
         MockPipe(PosCurrencyPipe),
-    ],
-    imports: [ReactiveFormsModule,
+      ],
+      imports: [
+        ReactiveFormsModule,
         BrowserAnimationsModule,
         MatDialogModule,
         MatTableModule,
         MatFormFieldModule,
-        MatInputModule],
-    providers: [{ provide: PosConfigToken, useValue: {} }, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
-  }));
+        MatInputModule,
+      ],
+      providers: [
+        { provide: PosConfigToken, useValue: {} },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DocumentListComponent);

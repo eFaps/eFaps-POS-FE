@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -16,7 +16,7 @@ describe("TaxpayerQueryComponent", () => {
   let component: TaxpayerQueryComponent;
   let fixture: ComponentFixture<TaxpayerQueryComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
@@ -33,7 +33,7 @@ describe("TaxpayerQueryComponent", () => {
         { provide: MatDialogRef, useValue: {} },
       ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TaxpayerQueryComponent);

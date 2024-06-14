@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatTableModule } from "@angular/material/table";
 import { PosCurrencyPipe } from "@efaps/pos-library";
 import { MockPipe } from "ng-mocks";
@@ -9,12 +9,12 @@ describe("ReassignItemComponent", () => {
   let component: ReassignItemComponent;
   let fixture: ComponentFixture<ReassignItemComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [MatTableModule],
       declarations: [MockPipe(PosCurrencyPipe), ReassignItemComponent],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ReassignItemComponent);

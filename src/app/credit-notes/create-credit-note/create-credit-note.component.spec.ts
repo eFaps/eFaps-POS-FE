@@ -17,7 +17,10 @@ import { DocumentComponent } from "../../shared/document/document.component";
 import { SharedModule } from "../../shared/shared.module";
 
 import { CreateCreditNoteComponent } from "./create-credit-note.component";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 
 class DocumentServiceStub {}
 class BalanceServiceStub {
@@ -41,14 +44,14 @@ describe("CreateCreditNoteComponent", () => {
   let component: CreateCreditNoteComponent;
   let fixture: ComponentFixture<CreateCreditNoteComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-    declarations: [
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
         CreateCreditNoteComponent,
         MockComponent(DocumentComponent),
-    ],
-    imports: [MatDialogModule, MatListModule],
-    providers: [
+      ],
+      imports: [MatDialogModule, MatListModule],
+      providers: [
         { provide: ActivatedRoute, useClass: ActivatedRouteStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
         { provide: BalanceService, useClass: BalanceServiceStub },
@@ -56,15 +59,15 @@ describe("CreateCreditNoteComponent", () => {
         { provide: PaymentService, useClass: PaymentServiceStub },
         { provide: MatDialogRef, useValue: {} },
         {
-            provide: PosConfigToken,
-            useValue: {
-                order: "",
-            },
+          provide: PosConfigToken,
+          useValue: {
+            order: "",
+          },
         },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ]
-}).compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

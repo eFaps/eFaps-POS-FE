@@ -1,6 +1,6 @@
 import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { DebugElement } from "@angular/core";
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatTableModule } from "@angular/material/table";
@@ -17,7 +17,10 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 
 class ContactServiceStub {
   getContacts(): Observable<Page<Contact>> {
@@ -50,25 +53,27 @@ describe("ContactTableComponent", () => {
   let component: ContactTableComponent;
   let fixture: ComponentFixture<ContactTableComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [MockPipe(TranslatePipe), ContactTableComponent],
-    imports: [BrowserAnimationsModule,
+      declarations: [MockPipe(TranslatePipe), ContactTableComponent],
+      imports: [
+        BrowserAnimationsModule,
         ReactiveFormsModule,
         MatDialogModule,
         MatTableModule,
         MatFormFieldModule,
         MatInputModule,
         MatPaginatorModule,
-        MatSortModule],
-    providers: [
+        MatSortModule,
+      ],
+      providers: [
         { provide: ContactService, useClass: ContactServiceStub },
         { provide: PosConfigToken, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ]
-}).compileComponents();
-  }));
+      ],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ContactTableComponent);

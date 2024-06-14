@@ -9,7 +9,10 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { FormBuilder } from "@angular/forms";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 
 class ActivatedRouteStub {
   params = new Observable((observer) => {});
@@ -29,12 +32,11 @@ describe("StocktakingComponent", () => {
   let component: StocktakingComponent;
   let fixture: ComponentFixture<StocktakingComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-    declarations: [StocktakingComponent],
-    imports: [MatDialogModule,
-        MatAutocompleteModule],
-    providers: [
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [StocktakingComponent],
+      imports: [MatDialogModule, MatAutocompleteModule],
+      providers: [
         MatSnackBar,
         FormBuilder,
         { provide: Router, useClass: RouterStub },
@@ -43,8 +45,8 @@ describe("StocktakingComponent", () => {
         { provide: PosConfigToken, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ]
-}).compileComponents();
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(StocktakingComponent);
     component = fixture.componentInstance;

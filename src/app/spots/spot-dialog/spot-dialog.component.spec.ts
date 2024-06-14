@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -23,7 +23,7 @@ describe("SpotDialogComponent", () => {
   let component: SpotDialogComponent;
   let fixture: ComponentFixture<SpotDialogComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, RouterTestingModule, MatDialogModule],
       providers: [
@@ -33,7 +33,7 @@ describe("SpotDialogComponent", () => {
       ],
       declarations: [SpotDialogComponent, MockPipe(TranslatePipe)],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SpotDialogComponent);

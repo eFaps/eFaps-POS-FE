@@ -1,6 +1,6 @@
 import { LiveAnnouncer } from "@angular/cdk/a11y";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import {
   MAT_DIALOG_DATA,
@@ -32,7 +32,10 @@ import {
   TranslateLoaderFactory,
 } from "../../shared/shared.module";
 import { CreateContactDialogComponent } from "./create-contact-dialog.component";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 
 class TranslateServiceStub {
   get() {
@@ -48,12 +51,13 @@ describe("CreateContactDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         CreateContactDialogComponent,
         MockDirective(VirtKeyboardDirective),
         MockPipe(TranslatePipe),
-    ],
-    imports: [BrowserAnimationsModule,
+      ],
+      imports: [
+        BrowserAnimationsModule,
         ReactiveFormsModule,
         MatSnackBarModule,
         MatFormFieldModule,
@@ -62,12 +66,13 @@ describe("CreateContactDialogComponent", () => {
         SharedModule,
         MatDialogModule,
         TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: TranslateLoaderFactory,
-            },
-        })],
-    providers: [
+          loader: {
+            provide: TranslateLoader,
+            useFactory: TranslateLoaderFactory,
+          },
+        }),
+      ],
+      providers: [
         ConfigService,
         WorkspaceService,
         { provide: MatDialogRef, useValue: {} },
@@ -77,8 +82,8 @@ describe("CreateContactDialogComponent", () => {
         { provide: TranslateService, useClass: TranslateServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ]
-}).compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -18,7 +18,7 @@ describe("PrintDialogComponent", () => {
   let component: PrintDialogComponent;
   let fixture: ComponentFixture<PrintDialogComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, MatDialogModule],
       providers: [
@@ -36,7 +36,7 @@ describe("PrintDialogComponent", () => {
         MockComponent(PrintDisplayComponent),
       ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PrintDialogComponent);

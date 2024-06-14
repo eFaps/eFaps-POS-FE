@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Balance, BalanceService, BalanceSummary } from "@efaps/pos-library";
@@ -18,7 +18,7 @@ describe("BalanceSummaryDialogComponent", () => {
   let component: BalanceSummaryDialogComponent;
   let fixture: ComponentFixture<BalanceSummaryDialogComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule],
       providers: [
@@ -30,7 +30,7 @@ describe("BalanceSummaryDialogComponent", () => {
         BalanceSummaryDialogComponent,
       ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BalanceSummaryDialogComponent);

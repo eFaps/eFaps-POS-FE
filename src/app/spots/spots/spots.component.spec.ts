@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { Workspace, WorkspaceService } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
@@ -15,7 +15,7 @@ describe("SpotsComponent", () => {
   let component: SpotsComponent;
   let fixture: ComponentFixture<SpotsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [],
       providers: [
@@ -27,7 +27,7 @@ describe("SpotsComponent", () => {
         SpotsComponent,
       ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SpotsComponent);

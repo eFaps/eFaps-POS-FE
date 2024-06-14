@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatIconModule } from "@angular/material/icon";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -16,13 +16,13 @@ describe("KeypadComponent", () => {
   let component: KeypadComponent;
   let fixture: ComponentFixture<KeypadComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, MatGridListModule, MatIconModule],
       providers: [{ provide: HotkeysService, useClass: HotkeysServiceStub }],
       declarations: [KeypadComponent],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(KeypadComponent);

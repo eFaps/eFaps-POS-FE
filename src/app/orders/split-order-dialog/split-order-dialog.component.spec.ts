@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import {
   MAT_DIALOG_DATA,
@@ -19,7 +19,7 @@ describe("SplitOrderDialogComponent", () => {
   let component: SplitOrderDialogComponent;
   let fixture: ComponentFixture<SplitOrderDialogComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -41,7 +41,7 @@ describe("SplitOrderDialogComponent", () => {
       ],
       declarations: [SplitOrderDialogComponent],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SplitOrderDialogComponent);

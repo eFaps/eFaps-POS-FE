@@ -1,5 +1,8 @@
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MockComponent } from "ng-mocks";
 
@@ -13,19 +16,19 @@ describe("DocumentDialogComponent", () => {
   let component: DocumentDialogComponent;
   let fixture: ComponentFixture<DocumentDialogComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [DocumentDialogComponent, MockComponent(DocumentComponent)],
-    imports: [],
-    providers: [
+      declarations: [DocumentDialogComponent, MockComponent(DocumentComponent)],
+      imports: [],
+      providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
         { provide: DocumentService, useClass: DocumentServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
-    ]
-}).compileComponents();
-  }));
+      ],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DocumentDialogComponent);

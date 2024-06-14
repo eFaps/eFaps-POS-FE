@@ -9,8 +9,8 @@ describe("PartListRelationComponent", () => {
   let component: PartListRelationComponent;
   let fixture: ComponentFixture<PartListRelationComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       declarations: [PartListRelationComponent],
       providers: [{ provide: ProductService, useClass: ProductServiceStub }],
     }).compileComponents();

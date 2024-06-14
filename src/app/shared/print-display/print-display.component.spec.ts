@@ -1,22 +1,29 @@
 import { provideHttpClientTesting } from "@angular/common/http/testing";
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { PosConfigToken } from "@efaps/pos-library";
 
 import { PrintDisplayComponent } from "./print-display.component";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 
 describe("PrintDisplayComponent", () => {
   let component: PrintDisplayComponent;
   let fixture: ComponentFixture<PrintDisplayComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [PrintDisplayComponent],
-    imports: [MatProgressSpinnerModule],
-    providers: [{ provide: PosConfigToken, useValue: {} }, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
-  }));
+      declarations: [PrintDisplayComponent],
+      imports: [MatProgressSpinnerModule],
+      providers: [
+        { provide: PosConfigToken, useValue: {} },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PrintDisplayComponent);

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Balance, BalanceService } from "@efaps/pos-library";
@@ -17,13 +17,13 @@ describe("BalanceListComponent", () => {
   let component: BalanceListComponent;
   let fixture: ComponentFixture<BalanceListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, MatDialogModule, MatTableModule],
       providers: [{ provide: BalanceService, useClass: BalanceServiceStub }],
       declarations: [BalanceListComponent],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BalanceListComponent);

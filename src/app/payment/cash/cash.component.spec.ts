@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -46,7 +46,7 @@ describe("CashComponent", () => {
   let component: CashComponent;
   let fixture: ComponentFixture<CashComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -70,7 +70,7 @@ describe("CashComponent", () => {
         MockComponent(KeypadComponent),
       ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CashComponent);

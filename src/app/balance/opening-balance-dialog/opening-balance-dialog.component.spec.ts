@@ -11,8 +11,8 @@ describe("OpeningBalanceDialogComponent", () => {
   let component: OpeningBalanceDialogComponent;
   let fixture: ComponentFixture<OpeningBalanceDialogComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [
         MatDialogModule,
         MatFormFieldModule,

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -13,7 +13,7 @@ describe("SelectOrderDialogComponent", () => {
   let component: SelectOrderDialogComponent;
   let fixture: ComponentFixture<SelectOrderDialogComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [MatDialogModule, MatFormFieldModule, MatInputModule],
       providers: [
@@ -22,7 +22,7 @@ describe("SelectOrderDialogComponent", () => {
       ],
       declarations: [SelectOrderDialogComponent],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SelectOrderDialogComponent);

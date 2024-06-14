@@ -12,7 +12,10 @@ import { EmployeeService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
 import { EmployeeDialogComponent } from "./employee-dialog.component";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 
 class EmployeeServiceStub {
   getEmployees() {
@@ -26,26 +29,28 @@ describe("EmployeeDialogComponent", () => {
   let component: EmployeeDialogComponent;
   let fixture: ComponentFixture<EmployeeDialogComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-    declarations: [EmployeeDialogComponent],
-    imports: [NoopAnimationsModule,
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [EmployeeDialogComponent],
+      imports: [
+        NoopAnimationsModule,
         MatSelectModule,
         MatDialogModule,
-        ReactiveFormsModule],
-    providers: [
+        ReactiveFormsModule,
+      ],
+      providers: [
         { provide: EmployeeService, useClass: EmployeeServiceStub },
         { provide: MatDialogRef, useValue: {} },
         {
-            provide: MAT_DIALOG_DATA,
-            useValue: {
-                oid: "132.456",
-            },
+          provide: MAT_DIALOG_DATA,
+          useValue: {
+            oid: "132.456",
+          },
         },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ]
-}).compileComponents();
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(EmployeeDialogComponent);
     component = fixture.componentInstance;

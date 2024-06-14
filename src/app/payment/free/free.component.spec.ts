@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
@@ -45,7 +45,7 @@ describe("FreeComponent", () => {
   let component: FreeComponent;
   let fixture: ComponentFixture<FreeComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -68,7 +68,7 @@ describe("FreeComponent", () => {
         MockComponent(KeypadComponent),
       ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FreeComponent);

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import { PosService, WorkspaceService } from "@efaps/pos-library";
@@ -25,7 +25,7 @@ describe("WorkspaceComponent", () => {
   let component: WorkspaceComponent;
   let fixture: ComponentFixture<WorkspaceComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, RouterTestingModule],
       providers: [
@@ -34,7 +34,7 @@ describe("WorkspaceComponent", () => {
       ],
       declarations: [WorkspaceComponent],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WorkspaceComponent);

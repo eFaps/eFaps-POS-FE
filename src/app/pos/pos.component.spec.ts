@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
@@ -35,7 +35,10 @@ import { ProductListComponent } from "./product-list/product-list.component";
 import { TicketComponent } from "./ticket/ticket.component";
 import { TotalsComponent } from "./totals/totals.component";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 
 class AuthServiceStub {
   getCurrentUsername() {
@@ -105,25 +108,27 @@ describe("PosComponent", () => {
   let component: PosComponent;
   let fixture: ComponentFixture<PosComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         PosComponent,
         MockComponent(ProductGridComponent),
         MockComponent(ProductListComponent),
         MockComponent(TicketComponent),
         MockComponent(TotalsComponent),
         MockComponent(CommandsComponent),
-    ],
-    imports: [BrowserAnimationsModule,
+      ],
+      imports: [
+        BrowserAnimationsModule,
         ReactiveFormsModule,
         RouterTestingModule,
         SharedModule,
         MatIconModule,
         MatButtonToggleModule,
         MatButtonModule,
-        MatSnackBarModule],
-    providers: [
+        MatSnackBarModule,
+      ],
+      providers: [
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: ContactService, useClass: ContactServiceStub },
         { provide: PosService, useClass: PosServiceStub },
@@ -135,12 +140,12 @@ describe("PosComponent", () => {
         { provide: MatSnackBar, useClass: MatSnackBar },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ]
-}).compileComponents();
+      ],
+    }).compileComponents();
     fixture = TestBed.createComponent(PosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();
