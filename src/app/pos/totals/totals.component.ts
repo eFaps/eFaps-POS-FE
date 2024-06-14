@@ -15,14 +15,14 @@ export class TotalsComponent implements OnInit {
   currentCurrency: Currency = Currency.PEN;
 
   constructor(private posService: PosService) {
-    effect(()=>{ 
-      let promoInfo = this.posService.promotionInfo()
+    effect(() => {
+      let promoInfo = this.posService.promotionInfo();
       if (promoInfo != null) {
-        this.totalDiscount = promoInfo.totalDiscount
+        this.totalDiscount = promoInfo.totalDiscount;
       } else {
-        this.totalDiscount = 0
+        this.totalDiscount = 0;
       }
-    })
+    });
   }
 
   ngOnInit() {
@@ -39,6 +39,5 @@ export class TotalsComponent implements OnInit {
     this.posService.currentPayableAmount.subscribe(
       (_data) => (this.payableAmount = _data)
     );
-   
   }
 }

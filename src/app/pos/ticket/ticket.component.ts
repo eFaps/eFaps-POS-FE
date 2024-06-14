@@ -1,5 +1,18 @@
-import { Currency, isChildItem, Item, PosService } from "@efaps/pos-library";
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import {
+  Currency,
+  isChildItem,
+  Item,
+  PosService,
+  PromoDetail,
+} from "@efaps/pos-library";
+import {
+  Component,
+  effect,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTableDataSource } from "@angular/material/table";
 import { Decimal } from "decimal.js";
@@ -15,16 +28,30 @@ export class TicketComponent implements OnInit {
     "childQuantity",
     "productDesc",
     "unitPrice",
+    "discount",
     "price",
-    "modify",
+    "modify"
   ];
   dataSource = new MatTableDataSource<Item>();
   currentCurrency: Currency = Currency.PEN;
   multiplier = 0;
+  promoDetails: PromoDetail[] = [];
+
   @Input() isBarcode: boolean = false;
   @Output() multiplierClick = new EventEmitter<any>();
 
-  constructor(private posService: PosService, private snackBar: MatSnackBar) {}
+  constructor(private posService: PosService, private snackBar: MatSnackBar) {
+    effect(() => {
+      this.displayedColumns = this.displayedColumns.filter(name =>  "discount" != name )
+      let promoInfo = this.posService.promotionInfo();
+      if (promoInfo != null) {
+        this.promoDetails = promoInfo.details;
+        this.displayedColumns.splice(4, 0, "discount");
+      } else {
+        this.promoDetails = [];
+      }
+    });
+  }
 
   ngOnInit() {
     this.posService.currentTicket.subscribe(
@@ -119,5 +146,12 @@ export class TicketComponent implements OnInit {
 
   isChild(item: Item) {
     return isChildItem(item);
+  }
+
+  getDiscount(index: number): number {
+    if (this.promoDetails.length > index) {
+      return this.promoDetails[index].discount;
+    }
+    return 0;
   }
 }
