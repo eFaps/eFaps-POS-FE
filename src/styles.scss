@@ -1,21 +1,21 @@
 @use '@angular/material' as mat;
-//@import './node_modules/@angular/material/theming';
-
-
-// for npm roboto-fontface package (to load local files)
-$roboto-font-path: "~roboto-fontface/fonts" !default;
-@import "roboto-fontface/css/roboto/sass/roboto-fontface";
-
-// for npm material-icons package (to load local files)
-$material-icons-font-path: '~material-icons/iconfont/';
-@import 'material-icons/iconfont/material-icons.scss';
 
 @include mat.core();
+
+@import "@fontsource/roboto";
+
+@import 'material-symbols';
 
 body {
   height: 100%;
   margin: 0;
   width: 100%;
+}
+
+.table-btn-icon {
+  font-size: 24px !important;
+  height: 24px !important;
+  width: 24px !important;
 }
 
 .posIcon-48 {

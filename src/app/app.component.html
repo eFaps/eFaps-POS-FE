@@ -13,52 +13,52 @@
       <mat-list>
         <mat-list-item *ngIf="hasPermission(Permission.ORDER)">
           <button routerLink="/pos" i18n-matTooltip="@@pos" matTooltip="Register" matTooltipPosition="right">
-              <mat-icon aria-label="POS" class="posIcon-36">shop</mat-icon>
+              <mat-icon aria-label="POS">shop</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item *ngIf="isLoggedIn()">
           <button routerLink="/products" i18n-matTooltip="@@products" matTooltip="Products" matTooltipPosition="right">
-            <mat-icon aria-label="products" class="posIcon-36">store</mat-icon>
+            <mat-icon aria-label="products" >store</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item *ngIf="isLoggedIn()">
           <button routerLink="/orders" i18n-matTooltip="@@orders" matTooltip="Orders" matTooltipPosition="right">
-            <mat-icon aria-label="Orders" class="posIcon-36">dns</mat-icon>
+            <mat-icon aria-label="Orders" >dns</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item *ngIf="spots">
           <button routerLink="/spots" i18n-matTooltip="@@spots" matTooltip="Tables" matTooltipPosition="right">
-              <mat-icon aria-label="Spots" class="posIcon-36">place</mat-icon>
+              <mat-icon aria-label="Spots" >place</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item *ngIf="inventory">
           <button routerLink="/inventory" i18n-matTooltip="@@inventory" matTooltip="Inventory" matTooltipPosition="right">
-            <mat-icon aria-label="inventory" class="posIcon-36">domain</mat-icon>
+            <mat-icon aria-label="inventory" >domain</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item *ngIf="isLoggedIn()">
           <button routerLink="/contacts"  i18n-matTooltip="@@contacts" matTooltip="Contacts" matTooltipPosition="right">
-            <mat-icon aria-label="Contacts" class="posIcon-36">contacts</mat-icon>
+            <mat-icon aria-label="Contacts" >contacts</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item *ngIf="isLoggedIn() && allowPayment">
           <button routerLink="/balance" i18n-matTooltip="@@balance" matTooltip="Balance" matTooltipPosition="right">
-            <mat-icon aria-label="Balance" class="posIcon-36">account_balance</mat-icon>
+            <mat-icon aria-label="Balance" >account_balance</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item *ngIf="isLoggedIn()">
           <button routerLink="/workspaces" i18n-matTooltip="@@workspaces" matTooltip="Workspaces" matTooltipPosition="right">
-              <mat-icon aria-label="Workspaces" class="posIcon-36">devices</mat-icon>
+              <mat-icon aria-label="Workspaces" >devices</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item *ngIf="hasPermission(Permission.ADMIN)" i18n-matTooltip="@@admin" matTooltip="Admin" matTooltipPosition="right">
           <button routerLink="/admin">
-              <mat-icon aria-label="Admin" class="posIcon-36">build</mat-icon>
+              <mat-icon aria-label="Admin" >build</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item>
           <button routerLink="/login" i18n-matTooltip="@@loginlogout" matTooltip="Login / Logout" matTooltipPosition="right">
-              <mat-icon aria-label="login" class="posIcon-36">bubble_chart</mat-icon>
+              <mat-icon aria-label="login" >bubble_chart</mat-icon>
           </button>
         </mat-list-item>
       </mat-list>

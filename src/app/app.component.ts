@@ -23,6 +23,7 @@ import { Hotkey, HotkeysService } from "angular2-hotkeys";
 import { TranslateService } from "@ngx-translate/core";
 
 import { environment } from "../environments/environment";
+import { MatIconRegistry } from "@angular/material/icon";
 
 @Component({
   selector: "app-root",
@@ -43,6 +44,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   isLoading = this.loaderService.isLoading;
 
   constructor(
+    private matIconReg: MatIconRegistry,
     public router: Router,
     private cdRef: ChangeDetectorRef,
     public authService: AuthService,
@@ -88,6 +90,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
+    this.matIconReg.setDefaultFontSetClass('material-symbols-sharp');
     this.companyService.company.subscribe({
       next: (data) =>
         data ? (this.company = data.label) : (this.company = null),

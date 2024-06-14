@@ -11,13 +11,13 @@
       <button *ngIf="currentLayout === PosLayout.GRID" mat-fab color="primary" (click)="openCatSelect()"
         class="catSelect">Cat.</button>
       <button class="remark-btn" (click)="toggleRemarkMode()" mat-fab color="{{remarkMode ? 'accent' : 'primary' }}">
-        <mat-icon class="posIcon-36">description</mat-icon>
+        <mat-icon>description</mat-icon>
       </button>
       <button mat-fab color="primary" (click)="switchLayout()"
         *ngIf="this.workspaceService.getPosLayout() === PosLayout.BOTH" class="switch">Switch</button>
       <div *ngIf="allowAssignSeller" class="seller">
         <button mat-fab color="primary" class="employee-btn" (click)="assignSeller()">
-          <mat-icon class="posIcon-36" fontIcon="person_pin"></mat-icon>
+          <mat-icon>person_pin</mat-icon>
         </button>
         <div class="seller-label" *ngIf="seller"><span>{{seller.firstName}} {{seller.surName}}</span></div>
       </div>
@@ -27,7 +27,7 @@
     <div>
       <div class='numPad-wrapper'>
         <mat-button-toggle [checked]="numPad" (click)="toggleNumPad()">
-          <mat-icon class="posIcon-36" fontIcon="dialpad"></mat-icon>
+          <mat-icon>dialpad</mat-icon>
         </mat-button-toggle>
         <div class='numPad-form-wrapper' *ngIf="numPad">
           <div>
