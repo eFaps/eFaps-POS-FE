@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, effect } from "@angular/core";
 import { Currency, PosService } from "@efaps/pos-library";
 
 @Component({
@@ -11,9 +11,19 @@ export class TotalsComponent implements OnInit {
   taxesEntries: [string, number][] = [];
   cross: number = 0;
   payableAmount: number = 0;
+  totalDiscount: number = 0;
   currentCurrency: Currency = Currency.PEN;
 
-  constructor(private posService: PosService) {}
+  constructor(private posService: PosService) {
+    effect(()=>{ 
+      let promoInfo = this.posService.promotionInfo()
+      if (promoInfo != null) {
+        this.totalDiscount = promoInfo.totalDiscount
+      } else {
+        this.totalDiscount = 0
+      }
+    })
+  }
 
   ngOnInit() {
     this.posService.currentCurrency.subscribe(
@@ -29,5 +39,6 @@ export class TotalsComponent implements OnInit {
     this.posService.currentPayableAmount.subscribe(
       (_data) => (this.payableAmount = _data)
     );
+   
   }
 }

@@ -9,6 +9,13 @@
       {{tax[0] | translate}}: {{tax[1] | posCurrency:currentCurrency}}
     </div>
   </mat-list-item>
+  <ng-container *ngIf="totalDiscount && totalDiscount > 0">
+    <mat-list-item class="amount">
+      <div matLine class="totalDiscount">
+        Descuento: {{totalDiscount | posCurrency:currentCurrency}}
+      </div>
+    </mat-list-item>
+  </ng-container>
   <mat-list-item class="amount">
     <div matLine>
       Total: {{cross | posCurrency:currentCurrency}}
