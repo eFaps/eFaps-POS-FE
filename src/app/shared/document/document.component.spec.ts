@@ -1,4 +1,4 @@
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatListModule } from "@angular/material/list";
@@ -35,26 +35,24 @@ describe("DocumentComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
+    declarations: [
+        DocumentComponent,
+        MockPipe(TranslatePipe),
+        MockPipe(PosCurrencyPipe),
+    ],
+    imports: [BrowserAnimationsModule,
         RouterTestingModule,
-        HttpClientModule,
         MatDialogModule,
         MatListModule,
-        MatTableModule,
-      ],
-      providers: [
+        MatTableModule],
+    providers: [
         { provide: PosConfigToken, useValue: {} },
         { provide: Router, useValue: routerSpy },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: PrintService, useClass: PrintServiceStub },
-      ],
-      declarations: [
-        DocumentComponent,
-        MockPipe(TranslatePipe),
-        MockPipe(PosCurrencyPipe),
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {

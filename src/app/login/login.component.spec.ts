@@ -1,5 +1,5 @@
 import { LiveAnnouncer } from "@angular/cdk/a11y";
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { DebugElement } from "@angular/core";
 import {
   ComponentFixture,
@@ -97,10 +97,13 @@ describe("LoginComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        AngularSvgIconModule,
+    declarations: [
+        VirtKeyboardDirective,
+        LoginComponent,
+        MockPipe(TranslatePipe),
+    ],
+    imports: [AngularSvgIconModule,
         BrowserAnimationsModule,
-        HttpClientModule,
         MatCardModule,
         MatKeyboardModule,
         MatSnackBarModule,
@@ -109,9 +112,8 @@ describe("LoginComponent", () => {
         ReactiveFormsModule,
         RouterTestingModule,
         MatSlideToggleModule,
-        MatButtonToggleModule,
-      ],
-      providers: [
+        MatButtonToggleModule],
+    providers: [
         { provide: CompanyService, useClass: CompanyServiceStub },
         { provide: MatKeyboardService, useClass: MatKeyboardServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
@@ -121,17 +123,13 @@ describe("LoginComponent", () => {
         { provide: UserService, useClass: UserServiceStub },
         { provide: Router, useClass: RouterStub },
         {
-          provide: SvgIconRegistryService,
-          useClass: SvgIconRegistryServiceStub,
+            provide: SvgIconRegistryService,
+            useClass: SvgIconRegistryServiceStub,
         },
         { provide: LiveAnnouncer, useValue: {} },
-      ],
-      declarations: [
-        VirtKeyboardDirective,
-        LoginComponent,
-        MockPipe(TranslatePipe),
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+    ]
+}).compileComponents();
   }));
 
   describe("Standard Login", () => {

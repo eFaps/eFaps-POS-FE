@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import {
@@ -12,6 +12,7 @@ import { EmployeeService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
 import { EmployeeDialogComponent } from "./employee-dialog.component";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 class EmployeeServiceStub {
   getEmployees() {
@@ -27,25 +28,24 @@ describe("EmployeeDialogComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        NoopAnimationsModule,
+    declarations: [EmployeeDialogComponent],
+    imports: [NoopAnimationsModule,
         MatSelectModule,
         MatDialogModule,
-        ReactiveFormsModule,
-      ],
-      declarations: [EmployeeDialogComponent],
-      providers: [
+        ReactiveFormsModule],
+    providers: [
         { provide: EmployeeService, useClass: EmployeeServiceStub },
         { provide: MatDialogRef, useValue: {} },
         {
-          provide: MAT_DIALOG_DATA,
-          useValue: {
-            oid: "132.456",
-          },
+            provide: MAT_DIALOG_DATA,
+            useValue: {
+                oid: "132.456",
+            },
         },
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
 
     fixture = TestBed.createComponent(EmployeeDialogComponent);
     component = fixture.componentInstance;

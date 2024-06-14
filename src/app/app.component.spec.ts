@@ -1,4 +1,4 @@
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { TestBed, async } from "@angular/core/testing";
 import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
@@ -40,39 +40,37 @@ class HotkeysServiceStub {
 describe("AppComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        HotkeyModule,
+    declarations: [
+        AppComponent,
+        MockComponent(ThemePickerComponent),
+        MockPipe(TranslatePipe),
+    ],
+    imports: [HotkeyModule,
         RouterTestingModule,
         AngularSvgIconModule,
-        HttpClientModule,
         BrowserAnimationsModule,
         MatSidenavModule,
         MatListModule,
         MatIconModule,
-        MatToolbarModule,
-      ],
-      providers: [
+        MatToolbarModule],
+    providers: [
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: HotkeysService, useClass: HotkeysServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: TranslateService, useClass: TranslateServiceSub },
         {
-          provide: SvgIconRegistryService,
-          useClass: SvgIconRegistryServiceStub,
+            provide: SvgIconRegistryService,
+            useClass: SvgIconRegistryServiceStub,
         },
         {
-          provide: PosConfigToken,
-          useValue: {
-            order: "",
-          },
+            provide: PosConfigToken,
+            useValue: {
+                order: "",
+            },
         },
-      ],
-      declarations: [
-        AppComponent,
-        MockComponent(ThemePickerComponent),
-        MockPipe(TranslatePipe),
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+    ]
+}).compileComponents();
   });
   it("should create the app", async(() => {
     const fixture = TestBed.createComponent(AppComponent);

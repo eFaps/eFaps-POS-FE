@@ -14,7 +14,8 @@ import { Observable } from "rxjs";
 
 import { CommandsComponent } from "./commands.component";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 class PosServiceStub {
   currentOrder = new Observable((observer) => {
@@ -52,26 +53,25 @@ describe("CommandsComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
+    declarations: [
+        CommandsComponent,
+        MockDirective(TranslateDirective),
+        MockPipe(TranslatePipe, (...args) => "Hallo"),
+    ],
+    imports: [BrowserAnimationsModule,
         RouterTestingModule,
-        HttpClientTestingModule,
         MatDialogModule,
-        MatSnackBarModule,
-      ],
-      providers: [
+        MatSnackBarModule],
+    providers: [
         { provide: PosConfigToken, useValue: {} },
         { provide: PosService, useClass: PosServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: MatSnackBar, useClass: MatSnackBar },
-      ],
-      declarations: [
-        CommandsComponent,
-        MockDirective(TranslateDirective),
-        MockPipe(TranslatePipe, (...args) => "Hallo"),
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {

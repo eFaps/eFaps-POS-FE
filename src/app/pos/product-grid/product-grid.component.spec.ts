@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatTabsModule } from "@angular/material/tabs";
@@ -15,6 +15,7 @@ import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
 import { ProductGridComponent } from "./product-grid.component";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 class PosServiceStub {
   currentOrder = new Observable((observer) => {
@@ -41,24 +42,23 @@ describe("ProductgridComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        RouterTestingModule,
-        HttpClientTestingModule,
-        MatDialogModule,
-        MatTabsModule,
-      ],
-      providers: [
-        { provide: PosConfigToken, useValue: {} },
-        { provide: PosService, useClass: PosServiceStub },
-        { provide: ProductService, useClass: ProductServiceStub },
-      ],
-      declarations: [
+    declarations: [
         ProductGridComponent,
         MockPipe(PosCurrencyPipe),
         MockPipe(SecurePipe),
-      ],
-    }).compileComponents();
+    ],
+    imports: [BrowserAnimationsModule,
+        RouterTestingModule,
+        MatDialogModule,
+        MatTabsModule],
+    providers: [
+        { provide: PosConfigToken, useValue: {} },
+        { provide: PosService, useClass: PosServiceStub },
+        { provide: ProductService, useClass: ProductServiceStub },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
   });
 
   beforeEach(() => {

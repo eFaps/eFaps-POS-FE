@@ -1,4 +1,4 @@
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import { PosConfigToken } from "@efaps/pos-library";
@@ -13,13 +13,13 @@ describe("BalanceSummaryComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, MatDialogModule],
-      providers: [{ provide: PosConfigToken, useValue: {} }],
-      declarations: [
+    declarations: [
         MockComponent(BalanceSummarySectionComponent),
         BalanceSummaryComponent,
-      ],
-    }).compileComponents();
+    ],
+    imports: [MatDialogModule],
+    providers: [{ provide: PosConfigToken, useValue: {} }, provideHttpClient(withInterceptorsFromDi())]
+}).compileComponents();
   }));
 
   beforeEach(() => {

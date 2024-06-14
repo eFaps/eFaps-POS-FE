@@ -34,7 +34,8 @@ import { ProductGridComponent } from "./product-grid/product-grid.component";
 import { ProductListComponent } from "./product-list/product-list.component";
 import { TicketComponent } from "./ticket/ticket.component";
 import { TotalsComponent } from "./totals/totals.component";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 class AuthServiceStub {
   getCurrentUsername() {
@@ -106,18 +107,23 @@ describe("PosComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [
+        PosComponent,
+        MockComponent(ProductGridComponent),
+        MockComponent(ProductListComponent),
+        MockComponent(TicketComponent),
+        MockComponent(TotalsComponent),
+        MockComponent(CommandsComponent),
+    ],
+    imports: [BrowserAnimationsModule,
         ReactiveFormsModule,
         RouterTestingModule,
         SharedModule,
         MatIconModule,
         MatButtonToggleModule,
         MatButtonModule,
-        MatSnackBarModule,
-      ],
-      providers: [
+        MatSnackBarModule],
+    providers: [
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: ContactService, useClass: ContactServiceStub },
         { provide: PosService, useClass: PosServiceStub },
@@ -127,16 +133,10 @@ describe("PosComponent", () => {
         { provide: ProductService, useClass: ProductServiceStub },
         { provide: PosConfigToken, useValue: {} },
         { provide: MatSnackBar, useClass: MatSnackBar },
-      ],
-      declarations: [
-        PosComponent,
-        MockComponent(ProductGridComponent),
-        MockComponent(ProductListComponent),
-        MockComponent(TicketComponent),
-        MockComponent(TotalsComponent),
-        MockComponent(CommandsComponent),
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
     fixture = TestBed.createComponent(PosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

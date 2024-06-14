@@ -1,10 +1,6 @@
 import { LazyElementsModule } from "@angular-extensions/elements";
 import { LiveAnnouncer } from "@angular/cdk/a11y";
-import {
-  HTTP_INTERCEPTORS,
-  HttpClient,
-  HttpClientModule,
-} from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
@@ -30,61 +26,55 @@ import { PERSISTENCE } from "./services/local-storage-persistence";
 import { SharedModule, TranslateLoaderFactory } from "./shared/shared.module";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
 
-@NgModule({
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [AppComponent, SameHeightDirective, ThemePickerComponent],
-  imports: [
-    BrowserAnimationsModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    LazyElementsModule,
-    AngularSvgIconModule.forRoot(),
-    AppRoutingModule,
-    SharedModule,
-    MatButtonModule,
-    MatGridListModule,
-    MatIconModule,
-    MatListModule,
-    MatMenuModule,
-    MatProgressBarModule,
-    MatSidenavModule,
-    MatSnackBarModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    PosLibraryModule.forRoot({
-      baseUrl: "/api",
-      socketUrl: "/socket",
-      persistence: PERSISTENCE,
-    }),
-    HotkeyModule.forRoot({
-      cheatSheetDescription: "Presentar",
-    }),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: TranslateLoaderFactory,
-        deps: [HttpClient],
-      },
-    }),
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoaderInterceptor,
-      multi: true,
-    },
-    // temporal workaround to deactivate the LiveAnnouncer
-    {
-      provide: LiveAnnouncer,
-      useValue: {},
-    },
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    declarations: [AppComponent, SameHeightDirective, ThemePickerComponent],
+    bootstrap: [AppComponent], imports: [BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        LazyElementsModule,
+        AngularSvgIconModule.forRoot(),
+        AppRoutingModule,
+        SharedModule,
+        MatButtonModule,
+        MatGridListModule,
+        MatIconModule,
+        MatListModule,
+        MatMenuModule,
+        MatProgressBarModule,
+        MatSidenavModule,
+        MatSnackBarModule,
+        MatToolbarModule,
+        MatTooltipModule,
+        PosLibraryModule.forRoot({
+            baseUrl: "/api",
+            socketUrl: "/socket",
+            persistence: PERSISTENCE,
+        }),
+        HotkeyModule.forRoot({
+            cheatSheetDescription: "Presentar",
+        }),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: TranslateLoaderFactory,
+                deps: [HttpClient],
+            },
+        })], providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorInterceptor,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: LoaderInterceptor,
+            multi: true,
+        },
+        // temporal workaround to deactivate the LiveAnnouncer
+        {
+            provide: LiveAnnouncer,
+            useValue: {},
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}

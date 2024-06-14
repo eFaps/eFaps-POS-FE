@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -20,6 +20,7 @@ import { BalanceSummaryComponent } from "../balance-summary/balance-summary.comp
 import { DocumentListComponent } from "../document-list/document-list.component";
 import { BalanceComponent } from "./balance.component";
 import { MatTabsModule } from "@angular/material/tabs";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 class BalanceServiceStub {
   currentBalance = new Observable((observer) => {
@@ -46,19 +47,7 @@ describe("BalanceComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
-        MatDialogModule,
-        MatTabsModule,
-      ],
-      providers: [
-        { provide: BalanceService, useClass: BalanceServiceStub },
-        { provide: DocumentService, useClass: DocumentServiceStub },
-        { provide: TranslateService, useClass: TranslateServiceStub },
-        { provide: PosConfigToken, useValue: {} },
-      ],
-      declarations: [
+    declarations: [
         BalanceComponent,
         MockComponent(BalanceSummaryComponent),
         MockComponent(BalanceListComponent),
@@ -66,8 +55,19 @@ describe("BalanceComponent", () => {
         MockComponent(BalancePaymentListComponent),
         MockComponent(DocumentListComponent),
         MockPipe(TranslatePipe),
-      ],
-    }).compileComponents();
+    ],
+    imports: [BrowserAnimationsModule,
+        MatDialogModule,
+        MatTabsModule],
+    providers: [
+        { provide: BalanceService, useClass: BalanceServiceStub },
+        { provide: DocumentService, useClass: DocumentServiceStub },
+        { provide: TranslateService, useClass: TranslateServiceStub },
+        { provide: PosConfigToken, useValue: {} },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {

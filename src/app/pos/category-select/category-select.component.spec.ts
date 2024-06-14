@@ -1,4 +1,4 @@
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { MatDialogRef } from "@angular/material/dialog";
 import { PosConfigToken, ProductService, Category } from "@efaps/pos-library";
@@ -18,14 +18,15 @@ describe("CategorySelectComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
-      providers: [
+    declarations: [CategorySelectComponent],
+    imports: [],
+    providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
         { provide: ProductService, useClass: ProductServiceStub },
-      ],
-      declarations: [CategorySelectComponent],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {

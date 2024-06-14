@@ -9,8 +9,9 @@ import {
   StocktakingService,
   Warehouse,
 } from "@efaps/pos-library";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { Observable } from "rxjs";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 class InventoryServiceStub {
   getWarehouses() {
@@ -28,16 +29,18 @@ describe("CreateStocktakingDialogComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CreateStocktakingDialogComponent],
-      imports: [MatDialogModule, HttpClientTestingModule],
-      providers: [
+    declarations: [CreateStocktakingDialogComponent],
+    imports: [MatDialogModule],
+    providers: [
         FormBuilder,
         { provide: MatDialogRef, useValue: {} },
         { provide: InventoryService, useClass: InventoryServiceStub },
         { provide: StocktakingService, useClass: StocktakingServiceStub },
         { provide: PosConfigToken, useValue: {} },
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
 
     fixture = TestBed.createComponent(CreateStocktakingDialogComponent);
     component = fixture.componentInstance;

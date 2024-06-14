@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
@@ -12,6 +12,7 @@ import { CashComponent } from "../cash/cash.component";
 import { DiscountComponent } from "../discount/discount.component";
 import { FreeComponent } from "../free/free.component";
 import { PaymentTypeComponent } from "./payment-type.component";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 class AuthServiceStub {
   getCurrentUsername() {
@@ -25,25 +26,24 @@ describe("PaymentTypeComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        BrowserAnimationsModule,
-        MatTableModule,
-        MatTabsModule,
-      ],
-      providers: [
-        { provide: PosConfigToken, useValue: {} },
-        { provide: AuthService, useClass: AuthServiceStub },
-      ],
-      declarations: [
+    declarations: [
         MockComponent(AutoComponent),
         MockComponent(CashComponent),
         MockComponent(CardComponent),
         MockComponent(DiscountComponent),
         MockComponent(FreeComponent),
         PaymentTypeComponent,
-      ],
-    }).compileComponents();
+    ],
+    imports: [BrowserAnimationsModule,
+        MatTableModule,
+        MatTabsModule],
+    providers: [
+        { provide: PosConfigToken, useValue: {} },
+        { provide: AuthService, useClass: AuthServiceStub },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {

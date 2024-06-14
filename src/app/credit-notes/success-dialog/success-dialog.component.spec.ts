@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import {
   MatDialogModule,
@@ -8,6 +8,7 @@ import {
 import { PosConfigToken } from "@efaps/pos-library";
 
 import { SuccessDialogComponent } from "./success-dialog.component";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 describe("SuccessDialogComponent", () => {
   let component: SuccessDialogComponent;
@@ -15,26 +16,28 @@ describe("SuccessDialogComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MatDialogModule],
-      declarations: [SuccessDialogComponent],
-      providers: [
+    declarations: [SuccessDialogComponent],
+    imports: [MatDialogModule],
+    providers: [
         { provide: MatDialogRef, useValue: {} },
         {
-          provide: MAT_DIALOG_DATA,
-          useValue: {
-            document: {
-              number: "Test",
+            provide: MAT_DIALOG_DATA,
+            useValue: {
+                document: {
+                    number: "Test",
+                },
             },
-          },
         },
         {
-          provide: PosConfigToken,
-          useValue: {
-            order: "",
-          },
+            provide: PosConfigToken,
+            useValue: {
+                order: "",
+            },
         },
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
   });
 
   beforeEach(() => {

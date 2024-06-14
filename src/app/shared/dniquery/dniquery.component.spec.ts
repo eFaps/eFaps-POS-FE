@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { DNIQueryComponent } from "./dniquery.component";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { EnquiryService } from "@efaps/pos-library";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 class EnquiryServiceStub {}
 
@@ -12,10 +13,10 @@ describe("DNIQueryComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      declarations: [DNIQueryComponent],
-      providers: [{ provide: EnquiryService, useClass: EnquiryServiceStub }],
-    }).compileComponents();
+    declarations: [DNIQueryComponent],
+    imports: [],
+    providers: [{ provide: EnquiryService, useClass: EnquiryServiceStub }, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
 
     fixture = TestBed.createComponent(DNIQueryComponent);
     component = fixture.componentInstance;

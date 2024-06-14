@@ -7,8 +7,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { FormBuilder } from "@angular/forms";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 class ActivatedRouteStub {
   params = new Observable((observer) => {});
@@ -30,21 +31,20 @@ describe("StocktakingComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [StocktakingComponent],
-      imports: [
-        MatDialogModule,
-        MatAutocompleteModule,
-        HttpClientTestingModule,
-      ],
-      providers: [
+    declarations: [StocktakingComponent],
+    imports: [MatDialogModule,
+        MatAutocompleteModule],
+    providers: [
         MatSnackBar,
         FormBuilder,
         { provide: Router, useClass: RouterStub },
         { provide: ActivatedRoute, useClass: ActivatedRouteStub },
         { provide: StocktakingService, useClass: StocktakingServiceStub },
         { provide: PosConfigToken, useValue: {} },
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
 
     fixture = TestBed.createComponent(StocktakingComponent);
     component = fixture.componentInstance;

@@ -6,7 +6,7 @@ import {
   PosConfigToken,
   StocktakingService,
 } from "@efaps/pos-library";
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { FormBuilder } from "@angular/forms";
@@ -36,17 +36,17 @@ describe("StocktakingInitComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [StocktakingInitComponent],
-      imports: [HttpClientModule, MatDialogModule, MatSnackBarModule],
-
-      providers: [
+    declarations: [StocktakingInitComponent],
+    imports: [MatDialogModule, MatSnackBarModule],
+    providers: [
         FormBuilder,
         MatSnackBar,
         { provide: InventoryService, useClass: InventoryServiceStub },
         { provide: StocktakingService, useClass: StocktakingServiceStub },
         { provide: PosConfigToken, useValue: {} },
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+    ]
+}).compileComponents();
 
     fixture = TestBed.createComponent(StocktakingInitComponent);
     component = fixture.componentInstance;

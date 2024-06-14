@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { DebugElement } from "@angular/core";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
@@ -17,6 +17,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 class ContactServiceStub {
   getContacts(): Observable<Page<Contact>> {
@@ -51,23 +52,22 @@ describe("ContactTableComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
+    declarations: [MockPipe(TranslatePipe), ContactTableComponent],
+    imports: [BrowserAnimationsModule,
         ReactiveFormsModule,
         MatDialogModule,
-        HttpClientTestingModule,
         MatTableModule,
         MatFormFieldModule,
         MatInputModule,
         MatPaginatorModule,
-        MatSortModule,
-      ],
-      providers: [
+        MatSortModule],
+    providers: [
         { provide: ContactService, useClass: ContactServiceStub },
         { provide: PosConfigToken, useValue: {} },
-      ],
-      declarations: [MockPipe(TranslatePipe), ContactTableComponent],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {

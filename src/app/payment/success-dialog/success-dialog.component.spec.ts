@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import {
   MAT_DIALOG_DATA,
@@ -14,6 +14,7 @@ import { MockComponent, MockPipe } from "ng-mocks";
 
 import { PrintDisplayComponent } from "../../shared/print-display/print-display.component";
 import { SuccessDialogComponent } from "./success-dialog.component";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 class PrintServiceSub {}
 
@@ -23,28 +24,30 @@ describe("SuccessDialogComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MatDialogModule],
-      providers: [
-        { provide: MatDialogRef, useValue: {} },
-        {
-          provide: MAT_DIALOG_DATA,
-          useValue: {
-            docType: 0,
-            change: 0,
-            document: {
-              number: 123,
-            },
-          },
-        },
-        { provide: PosConfigToken, useValue: {} },
-        { provide: PrintService, useClass: PrintServiceSub },
-      ],
-      declarations: [
+    declarations: [
         MockPipe(PosCurrencyPipe),
         MockComponent(PrintDisplayComponent),
         SuccessDialogComponent,
-      ],
-    }).compileComponents();
+    ],
+    imports: [MatDialogModule],
+    providers: [
+        { provide: MatDialogRef, useValue: {} },
+        {
+            provide: MAT_DIALOG_DATA,
+            useValue: {
+                docType: 0,
+                change: 0,
+                document: {
+                    number: 123,
+                },
+            },
+        },
+        { provide: PosConfigToken, useValue: {} },
+        { provide: PrintService, useClass: PrintServiceSub },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {

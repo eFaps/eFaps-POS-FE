@@ -1,4 +1,4 @@
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -43,26 +43,24 @@ describe("AutoComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
+    declarations: [
+        AutoComponent,
+        MockPipe(TranslatePipe),
+        MockComponent(KeypadComponent),
+    ],
+    imports: [BrowserAnimationsModule,
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule,
         MatRadioModule,
-        HttpClientModule,
-        MatFormFieldModule,
-      ],
-      providers: [
+        MatFormFieldModule],
+    providers: [
         { provide: MsgService, useClass: MsgServiceStub },
         { provide: CollectService, useClass: CollectServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
-      ],
-      declarations: [
-        AutoComponent,
-        MockPipe(TranslatePipe),
-        MockComponent(KeypadComponent),
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {

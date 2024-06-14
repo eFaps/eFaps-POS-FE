@@ -1,5 +1,5 @@
 import { LiveAnnouncer } from "@angular/cdk/a11y";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import {
@@ -32,6 +32,7 @@ import {
   TranslateLoaderFactory,
 } from "../../shared/shared.module";
 import { CreateContactDialogComponent } from "./create-contact-dialog.component";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 class TranslateServiceStub {
   get() {
@@ -47,8 +48,12 @@ describe("CreateContactDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
+    declarations: [
+        CreateContactDialogComponent,
+        MockDirective(VirtKeyboardDirective),
+        MockPipe(TranslatePipe),
+    ],
+    imports: [BrowserAnimationsModule,
         ReactiveFormsModule,
         MatSnackBarModule,
         MatFormFieldModule,
@@ -56,15 +61,13 @@ describe("CreateContactDialogComponent", () => {
         MatInputModule,
         SharedModule,
         MatDialogModule,
-        HttpClientTestingModule,
         TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: TranslateLoaderFactory,
-          },
-        }),
-      ],
-      providers: [
+            loader: {
+                provide: TranslateLoader,
+                useFactory: TranslateLoaderFactory,
+            },
+        })],
+    providers: [
         ConfigService,
         WorkspaceService,
         { provide: MatDialogRef, useValue: {} },
@@ -72,13 +75,10 @@ describe("CreateContactDialogComponent", () => {
         { provide: LiveAnnouncer, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
         { provide: TranslateService, useClass: TranslateServiceStub },
-      ],
-      declarations: [
-        CreateContactDialogComponent,
-        MockDirective(VirtKeyboardDirective),
-        MockPipe(TranslatePipe),
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
   });
 
   beforeEach(() => {

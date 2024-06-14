@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import {
   MAT_DIALOG_DATA,
@@ -12,6 +12,7 @@ import { Observable } from "rxjs";
 
 import { ReassignItemComponent } from "../reassign-item/reassign-item.component";
 import { ReassignDialogComponent } from "./reassign-dialog.component";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 class DocumentServiceStub {
   getOpenOrders(): Observable<Order[]> {
@@ -25,18 +26,20 @@ describe("ReassignDialogComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MatDialogModule, MatIconModule],
-      providers: [
+    declarations: [
+        MockComponent(ReassignItemComponent),
+        ReassignDialogComponent,
+    ],
+    imports: [MatDialogModule, MatIconModule],
+    providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
         { provide: DocumentService, useClass: DocumentServiceStub },
-      ],
-      declarations: [
-        MockComponent(ReassignItemComponent),
-        ReassignDialogComponent,
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {

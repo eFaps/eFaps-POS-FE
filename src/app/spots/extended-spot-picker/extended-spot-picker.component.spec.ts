@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from "@angular/material/dialog";
@@ -19,6 +19,7 @@ import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
 import { ExtendedSpotPickerComponent } from "./extended-spot-picker.component";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 class PosServiceStub {}
 class SpotServiceStub {
@@ -34,25 +35,24 @@ describe("ExtendedSpotPickerComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        HttpClientTestingModule,
+    declarations: [ExtendedSpotPickerComponent, MockPipe(TranslatePipe)],
+    imports: [RouterTestingModule,
         MatDialogModule,
         MatSnackBarModule,
         MatIconModule,
         MatTabsModule,
         MatTooltipModule,
-        MatButtonModule,
-      ],
-      providers: [
+        MatButtonModule],
+    providers: [
         { provide: PosService, useClass: PosServiceStub },
         { provide: SpotService, useClass: SpotServiceStub },
         { provide: ImageService, useClass: ImageServiceStub },
         { provide: PosConfigToken, useValue: {} },
         { provide: MatSnackBar, useClass: MatSnackBar },
-      ],
-      declarations: [ExtendedSpotPickerComponent, MockPipe(TranslatePipe)],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,5 +1,5 @@
-import { HttpClientModule } from "@angular/common/http";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
@@ -19,22 +19,19 @@ describe("DocumentListComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
-        MatDialogModule,
-        MatTableModule,
-        MatFormFieldModule,
-        MatInputModule,
-      ],
-      providers: [{ provide: PosConfigToken, useValue: {} }],
-      declarations: [
+    declarations: [
         DocumentListComponent,
         MockPipe(TranslatePipe),
         MockPipe(PosCurrencyPipe),
-      ],
-    }).compileComponents();
+    ],
+    imports: [ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule],
+    providers: [{ provide: PosConfigToken, useValue: {} }, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   }));
 
   beforeEach(() => {

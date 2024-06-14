@@ -2,8 +2,9 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { CloseStocktakingDialogComponent } from "./close-stocktaking-dialog.component";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { PosConfigToken } from "@efaps/pos-library";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 describe("CloseStocktakingDialogComponent", () => {
   let component: CloseStocktakingDialogComponent;
@@ -11,14 +12,16 @@ describe("CloseStocktakingDialogComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      declarations: [CloseStocktakingDialogComponent],
-      providers: [
+    declarations: [CloseStocktakingDialogComponent],
+    imports: [],
+    providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] },
         { provide: PosConfigToken, useValue: {} },
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
 
     fixture = TestBed.createComponent(CloseStocktakingDialogComponent);
     component = fixture.componentInstance;

@@ -1,10 +1,11 @@
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import { PosConfigToken, PosService, ProductService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
 import { ProductsElementComponent } from "./products-element.component";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 class PosServiceStub {
   currentOrder = new Observable((observer) => {
     observer.next({});
@@ -29,14 +30,16 @@ describe("ProductsElementComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MatDialogModule],
-      declarations: [ProductsElementComponent],
-      providers: [
+    declarations: [ProductsElementComponent],
+    imports: [MatDialogModule],
+    providers: [
         { provide: PosConfigToken, useValue: {} },
         { provide: PosService, useClass: PosServiceStub },
         { provide: ProductService, useClass: ProductServiceStub },
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
 
     fixture = TestBed.createComponent(ProductsElementComponent);
     component = fixture.componentInstance;

@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { MatListModule } from "@angular/material/list";
@@ -17,6 +17,7 @@ import { DocumentComponent } from "../../shared/document/document.component";
 import { SharedModule } from "../../shared/shared.module";
 
 import { CreateCreditNoteComponent } from "./create-credit-note.component";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 class DocumentServiceStub {}
 class BalanceServiceStub {
@@ -42,12 +43,12 @@ describe("CreateCreditNoteComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MatDialogModule, MatListModule],
-      declarations: [
+    declarations: [
         CreateCreditNoteComponent,
         MockComponent(DocumentComponent),
-      ],
-      providers: [
+    ],
+    imports: [MatDialogModule, MatListModule],
+    providers: [
         { provide: ActivatedRoute, useClass: ActivatedRouteStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
         { provide: BalanceService, useClass: BalanceServiceStub },
@@ -55,13 +56,15 @@ describe("CreateCreditNoteComponent", () => {
         { provide: PaymentService, useClass: PaymentServiceStub },
         { provide: MatDialogRef, useValue: {} },
         {
-          provide: PosConfigToken,
-          useValue: {
-            order: "",
-          },
+            provide: PosConfigToken,
+            useValue: {
+                order: "",
+            },
         },
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
   });
 
   beforeEach(() => {

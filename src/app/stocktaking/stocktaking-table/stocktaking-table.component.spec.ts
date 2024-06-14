@@ -7,8 +7,9 @@ import {
   StocktakingService,
   PageRequest,
 } from "@efaps/pos-library";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { Observable } from "rxjs";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 class StocktakingServiceStub {
   getStocktakings(expand?: boolean, pageable?: PageRequest) {
@@ -26,13 +27,15 @@ describe("StocktakingTableComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [StocktakingTableComponent],
-      imports: [MatDialogModule, HttpClientTestingModule],
-      providers: [
+    declarations: [StocktakingTableComponent],
+    imports: [MatDialogModule],
+    providers: [
         { provide: PosConfigToken, useValue: {} },
         { provide: StocktakingService, useClass: StocktakingServiceStub },
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
 
     fixture = TestBed.createComponent(StocktakingTableComponent);
     component = fixture.componentInstance;
