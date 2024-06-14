@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { CloseStocktakingDialogComponent } from "./close-stocktaking-dialog.component";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
-import { PosConfigToken } from "@efaps/pos-library";
+import { PosConfigToken, StocktakingService } from "@efaps/pos-library";
 import {
   provideHttpClient,
   withInterceptorsFromDi,
@@ -21,6 +21,7 @@ describe("CloseStocktakingDialogComponent", () => {
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] },
         { provide: PosConfigToken, useValue: {} },
+        { provide: StocktakingService, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],

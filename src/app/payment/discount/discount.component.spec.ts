@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   AuthService,
   ConfigService,
+  DiscountService,
   DocumentService,
   PaymentService,
   PosCurrencyPipe,
@@ -60,6 +61,7 @@ describe("DiscountComponent", () => {
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
+        { provide: DiscountService, useValue: {} },
         { provide: PosService, useClass: PosServiceStub },
         { provide: UtilsService, useClass: UtilsServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },

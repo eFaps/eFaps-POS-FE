@@ -14,6 +14,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   ConfigService,
+  ContactService,
   PosConfigToken,
   WorkspaceService,
 } from "@efaps/pos-library";
@@ -39,6 +40,14 @@ import {
 
 class TranslateServiceStub {
   get() {
+    return new Observable((observer) => {
+      observer.next("");
+    });
+  }
+}
+
+class ConfigServiceStub {
+  getSystemConfig() {
     return new Observable((observer) => {
       observer.next("");
     });
@@ -80,6 +89,8 @@ describe("CreateContactDialogComponent", () => {
         { provide: LiveAnnouncer, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
         { provide: TranslateService, useClass: TranslateServiceStub },
+        { provide: ConfigService, useClass: ConfigServiceStub },
+        { provide: ContactService, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],

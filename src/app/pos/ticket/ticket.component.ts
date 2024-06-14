@@ -30,7 +30,7 @@ export class TicketComponent implements OnInit {
     "unitPrice",
     "discount",
     "price",
-    "modify"
+    "modify",
   ];
   dataSource = new MatTableDataSource<Item>();
   currentCurrency: Currency = Currency.PEN;
@@ -42,7 +42,9 @@ export class TicketComponent implements OnInit {
 
   constructor(private posService: PosService, private snackBar: MatSnackBar) {
     effect(() => {
-      this.displayedColumns = this.displayedColumns.filter(name =>  "discount" != name )
+      this.displayedColumns = this.displayedColumns.filter(
+        (name) => "discount" != name
+      );
       let promoInfo = this.posService.promotionInfo();
       if (promoInfo != null) {
         this.promoDetails = promoInfo.details;

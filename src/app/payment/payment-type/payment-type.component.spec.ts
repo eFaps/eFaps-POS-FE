@@ -3,7 +3,11 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { AuthService, PosConfigToken } from "@efaps/pos-library";
+import {
+  AuthService,
+  PosConfigToken,
+  WorkspaceService,
+} from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 
 import { AutoComponent } from "../auto/auto.component";
@@ -20,6 +24,12 @@ import {
 class AuthServiceStub {
   getCurrentUsername() {
     return "usename";
+  }
+}
+
+class WorkspaceServiceStub {
+  hasAutoPayment() {
+    return false;
   }
 }
 
@@ -41,6 +51,7 @@ describe("PaymentTypeComponent", () => {
       providers: [
         { provide: PosConfigToken, useValue: {} },
         { provide: AuthService, useClass: AuthServiceStub },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],

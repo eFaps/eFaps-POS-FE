@@ -8,6 +8,7 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { RouterTestingModule } from "@angular/router/testing";
 import {
+  DocumentService,
   ImageService,
   PosConfigToken,
   PosService,
@@ -50,6 +51,7 @@ describe("ExtendedSpotPickerComponent", () => {
       ],
       providers: [
         { provide: PosService, useClass: PosServiceStub },
+        { provide: DocumentService, useValue: {} },
         { provide: SpotService, useClass: SpotServiceStub },
         { provide: ImageService, useClass: ImageServiceStub },
         { provide: PosConfigToken, useValue: {} },

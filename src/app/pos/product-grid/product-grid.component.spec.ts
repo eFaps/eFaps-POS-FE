@@ -5,11 +5,13 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import {
+  InventoryService,
   PosConfigToken,
   PosCurrencyPipe,
   PosService,
   ProductService,
   SecurePipe,
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
@@ -38,6 +40,16 @@ class ProductServiceStub {
     });
   }
 }
+class WorkspaceServiceStub {
+  showInventory() {
+    return new Observable((observer) => {
+      observer.next(false);
+    });
+  }
+  currentWorkspace = new Observable((observer) => {
+    observer.next();
+  });
+}
 
 describe("ProductgridComponent", () => {
   let component: ProductGridComponent;
@@ -58,8 +70,11 @@ describe("ProductgridComponent", () => {
       ],
       providers: [
         { provide: PosConfigToken, useValue: {} },
-        { provide: PosService, useClass: PosServiceStub },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: ProductService, useClass: ProductServiceStub },
+        { provide: PosService, useClass: PosServiceStub },
+        { provide: InventoryService, useValue: {} },
+
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],

@@ -30,7 +30,6 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
 
   constructor(
     private documentService: DocumentService,
-    private posService: PosService,
     private calculatorService: CalculatorService,
     private dialogRef: MatDialogRef<ReassignDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any

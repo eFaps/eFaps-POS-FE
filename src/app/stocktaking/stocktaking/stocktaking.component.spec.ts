@@ -1,7 +1,11 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { StocktakingComponent } from "./stocktaking.component";
-import { PosConfigToken, StocktakingService } from "@efaps/pos-library";
+import {
+  PosConfigToken,
+  ProductService,
+  StocktakingService,
+} from "@efaps/pos-library";
 import { MatDialogModule } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
@@ -42,6 +46,7 @@ describe("StocktakingComponent", () => {
         { provide: Router, useClass: RouterStub },
         { provide: ActivatedRoute, useClass: ActivatedRouteStub },
         { provide: StocktakingService, useClass: StocktakingServiceStub },
+        { provide: ProductService, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),

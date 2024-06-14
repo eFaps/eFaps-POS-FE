@@ -6,7 +6,12 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatTableModule } from "@angular/material/table";
 import { By } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { Contact, Page, PosConfigToken } from "@efaps/pos-library";
+import {
+  ConfigService,
+  Contact,
+  Page,
+  PosConfigToken,
+} from "@efaps/pos-library";
 import { ContactService } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
@@ -49,6 +54,12 @@ class ContactServiceStub {
   }
 }
 
+class ConfigServiceStub {
+  getSystemConfig(): Observable<Page<Contact>> {
+    return new Observable((observer) => {});
+  }
+}
+
 describe("ContactTableComponent", () => {
   let component: ContactTableComponent;
   let fixture: ComponentFixture<ContactTableComponent>;
@@ -67,6 +78,7 @@ describe("ContactTableComponent", () => {
         MatSortModule,
       ],
       providers: [
+        { provide: ConfigService, useClass: ConfigServiceStub },
         { provide: ContactService, useClass: ContactServiceStub },
         { provide: PosConfigToken, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),

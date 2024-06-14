@@ -6,8 +6,11 @@ import {
   Balance,
   BalanceService,
   BalanceSummary,
+  ConfigService,
   DocumentService,
   PosConfigToken,
+  PrintService,
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { MockComponent, MockDirective, MockPipe } from "ng-mocks";
@@ -42,7 +45,23 @@ class DocumentServiceStub {
   }
 }
 
+class WorkspaceServiceStub {
+  currentWorkspace = new Observable((observer) => {
+    observer.next({
+      printCmds: [],
+    });
+  });
+}
+
 class TranslateServiceStub {}
+
+class ConfigServiceStub {
+  getSystemConfig(key: string) {
+    return new Observable((observer) => {
+      observer.next([]);
+    });
+  }
+}
 
 describe("BalanceComponent", () => {
   let component: BalanceComponent;
@@ -63,7 +82,10 @@ describe("BalanceComponent", () => {
       providers: [
         { provide: BalanceService, useClass: BalanceServiceStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
+        { provide: PrintService, useValue: {} },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: TranslateService, useClass: TranslateServiceStub },
+        { provide: ConfigService, useClass: ConfigServiceStub },
         { provide: PosConfigToken, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),

@@ -3,9 +3,12 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import {
+  AuthService,
+  InventoryService,
   PaymentService,
   PosConfigToken,
   PosService,
+  ProductService,
   WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslateDirective, TranslatePipe } from "@ngx-translate/core";
@@ -69,9 +72,12 @@ describe("CommandsComponent", () => {
       ],
       providers: [
         { provide: PosConfigToken, useValue: {} },
+        { provide: AuthService, useValue: {} },
         { provide: PosService, useClass: PosServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
+        { provide: InventoryService, useValue: {} },
+        { provide: ProductService, useValue: {} },
         { provide: MatSnackBar, useClass: MatSnackBar },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),

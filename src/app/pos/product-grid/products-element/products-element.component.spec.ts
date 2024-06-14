@@ -1,7 +1,13 @@
 import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
-import { PosConfigToken, PosService, ProductService } from "@efaps/pos-library";
+import {
+  InventoryService,
+  PosConfigToken,
+  PosService,
+  ProductService,
+  WorkspaceService,
+} from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
 import { ProductsElementComponent } from "./products-element.component";
@@ -27,6 +33,15 @@ class ProductServiceStub {
     });
   }
 }
+
+class WorkspaceServiceStub {
+  showInventory() {
+    return new Observable((observer) => {
+      observer.next([]);
+    });
+  }
+}
+
 describe("ProductsElementComponent", () => {
   let component: ProductsElementComponent;
   let fixture: ComponentFixture<ProductsElementComponent>;
@@ -37,8 +52,11 @@ describe("ProductsElementComponent", () => {
       imports: [MatDialogModule],
       providers: [
         { provide: PosConfigToken, useValue: {} },
-        { provide: PosService, useClass: PosServiceStub },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: ProductService, useClass: ProductServiceStub },
+        { provide: PosService, useValue: {} },
+        { provide: InventoryService, useValue: {} },
+        { provide: PosService, useClass: PosServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],

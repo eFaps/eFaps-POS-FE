@@ -10,6 +10,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Router } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
 import {
+  AuthService,
+  DocumentService,
+  EmployeeService,
   PosConfigToken,
   PosCurrencyPipe,
   PrintService,
@@ -53,8 +56,12 @@ describe("DocumentComponent", () => {
       providers: [
         { provide: PosConfigToken, useValue: {} },
         { provide: Router, useValue: routerSpy },
+        { provide: AuthService, useValue: {} },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: PrintService, useClass: PrintServiceStub },
+        { provide: DocumentService, useValue: {} },
+        { provide: EmployeeService, useValue: {} },
+
         provideHttpClient(withInterceptorsFromDi()),
       ],
     }).compileComponents();

@@ -4,11 +4,22 @@ import {
 } from "@angular/common/http";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
-import { PosConfigToken } from "@efaps/pos-library";
+import {
+  PosConfigToken,
+  PrintService,
+  WorkspaceService,
+} from "@efaps/pos-library";
 import { Mock, MockComponent } from "ng-mocks";
 
 import { BalanceSummarySectionComponent } from "../balance-summary-section/balance-summary-section.component";
 import { BalanceSummaryComponent } from "./balance-summary.component";
+import { Observable } from "rxjs";
+
+class WorkspaceServiceStub {
+  currentWorkspace = new Observable((observer) => {
+    observer.next();
+  });
+}
 
 describe("BalanceSummaryComponent", () => {
   let component: BalanceSummaryComponent;
@@ -23,6 +34,8 @@ describe("BalanceSummaryComponent", () => {
       imports: [MatDialogModule],
       providers: [
         { provide: PosConfigToken, useValue: {} },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
+        { provide: PrintService, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
       ],
     }).compileComponents();

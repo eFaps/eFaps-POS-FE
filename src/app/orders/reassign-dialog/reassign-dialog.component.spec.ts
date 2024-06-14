@@ -6,7 +6,12 @@ import {
   MatDialogRef,
 } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
-import { DocumentService, Order, PosConfigToken } from "@efaps/pos-library";
+import {
+  CalculatorService,
+  DocumentService,
+  Order,
+  PosConfigToken,
+} from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
 
@@ -39,6 +44,7 @@ describe("ReassignDialogComponent", () => {
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
         { provide: DocumentService, useClass: DocumentServiceStub },
+        { provide: CalculatorService, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],

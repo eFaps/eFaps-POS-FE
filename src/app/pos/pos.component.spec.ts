@@ -23,6 +23,9 @@ import {
   Workspace,
   SpotConfig,
   PosGridSize,
+  PartListService,
+  EmployeeService,
+  UserService,
 } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
@@ -39,6 +42,7 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import { KeypadService, PosSyncService } from "../services";
 
 class AuthServiceStub {
   getCurrentUsername() {
@@ -101,6 +105,16 @@ class ProductServiceStub {
     });
   }
 }
+class PartListServiceStub {
+  detectedPartList = new Observable((observer) => {
+    observer.next();
+  });
+}
+class PosSyncServiceStub {
+  afterProductSelected = new Observable((observer) => {
+    observer.next();
+  });
+}
 
 class ContactServiceStub {}
 
@@ -129,13 +143,19 @@ describe("PosComponent", () => {
         MatSnackBarModule,
       ],
       providers: [
-        { provide: AuthService, useClass: AuthServiceStub },
-        { provide: ContactService, useClass: ContactServiceStub },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: PosService, useClass: PosServiceStub },
         { provide: MsgService, useClass: MsgServiceStub },
-        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
+        { provide: AuthService, useClass: AuthServiceStub },
         { provide: BarcodeScannerService, useClass: BarcodeScannerServiceStub },
         { provide: ProductService, useClass: ProductServiceStub },
+        { provide: PartListService, useClass: PartListServiceStub },
+        { provide: PosSyncService, useClass: PosSyncServiceStub },
+        { provide: EmployeeService, useValue: {} },
+        { provide: UserService, useValue: {} },
+        { provide: ContactService, useClass: ContactServiceStub },
+        { provide: KeypadService, useValue: {} },
+
         { provide: PosConfigToken, useValue: {} },
         { provide: MatSnackBar, useClass: MatSnackBar },
         provideHttpClient(withInterceptorsFromDi()),

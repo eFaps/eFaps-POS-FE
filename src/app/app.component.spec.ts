@@ -11,7 +11,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import {
   AuthService,
+  CompanyService,
   PosConfigToken,
+  UserService,
   WorkspaceService,
 } from "@efaps/pos-library";
 import { HotkeyModule, HotkeysService } from "angular2-hotkeys";
@@ -60,9 +62,12 @@ describe("AppComponent", () => {
       ],
       providers: [
         { provide: AuthService, useClass: AuthServiceStub },
-        { provide: HotkeysService, useClass: HotkeysServiceStub },
-        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: TranslateService, useClass: TranslateServiceSub },
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
+        { provide: UserService, useValue: {} },
+        { provide: HotkeysService, useClass: HotkeysServiceStub },
+        { provide: CompanyService, useValue: {} },
+
         {
           provide: SvgIconRegistryService,
           useClass: SvgIconRegistryServiceStub,

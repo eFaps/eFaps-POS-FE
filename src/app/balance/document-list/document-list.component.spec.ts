@@ -10,7 +10,11 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatTableModule } from "@angular/material/table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { PosConfigToken, PosCurrencyPipe } from "@efaps/pos-library";
+import {
+  DocumentService,
+  PosConfigToken,
+  PosCurrencyPipe,
+} from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 
@@ -37,6 +41,7 @@ describe("DocumentListComponent", () => {
       ],
       providers: [
         { provide: PosConfigToken, useValue: {} },
+        { provide: DocumentService, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],

@@ -1,7 +1,7 @@
 import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { PosConfigToken } from "@efaps/pos-library";
+import { PosConfigToken, PrintService } from "@efaps/pos-library";
 
 import { PrintDisplayComponent } from "./print-display.component";
 import {
@@ -18,6 +18,7 @@ describe("PrintDisplayComponent", () => {
       declarations: [PrintDisplayComponent],
       imports: [MatProgressSpinnerModule],
       providers: [
+        { provide: PrintService, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
