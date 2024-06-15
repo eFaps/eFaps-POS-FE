@@ -4,6 +4,7 @@ import {
   Item,
   PosService,
   PromoDetail,
+  PromoInfo,
 } from "@efaps/pos-library";
 import {
   Component,
@@ -37,22 +38,23 @@ export class TicketComponent implements OnInit {
   dataSource = new MatTableDataSource<Item>();
   currentCurrency: Currency = Currency.PEN;
   multiplier = 0;
-  promoDetails: PromoDetail[] = [];
+  promoInfo: PromoInfo | null = null;
 
   @Input() isBarcode: boolean = false;
   @Output() multiplierClick = new EventEmitter<any>();
 
-  constructor(private posService: PosService, private snackBar: MatSnackBar, private dialog: MatDialog) {
+  constructor(
+    private posService: PosService,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
+  ) {
     effect(() => {
       this.displayedColumns = this.displayedColumns.filter(
         (name) => "discount" != name
       );
-      let promoInfo = this.posService.promotionInfo();
-      if (promoInfo != null) {
-        this.promoDetails = promoInfo.details;
+      this.promoInfo = this.posService.promotionInfo();
+      if (this.promoInfo != null) {
         this.displayedColumns.splice(4, 0, "discount");
-      } else {
-        this.promoDetails = [];
       }
     });
   }
@@ -153,13 +155,18 @@ export class TicketComponent implements OnInit {
   }
 
   getDiscount(index: number): number {
-    if (this.promoDetails.length > index) {
-      return this.promoDetails[index].discount;
+    if (this.promoInfo != null && this.promoInfo.details.length > index) {
+      return this.promoInfo.details[index].discount;
     }
     return 0;
   }
 
   showPromoInfo(index: number) {
-    this.dialog.open(PromoDialogComponent)
+    this.dialog.open(PromoDialogComponent, {
+      data: {
+        promoInfo: this.promoInfo,
+        selectedDetail: index,
+      },
+    });
   }
 }

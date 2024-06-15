@@ -1,23 +1,44 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { PromoDialogComponent } from './promo-dialog.component';
+import { PromoDialogComponent } from "./promo-dialog.component";
+import { PromotionService } from "@efaps/pos-library";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
-describe('PromoDialogComponent', () => {
+describe("PromoDialogComponent", () => {
   let component: PromoDialogComponent;
   let fixture: ComponentFixture<PromoDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PromoDialogComponent]
-    })
-    .compileComponents();
+      imports: [PromoDialogComponent],
+      providers: [
+        { provide: PromotionService, useValue: {} },
+        { provide: MatDialogRef, useValue: {} },
+        {
+          provide: MAT_DIALOG_DATA,
+          useValue: {
+            promoInfo: {
+              details: [],
+              promotionOids: [],
+            },
+          },
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PromoDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
