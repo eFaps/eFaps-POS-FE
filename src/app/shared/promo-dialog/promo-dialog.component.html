@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Promociones</h1>
 <mat-dialog-content>
     @if (docPromotions.length > 0) {
-    Documento:
+    <span>Documento:</span>
     <mat-list>
         @for (promotion of docPromotions; track promotion.oid) {
         <mat-list-item role="listitem">
@@ -11,8 +11,8 @@
         }
     </mat-list>
     }
-    @if (detailPromotions.length > 1) {
-    Detalles:
+    @if (docPromotions.length > 0 && detailPromotions.length > 0) {
+    <span>Detalles:</span>
     }
     <mat-list>
         @for (promotion of detailPromotions; track promotion.oid) {

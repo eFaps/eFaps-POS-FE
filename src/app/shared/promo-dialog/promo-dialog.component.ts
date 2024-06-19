@@ -48,7 +48,7 @@ export class PromoDialogComponent {
       });
     } else {
       this.promoInfo.promotionOids.forEach((oid) => {
-        this.promotionService.getPromotion(promotionOid).subscribe({
+        this.promotionService.getPromotion(oid).subscribe({
           next: (promotion) => {
             this.docPromotions.push(promotion);
           },

@@ -122,11 +122,13 @@
             {{taxEntry.tax.name | translate}}: {{taxEntry.amount | posCurrency:document.currency}}
           </div>
         </mat-list-item>
-        <mat-list-item class="amount">
-          <div matLine>
-            Descuento: {{promoInfo.totalDiscount | posCurrency:document.currency}}
-          </div>
-        </mat-list-item>
+        @if (promoInfo != null) {
+          <mat-list-item class="amount">
+            <div matLine class="totalDiscount">
+              <button mat-button (click)="showPromoInfo()">Descuento: {{promoInfo?.totalDiscount | posCurrency:document.currency}}</button>
+            </div>
+          </mat-list-item>
+        }
         <mat-list-item class="amount">
           <div matLine>
             Total: {{document.crossTotal | posCurrency:document.currency}}

@@ -64,6 +64,7 @@
     "@angular-eslint/template-parser": "18.0.1",
     "@angular/cli": "^18.0.4",
     "@angular/compiler-cli": "^18.0.3",
+    "@angular/localize": "^18.0.3",
     "@types/core-js": "^2.5.8",
     "@types/jasmine": "^4.6.4",
     "@types/jasminewd2": "^2.0.13",

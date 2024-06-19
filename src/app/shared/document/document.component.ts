@@ -24,6 +24,7 @@ import {
 } from "@efaps/pos-library";
 
 import { PrintDialogComponent } from "../print-dialog/print-dialog.component";
+import { PromoDialogComponent } from "../promo-dialog/promo-dialog.component";
 
 @Component({
   selector: "app-document",
@@ -203,6 +204,12 @@ export class DocumentComponent implements OnInit {
 
   isChild(docItem: DocItem) {
     return docItem?.parentIdx != null;
+  }
+
+  showPromoInfo() {
+    this.dialog.open(PromoDialogComponent, {
+      data: { promoInfo: this.promoInfo },
+    });
   }
 }
 
