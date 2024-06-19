@@ -16,7 +16,7 @@ export class DNIQueryComponent {
   constructor(
     private fb: NonNullableFormBuilder,
     private enquiryService: EnquiryService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {
     this.dniForm = this.fb.group({
       number: ["", [Validators.required, Validators.pattern("[0-9]{8}")]],

@@ -19,7 +19,7 @@ export class CashComponent extends PaymentForm {
   constructor(
     paymentService: PaymentService,
     utilsService: UtilsService,
-    fb: UntypedFormBuilder
+    fb: UntypedFormBuilder,
   ) {
     super(paymentService, utilsService, fb);
   }

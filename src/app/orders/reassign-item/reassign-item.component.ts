@@ -43,7 +43,7 @@ export class ReassignItemComponent implements OnInit {
     this.dataSource.data = [];
     if (order) {
       this.dataSource.data = order.items.sort((a, b) =>
-        a.index < b.index ? -1 : 1
+        a.index < b.index ? -1 : 1,
       );
     }
   }

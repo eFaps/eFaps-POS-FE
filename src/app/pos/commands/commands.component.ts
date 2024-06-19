@@ -7,14 +7,14 @@ import {
   Item,
   Order,
   PaymentService,
+  Permission,
   PosService,
   ProductService,
-  Permission,
   WorkspaceService,
 } from "@efaps/pos-library";
 
-import { OrderDialogComponent } from "../order-dialog/order-dialog.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { OrderDialogComponent } from "../order-dialog/order-dialog.component";
 
 @Component({
   selector: "app-commands",
@@ -37,17 +37,17 @@ export class CommandsComponent implements OnInit {
     private productService: ProductService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
-    private el: ElementRef
+    private el: ElementRef,
   ) {}
 
   ngOnInit() {
     this.showInventory = this.workspaceService.showInventory();
     this.posService.currentOrder.subscribe(
-      (_order) => (this.currentOrder = _order)
+      (_order) => (this.currentOrder = _order),
     );
     this.posService.currentTicket.subscribe(
       (ticket) =>
-        (this.disabled = !(ticket.length > 0 && this.validateTicket(ticket)))
+        (this.disabled = !(ticket.length > 0 && this.validateTicket(ticket))),
     );
   }
 

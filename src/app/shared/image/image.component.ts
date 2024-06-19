@@ -22,7 +22,7 @@ export class ImageComponent implements OnInit {
           t.imageUrl = reader.result;
           this.loaded = true;
         },
-        false
+        false,
       );
       reader.readAsDataURL(image);
     });

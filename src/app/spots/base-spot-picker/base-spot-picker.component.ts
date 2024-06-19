@@ -27,7 +27,7 @@ export class BaseSpotPickerComponent
     posService: PosService,
     documentService: DocumentService,
     dialog: MatDialog,
-    private spotService: SpotService
+    private spotService: SpotService,
   ) {
     super(router, posService, documentService, dialog);
   }

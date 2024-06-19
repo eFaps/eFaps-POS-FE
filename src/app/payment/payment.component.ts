@@ -17,7 +17,6 @@ import {
   Employee,
   EmployeeRelationType,
   EmployeeService,
-  hasFlag,
   IdentificationType,
   Invoice,
   Payment,
@@ -28,21 +27,22 @@ import {
   Ticket,
   WorkspaceFlag,
   WorkspaceService,
+  hasFlag,
 } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
 import { PartialObserver, Subject, Subscription, debounceTime } from "rxjs";
 
+import { PAYABLE_ACTIVATENOTE, PAYMENT_REQUIRE } from "src/app/util/keys";
 import { ConfirmDialogComponent } from "../shared/confirm-dialog/confirm-dialog.component";
 import { DocumentComponent } from "../shared/document/document.component";
 import {
   EmployeeDialogComponent,
   EmployeeDialogData,
 } from "../shared/employee-dialog/employee-dialog.component";
+import { NoteDialogComponent } from "../shared/note-dialog/note-dialog.component";
 import { PrintDialogComponent } from "../shared/print-dialog/print-dialog.component";
 import { DiscountComponent } from "./discount/discount.component";
 import { SuccessDialogComponent } from "./success-dialog/success-dialog.component";
-import { PAYABLE_ACTIVATENOTE, PAYMENT_REQUIRE } from "src/app/util/keys";
-import { NoteDialogComponent } from "../shared/note-dialog/note-dialog.component";
 
 @Component({
   selector: "app-payment",
@@ -91,7 +91,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     private configService: ConfigService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-    public paymentService: PaymentService
+    public paymentService: PaymentService,
   ) {
     this.submitClicked
       .pipe(debounceTime(200))
@@ -120,7 +120,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
             const relations = this.document.employeeRelations.filter(
               (relation) => {
                 return relation.type == EmployeeRelationType.SELLER;
-              }
+              },
             );
             if (relations.length > 0) {
               this.subscriptions$.add(
@@ -128,22 +128,22 @@ export class PaymentComponent implements OnInit, OnDestroy {
                   .getEmployee(relations[0].employeeOid)
                   .subscribe({
                     next: (employee) => (this._seller = employee),
-                  })
+                  }),
               );
             }
           }
         }
-      })
+      }),
     );
     this.subscriptions$.add(
       this.paymentService.currentPayments.subscribe(
-        (_payments) => (this.payments = _payments)
-      )
+        (_payments) => (this.payments = _payments),
+      ),
     );
     this.subscriptions$.add(
       this.balanceService.currentBalance.subscribe(
-        (_balance) => (this.balance = _balance)
-      )
+        (_balance) => (this.balance = _balance),
+      ),
     );
     this.subscriptions$.add(
       this.paymentService.currentTotal.subscribe((_total) => {
@@ -155,14 +155,14 @@ export class PaymentComponent implements OnInit, OnDestroy {
             : this.document.crossTotal;
         }
         this.change = this.document ? _total - payableAmount : _total;
-      })
+      }),
     );
     this.subscriptions$.add(
       this.workspaceService.currentWorkspace.subscribe((_data) => {
         this.workspaceOid = _data.oid;
         this.allowAssignSeller = hasFlag(_data, WorkspaceFlag.assignSeller);
         this.allowPrintPreliminary = _data.printCmds.some(
-          (x) => x.target === "PRELIMINARY"
+          (x) => x.target === "PRELIMINARY",
         );
         this.printTicket = _data.printCmds.some((x) => x.target === "TICKET");
         this.docTypes = [];
@@ -171,7 +171,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
             this.docTypes.push(_value);
           }
         });
-      })
+      }),
     );
     this.subscriptions$.add(
       this.configService.getSystemConfig<boolean>(PAYMENT_REQUIRE).subscribe({
@@ -182,7 +182,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
             this.requirePayment = false;
           }
         },
-      })
+      }),
     );
     this.subscriptions$.add(
       this.configService
@@ -195,7 +195,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
               this.activateNote = false;
             }
           },
-        })
+        }),
     );
   }
 
@@ -209,7 +209,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
       this.snackBar.open(
         this.translateService.instant("PAYMENT.NOCONTACTMSG"),
         "",
-        { duration: 3000 }
+        { duration: 3000 },
       );
       ret = false;
     } else if (
@@ -220,7 +220,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
       this.snackBar.open(
         "Solo se puede generar facturas con un número de RUC válido.",
         "",
-        { duration: 3000 }
+        { duration: 3000 },
       );
       ret = false;
     } else if (
@@ -231,7 +231,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
       this.snackBar.open(
         this.translateService.instant("PAYMENT.NOCONTACTMSG"),
         "",
-        { duration: 3000 }
+        { duration: 3000 },
       );
       ret = false;
     }
@@ -326,7 +326,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   }
 
   private getObserver<T extends Document>(
-    type: DocumentType
+    type: DocumentType,
   ): PartialObserver<T> {
     return {
       next: (doc) => {
@@ -339,13 +339,13 @@ export class PaymentComponent implements OnInit, OnDestroy {
           this.snackBar.open(
             this.translateService.instant("PAYMENT." + response.error.status),
             "",
-            { duration: 3000 }
+            { duration: 3000 },
           );
         } else {
           this.snackBar.open(
             this.translateService.instant("PAYMENT.UNKNOWNERROR"),
             "",
-            { duration: 3000 }
+            { duration: 3000 },
           );
         }
       },
@@ -396,7 +396,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.dialog.open(PrintDialogComponent, {
       data: this.printService.printPreliminary(
         this.workspaceOid,
-        this.document
+        this.document,
       ),
     });
   }

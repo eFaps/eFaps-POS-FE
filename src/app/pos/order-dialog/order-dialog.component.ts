@@ -23,7 +23,7 @@ export class OrderDialogComponent implements OnInit {
     private printService: PrintService,
     private dialog: MatDialog,
     public dialogRef: MatDialogRef<OrderDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
   ngOnInit() {

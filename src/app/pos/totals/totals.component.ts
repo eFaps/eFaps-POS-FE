@@ -17,7 +17,10 @@ export class TotalsComponent implements OnInit {
   currentCurrency: Currency = Currency.PEN;
   promoInfo: PromoInfo | null = null;
 
-  constructor(private dialog: MatDialog, private posService: PosService) {
+  constructor(
+    private dialog: MatDialog,
+    private posService: PosService,
+  ) {
     effect(() => {
       this.promoInfo = this.posService.promotionInfo();
       if (this.promoInfo != null) {
@@ -30,17 +33,17 @@ export class TotalsComponent implements OnInit {
 
   ngOnInit() {
     this.posService.currentCurrency.subscribe(
-      (_data) => (this.currentCurrency = _data)
+      (_data) => (this.currentCurrency = _data),
     );
     this.posService.currentNetTotal.subscribe((_data) => (this.net = _data));
     this.posService.currentTaxes.subscribe((_data) => {
       this.taxesEntries = Array.from(_data.entries());
     });
     this.posService.currentCrossTotal.subscribe(
-      (_data) => (this.cross = _data)
+      (_data) => (this.cross = _data),
     );
     this.posService.currentPayableAmount.subscribe(
-      (_data) => (this.payableAmount = _data)
+      (_data) => (this.payableAmount = _data),
     );
   }
 

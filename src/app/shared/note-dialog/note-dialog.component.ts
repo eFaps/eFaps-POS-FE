@@ -12,7 +12,7 @@ export class NoteDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<NoteDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: string | undefined
+    @Inject(MAT_DIALOG_DATA) public data: string | undefined,
   ) {
     this.noteCtrl = new FormControl<string | null>(null);
     if (data) {

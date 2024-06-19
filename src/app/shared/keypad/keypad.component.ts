@@ -1,14 +1,14 @@
 import {
   Component,
   EventEmitter,
-  Input,
-  Output,
   HostListener,
-  OnInit,
+  Input,
   OnDestroy,
+  OnInit,
+  Output,
 } from "@angular/core";
-import { KeypadService } from "../../services";
 import { Subscription } from "rxjs";
+import { KeypadService } from "../../services";
 
 @Component({
   selector: "app-keypad",
@@ -27,7 +27,7 @@ export class KeypadComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.keypadService.currentKey.subscribe((data) => {
         this.clickBtn(data);
-      })
+      }),
     );
   }
 

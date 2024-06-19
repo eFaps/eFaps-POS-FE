@@ -13,16 +13,15 @@ import {
   BarcodeOptions,
   BarcodeScannerService,
   CompanyService,
+  LoaderService,
+  Permission,
   User,
   UserService,
   WorkspaceService,
-  Permission,
-  LoaderService,
 } from "@efaps/pos-library";
-import { Hotkey, HotkeysService } from "angular2-hotkeys";
 import { TranslateService } from "@ngx-translate/core";
+import { Hotkey, HotkeysService } from "angular2-hotkeys";
 
-import { environment } from "../environments/environment";
 import { MatIconRegistry } from "@angular/material/icon";
 
 @Component({
@@ -54,7 +53,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
     private hotkeysService: HotkeysService,
     private companyService: CompanyService,
     private barcodeScannerService: BarcodeScannerService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
   ) {
     computed(() => console.log(this.loaderService.isLoading()));
 
@@ -72,8 +71,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
           return false;
         },
         undefined,
-        "Send a secret message to the console."
-      )
+        "Send a secret message to the console.",
+      ),
     );
     this.hotkeysService.add(
       new Hotkey(
@@ -84,8 +83,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
           return false;
         },
         undefined,
-        "Send a secret message to the console."
-      )
+        "Send a secret message to the console.",
+      ),
     );
   }
 

@@ -24,7 +24,7 @@ export class CardComponent extends PaymentForm {
     paymentService: PaymentService,
     utilsService: UtilsService,
     fb: UntypedFormBuilder,
-    private workspaceService: WorkspaceService
+    private workspaceService: WorkspaceService,
   ) {
     super(paymentService, utilsService, fb);
   }

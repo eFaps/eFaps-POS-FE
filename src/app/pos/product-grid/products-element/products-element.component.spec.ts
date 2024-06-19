@@ -10,11 +10,11 @@ import {
 } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
-import { ProductsElementComponent } from "./products-element.component";
 import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import { ProductsElementComponent } from "./products-element.component";
 class PosServiceStub {
   currentOrder = new Observable((observer) => {
     observer.next({});

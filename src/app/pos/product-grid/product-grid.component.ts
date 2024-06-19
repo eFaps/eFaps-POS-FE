@@ -1,17 +1,17 @@
-import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import {
   Category,
   CategoryNode,
   Currency,
-  hasFlag,
   InventoryService,
   PosService,
   Product,
   ProductService,
   WorkspaceFlag,
   WorkspaceService,
+  hasFlag,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 import { KeypadService, PosSyncService } from "src/app/services";
@@ -47,7 +47,7 @@ export class ProductGridComponent
     inventoryService: InventoryService,
     posSyncService: PosSyncService,
     keypadService: KeypadService,
-    dialog: MatDialog
+    dialog: MatDialog,
   ) {
     super(
       workspaceService,
@@ -56,7 +56,7 @@ export class ProductGridComponent
       inventoryService,
       posSyncService,
       keypadService,
-      dialog
+      dialog,
     );
   }
 
@@ -67,7 +67,7 @@ export class ProductGridComponent
         next: (_categories) => {
           this.categories = _categories;
         },
-      })
+      }),
     );
 
     this.workspaceService.currentWorkspace.subscribe({
@@ -81,7 +81,7 @@ export class ProductGridComponent
             this.subscription$.add(
               this.posService.currentCurrency.subscribe({
                 next: (currency) => (this.currentCurrency = currency),
-              })
+              }),
             );
           }
           if (this.showInventory) {

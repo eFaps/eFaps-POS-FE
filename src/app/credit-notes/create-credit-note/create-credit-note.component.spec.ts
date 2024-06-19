@@ -2,8 +2,7 @@ import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { MatListModule } from "@angular/material/list";
-import { ActivatedRoute, Router } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
+import { ActivatedRoute } from "@angular/router";
 import {
   BalanceService,
   DocumentService,
@@ -11,16 +10,15 @@ import {
   PosConfigToken,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { Mock, MockComponent, MockDirective, MockInstance } from "ng-mocks";
+import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
 import { DocumentComponent } from "../../shared/document/document.component";
-import { SharedModule } from "../../shared/shared.module";
 
-import { CreateCreditNoteComponent } from "./create-credit-note.component";
 import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import { CreateCreditNoteComponent } from "./create-credit-note.component";
 
 class DocumentServiceStub {}
 class BalanceServiceStub {

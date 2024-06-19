@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { ProductService, Product, ProductRelation } from "@efaps/pos-library";
+import { Component, Input, OnInit } from "@angular/core";
+import { Product, ProductRelation, ProductService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-part-list-relation",

@@ -16,11 +16,11 @@ import {
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { ProductGridComponent } from "./product-grid.component";
 import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import { ProductGridComponent } from "./product-grid.component";
 
 class PosServiceStub {
   currentOrder = new Observable((observer) => {

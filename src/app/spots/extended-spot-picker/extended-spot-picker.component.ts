@@ -45,7 +45,7 @@ export class ExtendedSpotPickerComponent
     private spotService: SpotService,
     private imageService: ImageService,
     private sanitizer: DomSanitizer,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {
     super(router, posService, documentService, dialog);
   }
@@ -67,7 +67,7 @@ export class ExtendedSpotPickerComponent
   image(floor: Floor) {
     if (this.images.has(floor.imageOid)) {
       return this.sanitizer.bypassSecurityTrustStyle(
-        "url('" + this.images.get(floor.imageOid) + "')"
+        "url('" + this.images.get(floor.imageOid) + "')",
       );
     }
     return "url('')";

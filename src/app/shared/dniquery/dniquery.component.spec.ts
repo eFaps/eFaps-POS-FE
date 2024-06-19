@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DNIQueryComponent } from "./dniquery.component";
-import { provideHttpClientTesting } from "@angular/common/http/testing";
-import { EnquiryService } from "@efaps/pos-library";
 import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { EnquiryService } from "@efaps/pos-library";
+import { DNIQueryComponent } from "./dniquery.component";
 
 class EnquiryServiceStub {}
 

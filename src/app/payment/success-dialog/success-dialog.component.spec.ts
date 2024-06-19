@@ -12,12 +12,12 @@ import {
 } from "@efaps/pos-library";
 import { MockComponent, MockPipe } from "ng-mocks";
 
-import { PrintDisplayComponent } from "../../shared/print-display/print-display.component";
-import { SuccessDialogComponent } from "./success-dialog.component";
 import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import { PrintDisplayComponent } from "../../shared/print-display/print-display.component";
+import { SuccessDialogComponent } from "./success-dialog.component";
 
 class PrintServiceSub {}
 

@@ -34,14 +34,14 @@ export class SplitOrderDialogComponent implements OnInit {
   constructor(
     private posService: PosService,
     private dialogRef: MatDialogRef<SplitOrderDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
     this.originOrder = data;
   }
 
   ngOnInit() {
     this.originDataSource.data = this.data.items.sort(
-      (a: DocItem, b: DocItem) => (a.index < b.index ? -1 : 1)
+      (a: DocItem, b: DocItem) => (a.index < b.index ? -1 : 1),
     );
     this.targetOrder = {
       type: "ORDER",

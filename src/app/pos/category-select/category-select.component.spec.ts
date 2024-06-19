@@ -4,10 +4,10 @@ import {
 } from "@angular/common/http";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogRef } from "@angular/material/dialog";
-import { PosConfigToken, ProductService, Category } from "@efaps/pos-library";
+import { Category, PosConfigToken, ProductService } from "@efaps/pos-library";
 
-import { CategorySelectComponent } from "./category-select.component";
 import { Observable } from "rxjs";
+import { CategorySelectComponent } from "./category-select.component";
 
 class ProductServiceStub {
   getCategories(): Observable<Category[]> {

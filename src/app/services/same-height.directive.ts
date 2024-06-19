@@ -45,7 +45,7 @@ export class SameHeightDirective implements AfterViewChecked {
 
     // gather all height
     const itemHeights = Array.from(children).map(
-      (x) => x.getBoundingClientRect().height
+      (x) => x.getBoundingClientRect().height,
     );
 
     // find max height
@@ -55,7 +55,7 @@ export class SameHeightDirective implements AfterViewChecked {
 
     // apply max height
     Array.from(children).forEach(
-      (x: Element) => ((<HTMLElement>x).style.height = `${maxHeight}px`)
+      (x: Element) => ((<HTMLElement>x).style.height = `${maxHeight}px`),
     );
   }
 }

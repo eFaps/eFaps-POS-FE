@@ -6,7 +6,7 @@ import { BehaviorSubject } from "rxjs";
 })
 export class PosSyncService {
   private afterProductSelectedSource = new BehaviorSubject(
-    "afterProductSelected"
+    "afterProductSelected",
   );
   afterProductSelected = this.afterProductSelectedSource.asObservable();
 

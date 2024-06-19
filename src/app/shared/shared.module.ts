@@ -13,30 +13,30 @@ import { MatListModule } from "@angular/material/list";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatTableModule } from "@angular/material/table";
+import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
 import { WebStorageModule } from "@efaps/ngx-store";
 import { PosLibraryModule } from "@efaps/pos-library";
 import { TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
 
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatSelectModule } from "@angular/material/select";
+import { MatTooltipModule } from "@angular/material/tooltip";
 import { ServicesModule } from "../services/services.module";
 import { ConfirmDialogComponent } from "./confirm-dialog/confirm-dialog.component";
 import { ContactComponent } from "./contact/contact.component";
+import { DNIQueryComponent } from "./dniquery/dniquery.component";
 import { DocumentComponent } from "./document/document.component";
+import { EmployeeDialogComponent } from "./employee-dialog/employee-dialog.component";
 import { ImageComponent } from "./image/image.component";
 import { KeypadComponent } from "./keypad/keypad.component";
+import { NoteDialogComponent } from "./note-dialog/note-dialog.component";
 import { PartListRelationComponent } from "./part-list-relation/part-list-relation.component";
 import { PrintDialogComponent } from "./print-dialog/print-dialog.component";
 import { PrintDisplayComponent } from "./print-display/print-display.component";
 import { ProductComponent } from "./product/product.component";
 import { TaxpayerQueryComponent } from "./taxpayer-query/taxpayer-query.component";
 import { TaxpayerResultComponent } from "./taxpayer-result/taxpayer-result.component";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { MatTooltipModule } from "@angular/material/tooltip";
-import { EmployeeDialogComponent } from "./employee-dialog/employee-dialog.component";
-import { MatSelectModule } from "@angular/material/select";
-import { NoteDialogComponent } from "./note-dialog/note-dialog.component";
-import { DNIQueryComponent } from "./dniquery/dniquery.component";
 
 export function TranslateLoaderFactory(_httpClient: HttpClient) {
   return new TranslateHttpLoader(_httpClient, "./assets/i18n/");

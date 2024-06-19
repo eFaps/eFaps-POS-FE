@@ -20,7 +20,6 @@ import {
   Employee,
   EmployeeRelationType,
   EmployeeService,
-  hasFlag,
   Item,
   MsgService,
   PartListService,
@@ -31,8 +30,9 @@ import {
   UserService,
   WorkspaceFlag,
   WorkspaceService,
+  hasFlag,
 } from "@efaps/pos-library";
-import { combineLatest, Subscription } from "rxjs";
+import { Subscription, combineLatest } from "rxjs";
 import { skip } from "rxjs/operators";
 import { KeypadService } from "../services";
 import { PosSyncService } from "../services/pos-sync.service";
@@ -97,14 +97,14 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     private router: Router,
     private contactService: ContactService,
     private keypadService: KeypadService,
-    @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef
+    @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
     this.subscriptions.add(
       this.posService.currentTicket.subscribe((data) => {
         this.ticket = data;
-      })
+      }),
     );
     this.onResize();
     this.msgService.init();
@@ -117,11 +117,11 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
         next: ({ order, workspace }) => {
           this.requiresContact = hasFlag(
             workspace,
-            WorkspaceFlag.orderRequiresContact
+            WorkspaceFlag.orderRequiresContact,
           );
           this.allowAssignSeller = hasFlag(
             workspace,
-            WorkspaceFlag.assignSeller
+            WorkspaceFlag.assignSeller,
           );
           if (order && !this.orderId) {
             this.msgService.publishStartEditOrder(order.id!);
@@ -149,7 +149,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
                     .getEmployee(relations[0].employeeOid)
                     .subscribe({
                       next: (employee) => (this._seller = employee),
-                    })
+                    }),
                 );
               }
             }
@@ -168,12 +168,12 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
                         });
                     }
                   },
-                })
+                }),
               );
             }
           }
         },
-      })
+      }),
     );
 
     if (this.workspaceService.getPosLayout() === PosLayout.BOTH) {
@@ -193,7 +193,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
             this.onBarcode(barcode);
           }
         },
-      })
+      }),
     );
     this.subscriptions.add(
       this.partListService.detectedPartList.subscribe({
@@ -202,7 +202,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
             this.onPartList(partList);
           }
         },
-      })
+      }),
     );
     this.posSyncService.afterProductSelected.subscribe({
       next: () => {

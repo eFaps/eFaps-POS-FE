@@ -15,10 +15,10 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockComponent, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
 import { CashComponent } from "./cash.component";
-import { MatInputModule } from "@angular/material/input";
-import { MatFormFieldModule } from "@angular/material/form-field";
 
 class AuthServiceStub {}
 class ConfigServiceStub {}

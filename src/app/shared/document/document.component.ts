@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild, Optional } from "@angular/core";
+import { Component, Input, OnInit, Optional, ViewChild } from "@angular/core";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -6,21 +6,21 @@ import { Router } from "@angular/router";
 import {
   AuthService,
   CreditNote,
+  Currency,
   DocItem,
+  DocStatus,
   Document,
   DocumentService,
-  PrintService,
-  Permission,
-  Payable,
-  WorkspaceService,
-  Payment,
-  Currency,
-  DocStatus,
+  Employee,
   EmployeeRelationType,
   EmployeeService,
-  Employee,
+  Payable,
+  Payment,
+  Permission,
+  PrintService,
+  PromoInfo,
   PromotionService,
-  PromoInfo
+  WorkspaceService,
 } from "@efaps/pos-library";
 
 import { PrintDialogComponent } from "../print-dialog/print-dialog.component";
@@ -52,7 +52,6 @@ export class DocumentComponent implements OnInit {
   employeeRelations: EmployeeRelationDisplay[] = [];
   promoInfo: PromoInfo | undefined;
 
-
   constructor(
     private router: Router,
     private dialog: MatDialog,
@@ -62,7 +61,7 @@ export class DocumentComponent implements OnInit {
     private documentService: DocumentService,
     private employeeService: EmployeeService,
     private promotionService: PromotionService,
-    @Optional() private matDialogRef?: MatDialogRef<DocumentComponent>
+    @Optional() private matDialogRef?: MatDialogRef<DocumentComponent>,
   ) {
     this._document = {
       type: "ORDER",
@@ -89,13 +88,15 @@ export class DocumentComponent implements OnInit {
       next: (workspace) => {
         this.workspaceOid = workspace.oid;
         this.hasCopyPrintCmd = workspace.printCmds.some(
-          (x) => x.target === "COPY"
+          (x) => x.target === "COPY",
         );
       },
     });
-    this.promotionService.getPromotionInfoForDocument(this.document.id!!).subscribe({
-      next: (promoInfo) => this.promoInfo = promoInfo
-    })
+    this.promotionService
+      .getPromotionInfoForDocument(this.document.id!!)
+      .subscribe({
+        next: (promoInfo) => (this.promoInfo = promoInfo),
+      });
   }
 
   @Input()
@@ -103,7 +104,7 @@ export class DocumentComponent implements OnInit {
     this._document = document;
     if (document && document.items) {
       this.dataSource.data = this._document.items.sort((a, b) =>
-        a.index < b.index ? -1 : 1
+        a.index < b.index ? -1 : 1,
       );
       this.dataSource.sort = this.sort;
       this.loadCreditNote();
@@ -131,7 +132,7 @@ export class DocumentComponent implements OnInit {
     if (this._document.type != "CREDITNOTE") {
       this.documentService
         .getCreditNotes4SourceDocument(
-          this._document.oid ? this._document.oid : this._document.id!
+          this._document.oid ? this._document.oid : this._document.id!,
         )
         .subscribe({
           next: (docs) => {

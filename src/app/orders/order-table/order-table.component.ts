@@ -22,13 +22,13 @@ import {
   Order,
   OrderWrapper,
   PaymentService,
-  PosService,
   Permission,
+  PosService,
   WorkspaceService,
 } from "@efaps/pos-library";
 
-import { Observable, Observer, Subscription } from "rxjs";
-import { debounceTime, map, mergeMap } from "rxjs/operators";
+import { Subscription } from "rxjs";
+import { debounceTime, map } from "rxjs/operators";
 
 import { ConfirmDialogComponent } from "../../shared/confirm-dialog/confirm-dialog.component";
 import { ReassignDialogComponent } from "../reassign-dialog/reassign-dialog.component";
@@ -64,7 +64,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     private contactService: ContactService,
     private fb: FormBuilder,
     private dialog: MatDialog,
-    private changeDetectorRefs: ChangeDetectorRef
+    private changeDetectorRefs: ChangeDetectorRef,
   ) {
     this.filterForm = this.fb.group({
       filter: [],
@@ -162,8 +162,8 @@ export class OrderTableComponent implements OnInit, OnDestroy {
           map((orders) =>
             orders.map((order) => {
               return this.getRow(orders, order);
-            })
-          )
+            }),
+          ),
         )
         .subscribe((orderWrappers) => {
           this.dataSource.data = orderWrappers;
@@ -198,8 +198,8 @@ export class OrderTableComponent implements OnInit, OnDestroy {
           map((orders) =>
             orders.map((order) => {
               return this.getRow(orders, order);
-            })
-          )
+            }),
+          ),
         )
         .subscribe((orderWrappers) => {
           this.dataSource.data = orderWrappers;

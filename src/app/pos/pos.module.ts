@@ -16,25 +16,25 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
 
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatStepperModule } from "@angular/material/stepper";
+import { ContactsModule } from "../contacts/contacts.module";
 import { SharedModule } from "../shared/shared.module";
 import { CategorySelectComponent } from "./category-select/category-select.component";
 import { CommandsComponent } from "./commands/commands.component";
+import { ConfigDialogComponent } from "./config-dialog/config-dialog.component";
+import { ContactDialogComponent } from "./contact-dialog/contact-dialog.component";
 import { OrderDialogComponent } from "./order-dialog/order-dialog.component";
 import { PosRoutingModule } from "./pos-routing.module";
 import { PosComponent } from "./pos.component";
+import { GridElementComponent } from "./product-grid/grid-element/grid-element.component";
 import { ProductGridComponent } from "./product-grid/product-grid.component";
+import { ProductsElementComponent } from "./product-grid/products-element/products-element.component";
 import { ProductListComponent } from "./product-list/product-list.component";
 import { TicketComponent } from "./ticket/ticket.component";
 import { TotalsComponent } from "./totals/totals.component";
-import { GridElementComponent } from "./product-grid/grid-element/grid-element.component";
-import { ProductsElementComponent } from "./product-grid/products-element/products-element.component";
-import { ContactDialogComponent } from "./contact-dialog/contact-dialog.component";
-import { ContactsModule } from "../contacts/contacts.module";
-import { MatSlideToggleModule } from "@angular/material/slide-toggle";
-import { ConfigDialogComponent } from "./config-dialog/config-dialog.component";
-import { MatExpansionModule } from "@angular/material/expansion";
-import { MatStepperModule } from "@angular/material/stepper";
-import { MatRadioModule } from "@angular/material/radio";
 
 @NgModule({
   imports: [

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import {
   Currency,
@@ -36,7 +36,7 @@ export class ProductsElementComponent extends AbstractProductSelector {
     inventoryService: InventoryService,
     posSyncService: PosSyncService,
     keypadService: KeypadService,
-    dialog: MatDialog
+    dialog: MatDialog,
   ) {
     super(
       workspaceService,
@@ -45,7 +45,7 @@ export class ProductsElementComponent extends AbstractProductSelector {
       inventoryService,
       posSyncService,
       keypadService,
-      dialog
+      dialog,
     );
   }
 

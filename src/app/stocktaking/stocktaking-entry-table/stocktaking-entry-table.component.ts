@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
+import { ChangeDetectorRef, Component, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
@@ -38,7 +38,7 @@ export class StocktakingEntryTableComponent {
     router: Router,
     private changeDetectorRefs: ChangeDetectorRef,
     private stocktakingService: StocktakingService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {
     this.stocktaking = <Stocktaking>(
       router.getCurrentNavigation()!!.extras.state

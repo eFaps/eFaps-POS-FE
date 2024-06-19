@@ -3,33 +3,35 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatIconModule } from "@angular/material/icon";
-import {
-  MatSnackBar,
-  MatSnackBarModule,
-  MAT_SNACK_BAR_DATA,
-} from "@angular/material/snack-bar";
+import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import {
   AuthService,
   BarcodeScannerService,
+  ContactService,
+  EmployeeService,
   MsgService,
+  PartListService,
+  PosConfigToken,
+  PosGridSize,
   PosLayout,
   PosService,
-  WorkspaceService,
-  PosConfigToken,
   ProductService,
-  ContactService,
-  Workspace,
   SpotConfig,
-  PosGridSize,
-  PartListService,
-  EmployeeService,
   UserService,
+  Workspace,
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
 
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { KeypadService, PosSyncService } from "../services";
 import { SharedModule } from "../shared/shared.module";
 import { CommandsComponent } from "./commands/commands.component";
 import { PosComponent } from "./pos.component";
@@ -37,12 +39,6 @@ import { ProductGridComponent } from "./product-grid/product-grid.component";
 import { ProductListComponent } from "./product-list/product-list.component";
 import { TicketComponent } from "./ticket/ticket.component";
 import { TotalsComponent } from "./totals/totals.component";
-import { provideHttpClientTesting } from "@angular/common/http/testing";
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from "@angular/common/http";
-import { KeypadService, PosSyncService } from "../services";
 
 class AuthServiceStub {
   getCurrentUsername() {

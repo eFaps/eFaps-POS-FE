@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { MatPaginator, PageEvent } from "@angular/material/paginator";
+import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import {
@@ -40,7 +40,7 @@ export class ContactTableComponent implements OnInit, OnDestroy {
     private contactService: ContactService,
     private dialog: MatDialog,
     private fb: FormBuilder,
-    private changeDetectorRefs: ChangeDetectorRef
+    private changeDetectorRefs: ChangeDetectorRef,
   ) {
     this.searchForm = this.fb.group({
       search: [],
@@ -64,7 +64,7 @@ export class ContactTableComponent implements OnInit, OnDestroy {
           next: (value) => {
             this.useEmail = value;
           },
-        })
+        }),
     );
 
     this.searchForm.valueChanges.pipe(debounceTime(400)).subscribe((input) => {
@@ -72,7 +72,7 @@ export class ContactTableComponent implements OnInit, OnDestroy {
       if (input.search) {
         merge(
           this.contactService.searchContacts(input.search, true),
-          this.contactService.searchContacts(input.search, false)
+          this.contactService.searchContacts(input.search, false),
         ).subscribe({
           next: (data) => {
             this.dataSource.data = this.dataSource.data.concat(data);

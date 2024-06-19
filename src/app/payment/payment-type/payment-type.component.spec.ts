@@ -10,16 +10,16 @@ import {
 } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { AutoComponent } from "../auto/auto.component";
 import { CardComponent } from "../card/card.component";
 import { CashComponent } from "../cash/cash.component";
 import { DiscountComponent } from "../discount/discount.component";
 import { FreeComponent } from "../free/free.component";
 import { PaymentTypeComponent } from "./payment-type.component";
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from "@angular/common/http";
 
 class AuthServiceStub {
   getCurrentUsername() {

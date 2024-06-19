@@ -12,9 +12,9 @@ import { MatTableDataSource } from "@angular/material/table";
 import { LocalStorage } from "@efaps/ngx-store";
 import { PageRequest, Product, ProductService } from "@efaps/pos-library";
 
-import { ProductComponent } from "../../shared/product/product.component";
 import { MatPaginator } from "@angular/material/paginator";
 import { debounceTime, merge, tap } from "rxjs";
+import { ProductComponent } from "../../shared/product/product.component";
 
 @Component({
   selector: "app-producttable",
@@ -34,7 +34,7 @@ export class ProducttableComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private dialog: MatDialog,
     private changeDetectorRefs: ChangeDetectorRef,
-    fb: FormBuilder
+    fb: FormBuilder,
   ) {
     this.filterForm = fb.group({
       filter: [""],

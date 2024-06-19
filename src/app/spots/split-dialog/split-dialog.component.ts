@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { UntypedFormGroup, UntypedFormBuilder } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
 
 @Component({
@@ -13,7 +13,7 @@ export class SplitDialogComponent implements OnInit {
 
   constructor(
     private fb: UntypedFormBuilder,
-    private dialogRef: MatDialogRef<SplitDialogComponent>
+    private dialogRef: MatDialogRef<SplitDialogComponent>,
   ) {}
 
   ngOnInit() {

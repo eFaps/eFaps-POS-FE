@@ -2,20 +2,20 @@ import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import {
+  MAT_DIALOG_DATA,
   MatDialogModule,
   MatDialogRef,
-  MAT_DIALOG_DATA,
 } from "@angular/material/dialog";
 import { MatSelectModule } from "@angular/material/select";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { EmployeeService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
-import { EmployeeDialogComponent } from "./employee-dialog.component";
 import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import { EmployeeDialogComponent } from "./employee-dialog.component";
 
 class EmployeeServiceStub {
   getEmployees() {

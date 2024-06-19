@@ -9,11 +9,11 @@ import {
   PrintService,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { Mock, MockComponent } from "ng-mocks";
+import { MockComponent } from "ng-mocks";
 
+import { Observable } from "rxjs";
 import { BalanceSummarySectionComponent } from "../balance-summary-section/balance-summary-section.component";
 import { BalanceSummaryComponent } from "./balance-summary.component";
-import { Observable } from "rxjs";
 
 class WorkspaceServiceStub {
   currentWorkspace = new Observable((observer) => {

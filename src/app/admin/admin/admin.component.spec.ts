@@ -4,16 +4,16 @@ import { By } from "@angular/platform-browser";
 import {
   AdminService,
   ConfigService,
-  Versions,
   Extension,
+  Versions,
 } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { AdminComponent } from "./admin.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { AdminComponent } from "./admin.component";
 
 class AdminServiceStub {
   version(): Observable<Versions> {

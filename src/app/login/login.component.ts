@@ -5,13 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import {
-  FormBuilder,
-  FormGroup,
-  UntypedFormBuilder,
-  UntypedFormGroup,
-  Validators,
-} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSlideToggleChange } from "@angular/material/slide-toggle";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
@@ -51,7 +45,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private workspaceService: WorkspaceService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
-    private translateService: TranslateService
+    private translateService: TranslateService,
   ) {
     this.loginForm = this.fb.group({
       userName: ["", Validators.required],
@@ -68,7 +62,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.subscription.add(
         this.companyService.getCompanies().subscribe({
           next: (companies) => (this.companies = companies),
-        })
+        }),
       );
     } else {
       this.subscription.add(
@@ -83,11 +77,11 @@ export class LoginComponent implements OnInit, OnDestroy {
               this.subscription.add(
                 this.userService
                   .getUsers()
-                  .subscribe((data) => (this.users = data))
+                  .subscribe((data) => (this.users = data)),
               );
             }
           },
-        })
+        }),
       );
     }
   }

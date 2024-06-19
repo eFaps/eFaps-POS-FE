@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
 export class TranslateFileLoader implements TranslateLoader {
   constructor(
     private prefix: string = "./assets/i18n",
-    private suffix: string = ".json"
+    private suffix: string = ".json",
   ) {}
 
   /**

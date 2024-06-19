@@ -9,23 +9,23 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   ConfigService,
   Contact,
+  ContactService,
   Page,
   PosConfigToken,
 } from "@efaps/pos-library";
-import { ContactService } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { ContactTableComponent } from "./contact-table.component";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
-import { MatPaginatorModule } from "@angular/material/paginator";
-import { MatSortModule } from "@angular/material/sort";
 import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatSortModule } from "@angular/material/sort";
+import { ContactTableComponent } from "./contact-table.component";
 
 class ContactServiceStub {
   getContacts(): Observable<Page<Contact>> {

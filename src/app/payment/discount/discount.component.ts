@@ -1,10 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
-import {
-  FormGroup,
-  UntypedFormBuilder,
-  UntypedFormGroup,
-  Validators,
-} from "@angular/forms";
+import { FormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import {
   Discount,
@@ -37,7 +32,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
     public paymentService: PaymentService,
     private discountService: DiscountService,
     private utilsService: UtilsService,
-    private fb: UntypedFormBuilder
+    private fb: UntypedFormBuilder,
   ) {
     this.amountForm = this.fb.group({
       amount: ["0.00", [Validators.min(0), Validators.required]],
@@ -51,11 +46,11 @@ export class DiscountComponent implements OnInit, OnDestroy {
     this.subscriptions$.add(
       this.workspaceService.currentWorkspace.subscribe((ws) => {
         this._discounts = ws.discounts;
-      })
+      }),
     );
     this.document = this.data;
     this.currency = this.utilsService.getCurrencySymbol(
-      this.paymentService.currency
+      this.paymentService.currency,
     );
   }
 
@@ -65,7 +60,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
         (discount) =>
           discount.type == DiscountType.PERCENT &&
           discount.value &&
-          discount.value > 0
+          discount.value > 0,
       )
       .sort((d1, d2) => d1.value - d2.value);
   }
@@ -76,7 +71,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
         (discount) =>
           discount.type == DiscountType.AMOUNT &&
           discount.value &&
-          discount.value > 0
+          discount.value > 0,
       )
       .sort((d1, d2) => d1.value - d2.value);
   }
@@ -85,7 +80,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
     return this._discounts.some(
       (discount) =>
         discount.type == DiscountType.PERCENT &&
-        (!discount.value || discount.value <= 0)
+        (!discount.value || discount.value <= 0),
     );
   }
 
@@ -93,7 +88,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
     return this._discounts.some(
       (discount) =>
         discount.type == DiscountType.AMOUNT &&
-        (!discount.value || discount.value <= 0)
+        (!discount.value || discount.value <= 0),
     );
   }
 
@@ -103,7 +98,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
       const discount = this._discounts.find(
         (discount) =>
           discount.type == DiscountType.PERCENT &&
-          (!discount.value || discount.value <= 0)
+          (!discount.value || discount.value <= 0),
       );
       this.applyDiscount({ ...discount!, value: percent });
     }
@@ -115,7 +110,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
       const discount = this._discounts.find(
         (discount) =>
           discount.type == DiscountType.AMOUNT &&
-          (!discount.value || discount.value <= 0)
+          (!discount.value || discount.value <= 0),
       );
       this.applyDiscount({ ...discount!, value: amount });
     }
@@ -124,7 +119,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
   applyDiscount(discount: Discount | null) {
     const docWithDiscount = this.discountService.applyDiscount(
       this.document,
-      discount
+      discount,
     );
     this.paymentService.updateDocument(docWithDiscount);
     this.dialogRef.close();

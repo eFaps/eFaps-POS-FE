@@ -5,13 +5,13 @@ import {
   BalanceService,
   BalanceSummary,
   CashEntry,
-  ConfigService,
-  DocumentService,
   CashEntryType,
+  ConfigService,
+  Currency,
+  DocumentService,
   PayableHead,
   PrintService,
   WorkspaceService,
-  Currency,
 } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
 import { Subscription } from "rxjs";
@@ -42,7 +42,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
     private workspaceService: WorkspaceService,
     private translateService: TranslateService,
     private configService: ConfigService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit() {
@@ -59,27 +59,27 @@ export class BalanceComponent implements OnInit, OnDestroy {
             this.documentService.getDocuments4Balance(balance).subscribe({
               next: (payables) =>
                 (this.payables = this.payables.concat(payables)),
-            })
+            }),
           );
           this.subscription$.add(
             this.balanceService.getSummary(balance).subscribe({
               next: (summary) => (this.summary = summary),
-            })
+            }),
           );
         }
-      })
+      }),
     );
     this.subscription$.add(
       this.workspaceService.currentWorkspace.subscribe({
         next: (workspace) => {
           if (workspace) {
             this.print = workspace.printCmds.some(
-              (x) => x.target === "BALANCE"
+              (x) => x.target === "BALANCE",
             );
             this.workspaceOid = workspace.oid;
           }
         },
-      })
+      }),
     );
     this.subscription$.add(
       this.configService
@@ -88,7 +88,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
           next: (value) => {
             this.useCashEntry = value;
           },
-        })
+        }),
     );
   }
 
@@ -131,7 +131,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
                   .subscribe();
                 sub.unsubscribe();
               }
-            }
+            },
           );
         }
       }
@@ -152,7 +152,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
                 this.dialog.open(PrintDialogComponent, {
                   data: this.printService.printBalance(
                     this.workspaceOid,
-                    balance.id
+                    balance.id,
                   ),
                 });
               }

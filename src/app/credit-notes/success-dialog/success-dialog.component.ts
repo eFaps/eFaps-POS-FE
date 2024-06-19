@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from "@angular/core";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { PrintService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
@@ -14,14 +14,14 @@ export class SuccessDialogComponent implements OnInit {
   constructor(
     private printService: PrintService,
     public dialogRef: MatDialogRef<SuccessDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
   ngOnInit() {
     if (this.data.print) {
       this.printObservable = this.printService.printTicket(
         this.data.workspaceOid,
-        this.data.document
+        this.data.document,
       );
     }
   }

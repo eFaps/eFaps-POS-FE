@@ -1,15 +1,16 @@
 import { Component } from "@angular/core";
 import { UntypedFormBuilder, Validators } from "@angular/forms";
 import {
-  Currency,
+  CollectOrder,
   CollectService,
   Collector,
+  Currency,
   MsgService,
+  Payment,
   PaymentService,
+  PaymentType,
   UtilsService,
-  CollectOrder,
 } from "@efaps/pos-library";
-import { Payment, PaymentType } from "@efaps/pos-library";
 
 import { PaymentForm } from "../payment-form";
 
@@ -31,7 +32,7 @@ export class AutoComponent extends PaymentForm {
     utilsService: UtilsService,
     fb: UntypedFormBuilder,
     private collectService: CollectService,
-    private msgService: MsgService
+    private msgService: MsgService,
   ) {
     super(paymentService, utilsService, fb);
   }
@@ -48,7 +49,7 @@ export class AutoComponent extends PaymentForm {
           this.collectors = collectors;
           this.paymentForm.patchValue({ collectorFrmCtrl: this.collectors[0] });
         },
-      })
+      }),
     );
   }
 
@@ -74,7 +75,7 @@ export class AutoComponent extends PaymentForm {
           amount,
           Currency.PEN,
           {},
-          this.document.id!
+          this.document.id!,
         )
         .subscribe({
           next: (startCollectResp) =>
@@ -104,7 +105,7 @@ export class AutoComponent extends PaymentForm {
             default:
           }
         },
-      })
+      }),
     );
   }
 

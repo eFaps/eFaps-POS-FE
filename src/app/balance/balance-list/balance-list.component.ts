@@ -20,7 +20,7 @@ export class BalanceListComponent implements OnInit, OnDestroy {
 
   constructor(
     private balanceService: BalanceService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit() {
@@ -30,7 +30,7 @@ export class BalanceListComponent implements OnInit, OnDestroy {
           this.dataSource.data = balances;
           this.dataSource.sort = this.sort;
         },
-      })
+      }),
     );
   }
 

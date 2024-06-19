@@ -33,7 +33,7 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
     private contactService: ContactService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
     this.idTypes = EnumValues.getValues(IdentificationType);
     this.contactForm = this.fb.group({
@@ -99,7 +99,7 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
           this.snackBar.open(
             "Un contacto con el mismo Numero ya existe!",
             undefined,
-            { duration: 3000 }
+            { duration: 3000 },
           );
         } else {
           this.snackBar.open("Algo inesperado paso", undefined, {

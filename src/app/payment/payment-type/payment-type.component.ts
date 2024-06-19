@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { LocalStorage } from "@efaps/ngx-store";
-import { AuthService } from "@efaps/pos-library";
-import { WorkspaceService } from "@efaps/pos-library";
+import { AuthService, WorkspaceService } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 
 @Component({
@@ -16,7 +15,7 @@ export class PaymentTypeComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private workspaceService: WorkspaceService
+    private workspaceService: WorkspaceService,
   ) {}
 
   ngOnInit() {}

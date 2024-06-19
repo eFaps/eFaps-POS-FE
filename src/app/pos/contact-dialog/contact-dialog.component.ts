@@ -12,7 +12,7 @@ export class ContactDialogComponent implements OnInit {
   contact: Contact | null = null;
   constructor(
     private dialogRef: MatDialogRef<ContactDialogComponent>,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {}

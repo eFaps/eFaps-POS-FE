@@ -27,16 +27,16 @@ import {
 import { MockDirective, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { VirtKeyboardDirective } from "../../services";
 import {
   SharedModule,
   TranslateLoaderFactory,
 } from "../../shared/shared.module";
 import { CreateContactDialogComponent } from "./create-contact-dialog.component";
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from "@angular/common/http";
 
 class TranslateServiceStub {
   get() {

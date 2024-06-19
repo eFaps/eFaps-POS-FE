@@ -45,7 +45,7 @@ export class StocktakingComponent implements OnInit {
     private stocktakingService: StocktakingService,
     private productService: ProductService,
     private barcodeScannerService: BarcodeScannerService,
-    fb: FormBuilder
+    fb: FormBuilder,
   ) {
     const state = router.getCurrentNavigation()!!.extras.state;
     if (state != undefined) {
@@ -81,14 +81,14 @@ export class StocktakingComponent implements OnInit {
             this.onBarcode(barcode);
           }
         },
-      })
+      }),
     );
 
     this.route.params
       .pipe(
         switchMap((params) => {
           return this.stocktakingService.getCurrent(params["oid"]);
-        })
+        }),
       )
       .subscribe({
         next: (stocktaking) => {

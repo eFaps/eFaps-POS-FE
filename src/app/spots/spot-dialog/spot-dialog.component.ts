@@ -17,7 +17,7 @@ export class SpotDialogComponent implements OnInit, OnDestroy {
   constructor(
     private dialogRef: MatDialogRef<SpotDialogComponent>,
     private spotService: SpotService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
   ngOnInit() {

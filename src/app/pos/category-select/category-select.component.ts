@@ -12,14 +12,14 @@ export class CategorySelectComponent implements OnInit {
   rootCategories: Category[] = [];
   constructor(
     private productService: ProductService,
-    public dialogRef: MatDialogRef<CategorySelectComponent>
+    public dialogRef: MatDialogRef<CategorySelectComponent>,
   ) {}
 
   ngOnInit() {
     this.productService.getCategories().subscribe((_categories) => {
       this.categories = _categories;
       this.rootCategories = this.categories.filter(
-        (category) => category.parentOid == null
+        (category) => category.parentOid == null,
       );
     });
   }

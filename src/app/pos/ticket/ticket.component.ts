@@ -1,12 +1,4 @@
 import {
-  Currency,
-  isChildItem,
-  Item,
-  PosService,
-  PromoDetail,
-  PromoInfo,
-} from "@efaps/pos-library";
-import {
   Component,
   effect,
   EventEmitter,
@@ -14,10 +6,17 @@ import {
   OnInit,
   Output,
 } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTableDataSource } from "@angular/material/table";
+import {
+  Currency,
+  isChildItem,
+  Item,
+  PosService,
+  PromoInfo,
+} from "@efaps/pos-library";
 import { Decimal } from "decimal.js";
-import { MatDialog } from "@angular/material/dialog";
 import { PromoDialogComponent } from "src/app/shared/promo-dialog/promo-dialog.component";
 
 @Component({
@@ -46,11 +45,11 @@ export class TicketComponent implements OnInit {
   constructor(
     private posService: PosService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {
     effect(() => {
       this.displayedColumns = this.displayedColumns.filter(
-        (name) => "discount" != name
+        (name) => "discount" != name,
       );
       this.promoInfo = this.posService.promotionInfo();
       if (this.promoInfo != null) {
@@ -61,10 +60,10 @@ export class TicketComponent implements OnInit {
 
   ngOnInit() {
     this.posService.currentTicket.subscribe(
-      (_data) => (this.dataSource.data = _data)
+      (_data) => (this.dataSource.data = _data),
     );
     this.posService.currentCurrency.subscribe(
-      (_data) => (this.currentCurrency = _data)
+      (_data) => (this.currentCurrency = _data),
     );
     this.posService.multiplier.subscribe({
       next: (multiplier) => (this.multiplier = multiplier),
@@ -104,7 +103,7 @@ export class TicketComponent implements OnInit {
           }
         }
         const childItems = ticket.filter(
-          (entry) => entry.parentIdx == item.index
+          (entry) => entry.parentIdx == item.index,
         );
         childItems.forEach((childItem) => {
           const index = ticket.indexOf(childItem);

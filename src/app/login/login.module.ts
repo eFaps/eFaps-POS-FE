@@ -9,10 +9,10 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { AngularSvgIconModule } from "angular-svg-icon";
 
+import { MatButtonModule } from "@angular/material/button";
 import { ServicesModule } from "../services/services.module";
 import { LoginRoutingModule } from "./login-routing.module";
 import { LoginComponent } from "./login.component";
-import { MatButtonModule } from "@angular/material/button";
 
 @NgModule({
   declarations: [LoginComponent],

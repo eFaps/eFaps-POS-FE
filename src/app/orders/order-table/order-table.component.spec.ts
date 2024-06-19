@@ -15,10 +15,10 @@ import {
   Order,
   PaymentService,
   PosCurrencyPipe,
+  PosGridSize,
   PosLayout,
   PosService,
   SpotConfig,
-  PosGridSize,
   UtilsService,
   Workspace,
   WorkspaceService,
@@ -27,8 +27,8 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { OrderTableComponent } from "./order-table.component";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { OrderTableComponent } from "./order-table.component";
 
 class AuthServiceStub {
   hasPermission(val: any) {

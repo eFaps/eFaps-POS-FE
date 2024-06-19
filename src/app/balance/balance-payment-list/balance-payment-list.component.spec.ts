@@ -5,8 +5,8 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { BalancePaymentListComponent } from "./balance-payment-list.component";
 import { MatListModule } from "@angular/material/list";
+import { BalancePaymentListComponent } from "./balance-payment-list.component";
 
 class BalanceServiceStub {
   currentBalance = new Observable((observer) => {

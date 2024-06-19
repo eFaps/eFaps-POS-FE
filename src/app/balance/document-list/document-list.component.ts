@@ -32,7 +32,7 @@ export class DocumentListComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private documentService: DocumentService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {
     this.searchForm = this.fb.group({
       term: [],
@@ -43,7 +43,7 @@ export class DocumentListComponent implements OnInit, OnDestroy {
     this.subscription$.add(
       this.searchForm.valueChanges
         .pipe(debounceTime(500))
-        .subscribe((newValue) => this.applyFilter(newValue.term))
+        .subscribe((newValue) => this.applyFilter(newValue.term)),
     );
   }
 

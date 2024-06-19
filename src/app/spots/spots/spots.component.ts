@@ -17,7 +17,7 @@ export class SpotsComponent implements OnInit, OnDestroy {
     this.subscription$.add(
       this.workspaceService.currentWorkspace.subscribe({
         next: (workspace) => (this.spotConfig = workspace.spotConfig),
-      })
+      }),
     );
   }
 

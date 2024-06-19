@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, Inject, OnInit } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { BalanceSummary, BalanceService } from "@efaps/pos-library";
+import { BalanceService, BalanceSummary } from "@efaps/pos-library";
 
 @Component({
   selector: "app-balance-summary-dialog",
@@ -12,7 +12,7 @@ export class BalanceSummaryDialogComponent implements OnInit {
 
   constructor(
     private balanceService: BalanceService,
-    @Inject(MAT_DIALOG_DATA) private data: any
+    @Inject(MAT_DIALOG_DATA) private data: any,
   ) {}
 
   ngOnInit() {

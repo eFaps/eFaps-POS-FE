@@ -13,20 +13,20 @@ import {
   WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
-import { MockComponent, MockDirective, MockPipe } from "ng-mocks";
+import { MockComponent, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
+import { MatTabsModule } from "@angular/material/tabs";
 import { BalanceDocumentListComponent } from "../balance-document-list/balance-document-list.component";
 import { BalanceListComponent } from "../balance-list/balance-list.component";
 import { BalancePaymentListComponent } from "../balance-payment-list/balance-payment-list.component";
 import { BalanceSummaryComponent } from "../balance-summary/balance-summary.component";
 import { DocumentListComponent } from "../document-list/document-list.component";
 import { BalanceComponent } from "./balance.component";
-import { MatTabsModule } from "@angular/material/tabs";
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from "@angular/common/http";
 
 class BalanceServiceStub {
   currentBalance = new Observable((observer) => {

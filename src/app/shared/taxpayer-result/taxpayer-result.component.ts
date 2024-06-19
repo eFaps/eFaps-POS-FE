@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
-import { RUC, EnquiryService } from "@efaps/pos-library";
+import { EnquiryService, RUC } from "@efaps/pos-library";
 import { Page } from "@efaps/pos-library/lib/model/pageable";
 
 @Component({
@@ -25,7 +25,7 @@ export class TaxpayerResultComponent implements OnInit, AfterViewInit {
   constructor(
     private dialogRef: MatDialogRef<TaxpayerResultComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any,
-    private enquiryService: EnquiryService
+    private enquiryService: EnquiryService,
   ) {}
 
   ngOnInit(): void {

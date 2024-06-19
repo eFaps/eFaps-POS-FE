@@ -15,12 +15,12 @@ import {
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { ReassignItemComponent } from "../reassign-item/reassign-item.component";
-import { ReassignDialogComponent } from "./reassign-dialog.component";
 import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import { ReassignItemComponent } from "../reassign-item/reassign-item.component";
+import { ReassignDialogComponent } from "./reassign-dialog.component";
 
 class DocumentServiceStub {
   getOpenOrders(): Observable<Order[]> {

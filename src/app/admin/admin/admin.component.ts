@@ -30,7 +30,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     private adminService: AdminService,
     private configService: ConfigService,
     private barcodeScannerService: BarcodeScannerService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
   ) {
     this.barcodeOptionsForm = this.fb.group({
       latency: "",

@@ -41,7 +41,7 @@ export class VirtKeyboardDirective implements OnDestroy {
   constructor(
     private _elementRef: ElementRef,
     private _keyboardService?: MatKeyboardService,
-    @Optional() @Self() private _control?: NgControl
+    @Optional() @Self() private _control?: NgControl,
   ) {}
 
   ngOnDestroy() {
@@ -63,14 +63,14 @@ export class VirtKeyboardDirective implements OnDestroy {
       }
 
       this._keyboardRef.instance.enterClick.subscribe(() =>
-        this.enterClick.next()
+        this.enterClick.next(),
       );
       this._keyboardRef.instance.capsClick.subscribe(() =>
-        this.capsClick.next()
+        this.capsClick.next(),
       );
       this._keyboardRef.instance.altClick.subscribe(() => this.altClick.next());
       this._keyboardRef.instance.shiftClick.subscribe(() =>
-        this.shiftClick.next()
+        this.shiftClick.next(),
       );
     }
   }

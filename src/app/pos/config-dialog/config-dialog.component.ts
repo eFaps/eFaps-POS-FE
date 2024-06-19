@@ -7,7 +7,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { MatChipInputEvent } from "@angular/material/chips";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import {
   Indication,
   Product,
@@ -39,7 +39,7 @@ export class ConfigDialogComponent implements OnInit {
     private matDialogRef: MatDialogRef<ConfigDialogComponent>,
     private productService: ProductService,
     fb: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) data: any
+    @Inject(MAT_DIALOG_DATA) data: any,
   ) {
     this.product = data.product;
     this.remarkMode = data.remarkMode;
@@ -47,7 +47,7 @@ export class ConfigDialogComponent implements OnInit {
     if (this.isSelectIndividual()) {
       this.formGroup.addControl(
         "selectedIndividual",
-        new FormControl<Product | undefined>(undefined, [Validators.required])
+        new FormControl<Product | undefined>(undefined, [Validators.required]),
       );
     }
     this.product.bomGroupConfigs.forEach((element) => {

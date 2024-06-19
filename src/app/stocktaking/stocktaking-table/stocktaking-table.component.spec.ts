@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { StocktakingTableComponent } from "./stocktaking-table.component";
-import { MatDialogModule } from "@angular/material/dialog";
-import {
-  PosConfigToken,
-  StocktakingService,
-  PageRequest,
-} from "@efaps/pos-library";
-import { provideHttpClientTesting } from "@angular/common/http/testing";
-import { Observable } from "rxjs";
 import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { MatDialogModule } from "@angular/material/dialog";
+import {
+  PageRequest,
+  PosConfigToken,
+  StocktakingService,
+} from "@efaps/pos-library";
+import { Observable } from "rxjs";
+import { StocktakingTableComponent } from "./stocktaking-table.component";
 
 class StocktakingServiceStub {
   getStocktakings(expand?: boolean, pageable?: PageRequest) {

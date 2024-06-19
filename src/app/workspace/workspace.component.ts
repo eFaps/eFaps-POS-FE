@@ -19,7 +19,7 @@ export class WorkspaceComponent implements OnInit {
   constructor(
     private router: Router,
     private workspaceService: WorkspaceService,
-    private posService: PosService
+    private posService: PosService,
   ) {}
 
   ngOnInit() {

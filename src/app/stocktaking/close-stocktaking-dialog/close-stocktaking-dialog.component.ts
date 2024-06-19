@@ -13,7 +13,7 @@ export class CloseStocktakingDialogComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) data: any,
     private dialogRef: MatDialogRef<CloseStocktakingDialogComponent>,
-    private stocktakingService: StocktakingService
+    private stocktakingService: StocktakingService,
   ) {
     this.stocktaking = data.stocktaking;
   }

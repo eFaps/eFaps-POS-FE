@@ -6,9 +6,9 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MockComponent } from "ng-mocks";
 
+import { DocumentService, PosConfigToken } from "@efaps/pos-library";
 import { DocumentComponent } from "../../shared/document/document.component";
 import { DocumentDialogComponent } from "./document-dialog.component";
-import { PosConfigToken, DocumentService } from "@efaps/pos-library";
 
 class DocumentServiceStub {}
 

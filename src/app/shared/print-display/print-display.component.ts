@@ -39,7 +39,7 @@ export class PrintDisplayComponent implements OnInit {
                         t.previewUrls.push(reader.result);
                         t.loaded = true;
                       },
-                      false
+                      false,
                     );
                     reader.readAsDataURL(preview);
                   });
@@ -47,7 +47,7 @@ export class PrintDisplayComponent implements OnInit {
                 t.success = true;
                 t.loaded = true;
               }
-            }
+            },
           );
         }
       });

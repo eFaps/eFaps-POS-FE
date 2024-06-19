@@ -1,22 +1,22 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { StocktakingComponent } from "./stocktaking.component";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { FormBuilder } from "@angular/forms";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { ActivatedRoute, Router } from "@angular/router";
 import {
   PosConfigToken,
   ProductService,
   StocktakingService,
 } from "@efaps/pos-library";
-import { MatDialogModule } from "@angular/material/dialog";
-import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { FormBuilder } from "@angular/forms";
-import { provideHttpClientTesting } from "@angular/common/http/testing";
-import { MatAutocompleteModule } from "@angular/material/autocomplete";
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from "@angular/common/http";
+import { StocktakingComponent } from "./stocktaking.component";
 
 class ActivatedRouteStub {
   params = new Observable((observer) => {});

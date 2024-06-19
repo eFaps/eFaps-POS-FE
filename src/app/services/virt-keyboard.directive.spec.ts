@@ -1,6 +1,6 @@
-import { VirtKeyboardDirective } from "./virt-keyboard.directive";
 import { ElementRef } from "@angular/core";
 import { MatKeyboardService } from "@efaps/angular-onscreen-material-keyboard";
+import { VirtKeyboardDirective } from "./virt-keyboard.directive";
 class MockElementRef extends ElementRef {
   constructor() {
     super({});
@@ -13,7 +13,7 @@ describe("VirtKeyboardDirective", () => {
     const directive = new VirtKeyboardDirective(
       new MockElementRef(),
       undefined,
-      undefined
+      undefined,
     );
     expect(directive).toBeTruthy();
   });

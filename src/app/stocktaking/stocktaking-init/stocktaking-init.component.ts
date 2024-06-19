@@ -1,10 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import {
   InventoryService,
@@ -25,7 +20,7 @@ export class StocktakingInitComponent implements OnInit {
     private router: Router,
     private inventoryService: InventoryService,
     private stocktakingService: StocktakingService,
-    fb: FormBuilder
+    fb: FormBuilder,
   ) {
     this.initForm = fb.group({
       warehouse: ["", [Validators.required]],

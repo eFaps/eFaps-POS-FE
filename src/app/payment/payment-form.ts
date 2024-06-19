@@ -1,10 +1,5 @@
-import { Input, OnDestroy, OnInit, Directive } from "@angular/core";
-import {
-  FormGroup,
-  UntypedFormBuilder,
-  UntypedFormGroup,
-  Validators,
-} from "@angular/forms";
+import { Directive, Input, OnDestroy, OnInit } from "@angular/core";
+import { FormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import {
   Document,
   Payment,
@@ -25,7 +20,7 @@ export abstract class PaymentForm implements OnInit, OnDestroy {
   constructor(
     protected paymentService: PaymentService,
     protected utilsService: UtilsService,
-    protected fb: UntypedFormBuilder
+    protected fb: UntypedFormBuilder,
   ) {
     this.currency = utilsService.getCurrencySymbol("PEN");
     this.paymentForm = this.fb.group({
@@ -36,13 +31,13 @@ export abstract class PaymentForm implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription$.add(
       this.paymentService.currentDocument.subscribe(
-        (_doc) => (this.document = _doc)
-      )
+        (_doc) => (this.document = _doc),
+      ),
     );
     this.subscription$.add(
       this.paymentService.currentPayments.subscribe(
-        (_payments) => (this.payments = _payments)
-      )
+        (_payments) => (this.payments = _payments),
+      ),
     );
     this.subscription$.add(
       this.paymentService.currentTotal.subscribe((_total) => {
@@ -53,7 +48,7 @@ export abstract class PaymentForm implements OnInit, OnDestroy {
             : this.document.crossTotal;
         }
         this.change = this.document ? _total - payableAmount : _total;
-      })
+      }),
     );
   }
 

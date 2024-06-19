@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { StocktakingEntryTableComponent } from "./stocktaking-entry-table.component";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatSortModule } from "@angular/material/sort";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { Router } from "@angular/router";
 import { PageRequest, StocktakingService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
-import { Router } from "@angular/router";
-import { MatPaginatorModule } from "@angular/material/paginator";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { MatSortModule } from "@angular/material/sort";
-import { MatDialogModule } from "@angular/material/dialog";
+import { StocktakingEntryTableComponent } from "./stocktaking-entry-table.component";
 
 class RouterStub {
   getCurrentNavigation() {

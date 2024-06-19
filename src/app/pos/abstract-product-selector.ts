@@ -32,12 +32,12 @@ export abstract class AbstractProductSelector implements OnInit {
     protected inventoryService: InventoryService,
     protected posSyncService: PosSyncService,
     protected keypadService: KeypadService,
-    protected dialog: MatDialog
+    protected dialog: MatDialog,
   ) {}
 
   ngOnInit() {
     this.posService.currentTicket.subscribe(
-      (_ticket) => (this.ticket = _ticket)
+      (_ticket) => (this.ticket = _ticket),
     );
     this.posService.multiplier.subscribe({
       next: (multiplier) => (this.multiplier = multiplier),
@@ -67,7 +67,7 @@ export abstract class AbstractProductSelector implements OnInit {
             product,
             selection.selectedIndividual,
             selection.remark,
-            selection.childProducts
+            selection.childProducts,
           );
         },
         error: (err: any) => {
@@ -111,7 +111,7 @@ export abstract class AbstractProductSelector implements OnInit {
     product: Product,
     standIn?: Product,
     remark?: string | null,
-    childProducts?: Product[] | null
+    childProducts?: Product[] | null,
   ) {
     const quantity = this.multiplier > 0 ? this.multiplier : 1;
     const idx = this.ticket.length + 1;
@@ -156,7 +156,7 @@ export abstract class AbstractProductSelector implements OnInit {
       return 0;
     }
     const inventoryEntry = this.inventory.find(
-      (entry) => entry.product.oid === _product.oid
+      (entry) => entry.product.oid === _product.oid,
     );
     return inventoryEntry ? inventoryEntry.quantity : 0;
   }

@@ -25,7 +25,7 @@ export class BalanceSummaryComponent implements OnInit {
   constructor(
     private workspaceService: WorkspaceService,
     private printService: PrintService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit() {
@@ -34,14 +34,14 @@ export class BalanceSummaryComponent implements OnInit {
         next: (workspace) => {
           if (workspace) {
             this.printer = workspace.printCmds.some(
-              (x) => x.target === "BALANCE"
+              (x) => x.target === "BALANCE",
             );
             this.workspaceOid = workspace.oid;
           } else {
             this.printer = false;
           }
         },
-      })
+      }),
     );
   }
 
@@ -49,7 +49,7 @@ export class BalanceSummaryComponent implements OnInit {
     this.dialog.open(PrintDialogComponent, {
       data: this.printService.printBalance(
         this.workspaceOid,
-        this.summary.balance.id
+        this.summary.balance.id,
       ),
     });
   }

@@ -20,7 +20,7 @@ export class CreateStocktakingDialogComponent implements OnInit {
     fb: FormBuilder,
     private dialogRef: MatDialogRef<CreateStocktakingDialogComponent>,
     private inventoryService: InventoryService,
-    private stocktakingService: StocktakingService
+    private stocktakingService: StocktakingService,
   ) {
     this.stocktakingForm = fb.group({
       warehouse: ["", [Validators.required]],

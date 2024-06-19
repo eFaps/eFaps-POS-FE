@@ -4,14 +4,15 @@ import {
   Currency,
   InventoryEntry,
   InventoryService,
+  PosService,
   Product,
   Product2Category,
   ProductRelation,
   ProductService,
   ProductType,
   RelationEntry,
+  WorkspaceService,
 } from "@efaps/pos-library";
-import { PosService, WorkspaceService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-product",
@@ -33,13 +34,13 @@ export class ProductComponent implements OnInit {
     private posService: PosService,
     private workspaceService: WorkspaceService,
     private inventoryService: InventoryService,
-    @Inject(MAT_DIALOG_DATA) private data: any
+    @Inject(MAT_DIALOG_DATA) private data: any,
   ) {}
 
   ngOnInit() {
     this.showInventory = this.workspaceService.showInventory();
     this.posService.currentCurrency.subscribe(
-      (_data) => (this.currentCurrency = _data)
+      (_data) => (this.currentCurrency = _data),
     );
     this.productService.getProduct(this.data.oid).subscribe((product) => {
       this.product = product;

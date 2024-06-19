@@ -3,11 +3,11 @@ import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
   Balance,
+  BalanceService,
   CreditNote,
   DocumentService,
-  BalanceService,
-  Payment,
   Payable,
+  Payment,
   PaymentService,
   PaymentType,
   WorkspaceService,
@@ -37,12 +37,12 @@ export class CreateCreditNoteComponent implements OnInit {
     private documentService: DocumentService,
     private balanceService: BalanceService,
     private workspaceService: WorkspaceService,
-    public paymentService: PaymentService
+    public paymentService: PaymentService,
   ) {}
 
   ngOnInit(): void {
     this.balanceService.currentBalance.subscribe(
-      (_balance) => (this.balance = _balance)
+      (_balance) => (this.balance = _balance),
     );
     this.workspaceService.currentWorkspace.subscribe((_data) => {
       this.workspaceOid = _data.oid;

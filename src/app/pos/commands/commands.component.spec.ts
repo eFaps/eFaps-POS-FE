@@ -15,13 +15,13 @@ import { TranslateDirective, TranslatePipe } from "@ngx-translate/core";
 import { MockDirective, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { CommandsComponent } from "./commands.component";
-import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
-import { provideHttpClientTesting } from "@angular/common/http/testing";
 import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
+import { CommandsComponent } from "./commands.component";
 
 class PosServiceStub {
   currentOrder = new Observable((observer) => {

@@ -27,7 +27,7 @@ export class PromoDialogComponent {
     public data: {
       promoInfo: PromoInfo;
       selectedDetail: number | undefined;
-    }
+    },
   ) {
     this.promoInfo = data.promoInfo;
     this.selectedDetail = data.selectedDetail;

@@ -1,28 +1,24 @@
-import { Component, OnDestroy, OnInit, ViewChild, Input } from "@angular/core";
-import {
-  FormGroup,
-  UntypedFormBuilder,
-  UntypedFormGroup,
-} from "@angular/forms";
+import { Component, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { FormGroup, UntypedFormBuilder } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import {
   AuthService,
   InventoryService,
+  Permission,
   PosService,
   Product,
   ProductService,
-  Permission,
   WorkspaceService,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 
+import { PosSyncService } from "src/app/services/pos-sync.service";
+import { KeypadService } from "../../services";
 import { ProductComponent } from "../../shared/product/product.component";
 import { AbstractProductSelector } from "../abstract-product-selector";
-import { KeypadService } from "../../services";
-import { PosSyncService } from "src/app/services/pos-sync.service";
 
 @Component({
   selector: "app-product-list",
@@ -50,7 +46,7 @@ export class ProductListComponent
     keypadService: KeypadService,
     dialog: MatDialog,
     private authService: AuthService,
-    private fb: UntypedFormBuilder
+    private fb: UntypedFormBuilder,
   ) {
     super(
       workspaceService,
@@ -59,7 +55,7 @@ export class ProductListComponent
       inventoryService,
       posSyncService,
       keypadService,
-      dialog
+      dialog,
     );
     this.filterForm = this.fb.group({
       filter: [],

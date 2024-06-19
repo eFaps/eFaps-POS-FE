@@ -19,11 +19,11 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { ExtendedSpotPickerComponent } from "./extended-spot-picker.component";
 import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import { ExtendedSpotPickerComponent } from "./extended-spot-picker.component";
 
 class PosServiceStub {}
 class SpotServiceStub {

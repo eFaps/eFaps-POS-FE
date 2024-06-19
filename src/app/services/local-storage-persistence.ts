@@ -1,5 +1,5 @@
-import { PersistenceService, CurrentUser } from "@efaps/pos-library";
 import { LocalStorage } from "@efaps/ngx-store";
+import { CurrentUser, PersistenceService } from "@efaps/pos-library";
 
 export class LocalStoragePersistence implements PersistenceService {
   @LocalStorage("workspaces") _workspaces = {

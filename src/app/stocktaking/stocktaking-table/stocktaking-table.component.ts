@@ -1,20 +1,16 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
 import {
-  InventoryService,
   Stocktaking,
   StocktakingService,
   User,
-  UserService,
   Warehouse,
 } from "@efaps/pos-library";
-import { CreateStocktakingDialogComponent } from "../create-stocktaking-dialog/create-stocktaking-dialog.component";
-import { MatDialog } from "@angular/material/dialog";
-import { ConfirmDialogComponent } from "src/app/shared/confirm-dialog/confirm-dialog.component";
-import { MatProgressSpinner } from "@angular/material/progress-spinner";
 import { CloseStocktakingDialogComponent } from "../close-stocktaking-dialog/close-stocktaking-dialog.component";
+import { CreateStocktakingDialogComponent } from "../create-stocktaking-dialog/create-stocktaking-dialog.component";
 
 @Component({
   selector: "app-stocktaking-table",
@@ -40,7 +36,7 @@ export class StocktakingTableComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private changeDetectorRefs: ChangeDetectorRef,
-    private stocktakingService: StocktakingService
+    private stocktakingService: StocktakingService,
   ) {}
 
   ngOnInit(): void {

@@ -13,6 +13,6 @@ describe("StyleManagerService", () => {
     [StyleManagerService],
     (service: StyleManagerService) => {
       expect(service).toBeTruthy();
-    }
+    },
   ));
 });

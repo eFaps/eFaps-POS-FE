@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { StocktakingInitComponent } from "./stocktaking-init.component";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
+import { FormBuilder } from "@angular/forms";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import {
   InventoryService,
   PosConfigToken,
   StocktakingService,
 } from "@efaps/pos-library";
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from "@angular/common/http";
-import { MatDialogModule } from "@angular/material/dialog";
-import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
-import { FormBuilder } from "@angular/forms";
 import { Observable } from "rxjs";
+import { StocktakingInitComponent } from "./stocktaking-init.component";
 
 class InventoryServiceStub {
   getWarehouses() {

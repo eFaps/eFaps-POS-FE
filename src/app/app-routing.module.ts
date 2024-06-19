@@ -1,10 +1,10 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import {
-  authGuard,
-  workspaceGuard,
   Permission,
+  authGuard,
   permissionGuard,
+  workspaceGuard,
 } from "@efaps/pos-library";
 
 const routes: Routes = [
@@ -80,7 +80,7 @@ const routes: Routes = [
     canActivate: [authGuard, workspaceGuard],
     loadChildren: () =>
       import("./credit-notes/credit-notes.module").then(
-        (m) => m.CreditNotesModule
+        (m) => m.CreditNotesModule,
       ),
   },
   {
@@ -88,7 +88,7 @@ const routes: Routes = [
     canActivate: [authGuard, workspaceGuard],
     loadChildren: () =>
       import("./stocktaking/stocktaking.module").then(
-        (m) => m.StocktakingModule
+        (m) => m.StocktakingModule,
       ),
   },
   { path: "**", redirectTo: "pos" },

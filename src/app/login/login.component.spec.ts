@@ -17,6 +17,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Router } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
 import {
+  MatKeyboardModule,
+  MatKeyboardService,
+} from "@efaps/angular-onscreen-material-keyboard";
+import {
   AuthService,
   Company,
   CompanyService,
@@ -26,10 +30,6 @@ import {
   WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
-import {
-  MatKeyboardModule,
-  MatKeyboardService,
-} from "@efaps/angular-onscreen-material-keyboard";
 import { AngularSvgIconModule, SvgIconRegistryService } from "angular-svg-icon";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
@@ -155,7 +155,7 @@ describe("LoginComponent", () => {
       const baseDe: DebugElement = fixture.debugElement;
       const cardContent = baseDe.query(By.css(".mat-mdc-card-content"));
       expect(cardContent.nativeElement.textContent.trim()).toBe(
-        "Firstname Lastname"
+        "Firstname Lastname",
       );
     });
 
@@ -194,7 +194,7 @@ describe("LoginComponent", () => {
 
         const url = spy.calls.first().args[0];
         expect(url).toEqual(["/"]);
-      }
+      },
     ));
 
     it("shows snackBar if form invalid", inject(
@@ -209,7 +209,7 @@ describe("LoginComponent", () => {
         const button = baseDe.query(By.css("button"));
         button.nativeElement.click();
         expect(snackBar.open).toHaveBeenCalled();
-      }
+      },
     ));
 
     it("shows snackBar if login invalid", inject(
@@ -229,7 +229,7 @@ describe("LoginComponent", () => {
         const button = baseDe.query(By.css("button"));
         button.nativeElement.click();
         expect(snackBar.open).toHaveBeenCalled();
-      }
+      },
     ));
   });
 });

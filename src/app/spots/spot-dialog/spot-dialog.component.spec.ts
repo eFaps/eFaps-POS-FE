@@ -9,7 +9,7 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { Spot, SpotService } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
-import { Observable, of } from "rxjs";
+import { Observable } from "rxjs";
 
 import { SpotDialogComponent } from "./spot-dialog.component";
 

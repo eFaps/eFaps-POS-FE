@@ -1,11 +1,11 @@
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
+  Input,
   OnInit,
   Output,
   ViewChild,
-  Input,
-  ChangeDetectorRef,
 } from "@angular/core";
 import { UntypedFormControl } from "@angular/forms";
 import { MatAutocomplete } from "@angular/material/autocomplete";
@@ -27,7 +27,7 @@ export class ContactComponent implements OnInit {
 
   constructor(
     private contactService: ContactService,
-    private changeDetectorRefs: ChangeDetectorRef
+    private changeDetectorRefs: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {

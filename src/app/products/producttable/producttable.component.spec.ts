@@ -7,16 +7,16 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatTableModule } from "@angular/material/table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ProductService } from "@efaps/pos-library";
 import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
+import { ProductService } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
 
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatSortModule } from "@angular/material/sort";
 import { VirtKeyboardDirective } from "../../services";
 import { ProductComponent } from "../../shared/product/product.component";
 import { ProducttableComponent } from "./producttable.component";
-import { MatPaginatorModule } from "@angular/material/paginator";
-import { MatSortModule } from "@angular/material/sort";
 
 class ProductServiceStub {
   getProducts() {

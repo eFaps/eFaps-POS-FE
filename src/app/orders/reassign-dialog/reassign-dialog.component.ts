@@ -1,11 +1,10 @@
 import { Component, Inject, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import {
+  CalculatorService,
   DocItem,
   DocumentService,
   Order,
-  PosService,
-  CalculatorService,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 
@@ -32,7 +31,7 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
     private documentService: DocumentService,
     private calculatorService: CalculatorService,
     private dialogRef: MatDialogRef<ReassignDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: any
+    @Inject(MAT_DIALOG_DATA) private data: any,
   ) {}
 
   ngOnInit() {
@@ -57,7 +56,7 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
             this.orderRight = this.orders[1];
           }
         },
-      })
+      }),
     );
   }
 
@@ -91,7 +90,7 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
   private move(item: DocItem, origin: Order, target: Order) {
     const index: number = origin.items.indexOf(item);
     const targetIndex = target.items.findIndex(
-      (it) => it.product.oid === item.product.oid
+      (it) => it.product.oid === item.product.oid,
     );
     if (targetIndex !== -1) {
       target.items[targetIndex].quantity++;

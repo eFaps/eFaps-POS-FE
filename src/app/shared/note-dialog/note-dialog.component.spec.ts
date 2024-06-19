@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { NoteDialogComponent } from "./note-dialog.component";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { NoteDialogComponent } from "./note-dialog.component";
 
 describe("NoteDialogComponent", () => {
   let component: NoteDialogComponent;

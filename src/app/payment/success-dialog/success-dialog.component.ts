@@ -13,14 +13,14 @@ export class SuccessDialogComponent implements OnInit {
   constructor(
     private printService: PrintService,
     public dialogRef: MatDialogRef<SuccessDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
   ngOnInit() {
     if (this.data.print) {
       this.printObservable = this.printService.printTicket(
         this.data.workspaceOid,
-        this.data.document
+        this.data.document,
       );
     }
   }

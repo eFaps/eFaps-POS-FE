@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Employee, EmployeeService } from "@efaps/pos-library";
 
 @Component({
@@ -17,7 +17,7 @@ export class EmployeeDialogComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     public dialogRef: MatDialogRef<EmployeeDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: EmployeeDialogData
+    @Inject(MAT_DIALOG_DATA) public data: EmployeeDialogData,
   ) {
     this.employeeCtrl = new FormControl<Employee | null>(null);
     this.title = data.titel;
@@ -34,7 +34,7 @@ export class EmployeeDialogComponent implements OnInit {
 
   closeDialog() {
     this.dialogRef.close(
-      this.employeeCtrl.value ? this.employeeCtrl.value : null
+      this.employeeCtrl.value ? this.employeeCtrl.value : null,
     );
   }
 

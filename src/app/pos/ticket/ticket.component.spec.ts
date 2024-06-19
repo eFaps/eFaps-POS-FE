@@ -6,8 +6,8 @@ import { PosCurrencyPipe, PosService } from "@efaps/pos-library";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { TicketComponent } from "./ticket.component";
 import { MatTableModule } from "@angular/material/table";
+import { TicketComponent } from "./ticket.component";
 
 class PosServiceStub {
   currentOrder = new Observable((observer) => {
