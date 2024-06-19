@@ -19,6 +19,8 @@ import {
   EmployeeRelationType,
   EmployeeService,
   Employee,
+  PromotionService,
+  PromoInfo
 } from "@efaps/pos-library";
 
 import { PrintDialogComponent } from "../print-dialog/print-dialog.component";
@@ -48,6 +50,8 @@ export class DocumentComponent implements OnInit {
   creditNotes: CreditNote[] = [];
   sourceDoc: Document | undefined;
   employeeRelations: EmployeeRelationDisplay[] = [];
+  promoInfo: PromoInfo | undefined;
+
 
   constructor(
     private router: Router,
@@ -57,6 +61,7 @@ export class DocumentComponent implements OnInit {
     private printService: PrintService,
     private documentService: DocumentService,
     private employeeService: EmployeeService,
+    private promotionService: PromotionService,
     @Optional() private matDialogRef?: MatDialogRef<DocumentComponent>
   ) {
     this._document = {
@@ -88,6 +93,9 @@ export class DocumentComponent implements OnInit {
         );
       },
     });
+    this.promotionService.getPromotionInfoForDocument(this.document.id!!).subscribe({
+      next: (promoInfo) => this.promoInfo = promoInfo
+    })
   }
 
   @Input()

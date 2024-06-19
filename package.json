@@ -34,7 +34,7 @@
     "@angular/router": "^18.0.3",
     "@efaps/angular-onscreen-material-keyboard": "^0.18.0",
     "@efaps/ngx-store": "^9.0.0",
-    "@efaps/pos-library": "^10.0.2",
+    "@efaps/pos-library": "^10.0.3",
     "@fontsource/roboto": "^5.0.13",
     "@ngx-pwa/local-storage": "^18.0.0",
     "@ngx-translate/core": "^14.0.0",
@@ -83,7 +83,8 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "ng-mocks": "^14.13.0",
-    "prettier": "^2.8.8",
+    "prettier": "^3.3.2",
+    "prettier-plugin-organize-imports": "^3.2.4",
     "replace-in-file": "^6.3.5",
     "sass": "^1.77.5",
     "ts-node": "^10.9.2",
@@ -98,6 +99,11 @@
       "parser": "typescript",
       "style": "module"
     }
+  },
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-organize-imports"
+    ]
   },
   "build": {
     "appId": "efaps.pos.fe",

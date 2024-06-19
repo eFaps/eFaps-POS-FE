@@ -124,6 +124,11 @@
         </mat-list-item>
         <mat-list-item class="amount">
           <div matLine>
+            Descuento: {{promoInfo.totalDiscount | posCurrency:document.currency}}
+          </div>
+        </mat-list-item>
+        <mat-list-item class="amount">
+          <div matLine>
             Total: {{document.crossTotal | posCurrency:document.currency}}
           </div>
         </mat-list-item>
