@@ -16,6 +16,7 @@ import {
   PosConfigToken,
   PosCurrencyPipe,
   PrintService,
+  PromotionService,
   WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
@@ -34,6 +35,13 @@ class WorkspaceServiceStub {
   });
 }
 class PrintServiceStub {}
+class PromotionServiceStub {
+  getPromotionInfoForDocument(type: any) {
+    return new Observable((observer) => {
+      observer.next();
+    });
+  }
+}
 
 describe("DocumentComponent", () => {
   let component: DocumentComponent;
@@ -61,7 +69,7 @@ describe("DocumentComponent", () => {
         { provide: PrintService, useClass: PrintServiceStub },
         { provide: DocumentService, useValue: {} },
         { provide: EmployeeService, useValue: {} },
-
+        { provide: PromotionService, useClass: PromotionServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
       ],
     }).compileComponents();
