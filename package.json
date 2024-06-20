@@ -46,7 +46,7 @@
     "decimal.js": "^10.4.3",
     "enum-values": "^1.2.1",
     "just-clone": "^6.2.0",
-    "jwt-decode": "^3.1.2",
+    "jwt-decode": "^4.0.0",
     "material-symbols": "^0.20.0",
     "ng-event-source": "^1.0.14",
     "parse-decimal-number": "^1.0.0",
@@ -86,7 +86,7 @@
     "ng-mocks": "^14.13.0",
     "prettier": "^3.3.2",
     "prettier-plugin-organize-imports": "^3.2.4",
-    "replace-in-file": "^6.3.5",
+    "replace-in-file": "^7.2.0",
     "sass": "^1.77.6",
     "ts-node": "^10.9.2",
     "typescript": "~5.4.5"
