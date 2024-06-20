@@ -155,7 +155,7 @@ export class TicketComponent implements OnInit {
 
   getDiscount(index: number): number {
     if (this.promoInfo != null && this.promoInfo.details.length > index) {
-      return this.promoInfo.details[index].discount;
+      return this.promoInfo.details[index].crossUnitDiscount;
     }
     return 0;
   }

@@ -125,7 +125,7 @@
         @if (promoInfo != null) {
           <mat-list-item class="amount">
             <div matLine class="totalDiscount">
-              <button mat-button (click)="showPromoInfo()">Descuento: {{promoInfo.totalDiscount | posCurrency:document.currency}}</button>
+              <button mat-button (click)="showPromoInfo()">Descuento: {{promoInfo.crossTotalDiscount | posCurrency:document.currency}}</button>
             </div>
           </mat-list-item>
         }

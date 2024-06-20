@@ -24,7 +24,7 @@ export class TotalsComponent implements OnInit {
     effect(() => {
       this.promoInfo = this.posService.promotionInfo();
       if (this.promoInfo != null) {
-        this.totalDiscount = this.promoInfo.totalDiscount;
+        this.totalDiscount = this.promoInfo.crossTotalDiscount;
       } else {
         this.totalDiscount = 0;
       }
