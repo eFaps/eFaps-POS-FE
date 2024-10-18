@@ -2,8 +2,8 @@
   <mat-tab i18n-label="@@currentBalance" label="Current Balance">
     <div>
       <span class="balanceNumber" *ngIf="currentBalance" i18n="@@balanceWithNumber">Balance - {{currentBalance.number}}</span>
-      <button *ngIf="!currentBalance" type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="init()" i18n="@@initBalance">Init</button>
-      <button *ngIf="currentBalance" type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="close()" i18n="@@closeBalance">Close</button>
+      <button *ngIf="!hasBalance()" type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="init()" i18n="@@initBalance">Init</button>
+      <button *ngIf="hasBalance()" type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="close()" i18n="@@closeBalance">Close</button>
     </div>
     <app-balance-document-list [payables]="payables"></app-balance-document-list>
     <app-balance-payment-list *ngIf="summary" [summary]="summary"></app-balance-payment-list>

@@ -27,7 +27,7 @@ import { OpeningBalanceDialogComponent } from "../opening-balance-dialog/opening
   styleUrls: ["./balance.component.scss"],
 })
 export class BalanceComponent implements OnInit, OnDestroy {
-  currentBalance!: Balance;
+  currentBalance: Balance | undefined;
   payables: PayableHead[] = [];
   summary: BalanceSummary | undefined;
   subscription$ = new Subscription();
@@ -146,7 +146,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe({
       next: (result) => {
         if (result) {
-          this.balanceService.close(this.currentBalance).subscribe({
+          this.balanceService.close(this.currentBalance!).subscribe({
             next: (balance) => {
               if (this.print) {
                 this.dialog.open(PrintDialogComponent, {
@@ -156,10 +156,17 @@ export class BalanceComponent implements OnInit, OnDestroy {
                   ),
                 });
               }
+              this.currentBalance = undefined;
+              this.payables = [];
+              this.summary = undefined;
             },
           });
         }
       },
     });
+  }
+
+  hasBalance(): Boolean {
+    return !!this.currentBalance;
   }
 }
