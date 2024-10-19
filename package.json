@@ -69,7 +69,7 @@
     "@types/jasmine": "^5.1.4",
     "@types/jasminewd2": "^2.0.13",
     "@types/mousetrap": "1.6.9",
-    "@types/node": "^18.19.56",
+    "@types/node": "^18.19.57",
     "@types/sockjs-client": "^1.5.4",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
@@ -87,7 +87,7 @@
     "prettier": "^3.3.3",
     "prettier-plugin-organize-imports": "^3.2.4",
     "replace-in-file": "^7.2.0",
-    "sass": "^1.80.2",
+    "sass": "^1.80.3",
     "ts-node": "^10.9.2",
     "typescript": "~5.4.5"
   },
