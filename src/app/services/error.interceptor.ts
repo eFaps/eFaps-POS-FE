@@ -6,11 +6,13 @@ import {
   HttpRequest,
 } from "@angular/common/http";
 
+import { IGNORED_STATUSES } from "@efaps/pos-library";
+
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
-import { Observable, throwError } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { tap } from "rxjs/operators";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -24,15 +26,25 @@ export class ErrorInterceptor implements HttpInterceptor {
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          this.router.navigate(["/login"]);
-        } else {
-          this.snackBar.open(error.statusText, "close", {
-            duration: 2000,
-          });
-        }
-        return throwError(() => new Error(error.message));
+      tap({
+        error: (error) => {
+          if (error instanceof HttpErrorResponse) {
+            if (
+              !(
+                request.context.has(IGNORED_STATUSES) &&
+                request.context.get(IGNORED_STATUSES).includes(error.status)
+              )
+            ) {
+              if (error.status === 401) {
+                this.router.navigate(["/login"]);
+              } else {
+                this.snackBar.open(error.statusText, "close", {
+                  duration: 2000,
+                });
+              }
+            }
+          }
+        },
       }),
     );
   }

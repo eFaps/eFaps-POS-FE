@@ -8,11 +8,13 @@ import {
   Contact,
   ContactService,
   DNI,
+  IGNORED_STATUSES,
   IdentificationType,
   RUC,
 } from "@efaps/pos-library";
 import { EnumValues } from "enum-values";
 
+import { HttpContext } from "@angular/common/http";
 import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
 
 @Component({
@@ -92,22 +94,26 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
       idNumber: this.contactForm.value.idNumber,
       email: this.contactForm.value.email,
     };
-    this.contactService.createContact(contact).subscribe({
-      next: (_contact) => this.dialogRef.close(_contact),
-      error: (err) => {
-        if (err && err.status == 412) {
-          this.snackBar.open(
-            "Un contacto con el mismo Numero ya existe!",
-            undefined,
-            { duration: 3000 },
-          );
-        } else {
-          this.snackBar.open("Algo inesperado paso", undefined, {
-            duration: 3000,
-          });
-        }
-      },
-    });
+    this.contactService
+      .createContact(contact, {
+        context: new HttpContext().set(IGNORED_STATUSES, [412]),
+      })
+      .subscribe({
+        next: (contact: any) => this.dialogRef.close(contact),
+        error: (err: any) => {
+          if (err && err.status == 412) {
+            this.snackBar.open(
+              "Un contacto con el mismo Numero ya existe!",
+              undefined,
+              { duration: 3000 },
+            );
+          } else {
+            this.snackBar.open("Algo inesperado paso", undefined, {
+              duration: 3000,
+            });
+          }
+        },
+      });
   }
 
   onTaxpayerQuery(taxpayer: RUC) {
