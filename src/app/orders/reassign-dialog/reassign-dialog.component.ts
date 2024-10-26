@@ -3,10 +3,11 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import {
   CalculatorService,
   DocItem,
+  Document,
   DocumentService,
   Order,
 } from "@efaps/pos-library";
-import { Subscription } from "rxjs";
+import { Observable, Subscription, zip } from "rxjs";
 
 import { ReassignItemComponent } from "../reassign-item/reassign-item.component";
 
@@ -134,13 +135,21 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
   }
 
   save() {
+    const orderObs: Observable<Document>[] = [];
     this.orders.forEach((order) => {
-      this.calculatorService.calculateDoc(order).subscribe({
-        next: (doc) => {
-          this.documentService.updateOrder(doc).subscribe({});
-        },
-      });
+      orderObs.push(this.calculatorService.calculateDoc(order));
     });
-    this.dialogRef.close();
+
+    zip(orderObs).subscribe({
+      next: (calculatedDocs) => {
+        const orderObs2: Observable<Document>[] = [];
+        calculatedDocs.forEach((order) => {
+          orderObs2.push(this.documentService.updateOrder(order));
+        });
+        zip(orderObs2).subscribe((_) => {
+          this.dialogRef.close();
+        });
+      },
+    });
   }
 }
