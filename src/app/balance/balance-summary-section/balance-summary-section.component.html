@@ -19,7 +19,7 @@
   <div class="payment">
     <div *ngFor="let info of detail.paymentInfos" class="paymentInfo">
       <div class="paymentInfoType">
-        <span i18n="@@paymentType">{info.type, select, CASH {Cash} FREE {Free} CARD {Cards} CHANGE {Change} AUTO {Auto} ELECTRONIC {Auto} } {{info.label ? " - " + info.label : ""}}</span>
+        <span i18n="@@paymentType">{info.type, select, CASH {Cash} FREE {Free} CARD {Cards} CHANGE {Change} AUTO {Auto} ELECTRONIC {Auto} LOYALTY_POINTS {Puntos} } {{info.label ? " - " + info.label : ""}}</span>
       </div>
       <div>
         <span i18n="@@bs-count">Count:</span><span>{{info.count}}</span>
