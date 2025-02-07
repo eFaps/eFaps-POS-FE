@@ -3,6 +3,7 @@
     <div class="info">
       <p i18n="@@bs-number">Number: {{summary.balance.number}}</p>
       <p i18n="@@bs-started">Started: {{summary.balance.startAt | date:'dd/MM/yy HH:mm' }}</p>
+      <p i18n="@@bs-ended">Ended: {{summary.balance.endAt | date:'dd/MM/yy HH:mm' }}</p>
     </div>
     <div class="opening" *ngIf="summary.cashEntries.length > 0">
       <span>Opening</span>
