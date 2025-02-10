@@ -20,6 +20,7 @@ export class BalanceSummaryComponent implements OnInit {
   @Input()
   summary!: BalanceSummary;
   printer: boolean = false;
+  printerDetailed: boolean = false;
   private workspaceOid!: string;
 
   constructor(
@@ -36,6 +37,9 @@ export class BalanceSummaryComponent implements OnInit {
             this.printer = workspace.printCmds.some(
               (x) => x.target === "BALANCE",
             );
+            this.printerDetailed = !workspace.printCmds.some(
+              (x) => x.target === "BALANCE_DETAILED",
+            );
             this.workspaceOid = workspace.oid;
           } else {
             this.printer = false;
@@ -45,11 +49,12 @@ export class BalanceSummaryComponent implements OnInit {
     );
   }
 
-  print() {
+  print(detailed: boolean) {
     this.dialog.open(PrintDialogComponent, {
       data: this.printService.printBalance(
         this.workspaceOid,
         this.summary.balance.id,
+        detailed
       ),
     });
   }

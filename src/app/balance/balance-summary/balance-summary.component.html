@@ -11,9 +11,12 @@
         {{cashEntry.currency}} {{cashEntry.amount}}
       </div>
     </div>
-    <div>
-      <button mat-button (click)="print()" *ngIf="printer">
+    <div class="print">
+      <button mat-button (click)="print(false)" *ngIf="printer">
         <mat-icon class="posIcon-36">print</mat-icon>
+      </button>
+      <button mat-button (click)="print(true)" *ngIf="printerDetailed">
+        <mat-icon class="posIcon-36">print_add</mat-icon>
       </button>
     </div>
   </div>
