@@ -12,6 +12,10 @@ import { TranslateModule } from "@ngx-translate/core";
 
 import { AdminRoutingModule } from "./admin-routing.module";
 import { AdminComponent } from "./admin/admin.component";
+import { MatDialogModule } from "@angular/material/dialog";
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { SalesReportDialogComponent } from "./sales-report-dialog/sales-report-dialog.component";
+import {provideNativeDateAdapter} from '@angular/material/core';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -27,7 +31,11 @@ import { AdminComponent } from "./admin/admin.component";
     MatInputModule,
     MatChipsModule,
     MatIconModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
   ],
-  declarations: [AdminComponent],
+  declarations: [AdminComponent, SalesReportDialogComponent],
+  providers: [provideNativeDateAdapter()],
 })
 export class AdminModule {}

@@ -37,7 +37,7 @@ export class BalanceSummaryComponent implements OnInit {
             this.printer = workspace.printCmds.some(
               (x) => x.target === "BALANCE",
             );
-            this.printerDetailed = !workspace.printCmds.some(
+            this.printerDetailed = workspace.printCmds.some(
               (x) => x.target === "BALANCE_DETAILED",
             );
             this.workspaceOid = workspace.oid;

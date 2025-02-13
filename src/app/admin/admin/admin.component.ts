@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatChipInputEvent } from "@angular/material/chips";
+import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { LocalStorage } from "@efaps/ngx-store";
 import {
@@ -9,9 +10,13 @@ import {
   BarcodeScannerService,
   ConfigService,
   Extension,
+  PrintService,
   Versions,
+  WorkspaceService,
 } from "@efaps/pos-library";
 import { STOCKTAKING_ACTIVATE } from "src/app/util/keys";
+import { SalesReportDialogComponent } from "../sales-report-dialog/sales-report-dialog.component";
+import { PrintDialogComponent } from "src/app/shared/print-dialog/print-dialog.component";
 
 @Component({
   selector: "app-admin",
@@ -24,13 +29,18 @@ export class AdminComponent implements OnInit, OnDestroy {
   @LocalStorage() barcodeOptions: BarcodeOptions = {};
   barcodeOptionsForm: FormGroup;
   stocktakingActivate = false;
+  salesReportActive = false;
+  workspaceOid!: string;
 
   constructor(
     private router: Router,
     private adminService: AdminService,
     private configService: ConfigService,
     private barcodeScannerService: BarcodeScannerService,
+    private workspaceService: WorkspaceService,
+    private printService: PrintService,
     private fb: FormBuilder,
+    private dialog: MatDialog,
   ) {
     this.barcodeOptionsForm = this.fb.group({
       latency: "",
@@ -67,7 +77,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       .getSystemConfig<boolean>(STOCKTAKING_ACTIVATE)
       .subscribe({
         next: (value) => {
-          this.stocktakingActivate = value;
+          this.stocktakingActivate = value
         },
       });
 
@@ -79,6 +89,19 @@ export class AdminComponent implements OnInit, OnDestroy {
         this.barcodeOptions = values;
       },
     });
+
+    this.workspaceService.currentWorkspace.subscribe({
+      next: (workspace) => {
+        if (workspace) {
+          this.salesReportActive = workspace.printCmds.some(
+            (x) => x.target === "SALESREPORT",
+          );
+        } else {
+          this.salesReportActive = false;
+        }
+        this.workspaceOid = workspace.oid;
+      },
+    })
   }
 
   ngOnDestroy(): void {
@@ -123,5 +146,24 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   stocktaking() {
     this.router.navigate(["stocktaking"]);
+  }
+
+  salesReport() {
+    const dialogRef = this.dialog.open(SalesReportDialogComponent) 
+    dialogRef.afterClosed().subscribe({
+      next: value => {
+        if (value && value.date) {
+          console.log((value.date as Date).toISOString())
+          const localDate = (value.date as Date).toISOString().substring(0, 10);
+          this.dialog.open(PrintDialogComponent, {
+                  data: this.printService.printSalesReport(
+                    this.workspaceOid,
+                    localDate,
+                  ),
+                });
+
+        }
+      }
+    })
   }
 }

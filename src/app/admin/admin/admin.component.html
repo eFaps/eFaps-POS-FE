@@ -5,6 +5,9 @@
   <div *ngIf="stocktakingActivate">
     <button class="btn btn-success" mat-raised-button color="primary" (click)="stocktaking()" >Stocktaking</button>
   </div>
+  <div *ngIf="salesReportActive">
+    <button class="btn btn-success" mat-raised-button color="primary" (click)="salesReport()" >Reporte de Venta</button>
+  </div>
   <div class="mat-elevation-z3 versions">
     <h1>Versions:</h1>
     <p i18n="@@versionCloud">Cloud: {{ versions?.remote }}</p>

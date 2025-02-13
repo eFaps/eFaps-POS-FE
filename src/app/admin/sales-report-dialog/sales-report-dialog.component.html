@@ -1,0 +1,14 @@
+<div mat-dialog-content>
+    <form [formGroup]="reportForm">
+        <mat-form-field>
+            <mat-label>Fecha del reporte</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="reportForm.value" cdkFocusInitial>Ok</button>
+</div>

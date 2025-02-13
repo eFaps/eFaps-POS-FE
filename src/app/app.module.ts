@@ -30,6 +30,7 @@ import { ErrorInterceptor, SameHeightDirective } from "./services/index";
 import { PERSISTENCE } from "./services/local-storage-persistence";
 import { SharedModule, TranslateLoaderFactory } from "./shared/shared.module";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
+import { MAT_DATE_LOCALE } from "@angular/material/core";
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -80,6 +81,7 @@ import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
       useClass: LoaderInterceptor,
       multi: true,
     },
+    {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
     // temporal workaround to deactivate the LiveAnnouncer
     {
       provide: LiveAnnouncer,
