@@ -24,13 +24,13 @@ import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { AngularSvgIconModule } from "angular-svg-icon";
 import { HotkeyModule } from "angular2-hotkeys";
 
+import { MAT_DATE_LOCALE } from "@angular/material/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ErrorInterceptor, SameHeightDirective } from "./services/index";
 import { PERSISTENCE } from "./services/local-storage-persistence";
 import { SharedModule, TranslateLoaderFactory } from "./shared/shared.module";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
-import { MAT_DATE_LOCALE } from "@angular/material/core";
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -81,7 +81,7 @@ import { MAT_DATE_LOCALE } from "@angular/material/core";
       useClass: LoaderInterceptor,
       multi: true,
     },
-    {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
+    { provide: MAT_DATE_LOCALE, useValue: "es-ES" },
     // temporal workaround to deactivate the LiveAnnouncer
     {
       provide: LiveAnnouncer,

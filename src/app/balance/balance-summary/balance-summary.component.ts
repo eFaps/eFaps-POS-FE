@@ -54,7 +54,7 @@ export class BalanceSummaryComponent implements OnInit {
       data: this.printService.printBalance(
         this.workspaceOid,
         this.summary.balance.id,
-        detailed
+        detailed,
       ),
     });
   }

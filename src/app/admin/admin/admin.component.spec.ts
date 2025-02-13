@@ -11,11 +11,14 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { AdminComponent } from "./admin.component";
-import { provideHttpClientTesting } from "@angular/common/http/testing";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 class AdminServiceStub {
   version(): Observable<Versions> {
@@ -56,7 +59,7 @@ describe("AdminComponent", () => {
       providers: [
         { provide: AdminService, useClass: AdminServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },
-         provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
       declarations: [AdminComponent, MockPipe(TranslatePipe)],

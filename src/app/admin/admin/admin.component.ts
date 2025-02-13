@@ -14,9 +14,9 @@ import {
   Versions,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { PrintDialogComponent } from "src/app/shared/print-dialog/print-dialog.component";
 import { STOCKTAKING_ACTIVATE } from "src/app/util/keys";
 import { SalesReportDialogComponent } from "../sales-report-dialog/sales-report-dialog.component";
-import { PrintDialogComponent } from "src/app/shared/print-dialog/print-dialog.component";
 
 @Component({
   selector: "app-admin",
@@ -77,7 +77,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       .getSystemConfig<boolean>(STOCKTAKING_ACTIVATE)
       .subscribe({
         next: (value) => {
-          this.stocktakingActivate = value
+          this.stocktakingActivate = value;
         },
       });
 
@@ -101,7 +101,7 @@ export class AdminComponent implements OnInit, OnDestroy {
           this.salesReportActive = false;
         }
       },
-    })
+    });
   }
 
   ngOnDestroy(): void {
@@ -149,21 +149,20 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   salesReport() {
-    const dialogRef = this.dialog.open(SalesReportDialogComponent) 
+    const dialogRef = this.dialog.open(SalesReportDialogComponent);
     dialogRef.afterClosed().subscribe({
-      next: value => {
+      next: (value) => {
         if (value && value.date) {
-          console.log((value.date as Date).toISOString())
+          console.log((value.date as Date).toISOString());
           const localDate = (value.date as Date).toISOString().substring(0, 10);
           this.dialog.open(PrintDialogComponent, {
-                  data: this.printService.printSalesReport(
-                    this.workspaceOid,
-                    localDate,
-                  ),
-                });
-
+            data: this.printService.printSalesReport(
+              this.workspaceOid,
+              localDate,
+            ),
+          });
         }
-      }
-    })
+      },
+    });
   }
 }

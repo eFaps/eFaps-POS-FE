@@ -10,12 +10,12 @@ import { MatInputModule } from "@angular/material/input";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { TranslateModule } from "@ngx-translate/core";
 
+import { provideNativeDateAdapter } from "@angular/material/core";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatDialogModule } from "@angular/material/dialog";
 import { AdminRoutingModule } from "./admin-routing.module";
 import { AdminComponent } from "./admin/admin.component";
-import { MatDialogModule } from "@angular/material/dialog";
-import {MatDatepickerModule} from '@angular/material/datepicker';
 import { SalesReportDialogComponent } from "./sales-report-dialog/sales-report-dialog.component";
-import {provideNativeDateAdapter} from '@angular/material/core';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
