@@ -96,10 +96,10 @@ export class AdminComponent implements OnInit, OnDestroy {
           this.salesReportActive = workspace.printCmds.some(
             (x) => x.target === "SALESREPORT",
           );
+          this.workspaceOid = workspace.oid;
         } else {
           this.salesReportActive = false;
         }
-        this.workspaceOid = workspace.oid;
       },
     })
   }

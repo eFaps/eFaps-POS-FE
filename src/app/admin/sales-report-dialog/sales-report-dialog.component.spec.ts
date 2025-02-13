@@ -8,7 +8,7 @@ describe('SalesReportDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SalesReportDialogComponent]
+      imports: []
     })
     .compileComponents();
 

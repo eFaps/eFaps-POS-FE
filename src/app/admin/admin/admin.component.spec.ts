@@ -14,6 +14,8 @@ import { Observable } from "rxjs";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { AdminComponent } from "./admin.component";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 class AdminServiceStub {
   version(): Observable<Versions> {
@@ -54,6 +56,8 @@ describe("AdminComponent", () => {
       providers: [
         { provide: AdminService, useClass: AdminServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },
+         provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
       ],
       declarations: [AdminComponent, MockPipe(TranslatePipe)],
     }).compileComponents();

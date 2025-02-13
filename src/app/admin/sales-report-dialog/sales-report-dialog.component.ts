@@ -3,8 +3,7 @@ import { FormBuilder, FormControl, FormGroup, FormRecord, Validators } from '@an
 
 @Component({
   selector: 'app-sales-report-dialog',
-  standalone: true,
-  imports: [],
+  standalone: false,
   templateUrl: './sales-report-dialog.component.html',
   styleUrl: './sales-report-dialog.component.scss'
 })
