@@ -22,7 +22,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-extensions/elements": "^17.1.1",
+    "@angular-extensions/elements": "^18.2.1",
     "@angular/animations": "^18.0.3",
     "@angular/cdk": "^18.0.3",
     "@angular/common": "^18.0.3",
