@@ -47,7 +47,7 @@ class WorkspaceServiceStub {
     });
   }
   currentWorkspace = new Observable((observer) => {
-    observer.next();
+    observer.next(undefined);
   });
 }
 

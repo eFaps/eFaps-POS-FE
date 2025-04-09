@@ -59,7 +59,7 @@ class PosServiceStub {
 }
 class MsgServiceStub {
   currentOrder = new Observable((observer) => {
-    observer.next();
+    observer.next({});
   });
   init() {}
   publishStartEditOrder(_id: any) {}
@@ -103,12 +103,12 @@ class ProductServiceStub {
 }
 class PartListServiceStub {
   detectedPartList = new Observable((observer) => {
-    observer.next();
+    observer.next({});
   });
 }
 class PosSyncServiceStub {
   afterProductSelected = new Observable((observer) => {
-    observer.next();
+    observer.next({});
   });
 }
 

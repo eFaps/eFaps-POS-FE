@@ -38,7 +38,7 @@ class PrintServiceStub {}
 class PromotionServiceStub {
   getPromotionInfoForDocument(type: any) {
     return new Observable((observer) => {
-      observer.next();
+      observer.next({});
     });
   }
 }

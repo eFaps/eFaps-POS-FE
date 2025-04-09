@@ -9,6 +9,7 @@
   "homepage": "www.eFaps.org",
   "main": "main.js",
   "scripts": {
+    "ng": "ng",
     "start": "ng serve --verbose true --proxy-config proxy.conf.js --host 0.0.0.0",
     "start-elements": "ng serve --live-reload false --proxy-config proxy.conf.json --host 0.0.0.0",
     "start-es": "ng serve --configuration es --proxy-config proxy.conf.json --host 0.0.0.0",

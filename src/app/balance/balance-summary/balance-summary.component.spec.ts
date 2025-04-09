@@ -17,7 +17,7 @@ import { BalanceSummaryComponent } from "./balance-summary.component";
 
 class WorkspaceServiceStub {
   currentWorkspace = new Observable((observer) => {
-    observer.next();
+    observer.next(undefined);
   });
 }
 
