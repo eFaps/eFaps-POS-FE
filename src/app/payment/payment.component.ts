@@ -165,8 +165,12 @@ export class PaymentComponent implements OnInit, OnDestroy {
         this.allowPrintPreliminary = workspace.printCmds.some(
           (x) => x.target === "PRELIMINARY",
         );
-        this.requirePrintJob = hasFlag(workspace.flags, WorkspaceFlag.jobOnPayment) && workspace.printCmds.some((x) => x.target === "JOB");
-        this.printTicket = workspace.printCmds.some((x) => x.target === "TICKET");
+        this.requirePrintJob =
+          hasFlag(workspace.flags, WorkspaceFlag.jobOnPayment) &&
+          workspace.printCmds.some((x) => x.target === "JOB");
+        this.printTicket = workspace.printCmds.some(
+          (x) => x.target === "TICKET",
+        );
         this.docTypes = [];
         workspace.docTypes.forEach((_value) => {
           if (_value != DocumentType.CREDITNOTE) {
@@ -354,7 +358,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
     };
   }
 
-
   showSuccess(document: Document, docType: DocumentType) {
     this.dialog.open(SuccessDialogComponent, {
       width: "450px",
@@ -367,7 +370,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
         print: this.printTicket,
         workspaceOid: this.workspaceOid,
         order: this.document,
-        job: this.requirePrintJob
+        job: this.requirePrintJob,
       },
     });
   }

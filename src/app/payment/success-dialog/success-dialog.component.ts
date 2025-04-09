@@ -25,7 +25,10 @@ export class SuccessDialogComponent implements OnInit {
       );
     }
     if (this.data.job) {
-      this.printJobObservable = this.printService.printJobs( this.data.workspaceOid,this.data.order);
+      this.printJobObservable = this.printService.printJobs(
+        this.data.workspaceOid,
+        this.data.order,
+      );
     }
   }
 }

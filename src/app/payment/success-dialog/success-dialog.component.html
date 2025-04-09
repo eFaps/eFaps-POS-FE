@@ -2,9 +2,11 @@
 <mat-dialog-content>
   <div class="content">
     <div i18n="@@paymentType-CHANGE">Change: {{ data.change | posCurrency:data.currency}}</div>
-    <div *ngIf="data.print">
-      <app-print-display [printObservable]="printObservable"></app-print-display>
-    </div>
+    @if (data.print) {
+      <div>
+        <app-print-display [printObservable]="printObservable"></app-print-display>
+      </div>
+    }
     @if (data.job) {
       <div>
         <app-print-display [printObservable]="printJobObservable"></app-print-display>
