@@ -5,6 +5,11 @@
     <div *ngIf="data.print">
       <app-print-display [printObservable]="printObservable"></app-print-display>
     </div>
+    @if (data.job) {
+      <div>
+        <app-print-display [printObservable]="printJobObservable"></app-print-display>
+      </div>
+    }
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>

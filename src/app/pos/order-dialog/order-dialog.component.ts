@@ -4,7 +4,12 @@ import {
   MatDialog,
   MatDialogRef,
 } from "@angular/material/dialog";
-import { PrintService, WorkspaceService } from "@efaps/pos-library";
+import {
+  PrintService,
+  WorkspaceFlag,
+  WorkspaceService,
+  hasFlag,
+} from "@efaps/pos-library";
 
 import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
 
@@ -27,10 +32,12 @@ export class OrderDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.workspaceService.currentWorkspace.subscribe((_data) => {
-      this.allowPayment = _data.docTypes && _data.docTypes.length > 0;
-      this.allowPrintJobs = _data.printCmds.some((x) => x.target === "JOB");
-      this.workspaceOid = _data.oid;
+    this.workspaceService.currentWorkspace.subscribe((workspace) => {
+      this.allowPayment = workspace.docTypes && workspace.docTypes.length > 0;
+      this.allowPrintJobs =
+        workspace.printCmds.some((x) => x.target === "JOB") &&
+        !hasFlag(workspace.flags, WorkspaceFlag.jobOnPayment);
+      this.workspaceOid = workspace.oid;
     });
   }
 

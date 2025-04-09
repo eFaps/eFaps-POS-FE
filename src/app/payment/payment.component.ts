@@ -72,6 +72,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   allowAssignSeller = true;
   activateNote = true;
   submitDisabled = false;
+  requirePrintJob = false;
 
   private subscriptions$ = new Subscription();
   private printTicket = false;
@@ -158,15 +159,16 @@ export class PaymentComponent implements OnInit, OnDestroy {
       }),
     );
     this.subscriptions$.add(
-      this.workspaceService.currentWorkspace.subscribe((_data) => {
-        this.workspaceOid = _data.oid;
-        this.allowAssignSeller = hasFlag(_data, WorkspaceFlag.assignSeller);
-        this.allowPrintPreliminary = _data.printCmds.some(
+      this.workspaceService.currentWorkspace.subscribe((workspace) => {
+        this.workspaceOid = workspace.oid;
+        this.allowAssignSeller = hasFlag(workspace, WorkspaceFlag.assignSeller);
+        this.allowPrintPreliminary = workspace.printCmds.some(
           (x) => x.target === "PRELIMINARY",
         );
-        this.printTicket = _data.printCmds.some((x) => x.target === "TICKET");
+        this.requirePrintJob = hasFlag(workspace.flags, WorkspaceFlag.jobOnPayment) && workspace.printCmds.some((x) => x.target === "JOB");
+        this.printTicket = workspace.printCmds.some((x) => x.target === "TICKET");
         this.docTypes = [];
-        _data.docTypes.forEach((_value) => {
+        workspace.docTypes.forEach((_value) => {
           if (_value != DocumentType.CREDITNOTE) {
             this.docTypes.push(_value);
           }
@@ -352,6 +354,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     };
   }
 
+
   showSuccess(document: Document, docType: DocumentType) {
     this.dialog.open(SuccessDialogComponent, {
       width: "450px",
@@ -363,6 +366,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
         currency: this.paymentService.currency,
         print: this.printTicket,
         workspaceOid: this.workspaceOid,
+        order: this.document,
+        job: this.requirePrintJob
       },
     });
   }

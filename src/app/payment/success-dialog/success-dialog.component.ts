@@ -9,6 +9,7 @@ import { Observable } from "rxjs";
 })
 export class SuccessDialogComponent implements OnInit {
   printObservable: Observable<any> | undefined = undefined;
+  printJobObservable: Observable<any> | undefined = undefined;
 
   constructor(
     private printService: PrintService,
@@ -22,6 +23,9 @@ export class SuccessDialogComponent implements OnInit {
         this.data.workspaceOid,
         this.data.document,
       );
+    }
+    if (this.data.job) {
+      this.printJobObservable = this.printService.printJobs( this.data.workspaceOid,this.data.order);
     }
   }
 }
