@@ -1,4 +1,12 @@
-<mat-spinner *ngIf="!loaded"></mat-spinner>
-<h2 *ngIf="showEmptyMsg">No se impremi nada</h2>
-<h2 *ngIf="!showEmptyMsg && success" class="success">LISTO</h2>
-<img [src]="url" *ngFor="let url of previewUrls; let i = index">
+@if (!loaded) {
+  <mat-spinner></mat-spinner>
+}
+@if (showEmptyMsg) {
+  <h2>No se impremi nada</h2>
+}
+@if (!showEmptyMsg && success) {
+  <h2 class="success">LISTO</h2>
+}
+@for (url of previewUrls; track url; let i = $index) {
+  <img [src]="url">
+}

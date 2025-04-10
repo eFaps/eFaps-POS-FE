@@ -1,1 +1,3 @@
-<app-balance-summary *ngIf="summary" [summary]="summary"></app-balance-summary>
+@if (summary) {
+  <app-balance-summary [summary]="summary"></app-balance-summary>
+}

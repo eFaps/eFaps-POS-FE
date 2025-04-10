@@ -1,5 +1,7 @@
 <div class="taxpayer-result-container mat-elevation-z8">
-  <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  @if (isLoadingResults) {
+    <mat-spinner></mat-spinner>
+  }
   <mat-table #table [dataSource]="dataSource">
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef i18n="@@taxpayer-ID">Taxpayer-ID </mat-header-cell>
@@ -12,8 +14,12 @@
     <ng-container matColumnDef="warnings">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let item">
-        <mat-icon *ngIf="item.homeState != 'HABIDO'" class="posIcon-36" [matTooltip]="'Condición del Contribuyente: ' + item.state">warning</mat-icon>
-        <mat-icon *ngIf="item.state != 'ACTIVO'" class="posIcon-36" [matTooltip]="'Estado del Contribuyente: ' + item.homeState">warning</mat-icon>
+        @if (item.homeState != 'HABIDO') {
+          <mat-icon class="posIcon-36" [matTooltip]="'Condición del Contribuyente: ' + item.state">warning</mat-icon>
+        }
+        @if (item.state != 'ACTIVO') {
+          <mat-icon class="posIcon-36" [matTooltip]="'Estado del Contribuyente: ' + item.homeState">warning</mat-icon>
+        }
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="cmd">

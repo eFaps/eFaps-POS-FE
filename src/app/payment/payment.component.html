@@ -1,33 +1,45 @@
 <div class="content">
   <div class="doc-wrapper">
     <div class="leftwrapper">
-      <app-contact *ngIf="showContact" (contactSelected)="selectContact($event)" [contact]="contact"></app-contact>
+      @if (showContact) {
+        <app-contact (contactSelected)="selectContact($event)" [contact]="contact"></app-contact>
+      }
       <div>
         <mat-radio-group class="docType-radio-group" [(ngModel)]="docType">
-          <mat-radio-button class="docType-radio-button" *ngFor="let type of docTypes; let idx = index"
-            [value]="DocumentType[type]" (click)="setDocType(type)">
-            {{type.toString() | translate}}
-          </mat-radio-button>
+          @for (type of docTypes; track type; let idx = $index) {
+            <mat-radio-button class="docType-radio-button"
+              [value]="DocumentType[type]" (click)="setDocType(type)">
+              {{type.toString() | translate}}
+            </mat-radio-button>
+          }
         </mat-radio-group>
         <mat-button-toggle [value]="showContact" (change)="toggleContact()" [disabled]="!permitToggleContact">{{
-          showContact ? 'Desc.' : 'Cliente'}}</mat-button-toggle>
+        showContact ? 'Desc.' : 'Cliente'}}</mat-button-toggle>
         <div class="balance">
-          <span *ngIf="balance" i18n>Balance - {{ balance.number }}</span>
+          @if (balance) {
+            <span i18n>Balance - {{ balance.number }}</span>
+          }
         </div>
       </div>
       <app-document></app-document>
     </div>
     <div class="button-list">
       <button mat-fab color="primary" (click)="showDiscount()" class="discount-btn">Desc.</button>
-      <button mat-fab color="primary" (click)="addNote()" class="discount-btn" *ngIf="activateNote">
-        <mat-icon>note</mat-icon>
-      </button>
-      <div *ngIf="allowAssignSeller" class="seller">
-        <button mat-fab color="primary" class="employee-btn" (click)="assignSeller()">
-          <mat-icon>person_pin</mat-icon>
+      @if (activateNote) {
+        <button mat-fab color="primary" (click)="addNote()" class="discount-btn">
+          <mat-icon>note</mat-icon>
         </button>
-        <div class="seller-label" *ngIf="seller"><span>{{seller.firstName}} {{seller.surName}}</span></div>
-      </div>
+      }
+      @if (allowAssignSeller) {
+        <div class="seller">
+          <button mat-fab color="primary" class="employee-btn" (click)="assignSeller()">
+            <mat-icon>person_pin</mat-icon>
+          </button>
+          @if (seller) {
+            <div class="seller-label"><span>{{seller.firstName}} {{seller.surName}}</span></div>
+          }
+        </div>
+      }
     </div>
   </div>
   <div class="paymentsContainer">
@@ -37,13 +49,15 @@
     <mat-divider></mat-divider>
     <div class="paymentsRegistered">
       <mat-list dense>
-        <mat-list-item *ngFor="let payment of payments">
-          <span matLine>{{ payment.cardTypeId ? payment.cardLabel : ('PAYMENT.' + PaymentType[payment.type]) | translate
+        @for (payment of payments; track payment) {
+          <mat-list-item>
+            <span matLine>{{ payment.cardTypeId ? payment.cardLabel : ('PAYMENT.' + PaymentType[payment.type]) | translate
             }} {{payment.amount | posCurrency:paymentService.currency}}</span>
-          <button mat-icon-button (click)="delPayment(payment)">
-            <mat-icon>highlight_off</mat-icon>
-          </button>
-        </mat-list-item>
+            <button mat-icon-button (click)="delPayment(payment)">
+              <mat-icon>highlight_off</mat-icon>
+            </button>
+          </mat-list-item>
+        }
       </mat-list>
       <div>
         <div class="payTotal">
@@ -52,11 +66,15 @@
             posCurrency:paymentService.currency}}</h1>
         </div>
         <div class="createDocument">
-          <button *ngIf="balance" mat-raised-button color="primary"
+          @if (balance) {
+            <button mat-raised-button color="primary"
             (click)="submitDocument()" [disabled]="submitDisabled" i18n="@@payment-submit">Submit</button>
-          <button mat-button (click)="printPreliminary()" *ngIf="allowPrintPreliminary">
-            <mat-icon class="posIcon-36">print</mat-icon>
-          </button>
+          }
+          @if (allowPrintPreliminary) {
+            <button mat-button (click)="printPreliminary()">
+              <mat-icon class="posIcon-36">print</mat-icon>
+            </button>
+          }
         </div>
       </div>
     </div>

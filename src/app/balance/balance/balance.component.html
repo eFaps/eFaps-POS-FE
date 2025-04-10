@@ -1,15 +1,25 @@
 <mat-tab-group>
   <mat-tab i18n-label="@@currentBalance" label="Current Balance">
     <div>
-      <span class="balanceNumber" *ngIf="currentBalance" i18n="@@balanceWithNumber">Balance - {{currentBalance.number}}</span>
-      <button *ngIf="!hasBalance()" type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="init()" i18n="@@initBalance">Init</button>
-      <button *ngIf="hasBalance()" type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="close()" i18n="@@closeBalance">Close</button>
+      @if (currentBalance) {
+        <span class="balanceNumber" i18n="@@balanceWithNumber">Balance - {{currentBalance.number}}</span>
+      }
+      @if (!hasBalance()) {
+        <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="init()" i18n="@@initBalance">Init</button>
+      }
+      @if (hasBalance()) {
+        <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="close()" i18n="@@closeBalance">Close</button>
+      }
     </div>
     <app-balance-document-list [payables]="payables"></app-balance-document-list>
-    <app-balance-payment-list *ngIf="summary" [summary]="summary"></app-balance-payment-list>
+    @if (summary) {
+      <app-balance-payment-list [summary]="summary"></app-balance-payment-list>
+    }
   </mat-tab>
   <mat-tab i18n-label="@@balanceSummary" label="Summary">
-    <app-balance-summary *ngIf="summary" [summary]="summary"></app-balance-summary>
+    @if (summary) {
+      <app-balance-summary [summary]="summary"></app-balance-summary>
+    }
   </mat-tab>
   <mat-tab i18n-label="@@balances" label="Balances">
     <ng-template matTabContent>

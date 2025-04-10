@@ -1,27 +1,29 @@
 <mat-list>
   <mat-list-item class="amount">
     <div matLine>
-     Op. Gravada: {{net | posCurrency:currentCurrency}}
+      Op. Gravada: {{net | posCurrency:currentCurrency}}
     </div>
   </mat-list-item>
-  <mat-list-item class="amount" *ngFor="let tax of taxesEntries">
-    <div matLine>
-      {{tax[0] | translate}}: {{tax[1] | posCurrency:currentCurrency}}
-    </div>
-  </mat-list-item>
-  <ng-container *ngIf="totalDiscount && totalDiscount > 0">
+  @for (tax of taxesEntries; track tax) {
+    <mat-list-item class="amount">
+      <div matLine>
+        {{tax[0] | translate}}: {{tax[1] | posCurrency:currentCurrency}}
+      </div>
+    </mat-list-item>
+  }
+  @if (totalDiscount && totalDiscount > 0) {
     <mat-list-item class="amount">
       <div matLine class="totalDiscount">
         <button mat-button (click)="showPromoInfo()">Descuento: {{totalDiscount | posCurrency:currentCurrency}}</button>
       </div>
     </mat-list-item>
-  </ng-container>
+  }
   <mat-list-item class="amount">
     <div matLine>
       Total: {{cross | posCurrency:currentCurrency}}
     </div>
   </mat-list-item>
-  <ng-container *ngIf="payableAmount && payableAmount > 0 && payableAmount != cross">
+  @if (payableAmount && payableAmount > 0 && payableAmount != cross) {
     <mat-list-item class="amount">
       <div matLine>
         Redondeo: {{payableAmount - cross | posCurrency:currentCurrency}}
@@ -32,5 +34,5 @@
         Por pagar: {{payableAmount | posCurrency:currentCurrency}}
       </div>
     </mat-list-item>
-  </ng-container>
+  }
 </mat-list>

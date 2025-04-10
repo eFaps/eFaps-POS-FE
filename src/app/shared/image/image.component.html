@@ -1,3 +1,5 @@
 <p>
-  <img [src]="imageUrl" *ngIf="loaded">
+  @if (loaded) {
+    <img [src]="imageUrl">
+  }
 </p>

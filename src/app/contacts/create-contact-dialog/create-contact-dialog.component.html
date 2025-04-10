@@ -3,13 +3,19 @@
   <form [formGroup]="contactForm">
     <mat-form-field>
       <mat-select i18n-placeholder="@@documentIdType" placeholder="Document Type" formControlName="idType">
-        <mat-option *ngFor="let idType of idTypes" [value]="idType">
-          {{ 'IDTYPE.' + idType | translate }}
-        </mat-option>
+        @for (idType of idTypes; track idType) {
+          <mat-option [value]="idType">
+            {{ 'IDTYPE.' + idType | translate }}
+          </mat-option>
+        }
       </mat-select>
     </mat-form-field>
-    <app-taxpayer-query *ngIf="showTaxpayerQuery" (result)="onTaxpayerQuery($event)"></app-taxpayer-query>
-    <app-dniquery *ngIf="showDNIQuery" (result)="onDNIQuery($event)"></app-dniquery>
+    @if (showTaxpayerQuery) {
+      <app-taxpayer-query (result)="onTaxpayerQuery($event)"></app-taxpayer-query>
+    }
+    @if (showDNIQuery) {
+      <app-dniquery (result)="onDNIQuery($event)"></app-dniquery>
+    }
     <mat-form-field>
       <mat-label i18n="@@documentId" >ID</mat-label>
       <input matInput formControlName="idNumber" [appVirtKeyboard] [activateKeyboard]="virtKeyboard" autocomplete="off" class="left">
@@ -18,10 +24,12 @@
       <mat-label i18n="@@contactName">Name</mat-label>
       <input matInput  formControlName="name" [appVirtKeyboard] [activateKeyboard]="virtKeyboard" autocomplete="off" class="left">
     </mat-form-field>
-    <mat-form-field *ngIf="useEmail">
-      <mat-label i18n="@@contactEmail">Email</mat-label>
-      <input matInput  formControlName="email" [appVirtKeyboard] [activateKeyboard]="virtKeyboard" autocomplete="off" class="left">
-    </mat-form-field>
+    @if (useEmail) {
+      <mat-form-field>
+        <mat-label i18n="@@contactEmail">Email</mat-label>
+        <input matInput  formControlName="email" [appVirtKeyboard] [activateKeyboard]="virtKeyboard" autocomplete="off" class="left">
+      </mat-form-field>
+    }
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>

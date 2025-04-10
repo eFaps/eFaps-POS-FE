@@ -1,7 +1,9 @@
 <div class="wrapper">
   <div>
     <div>
-      <h2 *ngIf="balance" i18n>Balance - {{ balance.number }}</h2>
+      @if (balance) {
+        <h2 i18n>Balance - {{ balance.number }}</h2>
+      }
       <app-document [document]='sourceDocument'></app-document>
     </div>
     <div>
@@ -13,13 +15,15 @@
       <button mat-raised-button color="secondary" (click)="openPaymentDialog()">Anadir Pago</button>
     </div>
     <mat-list dense>
-      <mat-list-item *ngFor="let payment of payments">
-        <span matLine>{{ payment.cardTypeId ? payment.cardLabel : ('PAYMENT.' + payment.type) |
-                    translate }} {{payment.amount | posCurrency:paymentService.currency}}</span>
-        <button mat-icon-button (click)="delPayment(payment)">
-          <mat-icon>highlight_off</mat-icon>
-        </button>
-      </mat-list-item>
+      @for (payment of payments; track payment) {
+        <mat-list-item>
+          <span matLine>{{ payment.cardTypeId ? payment.cardLabel : ('PAYMENT.' + payment.type) |
+          translate }} {{payment.amount | posCurrency:paymentService.currency}}</span>
+          <button mat-icon-button (click)="delPayment(payment)">
+            <mat-icon>highlight_off</mat-icon>
+          </button>
+        </mat-list-item>
+      }
     </mat-list>
     <div>
       <button mat-raised-button color="primary" (click)="createCreditNote()">Emitir Nota de Credito</button>

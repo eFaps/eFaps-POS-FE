@@ -12,9 +12,11 @@
       <input matInput placeholder="Buscar" autocomplete="off" [formControl]="searchControl" [matAutocomplete]="auto"
         class="left" (focus)="onFocusEvent($event)" (blur)="onBlurEvent($event)">
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selectProduct($event)">
-        <mat-option *ngFor="let item of searchResult" [value]="item">
-          {{item.sku + " " + item.description}}
-        </mat-option>
+        @for (item of searchResult; track item) {
+          <mat-option [value]="item">
+            {{item.sku + " " + item.description}}
+          </mat-option>
+        }
       </mat-autocomplete>
     </mat-form-field>
     <button mat-icon-button (click)="clear()">

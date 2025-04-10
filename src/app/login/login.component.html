@@ -1,24 +1,29 @@
-<div class="companies" *ngIf="showCompanySelection">
-  <div class="pos-companiesgrid">
-    <mat-card appearance="outlined" class="pos-companycard" *ngFor="let company of companies"
-      (click)="setCompany(company)">
-      <mat-card-content>
-        <svg-icon src="./assets/enterprise.svg" class="logo"></svg-icon>
-        {{company.label}}
-      </mat-card-content>
-    </mat-card>
+@if (showCompanySelection) {
+  <div class="companies">
+    <div class="pos-companiesgrid">
+      @for (company of companies; track company) {
+        <mat-card appearance="outlined" class="pos-companycard"
+          (click)="setCompany(company)">
+          <mat-card-content>
+            <svg-icon src="./assets/enterprise.svg" class="logo"></svg-icon>
+            {{company.label}}
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
   </div>
-</div>
+}
 <div class="usergrid-wrapper">
   <div class="pos-usergrid" [style.display]="!hiddenUser?'none':'flex'">
-    <mat-card appearance="outlined" class="pos-usercard" *ngFor="let user of users" (click)="select(user)"
-      [ngClass]="{'pos-card-selected': this.loginForm.value.userName==user.username}">
-
-      <mat-card-content>
-        <svg-icon src="./assets/user.svg" class="logo"></svg-icon>
-        {{user.firstName}} {{user.surName}}
-      </mat-card-content>
-    </mat-card>
+    @for (user of users; track user) {
+      <mat-card appearance="outlined" class="pos-usercard" (click)="select(user)"
+        [ngClass]="{'pos-card-selected': this.loginForm.value.userName==user.username}">
+        <mat-card-content>
+          <svg-icon src="./assets/user.svg" class="logo"></svg-icon>
+          {{user.firstName}} {{user.surName}}
+        </mat-card-content>
+      </mat-card>
+    }
   </div>
 </div>
 <div class="inputForm">
@@ -46,5 +51,7 @@
 </div>
 <mat-button-toggle [value]="hiddenUser" (change)="toggleUser()" class="hiddenUser" i18n="@@hiddenUser">hidden
   User</mat-button-toggle>
-<mat-button-toggle *ngIf="companies.length > 1" (change)="showCompanies()" class="showCompanies"
+@if (companies.length > 1) {
+  <mat-button-toggle (change)="showCompanies()" class="showCompanies"
   i18n="@@selectCompany">Select Company</mat-button-toggle>
+}

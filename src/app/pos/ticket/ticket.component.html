@@ -3,13 +3,17 @@
     <ng-container matColumnDef="quantity">
       <th mat-header-cell *matHeaderCellDef> C. </th>
       <td mat-cell *matCellDef="let item">
-        <span *ngIf="!isChild(item)">{{item.quantity}}</span>
+        @if (!isChild(item)) {
+          <span>{{item.quantity}}</span>
+        }
       </td>
     </ng-container>
     <ng-container matColumnDef="childQuantity">
       <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let item">
-        <span *ngIf="isChild(item)">{{item.quantity}}</span>
+        @if (isChild(item)) {
+          <span>{{item.quantity}}</span>
+        }
       </td>
     </ng-container>
 
@@ -18,61 +22,67 @@
       <td mat-cell *matCellDef="let item" [attr.colspan]="isChild(item) ? 2 : 0">
         <div class="description">
           {{item.product.description}}
-          <button mat-icon-button *ngIf="item.remark" (click)="showRemark(item.remark)">
-            <mat-icon>description</mat-icon>
-          </button>
+          @if (item.remark) {
+            <button mat-icon-button (click)="showRemark(item.remark)">
+              <mat-icon>description</mat-icon>
+            </button>
+          }
         </div>
       </td>
     </ng-container>
     <ng-container matColumnDef="unitPrice">
       <th mat-header-cell *matHeaderCellDef> P.U. </th>
       <td mat-cell *matCellDef="let item">
-        <ng-container *ngIf="!isChild(item)">
+        @if (!isChild(item)) {
           {{item.product.crossPrice |posCurrency:currentCurrency}}
-        </ng-container>
+        }
       </td>
     </ng-container>
     <ng-container matColumnDef="discount">
       <th mat-header-cell *matHeaderCellDef> Desc. </th>
       <td mat-cell *matCellDef="let item; let i = dataIndex" class="discount">
-        <ng-container *ngIf="!isChild(item) && getDiscount(i) > 0">
+        @if (!isChild(item) && getDiscount(i) > 0) {
           <button mat-button (click)="showPromoInfo(i)">{{getDiscount(i) |posCurrency:currentCurrency}}</button>
-        </ng-container>
+        }
       </td>
     </ng-container>
     <ng-container matColumnDef="price">
       <th mat-header-cell *matHeaderCellDef> Precio </th>
       <td mat-cell *matCellDef="let item">
-        <ng-container *ngIf="!isChild(item)">
+        @if (!isChild(item)) {
           {{item.price | posCurrency:currentCurrency}}
-        </ng-container>
+        }
       </td>
     </ng-container>
     <ng-container matColumnDef="modify">
       <th mat-header-cell *matHeaderCellDef> Modificar </th>
       <td mat-cell *matCellDef="let item">
         <div class="buttons">
-        <button (click)="add(item)" *ngIf="!isChild(item)">
-          <mat-icon>control_point</mat-icon>
-        </button>
-        <button (click)="subtract(item)" *ngIf="!isChild(item)">
-          <mat-icon>indeterminate_check_box</mat-icon>
-        </button>
-      </div>
+          @if (!isChild(item)) {
+            <button (click)="add(item)">
+              <mat-icon>control_point</mat-icon>
+            </button>
+          }
+          @if (!isChild(item)) {
+            <button (click)="subtract(item)">
+              <mat-icon>indeterminate_check_box</mat-icon>
+            </button>
+          }
+        </div>
       </td>
     </ng-container>
     <ng-container matColumnDef="relationDetail">
       <td mat-cell *matCellDef="let item" [attr.colspan]="displayedColumns.length" class="relation-detail">
-        <ng-container *ngFor="let relation of item.product.relations ">
-          <ng-container *ngIf="relation.type =='SALESBOM'">
+        @for (relation of item.product.relations ; track relation) {
+          @if (relation.type =='SALESBOM') {
             <app-part-list-relation [productRelation]="relation"></app-part-list-relation>
-          </ng-container>
-        </ng-container>
-        </td>
+          }
+        }
+      </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     <tr mat-row *matRowDef="let row; columns: ['relationDetail']" class="details-row"
-      [class.details-partlist]="row.product.type == 'PARTLIST'"></tr>
+    [class.details-partlist]="row.product.type == 'PARTLIST'"></tr>
   </table>
 </div>

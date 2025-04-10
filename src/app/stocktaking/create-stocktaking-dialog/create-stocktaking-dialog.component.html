@@ -2,11 +2,13 @@
 <mat-dialog-content>
   <form [formGroup]="stocktakingForm">
     <mat-form-field>
-        <mat-select formControlName="warehouse">
-            <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse">
-                {{ warehouse.name }}
-            </mat-option>
-        </mat-select>
+      <mat-select formControlName="warehouse">
+        @for (warehouse of warehouses; track warehouse) {
+          <mat-option [value]="warehouse">
+            {{ warehouse.name }}
+          </mat-option>
+        }
+      </mat-select>
     </mat-form-field>
   </form>
 </mat-dialog-content>

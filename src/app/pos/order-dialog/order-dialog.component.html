@@ -6,8 +6,12 @@
 </div>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>OK</button>
-  <button mat-raised-button [mat-dialog-close]="data.order" *ngIf="allowPayment">Checkout</button>
-  <button mat-button (click)="printJobs()" *ngIf="allowPrintJobs">
-    <mat-icon  class="posIcon-36">print</mat-icon>
-  </button>
+  @if (allowPayment) {
+    <button mat-raised-button [mat-dialog-close]="data.order">Checkout</button>
+  }
+  @if (allowPrintJobs) {
+    <button mat-button (click)="printJobs()">
+      <mat-icon  class="posIcon-36">print</mat-icon>
+    </button>
+  }
 </mat-dialog-actions>

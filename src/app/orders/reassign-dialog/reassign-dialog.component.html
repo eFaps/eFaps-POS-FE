@@ -1,37 +1,37 @@
 <mat-dialog-content>
-<div class="wrapper">
-  <div>
-    <div class="selection">
-      <ng-container *ngFor="let order of orders; let i = index">
-        <div class="orderbutton">
-          <span>{{i + 1}}</span>
-          <button mat-fab (click)="selectOrderLeft(order)" [color]="(order.id == orderLeft.id) ? 'primary' : 'basic'">
-            {{order.number}}
-          </button>
-        </div>
-      </ng-container>
+  <div class="wrapper">
+    <div>
+      <div class="selection">
+        @for (order of orders; track order; let i = $index) {
+          <div class="orderbutton">
+            <span>{{i + 1}}</span>
+            <button mat-fab (click)="selectOrderLeft(order)" [color]="(order.id == orderLeft.id) ? 'primary' : 'basic'">
+              {{order.number}}
+            </button>
+          </div>
+        }
+      </div>
+      <div class="orderTable mat-elevation-z8">
+        <app-reassign-item #left position='LEFT' [order]="orderLeft" (moveItem)="moveToRight($event)"></app-reassign-item>
+      </div>
     </div>
-    <div class="orderTable mat-elevation-z8">
-      <app-reassign-item #left position='LEFT' [order]="orderLeft" (moveItem)="moveToRight($event)"></app-reassign-item>
+    <div>
+      <div class="selection">
+        @for (order of orders; track order; let i = $index) {
+          <div class="orderbutton">
+            <span>{{i + 1}}</span>
+            <button mat-fab (click)="selectOrderRight(order)" [color]="(order.id == orderRight.id) ? 'primary' : 'basic'"
+              [disabled]="order.id == orderLeft.id">
+              {{order.number}}
+            </button>
+          </div>
+        }
+      </div>
+      <div class="orderTable mat-elevation-z8">
+        <app-reassign-item #right  position='RIGHT' [order]="orderRight" (moveItem)="moveToLeft($event)"></app-reassign-item>
+      </div>
     </div>
   </div>
-  <div>
-    <div class="selection">
-      <ng-container *ngFor="let order of orders; let i = index">
-        <div class="orderbutton">
-          <span>{{i + 1}}</span>
-          <button mat-fab (click)="selectOrderRight(order)" [color]="(order.id == orderRight.id) ? 'primary' : 'basic'"
-            [disabled]="order.id == orderLeft.id">
-            {{order.number}}
-          </button>
-        </div>
-      </ng-container>
-    </div>
-    <div class="orderTable mat-elevation-z8">
-      <app-reassign-item #right  position='RIGHT' [order]="orderRight" (moveItem)="moveToLeft($event)"></app-reassign-item>
-    </div>
-  </div>
-</div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button (click)="save()" mat-button>

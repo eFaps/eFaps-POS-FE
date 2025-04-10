@@ -1,10 +1,10 @@
 <div class="wrapper">
-  <ng-container *ngFor="let order of orders; let i = index">
+  @for (order of orders; track order; let i = $index) {
     <div class="orderbutton">
       <span>{{i + 1}}</span>
       <button mat-fab (click)="selectOrder(order)">
         {{order.number}}
       </button>
     </div>
-  </ng-container>
+  }
 </div>

@@ -9,15 +9,19 @@
       <div class="keypad-warpper">
         <app-keypad (number)="setNumber($event)"></app-keypad>
         <mat-radio-group class="collector-radio-group" formControlName="collectorFrmCtrl">
-          <mat-radio-button class="collector-radio-button" *ngFor="let collector of collectors; let idx = index" [value]="collector">
-            {{collector.label}}
-          </mat-radio-button>
+          @for (collector of collectors; track collector; let idx = $index) {
+            <mat-radio-button class="collector-radio-button" [value]="collector">
+              {{collector.label}}
+            </mat-radio-button>
+          }
         </mat-radio-group>
       </div>
     </form>
     <button type="submit" class="btn btn-success" mat-raised-button color="primary" [disabled]="buttonTimeout"  (click)="addPayment()">Add Pago</button>
   </div>
   <div>
-    <mat-spinner *ngIf="collecting"></mat-spinner>
+    @if (collecting) {
+      <mat-spinner></mat-spinner>
+    }
   </div>
 </div>

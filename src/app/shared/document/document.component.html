@@ -1,161 +1,178 @@
-<div *ngIf="document" class="mat-typography">
-  <h3>{{document.type! | translate}}: {{document.number}}</h3>
-  <div *ngIf="showContact && document.contact" class="contact-document">
-    <span>Cliente:</span>
-    <span>{{ 'IDTYPE.' + document.contact.idType | translate}}: {{document.contact.idNumber}} -
-      {{document.contact.name}}</span>
-  </div>
-  <div class="pos-doc-container mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource" matSort matSortActive="index" matSortDirection="asc"
-      multiTemplateDataRows>
-      <ng-container matColumnDef="index">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
-        <mat-cell *matCellDef="let item"> {{item.index}} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="quantity">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> C. </mat-header-cell>
-        <mat-cell *matCellDef="let item">
-          <ng-container *ngIf="!isChild(item)">
-            {{item.quantity}}
-          </ng-container>
-        </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="childQuantity">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
-        <mat-cell *matCellDef="let item">
-          <ng-container *ngIf="isChild(item)">
-            {{item.quantity}}
-          </ng-container>
-        </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="productDesc">
-        <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
-        <mat-cell *matCellDef="let item"> {{item.product.description}} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="crossUnitPrice">
-        <mat-header-cell *matHeaderCellDef><div> P.U. </div></mat-header-cell>
-        <mat-cell *matCellDef="let item">
-          <ng-container *ngIf="!isChild(item)">
-            <div>
-              {{item.crossUnitPrice | posCurrency:document.currency}}
-            </div>
-          </ng-container>
-        </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="crossPrice">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> <div>Precio</div></mat-header-cell>
-        <mat-cell *matCellDef="let item">
-          <ng-container *ngIf="!isChild(item)">
-            <div>
-              {{item.crossPrice | posCurrency:document.currency}}
-            </div>
-          </ng-container>
-        </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="relationDetail">
-        <mat-cell *matCellDef="let item" [attr.colspan]="displayedColumns.length" class="relation-detail">
-          <ng-container *ngFor="let relation of item.product.relations ">
-            <ng-container *ngIf="relation.type =='SALESBOM'">
-              <app-part-list-relation [productRelation]="relation"></app-part-list-relation>
-            </ng-container>
-          </ng-container>
-        </mat-cell>
-      </ng-container>
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      <mat-row *matRowDef="let row; columns: ['relationDetail']" class="details-row"
+@if (document) {
+  <div class="mat-typography">
+    <h3>{{document.type! | translate}}: {{document.number}}</h3>
+    @if (showContact && document.contact) {
+      <div class="contact-document">
+        <span>Cliente:</span>
+        <span>{{ 'IDTYPE.' + document.contact.idType | translate}}: {{document.contact.idNumber}} -
+        {{document.contact.name}}</span>
+      </div>
+    }
+    <div class="pos-doc-container mat-elevation-z8">
+      <mat-table #table [dataSource]="dataSource" matSort matSortActive="index" matSortDirection="asc"
+        multiTemplateDataRows>
+        <ng-container matColumnDef="index">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+          <mat-cell *matCellDef="let item"> {{item.index}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="quantity">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> C. </mat-header-cell>
+          <mat-cell *matCellDef="let item">
+            @if (!isChild(item)) {
+              {{item.quantity}}
+            }
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="childQuantity">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+          <mat-cell *matCellDef="let item">
+            @if (isChild(item)) {
+              {{item.quantity}}
+            }
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="productDesc">
+          <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
+          <mat-cell *matCellDef="let item"> {{item.product.description}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="crossUnitPrice">
+          <mat-header-cell *matHeaderCellDef><div> P.U. </div></mat-header-cell>
+          <mat-cell *matCellDef="let item">
+            @if (!isChild(item)) {
+              <div>
+                {{item.crossUnitPrice | posCurrency:document.currency}}
+              </div>
+            }
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="crossPrice">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> <div>Precio</div></mat-header-cell>
+          <mat-cell *matCellDef="let item">
+            @if (!isChild(item)) {
+              <div>
+                {{item.crossPrice | posCurrency:document.currency}}
+              </div>
+            }
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="relationDetail">
+          <mat-cell *matCellDef="let item" [attr.colspan]="displayedColumns.length" class="relation-detail">
+            @for (relation of item.product.relations ; track relation) {
+              @if (relation.type =='SALESBOM') {
+                <app-part-list-relation [productRelation]="relation"></app-part-list-relation>
+              }
+            }
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        <mat-row *matRowDef="let row; columns: ['relationDetail']" class="details-row"
         [class.details-partlist]="row.product.type == 'PARTLIST'"></mat-row>
-    </mat-table>
-  </div>
-  <div class="footer">
-    <div class="payment-employee-info">
-      <ng-container *ngIf="isPayable()">
-        <div>
-          <span>Pagos:</span>
-          <mat-list dense>
-            <mat-list-item *ngFor="let payment of payments">
-              <p matLine>
-                <span class="paymentType">{{ payment.cardTypeId ? payment.cardLabel : ('PAYMENT.' + payment.type) |
-                  translate}}: </span>
-                <span class="amount">{{payment.amount | number:'1.2-2'}}</span>
-              </p>
-            </mat-list-item>
-          </mat-list>
-        </div>
-      </ng-container>
-      <ng-container *ngIf="hasEmployeeRelations()">
-        <div>Empleados:</div>
-        <mat-list dense>
-          <mat-list-item *ngFor="let relation of employeeRelations">
-            <p matLine>
-              <span class="employeeRealtionType">{{ relation.type}}: </span>
-              <span class="employee">{{ relation.employee?.firstName}} {{ relation.employee?.surName}}</span>
-            </p>
-          </mat-list-item>
-        </mat-list>
-      </ng-container>
-      <ng-container *ngIf="document.note">
-        <div>
-          <span>Nota:</span>
-          <mat-list dense>
-            <mat-list-item>
-              <p matLine><span>{{document.note}}</span></p>
-            </mat-list-item>
-          </mat-list>
-        </div>
-      </ng-container>
+      </mat-table>
     </div>
-    <div class="print-container" *ngIf="permitPrint && hasCopyPrintCmd">
-      <button mat-button (click)="printCopy()" *ngIf="true">
-        <mat-icon>print</mat-icon>
-      </button>
+    <div class="footer">
+      <div class="payment-employee-info">
+        @if (isPayable()) {
+          <div>
+            <span>Pagos:</span>
+            <mat-list dense>
+              @for (payment of payments; track payment) {
+                <mat-list-item>
+                  <p matLine>
+                    <span class="paymentType">{{ payment.cardTypeId ? payment.cardLabel : ('PAYMENT.' + payment.type) |
+                    translate}}: </span>
+                    <span class="amount">{{payment.amount | number:'1.2-2'}}</span>
+                  </p>
+                </mat-list-item>
+              }
+            </mat-list>
+          </div>
+        }
+        @if (hasEmployeeRelations()) {
+          <div>Empleados:</div>
+          <mat-list dense>
+            @for (relation of employeeRelations; track relation) {
+              <mat-list-item>
+                <p matLine>
+                  <span class="employeeRealtionType">{{ relation.type}}: </span>
+                  <span class="employee">{{ relation.employee?.firstName}} {{ relation.employee?.surName}}</span>
+                </p>
+              </mat-list-item>
+            }
+          </mat-list>
+        }
+        @if (document.note) {
+          <div>
+            <span>Nota:</span>
+            <mat-list dense>
+              <mat-list-item>
+                <p matLine><span>{{document.note}}</span></p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+        }
+      </div>
+      @if (permitPrint && hasCopyPrintCmd) {
+        <div class="print-container">
+          @if (true) {
+            <button mat-button (click)="printCopy()">
+              <mat-icon>print</mat-icon>
+            </button>
+          }
+        </div>
+      }
+      <div>
+        <mat-list>
+          <mat-list-item class="amount">
+            <div matLine>
+              Op. Gravada: {{document.netTotal | posCurrency:document.currency}}
+            </div>
+          </mat-list-item>
+          @for (taxEntry of document.taxes; track taxEntry) {
+            <mat-list-item class="amount">
+              <div matLine>
+                {{taxEntry.tax.name | translate}}: {{taxEntry.amount | posCurrency:document.currency}}
+              </div>
+            </mat-list-item>
+          }
+          @if (promoInfo != null) {
+            <mat-list-item class="amount">
+              <div matLine class="totalDiscount">
+                <button mat-button (click)="showPromoInfo()">Descuento: {{promoInfo.crossTotalDiscount | posCurrency:document.currency}}</button>
+              </div>
+            </mat-list-item>
+          }
+          <mat-list-item class="amount">
+            <div matLine>
+              Total: {{document.crossTotal | posCurrency:document.currency}}
+            </div>
+          </mat-list-item>
+          @if (document.payableAmount && document.payableAmount > 0 && document.payableAmount != document.crossTotal) {
+            <mat-list-item class="amount">
+              <div matLine>
+                Redondeo: {{document.payableAmount - document.crossTotal | posCurrency:document.currency}}
+              </div>
+            </mat-list-item>
+            <mat-list-item class="amount">
+              <div matLine>
+                Por pagar: {{document.payableAmount | posCurrency:document.currency}}
+              </div>
+            </mat-list-item>
+          }
+        </mat-list>
+      </div>
     </div>
     <div>
-      <mat-list>
-        <mat-list-item class="amount">
-          <div matLine>
-            Op. Gravada: {{document.netTotal | posCurrency:document.currency}}
-          </div>
-        </mat-list-item>
-        <mat-list-item class="amount" *ngFor="let taxEntry of document.taxes">
-          <div matLine>
-            {{taxEntry.tax.name | translate}}: {{taxEntry.amount | posCurrency:document.currency}}
-          </div>
-        </mat-list-item>
-        @if (promoInfo != null) {
-          <mat-list-item class="amount">
-            <div matLine class="totalDiscount">
-              <button mat-button (click)="showPromoInfo()">Descuento: {{promoInfo.crossTotalDiscount | posCurrency:document.currency}}</button>
-            </div>
-          </mat-list-item>
-        }
-        <mat-list-item class="amount">
-          <div matLine>
-            Total: {{document.crossTotal | posCurrency:document.currency}}
-          </div>
-        </mat-list-item>
-        <ng-container
-          *ngIf="document.payableAmount && document.payableAmount > 0 && document.payableAmount != document.crossTotal">
-          <mat-list-item class="amount">
-            <div matLine>
-              Redondeo: {{document.payableAmount - document.crossTotal | posCurrency:document.currency}}
-            </div>
-          </mat-list-item>
-          <mat-list-item class="amount">
-            <div matLine>
-              Por pagar: {{document.payableAmount | posCurrency:document.currency}}
-            </div>
-          </mat-list-item>
-        </ng-container>
-      </mat-list>
+      @if (showCreditNoteBtn) {
+        <button mat-raised-button color="primary" (click)="createCreditNote()">Nota de
+        Credito</button>
+      }
+      @for (creditNote of creditNotes; track creditNote) {
+        <span>Nota de Credito {{creditNote.number}}</span>
+      }
+      @if (sourceDoc) {
+        <span>{{sourceDoc.type! | translate}}: {{sourceDoc.number}}</span>
+      }
     </div>
   </div>
-  <div>
-    <button mat-raised-button color="primary" *ngIf="showCreditNoteBtn" (click)="createCreditNote()">Nota de
-      Credito</button>
-    <ng-container *ngFor="let creditNote of creditNotes">
-      <span>Nota de Credito {{creditNote.number}}</span>
-    </ng-container>
-    <span *ngIf="sourceDoc">{{sourceDoc.type! | translate}}: {{sourceDoc.number}}</span>
-  </div>
-</div>
+}

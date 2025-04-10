@@ -1,43 +1,63 @@
 <div class="wrapper">
-  <div class="header" *ngIf="hasBalance()">
-    <div class="info">
-      <p i18n="@@bs-number">Number: {{summary.balance.number}}</p>
-      <p i18n="@@bs-started">Started: {{summary.balance.startAt | date:'dd/MM/yy HH:mm' }}</p>
-      <p i18n="@@bs-ended">Ended: {{summary.balance.endAt | date:'dd/MM/yy HH:mm' }}</p>
-    </div>
-    <div class="opening" *ngIf="summary.cashEntries.length > 0">
-      <span>Opening</span>
-      <div class="cashEntry" *ngFor="let cashEntry of summary.cashEntries">
-        {{cashEntry.currency}} {{cashEntry.amount}}
+  @if (hasBalance()) {
+    <div class="header">
+      <div class="info">
+        <p i18n="@@bs-number">Number: {{summary.balance.number}}</p>
+        <p i18n="@@bs-started">Started: {{summary.balance.startAt | date:'dd/MM/yy HH:mm' }}</p>
+        <p i18n="@@bs-ended">Ended: {{summary.balance.endAt | date:'dd/MM/yy HH:mm' }}</p>
+      </div>
+      @if (summary.cashEntries.length > 0) {
+        <div class="opening">
+          <span>Opening</span>
+          @for (cashEntry of summary.cashEntries; track cashEntry) {
+            <div class="cashEntry">
+              {{cashEntry.currency}} {{cashEntry.amount}}
+            </div>
+          }
+        </div>
+      }
+      <div class="print">
+        @if (printer) {
+          <button mat-button (click)="print(false)">
+            <mat-icon class="posIcon-36">print</mat-icon>
+          </button>
+        }
+        @if (printerDetailed) {
+          <button mat-button (click)="print(true)">
+            <mat-icon class="posIcon-36">print_add</mat-icon>
+          </button>
+        }
       </div>
     </div>
-    <div class="print">
-      <button mat-button (click)="print(false)" *ngIf="printer">
-        <mat-icon class="posIcon-36">print</mat-icon>
-      </button>
-      <button mat-button (click)="print(true)" *ngIf="printerDetailed">
-        <mat-icon class="posIcon-36">print_add</mat-icon>
-      </button>
+  }
+  @if (summary.invoiceDetail.documentCount > 0) {
+    <div class="section">
+      <p i18n="@@bs-invoices">Invoices</p>
+      <app-balance-summary-section [detail]="summary.invoiceDetail"></app-balance-summary-section>
     </div>
-  </div>
-  <div class="section" *ngIf="summary.invoiceDetail.documentCount > 0">
-    <p i18n="@@bs-invoices">Invoices</p>
-    <app-balance-summary-section [detail]="summary.invoiceDetail"></app-balance-summary-section>
-  </div>
-  <div class="section" *ngIf="summary.receiptDetail.documentCount > 0">
-    <p i18n="@@bs-receipts">Receipts</p>
-    <app-balance-summary-section [detail]="summary.receiptDetail"></app-balance-summary-section>
-  </div>
-  <div class="section" *ngIf="summary.ticketDetail.documentCount > 0">
-    <p i18n="@@bs-tickets">Tickets</p>
-    <app-balance-summary-section [detail]="summary.ticketDetail"></app-balance-summary-section>
-  </div>
-  <div class="section" *ngIf="summary.creditNoteDetail.documentCount > 0">
-    <p i18n="@@bs-creditNotes">Credit Notes</p>
-    <app-balance-summary-section [detail]="summary.creditNoteDetail"></app-balance-summary-section>
-  </div>
-  <div class="section" *ngIf="summary.detail.documentCount > 0">
-    <p i18n="@@bs-overall">Over all</p>
-    <app-balance-summary-section [detail]="summary.detail"></app-balance-summary-section>
-  </div>
+  }
+  @if (summary.receiptDetail.documentCount > 0) {
+    <div class="section">
+      <p i18n="@@bs-receipts">Receipts</p>
+      <app-balance-summary-section [detail]="summary.receiptDetail"></app-balance-summary-section>
+    </div>
+  }
+  @if (summary.ticketDetail.documentCount > 0) {
+    <div class="section">
+      <p i18n="@@bs-tickets">Tickets</p>
+      <app-balance-summary-section [detail]="summary.ticketDetail"></app-balance-summary-section>
+    </div>
+  }
+  @if (summary.creditNoteDetail.documentCount > 0) {
+    <div class="section">
+      <p i18n="@@bs-creditNotes">Credit Notes</p>
+      <app-balance-summary-section [detail]="summary.creditNoteDetail"></app-balance-summary-section>
+    </div>
+  }
+  @if (summary.detail.documentCount > 0) {
+    <div class="section">
+      <p i18n="@@bs-overall">Over all</p>
+      <app-balance-summary-section [detail]="summary.detail"></app-balance-summary-section>
+    </div>
+  }
 </div>

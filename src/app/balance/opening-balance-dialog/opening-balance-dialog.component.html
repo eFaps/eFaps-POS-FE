@@ -1,12 +1,14 @@
 <div mat-dialog-content>
-    <form [formGroup]="openingForm">
-        <div *ngFor="let currency of currencies">
-            <mat-form-field>
-                <input placeholder="{{currency}}" matInput formControlName="{{currency}}">
-            </mat-form-field>
-        </div>
-    </form>
+  <form [formGroup]="openingForm">
+    @for (currency of currencies; track currency) {
+      <div>
+        <mat-form-field>
+          <input placeholder="{{currency}}" matInput formControlName="{{currency}}">
+        </mat-form-field>
+      </div>
+    }
+  </form>
 </div>
 <div mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="openingForm.value" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="openingForm.value" cdkFocusInitial>Ok</button>
 </div>

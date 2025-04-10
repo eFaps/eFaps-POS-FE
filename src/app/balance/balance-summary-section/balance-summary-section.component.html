@@ -9,24 +9,28 @@
     <div>
       <span i18n="@@bs-nettotal">Net Total:</span><span>{{detail.netTotal | number:'1.2-2'}}</span>
     </div>
-    <div *ngFor="let taxEntry of detail.taxEntries">
-      <span>{{taxEntry.tax.name}}:</span><span>{{taxEntry.amount | number:'1.2-2'}}</span>
-    </div>
+    @for (taxEntry of detail.taxEntries; track taxEntry) {
+      <div>
+        <span>{{taxEntry.tax.name}}:</span><span>{{taxEntry.amount | number:'1.2-2'}}</span>
+      </div>
+    }
     <div>
       <span i18n="@@bs-crosstotal">Cross Total:</span><span>{{detail.crossTotal | number:'1.2-2'}}</span>
     </div>
   </div>
   <div class="payment">
-    <div *ngFor="let info of detail.paymentInfos" class="paymentInfo">
-      <div class="paymentInfoType">
-        <span i18n="@@paymentType">{info.type, select, CASH {Cash} FREE {Free} CARD {Cards} CHANGE {Change} AUTO {Auto} ELECTRONIC {Auto} LOYALTY_POINTS {Puntos} } {{info.label ? " - " + info.label : ""}}</span>
+    @for (info of detail.paymentInfos; track info) {
+      <div class="paymentInfo">
+        <div class="paymentInfoType">
+          <span i18n="@@paymentType">{info.type, select, CASH {Cash} FREE {Free} CARD {Cards} CHANGE {Change} AUTO {Auto} ELECTRONIC {Auto} LOYALTY_POINTS {Puntos} } {{info.label ? " - " + info.label : ""}}</span>
+        </div>
+        <div>
+          <span i18n="@@bs-count">Count:</span><span>{{info.count}}</span>
+        </div>
+        <div>
+          <span i18n="@@bs-amount">Amount:</span><span>{{info.amount | number:'1.2-2'}}</span>
+        </div>
       </div>
-      <div>
-        <span i18n="@@bs-count">Count:</span><span>{{info.count}}</span>
-      </div>
-      <div>
-        <span i18n="@@bs-amount">Amount:</span><span>{{info.amount | number:'1.2-2'}}</span>
-      </div>
-    </div>
+    }
   </div>
 </div>

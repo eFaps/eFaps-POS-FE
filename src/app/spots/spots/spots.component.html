@@ -1,2 +1,6 @@
-<app-base-spot-picker *ngIf="isBasic()"></app-base-spot-picker>
-<app-extended-spot-picker *ngIf="isExtended()"></app-extended-spot-picker>
+@if (isBasic()) {
+  <app-base-spot-picker></app-base-spot-picker>
+}
+@if (isExtended()) {
+  <app-extended-spot-picker></app-extended-spot-picker>
+}

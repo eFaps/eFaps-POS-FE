@@ -1,57 +1,83 @@
 <div mat-dialog-content>
   <div>
-    <mat-spinner *ngIf="loading"></mat-spinner>
+    @if (loading) {
+      <mat-spinner></mat-spinner>
+    }
     <div>
-      <img *ngIf="!loading" [src]="product.imageOid! | secure" alt="{{product.description}}">
+      @if (!loading) {
+        <img [src]="product.imageOid! | secure" alt="{{product.description}}">
+      }
     </div>
     <div>
       <p>
-        <span class="property">Codigo:</span><span *ngIf="!loading">{{product.sku}}</span>
-      </p>
-      <p>
-        <span class="property">Descripcion:</span><span *ngIf="!loading">{{product.description}}</span>
-      </p>
-      <p>
-        <span class="property">Precio Neto:</span><span *ngIf="!loading"> {{ product.netPrice |
-          posCurrency:currentCurrency}}</span>
+        <span class="property">Codigo:</span>@if (!loading) {
+        <span>{{product.sku}}</span>
+      }
+    </p>
+    <p>
+      <span class="property">Descripcion:</span>@if (!loading) {
+      <span>{{product.description}}</span>
+    }
+  </p>
+  <p>
+    <span class="property">Precio Neto:</span>@if (!loading) {
+    <span> {{ product.netPrice |
+    posCurrency:currentCurrency}}</span>
+  }
 
-      </p>
-      <p>
-        <span class="property">Precio Bruto:</span><span *ngIf="!loading">{{ product.crossPrice |
-          posCurrency:currentCurrency}}</span>
-      </p>
-      <p>
-        <span class="property">Categories:</span>
-        <mat-list dense>
-          <mat-list-item *ngFor="let category of categories">
-            <span matLine>{{category}}</span>
-          </mat-list-item>
-        </mat-list>
-      </p>
-      <p *ngIf="product.barcodes.length > 0">
-        <span class="property">Codigo de Barras:</span>
-        <mat-list dense>
-          <mat-list-item *ngFor="let barcode of product.barcodes">
-            <span matLine>{{barcode.type}} - {{barcode.code}}</span>
-          </mat-list-item>
-        </mat-list>
-      </p>
-      <p *ngIf="showInventory && isStockable">
-        <span class="property">Stock:</span>
-        <mat-list dense>
-          <mat-list-item *ngFor="let entry of inventory">
-            <span matLine>{{entry.warehouse.name}}: {{entry.quantity}}</span>
-          </mat-list-item>
-        </mat-list>
-      </p>
-    </div>
-  </div>
-  <div *ngIf="relations.length > 0">
+</p>
+<p>
+  <span class="property">Precio Bruto:</span>@if (!loading) {
+  <span>{{ product.crossPrice |
+  posCurrency:currentCurrency}}</span>
+}
+</p>
+<p>
+  <span class="property">Categories:</span>
+  <mat-list dense>
+    @for (category of categories; track category) {
+      <mat-list-item>
+        <span matLine>{{category}}</span>
+      </mat-list-item>
+    }
+  </mat-list>
+</p>
+@if (product.barcodes.length > 0) {
+  <p>
+    <span class="property">Codigo de Barras:</span>
+    <mat-list dense>
+      @for (barcode of product.barcodes; track barcode) {
+        <mat-list-item>
+          <span matLine>{{barcode.type}} - {{barcode.code}}</span>
+        </mat-list-item>
+      }
+    </mat-list>
+  </p>
+}
+@if (showInventory && isStockable) {
+  <p>
+    <span class="property">Stock:</span>
+    <mat-list dense>
+      @for (entry of inventory; track entry) {
+        <mat-list-item>
+          <span matLine>{{entry.warehouse.name}}: {{entry.quantity}}</span>
+        </mat-list-item>
+      }
+    </mat-list>
+  </p>
+}
+</div>
+</div>
+@if (relations.length > 0) {
+  <div>
     <mat-list>
       <span class="property">Relacionados:</span>
-      <mat-list-item *ngFor="let relation of relations">
-        <span matLine>{{relation.label}}: {{relation.product.sku}} {{relation.product.description}}</span>
-      </mat-list-item>
+      @for (relation of relations; track relation) {
+        <mat-list-item>
+          <span matLine>{{relation.label}}: {{relation.product.sku}} {{relation.product.description}}</span>
+        </mat-list-item>
+      }
     </mat-list>
   </div>
+}
 </div>

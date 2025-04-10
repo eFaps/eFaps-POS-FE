@@ -1,23 +1,25 @@
 <mat-tab-group [class.header-less-tabs]="floors.length <= 1" animationDuration="0ms" dynamicHeight>
-  <mat-tab *ngFor="let floor of floors; let i = index" label="{{floor?.name}}" >
-    <div class="floor" [class.sidenav]="sidenav" [style.background-image]="image(floor)">
-      <ng-container *ngFor="let spot of floor.spots;let i = index">
-        <button mat-fab
-          color="{{spot.orders && spot.orders.length > 0 ? 'accent' : 'primary'}}"
-          (click)="selectSpot(spot)"
-          cdkDrag
-          [cdkDragDisabled]="!editMode"
-          (cdkDragEnded)="dragEnded($event)"
-          [cdkDragData]="spot"
-          cdkDragBoundary=".floor"
-          [cdkDragFreeDragPosition]="spot.position!"
-          [style.left]="getLeft(i)"
-          [style.top]="getTop(i)">
+  @for (floor of floors; track floor; let i = $index) {
+    <mat-tab label="{{floor?.name}}" >
+      <div class="floor" [class.sidenav]="sidenav" [style.background-image]="image(floor)">
+        @for (spot of floor.spots; track spot; let i = $index) {
+          <button mat-fab
+            color="{{spot.orders && spot.orders.length > 0 ? 'accent' : 'primary'}}"
+            (click)="selectSpot(spot)"
+            cdkDrag
+            [cdkDragDisabled]="!editMode"
+            (cdkDragEnded)="dragEnded($event)"
+            [cdkDragData]="spot"
+            cdkDragBoundary=".floor"
+            [cdkDragFreeDragPosition]="spot.position!"
+            [style.left]="getLeft(i)"
+            [style.top]="getTop(i)">
             {{spot.label}}
-        </button>
-      </ng-container>
-    </div>
-  </mat-tab>
+          </button>
+        }
+      </div>
+    </mat-tab>
+  }
 </mat-tab-group>
 <div class="editModeButton">
   <button mat-fab (click)="togglEditMode()" color="{{editMode ? 'accent' : 'primary' }}" matTooltip="Edit Mode">
@@ -33,4 +35,4 @@
   <button (click)="showSwapModal()" mat-fab color="primary" matTooltip="{{'SPOT.SWAP.CMD' | translate}}">
     <mat-icon>swap_horiz</mat-icon>
   </button>
-<div>
+  <div>

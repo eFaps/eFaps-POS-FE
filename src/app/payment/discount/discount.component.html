@@ -1,20 +1,20 @@
 <div class="container">
   <div class="type-wrapper">
-    <ng-container *ngFor="let discount of percentDiscounts">
-        <button mat-raised-button (click)="applyDiscount(discount)">
-          {{ discount.label ? discount.label : discount.value + ' %'}}
-        </button>
-    </ng-container>
+    @for (discount of percentDiscounts; track discount) {
+      <button mat-raised-button (click)="applyDiscount(discount)">
+        {{ discount.label ? discount.label : discount.value + ' %'}}
+      </button>
+    }
   </div>
   <div class="type-wrapper">
-    <ng-container *ngFor="let discount of amountDiscounts">
-        <button mat-raised-button (click)="applyDiscount(discount)">
-          {{ discount.label ? discount.label : discount.value | posCurrency:paymentService.currency }}
-        </button>
-    </ng-container>
+    @for (discount of amountDiscounts; track discount) {
+      <button mat-raised-button (click)="applyDiscount(discount)">
+        {{ discount.label ? discount.label : discount.value | posCurrency:paymentService.currency }}
+      </button>
+    }
   </div>
   <div class="type-wrapper">
-    <ng-container *ngIf="manualPercent">
+    @if (manualPercent) {
       <form [formGroup]="percentForm">
         <mat-form-field>
           <input matInput i18n-placeholder="@@percentage"placeholder="Percentage" type="text" formControlName="percent">
@@ -24,10 +24,10 @@
           %
         </button>
       </form>
-    </ng-container>
+    }
   </div>
   <div class="type-wrapper">
-    <ng-container *ngIf="manualAmount">
+    @if (manualAmount) {
       <form [formGroup]="amountForm">
         <mat-form-field>
           <input matInput i18n-placeholder="@@amount" placeholder="Amount" type="text" formControlName="amount">
@@ -37,7 +37,7 @@
           {{ currency }}
         </button>
       </form>
-    </ng-container>
+    }
   </div>
   <div class="type-wrapper">
     <button mat-raised-button (click)="applyDiscount(null)">

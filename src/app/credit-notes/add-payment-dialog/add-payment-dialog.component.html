@@ -5,9 +5,11 @@
   <mat-form-field appearance="fill">
     <mat-label>Tipo de pago</mat-label>
     <mat-select name="paymentTypes" formControlName="paymentType">
-      <mat-option *ngFor="let paymentType of paymentTypes" [value]="paymentType">
-        {{('PAYMENT.' + paymentType) | translate}}
-      </mat-option>
+      @for (paymentType of paymentTypes; track paymentType) {
+        <mat-option [value]="paymentType">
+          {{('PAYMENT.' + paymentType) | translate}}
+        </mat-option>
+      }
     </mat-select>
   </mat-form-field>
 </form>

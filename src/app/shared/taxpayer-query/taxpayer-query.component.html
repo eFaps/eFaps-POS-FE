@@ -8,8 +8,12 @@
       <button mat-raised-button color="primary" type="button" i18n="@@search" (click)="query()" [disabled]="taxpayerForm.invalid">Search</button>
     </div>
     <mat-slide-toggle [checked]="nameSearch" (change)="setNameSearch()">
-      <span *ngIf="nameSearch" i18n="@@taxpayer-query-nameSearch-false">Search by Name</span>
-      <span *ngIf="!nameSearch" i18n="@@taxpayer-query-nameSearch-true">Search by Taxpayer-ID</span>
+      @if (nameSearch) {
+        <span i18n="@@taxpayer-query-nameSearch-false">Search by Name</span>
+      }
+      @if (!nameSearch) {
+        <span i18n="@@taxpayer-query-nameSearch-true">Search by Taxpayer-ID</span>
+      }
     </mat-slide-toggle>
   </form>
 </div>

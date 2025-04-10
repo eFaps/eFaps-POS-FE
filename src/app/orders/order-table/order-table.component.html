@@ -36,22 +36,32 @@
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let order">
         <div>
-          <button (click)="pos(order)" *ngIf="order.status===DocStatus[DocStatus.OPEN] && allowPos" mat-icon-button i18n-matTooltip="@@orders" matTooltip="Orders">
-            <mat-icon>shop</mat-icon>
-          </button>
-          <button (click)="payment(order)" *ngIf="order.status===DocStatus[DocStatus.OPEN] && allowPayment && order.crossTotal > 0" mat-icon-button
-            i18n-matTooltip="@@payment" matTooltip="Payment">
-            <mat-icon>monetization_on</mat-icon>
-          </button>
-          <button (click)="delete(order)" *ngIf="isAdmin && order.status===DocStatus[DocStatus.OPEN]" mat-icon-button i18n-matTooltip="@@cancel" matTooltip="Cancel">
-            <mat-icon>delete</mat-icon>
-          </button>
-          <button (click)="split(order)" *ngIf="isAdmin && order.status===DocStatus[DocStatus.OPEN]" mat-icon-button i18n-matTooltip="@@splitIntoNew" matTooltip="Split">
-            <mat-icon>call_split</mat-icon>
-          </button>
-          <button (click)="reassign(order)" *ngIf="isAdmin && order.status===DocStatus[DocStatus.OPEN] && order.multiple" mat-icon-button i18n-matTooltip="@@reassign" matTooltip="Reassign">
-            <mat-icon>open_with</mat-icon>
-          </button>
+          @if (order.status===DocStatus[DocStatus.OPEN] && allowPos) {
+            <button (click)="pos(order)" mat-icon-button i18n-matTooltip="@@orders" matTooltip="Orders">
+              <mat-icon>shop</mat-icon>
+            </button>
+          }
+          @if (order.status===DocStatus[DocStatus.OPEN] && allowPayment && order.crossTotal > 0) {
+            <button (click)="payment(order)" mat-icon-button
+              i18n-matTooltip="@@payment" matTooltip="Payment">
+              <mat-icon>monetization_on</mat-icon>
+            </button>
+          }
+          @if (isAdmin && order.status===DocStatus[DocStatus.OPEN]) {
+            <button (click)="delete(order)" mat-icon-button i18n-matTooltip="@@cancel" matTooltip="Cancel">
+              <mat-icon>delete</mat-icon>
+            </button>
+          }
+          @if (isAdmin && order.status===DocStatus[DocStatus.OPEN]) {
+            <button (click)="split(order)" mat-icon-button i18n-matTooltip="@@splitIntoNew" matTooltip="Split">
+              <mat-icon>call_split</mat-icon>
+            </button>
+          }
+          @if (isAdmin && order.status===DocStatus[DocStatus.OPEN] && order.multiple) {
+            <button (click)="reassign(order)" mat-icon-button i18n-matTooltip="@@reassign" matTooltip="Reassign">
+              <mat-icon>open_with</mat-icon>
+            </button>
+          }
         </div>
       </mat-cell>
     </ng-container>

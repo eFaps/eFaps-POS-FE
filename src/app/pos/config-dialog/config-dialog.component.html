@@ -2,7 +2,7 @@
 <mat-dialog-content>
   <form [formGroup]="formGroup" autocomplete="off">
     <mat-stepper orientation="vertical" [linear]="false" #stepper>
-      <ng-container *ngIf="individualProducts.length > 0">
+      @if (individualProducts.length > 0) {
         <mat-step>
           <ng-template matStepLabel>Selecionar Lote / No de serie</ng-template>
           <mat-radio-group formControlName="selectedIndividual">
@@ -11,43 +11,49 @@
             }
           </mat-radio-group>
         </mat-step>
-      </ng-container>
-      <ng-container *ngFor="let bomGroup of product?.bomGroupConfigs">
+      }
+      @for (bomGroup of product?.bomGroupConfigs; track bomGroup) {
         <mat-step>
           <ng-template matStepLabel>{{bomGroup.description}}</ng-template>
           <mat-button-toggle-group [formControlName]="bomGroup.oid" multiple="true">
-            <ng-container *ngFor="let bomProduct of getProducts4BOMGroup(bomGroup.oid)">
+            @for (bomProduct of getProducts4BOMGroup(bomGroup.oid); track bomProduct) {
               <mat-button-toggle [value]="bomProduct">{{bomProduct.description}}</mat-button-toggle>
-            </ng-container>
+            }
           </mat-button-toggle-group>
         </mat-step>
-      </ng-container>
-      <mat-step *ngIf="remarkMode || (product?.indicationSets && product!!.indicationSets!!.length > 0)">
-        <ng-template matStepLabel>Indicaciones / Comentarios</ng-template>
-        <div class="indicationSet">
-          <ng-container *ngFor="let indicationSet of product?.indicationSets">
-            <div>{{indicationSet.name}}</div>
-            <div>
-              <ng-container *ngFor="let indication of indicationSet.indications">
-                <button mat-button (click)="select(indication)">{{indication.value}}</button>
-              </ng-container>
-            </div>
-          </ng-container>
-        </div>
-        <mat-form-field>
-          <mat-chip-grid #chipList>
-            <mat-chip-row *ngFor="let indication of indications" (removed)="remove(indication)">
-              {{indication.value}}
-              <button matChipRemove *ngIf="removable">
-                <mat-icon>cancel</mat-icon>
-              </button>
-            </mat-chip-row>
-            <input [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-              [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="add($event)" placeholder="Remark"
-              i18n-placeholder="@@remark" formControlName="remark" class="left">
-          </mat-chip-grid>
-        </mat-form-field>
-      </mat-step>
+      }
+      @if (remarkMode || (product?.indicationSets && product!!.indicationSets!!.length > 0)) {
+        <mat-step>
+          <ng-template matStepLabel>Indicaciones / Comentarios</ng-template>
+          <div class="indicationSet">
+            @for (indicationSet of product?.indicationSets; track indicationSet) {
+              <div>{{indicationSet.name}}</div>
+              <div>
+                @for (indication of indicationSet.indications; track indication) {
+                  <button mat-button (click)="select(indication)">{{indication.value}}</button>
+                }
+              </div>
+            }
+          </div>
+          <mat-form-field>
+            <mat-chip-grid #chipList>
+              @for (indication of indications; track indication) {
+                <mat-chip-row (removed)="remove(indication)">
+                  {{indication.value}}
+                  @if (removable) {
+                    <button matChipRemove>
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                  }
+                </mat-chip-row>
+              }
+              <input [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="add($event)" placeholder="Remark"
+                i18n-placeholder="@@remark" formControlName="remark" class="left">
+            </mat-chip-grid>
+          </mat-form-field>
+        </mat-step>
+      }
     </mat-stepper>
   </form>
 </mat-dialog-content>

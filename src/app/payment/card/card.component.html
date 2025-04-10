@@ -9,9 +9,11 @@
       <div class="keypad-warpper">
         <app-keypad (number)="setNumber($event)"></app-keypad>
         <mat-radio-group class="card-radio-group" formControlName="card">
-          <mat-radio-button class="card-radio-button" *ngFor="let card of cards; let idx = index" [value]="card">
-            {{card.label}}
-          </mat-radio-button>
+          @for (card of cards; track card; let idx = $index) {
+            <mat-radio-button class="card-radio-button" [value]="card">
+              {{card.label}}
+            </mat-radio-button>
+          }
         </mat-radio-group>
       </div>
     </form>
