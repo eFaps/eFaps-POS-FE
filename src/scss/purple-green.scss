@@ -6,7 +6,8 @@
 @import '../app/login/login.component.scss';
 @import '../app/pos/pos.component.scss';
 
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 
 $my-primary: mat.m2-define-palette(mat.$m2-purple-palette);
 $my-accent: mat.m2-define-palette(mat.$m2-green-palette, A200, A100, A400);
@@ -22,7 +23,8 @@ $my-theme: mat.m2-define-dark-theme((
   density: 0,
  ));
 
-@include mat.core-theme($my-theme);
+@include mat.elevation-classes();
+@include mat.app-background();
 @include mat.all-component-themes($my-theme);
 
 
