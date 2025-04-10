@@ -11,9 +11,10 @@ import { EnquiryService, RUC } from "@efaps/pos-library";
 import { Page } from "@efaps/pos-library/lib/model/pageable";
 
 @Component({
-  selector: "app-taxpayer-result",
-  templateUrl: "./taxpayer-result.component.html",
-  styleUrls: ["./taxpayer-result.component.scss"],
+    selector: "app-taxpayer-result",
+    templateUrl: "./taxpayer-result.component.html",
+    styleUrls: ["./taxpayer-result.component.scss"],
+    standalone: false
 })
 export class TaxpayerResultComponent implements OnInit, AfterViewInit {
   isLoadingResults = false;

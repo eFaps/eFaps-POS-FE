@@ -8,11 +8,10 @@ import { MatListModule } from "@angular/material/list";
 import { PromoInfo, Promotion, PromotionService } from "@efaps/pos-library";
 
 @Component({
-  selector: "app-promo-dialog",
-  standalone: true,
-  imports: [MatDialogModule, MatListModule],
-  templateUrl: "./promo-dialog.component.html",
-  styleUrl: "./promo-dialog.component.scss",
+    selector: "app-promo-dialog",
+    imports: [MatDialogModule, MatListModule],
+    templateUrl: "./promo-dialog.component.html",
+    styleUrl: "./promo-dialog.component.scss"
 })
 export class PromoDialogComponent {
   promoInfo: PromoInfo;

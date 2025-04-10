@@ -4,9 +4,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Employee, EmployeeService } from "@efaps/pos-library";
 
 @Component({
-  selector: "app-employee-dialog",
-  templateUrl: "./employee-dialog.component.html",
-  styleUrls: ["./employee-dialog.component.scss"],
+    selector: "app-employee-dialog",
+    templateUrl: "./employee-dialog.component.html",
+    styleUrls: ["./employee-dialog.component.scss"],
+    standalone: false
 })
 export class EmployeeDialogComponent implements OnInit {
   title = "";

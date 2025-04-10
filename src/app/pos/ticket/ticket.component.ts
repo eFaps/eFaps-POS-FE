@@ -20,9 +20,10 @@ import { Decimal } from "decimal.js";
 import { PromoDialogComponent } from "src/app/shared/promo-dialog/promo-dialog.component";
 
 @Component({
-  selector: "app-ticket",
-  templateUrl: "./ticket.component.html",
-  styleUrls: ["./ticket.component.scss"],
+    selector: "app-ticket",
+    templateUrl: "./ticket.component.html",
+    styleUrls: ["./ticket.component.scss"],
+    standalone: false
 })
 export class TicketComponent implements OnInit {
   displayedColumns = [

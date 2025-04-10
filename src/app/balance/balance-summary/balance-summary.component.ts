@@ -10,9 +10,10 @@ import { Subscription } from "rxjs";
 import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
 
 @Component({
-  selector: "app-balance-summary",
-  templateUrl: "./balance-summary.component.html",
-  styleUrls: ["./balance-summary.component.scss"],
+    selector: "app-balance-summary",
+    templateUrl: "./balance-summary.component.html",
+    styleUrls: ["./balance-summary.component.scss"],
+    standalone: false
 })
 export class BalanceSummaryComponent implements OnInit {
   [x: string]: {};

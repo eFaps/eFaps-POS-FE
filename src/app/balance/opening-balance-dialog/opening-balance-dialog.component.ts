@@ -9,9 +9,10 @@ import { Currency } from "@efaps/pos-library";
 import { EnumValues } from "enum-values";
 
 @Component({
-  selector: "app-opening-balance-dialog",
-  templateUrl: "./opening-balance-dialog.component.html",
-  styleUrls: ["./opening-balance-dialog.component.scss"],
+    selector: "app-opening-balance-dialog",
+    templateUrl: "./opening-balance-dialog.component.html",
+    styleUrls: ["./opening-balance-dialog.component.scss"],
+    standalone: false
 })
 export class OpeningBalanceDialogComponent implements OnInit {
   openingForm: FormGroup;

@@ -8,9 +8,10 @@ import {
 } from "@efaps/pos-library";
 
 @Component({
-  selector: "app-create-stocktaking-dialog",
-  templateUrl: "./create-stocktaking-dialog.component.html",
-  styleUrls: ["./create-stocktaking-dialog.component.scss"],
+    selector: "app-create-stocktaking-dialog",
+    templateUrl: "./create-stocktaking-dialog.component.html",
+    styleUrls: ["./create-stocktaking-dialog.component.scss"],
+    standalone: false
 })
 export class CreateStocktakingDialogComponent implements OnInit {
   stocktakingForm: FormGroup;

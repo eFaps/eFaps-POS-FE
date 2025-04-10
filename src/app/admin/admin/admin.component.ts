@@ -19,9 +19,10 @@ import { STOCKTAKING_ACTIVATE } from "src/app/util/keys";
 import { SalesReportDialogComponent } from "../sales-report-dialog/sales-report-dialog.component";
 
 @Component({
-  selector: "app-admin",
-  templateUrl: "./admin.component.html",
-  styleUrls: ["./admin.component.scss"],
+    selector: "app-admin",
+    templateUrl: "./admin.component.html",
+    styleUrls: ["./admin.component.scss"],
+    standalone: false
 })
 export class AdminComponent implements OnInit, OnDestroy {
   versions: Versions | undefined;

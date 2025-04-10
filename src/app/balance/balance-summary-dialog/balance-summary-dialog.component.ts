@@ -3,9 +3,10 @@ import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { BalanceService, BalanceSummary } from "@efaps/pos-library";
 
 @Component({
-  selector: "app-balance-summary-dialog",
-  templateUrl: "./balance-summary-dialog.component.html",
-  styleUrls: ["./balance-summary-dialog.component.scss"],
+    selector: "app-balance-summary-dialog",
+    templateUrl: "./balance-summary-dialog.component.html",
+    styleUrls: ["./balance-summary-dialog.component.scss"],
+    standalone: false
 })
 export class BalanceSummaryDialogComponent implements OnInit {
   summary: BalanceSummary | undefined;

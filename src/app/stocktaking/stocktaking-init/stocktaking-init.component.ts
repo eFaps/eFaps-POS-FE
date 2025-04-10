@@ -9,9 +9,10 @@ import {
 import { forkJoin } from "rxjs";
 
 @Component({
-  selector: "app-stocktaking-init",
-  templateUrl: "./stocktaking-init.component.html",
-  styleUrls: ["./stocktaking-init.component.scss"],
+    selector: "app-stocktaking-init",
+    templateUrl: "./stocktaking-init.component.html",
+    styleUrls: ["./stocktaking-init.component.scss"],
+    standalone: false
 })
 export class StocktakingInitComponent implements OnInit {
   initForm: FormGroup;

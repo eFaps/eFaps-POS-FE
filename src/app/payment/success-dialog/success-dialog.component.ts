@@ -4,8 +4,9 @@ import { PrintService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
 @Component({
-  templateUrl: "./success-dialog.component.html",
-  styleUrls: ["./success-dialog.component.scss"],
+    templateUrl: "./success-dialog.component.html",
+    styleUrls: ["./success-dialog.component.scss"],
+    standalone: false
 })
 export class SuccessDialogComponent implements OnInit {
   printObservable: Observable<any> | undefined = undefined;

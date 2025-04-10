@@ -17,7 +17,8 @@ import {
 } from "@efaps/angular-onscreen-material-keyboard";
 
 @Directive({
-  selector: "input[appVirtKeyboard], textarea[appVirtKeyboard]",
+    selector: "input[appVirtKeyboard], textarea[appVirtKeyboard]",
+    standalone: false
 })
 export class VirtKeyboardDirective implements OnDestroy {
   private _keyboardRef!: MatKeyboardRef<MatKeyboardComponent>;

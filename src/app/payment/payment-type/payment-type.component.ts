@@ -4,9 +4,10 @@ import { AuthService, WorkspaceService } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 
 @Component({
-  selector: "app-payment-type",
-  templateUrl: "./payment-type.component.html",
-  styleUrls: ["./payment-type.component.scss"],
+    selector: "app-payment-type",
+    templateUrl: "./payment-type.component.html",
+    styleUrls: ["./payment-type.component.scss"],
+    standalone: false
 })
 export class PaymentTypeComponent implements OnInit, OnDestroy {
   private subscription$ = new Subscription();

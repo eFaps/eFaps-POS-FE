@@ -12,9 +12,10 @@ import { Observable, Subscription, zip } from "rxjs";
 import { ReassignItemComponent } from "../reassign-item/reassign-item.component";
 
 @Component({
-  selector: "app-reassign-dialog",
-  templateUrl: "./reassign-dialog.component.html",
-  styleUrls: ["./reassign-dialog.component.scss"],
+    selector: "app-reassign-dialog",
+    templateUrl: "./reassign-dialog.component.html",
+    styleUrls: ["./reassign-dialog.component.scss"],
+    standalone: false
 })
 export class ReassignDialogComponent implements OnInit, OnDestroy {
   orders: Order[] = [];

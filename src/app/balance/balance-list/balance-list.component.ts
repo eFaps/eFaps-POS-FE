@@ -7,9 +7,10 @@ import { Subscription } from "rxjs";
 import { BalanceSummaryDialogComponent } from "../balance-summary-dialog/balance-summary-dialog.component";
 
 @Component({
-  selector: "app-balance-list",
-  templateUrl: "./balance-list.component.html",
-  styleUrls: ["./balance-list.component.scss"],
+    selector: "app-balance-list",
+    templateUrl: "./balance-list.component.html",
+    styleUrls: ["./balance-list.component.scss"],
+    standalone: false
 })
 export class BalanceListComponent implements OnInit, OnDestroy {
   displayedColumns = ["number", "user", "startAt", "endAt", "status", "cmd"];

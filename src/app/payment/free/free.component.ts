@@ -11,9 +11,10 @@ import {
 import { PaymentForm } from "../payment-form";
 
 @Component({
-  selector: "app-free",
-  templateUrl: "./free.component.html",
-  styleUrls: ["./free.component.scss"],
+    selector: "app-free",
+    templateUrl: "./free.component.html",
+    styleUrls: ["./free.component.scss"],
+    standalone: false
 })
 export class FreeComponent extends PaymentForm {
   constructor(

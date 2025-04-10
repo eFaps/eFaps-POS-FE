@@ -21,9 +21,10 @@ import { ProductComponent } from "../../shared/product/product.component";
 import { AbstractProductSelector } from "../abstract-product-selector";
 
 @Component({
-  selector: "app-product-list",
-  templateUrl: "./product-list.component.html",
-  styleUrls: ["./product-list.component.scss"],
+    selector: "app-product-list",
+    templateUrl: "./product-list.component.html",
+    styleUrls: ["./product-list.component.scss"],
+    standalone: false
 })
 export class ProductListComponent
   extends AbstractProductSelector

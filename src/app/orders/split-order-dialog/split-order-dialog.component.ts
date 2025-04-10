@@ -4,9 +4,10 @@ import { MatTableDataSource } from "@angular/material/table";
 import { DocItem, DocStatus, Order, PosService } from "@efaps/pos-library";
 
 @Component({
-  selector: "app-split-order-dialog",
-  templateUrl: "./split-order-dialog.component.html",
-  styleUrls: ["./split-order-dialog.component.scss"],
+    selector: "app-split-order-dialog",
+    templateUrl: "./split-order-dialog.component.html",
+    styleUrls: ["./split-order-dialog.component.scss"],
+    standalone: false
 })
 export class SplitOrderDialogComponent implements OnInit {
   originDataSource = new MatTableDataSource<DocItem>();

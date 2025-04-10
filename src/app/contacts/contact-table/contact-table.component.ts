@@ -23,9 +23,10 @@ import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
 import { CreateContactDialogComponent } from "../create-contact-dialog/create-contact-dialog.component";
 
 @Component({
-  selector: "app-contact-table",
-  templateUrl: "./contact-table.component.html",
-  styleUrls: ["./contact-table.component.scss"],
+    selector: "app-contact-table",
+    templateUrl: "./contact-table.component.html",
+    styleUrls: ["./contact-table.component.scss"],
+    standalone: false
 })
 export class ContactTableComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<Contact>();

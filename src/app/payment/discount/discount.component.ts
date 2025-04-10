@@ -13,9 +13,10 @@ import {
 import { Subscription } from "rxjs";
 
 @Component({
-  selector: "app-discount",
-  templateUrl: "./discount.component.html",
-  styleUrls: ["./discount.component.scss"],
+    selector: "app-discount",
+    templateUrl: "./discount.component.html",
+    styleUrls: ["./discount.component.scss"],
+    standalone: false
 })
 export class DiscountComponent implements OnInit, OnDestroy {
   private document!: Order;

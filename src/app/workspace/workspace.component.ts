@@ -8,9 +8,10 @@ import {
 } from "@efaps/pos-library";
 
 @Component({
-  selector: "app-workspace",
-  templateUrl: "./workspace.component.html",
-  styleUrls: ["./workspace.component.scss"],
+    selector: "app-workspace",
+    templateUrl: "./workspace.component.html",
+    styleUrls: ["./workspace.component.scss"],
+    standalone: false
 })
 export class WorkspaceComponent implements OnInit {
   workspaces: Workspace[] = [];

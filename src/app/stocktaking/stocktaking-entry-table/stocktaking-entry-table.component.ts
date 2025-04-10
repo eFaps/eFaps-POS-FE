@@ -14,9 +14,10 @@ import { merge, tap } from "rxjs";
 import { ConfirmDialogComponent } from "src/app/shared/confirm-dialog/confirm-dialog.component";
 
 @Component({
-  selector: "app-stocktaking-entry-table",
-  templateUrl: "./stocktaking-entry-table.component.html",
-  styleUrls: ["./stocktaking-entry-table.component.scss"],
+    selector: "app-stocktaking-entry-table",
+    templateUrl: "./stocktaking-entry-table.component.html",
+    styleUrls: ["./stocktaking-entry-table.component.scss"],
+    standalone: false
 })
 export class StocktakingEntryTableComponent {
   stocktaking: Stocktaking;

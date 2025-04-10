@@ -3,9 +3,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Order } from "@efaps/pos-library";
 
 @Component({
-  selector: "app-select-order-dialog",
-  templateUrl: "./select-order-dialog.component.html",
-  styleUrls: ["./select-order-dialog.component.scss"],
+    selector: "app-select-order-dialog",
+    templateUrl: "./select-order-dialog.component.html",
+    styleUrls: ["./select-order-dialog.component.scss"],
+    standalone: false
 })
 export class SelectOrderDialogComponent implements OnInit {
   orders: Order[] = [];

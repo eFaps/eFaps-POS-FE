@@ -17,9 +17,10 @@ import { AddPaymentDialogComponent } from "../add-payment-dialog/add-payment-dia
 import { SuccessDialogComponent } from "../success-dialog/success-dialog.component";
 
 @Component({
-  selector: "app-create-credit-note",
-  templateUrl: "./create-credit-note.component.html",
-  styleUrls: ["./create-credit-note.component.scss"],
+    selector: "app-create-credit-note",
+    templateUrl: "./create-credit-note.component.html",
+    styleUrls: ["./create-credit-note.component.scss"],
+    standalone: false
 })
 export class CreateCreditNoteComponent implements OnInit {
   sourceDocument!: Payable;

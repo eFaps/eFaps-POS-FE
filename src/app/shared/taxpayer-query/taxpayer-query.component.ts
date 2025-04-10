@@ -5,9 +5,10 @@ import { EnquiryService, RUC } from "@efaps/pos-library";
 import { TaxpayerResultComponent } from "../taxpayer-result/taxpayer-result.component";
 
 @Component({
-  selector: "app-taxpayer-query",
-  templateUrl: "./taxpayer-query.component.html",
-  styleUrls: ["./taxpayer-query.component.scss"],
+    selector: "app-taxpayer-query",
+    templateUrl: "./taxpayer-query.component.html",
+    styleUrls: ["./taxpayer-query.component.scss"],
+    standalone: false
 })
 export class TaxpayerQueryComponent {
   taxpayerForm: FormGroup;

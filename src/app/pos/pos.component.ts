@@ -48,9 +48,10 @@ import { ProductGridComponent } from "./product-grid/product-grid.component";
 import { ProductListComponent } from "./product-list/product-list.component";
 
 @Component({
-  selector: "app-pos",
-  templateUrl: "./pos.component.html",
-  styleUrls: ["./pos.component.scss"],
+    selector: "app-pos",
+    templateUrl: "./pos.component.html",
+    styleUrls: ["./pos.component.scss"],
+    standalone: false
 })
 export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   PosLayout = PosLayout;

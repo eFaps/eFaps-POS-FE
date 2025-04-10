@@ -4,9 +4,10 @@ import { Contact } from "@efaps/pos-library";
 import { CreateContactDialogComponent } from "src/app/contacts/create-contact-dialog/create-contact-dialog.component";
 
 @Component({
-  selector: "app-contact-dialog",
-  templateUrl: "./contact-dialog.component.html",
-  styleUrls: ["./contact-dialog.component.scss"],
+    selector: "app-contact-dialog",
+    templateUrl: "./contact-dialog.component.html",
+    styleUrls: ["./contact-dialog.component.scss"],
+    standalone: false
 })
 export class ContactDialogComponent implements OnInit {
   contact: Contact | null = null;

@@ -25,9 +25,10 @@ import { Hotkey, HotkeysService } from "angular2-hotkeys";
 import { MatIconRegistry } from "@angular/material/icon";
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"],
+    selector: "app-root",
+    templateUrl: "./app.component.html",
+    styleUrls: ["./app.component.scss"],
+    standalone: false
 })
 export class AppComponent implements OnInit, AfterViewChecked {
   Permission = Permission;

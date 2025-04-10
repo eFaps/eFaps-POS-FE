@@ -35,9 +35,10 @@ import { ReassignDialogComponent } from "../reassign-dialog/reassign-dialog.comp
 import { SplitOrderDialogComponent } from "../split-order-dialog/split-order-dialog.component";
 
 @Component({
-  selector: "app-order-table",
-  templateUrl: "./order-table.component.html",
-  styleUrls: ["./order-table.component.scss"],
+    selector: "app-order-table",
+    templateUrl: "./order-table.component.html",
+    styleUrls: ["./order-table.component.scss"],
+    standalone: false
 })
 export class OrderTableComponent implements OnInit, OnDestroy {
   DocStatus = DocStatus;

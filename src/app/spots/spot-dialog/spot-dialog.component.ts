@@ -4,9 +4,10 @@ import { Spot, SpotConfig, SpotService } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 
 @Component({
-  selector: "app-spot-dialog",
-  templateUrl: "./spot-dialog.component.html",
-  styleUrls: ["./spot-dialog.component.scss"],
+    selector: "app-spot-dialog",
+    templateUrl: "./spot-dialog.component.html",
+    styleUrls: ["./spot-dialog.component.scss"],
+    standalone: false
 })
 export class SpotDialogComponent implements OnInit, OnDestroy {
   spots: Spot[] = [];

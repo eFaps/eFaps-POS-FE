@@ -2,9 +2,10 @@ import { Component, Input, OnInit } from "@angular/core";
 import { Product, ProductRelation, ProductService } from "@efaps/pos-library";
 
 @Component({
-  selector: "app-part-list-relation",
-  templateUrl: "./part-list-relation.component.html",
-  styleUrls: ["./part-list-relation.component.scss"],
+    selector: "app-part-list-relation",
+    templateUrl: "./part-list-relation.component.html",
+    styleUrls: ["./part-list-relation.component.scss"],
+    standalone: false
 })
 export class PartListRelationComponent implements OnInit {
   _productRelation!: ProductRelation;

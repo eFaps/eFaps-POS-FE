@@ -17,9 +17,10 @@ import { debounceTime, merge, tap } from "rxjs";
 import { ProductComponent } from "../../shared/product/product.component";
 
 @Component({
-  selector: "app-producttable",
-  templateUrl: "./producttable.component.html",
-  styleUrls: ["./producttable.component.scss"],
+    selector: "app-producttable",
+    templateUrl: "./producttable.component.html",
+    styleUrls: ["./producttable.component.scss"],
+    standalone: false
 })
 export class ProducttableComponent implements OnInit, OnDestroy {
   displayedColumns = ["sku", "description", "cmd"];

@@ -19,9 +19,10 @@ import { KeypadService, PosSyncService } from "src/app/services";
 import { AbstractProductSelector } from "../abstract-product-selector";
 
 @Component({
-  selector: "app-product-grid",
-  templateUrl: "./product-grid.component.html",
-  styleUrls: ["./product-grid.component.scss"],
+    selector: "app-product-grid",
+    templateUrl: "./product-grid.component.html",
+    styleUrls: ["./product-grid.component.scss"],
+    standalone: false
 })
 export class ProductGridComponent
   extends AbstractProductSelector

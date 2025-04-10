@@ -18,9 +18,10 @@ import { HttpContext } from "@angular/common/http";
 import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
 
 @Component({
-  selector: "app-create-contact-dialog",
-  templateUrl: "./create-contact-dialog.component.html",
-  styleUrls: ["./create-contact-dialog.component.scss"],
+    selector: "app-create-contact-dialog",
+    templateUrl: "./create-contact-dialog.component.html",
+    styleUrls: ["./create-contact-dialog.component.scss"],
+    standalone: false
 })
 export class CreateContactDialogComponent implements OnInit, OnDestroy {
   identificationType = IdentificationType;

@@ -16,9 +16,10 @@ import {
 import { Subscription, debounceTime, skip, switchMap } from "rxjs";
 
 @Component({
-  selector: "app-stocktaking",
-  templateUrl: "./stocktaking.component.html",
-  styleUrls: ["./stocktaking.component.scss"],
+    selector: "app-stocktaking",
+    templateUrl: "./stocktaking.component.html",
+    styleUrls: ["./stocktaking.component.scss"],
+    standalone: false
 })
 export class StocktakingComponent implements OnInit {
   searchForm: FormGroup;
