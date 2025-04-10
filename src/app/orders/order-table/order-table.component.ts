@@ -1,10 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from "@angular/core";
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
@@ -41,6 +35,17 @@ import { SplitOrderDialogComponent } from "../split-order-dialog/split-order-dia
   standalone: false,
 })
 export class OrderTableComponent implements OnInit, OnDestroy {
+  private router = inject(Router);
+  private authService = inject(AuthService);
+  private documentService = inject(DocumentService);
+  private posService = inject(PosService);
+  private workspaceService = inject(WorkspaceService);
+  private paymentService = inject(PaymentService);
+  private contactService = inject(ContactService);
+  private fb = inject(FormBuilder);
+  private dialog = inject(MatDialog);
+  private changeDetectorRefs = inject(ChangeDetectorRef);
+
   DocStatus = DocStatus;
   filterForm: FormGroup;
   formCtrlSub!: Subscription;
@@ -55,18 +60,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
   private displayContact = false;
 
-  constructor(
-    private router: Router,
-    private authService: AuthService,
-    private documentService: DocumentService,
-    private posService: PosService,
-    private workspaceService: WorkspaceService,
-    private paymentService: PaymentService,
-    private contactService: ContactService,
-    private fb: FormBuilder,
-    private dialog: MatDialog,
-    private changeDetectorRefs: ChangeDetectorRef,
-  ) {
+  constructor() {
     this.filterForm = this.fb.group({
       filter: [],
       preload: [],

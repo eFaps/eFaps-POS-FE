@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import {
   Currency,
@@ -30,15 +30,15 @@ export class ProductsElementComponent extends AbstractProductSelector {
   @Input() showPrices = true;
   @Input() override showInventory = false;
 
-  constructor(
-    workspaceService: WorkspaceService,
-    productService: ProductService,
-    posService: PosService,
-    inventoryService: InventoryService,
-    posSyncService: PosSyncService,
-    keypadService: KeypadService,
-    dialog: MatDialog,
-  ) {
+  constructor() {
+    const workspaceService = inject(WorkspaceService);
+    const productService = inject(ProductService);
+    const posService = inject(PosService);
+    const inventoryService = inject(InventoryService);
+    const posSyncService = inject(PosSyncService);
+    const keypadService = inject(KeypadService);
+    const dialog = inject(MatDialog);
+
     super(
       workspaceService,
       productService,

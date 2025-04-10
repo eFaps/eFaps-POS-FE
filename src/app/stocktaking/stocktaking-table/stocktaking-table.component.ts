@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit, ViewChild, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -19,6 +19,11 @@ import { CreateStocktakingDialogComponent } from "../create-stocktaking-dialog/c
   standalone: false,
 })
 export class StocktakingTableComponent implements OnInit {
+  private router = inject(Router);
+  private dialog = inject(MatDialog);
+  private changeDetectorRefs = inject(ChangeDetectorRef);
+  private stocktakingService = inject(StocktakingService);
+
   displayedColumns = [
     "number",
     "warehouse",
@@ -32,13 +37,6 @@ export class StocktakingTableComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   warehouses: Warehouse[] = [];
   users: User[] = [];
-
-  constructor(
-    private router: Router,
-    private dialog: MatDialog,
-    private changeDetectorRefs: ChangeDetectorRef,
-    private stocktakingService: StocktakingService,
-  ) {}
 
   ngOnInit(): void {
     this.stocktakingService.getStocktakings(true).subscribe((data) => {

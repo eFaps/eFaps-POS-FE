@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { PrintService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
@@ -9,14 +9,12 @@ import { Observable } from "rxjs";
   standalone: false,
 })
 export class SuccessDialogComponent implements OnInit {
+  private printService = inject(PrintService);
+  dialogRef = inject<MatDialogRef<SuccessDialogComponent>>(MatDialogRef);
+  data = inject(MAT_DIALOG_DATA);
+
   printObservable: Observable<any> | undefined = undefined;
   printJobObservable: Observable<any> | undefined = undefined;
-
-  constructor(
-    private printService: PrintService,
-    public dialogRef: MatDialogRef<SuccessDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-  ) {}
 
   ngOnInit() {
     if (this.data.print) {

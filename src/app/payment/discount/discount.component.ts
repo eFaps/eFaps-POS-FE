@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { FormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import {
@@ -19,6 +19,14 @@ import { Subscription } from "rxjs";
   standalone: false,
 })
 export class DiscountComponent implements OnInit, OnDestroy {
+  dialogRef = inject<MatDialogRef<DiscountComponent>>(MatDialogRef);
+  data = inject(MAT_DIALOG_DATA);
+  private workspaceService = inject(WorkspaceService);
+  paymentService = inject(PaymentService);
+  private discountService = inject(DiscountService);
+  private utilsService = inject(UtilsService);
+  private fb = inject(UntypedFormBuilder);
+
   private document!: Order;
   private subscriptions$ = new Subscription();
   amountForm: FormGroup;
@@ -26,15 +34,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
   _discounts: Discount[] = [];
   currency!: string;
 
-  constructor(
-    public dialogRef: MatDialogRef<DiscountComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private workspaceService: WorkspaceService,
-    public paymentService: PaymentService,
-    private discountService: DiscountService,
-    private utilsService: UtilsService,
-    private fb: UntypedFormBuilder,
-  ) {
+  constructor() {
     this.amountForm = this.fb.group({
       amount: ["0.00", [Validators.min(0), Validators.required]],
     });

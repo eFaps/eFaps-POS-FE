@@ -1,4 +1,4 @@
-import { Component, Inject } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { PaymentType } from "@efaps/pos-library";
@@ -10,14 +10,14 @@ import { PaymentType } from "@efaps/pos-library";
   standalone: false,
 })
 export class AddPaymentDialogComponent {
+  private fb = inject(FormBuilder);
+  private dialogRef = inject<MatDialogRef<AddPaymentDialogComponent>>(MatDialogRef);
+  data = inject(MAT_DIALOG_DATA);
+
   paymentType = PaymentType;
   paymentTypes: string[] = [];
   paymentForm: FormGroup;
-  constructor(
-    private fb: FormBuilder,
-    private dialogRef: MatDialogRef<AddPaymentDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-  ) {
+  constructor() {
     this.paymentTypes = Object.keys(this.paymentType).filter((f) =>
       isNaN(Number(f)),
     );

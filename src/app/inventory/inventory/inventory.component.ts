@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { InventoryService, Warehouse } from "@efaps/pos-library";
 
 @Component({
@@ -8,9 +8,9 @@ import { InventoryService, Warehouse } from "@efaps/pos-library";
   standalone: false,
 })
 export class InventoryComponent implements OnInit {
-  warehouses: Warehouse[] = [];
+  private inventoryService = inject(InventoryService);
 
-  constructor(private inventoryService: InventoryService) {}
+  warehouses: Warehouse[] = [];
 
   ngOnInit() {
     this.inventoryService.getWarehouses().subscribe((_warehouses) => {

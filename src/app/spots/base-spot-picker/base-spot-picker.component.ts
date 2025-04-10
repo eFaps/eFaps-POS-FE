@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import {
@@ -21,15 +21,16 @@ export class BaseSpotPickerComponent
   extends AbstractSpotPicker
   implements OnInit
 {
+  private spotService = inject(SpotService);
+
   spots: Spot[] = [];
 
-  constructor(
-    router: Router,
-    posService: PosService,
-    documentService: DocumentService,
-    dialog: MatDialog,
-    private spotService: SpotService,
-  ) {
+  constructor() {
+    const router = inject(Router);
+    const posService = inject(PosService);
+    const documentService = inject(DocumentService);
+    const dialog = inject(MatDialog);
+
     super(router, posService, documentService, dialog);
   }
 

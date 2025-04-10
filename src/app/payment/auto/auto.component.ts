@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { UntypedFormBuilder, Validators } from "@angular/forms";
 import {
   CollectOrder,
@@ -21,6 +21,9 @@ import { PaymentForm } from "../payment-form";
   standalone: false,
 })
 export class AutoComponent extends PaymentForm {
+  private collectService = inject(CollectService);
+  private msgService = inject(MsgService);
+
   collecting = false;
   collectors: Collector[] = [];
   mappingKey = "";
@@ -28,13 +31,11 @@ export class AutoComponent extends PaymentForm {
   buttonTimeout = false;
   paymentType = PaymentType.ELECTRONIC;
 
-  constructor(
-    paymentService: PaymentService,
-    utilsService: UtilsService,
-    fb: UntypedFormBuilder,
-    private collectService: CollectService,
-    private msgService: MsgService,
-  ) {
+  constructor() {
+    const paymentService = inject(PaymentService);
+    const utilsService = inject(UtilsService);
+    const fb = inject(UntypedFormBuilder);
+
     super(paymentService, utilsService, fb);
   }
 

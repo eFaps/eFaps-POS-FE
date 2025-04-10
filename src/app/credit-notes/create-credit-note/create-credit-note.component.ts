@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
@@ -23,6 +23,14 @@ import { SuccessDialogComponent } from "../success-dialog/success-dialog.compone
   standalone: false,
 })
 export class CreateCreditNoteComponent implements OnInit {
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private dialog = inject(MatDialog);
+  private documentService = inject(DocumentService);
+  private balanceService = inject(BalanceService);
+  private workspaceService = inject(WorkspaceService);
+  paymentService = inject(PaymentService);
+
   sourceDocument!: Payable;
   creditNote!: CreditNote;
   balance!: Balance;
@@ -30,16 +38,6 @@ export class CreateCreditNoteComponent implements OnInit {
   PaymentType = PaymentType;
   workspaceOid!: string;
   print: boolean = false;
-
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private dialog: MatDialog,
-    private documentService: DocumentService,
-    private balanceService: BalanceService,
-    private workspaceService: WorkspaceService,
-    public paymentService: PaymentService,
-  ) {}
 
   ngOnInit(): void {
     this.balanceService.currentBalance.subscribe(

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import {
   Balance,
@@ -28,6 +28,14 @@ import { OpeningBalanceDialogComponent } from "../opening-balance-dialog/opening
   standalone: false,
 })
 export class BalanceComponent implements OnInit, OnDestroy {
+  private balanceService = inject(BalanceService);
+  private documentService = inject(DocumentService);
+  private printService = inject(PrintService);
+  private workspaceService = inject(WorkspaceService);
+  private translateService = inject(TranslateService);
+  private configService = inject(ConfigService);
+  private dialog = inject(MatDialog);
+
   currentBalance: Balance | undefined;
   payables: PayableHead[] = [];
   summary: BalanceSummary | undefined;
@@ -35,16 +43,6 @@ export class BalanceComponent implements OnInit, OnDestroy {
   private print = false;
   private workspaceOid!: string;
   private useCashEntry: boolean = false;
-
-  constructor(
-    private balanceService: BalanceService,
-    private documentService: DocumentService,
-    private printService: PrintService,
-    private workspaceService: WorkspaceService,
-    private translateService: TranslateService,
-    private configService: ConfigService,
-    private dialog: MatDialog,
-  ) {}
 
   ngOnInit() {
     this.subscription$.add(

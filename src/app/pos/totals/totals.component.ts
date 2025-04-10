@@ -1,4 +1,4 @@
-import { Component, OnInit, effect } from "@angular/core";
+import { Component, OnInit, effect, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Currency, PosService, PromoInfo } from "@efaps/pos-library";
 import { PromoDialogComponent } from "src/app/shared/promo-dialog/promo-dialog.component";
@@ -10,6 +10,9 @@ import { PromoDialogComponent } from "src/app/shared/promo-dialog/promo-dialog.c
   standalone: false,
 })
 export class TotalsComponent implements OnInit {
+  private dialog = inject(MatDialog);
+  private posService = inject(PosService);
+
   net: number = 0;
   taxesEntries: [string, number][] = [];
   cross: number = 0;
@@ -18,10 +21,7 @@ export class TotalsComponent implements OnInit {
   currentCurrency: Currency = Currency.PEN;
   promoInfo: PromoInfo | null = null;
 
-  constructor(
-    private dialog: MatDialog,
-    private posService: PosService,
-  ) {
+  constructor() {
     effect(() => {
       this.promoInfo = this.posService.promotionInfo();
       if (this.promoInfo != null) {

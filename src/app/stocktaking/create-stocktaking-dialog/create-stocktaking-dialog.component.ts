@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
 import {
@@ -14,15 +14,16 @@ import {
   standalone: false,
 })
 export class CreateStocktakingDialogComponent implements OnInit {
+  private dialogRef = inject<MatDialogRef<CreateStocktakingDialogComponent>>(MatDialogRef);
+  private inventoryService = inject(InventoryService);
+  private stocktakingService = inject(StocktakingService);
+
   stocktakingForm: FormGroup;
   warehouses: Warehouse[] = [];
 
-  constructor(
-    fb: FormBuilder,
-    private dialogRef: MatDialogRef<CreateStocktakingDialogComponent>,
-    private inventoryService: InventoryService,
-    private stocktakingService: StocktakingService,
-  ) {
+  constructor() {
+    const fb = inject(FormBuilder);
+
     this.stocktakingForm = fb.group({
       warehouse: ["", [Validators.required]],
     });

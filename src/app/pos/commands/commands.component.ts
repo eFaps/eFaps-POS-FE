@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import {
@@ -23,23 +23,21 @@ import { OrderDialogComponent } from "../order-dialog/order-dialog.component";
   standalone: false,
 })
 export class CommandsComponent implements OnInit {
+  private router = inject(Router);
+  private authService = inject(AuthService);
+  private posService = inject(PosService);
+  private paymentService = inject(PaymentService);
+  private workspaceService = inject(WorkspaceService);
+  private inventoryService = inject(InventoryService);
+  private productService = inject(ProductService);
+  private snackBar = inject(MatSnackBar);
+  private dialog = inject(MatDialog);
+  private el = inject(ElementRef);
+
   currentOrder: Order | undefined;
   sticky = false;
   disabled = true;
   showInventory: boolean = false;
-
-  constructor(
-    private router: Router,
-    private authService: AuthService,
-    private posService: PosService,
-    private paymentService: PaymentService,
-    private workspaceService: WorkspaceService,
-    private inventoryService: InventoryService,
-    private productService: ProductService,
-    private snackBar: MatSnackBar,
-    private dialog: MatDialog,
-    private el: ElementRef,
-  ) {}
 
   ngOnInit() {
     this.showInventory = this.workspaceService.showInventory();

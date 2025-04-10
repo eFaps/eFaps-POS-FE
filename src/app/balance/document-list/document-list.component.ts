@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
@@ -16,6 +16,10 @@ import { DocumentDialogComponent } from "../document-dialog/document-dialog.comp
   standalone: false,
 })
 export class DocumentListComponent implements OnInit, OnDestroy {
+  private fb = inject(FormBuilder);
+  private documentService = inject(DocumentService);
+  private dialog = inject(MatDialog);
+
   searchForm: FormGroup;
   displayedColumns = [
     "type",
@@ -30,11 +34,7 @@ export class DocumentListComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   private subscription$ = new Subscription();
 
-  constructor(
-    private fb: FormBuilder,
-    private documentService: DocumentService,
-    private dialog: MatDialog,
-  ) {
+  constructor() {
     this.searchForm = this.fb.group({
       term: [],
     });

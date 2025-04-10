@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { SpotConfig, WorkspaceService } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 
@@ -9,10 +9,10 @@ import { Subscription } from "rxjs";
   standalone: false,
 })
 export class SpotsComponent implements OnInit, OnDestroy {
+  private workspaceService = inject(WorkspaceService);
+
   spotConfig = SpotConfig.NONE;
   private subscription$ = new Subscription();
-
-  constructor(private workspaceService: WorkspaceService) {}
 
   ngOnInit() {
     this.subscription$.add(

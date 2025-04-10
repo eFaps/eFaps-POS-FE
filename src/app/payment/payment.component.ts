@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTabGroup } from "@angular/material/tabs";
@@ -51,6 +51,19 @@ import { SuccessDialogComponent } from "./success-dialog/success-dialog.componen
   standalone: false,
 })
 export class PaymentComponent implements OnInit, OnDestroy {
+  private router = inject(Router);
+  private translateService = inject(TranslateService);
+  private workspaceService = inject(WorkspaceService);
+  private documentService = inject(DocumentService);
+  private balanceService = inject(BalanceService);
+  private printService = inject(PrintService);
+  private contactService = inject(ContactService);
+  private employeeService = inject(EmployeeService);
+  private configService = inject(ConfigService);
+  private dialog = inject(MatDialog);
+  private snackBar = inject(MatSnackBar);
+  paymentService = inject(PaymentService);
+
   @ViewChild(MatTabGroup, { static: true }) tabGroup!: MatTabGroup;
   @ViewChild(DocumentComponent, { static: true })
   documentComponent!: DocumentComponent;
@@ -81,20 +94,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   private requirePayment = false;
   private submitClicked = new Subject<void>();
 
-  constructor(
-    private router: Router,
-    private translateService: TranslateService,
-    private workspaceService: WorkspaceService,
-    private documentService: DocumentService,
-    private balanceService: BalanceService,
-    private printService: PrintService,
-    private contactService: ContactService,
-    private employeeService: EmployeeService,
-    private configService: ConfigService,
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar,
-    public paymentService: PaymentService,
-  ) {
+  constructor() {
     this.submitClicked
       .pipe(debounceTime(200))
       .subscribe(() => this.createDocument());

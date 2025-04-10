@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { DocumentService } from "@efaps/pos-library";
 
@@ -9,11 +9,10 @@ import { DocumentService } from "@efaps/pos-library";
   standalone: false,
 })
 export class DocumentDialogComponent implements OnInit {
-  constructor(
-    private documentService: DocumentService,
-    public dialogRef: MatDialogRef<DocumentDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-  ) {}
+  private documentService = inject(DocumentService);
+  dialogRef = inject<MatDialogRef<DocumentDialogComponent>>(MatDialogRef);
+  data = inject(MAT_DIALOG_DATA);
+
 
   ngOnInit() {
     switch (this.data.type) {

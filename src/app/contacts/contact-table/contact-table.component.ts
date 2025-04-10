@@ -1,10 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from "@angular/core";
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
@@ -29,6 +23,12 @@ import { CreateContactDialogComponent } from "../create-contact-dialog/create-co
   standalone: false,
 })
 export class ContactTableComponent implements OnInit, OnDestroy {
+  private configService = inject(ConfigService);
+  private contactService = inject(ContactService);
+  private dialog = inject(MatDialog);
+  private fb = inject(FormBuilder);
+  private changeDetectorRefs = inject(ChangeDetectorRef);
+
   dataSource = new MatTableDataSource<Contact>();
   _paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
@@ -36,13 +36,7 @@ export class ContactTableComponent implements OnInit, OnDestroy {
   subscription$ = new Subscription();
   useEmail: boolean = false;
 
-  constructor(
-    private configService: ConfigService,
-    private contactService: ContactService,
-    private dialog: MatDialog,
-    private fb: FormBuilder,
-    private changeDetectorRefs: ChangeDetectorRef,
-  ) {
+  constructor() {
     this.searchForm = this.fb.group({
       search: [],
     });

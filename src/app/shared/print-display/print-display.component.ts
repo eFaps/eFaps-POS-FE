@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, inject } from "@angular/core";
 import { PrintService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
@@ -9,12 +9,12 @@ import { Observable } from "rxjs";
   standalone: false,
 })
 export class PrintDisplayComponent implements OnInit {
+  private printService = inject(PrintService);
+
   previewUrls: any[] = [];
   loaded = false;
   showEmptyMsg = false;
   success = false;
-
-  constructor(private printService: PrintService) {}
 
   ngOnInit() {}
 

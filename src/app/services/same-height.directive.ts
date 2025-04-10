@@ -1,21 +1,15 @@
-import {
-  AfterViewChecked,
-  Directive,
-  ElementRef,
-  HostListener,
-  Input,
-} from "@angular/core";
+import { AfterViewChecked, Directive, ElementRef, HostListener, Input, inject } from "@angular/core";
 
 @Directive({
   selector: "[appSameHeight]",
   standalone: false,
 })
 export class SameHeightDirective implements AfterViewChecked {
+  private el = inject(ElementRef);
+
   // class name to match height
   @Input()
   appSameHeight: any;
-
-  constructor(private el: ElementRef) {}
 
   ngAfterViewChecked() {
     // call our matchHeight function here later

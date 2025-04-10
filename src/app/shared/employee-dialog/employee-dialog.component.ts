@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Employee, EmployeeService } from "@efaps/pos-library";
@@ -10,16 +10,18 @@ import { Employee, EmployeeService } from "@efaps/pos-library";
   standalone: false,
 })
 export class EmployeeDialogComponent implements OnInit {
+  private employeeService = inject(EmployeeService);
+  dialogRef = inject<MatDialogRef<EmployeeDialogComponent>>(MatDialogRef);
+  data = inject<EmployeeDialogData>(MAT_DIALOG_DATA);
+
   title = "";
   employees: Employee[] = [];
   employeeCtrl: FormControl<Employee | null>;
   selectedEmployee: Employee | undefined;
 
-  constructor(
-    private employeeService: EmployeeService,
-    public dialogRef: MatDialogRef<EmployeeDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: EmployeeDialogData,
-  ) {
+  constructor() {
+    const data = this.data;
+
     this.employeeCtrl = new FormControl<Employee | null>(null);
     this.title = data.titel;
     if (data && data.employee) {

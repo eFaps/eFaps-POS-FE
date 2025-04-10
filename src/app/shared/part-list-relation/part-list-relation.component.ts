@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, inject } from "@angular/core";
 import { Product, ProductRelation, ProductService } from "@efaps/pos-library";
 
 @Component({
@@ -8,9 +8,10 @@ import { Product, ProductRelation, ProductService } from "@efaps/pos-library";
   standalone: false,
 })
 export class PartListRelationComponent implements OnInit {
+  private productService = inject(ProductService);
+
   _productRelation!: ProductRelation;
   product: Product | undefined;
-  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {}
 

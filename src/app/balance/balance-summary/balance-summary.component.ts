@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import {
   BalanceSummary,
@@ -16,6 +16,10 @@ import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.com
   standalone: false,
 })
 export class BalanceSummaryComponent implements OnInit {
+  private workspaceService = inject(WorkspaceService);
+  private printService = inject(PrintService);
+  private dialog = inject(MatDialog);
+
   [x: string]: {};
   subscription$ = new Subscription();
   @Input()
@@ -23,12 +27,6 @@ export class BalanceSummaryComponent implements OnInit {
   printer: boolean = false;
   printerDetailed: boolean = false;
   private workspaceOid!: string;
-
-  constructor(
-    private workspaceService: WorkspaceService,
-    private printService: PrintService,
-    private dialog: MatDialog,
-  ) {}
 
   ngOnInit() {
     this.subscription$.add(

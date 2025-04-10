@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Spot, SpotConfig, SpotService } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
@@ -10,16 +10,14 @@ import { Subscription } from "rxjs";
   standalone: false,
 })
 export class SpotDialogComponent implements OnInit, OnDestroy {
+  private dialogRef = inject<MatDialogRef<SpotDialogComponent>>(MatDialogRef);
+  private spotService = inject(SpotService);
+  data = inject(MAT_DIALOG_DATA);
+
   spots: Spot[] = [];
   select = true;
   origin!: Spot;
   private subscription$ = new Subscription();
-
-  constructor(
-    private dialogRef: MatDialogRef<SpotDialogComponent>,
-    private spotService: SpotService,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-  ) {}
 
   ngOnInit() {
     if (this.data === SpotConfig.EXTENDED) {

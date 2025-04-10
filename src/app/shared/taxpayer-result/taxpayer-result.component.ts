@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  Inject,
-  OnInit,
-  ViewChild,
-} from "@angular/core";
+import { AfterViewInit, Component, OnInit, ViewChild, inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { EnquiryService, RUC } from "@efaps/pos-library";
@@ -17,17 +11,15 @@ import { Page } from "@efaps/pos-library/lib/model/pageable";
   standalone: false,
 })
 export class TaxpayerResultComponent implements OnInit, AfterViewInit {
+  private dialogRef = inject<MatDialogRef<TaxpayerResultComponent>>(MatDialogRef);
+  private data = inject(MAT_DIALOG_DATA);
+  private enquiryService = inject(EnquiryService);
+
   isLoadingResults = false;
   displayedColumns = ["id", "name", "warnings", "cmd"];
   dataSource: RUC[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   result!: Page<RUC>;
-
-  constructor(
-    private dialogRef: MatDialogRef<TaxpayerResultComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: any,
-    private enquiryService: EnquiryService,
-  ) {}
 
   ngOnInit(): void {
     this.isLoadingResults = true;

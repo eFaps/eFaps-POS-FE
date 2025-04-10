@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { BalanceService, BalanceSummary } from "@efaps/pos-library";
 
@@ -9,12 +9,10 @@ import { BalanceService, BalanceSummary } from "@efaps/pos-library";
   standalone: false,
 })
 export class BalanceSummaryDialogComponent implements OnInit {
-  summary: BalanceSummary | undefined;
+  private balanceService = inject(BalanceService);
+  private data = inject(MAT_DIALOG_DATA);
 
-  constructor(
-    private balanceService: BalanceService,
-    @Inject(MAT_DIALOG_DATA) private data: any,
-  ) {}
+  summary: BalanceSummary | undefined;
 
   ngOnInit() {
     this.balanceService.getSummary(this.data.balance).subscribe({

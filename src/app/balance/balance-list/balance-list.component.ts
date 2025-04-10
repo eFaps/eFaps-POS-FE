@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -13,16 +13,14 @@ import { BalanceSummaryDialogComponent } from "../balance-summary-dialog/balance
   standalone: false,
 })
 export class BalanceListComponent implements OnInit, OnDestroy {
+  private balanceService = inject(BalanceService);
+  private dialog = inject(MatDialog);
+
   displayedColumns = ["number", "user", "startAt", "endAt", "status", "cmd"];
   dataSource = new MatTableDataSource<Balance>();
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   private subscribtions$ = new Subscription();
-
-  constructor(
-    private balanceService: BalanceService,
-    private dialog: MatDialog,
-  ) {}
 
   ngOnInit() {
     this.subscribtions$.add(

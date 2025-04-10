@@ -1,4 +1,4 @@
-import { Component, Inject } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -14,20 +14,21 @@ import { PromoInfo, Promotion, PromotionService } from "@efaps/pos-library";
   styleUrl: "./promo-dialog.component.scss",
 })
 export class PromoDialogComponent {
+  private promotionService = inject(PromotionService);
+  dialogRef = inject<MatDialogRef<PromoDialogComponent>>(MatDialogRef);
+  data = inject<{
+    promoInfo: PromoInfo;
+    selectedDetail: number | undefined;
+}>(MAT_DIALOG_DATA);
+
   promoInfo: PromoInfo;
   selectedDetail: number | undefined;
   detailPromotions: Promotion[] = [];
   docPromotions: Promotion[] = [];
 
-  constructor(
-    private promotionService: PromotionService,
-    public dialogRef: MatDialogRef<PromoDialogComponent>,
-    @Inject(MAT_DIALOG_DATA)
-    public data: {
-      promoInfo: PromoInfo;
-      selectedDetail: number | undefined;
-    },
-  ) {
+  constructor() {
+    const data = this.data;
+
     this.promoInfo = data.promoInfo;
     this.selectedDetail = data.selectedDetail;
     this.loadPromotions();

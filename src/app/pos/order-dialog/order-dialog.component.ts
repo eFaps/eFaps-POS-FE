@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -20,17 +20,15 @@ import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.com
   standalone: false,
 })
 export class OrderDialogComponent implements OnInit {
+  private workspaceService = inject(WorkspaceService);
+  private printService = inject(PrintService);
+  private dialog = inject(MatDialog);
+  dialogRef = inject<MatDialogRef<OrderDialogComponent>>(MatDialogRef);
+  data = inject(MAT_DIALOG_DATA);
+
   allowPayment: boolean = false;
   allowPrintJobs: boolean = false;
   workspaceOid!: string;
-
-  constructor(
-    private workspaceService: WorkspaceService,
-    private printService: PrintService,
-    private dialog: MatDialog,
-    public dialogRef: MatDialogRef<OrderDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-  ) {}
 
   ngOnInit() {
     this.workspaceService.currentWorkspace.subscribe((workspace) => {

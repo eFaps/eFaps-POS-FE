@@ -1,5 +1,5 @@
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -24,6 +24,9 @@ import {
   standalone: false,
 })
 export class ConfigDialogComponent implements OnInit {
+  private matDialogRef = inject<MatDialogRef<ConfigDialogComponent>>(MatDialogRef);
+  private productService = inject(ProductService);
+
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   private products: Map<String, Product[]> = new Map();
 
@@ -36,12 +39,10 @@ export class ConfigDialogComponent implements OnInit {
   removable = true;
   selectable = true;
 
-  constructor(
-    private matDialogRef: MatDialogRef<ConfigDialogComponent>,
-    private productService: ProductService,
-    fb: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) data: any,
-  ) {
+  constructor() {
+    const fb = inject(FormBuilder);
+    const data = inject(MAT_DIALOG_DATA);
+
     this.product = data.product;
     this.remarkMode = data.remarkMode;
     this.formGroup = fb.group({});

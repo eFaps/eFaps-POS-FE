@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatChipInputEvent } from "@angular/material/chips";
 import { MatDialog } from "@angular/material/dialog";
@@ -25,6 +25,15 @@ import { SalesReportDialogComponent } from "../sales-report-dialog/sales-report-
   standalone: false,
 })
 export class AdminComponent implements OnInit, OnDestroy {
+  private router = inject(Router);
+  private adminService = inject(AdminService);
+  private configService = inject(ConfigService);
+  private barcodeScannerService = inject(BarcodeScannerService);
+  private workspaceService = inject(WorkspaceService);
+  private printService = inject(PrintService);
+  private fb = inject(FormBuilder);
+  private dialog = inject(MatDialog);
+
   versions: Versions | undefined;
   lazyElements: Extension[] = [];
   @LocalStorage() barcodeOptions: BarcodeOptions = {};
@@ -33,16 +42,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   salesReportActive = false;
   workspaceOid!: string;
 
-  constructor(
-    private router: Router,
-    private adminService: AdminService,
-    private configService: ConfigService,
-    private barcodeScannerService: BarcodeScannerService,
-    private workspaceService: WorkspaceService,
-    private printService: PrintService,
-    private fb: FormBuilder,
-    private dialog: MatDialog,
-  ) {
+  constructor() {
     this.barcodeOptionsForm = this.fb.group({
       latency: "",
       minLength: "",

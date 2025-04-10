@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { UntypedFormBuilder, Validators } from "@angular/forms";
 import {
   Card,
@@ -19,14 +19,15 @@ import { PaymentForm } from "../payment-form";
   standalone: false,
 })
 export class CardComponent extends PaymentForm {
+  private workspaceService = inject(WorkspaceService);
+
   cards: Card[] = [];
 
-  constructor(
-    paymentService: PaymentService,
-    utilsService: UtilsService,
-    fb: UntypedFormBuilder,
-    private workspaceService: WorkspaceService,
-  ) {
+  constructor() {
+    const paymentService = inject(PaymentService);
+    const utilsService = inject(UtilsService);
+    const fb = inject(UntypedFormBuilder);
+
     super(paymentService, utilsService, fb);
   }
 

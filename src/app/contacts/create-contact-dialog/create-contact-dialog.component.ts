@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -24,20 +24,20 @@ import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
   standalone: false,
 })
 export class CreateContactDialogComponent implements OnInit, OnDestroy {
+  dialogRef = inject<MatDialogRef<CreateContactDialogComponent>>(MatDialogRef);
+  private configService = inject(ConfigService);
+  private contactService = inject(ContactService);
+  private fb = inject(FormBuilder);
+  private snackBar = inject(MatSnackBar);
+  data = inject(MAT_DIALOG_DATA);
+
   identificationType = IdentificationType;
   idTypes: IdentificationType[] = [];
   contactForm: FormGroup;
   @LocalStorage() virtKeyboard = false;
   useEmail: boolean = false;
 
-  constructor(
-    public dialogRef: MatDialogRef<CreateContactDialogComponent>,
-    private configService: ConfigService,
-    private contactService: ContactService,
-    private fb: FormBuilder,
-    private snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-  ) {
+  constructor() {
     this.idTypes = EnumValues.getValues(IdentificationType);
     this.contactForm = this.fb.group({
       idType: ["", [Validators.required]],

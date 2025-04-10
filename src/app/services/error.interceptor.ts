@@ -8,7 +8,7 @@ import {
 
 import { IGNORED_STATUSES } from "@efaps/pos-library";
 
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
@@ -16,10 +16,9 @@ import { tap } from "rxjs/operators";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(
-    private router: Router,
-    private snackBar: MatSnackBar,
-  ) {}
+  private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
+
 
   intercept(
     request: HttpRequest<any>,

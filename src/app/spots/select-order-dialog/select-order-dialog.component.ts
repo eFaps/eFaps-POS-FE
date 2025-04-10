@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Order } from "@efaps/pos-library";
 
@@ -9,12 +9,10 @@ import { Order } from "@efaps/pos-library";
   standalone: false,
 })
 export class SelectOrderDialogComponent implements OnInit {
-  orders: Order[] = [];
+  private dialogRef = inject<MatDialogRef<SelectOrderDialogComponent>>(MatDialogRef);
+  data = inject(MAT_DIALOG_DATA);
 
-  constructor(
-    private dialogRef: MatDialogRef<SelectOrderDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-  ) {}
+  orders: Order[] = [];
 
   ngOnInit() {
     this.orders = this.data.sort((o1: Order, o2: Order) => {

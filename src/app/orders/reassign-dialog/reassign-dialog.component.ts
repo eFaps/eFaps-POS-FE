@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import {
   CalculatorService,
@@ -18,6 +18,11 @@ import { ReassignItemComponent } from "../reassign-item/reassign-item.component"
   standalone: false,
 })
 export class ReassignDialogComponent implements OnInit, OnDestroy {
+  private documentService = inject(DocumentService);
+  private calculatorService = inject(CalculatorService);
+  private dialogRef = inject<MatDialogRef<ReassignDialogComponent>>(MatDialogRef);
+  private data = inject(MAT_DIALOG_DATA);
+
   orders: Order[] = [];
   orderLeft!: Order;
   orderRight!: Order;
@@ -28,13 +33,6 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
   private right!: ReassignItemComponent;
 
   private subscription = new Subscription();
-
-  constructor(
-    private documentService: DocumentService,
-    private calculatorService: CalculatorService,
-    private dialogRef: MatDialogRef<ReassignDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: any,
-  ) {}
 
   ngOnInit() {
     this.subscription.add(

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { LocalStorage } from "@efaps/ngx-store";
 import { AuthService, WorkspaceService } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
@@ -10,14 +10,12 @@ import { Subscription } from "rxjs";
   standalone: false,
 })
 export class PaymentTypeComponent implements OnInit, OnDestroy {
+  private authService = inject(AuthService);
+  private workspaceService = inject(WorkspaceService);
+
   private subscription$ = new Subscription();
 
   @LocalStorage() selectedPayment: any = {};
-
-  constructor(
-    private authService: AuthService,
-    private workspaceService: WorkspaceService,
-  ) {}
 
   ngOnInit() {}
 

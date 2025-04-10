@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Contact } from "@efaps/pos-library";
 import { CreateContactDialogComponent } from "src/app/contacts/create-contact-dialog/create-contact-dialog.component";
@@ -10,11 +10,10 @@ import { CreateContactDialogComponent } from "src/app/contacts/create-contact-di
   standalone: false,
 })
 export class ContactDialogComponent implements OnInit {
+  private dialogRef = inject<MatDialogRef<ContactDialogComponent>>(MatDialogRef);
+  private dialog = inject(MatDialog);
+
   contact: Contact | null = null;
-  constructor(
-    private dialogRef: MatDialogRef<ContactDialogComponent>,
-    private dialog: MatDialog,
-  ) {}
 
   ngOnInit(): void {}
 

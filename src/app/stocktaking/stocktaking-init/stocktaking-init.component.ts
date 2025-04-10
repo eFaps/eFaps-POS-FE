@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import {
@@ -15,14 +15,15 @@ import { forkJoin } from "rxjs";
   standalone: false,
 })
 export class StocktakingInitComponent implements OnInit {
+  private router = inject(Router);
+  private inventoryService = inject(InventoryService);
+  private stocktakingService = inject(StocktakingService);
+
   initForm: FormGroup;
   warehouses: Warehouse[] = [];
-  constructor(
-    private router: Router,
-    private inventoryService: InventoryService,
-    private stocktakingService: StocktakingService,
-    fb: FormBuilder,
-  ) {
+  constructor() {
+    const fb = inject(FormBuilder);
+
     this.initForm = fb.group({
       warehouse: ["", [Validators.required]],
       comment: ["", []],

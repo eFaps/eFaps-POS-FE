@@ -1,10 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from "@angular/core";
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSlideToggleChange } from "@angular/material/slide-toggle";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -27,6 +21,15 @@ import { Subscription } from "rxjs";
   standalone: false,
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  private router = inject(Router);
+  private companyService = inject(CompanyService);
+  private userService = inject(UserService);
+  private authService = inject(AuthService);
+  private workspaceService = inject(WorkspaceService);
+  private fb = inject(FormBuilder);
+  private snackBar = inject(MatSnackBar);
+  private translateService = inject(TranslateService);
+
   private subscription: Subscription = new Subscription();
   companies: Company[] = [];
   users: User[] = [];
@@ -38,16 +41,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   showCompanySelection = false;
 
-  constructor(
-    private router: Router,
-    private companyService: CompanyService,
-    private userService: UserService,
-    private authService: AuthService,
-    private workspaceService: WorkspaceService,
-    private fb: FormBuilder,
-    private snackBar: MatSnackBar,
-    private translateService: TranslateService,
-  ) {
+  constructor() {
     this.loginForm = this.fb.group({
       userName: ["", Validators.required],
       password: ["", Validators.required],

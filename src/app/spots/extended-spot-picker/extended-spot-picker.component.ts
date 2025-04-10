@@ -1,5 +1,5 @@
 import { CdkDragEnd } from "@angular/cdk/drag-drop";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { DomSanitizer } from "@angular/platform-browser";
@@ -31,6 +31,11 @@ export class ExtendedSpotPickerComponent
   extends AbstractSpotPicker
   implements OnInit
 {
+  private spotService = inject(SpotService);
+  private imageService = inject(ImageService);
+  private sanitizer = inject(DomSanitizer);
+  private snackBar = inject(MatSnackBar);
+
   spotsLayout: SpotsLayout | undefined;
   floors: Floor[] = [];
   editMode = false;
@@ -38,16 +43,12 @@ export class ExtendedSpotPickerComponent
   sidenav = false;
   images = new Map<String, String>();
 
-  constructor(
-    router: Router,
-    posService: PosService,
-    documentService: DocumentService,
-    dialog: MatDialog,
-    private spotService: SpotService,
-    private imageService: ImageService,
-    private sanitizer: DomSanitizer,
-    private snackBar: MatSnackBar,
-  ) {
+  constructor() {
+    const router = inject(Router);
+    const posService = inject(PosService);
+    const documentService = inject(DocumentService);
+    const dialog = inject(MatDialog);
+
     super(router, posService, documentService, dialog);
   }
 

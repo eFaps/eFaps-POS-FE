@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Output, inject } from "@angular/core";
 import { FormGroup, NonNullableFormBuilder, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { DNI, EnquiryService } from "@efaps/pos-library";
@@ -10,15 +10,15 @@ import { DNI, EnquiryService } from "@efaps/pos-library";
   standalone: false,
 })
 export class DNIQueryComponent {
+  private fb = inject(NonNullableFormBuilder);
+  private enquiryService = inject(EnquiryService);
+  private snackBar = inject(MatSnackBar);
+
   dniForm: FormGroup;
   @Output()
   result: EventEmitter<DNI> = new EventEmitter<DNI>();
 
-  constructor(
-    private fb: NonNullableFormBuilder,
-    private enquiryService: EnquiryService,
-    private snackBar: MatSnackBar,
-  ) {
+  constructor() {
     this.dniForm = this.fb.group({
       number: ["", [Validators.required, Validators.pattern("[0-9]{8}")]],
     });

@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, inject } from "@angular/core";
 import { LocalStorage } from "@efaps/ngx-store";
 
 import { DocsSiteTheme, StyleManagerService } from "../services/index";
@@ -16,6 +12,8 @@ import { DocsSiteTheme, StyleManagerService } from "../services/index";
   standalone: false,
 })
 export class ThemePickerComponent {
+  styleManager = inject(StyleManagerService);
+
   @LocalStorage() currentTheme: DocsSiteTheme | undefined;
   themes: DocsSiteTheme[] = [
     {
@@ -44,7 +42,7 @@ export class ThemePickerComponent {
       isDark: true,
     },
   ];
-  constructor(public styleManager: StyleManagerService) {
+  constructor() {
     if (this.currentTheme) {
       this.installTheme(this.currentTheme);
     } else {

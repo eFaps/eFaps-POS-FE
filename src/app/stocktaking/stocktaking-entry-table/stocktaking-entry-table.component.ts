@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ViewChild } from "@angular/core";
+import { ChangeDetectorRef, Component, ViewChild, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
@@ -20,6 +20,10 @@ import { ConfirmDialogComponent } from "src/app/shared/confirm-dialog/confirm-di
   standalone: false,
 })
 export class StocktakingEntryTableComponent {
+  private changeDetectorRefs = inject(ChangeDetectorRef);
+  private stocktakingService = inject(StocktakingService);
+  private dialog = inject(MatDialog);
+
   stocktaking: Stocktaking;
   displayedColumns = [
     "quantity",
@@ -35,12 +39,9 @@ export class StocktakingEntryTableComponent {
   _paginator!: MatPaginator;
 
   allowDelete = false;
-  constructor(
-    router: Router,
-    private changeDetectorRefs: ChangeDetectorRef,
-    private stocktakingService: StocktakingService,
-    private dialog: MatDialog,
-  ) {
+  constructor() {
+    const router = inject(Router);
+
     this.stocktaking = <Stocktaking>(
       router.getCurrentNavigation()!!.extras.state
     );

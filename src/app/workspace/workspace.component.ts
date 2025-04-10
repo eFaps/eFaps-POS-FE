@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import {
   Pos,
@@ -14,14 +14,12 @@ import {
   standalone: false,
 })
 export class WorkspaceComponent implements OnInit {
+  private router = inject(Router);
+  private workspaceService = inject(WorkspaceService);
+  private posService = inject(PosService);
+
   workspaces: Workspace[] = [];
   poss: Pos[] = [];
-
-  constructor(
-    private router: Router,
-    private workspaceService: WorkspaceService,
-    private posService: PosService,
-  ) {}
 
   ngOnInit() {
     this.workspaceService.getWorkspaces().subscribe((data) => {

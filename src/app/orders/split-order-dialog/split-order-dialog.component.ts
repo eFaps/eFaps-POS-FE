@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatTableDataSource } from "@angular/material/table";
 import { DocItem, DocStatus, Order, PosService } from "@efaps/pos-library";
@@ -10,6 +10,10 @@ import { DocItem, DocStatus, Order, PosService } from "@efaps/pos-library";
   standalone: false,
 })
 export class SplitOrderDialogComponent implements OnInit {
+  private posService = inject(PosService);
+  private dialogRef = inject<MatDialogRef<SplitOrderDialogComponent>>(MatDialogRef);
+  data = inject(MAT_DIALOG_DATA);
+
   originDataSource = new MatTableDataSource<DocItem>();
   targetDataSource = new MatTableDataSource<DocItem>();
   originColumns = [
@@ -32,11 +36,9 @@ export class SplitOrderDialogComponent implements OnInit {
   targetOrder!: Order;
   saveable = false;
 
-  constructor(
-    private posService: PosService,
-    private dialogRef: MatDialogRef<SplitOrderDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-  ) {
+  constructor() {
+    const data = this.data;
+
     this.originOrder = data;
   }
 

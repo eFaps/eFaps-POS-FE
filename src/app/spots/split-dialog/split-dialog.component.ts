@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
 
@@ -9,13 +9,11 @@ import { MatDialogRef } from "@angular/material/dialog";
   standalone: false,
 })
 export class SplitDialogComponent implements OnInit {
+  private fb = inject(UntypedFormBuilder);
+  private dialogRef = inject<MatDialogRef<SplitDialogComponent>>(MatDialogRef);
+
   quantityForm!: UntypedFormGroup;
   quantity: number = 0;
-
-  constructor(
-    private fb: UntypedFormBuilder,
-    private dialogRef: MatDialogRef<SplitDialogComponent>,
-  ) {}
 
   ngOnInit() {
     this.quantityForm = this.fb.group({

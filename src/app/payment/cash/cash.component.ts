@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { UntypedFormBuilder } from "@angular/forms";
 import {
   Currency,
@@ -17,11 +17,11 @@ import { PaymentForm } from "../payment-form";
   standalone: false,
 })
 export class CashComponent extends PaymentForm {
-  constructor(
-    paymentService: PaymentService,
-    utilsService: UtilsService,
-    fb: UntypedFormBuilder,
-  ) {
+  constructor() {
+    const paymentService = inject(PaymentService);
+    const utilsService = inject(UtilsService);
+    const fb = inject(UntypedFormBuilder);
+
     super(paymentService, utilsService, fb);
   }
 

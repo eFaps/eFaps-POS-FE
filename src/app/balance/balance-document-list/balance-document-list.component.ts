@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from "@angular/core";
+import { Component, Input, ViewChild, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -13,6 +13,8 @@ import { DocumentDialogComponent } from "../document-dialog/document-dialog.comp
   standalone: false,
 })
 export class BalanceDocumentListComponent {
+  private dialog = inject(MatDialog);
+
   DocStatus = DocStatus;
   displayedColumns = [
     "type",
@@ -25,8 +27,6 @@ export class BalanceDocumentListComponent {
   ];
   dataSource = new MatTableDataSource<PayableHead>();
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
-
-  constructor(private dialog: MatDialog) {}
 
   @Input()
   set payables(payables: PayableHead[]) {

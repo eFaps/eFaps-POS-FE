@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Optional, ViewChild } from "@angular/core";
+import { Component, Input, OnInit, ViewChild, inject } from "@angular/core";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -33,6 +33,16 @@ import { PromoDialogComponent } from "../promo-dialog/promo-dialog.component";
   standalone: false,
 })
 export class DocumentComponent implements OnInit {
+  private router = inject(Router);
+  private dialog = inject(MatDialog);
+  private authService = inject(AuthService);
+  private workspaceService = inject(WorkspaceService);
+  private printService = inject(PrintService);
+  private documentService = inject(DocumentService);
+  private employeeService = inject(EmployeeService);
+  private promotionService = inject(PromotionService);
+  private matDialogRef = inject<MatDialogRef<DocumentComponent>>(MatDialogRef, { optional: true });
+
   displayedColumns = [
     "index",
     "quantity",
@@ -54,17 +64,7 @@ export class DocumentComponent implements OnInit {
   employeeRelations: EmployeeRelationDisplay[] = [];
   promoInfo: PromoInfo | undefined;
 
-  constructor(
-    private router: Router,
-    private dialog: MatDialog,
-    private authService: AuthService,
-    private workspaceService: WorkspaceService,
-    private printService: PrintService,
-    private documentService: DocumentService,
-    private employeeService: EmployeeService,
-    private promotionService: PromotionService,
-    @Optional() private matDialogRef?: MatDialogRef<DocumentComponent>,
-  ) {
+  constructor() {
     this._document = {
       type: "ORDER",
       id: null,

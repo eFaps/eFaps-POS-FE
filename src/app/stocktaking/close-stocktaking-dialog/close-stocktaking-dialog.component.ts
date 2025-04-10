@@ -1,4 +1,4 @@
-import { Component, Inject } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Stocktaking, StocktakingService } from "@efaps/pos-library";
 
@@ -9,13 +9,14 @@ import { Stocktaking, StocktakingService } from "@efaps/pos-library";
   standalone: false,
 })
 export class CloseStocktakingDialogComponent {
+  private dialogRef = inject<MatDialogRef<CloseStocktakingDialogComponent>>(MatDialogRef);
+  private stocktakingService = inject(StocktakingService);
+
   closing = false;
   stocktaking: Stocktaking;
-  constructor(
-    @Inject(MAT_DIALOG_DATA) data: any,
-    private dialogRef: MatDialogRef<CloseStocktakingDialogComponent>,
-    private stocktakingService: StocktakingService,
-  ) {
+  constructor() {
+    const data = inject(MAT_DIALOG_DATA);
+
     this.stocktaking = data.stocktaking;
   }
 

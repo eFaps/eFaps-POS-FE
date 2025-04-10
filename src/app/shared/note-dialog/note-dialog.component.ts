@@ -1,4 +1,4 @@
-import { Component, Inject } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
@@ -9,12 +9,14 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
   standalone: false,
 })
 export class NoteDialogComponent {
+  dialogRef = inject<MatDialogRef<NoteDialogComponent>>(MatDialogRef);
+  data = inject(MAT_DIALOG_DATA);
+
   noteCtrl: FormControl<string | null>;
 
-  constructor(
-    public dialogRef: MatDialogRef<NoteDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: string | undefined,
-  ) {
+  constructor() {
+    const data = this.data;
+
     this.noteCtrl = new FormControl<string | null>(null);
     if (data) {
       this.noteCtrl.patchValue(data);

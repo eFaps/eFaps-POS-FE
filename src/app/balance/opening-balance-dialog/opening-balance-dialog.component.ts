@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -18,7 +18,7 @@ export class OpeningBalanceDialogComponent implements OnInit {
   openingForm: FormGroup;
   currencies: string[];
 
-  constructor(fb: FormBuilder) {
+  constructor() {
     this.openingForm = new FormRecord<FormControl<number>>({});
     this.currencies = EnumValues.getNames(Currency);
     for (let cur of this.currencies) {

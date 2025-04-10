@@ -1,10 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from "@angular/core";
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
@@ -23,6 +17,10 @@ import { ProductComponent } from "../../shared/product/product.component";
   standalone: false,
 })
 export class ProducttableComponent implements OnInit, OnDestroy {
+  private productService = inject(ProductService);
+  private dialog = inject(MatDialog);
+  private changeDetectorRefs = inject(ChangeDetectorRef);
+
   displayedColumns = ["sku", "description", "cmd"];
   dataSource = new MatTableDataSource<Product>();
   _paginator!: MatPaginator;
@@ -31,12 +29,9 @@ export class ProducttableComponent implements OnInit, OnDestroy {
   filterForm: FormGroup;
   textSearch = false;
 
-  constructor(
-    private productService: ProductService,
-    private dialog: MatDialog,
-    private changeDetectorRefs: ChangeDetectorRef,
-    fb: FormBuilder,
-  ) {
+  constructor() {
+    const fb = inject(FormBuilder);
+
     this.filterForm = fb.group({
       filter: [""],
     });

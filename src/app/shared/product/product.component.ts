@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import {
   Currency,
@@ -21,6 +21,12 @@ import {
   standalone: false,
 })
 export class ProductComponent implements OnInit {
+  private productService = inject(ProductService);
+  private posService = inject(PosService);
+  private workspaceService = inject(WorkspaceService);
+  private inventoryService = inject(InventoryService);
+  private data = inject(MAT_DIALOG_DATA);
+
   product!: Product;
   currentCurrency: Currency = Currency.PEN;
   categories: string[] = [];
@@ -29,14 +35,6 @@ export class ProductComponent implements OnInit {
   isStockable: boolean = false;
   inventory: InventoryEntry[] = [];
   relations: RelationEntry[] = [];
-
-  constructor(
-    private productService: ProductService,
-    private posService: PosService,
-    private workspaceService: WorkspaceService,
-    private inventoryService: InventoryService,
-    @Inject(MAT_DIALOG_DATA) private data: any,
-  ) {}
 
   ngOnInit() {
     this.showInventory = this.workspaceService.showInventory();

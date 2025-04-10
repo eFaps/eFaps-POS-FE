@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output, inject } from "@angular/core";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import {
   Category,
@@ -22,6 +22,8 @@ const placeHolder: CategoryNode = {
   standalone: false,
 })
 export class GridElementComponent implements OnInit {
+  private productService = inject(ProductService);
+
   _categories: CategoryNode[] = [];
 
   @Output() categorySelected = new EventEmitter<CategoryNode>();
@@ -36,8 +38,6 @@ export class GridElementComponent implements OnInit {
   selectedTabIndex = 0;
   currentCategory!: CategoryNode;
   products: Product[] = [];
-
-  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {}
 

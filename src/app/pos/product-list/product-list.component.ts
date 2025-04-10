@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Component, Input, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
 import { FormGroup, UntypedFormBuilder } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
@@ -30,6 +30,9 @@ export class ProductListComponent
   extends AbstractProductSelector
   implements OnInit, OnDestroy
 {
+  private authService = inject(AuthService);
+  private fb = inject(UntypedFormBuilder);
+
   filterForm: FormGroup;
   formCtrlSub: Subscription;
   dataSource = new MatTableDataSource();
@@ -38,17 +41,15 @@ export class ProductListComponent
   @Input() isBarcode: boolean = false;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
-  constructor(
-    workspaceService: WorkspaceService,
-    productService: ProductService,
-    posService: PosService,
-    inventoryService: InventoryService,
-    posSyncService: PosSyncService,
-    keypadService: KeypadService,
-    dialog: MatDialog,
-    private authService: AuthService,
-    private fb: UntypedFormBuilder,
-  ) {
+  constructor() {
+    const workspaceService = inject(WorkspaceService);
+    const productService = inject(ProductService);
+    const posService = inject(PosService);
+    const inventoryService = inject(InventoryService);
+    const posSyncService = inject(PosSyncService);
+    const keypadService = inject(KeypadService);
+    const dialog = inject(MatDialog);
+
     super(
       workspaceService,
       productService,

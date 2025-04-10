@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
@@ -10,7 +10,9 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class SalesReportDialogComponent {
   reportForm: FormGroup;
 
-  constructor(fb: FormBuilder) {
+  constructor() {
+    const fb = inject(FormBuilder);
+
     this.reportForm = fb.group({
       date: [new Date(), [Validators.required]],
     });

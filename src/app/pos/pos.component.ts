@@ -1,13 +1,4 @@
-import {
-  AfterContentChecked,
-  ChangeDetectorRef,
-  Component,
-  HostListener,
-  Inject,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from "@angular/core";
+import { AfterContentChecked, ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
@@ -54,6 +45,23 @@ import { ProductListComponent } from "./product-list/product-list.component";
   standalone: false,
 })
 export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
+  workspaceService = inject(WorkspaceService);
+  private posService = inject(PosService);
+  private msgService = inject(MsgService);
+  private authService = inject(AuthService);
+  private barcodeScannerService = inject(BarcodeScannerService);
+  private productService = inject(ProductService);
+  private partListService = inject(PartListService);
+  private posSyncService = inject(PosSyncService);
+  private employeeService = inject(EmployeeService);
+  private userService = inject(UserService);
+  private dialog = inject(MatDialog);
+  private snackBar = inject(MatSnackBar);
+  private router = inject(Router);
+  private contactService = inject(ContactService);
+  private keypadService = inject(KeypadService);
+  private changeDetectorRef = inject<ChangeDetectorRef>(ChangeDetectorRef);
+
   PosLayout = PosLayout;
   ticket: Item[] = [];
   screenHeight: number = 0;
@@ -81,25 +89,6 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   private closing = false;
   private dialogRef: MatDialogRef<ContactDialogComponent, any> | undefined;
   private _seller: Employee | null = null;
-
-  constructor(
-    public workspaceService: WorkspaceService,
-    private posService: PosService,
-    private msgService: MsgService,
-    private authService: AuthService,
-    private barcodeScannerService: BarcodeScannerService,
-    private productService: ProductService,
-    private partListService: PartListService,
-    private posSyncService: PosSyncService,
-    private employeeService: EmployeeService,
-    private userService: UserService,
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar,
-    private router: Router,
-    private contactService: ContactService,
-    private keypadService: KeypadService,
-    @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef,
-  ) {}
 
   ngOnInit() {
     this.subscriptions.add(

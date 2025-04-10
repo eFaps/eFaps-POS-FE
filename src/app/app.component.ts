@@ -1,11 +1,4 @@
-import {
-  AfterViewChecked,
-  ChangeDetectorRef,
-  Component,
-  HostListener,
-  OnInit,
-  computed,
-} from "@angular/core";
+import { AfterViewChecked, ChangeDetectorRef, Component, HostListener, OnInit, computed, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { LocalStorage } from "@efaps/ngx-store";
 import {
@@ -31,6 +24,18 @@ import { MatIconRegistry } from "@angular/material/icon";
   standalone: false,
 })
 export class AppComponent implements OnInit, AfterViewChecked {
+  private matIconReg = inject(MatIconRegistry);
+  router = inject(Router);
+  private cdRef = inject(ChangeDetectorRef);
+  authService = inject(AuthService);
+  translate = inject(TranslateService);
+  private workspaceService = inject(WorkspaceService);
+  userService = inject(UserService);
+  private hotkeysService = inject(HotkeysService);
+  private companyService = inject(CompanyService);
+  private barcodeScannerService = inject(BarcodeScannerService);
+  private loaderService = inject(LoaderService);
+
   Permission = Permission;
   title = "app";
   screenWidth: number;
@@ -43,19 +48,10 @@ export class AppComponent implements OnInit, AfterViewChecked {
   userInfo: User | null = null;
   isLoading = this.loaderService.isLoading;
 
-  constructor(
-    private matIconReg: MatIconRegistry,
-    public router: Router,
-    private cdRef: ChangeDetectorRef,
-    public authService: AuthService,
-    public translate: TranslateService,
-    private workspaceService: WorkspaceService,
-    public userService: UserService,
-    private hotkeysService: HotkeysService,
-    private companyService: CompanyService,
-    private barcodeScannerService: BarcodeScannerService,
-    private loaderService: LoaderService,
-  ) {
+  constructor() {
+    const translate = this.translate;
+    const workspaceService = this.workspaceService;
+
     computed(() => console.log(this.loaderService.isLoading()));
 
     translate.use(workspaceService.getLanguage());

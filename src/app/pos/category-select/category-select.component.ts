@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
 import { Category, ProductService } from "@efaps/pos-library";
 
@@ -9,12 +9,11 @@ import { Category, ProductService } from "@efaps/pos-library";
   standalone: false,
 })
 export class CategorySelectComponent implements OnInit {
+  private productService = inject(ProductService);
+  dialogRef = inject<MatDialogRef<CategorySelectComponent>>(MatDialogRef);
+
   categories: Category[] = [];
   rootCategories: Category[] = [];
-  constructor(
-    private productService: ProductService,
-    public dialogRef: MatDialogRef<CategorySelectComponent>,
-  ) {}
 
   ngOnInit() {
     this.productService.getCategories().subscribe((_categories) => {

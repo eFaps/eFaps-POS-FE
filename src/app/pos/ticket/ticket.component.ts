@@ -1,11 +1,4 @@
-import {
-  Component,
-  effect,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from "@angular/core";
+import { Component, effect, EventEmitter, Input, OnInit, Output, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTableDataSource } from "@angular/material/table";
@@ -26,6 +19,10 @@ import { PromoDialogComponent } from "src/app/shared/promo-dialog/promo-dialog.c
   standalone: false,
 })
 export class TicketComponent implements OnInit {
+  private posService = inject(PosService);
+  private snackBar = inject(MatSnackBar);
+  private dialog = inject(MatDialog);
+
   displayedColumns = [
     "quantity",
     "childQuantity",
@@ -43,11 +40,7 @@ export class TicketComponent implements OnInit {
   @Input() isBarcode: boolean = false;
   @Output() multiplierClick = new EventEmitter<any>();
 
-  constructor(
-    private posService: PosService,
-    private snackBar: MatSnackBar,
-    private dialog: MatDialog,
-  ) {
+  constructor() {
     effect(() => {
       this.displayedColumns = this.displayedColumns.filter(
         (name) => "discount" != name,

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Output, inject } from "@angular/core";
 import { FormGroup, NonNullableFormBuilder, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { EnquiryService, RUC } from "@efaps/pos-library";
@@ -11,16 +11,16 @@ import { TaxpayerResultComponent } from "../taxpayer-result/taxpayer-result.comp
   standalone: false,
 })
 export class TaxpayerQueryComponent {
+  private fb = inject(NonNullableFormBuilder);
+  private enquiryService = inject(EnquiryService);
+  private dialog = inject(MatDialog);
+
   taxpayerForm: FormGroup;
   nameSearch = false;
   @Output()
   result: EventEmitter<RUC> = new EventEmitter<RUC>();
 
-  constructor(
-    private fb: NonNullableFormBuilder,
-    private enquiryService: EnquiryService,
-    private dialog: MatDialog,
-  ) {
+  constructor() {
     this.taxpayerForm = this.fb.group({
       term: ["", [Validators.required, Validators.pattern("[0-9]{11}")]],
     });

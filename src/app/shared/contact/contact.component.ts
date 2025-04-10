@@ -1,12 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from "@angular/core";
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild, inject } from "@angular/core";
 import { UntypedFormControl } from "@angular/forms";
 import { MatAutocomplete } from "@angular/material/autocomplete";
 
@@ -20,16 +12,14 @@ import { debounceTime } from "rxjs/operators";
   standalone: false,
 })
 export class ContactComponent implements OnInit {
+  private contactService = inject(ContactService);
+  private changeDetectorRefs = inject(ChangeDetectorRef);
+
   searchControl: UntypedFormControl = new UntypedFormControl();
   searchResult: Contact[] = [];
   nameSearch = false;
   @Output() contactSelected = new EventEmitter<Contact>();
   @ViewChild(MatAutocomplete) autoComplete: MatAutocomplete | undefined;
-
-  constructor(
-    private contactService: ContactService,
-    private changeDetectorRefs: ChangeDetectorRef,
-  ) {}
 
   ngOnInit() {
     this.searchControl.valueChanges

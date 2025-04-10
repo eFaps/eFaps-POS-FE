@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, inject } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import {
   MatAutocomplete,
@@ -22,6 +22,13 @@ import { Subscription, debounceTime, skip, switchMap } from "rxjs";
   standalone: false,
 })
 export class StocktakingComponent implements OnInit {
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private snackBar = inject(MatSnackBar);
+  private stocktakingService = inject(StocktakingService);
+  private productService = inject(ProductService);
+  private barcodeScannerService = inject(BarcodeScannerService);
+
   searchForm: FormGroup;
   commentForm: FormGroup;
   searchControl: FormControl = new FormControl();
@@ -39,15 +46,10 @@ export class StocktakingComponent implements OnInit {
 
   private preventKeyPad = true;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private snackBar: MatSnackBar,
-    private stocktakingService: StocktakingService,
-    private productService: ProductService,
-    private barcodeScannerService: BarcodeScannerService,
-    fb: FormBuilder,
-  ) {
+  constructor() {
+    const router = this.router;
+    const fb = inject(FormBuilder);
+
     const state = router.getCurrentNavigation()!!.extras.state;
     if (state != undefined) {
       this.defaultComment = state["comment"];
