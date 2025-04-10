@@ -4,10 +4,10 @@ import { Currency, PosService, PromoInfo } from "@efaps/pos-library";
 import { PromoDialogComponent } from "src/app/shared/promo-dialog/promo-dialog.component";
 
 @Component({
-    selector: "app-totals",
-    templateUrl: "./totals.component.html",
-    styleUrls: ["./totals.component.scss"],
-    standalone: false
+  selector: "app-totals",
+  templateUrl: "./totals.component.html",
+  styleUrls: ["./totals.component.scss"],
+  standalone: false,
 })
 export class TotalsComponent implements OnInit {
   net: number = 0;

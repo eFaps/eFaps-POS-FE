@@ -27,10 +27,10 @@ import { PrintDialogComponent } from "../print-dialog/print-dialog.component";
 import { PromoDialogComponent } from "../promo-dialog/promo-dialog.component";
 
 @Component({
-    selector: "app-document",
-    templateUrl: "./document.component.html",
-    styleUrls: ["./document.component.scss"],
-    standalone: false
+  selector: "app-document",
+  templateUrl: "./document.component.html",
+  styleUrls: ["./document.component.scss"],
+  standalone: false,
 })
 export class DocumentComponent implements OnInit {
   displayedColumns = [

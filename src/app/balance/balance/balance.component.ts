@@ -22,10 +22,10 @@ import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.com
 import { OpeningBalanceDialogComponent } from "../opening-balance-dialog/opening-balance-dialog.component";
 
 @Component({
-    selector: "app-balance",
-    templateUrl: "./balance.component.html",
-    styleUrls: ["./balance.component.scss"],
-    standalone: false
+  selector: "app-balance",
+  templateUrl: "./balance.component.html",
+  styleUrls: ["./balance.component.scss"],
+  standalone: false,
 })
 export class BalanceComponent implements OnInit, OnDestroy {
   currentBalance: Balance | undefined;

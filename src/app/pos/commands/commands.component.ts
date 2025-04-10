@@ -17,10 +17,10 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { OrderDialogComponent } from "../order-dialog/order-dialog.component";
 
 @Component({
-    selector: "app-commands",
-    templateUrl: "./commands.component.html",
-    styleUrls: ["./commands.component.scss"],
-    standalone: false
+  selector: "app-commands",
+  templateUrl: "./commands.component.html",
+  styleUrls: ["./commands.component.scss"],
+  standalone: false,
 })
 export class CommandsComponent implements OnInit {
   currentOrder: Order | undefined;

@@ -4,10 +4,10 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { DNI, EnquiryService } from "@efaps/pos-library";
 
 @Component({
-    selector: "app-dniquery",
-    templateUrl: "./dniquery.component.html",
-    styleUrl: "./dniquery.component.scss",
-    standalone: false
+  selector: "app-dniquery",
+  templateUrl: "./dniquery.component.html",
+  styleUrl: "./dniquery.component.scss",
+  standalone: false,
 })
 export class DNIQueryComponent {
   dniForm: FormGroup;

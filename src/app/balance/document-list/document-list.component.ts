@@ -10,10 +10,10 @@ import { debounceTime } from "rxjs/operators";
 import { DocumentDialogComponent } from "../document-dialog/document-dialog.component";
 
 @Component({
-    selector: "app-document-list",
-    templateUrl: "./document-list.component.html",
-    styleUrls: ["./document-list.component.scss"],
-    standalone: false
+  selector: "app-document-list",
+  templateUrl: "./document-list.component.html",
+  styleUrls: ["./document-list.component.scss"],
+  standalone: false,
 })
 export class DocumentListComponent implements OnInit, OnDestroy {
   searchForm: FormGroup;

@@ -22,10 +22,10 @@ import { AbstractSpotPicker } from "../abstract-spot-picker";
 import { SplitDialogComponent } from "../split-dialog/split-dialog.component";
 
 @Component({
-    selector: "app-extended-spot-picker",
-    templateUrl: "./extended-spot-picker.component.html",
-    styleUrls: ["./extended-spot-picker.component.scss"],
-    standalone: false
+  selector: "app-extended-spot-picker",
+  templateUrl: "./extended-spot-picker.component.html",
+  styleUrls: ["./extended-spot-picker.component.scss"],
+  standalone: false,
 })
 export class ExtendedSpotPickerComponent
   extends AbstractSpotPicker

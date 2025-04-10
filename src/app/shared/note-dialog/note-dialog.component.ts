@@ -3,10 +3,10 @@ import { FormControl } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
 @Component({
-    selector: "app-note-dialog",
-    templateUrl: "./note-dialog.component.html",
-    styleUrls: ["./note-dialog.component.scss"],
-    standalone: false
+  selector: "app-note-dialog",
+  templateUrl: "./note-dialog.component.html",
+  styleUrls: ["./note-dialog.component.scss"],
+  standalone: false,
 })
 export class NoteDialogComponent {
   noteCtrl: FormControl<string | null>;

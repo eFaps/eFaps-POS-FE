@@ -7,10 +7,10 @@ import { DocStatus, PayableHead } from "@efaps/pos-library";
 import { DocumentDialogComponent } from "../document-dialog/document-dialog.component";
 
 @Component({
-    selector: "app-balance-document-list",
-    templateUrl: "./balance-document-list.component.html",
-    styleUrls: ["./balance-document-list.component.scss"],
-    standalone: false
+  selector: "app-balance-document-list",
+  templateUrl: "./balance-document-list.component.html",
+  styleUrls: ["./balance-document-list.component.scss"],
+  standalone: false,
 })
 export class BalanceDocumentListComponent {
   DocStatus = DocStatus;

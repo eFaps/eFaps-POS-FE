@@ -11,10 +11,10 @@ import {
 import { PaymentForm } from "../payment-form";
 
 @Component({
-    selector: "app-cash",
-    templateUrl: "./cash.component.html",
-    styleUrls: ["./cash.component.scss"],
-    standalone: false
+  selector: "app-cash",
+  templateUrl: "./cash.component.html",
+  styleUrls: ["./cash.component.scss"],
+  standalone: false,
 })
 export class CashComponent extends PaymentForm {
   constructor(

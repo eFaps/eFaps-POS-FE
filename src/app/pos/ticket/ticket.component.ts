@@ -20,10 +20,10 @@ import { Decimal } from "decimal.js";
 import { PromoDialogComponent } from "src/app/shared/promo-dialog/promo-dialog.component";
 
 @Component({
-    selector: "app-ticket",
-    templateUrl: "./ticket.component.html",
-    styleUrls: ["./ticket.component.scss"],
-    standalone: false
+  selector: "app-ticket",
+  templateUrl: "./ticket.component.html",
+  styleUrls: ["./ticket.component.scss"],
+  standalone: false,
 })
 export class TicketComponent implements OnInit {
   displayedColumns = [
@@ -61,10 +61,10 @@ export class TicketComponent implements OnInit {
 
   ngOnInit() {
     this.posService.currentTicket.subscribe(
-      (_data) => (this.dataSource.data = _data),
+      (data) => (this.dataSource.data = data),
     );
     this.posService.currentCurrency.subscribe(
-      (_data) => (this.currentCurrency = _data),
+      (data) => (this.currentCurrency = data),
     );
     this.posService.multiplier.subscribe({
       next: (multiplier) => (this.multiplier = multiplier),

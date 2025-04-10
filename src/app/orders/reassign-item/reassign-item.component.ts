@@ -3,10 +3,10 @@ import { MatTableDataSource } from "@angular/material/table";
 import { DocItem, Order } from "@efaps/pos-library";
 
 @Component({
-    selector: "app-reassign-item",
-    templateUrl: "./reassign-item.component.html",
-    styleUrls: ["./reassign-item.component.scss"],
-    standalone: false
+  selector: "app-reassign-item",
+  templateUrl: "./reassign-item.component.html",
+  styleUrls: ["./reassign-item.component.scss"],
+  standalone: false,
 })
 export class ReassignItemComponent implements OnInit {
   private _position: "LEFT" | "RIGHT" = "LEFT";

@@ -14,10 +14,10 @@ import {
 import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
 
 @Component({
-    selector: "app-order-dialog",
-    templateUrl: "./order-dialog.component.html",
-    styleUrls: ["./order-dialog.component.scss"],
-    standalone: false
+  selector: "app-order-dialog",
+  templateUrl: "./order-dialog.component.html",
+  styleUrls: ["./order-dialog.component.scss"],
+  standalone: false,
 })
 export class OrderDialogComponent implements OnInit {
   allowPayment: boolean = false;

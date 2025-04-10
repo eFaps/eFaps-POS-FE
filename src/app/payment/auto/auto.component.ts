@@ -15,10 +15,10 @@ import {
 import { PaymentForm } from "../payment-form";
 
 @Component({
-    selector: "app-auto",
-    templateUrl: "./auto.component.html",
-    styleUrls: ["./auto.component.scss"],
-    standalone: false
+  selector: "app-auto",
+  templateUrl: "./auto.component.html",
+  styleUrls: ["./auto.component.scss"],
+  standalone: false,
 })
 export class AutoComponent extends PaymentForm {
   collecting = false;

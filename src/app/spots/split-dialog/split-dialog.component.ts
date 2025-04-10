@@ -3,10 +3,10 @@ import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
 
 @Component({
-    selector: "app-split-dialog",
-    templateUrl: "./split-dialog.component.html",
-    styleUrls: ["./split-dialog.component.scss"],
-    standalone: false
+  selector: "app-split-dialog",
+  templateUrl: "./split-dialog.component.html",
+  styleUrls: ["./split-dialog.component.scss"],
+  standalone: false,
 })
 export class SplitDialogComponent implements OnInit {
   quantityForm!: UntypedFormGroup;

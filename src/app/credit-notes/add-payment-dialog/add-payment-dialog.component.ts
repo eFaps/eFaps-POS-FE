@@ -4,10 +4,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { PaymentType } from "@efaps/pos-library";
 
 @Component({
-    selector: "app-add-payment-dialog",
-    templateUrl: "./add-payment-dialog.component.html",
-    styleUrls: ["./add-payment-dialog.component.scss"],
-    standalone: false
+  selector: "app-add-payment-dialog",
+  templateUrl: "./add-payment-dialog.component.html",
+  styleUrls: ["./add-payment-dialog.component.scss"],
+  standalone: false,
 })
 export class AddPaymentDialogComponent {
   paymentType = PaymentType;

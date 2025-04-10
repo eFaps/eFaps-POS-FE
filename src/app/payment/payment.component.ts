@@ -45,10 +45,10 @@ import { DiscountComponent } from "./discount/discount.component";
 import { SuccessDialogComponent } from "./success-dialog/success-dialog.component";
 
 @Component({
-    selector: "app-payment",
-    templateUrl: "./payment.component.html",
-    styleUrls: ["./payment.component.scss"],
-    standalone: false
+  selector: "app-payment",
+  templateUrl: "./payment.component.html",
+  styleUrls: ["./payment.component.scss"],
+  standalone: false,
 })
 export class PaymentComponent implements OnInit, OnDestroy {
   @ViewChild(MatTabGroup, { static: true }) tabGroup!: MatTabGroup;

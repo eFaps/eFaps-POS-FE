@@ -13,10 +13,10 @@ import { CloseStocktakingDialogComponent } from "../close-stocktaking-dialog/clo
 import { CreateStocktakingDialogComponent } from "../create-stocktaking-dialog/create-stocktaking-dialog.component";
 
 @Component({
-    selector: "app-stocktaking-table",
-    templateUrl: "./stocktaking-table.component.html",
-    styleUrls: ["./stocktaking-table.component.scss"],
-    standalone: false
+  selector: "app-stocktaking-table",
+  templateUrl: "./stocktaking-table.component.html",
+  styleUrls: ["./stocktaking-table.component.scss"],
+  standalone: false,
 })
 export class StocktakingTableComponent implements OnInit {
   displayedColumns = [

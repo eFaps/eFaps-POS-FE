@@ -3,10 +3,10 @@ import { MatDialogRef } from "@angular/material/dialog";
 import { Category, ProductService } from "@efaps/pos-library";
 
 @Component({
-    selector: "app-category-select",
-    templateUrl: "./category-select.component.html",
-    styleUrls: ["./category-select.component.scss"],
-    standalone: false
+  selector: "app-category-select",
+  templateUrl: "./category-select.component.html",
+  styleUrls: ["./category-select.component.scss"],
+  standalone: false,
 })
 export class CategorySelectComponent implements OnInit {
   categories: Category[] = [];

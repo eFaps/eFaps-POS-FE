@@ -2,10 +2,10 @@ import { Component, Input } from "@angular/core";
 import { BalanceSummary, PaymentInfo, PaymentType } from "@efaps/pos-library";
 
 @Component({
-    selector: "app-balance-payment-list",
-    templateUrl: "./balance-payment-list.component.html",
-    styleUrls: ["./balance-payment-list.component.scss"],
-    standalone: false
+  selector: "app-balance-payment-list",
+  templateUrl: "./balance-payment-list.component.html",
+  styleUrls: ["./balance-payment-list.component.scss"],
+  standalone: false,
 })
 export class BalancePaymentListComponent {
   PaymentType = PaymentType;

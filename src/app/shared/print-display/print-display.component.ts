@@ -3,10 +3,10 @@ import { PrintService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
 @Component({
-    selector: "app-print-display",
-    templateUrl: "./print-display.component.html",
-    styleUrls: ["./print-display.component.scss"],
-    standalone: false
+  selector: "app-print-display",
+  templateUrl: "./print-display.component.html",
+  styleUrls: ["./print-display.component.scss"],
+  standalone: false,
 })
 export class PrintDisplayComponent implements OnInit {
   previewUrls: any[] = [];

@@ -3,10 +3,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { DocumentService } from "@efaps/pos-library";
 
 @Component({
-    selector: "app-document-dialog",
-    templateUrl: "./document-dialog.component.html",
-    styleUrls: ["./document-dialog.component.scss"],
-    standalone: false
+  selector: "app-document-dialog",
+  templateUrl: "./document-dialog.component.html",
+  styleUrls: ["./document-dialog.component.scss"],
+  standalone: false,
 })
 export class DocumentDialogComponent implements OnInit {
   constructor(

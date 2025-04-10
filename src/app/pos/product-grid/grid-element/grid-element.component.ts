@@ -16,10 +16,10 @@ const placeHolder: CategoryNode = {
 };
 
 @Component({
-    selector: "app-grid-element",
-    templateUrl: "./grid-element.component.html",
-    styleUrls: ["./grid-element.component.scss"],
-    standalone: false
+  selector: "app-grid-element",
+  templateUrl: "./grid-element.component.html",
+  styleUrls: ["./grid-element.component.scss"],
+  standalone: false,
 })
 export class GridElementComponent implements OnInit {
   _categories: CategoryNode[] = [];

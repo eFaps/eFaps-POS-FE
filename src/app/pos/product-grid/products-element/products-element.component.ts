@@ -13,10 +13,10 @@ import { KeypadService, PosSyncService } from "src/app/services";
 import { AbstractProductSelector } from "../../abstract-product-selector";
 
 @Component({
-    selector: "app-products-element",
-    templateUrl: "./products-element.component.html",
-    styleUrls: ["./products-element.component.scss"],
-    standalone: false
+  selector: "app-products-element",
+  templateUrl: "./products-element.component.html",
+  styleUrls: ["./products-element.component.scss"],
+  standalone: false,
 })
 export class ProductsElementComponent extends AbstractProductSelector {
   @Input()

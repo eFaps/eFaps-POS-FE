@@ -8,10 +8,10 @@ import {
 } from "@efaps/pos-library";
 
 @Component({
-    selector: "app-inventory-table",
-    templateUrl: "./inventory-table.component.html",
-    styleUrls: ["./inventory-table.component.scss"],
-    standalone: false
+  selector: "app-inventory-table",
+  templateUrl: "./inventory-table.component.html",
+  styleUrls: ["./inventory-table.component.scss"],
+  standalone: false,
 })
 export class InventoryTableComponent implements OnInit {
   displayedColumns = ["quantity", "sku", "description"];

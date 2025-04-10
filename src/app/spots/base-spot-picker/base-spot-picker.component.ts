@@ -12,10 +12,10 @@ import {
 import { AbstractSpotPicker } from "../abstract-spot-picker";
 
 @Component({
-    selector: "app-base-spot-picker",
-    templateUrl: "./base-spot-picker.component.html",
-    styleUrls: ["./base-spot-picker.component.scss"],
-    standalone: false
+  selector: "app-base-spot-picker",
+  templateUrl: "./base-spot-picker.component.html",
+  styleUrls: ["./base-spot-picker.component.scss"],
+  standalone: false,
 })
 export class BaseSpotPickerComponent
   extends AbstractSpotPicker

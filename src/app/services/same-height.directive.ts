@@ -7,8 +7,8 @@ import {
 } from "@angular/core";
 
 @Directive({
-    selector: "[appSameHeight]",
-    standalone: false
+  selector: "[appSameHeight]",
+  standalone: false,
 })
 export class SameHeightDirective implements AfterViewChecked {
   // class name to match height

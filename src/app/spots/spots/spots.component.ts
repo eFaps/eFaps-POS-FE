@@ -3,10 +3,10 @@ import { SpotConfig, WorkspaceService } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 
 @Component({
-    selector: "app-spots",
-    templateUrl: "./spots.component.html",
-    styleUrls: ["./spots.component.scss"],
-    standalone: false
+  selector: "app-spots",
+  templateUrl: "./spots.component.html",
+  styleUrls: ["./spots.component.scss"],
+  standalone: false,
 })
 export class SpotsComponent implements OnInit, OnDestroy {
   spotConfig = SpotConfig.NONE;

@@ -2,11 +2,12 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatListModule } from "@angular/material/list";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
-import { PosCurrencyPipe, PosService } from "@efaps/pos-library";
+import { PosCurrencyPipe, PosService, PromoInfo } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
+import { signal } from "@angular/core";
 import { TotalsComponent } from "./totals.component";
 
 class PosServiceStub {
@@ -31,6 +32,7 @@ class PosServiceStub {
   currentPayableAmount = new Observable((observer) => {
     observer.next({});
   });
+  promotionInfo = signal<PromoInfo | null>(null);
 }
 
 describe("TotalsComponent", () => {

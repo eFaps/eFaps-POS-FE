@@ -13,10 +13,10 @@ import {
 import { PaymentForm } from "../payment-form";
 
 @Component({
-    selector: "app-card",
-    templateUrl: "./card.component.html",
-    styleUrls: ["./card.component.scss"],
-    standalone: false
+  selector: "app-card",
+  templateUrl: "./card.component.html",
+  styleUrls: ["./card.component.scss"],
+  standalone: false,
 })
 export class CardComponent extends PaymentForm {
   cards: Card[] = [];

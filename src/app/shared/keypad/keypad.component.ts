@@ -11,10 +11,10 @@ import { Subscription } from "rxjs";
 import { KeypadService } from "../../services";
 
 @Component({
-    selector: "app-keypad",
-    templateUrl: "./keypad.component.html",
-    styleUrls: ["./keypad.component.scss"],
-    standalone: false
+  selector: "app-keypad",
+  templateUrl: "./keypad.component.html",
+  styleUrls: ["./keypad.component.scss"],
+  standalone: false,
 })
 export class KeypadComponent implements OnInit, OnDestroy {
   @Input() showTopClear: boolean = true;
