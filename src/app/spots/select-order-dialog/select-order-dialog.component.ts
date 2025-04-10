@@ -9,7 +9,8 @@ import { Order } from "@efaps/pos-library";
   standalone: false,
 })
 export class SelectOrderDialogComponent implements OnInit {
-  private dialogRef = inject<MatDialogRef<SelectOrderDialogComponent>>(MatDialogRef);
+  private dialogRef =
+    inject<MatDialogRef<SelectOrderDialogComponent>>(MatDialogRef);
   data = inject(MAT_DIALOG_DATA);
 
   orders: Order[] = [];

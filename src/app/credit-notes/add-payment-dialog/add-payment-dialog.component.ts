@@ -11,7 +11,8 @@ import { PaymentType } from "@efaps/pos-library";
 })
 export class AddPaymentDialogComponent {
   private fb = inject(FormBuilder);
-  private dialogRef = inject<MatDialogRef<AddPaymentDialogComponent>>(MatDialogRef);
+  private dialogRef =
+    inject<MatDialogRef<AddPaymentDialogComponent>>(MatDialogRef);
   data = inject(MAT_DIALOG_DATA);
 
   paymentType = PaymentType;

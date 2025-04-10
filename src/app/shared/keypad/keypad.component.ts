@@ -1,4 +1,13 @@
-import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, inject } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  inject,
+} from "@angular/core";
 import { Subscription } from "rxjs";
 import { KeypadService } from "../../services";
 

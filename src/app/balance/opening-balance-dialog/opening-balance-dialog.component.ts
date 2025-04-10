@@ -1,10 +1,5 @@
-import { Component, OnInit, inject } from "@angular/core";
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  FormRecord,
-} from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { FormControl, FormGroup, FormRecord } from "@angular/forms";
 import { Currency } from "@efaps/pos-library";
 import { EnumValues } from "enum-values";
 

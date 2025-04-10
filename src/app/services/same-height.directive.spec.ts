@@ -1,15 +1,31 @@
-import { ElementRef } from "@angular/core";
+import { Component, ElementRef } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { SameHeightDirective } from "./same-height.directive";
 
-class MockElementRef extends ElementRef {
+export class MockElementRef extends ElementRef {
   constructor() {
-    super({});
+    super(undefined);
   }
 }
 
+@Component({
+  template: ` <div [appSameHeight]="aClassName"></div> `,
+  standalone: false,
+})
+class HostComponent {}
+
 describe("SameHeightDirective", () => {
+  let fixture: ComponentFixture<HostComponent>;
+  beforeEach(async () => {
+    TestBed.configureTestingModule({
+      declarations: [SameHeightDirective, HostComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(HostComponent);
+    fixture.detectChanges();
+  });
+
   it("should create an instance", () => {
-    const directive = new SameHeightDirective(new MockElementRef());
-    expect(directive).toBeTruthy();
+    expect(fixture).toBeTruthy();
   });
 });

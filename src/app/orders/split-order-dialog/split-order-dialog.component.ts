@@ -11,7 +11,8 @@ import { DocItem, DocStatus, Order, PosService } from "@efaps/pos-library";
 })
 export class SplitOrderDialogComponent implements OnInit {
   private posService = inject(PosService);
-  private dialogRef = inject<MatDialogRef<SplitOrderDialogComponent>>(MatDialogRef);
+  private dialogRef =
+    inject<MatDialogRef<SplitOrderDialogComponent>>(MatDialogRef);
   data = inject(MAT_DIALOG_DATA);
 
   originDataSource = new MatTableDataSource<DocItem>();

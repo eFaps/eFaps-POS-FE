@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation, inject } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+  inject,
+} from "@angular/core";
 import { LocalStorage } from "@efaps/ngx-store";
 
 import { DocsSiteTheme, StyleManagerService } from "../services/index";

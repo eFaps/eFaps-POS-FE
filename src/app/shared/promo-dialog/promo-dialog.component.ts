@@ -19,7 +19,7 @@ export class PromoDialogComponent {
   data = inject<{
     promoInfo: PromoInfo;
     selectedDetail: number | undefined;
-}>(MAT_DIALOG_DATA);
+  }>(MAT_DIALOG_DATA);
 
   promoInfo: PromoInfo;
   selectedDetail: number | undefined;

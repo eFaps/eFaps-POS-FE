@@ -24,7 +24,8 @@ import {
   standalone: false,
 })
 export class ConfigDialogComponent implements OnInit {
-  private matDialogRef = inject<MatDialogRef<ConfigDialogComponent>>(MatDialogRef);
+  private matDialogRef =
+    inject<MatDialogRef<ConfigDialogComponent>>(MatDialogRef);
   private productService = inject(ProductService);
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];

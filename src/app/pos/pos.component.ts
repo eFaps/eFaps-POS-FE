@@ -1,4 +1,13 @@
-import { AfterContentChecked, ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
+import {
+  AfterContentChecked,
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  inject,
+} from "@angular/core";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";

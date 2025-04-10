@@ -9,7 +9,8 @@ import { Stocktaking, StocktakingService } from "@efaps/pos-library";
   standalone: false,
 })
 export class CloseStocktakingDialogComponent {
-  private dialogRef = inject<MatDialogRef<CloseStocktakingDialogComponent>>(MatDialogRef);
+  private dialogRef =
+    inject<MatDialogRef<CloseStocktakingDialogComponent>>(MatDialogRef);
   private stocktakingService = inject(StocktakingService);
 
   closing = false;

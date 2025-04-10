@@ -20,7 +20,8 @@ import { ReassignItemComponent } from "../reassign-item/reassign-item.component"
 export class ReassignDialogComponent implements OnInit, OnDestroy {
   private documentService = inject(DocumentService);
   private calculatorService = inject(CalculatorService);
-  private dialogRef = inject<MatDialogRef<ReassignDialogComponent>>(MatDialogRef);
+  private dialogRef =
+    inject<MatDialogRef<ReassignDialogComponent>>(MatDialogRef);
   private data = inject(MAT_DIALOG_DATA);
 
   orders: Order[] = [];

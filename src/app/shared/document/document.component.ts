@@ -41,7 +41,9 @@ export class DocumentComponent implements OnInit {
   private documentService = inject(DocumentService);
   private employeeService = inject(EmployeeService);
   private promotionService = inject(PromotionService);
-  private matDialogRef = inject<MatDialogRef<DocumentComponent>>(MatDialogRef, { optional: true });
+  private matDialogRef = inject<MatDialogRef<DocumentComponent>>(MatDialogRef, {
+    optional: true,
+  });
 
   displayedColumns = [
     "index",

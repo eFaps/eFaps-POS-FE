@@ -1,4 +1,12 @@
-import { AfterViewChecked, ChangeDetectorRef, Component, HostListener, OnInit, computed, inject } from "@angular/core";
+import {
+  AfterViewChecked,
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+  OnInit,
+  computed,
+  inject,
+} from "@angular/core";
 import { Router } from "@angular/router";
 import { LocalStorage } from "@efaps/ngx-store";
 import {

@@ -19,7 +19,6 @@ export class ErrorInterceptor implements HttpInterceptor {
   private router = inject(Router);
   private snackBar = inject(MatSnackBar);
 
-
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler,

@@ -1,4 +1,11 @@
-import { AfterViewChecked, Directive, ElementRef, HostListener, Input, inject } from "@angular/core";
+import {
+  AfterViewChecked,
+  Directive,
+  ElementRef,
+  HostListener,
+  Input,
+  inject,
+} from "@angular/core";
 
 @Directive({
   selector: "[appSameHeight]",

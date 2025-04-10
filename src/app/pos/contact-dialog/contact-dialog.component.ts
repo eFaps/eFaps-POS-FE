@@ -10,7 +10,8 @@ import { CreateContactDialogComponent } from "src/app/contacts/create-contact-di
   standalone: false,
 })
 export class ContactDialogComponent implements OnInit {
-  private dialogRef = inject<MatDialogRef<ContactDialogComponent>>(MatDialogRef);
+  private dialogRef =
+    inject<MatDialogRef<ContactDialogComponent>>(MatDialogRef);
   private dialog = inject(MatDialog);
 
   contact: Contact | null = null;

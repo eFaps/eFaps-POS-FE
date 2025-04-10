@@ -14,7 +14,8 @@ import {
   standalone: false,
 })
 export class CreateStocktakingDialogComponent implements OnInit {
-  private dialogRef = inject<MatDialogRef<CreateStocktakingDialogComponent>>(MatDialogRef);
+  private dialogRef =
+    inject<MatDialogRef<CreateStocktakingDialogComponent>>(MatDialogRef);
   private inventoryService = inject(InventoryService);
   private stocktakingService = inject(StocktakingService);
 

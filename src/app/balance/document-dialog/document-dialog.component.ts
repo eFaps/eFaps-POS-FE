@@ -13,7 +13,6 @@ export class DocumentDialogComponent implements OnInit {
   dialogRef = inject<MatDialogRef<DocumentDialogComponent>>(MatDialogRef);
   data = inject(MAT_DIALOG_DATA);
 
-
   ngOnInit() {
     switch (this.data.type) {
       case "RECEIPT":
