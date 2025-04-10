@@ -24,7 +24,7 @@
             "index": "src/index.html",
             "tsConfig": "tsconfig.app.json",
             "polyfills": [
-              "src/polyfills.ts",
+              "zone.js",
               "@angular/localize/init"
             ],
             "preserveSymlinks": true,
@@ -144,7 +144,7 @@
             "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
             "polyfills": [
-              "src/polyfills.ts",
+              "zone.js",
               "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
