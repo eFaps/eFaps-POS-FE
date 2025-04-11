@@ -10,7 +10,7 @@ import { MatListModule } from "@angular/material/list";
 import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
-import { PosLibraryModule } from "@efaps/pos-library";
+import { PosCurrencyPipe, PosLibraryModule } from "@efaps/pos-library";
 
 import { SharedModule } from "../shared/shared.module";
 import { BalanceDocumentListComponent } from "./balance-document-list/balance-document-list.component";
@@ -41,6 +41,7 @@ import { OpeningBalanceDialogComponent } from "./opening-balance-dialog/opening-
     PosLibraryModule,
     ReactiveFormsModule,
     SharedModule,
+    PosCurrencyPipe,
   ],
   declarations: [
     BalanceComponent,

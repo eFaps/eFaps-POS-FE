@@ -2,13 +2,15 @@
   @for (paymentInfo of payments; track paymentInfo) {
     <mat-list-item>
       <p matLine>
-        <span class="paymentType">{{('PAYMENT.' + paymentInfo.type) | translate}} {{paymentInfo.label}}:</span>
-        <span class="amount">{{paymentInfo.amount | number:'1.2-2'}}</span>
+        <span class="paymentType">{{('PAYMENT.' + paymentInfo.type) | translate}} {{paymentInfo.label}} - {{ undefined | posCurrency:paymentInfo.currency}}:</span>
+        <span class="amount">{{paymentInfo.amount | posCurrency:paymentInfo.currency}}</span>
       </p>
     </mat-list-item>
   }
 </mat-list>
 <div class="total">
-  <span i18n="@@total">Total</span>
-  <span>{{ total | number:'1.2-2'}}</span>
+  <span>Totales</span>
+  @for (total of crossTotals; track total) {
+    <span>{{ total.amount | posCurrency:total.currency}}</span>
+  }
 </div>

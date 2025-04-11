@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
+import { Currency, PosCurrencyPipe } from "@efaps/pos-library";
+import { MockPipe } from "ng-mocks";
 import { BalanceSummarySectionComponent } from "./balance-summary-section.component";
 
 describe("BalanceSummarySectionComponent", () => {
@@ -8,7 +10,7 @@ describe("BalanceSummarySectionComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BalanceSummarySectionComponent],
+      declarations: [BalanceSummarySectionComponent, MockPipe(PosCurrencyPipe)],
     }).compileComponents();
   });
 
@@ -18,8 +20,8 @@ describe("BalanceSummarySectionComponent", () => {
     component.detail = {
       documentCount: 1,
       paymentCount: 1,
-      netTotal: 10,
-      crossTotal: 10,
+      netTotals: [{ currency: Currency.PEN, amount: 10 }],
+      crossTotals: [{ currency: Currency.PEN, amount: 10 }],
       paymentInfos: [],
       taxEntries: [],
     };

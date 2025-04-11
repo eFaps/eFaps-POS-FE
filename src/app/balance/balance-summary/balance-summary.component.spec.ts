@@ -47,8 +47,8 @@ describe("BalanceSummaryComponent", () => {
     const detail = {
       documentCount: 0,
       paymentCount: 0,
-      netTotal: 0,
-      crossTotal: 0,
+      netTotals: [],
+      crossTotals: [],
       paymentInfos: [],
       taxEntries: [],
     };

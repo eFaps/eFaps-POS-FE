@@ -11,8 +11,8 @@ export class BalanceSummarySectionComponent implements OnInit {
   _detail: SummaryDetail = {
     documentCount: 0,
     paymentCount: 0,
-    netTotal: 0,
-    crossTotal: 0,
+    netTotals: [],
+    crossTotals: [],
     paymentInfos: [],
     taxEntries: [],
   };

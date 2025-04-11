@@ -152,6 +152,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
                   data: this.printService.printBalance(
                     this.workspaceOid,
                     balance.id,
+                    false,
                   ),
                 });
               }
