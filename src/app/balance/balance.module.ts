@@ -40,8 +40,7 @@ import { OpeningBalanceDialogComponent } from "./opening-balance-dialog/opening-
     MatTabsModule,
     PosLibraryModule,
     ReactiveFormsModule,
-    SharedModule,
-    PosCurrencyPipe,
+    SharedModule
   ],
   declarations: [
     BalanceComponent,
