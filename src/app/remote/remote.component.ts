@@ -80,19 +80,18 @@ export class RemoteComponent {
     }
   }
 
-  pull(type: string, payableOid: string){
+  pull(type: string, payableOid: string) {
     if (type == "RECEIPT") {
-      this.documentService.getReceiptByIdent(payableOid, true).subscribe({next: 
-        receipt => {
+      this.documentService.getReceiptByIdent(payableOid, true).subscribe({
+        next: (receipt) => {
           this.router.navigate(["/credit-notes"], {
             queryParams: {
               sourceId: receipt.id,
               sourceType: receipt.type,
             },
           });
-        }
-      })
+        },
+      });
     }
   }
-
 }

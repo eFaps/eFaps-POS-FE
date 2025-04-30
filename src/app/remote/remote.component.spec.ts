@@ -1,9 +1,12 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { RemoteComponent } from "./remote.component";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { PosConfigToken } from "@efaps/pos-library";
+import { RemoteComponent } from "./remote.component";
 
 describe("RemoteComponent", () => {
   let component: RemoteComponent;
@@ -12,9 +15,9 @@ describe("RemoteComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [
-         { provide: PosConfigToken, useValue: {} },
+        { provide: PosConfigToken, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting()
+        provideHttpClientTesting(),
       ],
       imports: [RemoteComponent],
     }).compileComponents();
