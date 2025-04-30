@@ -18,14 +18,14 @@
                 <mat-card-content>
                     <mat-list>
                         <mat-list-item>
-                            <span matListItemTitle>Cliente</span> <span matListItemLine>{{payable?.contact.name}}</span> 
+                            <span matListItemTitle>Cliente</span> <span matListItemLine>{{payable?.contact?.name}}</span> 
                             </mat-list-item><mat-list-item>
                             <span matListItemTitle>Estatus</span>  <span matListItemLine>{{payable.status | translate}}</span>
                     </mat-list-item>
                 </mat-list>
                 </mat-card-content>
                 <mat-card-actions align="end">
-                    <button mat-button (click)="pull(payable.type, payable.oid)">Selecionar</button>
+                    <button mat-button (click)="pull(payable?.type!!, payable?.oid!!)">Selecionar</button>
                 </mat-card-actions>
             </mat-card>
             }
