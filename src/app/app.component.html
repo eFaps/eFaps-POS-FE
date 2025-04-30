@@ -78,6 +78,13 @@
             </button>
           </mat-list-item>
         }
+        @if (isLoggedIn() && showRemote && hasPermission(Permission.CREDITNOTE)) {
+          <mat-list-item matTooltip="Nube" matTooltipPosition="right">
+            <button routerLink="/remote">
+              <mat-icon aria-label="Nube" >cloud</mat-icon>
+            </button>
+          </mat-list-item>
+        }
         <mat-list-item>
           <button routerLink="/login" i18n-matTooltip="@@loginlogout" matTooltip="Login / Logout" matTooltipPosition="right">
             <mat-icon aria-label="login" >bubble_chart</mat-icon>

@@ -91,6 +91,12 @@ const routes: Routes = [
         (m) => m.StocktakingModule,
       ),
   },
+  {
+    path: "remote",
+    canActivate: [authGuard, workspaceGuard],
+    loadComponent: () =>
+      import("./remote/remote.component").then((m) => m.RemoteComponent),
+  },
   { path: "**", redirectTo: "pos" },
 ];
 

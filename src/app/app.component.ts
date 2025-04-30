@@ -14,10 +14,12 @@ import {
   BarcodeOptions,
   BarcodeScannerService,
   CompanyService,
+  hasFlag,
   LoaderService,
   Permission,
   User,
   UserService,
+  WorkspaceFlag,
   WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
@@ -52,6 +54,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   spots = false;
   inventory = false;
   allowPayment = false;
+  showRemote = false;
   @LocalStorage() barcodeOptions: BarcodeOptions | null = null;
   userInfo: User | null = null;
   isLoading = this.loaderService.isLoading;
@@ -106,6 +109,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
         this.spots = this.workspaceService.showSpots();
         this.inventory = this.workspaceService.showInventory();
         this.allowPayment = _data.docTypes && _data.docTypes.length > 0;
+        this.showRemote = hasFlag(_data, WorkspaceFlag.remote)
       } else {
         this.workspace = "";
         this.spots = false;
@@ -144,4 +148,6 @@ export class AppComponent implements OnInit, AfterViewChecked {
   isLoggedIn() {
     return this.authService.getCurrentUsername() !== undefined;
   }
+
+
 }

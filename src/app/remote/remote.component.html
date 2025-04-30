@@ -1,0 +1,34 @@
+<mat-tab-group>
+    <mat-tab label="Notas de Credito">
+        <div class="wrapper">
+            <form [formGroup]="documentForm">
+                <mat-form-field>
+                    <mat-label>Boleta/Factura</mat-label>
+                    <input matInput formControlName="number">
+                </mat-form-field>
+            </form>
+            <button mat-raised-button color="primary" (click)="retrieve()"
+                [disabled]="documentForm.invalid">Buscar</button>
+            @for (payable of payables; track payable) {
+            <mat-card appearance="outlined" class="document-card">
+                <mat-card-header>
+                    <mat-card-title> {{payable.number}}</mat-card-title>
+                    <mat-card-subtitle>{{payable.date}} - {{payable.crossTotal| posCurrency:payable.currency}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item>
+                            <span matListItemTitle>Cliente</span> <span matListItemLine>{{payable?.contact.name}}</span> 
+                            </mat-list-item><mat-list-item>
+                            <span matListItemTitle>Estatus</span>  <span matListItemLine>{{payable.status | translate}}</span>
+                    </mat-list-item>
+                </mat-list>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                    <button mat-button (click)="pull(payable.type, payable.oid)">Selecionar</button>
+                </mat-card-actions>
+            </mat-card>
+            }
+        </div>
+    </mat-tab>
+</mat-tab-group>
