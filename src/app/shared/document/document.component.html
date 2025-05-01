@@ -66,6 +66,14 @@
             }
           </mat-cell>
         </ng-container>
+        <ng-container matColumnDef="cmd">
+          <mat-header-cell *matHeaderCellDef > <div>&nbsp;</div></mat-header-cell>
+          <mat-cell *matCellDef="let item">
+            <button (click)="btnClick(item)" mat-icon-button>
+              <mat-icon>{{btnIcon}}</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         <mat-row *matRowDef="let row; columns: ['relationDetail']" class="details-row"
@@ -74,7 +82,7 @@
     </div>
     <div class="footer">
       <div class="payment-employee-info">
-        @if (isPayable()) {
+        @if (isPayable() && payments.length > 0) {
           <div>
             <span>Pagos:</span>
             <mat-list dense>

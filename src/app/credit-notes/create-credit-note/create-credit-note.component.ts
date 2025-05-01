@@ -4,7 +4,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import {
   Balance,
   BalanceService,
+  ConfigService,
   CreditNote,
+  DocItem,
   DocumentService,
   Payable,
   Payment,
@@ -16,6 +18,7 @@ import clone from "just-clone";
 import { AddPaymentDialogComponent } from "../add-payment-dialog/add-payment-dialog.component";
 import { SuccessDialogComponent } from "../success-dialog/success-dialog.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { CREDITNOTE_PERMITPARTIAL } from "src/app/util/keys";
 
 @Component({
   selector: "app-create-credit-note",
@@ -31,6 +34,8 @@ export class CreateCreditNoteComponent implements OnInit {
   private documentService = inject(DocumentService);
   private balanceService = inject(BalanceService);
   private workspaceService = inject(WorkspaceService);
+  private configService = inject(ConfigService);
+
   paymentService = inject(PaymentService);
 
   sourceDocument!: Payable;
@@ -40,6 +45,7 @@ export class CreateCreditNoteComponent implements OnInit {
   PaymentType = PaymentType;
   workspaceOid!: string;
   print: boolean = false;
+  permitPartial = false;
 
   ngOnInit(): void {
     this.balanceService.currentBalance.subscribe(
@@ -80,6 +86,14 @@ export class CreateCreditNoteComponent implements OnInit {
           break;
       }
     });
+    this.configService
+            .getSystemConfig<boolean>(CREDITNOTE_PERMITPARTIAL)
+            .subscribe({
+              next: (value) => {
+                this.permitPartial = value
+              },
+            });
+
   }
 
   initCreditNote() {
@@ -100,11 +114,11 @@ export class CreateCreditNoteComponent implements OnInit {
   }
 
   createCreditNote() {
-    this.creditNote.sourceDocOid = this.sourceDocument.oid
+    this.creditNote!.sourceDocOid = this.sourceDocument.oid
       ? this.sourceDocument.oid
       : this.sourceDocument.id!;
-    this.creditNote.payments = this.payments;
-    this.documentService.createCreditNote(this.creditNote).subscribe({
+    this.creditNote!.payments = this.payments;
+    this.documentService.createCreditNote(this.creditNote!).subscribe({
       next: (doc) => {
         this.router.navigate(["/balance"]);
         this.showSuccess(doc);
@@ -145,10 +159,23 @@ export class CreateCreditNoteComponent implements OnInit {
         this.payments.push({
           amount: -info.amount,
           currency: this.creditNote.currency,
-          exchangeRate: this.creditNote.exchangeRate,
+          exchangeRate: this.creditNote!.exchangeRate,
           type: info.paymentType,
         });
       },
     });
   }
+
+  itemClick(docItem: DocItem) {
+    
+    const item = this.creditNote.items.find(item => {
+      return item.index == docItem.index
+    })
+    if (item) {
+      item.crossPrice = 0
+      item.quantity = 0
+    }
+    this.creditNote = clone(this.creditNote)
+  }
+
 }

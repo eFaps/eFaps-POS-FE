@@ -7,7 +7,7 @@
       <app-document [document]='sourceDocument' [showContact]="true"></app-document>
     </div>
     <div>
-      <app-document [document]='creditNote' [showContact]="true"></app-document>
+      <app-document [document]='creditNote!!' [showContact]="true" [showCmd]="true" (onItemClick)="itemClick($event)"></app-document>
     </div>
   </div>
   <div class="footer">

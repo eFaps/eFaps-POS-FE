@@ -12,6 +12,18 @@
 
   .footer {
     border-top: 2px solid lightgrey;
+    padding-top: 1rem;
+
     display: flex;
+
+    .payments {
+      flex-grow: 1;
+    }
+
+    .buttons {
+      flex-grow: 1;
+      text-align: center;
+
+    }
   }
 }

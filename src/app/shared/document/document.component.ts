@@ -14,6 +14,7 @@ import {
   Employee,
   EmployeeRelationType,
   EmployeeService,
+  Item,
   Payable,
   Payment,
   Permission,
@@ -51,8 +52,10 @@ export class DocumentComponent implements OnInit {
     "childQuantity",
     "productDesc",
     "crossUnitPrice",
-    "crossPrice",
+    "crossPrice"
   ];
+  
+
   dataSource = new MatTableDataSource<DocItem>();
   _document: Document;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
@@ -67,6 +70,10 @@ export class DocumentComponent implements OnInit {
   promoInfo: PromoInfo | undefined;
 
   readonly hideTitle = input<Boolean>()
+  readonly showCmd = input<Boolean>()
+
+  onItemClick = output<DocItem>()
+  btnIcon = "cancel"
 
   constructor() {
     this._document = {
@@ -119,6 +126,12 @@ export class DocumentComponent implements OnInit {
       this.dataSource.data = [];
       this.creditNotes = [];
       this.employeeRelations = [];
+    }
+    const cmd =  this.showCmd()  
+    if (cmd) {
+      if(this.displayedColumns.length ==6) {
+        this.displayedColumns.push("cmd")
+      }
     }
   }
 
@@ -215,6 +228,10 @@ export class DocumentComponent implements OnInit {
     this.dialog.open(PromoDialogComponent, {
       data: { promoInfo: this.promoInfo },
     });
+  }
+
+  btnClick(docItem: DocItem) {
+    this.onItemClick.emit(docItem)
   }
 }
 
