@@ -1,3 +1,5 @@
+.wrapper {
+  height: 400px;
 .content {
   display: flex;
 
@@ -11,7 +13,7 @@
     }
   }
 }
-
+}
 
 .right-align {
   text-align: right;
@@ -37,4 +39,17 @@ mat-spinner {
 
 .collector-radio-button {
   margin: 15px;
+}
+.mat-mdc-outlined-button {
+  font-size: 22px;
+  border-radius: 8px;
+  max-width: 62px;
+  padding: 0;
+   
+
+  .mat-icon {
+    font-size: unset;
+    height: unset;
+    left: 6px;
+  }
 }

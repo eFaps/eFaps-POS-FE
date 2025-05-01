@@ -2,9 +2,15 @@ mat-grid-list {
   width: 250px;
 }
 
-.mat-mdc-raised-button {
-  min-width: 1%;
-  font-size: 23px;
-  line-height: 45px;
-  width: 60px;
+.mat-mdc-outlined-button {
+  font-size: 22px;
+  border-radius: 8px;
+  max-width: 62px;
+  padding: 0;
+  
+  .mat-icon {
+    font-size: unset;
+    height: unset;
+    left: 6px;
+  }
 }

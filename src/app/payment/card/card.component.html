@@ -1,22 +1,24 @@
-<div class="content">
-  <div class="payment-form-wrapper">
-    <form class="payment-form" [formGroup]="paymentForm">
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Monto" type="text" formControlName="amount" class="right-align">
-        <span matPrefix>{{currency}}&nbsp;</span>
-      </mat-form-field>
-      <button type="button" mat-raised-button (click)="setChange()">{{'<<'}}</button>
-      <div class="keypad-warpper">
-        <app-keypad (number)="setNumber($event)"></app-keypad>
-        <mat-radio-group class="card-radio-group" formControlName="card">
-          @for (card of cards; track card; let idx = $index) {
-            <mat-radio-button class="card-radio-button" [value]="card">
-              {{card.label}}
-            </mat-radio-button>
-          }
-        </mat-radio-group>
-      </div>
-    </form>
+<div class="wrapper">
+  <div class="content">
+    <div class="payment-form-wrapper">
+      <form class="payment-form" [formGroup]="paymentForm">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Monto" type="text" formControlName="amount" class="right-align">
+          <span matPrefix>{{currency}}&nbsp;</span>
+        </mat-form-field>
+        <button type="button" mat-stroked-button (click)="setChange()">{{'<<'}}</button>
+        <div class="keypad-warpper">
+          <mat-radio-group class="card-radio-group" formControlName="card">
+            @for (card of cards; track card; let idx = $index) {
+              <mat-radio-button class="card-radio-button" [value]="card">
+                {{card.label}}
+              </mat-radio-button>
+            }
+          </mat-radio-group>
+        </div>
+      </form>
+      <app-keypad (number)="setNumber($event)"></app-keypad>
+    </div>
   </div>
+  <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="addPayment()">Add Pago</button>
 </div>
-<button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="addPayment()">Add Pago</button>

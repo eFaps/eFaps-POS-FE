@@ -1,3 +1,4 @@
+<div class="wrapper">
 <div class="content">
   <div class="payment-form-wrapper">
     <form class="payment-form" [formGroup]="paymentForm">
@@ -5,7 +6,7 @@
         <input matInput placeholder="Monto" type="text" formControlName="amount" class="right-align">
         <span matPrefix>{{currency}}&nbsp;</span>
       </mat-form-field>
-      <button type="button" mat-raised-button (click)="setChange()">{{'<<'}}</button>
+      <button type="button" mat-stroked-button (click)="setChange()">{{'<<'}}</button>
       <div class="keypad-warpper">
         <app-keypad (number)="setNumber($event)"></app-keypad>
         <mat-radio-group class="collector-radio-group" formControlName="collectorFrmCtrl">
@@ -24,4 +25,5 @@
       <mat-spinner></mat-spinner>
     }
   </div>
+</div>
 </div>
