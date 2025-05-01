@@ -167,12 +167,10 @@ export class CreateCreditNoteComponent implements OnInit {
   }
 
   itemClick(docItem: DocItem) {
-    
     const item = this.creditNote.items.find(item => {
       return item.index == docItem.index
     })
     if (item) {
-      item.crossPrice = 0
       item.quantity = 0
     }
     this.creditNote = clone(this.creditNote)

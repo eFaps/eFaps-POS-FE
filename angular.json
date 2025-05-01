@@ -44,13 +44,23 @@
               },
               {
                 "inject": false,
-                "input": "src/scss/blue-azure.scss",
-                "bundleName": "blue-azure"
+                "input": "src/scss/azure-blue.scss",
+                "bundleName": "azure-blue"
+              },
+              {
+                "inject": false,
+                "input": "src/scss/cyan-orange.scss",
+                "bundleName": "cyan-orange"
               },
               {
                 "inject": false,
                 "input": "src/scss/magenta-violet.scss",
                 "bundleName": "magenta-violet"
+              },
+              {
+                "inject": false,
+                "input": "src/scss/rose-red.scss",
+                "bundleName": "rose-red"
               }
             ],
             "stylePreprocessorOptions": {
@@ -146,13 +156,23 @@
               },
               {
                 "inject": false,
-                "input": "src/scss/pink-bluegrey.scss",
-                "bundleName": "pink-bluegrey"
+                "input": "src/scss/azure-blue.scss",
+                "bundleName": "azure-blue"
               },
               {
                 "inject": false,
-                "input": "src/scss/deeppurple-amber.scss",
-                "bundleName": "deeppurple-amber"
+                "input": "src/scss/cyan-orange.scss",
+                "bundleName": "cyan-orange"
+              },
+              {
+                "inject": false,
+                "input": "src/scss/magenta-violet.scss",
+                "bundleName": "magenta-violet"
+              },
+              {
+                "inject": false,
+                "input": "src/scss/rose-red.scss",
+                "bundleName": "rose-red"
               }
             ],
             "assets": [{

@@ -24,16 +24,27 @@ export class ThemePickerComponent {
     {
       color: '#343dff',
       background: '#1e1a1d',
-      displayName: 'Bluea & Azure',
-      href: 'blue-azure.css',
+      displayName: 'Azure & Blue',
+      href: 'azure-blue.css',
     },
-
     {
-        color: '#810081',
-        background: '#1e1a1d',
-        displayName: 'Magenta & Violet',
-        href: 'magenta-violet.css',
-      },
+      background: '#ffd9e1',
+      displayName: 'Rose & Red',
+      href: 'rose-red.css',
+      color: '#ba005c',
+    },
+    {
+      color: '#810081',
+      background: '#1e1a1d',
+      displayName: 'Magenta & Violet',
+      href: 'magenta-violet.css',
+    },
+    {
+      color: '#004f4f',
+      displayName: 'Cyan & Orange',
+      href: 'cyan-orange.css',
+      background: '#191c1c',
+    },
   ];
   constructor() {
     if (this.currentTheme) {

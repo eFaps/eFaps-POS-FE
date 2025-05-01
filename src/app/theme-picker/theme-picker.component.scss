@@ -1,5 +1,5 @@
 @use "sass:math";
-$theme-picker-menu-padding: 8px;
+$theme-picker-menu-padding: 2px;
 $theme-picker-grid-cell-size: 48px;
 $theme-picker-grid-cells-per-row: 2;
 $theme-picker-swatch-size: 36px;
@@ -7,8 +7,12 @@ $theme-picker-accent-stripe-size: 6px;
 
 
 .docs-theme-picker-menu {
+  
   .mat-mdc-menu-content {
     padding: $theme-picker-menu-padding;
+  }
+  &.mat-mdc-menu-panel  {
+    overflow: hidden;
   }
 
   [mat-menu-item] {
