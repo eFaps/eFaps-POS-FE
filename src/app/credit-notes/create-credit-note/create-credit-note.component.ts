@@ -15,6 +15,7 @@ import {
 import clone from "just-clone";
 import { AddPaymentDialogComponent } from "../add-payment-dialog/add-payment-dialog.component";
 import { SuccessDialogComponent } from "../success-dialog/success-dialog.component";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-create-credit-note",
@@ -26,6 +27,7 @@ export class CreateCreditNoteComponent implements OnInit {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private dialog = inject(MatDialog);
+  private snackBar = inject(MatSnackBar);
   private documentService = inject(DocumentService);
   private balanceService = inject(BalanceService);
   private workspaceService = inject(WorkspaceService);
@@ -41,11 +43,20 @@ export class CreateCreditNoteComponent implements OnInit {
 
   ngOnInit(): void {
     this.balanceService.currentBalance.subscribe(
-      (_balance) => (this.balance = _balance),
+      (balance) => { 
+        if (balance) {
+          this.balance = balance
+        } else {
+          this.snackBar.open("No hay una balance actual", undefined, {
+            duration: 3000,
+          });
+          this.router.navigate(["/"]);
+        }
+      },
     );
-    this.workspaceService.currentWorkspace.subscribe((_data) => {
-      this.workspaceOid = _data.oid;
-      this.print = _data.printCmds.some((x) => x.target === "TICKET");
+    this.workspaceService.currentWorkspace.subscribe((data) => {
+      this.workspaceOid = data.oid;
+      this.print = data.printCmds.some((x) => x.target === "TICKET");
     });
     this.route.queryParams.subscribe((params) => {
       const sourceId = params["sourceId"];

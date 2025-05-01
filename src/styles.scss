@@ -1,11 +1,9 @@
 @use '@angular/material' as mat;
+@use "@fontsource/roboto";
+@use 'material-symbols';
 
 @include mat.elevation-classes();
 @include mat.app-background();
-
-@import "@fontsource/roboto";
-
-@import 'material-symbols';
 
 body {
   height: 100%;

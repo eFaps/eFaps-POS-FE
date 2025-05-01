@@ -1,31 +1,31 @@
 <div class="wrapper">
-  <div>
+  <div class="header">
+    <h2 i18n>Balance - {{ balance.number }}</h2>
+  </div>
+  <div class="documents">
     <div>
-      @if (balance) {
-        <h2 i18n>Balance - {{ balance.number }}</h2>
-      }
-      <app-document [document]='sourceDocument'></app-document>
+      <app-document [document]='sourceDocument' [showContact]="true"></app-document>
     </div>
     <div>
-      <app-document [document]='creditNote'></app-document>
+      <app-document [document]='creditNote' [showContact]="true"></app-document>
     </div>
   </div>
-  <div class="paymentsRegistered">
-    <div>
+  <div class="footer">
+    <div class="payments">
       <button mat-raised-button color="secondary" (click)="openPaymentDialog()">Anadir Pago</button>
-    </div>
-    <mat-list dense>
-      @for (payment of payments; track payment) {
+      <mat-list dense>
+        @for (payment of payments; track payment) {
         <mat-list-item>
           <span matLine>{{ payment.cardTypeId ? payment.cardLabel : ('PAYMENT.' + payment.type) |
-          translate }} {{payment.amount | posCurrency:paymentService.currency}}</span>
+            translate }} {{payment.amount | posCurrency:paymentService.currency}}</span>
           <button mat-icon-button (click)="delPayment(payment)">
             <mat-icon>highlight_off</mat-icon>
           </button>
         </mat-list-item>
-      }
-    </mat-list>
-    <div>
+        }
+      </mat-list>
+    </div>
+    <div class="buttons">
       <button mat-raised-button color="primary" (click)="createCreditNote()">Emitir Nota de Credito</button>
     </div>
   </div>
