@@ -1,15 +1,5 @@
 @use '@angular/material' as mat;
 
-@mixin pos-component-theme($theme) {
-  $primary: map-get($theme, primary);
-
-  .seller-label {
-    span {
-      background-color: mat.m2-get-color-from-palette($primary);
-    }
-  }
-}
-
 $ticketWith: 500px;
 
 .content {

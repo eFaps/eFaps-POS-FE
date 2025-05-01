@@ -22,30 +22,18 @@ export class ThemePickerComponent {
   @LocalStorage() currentTheme: DocsSiteTheme | undefined;
   themes: DocsSiteTheme[] = [
     {
-      primary: "#673AB7",
-      accent: "#FFC107",
-      href: "deeppurple-amber.css",
-      isDark: false,
+      color: '#343dff',
+      background: '#1e1a1d',
+      displayName: 'Bluea & Azure',
+      href: 'blue-azure.css',
     },
+
     {
-      primary: "#3F51B5",
-      accent: "#E91E63",
-      href: "indigo-pink.css",
-      isDark: false,
-      isDefault: true,
-    },
-    {
-      primary: "#E91E63",
-      accent: "#607D8B",
-      href: "pink-bluegrey.css",
-      isDark: true,
-    },
-    {
-      primary: "#9C27B0",
-      accent: "#4CAF50",
-      href: "purple-green.css",
-      isDark: true,
-    },
+        color: '#810081',
+        background: '#1e1a1d',
+        displayName: 'Magenta & Violet',
+        href: 'magenta-violet.css',
+      },
   ];
   constructor() {
     if (this.currentTheme) {

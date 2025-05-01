@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild, inject } from "@angular/core";
+import { Component, Input, OnInit, ViewChild, inject, input, output } from "@angular/core";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -65,6 +65,8 @@ export class DocumentComponent implements OnInit {
   sourceDoc: Document | undefined;
   employeeRelations: EmployeeRelationDisplay[] = [];
   promoInfo: PromoInfo | undefined;
+
+  readonly hideTitle = input<Boolean>()
 
   constructor() {
     this._document = {

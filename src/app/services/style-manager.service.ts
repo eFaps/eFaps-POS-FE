@@ -1,11 +1,10 @@
 import { Injectable } from "@angular/core";
 
 export interface DocsSiteTheme {
-  primary: string;
-  accent: string;
+  color: string;
+  background: string;
+  displayName: string;
   href: string;
-  isDark: boolean;
-  isDefault?: boolean;
 }
 
 @Injectable({

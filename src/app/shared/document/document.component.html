@@ -1,6 +1,8 @@
 @if (document) {
   <div class="mat-typography">
-    <h3>{{document.type! | translate}}: {{document.number}}</h3>
+    @if (!hideTitle()) {
+      <h3>{{document.type! | translate}}: {{document.number}}</h3>
+    }
     @if (showContact && document.contact) {
       <div class="contact-document">
         <span>Cliente:</span>

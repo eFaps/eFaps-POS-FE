@@ -44,23 +44,13 @@
               },
               {
                 "inject": false,
-                "input": "src/scss/pink-bluegrey.scss",
-                "bundleName": "pink-bluegrey"
+                "input": "src/scss/blue-azure.scss",
+                "bundleName": "blue-azure"
               },
               {
                 "inject": false,
-                "input": "src/scss/deeppurple-amber.scss",
-                "bundleName": "deeppurple-amber"
-              },
-              {
-                "inject": false,
-                "input": "src/scss/indigo-pink.scss",
-                "bundleName": "indigo-pink"
-              },
-              {
-                "inject": false,
-                "input": "src/scss/purple-green.scss",
-                "bundleName": "purple-green"
+                "input": "src/scss/magenta-violet.scss",
+                "bundleName": "magenta-violet"
               }
             ],
             "stylePreprocessorOptions": {
@@ -163,16 +153,6 @@
                 "inject": false,
                 "input": "src/scss/deeppurple-amber.scss",
                 "bundleName": "deeppurple-amber"
-              },
-              {
-                "inject": false,
-                "input": "src/scss/indigo-pink.scss",
-                "bundleName": "indigo-pink"
-              },
-              {
-                "inject": false,
-                "input": "src/scss/purple-green.scss",
-                "bundleName": "purple-green"
               }
             ],
             "assets": [{
