@@ -7,6 +7,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MockComponent } from "ng-mocks";
 
 import { DocumentService, PosConfigToken } from "@efaps/pos-library";
+import { TranslateService } from "@ngx-translate/core";
 import { DocumentComponent } from "../../shared/document/document.component";
 import { DocumentDialogComponent } from "./document-dialog.component";
 
@@ -21,6 +22,7 @@ describe("DocumentDialogComponent", () => {
       declarations: [DocumentDialogComponent, MockComponent(DocumentComponent)],
       imports: [],
       providers: [
+        { provide: TranslateService, useValue: {} },
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: PosConfigToken, useValue: {} },

@@ -1,4 +1,12 @@
-import { Component, Input, OnInit, ViewChild, inject, input, output } from "@angular/core";
+import {
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+  inject,
+  input,
+  output,
+} from "@angular/core";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -14,7 +22,6 @@ import {
   Employee,
   EmployeeRelationType,
   EmployeeService,
-  Item,
   Payable,
   Payment,
   Permission,
@@ -52,9 +59,8 @@ export class DocumentComponent implements OnInit {
     "childQuantity",
     "productDesc",
     "crossUnitPrice",
-    "crossPrice"
+    "crossPrice",
   ];
-  
 
   dataSource = new MatTableDataSource<DocItem>();
   _document: Document;
@@ -69,13 +75,13 @@ export class DocumentComponent implements OnInit {
   employeeRelations: EmployeeRelationDisplay[] = [];
   promoInfo: PromoInfo | undefined;
 
-  readonly hideTitle = input<Boolean>()
-  readonly showCmd = input<Boolean>()
+  readonly hideTitle = input<Boolean>();
+  readonly showCmd = input<Boolean>();
 
-  markInvalid = input<(item: DocItem) => boolean>()
+  markInvalid = input<(item: DocItem) => boolean>();
 
-  onItemClick = output<DocItem>()
-  btnIcon = "cancel"
+  onItemClick = output<DocItem>();
+  btnIcon = "cancel";
 
   constructor() {
     this._document = {
@@ -129,10 +135,10 @@ export class DocumentComponent implements OnInit {
       this.creditNotes = [];
       this.employeeRelations = [];
     }
-    const cmd =  this.showCmd()  
+    const cmd = this.showCmd();
     if (cmd) {
-      if(this.displayedColumns.length ==6) {
-        this.displayedColumns.push("cmd")
+      if (this.displayedColumns.length == 6) {
+        this.displayedColumns.push("cmd");
       }
     }
   }
@@ -233,15 +239,15 @@ export class DocumentComponent implements OnInit {
   }
 
   btnClick(docItem: DocItem) {
-    this.onItemClick.emit(docItem)
+    this.onItemClick.emit(docItem);
   }
 
   isInvalid(item: DocItem) {
-    const ft = this.markInvalid()
+    const ft = this.markInvalid();
     if (ft) {
-      return ft(item)
+      return ft(item);
     } else {
-      return false
+      return false;
     }
   }
 }
@@ -250,7 +256,3 @@ export interface EmployeeRelationDisplay {
   employee?: Employee;
   type: EmployeeRelationType;
 }
-
-
-
-

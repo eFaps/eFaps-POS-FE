@@ -5,6 +5,7 @@ import { MatListModule } from "@angular/material/list";
 import { ActivatedRoute } from "@angular/router";
 import {
   BalanceService,
+  ConfigService,
   DocumentService,
   PaymentService,
   PosConfigToken,
@@ -37,6 +38,13 @@ class PaymentServiceStub {}
 class ActivatedRouteStub {
   queryParams = new Observable((observer) => {});
 }
+class ConfigServiceStub {
+  getSystemConfig(key: string) {
+    return new Observable((observer) => {
+      observer.next([]);
+    });
+  }
+}
 
 describe("CreateCreditNoteComponent", () => {
   let component: CreateCreditNoteComponent;
@@ -55,6 +63,7 @@ describe("CreateCreditNoteComponent", () => {
         { provide: BalanceService, useClass: BalanceServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
+        { provide: ConfigService, useClass: ConfigServiceStub },
         { provide: MatDialogRef, useValue: {} },
         {
           provide: PosConfigToken,

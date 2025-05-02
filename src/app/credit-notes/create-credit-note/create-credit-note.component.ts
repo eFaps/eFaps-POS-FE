@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
   Balance,
@@ -16,10 +17,9 @@ import {
   WorkspaceService,
 } from "@efaps/pos-library";
 import clone from "just-clone";
+import { CREDITNOTE_PERMITPARTIAL } from "src/app/util/keys";
 import { AddPaymentDialogComponent } from "../add-payment-dialog/add-payment-dialog.component";
 import { SuccessDialogComponent } from "../success-dialog/success-dialog.component";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { CREDITNOTE_PERMITPARTIAL } from "src/app/util/keys";
 
 @Component({
   selector: "app-create-credit-note",
@@ -50,18 +50,16 @@ export class CreateCreditNoteComponent implements OnInit {
   permitPartial = false;
 
   ngOnInit(): void {
-    this.balanceService.currentBalance.subscribe(
-      (balance) => {
-        if (balance) {
-          this.balance = balance
-        } else {
-          this.snackBar.open("No hay una balance actual", undefined, {
-            duration: 3000,
-          });
-          this.router.navigate(["/"]);
-        }
-      },
-    );
+    this.balanceService.currentBalance.subscribe((balance) => {
+      if (balance) {
+        this.balance = balance;
+      } else {
+        this.snackBar.open("No hay una balance actual", undefined, {
+          duration: 3000,
+        });
+        this.router.navigate(["/"]);
+      }
+    });
     this.workspaceService.currentWorkspace.subscribe((data) => {
       this.workspaceOid = data.oid;
       this.print = data.printCmds.some((x) => x.target === "TICKET");
@@ -92,10 +90,9 @@ export class CreateCreditNoteComponent implements OnInit {
       .getSystemConfig<boolean>(CREDITNOTE_PERMITPARTIAL)
       .subscribe({
         next: (value) => {
-          this.permitPartial = value
+          this.permitPartial = value;
         },
       });
-
   }
 
   initCreditNote() {
@@ -120,7 +117,9 @@ export class CreateCreditNoteComponent implements OnInit {
       ? this.sourceDocument.oid
       : this.sourceDocument.id!;
     this.creditNote!.payments = this.payments;
-    this.creditNote!.items = this.creditNote!.items.filter(item => item.quantity > 0)
+    this.creditNote!.items = this.creditNote!.items.filter(
+      (item) => item.quantity > 0,
+    );
     this.documentService.createCreditNote(this.creditNote!).subscribe({
       next: (doc) => {
         this.router.navigate(["/balance"]);
@@ -170,26 +169,27 @@ export class CreateCreditNoteComponent implements OnInit {
   }
 
   itemClick(docItem: DocItem) {
-    const item = this.creditNote.items.find(item => {
-      return item.index == docItem.index
-    })
+    const item = this.creditNote.items.find((item) => {
+      return item.index == docItem.index;
+    });
     if (item) {
-      item.quantity = 0
+      item.quantity = 0;
     }
-    this.calculatorService.calculateDoc(this.creditNote, this.sourceDocument.id!!).subscribe({
-      next: doc => {
-        console.log(doc)
-      }
-    })
+    this.calculatorService
+      .calculateDoc(this.creditNote, this.sourceDocument.id!!)
+      .subscribe({
+        next: (doc) => {
+          console.log(doc);
+        },
+      });
   }
 
   reset() {
-    this.payments = []
-    this.initCreditNote()
+    this.payments = [];
+    this.initCreditNote();
   }
 
   itemInvalid(item: DocItem): boolean {
-    return item.quantity < 1
+    return item.quantity < 1;
   }
 }
-
