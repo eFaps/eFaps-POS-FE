@@ -1,6 +1,7 @@
 .contact-document {
   margin-bottom: 15px;
   text-align: left;
+
   span {
     display: block;
     margin-bottom: 5px;
@@ -26,6 +27,7 @@
   min-width: 60px;
   flex-grow: 0;
 }
+
 .mat-column-childQuantity {
   width: 60px;
   min-width: 60px;
@@ -35,10 +37,12 @@
 .mat-column-productDesc {
   flex-grow: 4;
 }
+
 .mat-column-crossUnitPrice {
   min-width: 100px;
   flex-shrink: 0;
   text-align: right;
+
   div {
     width: 99%;
   }
@@ -49,6 +53,7 @@
   flex-shrink: 0;
   text-align: right;
   margin-right: 5px;
+
   div {
     width: 99%;
   }
@@ -62,10 +67,12 @@
 
   .payment-employee-info {
     margin-top: 8px;
+
     .mat-line {
       text-align: left;
     }
   }
+
   .print-container {
     button {
       top: calc(50% - 18px);
@@ -95,11 +102,18 @@
   flex-direction: column;
   align-items: flex-start;
 }
+
 .totalDiscount {
   ::ng-deep .mdc-button__label {
     color: var(--mat-badge-background-color);
   }
+
   ::ng-deep button {
     left: 8px;
   }
+}
+
+.invalid-row {
+  background-color: var(--mat-sys-error);
+  color: var(--mat-sys-on-error);
 }

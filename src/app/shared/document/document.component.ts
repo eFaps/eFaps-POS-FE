@@ -72,6 +72,8 @@ export class DocumentComponent implements OnInit {
   readonly hideTitle = input<Boolean>()
   readonly showCmd = input<Boolean>()
 
+  markInvalid = input<(item: DocItem) => boolean>()
+
   onItemClick = output<DocItem>()
   btnIcon = "cancel"
 
@@ -233,9 +235,22 @@ export class DocumentComponent implements OnInit {
   btnClick(docItem: DocItem) {
     this.onItemClick.emit(docItem)
   }
+
+  isInvalid(item: DocItem) {
+    const ft = this.markInvalid()
+    if (ft) {
+      return ft(item)
+    } else {
+      return false
+    }
+  }
 }
 
 export interface EmployeeRelationDisplay {
   employee?: Employee;
   type: EmployeeRelationType;
 }
+
+
+
+

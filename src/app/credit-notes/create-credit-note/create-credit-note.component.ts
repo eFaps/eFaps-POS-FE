@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import {
   Balance,
   BalanceService,
+  CalculatorService,
   ConfigService,
   CreditNote,
   DocItem,
@@ -31,6 +32,7 @@ export class CreateCreditNoteComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
+  private calculatorService = inject(CalculatorService);
   private documentService = inject(DocumentService);
   private balanceService = inject(BalanceService);
   private workspaceService = inject(WorkspaceService);
@@ -49,7 +51,7 @@ export class CreateCreditNoteComponent implements OnInit {
 
   ngOnInit(): void {
     this.balanceService.currentBalance.subscribe(
-      (balance) => { 
+      (balance) => {
         if (balance) {
           this.balance = balance
         } else {
@@ -87,12 +89,12 @@ export class CreateCreditNoteComponent implements OnInit {
       }
     });
     this.configService
-            .getSystemConfig<boolean>(CREDITNOTE_PERMITPARTIAL)
-            .subscribe({
-              next: (value) => {
-                this.permitPartial = value
-              },
-            });
+      .getSystemConfig<boolean>(CREDITNOTE_PERMITPARTIAL)
+      .subscribe({
+        next: (value) => {
+          this.permitPartial = value
+        },
+      });
 
   }
 
@@ -118,6 +120,7 @@ export class CreateCreditNoteComponent implements OnInit {
       ? this.sourceDocument.oid
       : this.sourceDocument.id!;
     this.creditNote!.payments = this.payments;
+    this.creditNote!.items = this.creditNote!.items.filter(item => item.quantity > 0)
     this.documentService.createCreditNote(this.creditNote!).subscribe({
       next: (doc) => {
         this.router.navigate(["/balance"]);
@@ -173,7 +176,20 @@ export class CreateCreditNoteComponent implements OnInit {
     if (item) {
       item.quantity = 0
     }
-    this.creditNote = clone(this.creditNote)
+    this.calculatorService.calculateDoc(this.creditNote, this.sourceDocument.id!!).subscribe({
+      next: doc => {
+        console.log(doc)
+      }
+    })
   }
 
+  reset() {
+    this.payments = []
+    this.initCreditNote()
+  }
+
+  itemInvalid(item: DocItem): boolean {
+    return item.quantity < 1
+  }
 }
+

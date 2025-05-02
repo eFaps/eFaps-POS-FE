@@ -33,9 +33,14 @@ mat-sidenav {
 
 }
 
+.mat-mdc-icon-button {
+  color:var(--mat-sys-primary);
+  background-color: var(--mat-sys-secondary-container);
+}
+
 .mat-mdc-list button {
-  border-radius: 2px;
-  border-style: solid;
+ // border-radius: 2px;
+ // border-style: solid;
 }
 
 svg-icon.logo.white {
