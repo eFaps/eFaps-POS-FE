@@ -48,7 +48,7 @@ export class RemoteComponent {
     this.documentForm = this.fb.group({
       number: [
         "",
-        [Validators.required, Validators.pattern(/^[FB]\d{2,4}-\d{4,}/)],
+        [Validators.required, Validators.pattern(/^[FB][A-Z\d]{3}-\d{4,}/)],
       ],
     });
   }
@@ -60,7 +60,7 @@ export class RemoteComponent {
         next: (invoice) => {
           this.payables = invoice;
           if (this.payables.length == 0) {
-            this.snackBar.open("No se incontro nignua factura", undefined, {
+            this.snackBar.open("No se incontro niguna factura", undefined, {
               duration: 3000,
             });
           }
@@ -71,7 +71,7 @@ export class RemoteComponent {
         next: (reciepts) => {
           this.payables = reciepts;
           if (this.payables.length == 0) {
-            this.snackBar.open("No se incontro nignua boleta", undefined, {
+            this.snackBar.open("No se incontro niguna boleta", undefined, {
               duration: 3000,
             });
           }

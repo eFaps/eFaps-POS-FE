@@ -7,7 +7,13 @@
       <app-document [document]='sourceDocument' [showContact]="true"></app-document>
     </div>
     <div>
-      <app-document [document]='creditNote!!' [showContact]="true" [showCmd]="permitPartial" (onItemClick)="itemClick($event)" [markInvalid]="itemInvalid"></app-document>
+      <div class="toggle">
+        <button mat-icon-button (click)="toggle()">
+          <mat-icon>autorenew</mat-icon>
+        </button>
+      </div>
+      <app-document [document]='creditNote!!' [showContact]="true" [showCmd]="permitPartial"
+        (onItemClick)="itemClick($event)" [markInvalid]="itemInvalid" [btnIcon]="btnIcon"></app-document>
       <button mat-raised-button color="primary" (click)="reset()">Reiniciar</button>
     </div>
   </div>

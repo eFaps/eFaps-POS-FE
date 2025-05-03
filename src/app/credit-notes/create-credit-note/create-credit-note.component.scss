@@ -8,6 +8,12 @@
   .documents {
     display: flex;
     justify-content: space-around;
+
+    .toggle {
+      float: inline-end;
+      margin-right: 21px;
+      margin-top: 73px;
+    }
   }
 
   .footer {

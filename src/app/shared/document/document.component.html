@@ -70,7 +70,7 @@
           <mat-header-cell *matHeaderCellDef > <div>&nbsp;</div></mat-header-cell>
           <mat-cell *matCellDef="let item">
             <button (click)="btnClick(item)" mat-icon-button>
-              <mat-icon>{{btnIcon}}</mat-icon>
+              <mat-icon>{{getBtnIcon(item)}}</mat-icon>
             </button>
           </mat-cell>
         </ng-container>

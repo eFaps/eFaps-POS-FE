@@ -79,9 +79,8 @@ export class DocumentComponent implements OnInit {
   readonly showCmd = input<Boolean>();
 
   markInvalid = input<(item: DocItem) => boolean>();
-
+  btnIcon = input<(item: DocItem) => string>();
   onItemClick = output<DocItem>();
-  btnIcon = "cancel";
 
   constructor() {
     this._document = {
@@ -248,6 +247,15 @@ export class DocumentComponent implements OnInit {
       return ft(item);
     } else {
       return false;
+    }
+  }
+
+  getBtnIcon(item: DocItem) {
+    const icon = this.btnIcon();
+    if (icon) {
+      return icon(item);
+    } else {
+      return "cancel";
     }
   }
 }

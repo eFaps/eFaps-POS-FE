@@ -169,12 +169,11 @@ export class CreateCreditNoteComponent implements OnInit {
   }
 
   itemClick(docItem: DocItem) {
-    const item = this.creditNote.items.find((item) => {
-      return item.index == docItem.index;
-    });
-    if (item) {
-      item.quantity = 0;
-    }
+    this.setItem(docItem);
+    this.calculate();
+  }
+
+  private calculate() {
     this.calculatorService
       .calculateDoc(this.creditNote, this.sourceDocument.id!!)
       .subscribe({
@@ -184,6 +183,21 @@ export class CreateCreditNoteComponent implements OnInit {
       });
   }
 
+  private setItem(docItem: DocItem) {
+    const item = this.creditNote.items.find((item) => {
+      return item.index == docItem.index;
+    });
+    if (item) {
+      if (item.quantity == 0) {
+        this.sourceDocument.items.find((sourceItem) => {
+          item.quantity = sourceItem.quantity;
+        });
+      } else {
+        item.quantity = 0;
+      }
+    }
+  }
+
   reset() {
     this.payments = [];
     this.initCreditNote();
@@ -191,5 +205,16 @@ export class CreateCreditNoteComponent implements OnInit {
 
   itemInvalid(item: DocItem): boolean {
     return item.quantity < 1;
+  }
+
+  btnIcon(item: DocItem): string {
+    return item.quantity < 1 ? "add" : "cancel";
+  }
+
+  toggle() {
+    this.creditNote.items.forEach((item) => {
+      this.setItem(item);
+    });
+    this.calculate();
   }
 }
