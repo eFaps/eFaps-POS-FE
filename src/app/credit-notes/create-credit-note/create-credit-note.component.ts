@@ -48,6 +48,8 @@ export class CreateCreditNoteComponent implements OnInit {
   workspaceOid!: string;
   print: boolean = false;
   permitPartial = false;
+  validated = false;
+
 
   ngOnInit(): void {
     this.balanceService.currentBalance.subscribe((balance) => {
@@ -72,6 +74,7 @@ export class CreateCreditNoteComponent implements OnInit {
           this.documentService.getReceipt(sourceId).subscribe({
             next: (receipt) => {
               this.sourceDocument = receipt;
+              this.validate();
               this.initCreditNote();
             },
           });
@@ -80,6 +83,7 @@ export class CreateCreditNoteComponent implements OnInit {
           this.documentService.getInvoice(sourceId).subscribe({
             next: (invoice) => {
               this.sourceDocument = invoice;
+              this.validate();
               this.initCreditNote();
             },
           });
@@ -93,6 +97,14 @@ export class CreateCreditNoteComponent implements OnInit {
           this.permitPartial = value;
         },
       });
+  }
+
+  validate() {
+    this.documentService.validateForCreditNote({payableOid: this.sourceDocument.oid!!}).subscribe({
+      next: response => {
+        this.validated = response.valid
+      }
+    })
   }
 
   initCreditNote() {

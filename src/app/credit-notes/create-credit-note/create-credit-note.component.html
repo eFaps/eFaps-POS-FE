@@ -33,7 +33,7 @@
       </mat-list>
     </div>
     <div class="buttons">
-      <button mat-raised-button color="primary" (click)="createCreditNote()">Emitir Nota de Credito</button>
+      <button mat-raised-button color="primary" (click)="createCreditNote()" [disabled]="!validated">Emitir Nota de Credito</button>
     </div>
   </div>
 </div>
