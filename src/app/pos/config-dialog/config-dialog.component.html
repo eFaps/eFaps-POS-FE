@@ -12,7 +12,7 @@
           </mat-radio-group>
         </mat-step>
       }
-      @for (bomGroup of product?.bomGroupConfigs; track bomGroup) {
+      @for (bomGroup of product.bomGroupConfigs; track bomGroup) {
         <mat-step>
           <ng-template matStepLabel>{{bomGroup.description}}</ng-template>
           <mat-button-toggle-group [formControlName]="bomGroup.oid" multiple="true">
@@ -22,11 +22,11 @@
           </mat-button-toggle-group>
         </mat-step>
       }
-      @if (remarkMode || (product?.indicationSets && product!!.indicationSets!!.length > 0)) {
+      @if (remarkMode || (product.indicationSets && product.indicationSets!!.length > 0)) {
         <mat-step>
           <ng-template matStepLabel>Indicaciones / Comentarios</ng-template>
           <div class="indicationSet">
-            @for (indicationSet of product?.indicationSets; track indicationSet) {
+            @for (indicationSet of product.indicationSets; track indicationSet) {
               <div>{{indicationSet.name}}</div>
               <div>
                 @for (indication of indicationSet.indications; track indication) {
