@@ -19,11 +19,14 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import { MatIconModule } from "@angular/material/icon";
 import { CreateCreditNoteComponent } from "./create-credit-note.component";
 
 class DocumentServiceStub {}
 class BalanceServiceStub {
-  currentBalance = new Observable((observer) => {});
+  currentBalance = new Observable((observer) => {
+    observer.next({ number: "test" });
+  });
 }
 class WorkspaceServiceStub {
   currentWorkspace = new Observable((observer) => {
@@ -56,7 +59,7 @@ describe("CreateCreditNoteComponent", () => {
         CreateCreditNoteComponent,
         MockComponent(DocumentComponent),
       ],
-      imports: [MatDialogModule, MatListModule],
+      imports: [MatDialogModule, MatListModule, MatIconModule],
       providers: [
         { provide: ActivatedRoute, useClass: ActivatedRouteStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
