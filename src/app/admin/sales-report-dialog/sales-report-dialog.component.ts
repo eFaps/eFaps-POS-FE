@@ -13,10 +13,10 @@ export class SalesReportDialogComponent {
   constructor() {
     const fb = inject(FormBuilder);
 
-    const date = new Date()
+    const date = new Date();
     date.setHours(0);
-    date.setMinutes(0,0,0)
-   
+    date.setMinutes(0, 0, 0);
+
     this.reportForm = fb.group({
       date: [date, [Validators.required]],
     });

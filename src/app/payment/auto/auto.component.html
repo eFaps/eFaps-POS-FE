@@ -1,29 +1,30 @@
 <div class="wrapper">
-<div class="content">
-  <div class="payment-form-wrapper">
-    <form class="payment-form" [formGroup]="paymentForm">
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Monto" type="text" formControlName="amount" class="right-align">
-        <span matPrefix>{{currency}}&nbsp;</span>
-      </mat-form-field>
-      <button type="button" mat-stroked-button (click)="setChange()">{{'<<'}}</button>
-      <div class="keypad-warpper">
-        <app-keypad (number)="setNumber($event)"></app-keypad>
+  <div class="content">
+    <div class="payment-form-wrapper">
+      <form class="payment-form" [formGroup]="paymentForm">
+        <mat-form-field>
+          <input matInput placeholder="Monto" type="text" formControlName="amount" class="right-align">
+          <span matPrefix>{{currency}}&nbsp;</span>
+        </mat-form-field>
+        <button type="button" mat-stroked-button (click)="setChange()">{{'<<'}}</button>
+      </form>
+      <app-keypad (number)="setNumber($event)"></app-keypad>
+    </div>
+    <div>
+      <form class="payment-form" [formGroup]="paymentForm">
         <mat-radio-group class="collector-radio-group" formControlName="collectorFrmCtrl">
           @for (collector of collectors; track collector; let idx = $index) {
-            <mat-radio-button class="collector-radio-button" [value]="collector">
-              {{collector.label}}
-            </mat-radio-button>
+          <mat-radio-button class="collector-radio-button" [value]="collector">
+            {{collector.label}}
+          </mat-radio-button>
           }
         </mat-radio-group>
-      </div>
-    </form>
-    <button type="submit" class="btn btn-success" mat-raised-button color="primary" [disabled]="buttonTimeout"  (click)="addPayment()">Add Pago</button>
+        @if (collecting) {
+        <mat-spinner></mat-spinner>
+        }
+      </form>
+    </div>
+    <button type="submit" class="btn btn-success" mat-raised-button color="primary" [disabled]="buttonTimeout"
+      (click)="addPayment()">Add Pago</button>
   </div>
-  <div>
-    @if (collecting) {
-      <mat-spinner></mat-spinner>
-    }
-  </div>
-</div>
 </div>

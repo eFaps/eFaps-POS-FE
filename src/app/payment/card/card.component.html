@@ -11,13 +11,15 @@
       <app-keypad (number)="setNumber($event)"></app-keypad>
     </div>
     <div>
-      <mat-radio-group class="card-radio-group" formControlName="card">
-        @for (card of cards; track card; let idx = $index) {
-        <mat-radio-button class="card-radio-button" [value]="card">
-          {{card.label}}
-        </mat-radio-button>
-        }
-      </mat-radio-group>
+      <form class="payment-form" [formGroup]="paymentForm">
+        <mat-radio-group class="card-radio-group" formControlName="card">
+          @for (card of cards; track card; let idx = $index) {
+          <mat-radio-button class="card-radio-button" [value]="card">
+            {{card.label}}
+          </mat-radio-button>
+          }
+        </mat-radio-group>
+      </form>
     </div>
   </div>
   <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="addPayment()">Add

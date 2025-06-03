@@ -50,7 +50,6 @@ export class CreateCreditNoteComponent implements OnInit {
   permitPartial = false;
   validated = false;
 
-
   ngOnInit(): void {
     this.balanceService.currentBalance.subscribe((balance) => {
       if (balance) {
@@ -100,11 +99,13 @@ export class CreateCreditNoteComponent implements OnInit {
   }
 
   validate() {
-    this.documentService.validateForCreditNote({payableOid: this.sourceDocument.oid!!}).subscribe({
-      next: response => {
-        this.validated = response.valid
-      }
-    })
+    this.documentService
+      .validateForCreditNote({ payableOid: this.sourceDocument.oid!! })
+      .subscribe({
+        next: (response) => {
+          this.validated = response.valid;
+        },
+      });
   }
 
   initCreditNote() {
