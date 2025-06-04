@@ -1,5 +1,10 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from "@angular/material/dialog";
 import { CashEntryDialogComponent } from "./cash-entry-dialog.component";
 
 describe("CashEntryDialogComponent", () => {
@@ -8,7 +13,11 @@ describe("CashEntryDialogComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CashEntryDialogComponent],
+      imports: [CashEntryDialogComponent, MatDialogModule],
+      providers: [
+        { provide: MatDialogRef, useValue: {} },
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CashEntryDialogComponent);

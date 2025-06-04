@@ -2,7 +2,7 @@
   <mat-tab i18n-label="@@currentBalance" label="Balance actual">
     <div class="currentBalance">
       @if (hasBalance()) {
-      <span class="balanceNumber" i18n="@@balanceWithNumber">Balance - {{currentBalance.number}}</span>
+      <span class="balanceNumber" i18n="@@balanceWithNumber">Balance - {{currentBalance?.number}}</span>
       <button mat-flat-button (click)="close()" i18n="@@closeBalance">Cerrar</button>
       @if (useCashEntry) {
       <button mat-flat-button (click)="register()">Registar</button>

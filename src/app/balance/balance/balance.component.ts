@@ -43,7 +43,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
   subscription$ = new Subscription();
   private print = false;
   private workspaceOid!: string;
-  private useCashEntry: boolean = false;
+  useCashEntry: boolean = false;
 
   ngOnInit() {
     this.subscription$.add(

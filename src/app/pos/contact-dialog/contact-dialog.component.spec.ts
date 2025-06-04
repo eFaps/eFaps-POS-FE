@@ -1,5 +1,9 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from "@angular/material/dialog";
 import { MockComponent } from "ng-mocks";
 import { ContactComponent } from "src/app/shared/contact/contact.component";
 
@@ -13,7 +17,10 @@ describe("ContactDialogComponent", () => {
     TestBed.configureTestingModule({
       imports: [MatDialogModule],
       declarations: [ContactDialogComponent, MockComponent(ContactComponent)],
-      providers: [{ provide: MatDialogRef, useValue: {} }],
+      providers: [
+        { provide: MatDialogRef, useValue: {} },
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ContactDialogComponent);
