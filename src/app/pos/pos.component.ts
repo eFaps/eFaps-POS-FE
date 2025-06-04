@@ -90,6 +90,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     | undefined;
   remarkMode = false;
   allowAssignSeller = false;
+  allowAssignShoutOut = false;
   isBarcode = false;
   sticky = false;
   private subscriptions = new Subscription();
@@ -98,6 +99,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   private closing = false;
   private dialogRef: MatDialogRef<ContactDialogComponent, any> | undefined;
   private _seller: Employee | null = null;
+  private _shoutOut: string | undefined = undefined;
 
   ngOnInit() {
     this.subscriptions.add(
@@ -122,9 +124,15 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
             workspace,
             WorkspaceFlag.assignSeller,
           );
+          this.allowAssignShoutOut = hasFlag(
+            workspace,
+            WorkspaceFlag.assignShoutOut,
+          );
+
           if (order && !this.orderId) {
             this.msgService.publishStartEditOrder(order.id!);
             this.orderId = order.id;
+            this.shoutOut = order.shoutout;
             if (order.contactOid) {
               this.contactService.getContact(order.contactOid).subscribe({
                 next: (contactResp) => {
@@ -154,6 +162,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
             }
           } else {
             this.contact = null;
+            this.shoutOut = undefined;
             this.assignContact(false);
             if (this.allowAssignSeller) {
               this.subscriptions.add(
@@ -213,23 +222,52 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   assignContact(update: boolean) {
     if (
       update ||
-      (!this.closing && this.requiresContact && this.contact == null)
+      (!this.closing && ((this.requiresContact || this.allowAssignShoutOut) && this.contact == null && this.shoutOut === undefined))
     ) {
       this.keypadService.deactivate();
       this.dialogRef = this.dialog.open(ContactDialogComponent, {
         disableClose: true,
+        data: {
+          contact: this.requiresContact,
+          shoutOut: this.allowAssignShoutOut
+        }
       });
       this.dialogRef.afterClosed().subscribe({
-        next: (contactOid) => {
+        next: (contactOrShoutOut) => {
           this.keypadService.activate();
-          if (contactOid) {
-            this.contact = contactOid;
+          if (contactOrShoutOut) {
+            if (contactOrShoutOut.oid) {
+              this.contact = contactOrShoutOut;
+              this.shoutOut = undefined;
+            } else {
+              this.contact = null;
+              this.shoutOut = contactOrShoutOut
+            }
           } else {
-            this.router.navigate(["orders"]);
+            if (!this.allowAssignShoutOut) {
+              this.router.navigate(["orders"]);
+            } else {
+              this.contact = null;
+              this.shoutOut = undefined;
+            }
           }
         },
       });
     }
+  }
+
+  set shoutOut(shoutOut: string | undefined | null) {
+     if (shoutOut == null) {
+      this._shoutOut = undefined;
+      this.posService.shoutOut = undefined;
+     } else {
+      this._shoutOut = shoutOut;
+      this.posService.shoutOut = shoutOut;
+    }
+  }
+
+  get shoutOut() {
+    return this._shoutOut
   }
 
   set contact(contact: Contact | null) {

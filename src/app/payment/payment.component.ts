@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTabGroup } from "@angular/material/tabs";
 import { Router } from "@angular/router";
@@ -337,8 +337,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
   ): PartialObserver<T> {
     return {
       next: (doc) => {
-        this.router.navigate(["/pos"]);
-        this.showSuccess(doc, type);
+        this.showSuccess(doc, type).afterClosed().subscribe({
+          next: () => { this.router.navigate(["/pos"]); }
+        });
         this.paymentService.reset();
       },
       error: (response) => {
@@ -359,8 +360,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
     };
   }
 
-  showSuccess(document: Document, docType: DocumentType) {
-    this.dialog.open(SuccessDialogComponent, {
+  showSuccess(document: Document, docType: DocumentType): MatDialogRef<SuccessDialogComponent> {
+    return this.dialog.open(SuccessDialogComponent, {
       width: "450px",
       disableClose: false,
       data: {

@@ -1,7 +1,8 @@
 import { Component, OnInit, inject } from "@angular/core";
-import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Contact } from "@efaps/pos-library";
 import { CreateContactDialogComponent } from "src/app/contacts/create-contact-dialog/create-contact-dialog.component";
+import { LocalStorage } from "@efaps/ngx-store";
 
 @Component({
   selector: "app-contact-dialog",
@@ -13,10 +14,16 @@ export class ContactDialogComponent implements OnInit {
   private dialogRef =
     inject<MatDialogRef<ContactDialogComponent>>(MatDialogRef);
   private dialog = inject(MatDialog);
+  data: { contact: boolean, shoutOut: boolean } = inject(MAT_DIALOG_DATA);
 
+  @LocalStorage("posContactDialogSelected")
+  selected = 0;
   contact: Contact | null = null;
+  shoutOut: String | undefined = undefined;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   selectContact(contact: Contact) {
     if (contact) {
@@ -33,5 +40,23 @@ export class ContactDialogComponent implements OnInit {
         this.dialogRef.close(_result);
       }
     });
+  }
+
+  isValid(): boolean {
+    return this.selected == 1 || this.contact != null
+  }
+
+  submit() {
+    if (this.contact != null) {
+      this.dialogRef.close(this.contact);
+    } else {
+      this.dialogRef.close(this.shoutOut);
+    }
+  }
+
+  selectedChanged() {
+    if (this.selected == 1) {
+      this.contact  = null
+    }
   }
 }

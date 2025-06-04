@@ -2,3 +2,13 @@ app-contact {
     height: 150px;
     display: block;
 }
+
+.contact,
+.shoutout {
+    min-height: 300px;
+    min-width: 500px;
+
+    .form-full-width {
+        width: 100%;
+    }
+}

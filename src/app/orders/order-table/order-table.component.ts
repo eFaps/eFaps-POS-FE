@@ -20,11 +20,13 @@ import {
   ContactService,
   DocStatus,
   DocumentService,
+  hasFlag,
   Order,
   OrderWrapper,
   PaymentService,
   Permission,
   PosService,
+  WorkspaceFlag,
   WorkspaceService,
 } from "@efaps/pos-library";
 
@@ -56,7 +58,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   DocStatus = DocStatus;
   filterForm: FormGroup;
   formCtrlSub!: Subscription;
-  displayedColumns: string[] = [];
+  displayedColumns: string[] = ["number", "date", "total", "status", "cmd"];
   dataSource = new MatTableDataSource<OrderTableRow>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
@@ -75,9 +77,9 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.displayedColumns = this.workspaceService.showSpots()
-      ? ["number", "date", "total", "status", "spot", "cmd"]
-      : ["number", "date", "total", "status", "cmd"];
+    if (this.workspaceService.showSpots()) {
+      this.displayedColumns.splice(4, 0, "spot")
+    }
     this.isAdmin = this.authService.hasPermission(Permission.ADMIN);
     this.allowPayment =
       this.workspaceService.allowPayment() &&
@@ -184,7 +186,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
       ...order,
       spotLabel: this.evalSpotLabel(orders, order),
       multiple: this.evalMultiple(orders, order),
-      contact: undefined,
+      contactLabel: undefined,
     };
     this.evalContact(row);
     return row;
@@ -259,18 +261,21 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   }
 
   evalContact(row: OrderTableRow) {
-    if (row.contactOid) {
+    if (row.contactOid || row.shoutout) {
       if (!this.displayContact) {
         this.displayContact = true;
         this.displayedColumns.splice(3, 0, "contact");
       }
-      this.contactService.getContact(row.contactOid).subscribe({
-        next: (contact) => (row.contact = contact),
-      });
+      if (row.contactOid) {
+        this.contactService.getContact(row.contactOid).subscribe({
+          next: (contact) => (row.contactLabel = contact.name)
+        });
+      } else {
+        row.contactLabel = row.shoutout
+      }
     }
-    row.contact = undefined;
   }
 }
 interface OrderTableRow extends OrderWrapper {
-  contact?: Contact;
+  contactLabel?: string;
 }

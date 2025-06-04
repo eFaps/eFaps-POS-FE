@@ -35,7 +35,7 @@ import { ProductsElementComponent } from "./product-grid/products-element/produc
 import { ProductListComponent } from "./product-list/product-list.component";
 import { TicketComponent } from "./ticket/ticket.component";
 import { TotalsComponent } from "./totals/totals.component";
-
+import {FormsModule} from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
@@ -58,6 +58,7 @@ import { TotalsComponent } from "./totals/totals.component";
     MatRadioModule,
     PosRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     ContactsModule,
     MatExpansionModule,
     SharedModule,
