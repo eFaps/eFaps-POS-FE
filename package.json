@@ -42,7 +42,7 @@
     "@ngx-translate/http-loader": "^16.0.1",
     "@stomp/rx-stomp": "^2.0.1",
     "ajv-keywords": "^5.1.0",
-    "angular-svg-icon": "^18.0.3",
+    "angular-svg-icon": "^19.1.1",
     "angular2-hotkeys": "^16.0.1",
     "decimal.js": "^10.5.0",
     "enum-values": "^1.2.1",
