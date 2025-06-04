@@ -8,8 +8,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatTableModule } from "@angular/material/table";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { EnquiryService, RUC } from "@efaps/pos-library";
-import { Page, PageRequest } from "@efaps/pos-library/lib/model/pageable";
+import { EnquiryService, Page, PageRequest, RUC } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
 import { TaxpayerResultComponent } from "./taxpayer-result.component";

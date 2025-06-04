@@ -7,8 +7,7 @@ import {
 } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
-import { EnquiryService, RUC } from "@efaps/pos-library";
-import { Page } from "@efaps/pos-library/lib/model/pageable";
+import { EnquiryService, Page, RUC } from "@efaps/pos-library";
 
 @Component({
   selector: "app-taxpayer-result",
