@@ -8,10 +8,10 @@
       </div>
       @if (summary.cashEntries.length > 0) {
         <div class="opening">
-          <span>Opening</span>
+          <span>Registros</span>
           @for (cashEntry of summary.cashEntries; track cashEntry) {
             <div class="cashEntry">
-              {{cashEntry.currency}} {{cashEntry.amount}}
+              {{('CASHENTRYTYPE.' + cashEntry.entryType) | translate}}: {{cashEntry.amount | posCurrency:cashEntry.currency}}
             </div>
           }
         </div>

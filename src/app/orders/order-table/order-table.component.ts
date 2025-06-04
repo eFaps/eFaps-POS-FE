@@ -1,10 +1,10 @@
 import {
   ChangeDetectorRef,
   Component,
+  inject,
   OnDestroy,
   OnInit,
   ViewChild,
-  inject,
 } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
@@ -16,17 +16,14 @@ import { Router } from "@angular/router";
 import { LocalStorage } from "@efaps/ngx-store";
 import {
   AuthService,
-  Contact,
   ContactService,
   DocStatus,
   DocumentService,
-  hasFlag,
   Order,
   OrderWrapper,
   PaymentService,
   Permission,
   PosService,
-  WorkspaceFlag,
   WorkspaceService,
 } from "@efaps/pos-library";
 
@@ -78,7 +75,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (this.workspaceService.showSpots()) {
-      this.displayedColumns.splice(4, 0, "spot")
+      this.displayedColumns.splice(4, 0, "spot");
     }
     this.isAdmin = this.authService.hasPermission(Permission.ADMIN);
     this.allowPayment =
@@ -268,10 +265,10 @@ export class OrderTableComponent implements OnInit, OnDestroy {
       }
       if (row.contactOid) {
         this.contactService.getContact(row.contactOid).subscribe({
-          next: (contact) => (row.contactLabel = contact.name)
+          next: (contact) => (row.contactLabel = contact.name),
         });
       } else {
-        row.contactLabel = row.shoutout
+        row.contactLabel = row.shoutout;
       }
     }
   }

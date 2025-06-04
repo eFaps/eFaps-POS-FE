@@ -337,9 +337,13 @@ export class PaymentComponent implements OnInit, OnDestroy {
   ): PartialObserver<T> {
     return {
       next: (doc) => {
-        this.showSuccess(doc, type).afterClosed().subscribe({
-          next: () => { this.router.navigate(["/pos"]); }
-        });
+        this.showSuccess(doc, type)
+          .afterClosed()
+          .subscribe({
+            next: () => {
+              this.router.navigate(["/pos"]);
+            },
+          });
         this.paymentService.reset();
       },
       error: (response) => {
@@ -360,7 +364,10 @@ export class PaymentComponent implements OnInit, OnDestroy {
     };
   }
 
-  showSuccess(document: Document, docType: DocumentType): MatDialogRef<SuccessDialogComponent> {
+  showSuccess(
+    document: Document,
+    docType: DocumentType,
+  ): MatDialogRef<SuccessDialogComponent> {
     return this.dialog.open(SuccessDialogComponent, {
       width: "450px",
       disableClose: false,

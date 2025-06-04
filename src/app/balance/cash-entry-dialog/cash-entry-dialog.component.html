@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Registrar Retiro / Ingreso</h2>
+<mat-dialog-content>
+    <div class="wrapper">
+        <form [formGroup]="cashEntryForm">
+            <div>
+                <mat-button-toggle-group formControlName="type">
+                    <mat-button-toggle value="WITHDRAWAL">Salida</mat-button-toggle>
+                    <mat-button-toggle value="DEPOSIT">Ingreso</mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+            <div>
+                <mat-button-toggle-group formControlName="currency">
+                    @for (currency of currencies; track currency) {
+                    <mat-button-toggle value="{{currency}}">{{currency}}</mat-button-toggle>
+                    }
+                </mat-button-toggle-group>
+            </div>
+            <div>
+                <mat-form-field>
+                    <input placeholder="Monto" matInput formControlName="amount">
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button (click)="submit()" disabled="{{!cashEntryForm.valid}}">Enviar</button>
+</mat-dialog-actions>

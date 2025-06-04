@@ -1,24 +1,24 @@
 <mat-tab-group>
-  <mat-tab i18n-label="@@currentBalance" label="Current Balance">
-    <div>
-      @if (currentBalance) {
-        <span class="balanceNumber" i18n="@@balanceWithNumber">Balance - {{currentBalance.number}}</span>
-      }
-      @if (!hasBalance()) {
-        <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="init()" i18n="@@initBalance">Init</button>
-      }
+  <mat-tab i18n-label="@@currentBalance" label="Balance actual">
+    <div class="currentBalance">
       @if (hasBalance()) {
-        <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="close()" i18n="@@closeBalance">Close</button>
+      <span class="balanceNumber" i18n="@@balanceWithNumber">Balance - {{currentBalance.number}}</span>
+      <button mat-flat-button (click)="close()" i18n="@@closeBalance">Cerrar</button>
+      @if (useCashEntry) {
+      <button mat-flat-button (click)="register()">Registar</button>
+      }
+      } @else {
+      <button mat-flat-button (click)="init()" i18n="@@initBalance">Init</button>
       }
     </div>
     <app-balance-document-list [payables]="payables"></app-balance-document-list>
     @if (summary) {
-      <app-balance-payment-list [summary]="summary"></app-balance-payment-list>
+    <app-balance-payment-list [summary]="summary"></app-balance-payment-list>
     }
   </mat-tab>
-  <mat-tab i18n-label="@@balanceSummary" label="Summary">
+  <mat-tab i18n-label="@@balanceSummary" label="Resumen">
     @if (summary) {
-      <app-balance-summary [summary]="summary"></app-balance-summary>
+    <app-balance-summary [summary]="summary"></app-balance-summary>
     }
   </mat-tab>
   <mat-tab i18n-label="@@balances" label="Balances">
@@ -26,7 +26,7 @@
       <app-balance-list></app-balance-list>
     </ng-template>
   </mat-tab>
-  <mat-tab i18n-label="@@documents" label="Documents">
+  <mat-tab i18n-label="@@documents" label="Documentos">
     <ng-template matTabContent>
       <app-document-list></app-document-list>
     </ng-template>

@@ -19,6 +19,7 @@ import { BALANCE_ACTIVATE_CASHENTRY } from "src/app/util/keys";
 
 import { ConfirmDialogComponent } from "../../shared/confirm-dialog/confirm-dialog.component";
 import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
+import { CashEntryDialogComponent } from "../cash-entry-dialog/cash-entry-dialog.component";
 import { OpeningBalanceDialogComponent } from "../opening-balance-dialog/opening-balance-dialog.component";
 
 @Component({
@@ -168,5 +169,27 @@ export class BalanceComponent implements OnInit, OnDestroy {
 
   hasBalance(): Boolean {
     return !!this.currentBalance;
+  }
+
+  register() {
+    this.dialog
+      .open(CashEntryDialogComponent)
+      .afterClosed()
+      .subscribe({
+        next: (data) => {
+          if (data) {
+            this.balanceService
+              .addCashEntries(this.currentBalance!, [
+                {
+                  balanceOid: this.currentBalance!.id,
+                  entryType: data.type,
+                  amount: data.amount,
+                  currency: data.currency,
+                },
+              ])
+              .subscribe();
+          }
+        },
+      });
   }
 }

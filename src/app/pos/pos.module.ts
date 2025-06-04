@@ -16,6 +16,7 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
 
+import { FormsModule } from "@angular/forms";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
@@ -35,7 +36,6 @@ import { ProductsElementComponent } from "./product-grid/products-element/produc
 import { ProductListComponent } from "./product-list/product-list.component";
 import { TicketComponent } from "./ticket/ticket.component";
 import { TotalsComponent } from "./totals/totals.component";
-import {FormsModule} from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,

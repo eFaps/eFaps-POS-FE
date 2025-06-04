@@ -65,6 +65,12 @@
   "ORDERS": {
     "LAZYLOADON": "Todo",
     "LAZYLOADOFF": "Solo Pendiente"
+  },
+  "CASHENTRYTYPE" : {
+    "OPENING": "Initial",
+    "WITHDRAWAL": "Retiro",
+    "DEPOSIT": "Ingreso"
   }
+
 
 }

@@ -222,15 +222,18 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   assignContact(update: boolean) {
     if (
       update ||
-      (!this.closing && ((this.requiresContact || this.allowAssignShoutOut) && this.contact == null && this.shoutOut === undefined))
+      (!this.closing &&
+        (this.requiresContact || this.allowAssignShoutOut) &&
+        this.contact == null &&
+        this.shoutOut === undefined)
     ) {
       this.keypadService.deactivate();
       this.dialogRef = this.dialog.open(ContactDialogComponent, {
         disableClose: true,
         data: {
           contact: this.requiresContact,
-          shoutOut: this.allowAssignShoutOut
-        }
+          shoutOut: this.allowAssignShoutOut,
+        },
       });
       this.dialogRef.afterClosed().subscribe({
         next: (contactOrShoutOut) => {
@@ -241,7 +244,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
               this.shoutOut = undefined;
             } else {
               this.contact = null;
-              this.shoutOut = contactOrShoutOut
+              this.shoutOut = contactOrShoutOut;
             }
           } else {
             if (!this.allowAssignShoutOut) {
@@ -257,17 +260,17 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   }
 
   set shoutOut(shoutOut: string | undefined | null) {
-     if (shoutOut == null) {
+    if (shoutOut == null) {
       this._shoutOut = undefined;
       this.posService.shoutOut = undefined;
-     } else {
+    } else {
       this._shoutOut = shoutOut;
       this.posService.shoutOut = shoutOut;
     }
   }
 
   get shoutOut() {
-    return this._shoutOut
+    return this._shoutOut;
   }
 
   set contact(contact: Contact | null) {

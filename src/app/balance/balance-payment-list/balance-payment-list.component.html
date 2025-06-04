@@ -1,4 +1,13 @@
 <mat-list dense>
+  @for (cashEntry of cashEntries; track cashEntry) {
+    <mat-list-item>
+      <p matLine>
+        <span class="cashEntry">{{('CASHENTRYTYPE.' + cashEntry.entryType) | translate}}: </span>
+        <span class="amount">{{cashEntry.amount | posCurrency:cashEntry.currency}}</span>
+      </p>
+    </mat-list-item>
+  }
+
   @for (paymentInfo of payments; track paymentInfo) {
     <mat-list-item>
       <p matLine>

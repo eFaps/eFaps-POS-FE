@@ -1,6 +1,7 @@
 import { Component, Input } from "@angular/core";
 import {
   BalanceSummary,
+  CashEntry,
   MoneyAmount,
   PaymentInfo,
   PaymentType,
@@ -16,6 +17,7 @@ export class BalancePaymentListComponent {
   PaymentType = PaymentType;
   payments: PaymentInfo[] = [];
   crossTotals: MoneyAmount[] = [];
+  cashEntries: CashEntry[] = [];
 
   constructor() {}
 
@@ -28,5 +30,6 @@ export class BalancePaymentListComponent {
       });
       this.crossTotals = summary.detail.crossTotals;
     }
+    this.cashEntries = summary.cashEntries;
   }
 }
