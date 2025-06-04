@@ -88,7 +88,7 @@
     "ng-mocks": "^14.13.5",
     "prettier": "^3.5.3",
     "prettier-plugin-organize-imports": "^3.2.4",
-    "replace-in-file": "^7.2.0",
+    "replace-in-file": "^8.3.0",
     "sass": "^1.89.1",
     "ts-node": "^10.9.2",
     "typescript": "~5.8.3"
