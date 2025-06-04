@@ -84,7 +84,7 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "ng-mocks": "^14.13.5",
     "prettier": "^3.5.3",
-    "prettier-plugin-organize-imports": "^3.2.4",
+    "prettier-plugin-organize-imports": "^4.1.0",
     "replace-in-file": "^8.3.0",
     "sass": "^1.89.1",
     "ts-node": "^10.9.2",
