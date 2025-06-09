@@ -75,7 +75,7 @@
     "@types/sockjs-client": "^1.5.4",
     "codelyzer": "^6.0.2",
     "import-sort-style-module": "^6.0.0",
-    "jasmine-core": "~5.7.1",
+    "jasmine-core": "~5.8.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
