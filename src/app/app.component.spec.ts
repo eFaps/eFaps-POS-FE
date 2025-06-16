@@ -45,7 +45,6 @@ class HotkeysServiceStub {
 describe("AppComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [AppComponent],
     imports: [
         HotkeyModule,
         RouterTestingModule,
@@ -57,6 +56,7 @@ describe("AppComponent", () => {
         MatToolbarModule,
         MockComponent(ThemePickerComponent),
         MockPipe(TranslatePipe),
+        AppComponent,
     ],
     providers: [
         { provide: AuthService, useClass: AuthServiceStub },
