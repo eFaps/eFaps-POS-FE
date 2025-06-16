@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild, inject } from "@angular/core";
+import { Component, OnInit, ViewChild, inject, input } from "@angular/core";
 import { MatSort, MatSortHeader } from "@angular/material/sort";
 import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
 import {
@@ -36,12 +36,13 @@ export class InventoryTableComponent implements OnInit {
   displayedColumns = ["quantity", "sku", "description"];
   dataSource = new MatTableDataSource<InventoryEntry>();
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
-  @Input() warehouse!: Warehouse;
+  readonly warehouse = input.required<Warehouse>();
 
   ngOnInit() {
-    if (this.warehouse) {
+    const warehouse = this.warehouse();
+    if (warehouse) {
       this.inventoryService
-        .getInventory(this.warehouse.oid)
+        .getInventory(warehouse.oid)
         .subscribe((data) => {
           this.dataSource.data = data;
           this.dataSource.sort = this.sort;

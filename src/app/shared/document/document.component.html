@@ -3,7 +3,7 @@
     @if (!hideTitle()) {
       <h3>{{document.type! | translate}}: {{document.number}}</h3>
     }
-    @if (showContact && document.contact) {
+    @if (showContact() && document.contact) {
       <div class="contact-document">
         <span>Cliente:</span>
         <span>{{ 'IDTYPE.' + document.contact.idType | translate}}: {{document.contact.idNumber}} -
@@ -122,7 +122,7 @@
           </div>
         }
       </div>
-      @if (permitPrint && hasCopyPrintCmd) {
+      @if (permitPrint() && hasCopyPrintCmd) {
         <div class="print-container">
           @if (true) {
             <button mat-button (click)="printCopy()">

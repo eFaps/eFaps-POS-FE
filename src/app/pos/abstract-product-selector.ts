@@ -1,4 +1,4 @@
-import { Directive, Input, OnInit } from "@angular/core";
+import { Directive, OnInit, input } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import {
   InventoryEntry,
@@ -19,7 +19,7 @@ import { ConfigDialogComponent } from "./config-dialog/config-dialog.component";
 export abstract class AbstractProductSelector implements OnInit {
   ticket: Item[] = [];
   multiplier: number = 1;
-  @Input() remarkMode = false;
+  readonly remarkMode = input(false);
 
   showInventory = false;
   scanning: boolean = false;
@@ -46,8 +46,9 @@ export abstract class AbstractProductSelector implements OnInit {
   }
 
   select(product: Product) {
+    const remarkMode = this.remarkMode();
     if (
-      this.remarkMode ||
+      remarkMode ||
       product.indicationSets.some((set) => set.required) ||
       product.bomGroupConfigs.length > 0 ||
       this.isSelectIndividual(product)
@@ -56,7 +57,7 @@ export abstract class AbstractProductSelector implements OnInit {
       const dialogRef = this.dialog.open(ConfigDialogComponent, {
         data: {
           product: product,
-          remarkMode: this.remarkMode,
+          remarkMode: remarkMode,
         },
         minWidth: "50%",
       });

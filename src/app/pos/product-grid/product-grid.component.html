@@ -5,11 +5,11 @@
         @if (category.children.length) {
           <app-grid-element [categories]="category.children" (categorySelected)="onChildCategorySelected($event)"
             [currency]="currentCurrency" [showInventory]="showInventory" [size]="size" [showPrices]="showPrices"
-            [inventory]="inventory" [remarkMode]="remarkMode">
+            [inventory]="inventory" [remarkMode]="remarkMode()">
           </app-grid-element>
         }
         <app-products-element [products]="products" [currency]="currentCurrency"
-          [showInventory]="showInventory" [size]="size" [showPrices]="showPrices" [inventory]="inventory" [remarkMode]="remarkMode">
+          [showInventory]="showInventory" [size]="size" [showPrices]="showPrices" [inventory]="inventory" [remarkMode]="remarkMode()">
         </app-products-element>
       </ng-template>
     </mat-tab>

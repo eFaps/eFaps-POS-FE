@@ -1,5 +1,5 @@
-<div class="pos-productgrid" [ngClass]="size">
-  @for (product of products; track product) {
+<div class="pos-productgrid" [ngClass]="size()">
+  @for (product of products(); track product) {
     <mat-card appearance="outlined" class="pos-card" (click)="select(product)">
       <mat-card-header>
         <mat-card-title>{{product.sku}}</mat-card-title>
@@ -7,9 +7,9 @@
       <div class="pos-card-image" [matBadge]="stock(product)" [matBadgeHidden]="!showInventory || !isStockable(product)"
         [matBadgeColor]="hasStock(product) ? 'primary' : 'warn'" matBadgeSize="large">
         <img mat-card-image [src]="product.imageOid | secure" alt="{{product.description}}">
-        @if (showPrices) {
+        @if (showPrices()) {
           <div class="pos-card-price">
-            {{ product.crossPrice | posCurrency:currency}}
+            {{ product.crossPrice | posCurrency:currency()}}
           </div>
         }
       </div>

@@ -2,11 +2,11 @@ import {
   Component,
   EventEmitter,
   HostListener,
-  Input,
   OnDestroy,
   OnInit,
   Output,
   inject,
+  input
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { KeypadService } from "../../services";
@@ -28,9 +28,9 @@ import { MatIcon } from "@angular/material/icon";
 export class KeypadComponent implements OnInit, OnDestroy {
   private keypadService = inject(KeypadService);
 
-  @Input() showTopClear: boolean = true;
-  @Input() showBottomClear: boolean = false;
-  @Input() showDoubleZero: boolean = true;
+  readonly showTopClear = input<boolean>(true);
+  readonly showBottomClear = input<boolean>(false);
+  readonly showDoubleZero = input<boolean>(true);
   @Output() number = new EventEmitter<string>();
   private subscriptions = new Subscription();
 

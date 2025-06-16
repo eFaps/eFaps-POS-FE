@@ -1,4 +1,4 @@
-import { Component, Input, inject } from "@angular/core";
+import { Component, Input, inject, input } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Currency, InventoryEntry, InventoryService, PosService, Product, ProductService, WorkspaceService, PosLibraryModule } from "@efaps/pos-library";
 import { KeypadService, PosSyncService } from "src/app/services";
@@ -23,15 +23,13 @@ import { MatBadge } from "@angular/material/badge";
     ],
 })
 export class ProductsElementComponent extends AbstractProductSelector {
-  @Input()
-  products: Product[] = [];
-  @Input()
-  currency: Currency = Currency.PEN;
+  readonly products = input<Product[]>([]);
+  readonly currency = input<Currency>(Currency.PEN);
 
   //size = 'small';
   //size = 'medium' | big;
-  @Input() size = "large";
-  @Input() showPrices = true;
+  readonly size = input("large");
+  readonly showPrices = input(true);
   @Input() override showInventory = false;
 
   constructor() {

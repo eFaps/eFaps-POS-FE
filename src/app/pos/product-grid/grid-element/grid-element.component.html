@@ -9,12 +9,12 @@
       </ng-template>
       @if (category?.children?.length) {
         <app-grid-element [categories]="category.children" (categorySelected)="onChildCategorySelected($event)"
-          [currency]="currency" [showInventory]="showInventory" [size]="size" [showPrices]="showPrices"
-          [inventory]="inventory">
+          [currency]="currency()" [showInventory]="showInventory()" [size]="size()" [showPrices]="showPrices()"
+          [inventory]="inventory()">
         </app-grid-element>
       }
-      <app-products-element [products]="products" [currency]="currency"
-        [showInventory]="showInventory" [size]="size" [showPrices]="showPrices" [inventory]="inventory" [remarkMode]="remarkMode">
+      <app-products-element [products]="products" [currency]="currency()"
+        [showInventory]="showInventory()" [size]="size()" [showPrices]="showPrices()" [inventory]="inventory()" [remarkMode]="remarkMode()">
       </app-products-element>
     </mat-tab>
   }

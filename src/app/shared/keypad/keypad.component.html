@@ -1,13 +1,13 @@
 <mat-grid-list cols="3" rowHeight="50px" gutterSize="8px">
-  @if (showTopClear) {
+  @if (showTopClear()) {
     <mat-grid-tile>
     </mat-grid-tile>
   }
-  @if (showTopClear) {
+  @if (showTopClear()) {
     <mat-grid-tile>
     </mat-grid-tile>
   }
-  @if (showTopClear) {
+  @if (showTopClear()) {
     <mat-grid-tile>
       <button type="button" mat-stroked-button (click)="clickBtn('clear')">
         <mat-icon class="posIcon-36">clear</mat-icon>
@@ -42,7 +42,7 @@
     <button type="button" mat-stroked-button (click)="clickBtn('9')">9</button>
   </mat-grid-tile>
   <mat-grid-tile >
-    @if (showBottomClear) {
+    @if (showBottomClear()) {
       <button type="button" mat-stroked-button (click)="clickBtn('clear')">
         <mat-icon>clear</mat-icon>
       </button>
@@ -52,7 +52,7 @@
     <button type="button" mat-stroked-button (click)="clickBtn('0')">0</button>
   </mat-grid-tile>
   <mat-grid-tile>
-    @if (showDoubleZero) {
+    @if (showDoubleZero()) {
       <button type="button" mat-stroked-button (click)="clickBtn('00')">00</button>
     }
   </mat-grid-tile>

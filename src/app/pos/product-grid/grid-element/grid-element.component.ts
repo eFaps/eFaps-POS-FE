@@ -5,6 +5,7 @@ import {
   OnInit,
   Output,
   inject,
+  input
 } from "@angular/core";
 import { MatTabChangeEvent, MatTabGroup, MatTab, MatTabLabel } from "@angular/material/tabs";
 import {
@@ -42,13 +43,12 @@ export class GridElementComponent implements OnInit {
   _categories: CategoryNode[] = [];
 
   @Output() categorySelected = new EventEmitter<CategoryNode>();
-  @Input()
-  currency: Currency = Currency.PEN;
-  @Input() remarkMode = false;
-  @Input() showInventory = false;
-  @Input() size = "large";
-  @Input() showPrices = true;
-  @Input() inventory: InventoryEntry[] = [];
+  readonly currency = input<Currency>(Currency.PEN);
+  readonly remarkMode = input(false);
+  readonly showInventory = input(false);
+  readonly size = input("large");
+  readonly showPrices = input(true);
+  readonly inventory = input<InventoryEntry[]>([]);
 
   selectedTabIndex = 0;
   currentCategory!: CategoryNode;

@@ -3,10 +3,10 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
-  Input,
   OnDestroy,
   Output,
   inject,
+  input
 } from "@angular/core";
 import { NgControl } from "@angular/forms";
 import {
@@ -27,13 +27,13 @@ export class VirtKeyboardDirective implements OnDestroy {
 
   private _keyboardRef!: MatKeyboardRef<MatKeyboardComponent>;
 
-  @Input() appVirtKeyboard!: string | undefined;
+  readonly appVirtKeyboard = input.required<string | undefined>();
 
-  @Input() darkTheme: boolean = false;
+  readonly darkTheme = input<boolean>(false);
 
-  @Input() duration: number = 10;
+  readonly duration = input<number>(10);
 
-  @Input() activateKeyboard: boolean = false;
+  readonly activateKeyboard = input<boolean>(false);
 
   @Output() enterClick: EventEmitter<void> = new EventEmitter<void>();
 
@@ -49,10 +49,10 @@ export class VirtKeyboardDirective implements OnDestroy {
 
   @HostListener("focus", ["$event"])
   private _showKeyboard() {
-    if (this.activateKeyboard) {
-      this._keyboardRef = this._keyboardService!.open(this.appVirtKeyboard, {
-        darkTheme: this.darkTheme,
-        duration: this.duration,
+    if (this.activateKeyboard()) {
+      this._keyboardRef = this._keyboardService!.open(this.appVirtKeyboard(), {
+        darkTheme: this.darkTheme(),
+        duration: this.duration(),
       });
 
       this._keyboardRef.instance.setInputInstance(this._elementRef);

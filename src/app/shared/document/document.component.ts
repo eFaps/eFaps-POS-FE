@@ -76,10 +76,10 @@ export class DocumentComponent implements OnInit {
   _document: Document;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   private workspaceOid: string = "";
-  @Input() permitPrint = false;
-  @Input() showContact = false;
+  readonly permitPrint = input(false);
+  readonly showContact = input(false);
   hasCopyPrintCmd = false;
-  @Input() permitCreditNote = false;
+  readonly permitCreditNote = input(false);
   creditNotes: CreditNote[] = [];
   sourceDoc: Document | undefined;
   employeeRelations: EmployeeRelationDisplay[] = [];
@@ -212,7 +212,7 @@ export class DocumentComponent implements OnInit {
 
   get showCreditNoteBtn(): boolean {
     return (
-      this.permitCreditNote &&
+      this.permitCreditNote() &&
       this.authService.hasPermission(Permission.ADMIN) &&
       this._document.type != "CREDITNOTE" &&
       this.creditNotes.length == 0

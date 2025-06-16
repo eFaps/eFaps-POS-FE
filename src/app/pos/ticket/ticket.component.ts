@@ -3,9 +3,9 @@ import {
   effect,
   EventEmitter,
   inject,
-  Input,
   OnInit,
   Output,
+  input
 } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -58,7 +58,7 @@ export class TicketComponent implements OnInit {
   multiplier = 0;
   promoInfo: PromoInfo | null = null;
 
-  @Input() isBarcode: boolean = false;
+  readonly isBarcode = input<boolean>(false);
   @Output() multiplierClick = new EventEmitter<any>();
 
   constructor() {
@@ -86,7 +86,7 @@ export class TicketComponent implements OnInit {
   }
 
   add(item: Item) {
-    if (!this.isBarcode) {
+    if (!this.isBarcode()) {
       item.quantity = new Decimal(item.quantity)
         .plus(this.getQuantity())
         .toNumber();
@@ -104,7 +104,7 @@ export class TicketComponent implements OnInit {
   }
 
   subtract(item: Item) {
-    if (!this.isBarcode) {
+    if (!this.isBarcode()) {
       item.quantity = new Decimal(item.quantity)
         .minus(this.getQuantity())
         .toNumber();

@@ -3,8 +3,8 @@ import {
   Directive,
   ElementRef,
   HostListener,
-  Input,
   inject,
+  input
 } from "@angular/core";
 
 @Directive({ selector: "[appSameHeight]", })
@@ -12,18 +12,17 @@ export class SameHeightDirective implements AfterViewChecked {
   private el = inject(ElementRef);
 
   // class name to match height
-  @Input()
-  appSameHeight: any;
+  readonly appSameHeight = input<any>();
 
   ngAfterViewChecked() {
     // call our matchHeight function here later
-    this.matchHeight(this.el.nativeElement, this.appSameHeight);
+    this.matchHeight(this.el.nativeElement, this.appSameHeight());
   }
 
   @HostListener("window:resize")
   onResize() {
     // call our matchHeight function here later
-    this.matchHeight(this.el.nativeElement, this.appSameHeight);
+    this.matchHeight(this.el.nativeElement, this.appSameHeight());
   }
 
   matchHeight(parent: HTMLElement, className: string) {
