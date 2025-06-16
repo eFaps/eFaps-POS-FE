@@ -22,6 +22,7 @@ import { VirtKeyboardDirective } from "../../services/virt-keyboard.directive";
 import { MatSlideToggle } from "@angular/material/slide-toggle";
 import { MatIconButton } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
+import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
 
 @Component({
     selector: "app-producttable",
@@ -48,6 +49,7 @@ import { MatIcon } from "@angular/material/icon";
         MatRowDef,
         MatRow,
         MatPaginator,
+        MatKeyboardModule
     ],
 })
 export class ProducttableComponent implements OnInit, OnDestroy {

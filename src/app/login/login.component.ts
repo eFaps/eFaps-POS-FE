@@ -29,6 +29,7 @@ import { MatInput } from "@angular/material/input";
 import { VirtKeyboardDirective } from "../services/virt-keyboard.directive";
 import { MatButton } from "@angular/material/button";
 import { MatButtonToggle } from "@angular/material/button-toggle";
+import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
 
 @Component({
     templateUrl: "./login.component.html",
@@ -45,6 +46,7 @@ import { MatButtonToggle } from "@angular/material/button-toggle";
         MatButton,
         MatSlideToggle,
         MatButtonToggle,
+        MatKeyboardModule
     ],
 })
 export class LoginComponent implements OnInit, OnDestroy {

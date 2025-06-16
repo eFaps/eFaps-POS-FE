@@ -7,7 +7,7 @@ import {
   workspaceGuard,
 } from "@efaps/pos-library";
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: "admin",
     canActivate: [authGuard, permissionGuard],

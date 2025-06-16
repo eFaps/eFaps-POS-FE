@@ -30,6 +30,8 @@ import { HotkeyModule } from "angular2-hotkeys";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateLoaderFactory } from "./app/shared/shared.module";
 import { AppComponent } from "./app/app.component";
+import { provideRouter } from "@angular/router";
+import {routes} from "./app/app-routing.module";
 
 if (environment.production) {
   enableProdMode();
@@ -69,6 +71,7 @@ bootstrapApplication(AppComponent, {
         },
         provideHttpClient(withInterceptorsFromDi()),
         provideAnimations(),
+        provideRouter(routes)
     ]
 })
   .catch((err) => console.log(err));
