@@ -46,7 +46,7 @@ describe("AutoComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         BrowserAnimationsModule,
         ReactiveFormsModule,
         MatFormFieldModule,
@@ -56,14 +56,14 @@ describe("AutoComponent", () => {
         AutoComponent,
         MockPipe(TranslatePipe),
         MockComponent(KeypadComponent),
-    ],
-    providers: [
+      ],
+      providers: [
         { provide: MsgService, useClass: MsgServiceStub },
         { provide: CollectService, useClass: CollectServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

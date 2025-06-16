@@ -1,6 +1,11 @@
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { MatTabChangeEvent, MatTabGroup, MatTab, MatTabContent } from "@angular/material/tabs";
+import {
+  MatTab,
+  MatTabChangeEvent,
+  MatTabContent,
+  MatTabGroup,
+} from "@angular/material/tabs";
 import {
   Category,
   CategoryNode,
@@ -21,16 +26,16 @@ import { GridElementComponent } from "./grid-element/grid-element.component";
 import { ProductsElementComponent } from "./products-element/products-element.component";
 
 @Component({
-    selector: "app-product-grid",
-    templateUrl: "./product-grid.component.html",
-    styleUrls: ["./product-grid.component.scss"],
-    imports: [
-        MatTabGroup,
-        MatTab,
-        MatTabContent,
-        GridElementComponent,
-        ProductsElementComponent,
-    ],
+  selector: "app-product-grid",
+  templateUrl: "./product-grid.component.html",
+  styleUrls: ["./product-grid.component.scss"],
+  imports: [
+    MatTabGroup,
+    MatTab,
+    MatTabContent,
+    GridElementComponent,
+    ProductsElementComponent,
+  ],
 })
 export class ProductGridComponent
   extends AbstractProductSelector

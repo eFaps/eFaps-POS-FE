@@ -2,23 +2,37 @@ import { Component, OnInit, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Balance, BalanceService, CalculatorService, ConfigService, CreditNote, DocItem, DocumentService, Payable, Payment, PaymentService, PaymentType, WorkspaceService, PosLibraryModule } from "@efaps/pos-library";
+import {
+  Balance,
+  BalanceService,
+  CalculatorService,
+  ConfigService,
+  CreditNote,
+  DocItem,
+  DocumentService,
+  Payable,
+  Payment,
+  PaymentService,
+  PaymentType,
+  PosLibraryModule,
+  WorkspaceService,
+} from "@efaps/pos-library";
 import clone from "just-clone";
 import { CREDITNOTE_PERMITPARTIAL } from "src/app/util/keys";
 import { AddPaymentDialogComponent } from "../add-payment-dialog/add-payment-dialog.component";
 import { SuccessDialogComponent } from "../success-dialog/success-dialog.component";
 
-import { MatIconButton, MatButton } from "@angular/material/button";
+import { MatButton, MatIconButton } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 import { MatList, MatListItem } from "@angular/material/list";
 import { TranslatePipe } from "@ngx-translate/core";
 import { DocumentComponent } from "../../shared/document/document.component";
 
 @Component({
-    selector: "app-create-credit-note",
-    templateUrl: "./create-credit-note.component.html",
-    styleUrls: ["./create-credit-note.component.scss"],
-    imports: [
+  selector: "app-create-credit-note",
+  templateUrl: "./create-credit-note.component.html",
+  styleUrls: ["./create-credit-note.component.scss"],
+  imports: [
     DocumentComponent,
     MatIconButton,
     MatIcon,
@@ -26,8 +40,8 @@ import { DocumentComponent } from "../../shared/document/document.component";
     MatList,
     MatListItem,
     PosLibraryModule,
-    TranslatePipe
-],
+    TranslatePipe,
+  ],
 })
 export class CreateCreditNoteComponent implements OnInit {
   private router = inject(Router);

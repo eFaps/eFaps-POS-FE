@@ -1,13 +1,13 @@
 import { Component, OnInit, inject } from "@angular/core";
+import { MatFabButton } from "@angular/material/button";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Order } from "@efaps/pos-library";
-import { MatFabButton } from "@angular/material/button";
 
 @Component({
-    selector: "app-select-order-dialog",
-    templateUrl: "./select-order-dialog.component.html",
-    styleUrls: ["./select-order-dialog.component.scss"],
-    imports: [MatFabButton],
+  selector: "app-select-order-dialog",
+  templateUrl: "./select-order-dialog.component.html",
+  styleUrls: ["./select-order-dialog.component.scss"],
+  imports: [MatFabButton],
 })
 export class SelectOrderDialogComponent implements OnInit {
   private dialogRef =

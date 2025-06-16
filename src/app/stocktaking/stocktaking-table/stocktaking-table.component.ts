@@ -1,3 +1,4 @@
+import { DatePipe } from "@angular/common";
 import {
   ChangeDetectorRef,
   Component,
@@ -5,9 +6,23 @@ import {
   ViewChild,
   inject,
 } from "@angular/core";
+import { MatButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
+import { MatIcon } from "@angular/material/icon";
 import { MatSort, MatSortHeader } from "@angular/material/sort";
-import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+  MatTableDataSource,
+} from "@angular/material/table";
 import { Router } from "@angular/router";
 import {
   Stocktaking,
@@ -17,31 +32,28 @@ import {
 } from "@efaps/pos-library";
 import { CloseStocktakingDialogComponent } from "../close-stocktaking-dialog/close-stocktaking-dialog.component";
 import { CreateStocktakingDialogComponent } from "../create-stocktaking-dialog/create-stocktaking-dialog.component";
-import { MatButton } from "@angular/material/button";
-import { MatIcon } from "@angular/material/icon";
-import { DatePipe } from "@angular/common";
 
 @Component({
-    selector: "app-stocktaking-table",
-    templateUrl: "./stocktaking-table.component.html",
-    styleUrls: ["./stocktaking-table.component.scss"],
-    imports: [
-        MatButton,
-        MatTable,
-        MatSort,
-        MatColumnDef,
-        MatHeaderCellDef,
-        MatHeaderCell,
-        MatSortHeader,
-        MatCellDef,
-        MatCell,
-        MatIcon,
-        MatHeaderRowDef,
-        MatHeaderRow,
-        MatRowDef,
-        MatRow,
-        DatePipe,
-    ],
+  selector: "app-stocktaking-table",
+  templateUrl: "./stocktaking-table.component.html",
+  styleUrls: ["./stocktaking-table.component.scss"],
+  imports: [
+    MatButton,
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatSortHeader,
+    MatCellDef,
+    MatCell,
+    MatIcon,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    DatePipe,
+  ],
 })
 export class StocktakingTableComponent implements OnInit {
   private router = inject(Router);

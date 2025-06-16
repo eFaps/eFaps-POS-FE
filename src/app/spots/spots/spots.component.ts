@@ -5,10 +5,10 @@ import { BaseSpotPickerComponent } from "../base-spot-picker/base-spot-picker.co
 import { ExtendedSpotPickerComponent } from "../extended-spot-picker/extended-spot-picker.component";
 
 @Component({
-    selector: "app-spots",
-    templateUrl: "./spots.component.html",
-    styleUrls: ["./spots.component.scss"],
-    imports: [BaseSpotPickerComponent, ExtendedSpotPickerComponent],
+  selector: "app-spots",
+  templateUrl: "./spots.component.html",
+  styleUrls: ["./spots.component.scss"],
+  imports: [BaseSpotPickerComponent, ExtendedSpotPickerComponent],
 })
 export class SpotsComponent implements OnInit, OnDestroy {
   private workspaceService = inject(WorkspaceService);

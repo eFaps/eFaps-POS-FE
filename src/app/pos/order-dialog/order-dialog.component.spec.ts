@@ -27,19 +27,19 @@ describe("OrderDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [BrowserAnimationsModule, MatDialogModule, OrderDialogComponent],
-    providers: [
+      imports: [BrowserAnimationsModule, MatDialogModule, OrderDialogComponent],
+      providers: [
         { provide: MatDialogRef, useValue: {} },
         {
-            provide: MAT_DIALOG_DATA,
-            useValue: {
-                order: "",
-            },
+          provide: MAT_DIALOG_DATA,
+          useValue: {
+            order: "",
+          },
         },
         { provide: PrintService, useClass: PrintServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

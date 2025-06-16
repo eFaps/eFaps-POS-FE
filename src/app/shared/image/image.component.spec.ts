@@ -11,17 +11,17 @@ describe("ImageComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [BrowserAnimationsModule, ImageComponent],
-    providers: [
+      imports: [BrowserAnimationsModule, ImageComponent],
+      providers: [
         { provide: MatDialogRef, useValue: {} },
         {
-            provide: MAT_DIALOG_DATA,
-            useValue: new Observable((observer) => {
-                observer.next(new Blob());
-            }),
+          provide: MAT_DIALOG_DATA,
+          useValue: new Observable((observer) => {
+            observer.next(new Blob());
+          }),
         },
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

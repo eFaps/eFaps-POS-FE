@@ -10,20 +10,20 @@ describe("SuccessDialogComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [SuccessDialogComponent],
-    providers: [
+      imports: [SuccessDialogComponent],
+      providers: [
         { provide: PrintService, useValue: {} },
         { provide: MatDialogRef, useValue: {} },
         {
-            provide: MAT_DIALOG_DATA,
-            useValue: {
-                document: {
-                    number: "Test",
-                },
+          provide: MAT_DIALOG_DATA,
+          useValue: {
+            document: {
+              number: "Test",
             },
+          },
         },
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SuccessDialogComponent);
     component = fixture.componentInstance;

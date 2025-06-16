@@ -25,13 +25,19 @@ describe("SpotDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [BrowserAnimationsModule, RouterTestingModule, MatDialogModule, SpotDialogComponent, MockPipe(TranslatePipe)],
-    providers: [
+      imports: [
+        BrowserAnimationsModule,
+        RouterTestingModule,
+        MatDialogModule,
+        SpotDialogComponent,
+        MockPipe(TranslatePipe),
+      ],
+      providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: SpotService, useClass: SpotServiceStub },
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

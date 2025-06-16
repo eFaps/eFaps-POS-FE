@@ -1,32 +1,49 @@
-import { Component, OnInit, inject } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogContent, MatDialogActions } from "@angular/material/dialog";
-import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
-import { DocItem, DocStatus, Order, PosService } from "@efaps/pos-library";
 import { CdkScrollable } from "@angular/cdk/scrolling";
+import { Component, OnInit, inject } from "@angular/core";
 import { MatButton } from "@angular/material/button";
+import {
+  MAT_DIALOG_DATA,
+  MatDialogActions,
+  MatDialogContent,
+  MatDialogRef,
+} from "@angular/material/dialog";
 import { MatIcon } from "@angular/material/icon";
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+  MatTableDataSource,
+} from "@angular/material/table";
+import { DocItem, DocStatus, Order, PosService } from "@efaps/pos-library";
 
 @Component({
-    selector: "app-split-order-dialog",
-    templateUrl: "./split-order-dialog.component.html",
-    styleUrls: ["./split-order-dialog.component.scss"],
-    imports: [
-        CdkScrollable,
-        MatDialogContent,
-        MatTable,
-        MatColumnDef,
-        MatHeaderCellDef,
-        MatHeaderCell,
-        MatCellDef,
-        MatCell,
-        MatButton,
-        MatIcon,
-        MatHeaderRowDef,
-        MatHeaderRow,
-        MatRowDef,
-        MatRow,
-        MatDialogActions,
-    ],
+  selector: "app-split-order-dialog",
+  templateUrl: "./split-order-dialog.component.html",
+  styleUrls: ["./split-order-dialog.component.scss"],
+  imports: [
+    CdkScrollable,
+    MatDialogContent,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatButton,
+    MatIcon,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatDialogActions,
+  ],
 })
 export class SplitOrderDialogComponent implements OnInit {
   private posService = inject(PosService);

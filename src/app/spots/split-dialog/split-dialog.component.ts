@@ -1,26 +1,34 @@
-import { Component, OnInit, inject } from "@angular/core";
-import { UntypedFormBuilder, UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
-import { MatDialogRef, MatDialogContent, MatDialogActions } from "@angular/material/dialog";
 import { CdkScrollable } from "@angular/cdk/scrolling";
+import { Component, OnInit, inject } from "@angular/core";
+import {
+  ReactiveFormsModule,
+  UntypedFormBuilder,
+  UntypedFormGroup,
+} from "@angular/forms";
+import { MatButton } from "@angular/material/button";
+import {
+  MatDialogActions,
+  MatDialogContent,
+  MatDialogRef,
+} from "@angular/material/dialog";
 import { MatFormField } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
-import { MatButton } from "@angular/material/button";
 
 @Component({
-    selector: "app-split-dialog",
-    templateUrl: "./split-dialog.component.html",
-    styleUrls: ["./split-dialog.component.scss"],
-    imports: [
-        CdkScrollable,
-        MatDialogContent,
-        ReactiveFormsModule,
-        MatFormField,
-        MatInput,
-        KeypadComponent,
-        MatDialogActions,
-        MatButton,
-    ],
+  selector: "app-split-dialog",
+  templateUrl: "./split-dialog.component.html",
+  styleUrls: ["./split-dialog.component.scss"],
+  imports: [
+    CdkScrollable,
+    MatDialogContent,
+    ReactiveFormsModule,
+    MatFormField,
+    MatInput,
+    KeypadComponent,
+    MatDialogActions,
+    MatButton,
+  ],
 })
 export class SplitDialogComponent implements OnInit {
   private fb = inject(UntypedFormBuilder);

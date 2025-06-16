@@ -1,5 +1,4 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { Routes } from "@angular/router";
 import {
   Permission,
   authGuard,
@@ -12,84 +11,76 @@ export const routes: Routes = [
     path: "admin",
     canActivate: [authGuard, permissionGuard],
     data: { permissions: [Permission.ADMIN] },
-    loadChildren: () =>
-      import("./admin/admin.module").then((m) => m.AdminModule),
+    loadChildren: () => import("./admin/admin.routes").then((m) => m.routes),
   },
   {
     path: "balance",
     canActivate: [authGuard, workspaceGuard],
     loadChildren: () =>
-      import("./balance/balance.module").then((m) => m.BalanceModule),
+      import("./balance/balance.routes").then((m) => m.routes),
   },
   {
     path: "contacts",
     canActivate: [authGuard, workspaceGuard],
     loadChildren: () =>
-      import("./contacts/contacts.module").then((m) => m.ContactsModule),
+      import("./contacts/contacts.routes").then((m) => m.routes),
   },
   {
     path: "inventory",
     canActivate: [authGuard, workspaceGuard],
     loadChildren: () =>
-      import("./inventory/inventory.module").then((m) => m.InventoryModule),
+      import("./inventory/inventory.routes").then((m) => m.routes),
   },
   {
     path: "login",
-    loadChildren: () =>
-      import("./login/login.module").then((m) => m.LoginModule),
+    loadChildren: () => import("./login/login.routes").then((m) => m.routes),
   },
   {
     path: "orders",
     canActivate: [authGuard, workspaceGuard],
-    loadChildren: () =>
-      import("./orders/orders.module").then((m) => m.OrdersModule),
+    loadChildren: () => import("./orders/orders.routes").then((m) => m.routes),
   },
   {
     path: "payment",
     canActivate: [authGuard, permissionGuard],
     data: { permissions: [Permission.COLLECT] },
     loadChildren: () =>
-      import("./payment/payment.module").then((m) => m.PaymentModule),
+      import("./payment/payment.routes").then((m) => m.routes),
   },
   {
     path: "pos",
     canActivate: [authGuard, workspaceGuard, permissionGuard],
     data: { permissions: [Permission.ORDER] },
-    loadChildren: () => import("./pos/pos.module").then((m) => m.PosModule),
+    loadChildren: () => import("./pos/pos.routes").then((m) => m.routes),
   },
   {
     path: "products",
     canActivate: [authGuard, workspaceGuard],
     loadChildren: () =>
-      import("./products/products.module").then((m) => m.ProductsModule),
+      import("./products/products.routes").then((m) => m.routes),
   },
   {
     path: "spots",
     canActivate: [authGuard, workspaceGuard],
-    loadChildren: () =>
-      import("./spots/spots.module").then((m) => m.SpotsModule),
+    loadChildren: () => import("./spots/spots.routes").then((m) => m.routes),
   },
   {
     path: "workspaces",
     canActivate: [authGuard],
     loadChildren: () =>
-      import("./workspace/workspace.module").then((m) => m.WorkspaceModule),
+      import("./workspace/workspace.routes").then((m) => m.routes),
   },
   {
     path: "credit-notes",
     canActivate: [authGuard, workspaceGuard],
     loadChildren: () =>
-      import("./credit-notes/credit-notes.module").then(
-        (m) => m.CreditNotesModule,
-      ),
+      import("./credit-notes/credit-notes.routes").then((m) => m.routes),
   },
   {
     path: "stocktaking",
     canActivate: [authGuard, workspaceGuard],
     loadChildren: () =>
-      import("./stocktaking/stocktaking.module").then(
-        (m) => m.StocktakingModule,
-      ),
+      import("./stocktaking/stocktaking.routes").then((m) => m.routes),
   },
   {
     path: "remote",
@@ -99,9 +90,3 @@ export const routes: Routes = [
   },
   { path: "**", redirectTo: "pos" },
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}

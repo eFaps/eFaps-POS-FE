@@ -1,4 +1,10 @@
 import { Component, OnInit, inject } from "@angular/core";
+import {
+  MatCard,
+  MatCardContent,
+  MatCardHeader,
+  MatCardTitle,
+} from "@angular/material/card";
 import { Router } from "@angular/router";
 import {
   Pos,
@@ -6,18 +12,12 @@ import {
   Workspace,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from "@angular/material/card";
 
 @Component({
-    selector: "app-workspace",
-    templateUrl: "./workspace.component.html",
-    styleUrls: ["./workspace.component.scss"],
-    imports: [
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-    ],
+  selector: "app-workspace",
+  templateUrl: "./workspace.component.html",
+  styleUrls: ["./workspace.component.scss"],
+  imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent],
 })
 export class WorkspaceComponent implements OnInit {
   private router = inject(Router);

@@ -5,31 +5,35 @@ import {
   OnInit,
   ViewChild,
   inject,
-  output
+  output,
 } from "@angular/core";
-import { UntypedFormControl, ReactiveFormsModule } from "@angular/forms";
-import { MatAutocomplete, MatAutocompleteTrigger, MatOption } from "@angular/material/autocomplete";
+import { ReactiveFormsModule, UntypedFormControl } from "@angular/forms";
+import {
+  MatAutocomplete,
+  MatAutocompleteTrigger,
+  MatOption,
+} from "@angular/material/autocomplete";
 
-import { Contact, ContactService } from "@efaps/pos-library";
-import { debounceTime } from "rxjs/operators";
 import { MatFormField, MatLabel } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
 import { MatSlideToggle } from "@angular/material/slide-toggle";
+import { Contact, ContactService } from "@efaps/pos-library";
+import { debounceTime } from "rxjs/operators";
 
 @Component({
-    selector: "app-contact",
-    templateUrl: "./contact.component.html",
-    styleUrls: ["./contact.component.scss"],
-    imports: [
-        MatFormField,
-        MatLabel,
-        MatInput,
-        MatAutocompleteTrigger,
-        ReactiveFormsModule,
-        MatAutocomplete,
-        MatOption,
-        MatSlideToggle,
-    ],
+  selector: "app-contact",
+  templateUrl: "./contact.component.html",
+  styleUrls: ["./contact.component.scss"],
+  imports: [
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatAutocompleteTrigger,
+    ReactiveFormsModule,
+    MatAutocomplete,
+    MatOption,
+    MatSlideToggle,
+  ],
 })
 export class ContactComponent implements OnInit {
   private contactService = inject(ContactService);

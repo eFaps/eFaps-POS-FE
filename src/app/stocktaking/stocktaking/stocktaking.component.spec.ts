@@ -38,8 +38,8 @@ describe("StocktakingComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [MatDialogModule, MatAutocompleteModule, StocktakingComponent],
-    providers: [
+      imports: [MatDialogModule, MatAutocompleteModule, StocktakingComponent],
+      providers: [
         MatSnackBar,
         FormBuilder,
         { provide: Router, useClass: RouterStub },
@@ -49,8 +49,8 @@ describe("StocktakingComponent", () => {
         { provide: PosConfigToken, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(StocktakingComponent);
     component = fixture.componentInstance;

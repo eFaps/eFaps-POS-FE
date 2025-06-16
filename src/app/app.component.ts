@@ -23,39 +23,43 @@ import {
   WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
-import { Hotkey, HotkeysService, HotkeyModule } from "angular2-hotkeys";
+import { Hotkey, HotkeyModule, HotkeysService } from "angular2-hotkeys";
 
-import { MatIconRegistry, MatIcon } from "@angular/material/icon";
-import { MatProgressBar } from "@angular/material/progress-bar";
-import { MatToolbar } from "@angular/material/toolbar";
 import { MatIconButton } from "@angular/material/button";
+import { MatIcon, MatIconRegistry } from "@angular/material/icon";
+import { MatList, MatListItem } from "@angular/material/list";
+import { MatProgressBar } from "@angular/material/progress-bar";
+import {
+  MatSidenav,
+  MatSidenavContainer,
+  MatSidenavContent,
+} from "@angular/material/sidenav";
+import { MatToolbar } from "@angular/material/toolbar";
+import { MatTooltip } from "@angular/material/tooltip";
 import { SvgIconComponent } from "angular-svg-icon";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
-import { MatSidenavContainer, MatSidenav, MatSidenavContent } from "@angular/material/sidenav";
-import { MatList, MatListItem } from "@angular/material/list";
-import { MatTooltip } from "@angular/material/tooltip";
 
 @Component({
-    selector: "app-root",
-    templateUrl: "./app.component.html",
-    styleUrls: ["./app.component.scss"],
-    imports: [
-        MatProgressBar,
-        MatToolbar,
-        MatIconButton,
-        MatIcon,
-        SvgIconComponent,
-        ThemePickerComponent,
-        MatSidenavContainer,
-        MatSidenav,
-        MatList,
-        MatListItem,
-        RouterLink,
-        MatTooltip,
-        MatSidenavContent,
-        RouterOutlet,
-        HotkeyModule,
-    ],
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
+  imports: [
+    MatProgressBar,
+    MatToolbar,
+    MatIconButton,
+    MatIcon,
+    SvgIconComponent,
+    ThemePickerComponent,
+    MatSidenavContainer,
+    MatSidenav,
+    MatList,
+    MatListItem,
+    RouterLink,
+    MatTooltip,
+    MatSidenavContent,
+    RouterOutlet,
+    HotkeyModule,
+  ],
 })
 export class AppComponent implements OnInit, AfterViewChecked {
   private matIconReg = inject(MatIconRegistry);

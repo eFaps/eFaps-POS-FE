@@ -47,7 +47,7 @@ describe("FreeComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         BrowserAnimationsModule,
         ReactiveFormsModule,
         MatFormFieldModule,
@@ -55,8 +55,8 @@ describe("FreeComponent", () => {
         FreeComponent,
         MockPipe(TranslatePipe),
         MockComponent(KeypadComponent),
-    ],
-    providers: [
+      ],
+      providers: [
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
@@ -64,8 +64,8 @@ describe("FreeComponent", () => {
         { provide: UtilsService, useClass: UtilsServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -46,15 +46,20 @@ describe("TaxpayerResultComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [NoopAnimationsModule, MatPaginatorModule, MatTableModule, TaxpayerResultComponent],
-    providers: [
+      imports: [
+        NoopAnimationsModule,
+        MatPaginatorModule,
+        MatTableModule,
+        TaxpayerResultComponent,
+      ],
+      providers: [
         { provide: EnquiryService, useClass: EnquiryServiceStub },
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

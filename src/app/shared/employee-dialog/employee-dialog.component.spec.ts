@@ -31,26 +31,26 @@ describe("EmployeeDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         NoopAnimationsModule,
         MatSelectModule,
         MatDialogModule,
         ReactiveFormsModule,
         EmployeeDialogComponent,
-    ],
-    providers: [
+      ],
+      providers: [
         { provide: EmployeeService, useClass: EmployeeServiceStub },
         { provide: MatDialogRef, useValue: {} },
         {
-            provide: MAT_DIALOG_DATA,
-            useValue: {
-                oid: "132.456",
-            },
+          provide: MAT_DIALOG_DATA,
+          useValue: {
+            oid: "132.456",
+          },
         },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(EmployeeDialogComponent);
     component = fixture.componentInstance;

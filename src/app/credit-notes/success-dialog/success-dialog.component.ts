@@ -1,25 +1,32 @@
+import { CdkScrollable } from "@angular/cdk/scrolling";
 import { Component, OnInit, inject } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from "@angular/material/dialog";
+import {
+  MAT_DIALOG_DATA,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
+} from "@angular/material/dialog";
 import { PrintService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
-import { CdkScrollable } from "@angular/cdk/scrolling";
 
 import { MatButton } from "@angular/material/button";
 import { PrintDisplayComponent } from "../../shared/print-display/print-display.component";
 
 @Component({
-    selector: "app-success-dialog",
-    templateUrl: "./success-dialog.component.html",
-    styleUrls: ["./success-dialog.component.scss"],
-    imports: [
+  selector: "app-success-dialog",
+  templateUrl: "./success-dialog.component.html",
+  styleUrls: ["./success-dialog.component.scss"],
+  imports: [
     MatDialogTitle,
     CdkScrollable,
     MatDialogContent,
     PrintDisplayComponent,
     MatDialogActions,
     MatButton,
-    MatDialogClose
-],
+    MatDialogClose,
+  ],
 })
 export class SuccessDialogComponent implements OnInit {
   private printService = inject(PrintService);

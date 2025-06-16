@@ -1,6 +1,21 @@
 import { Component, OnInit, ViewChild, inject } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
-import { MatAutocomplete, MatAutocompleteSelectedEvent, MatAutocompleteTrigger, MatOption } from "@angular/material/autocomplete";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+} from "@angular/forms";
+import {
+  MatAutocomplete,
+  MatAutocompleteSelectedEvent,
+  MatAutocompleteTrigger,
+  MatOption,
+} from "@angular/material/autocomplete";
+import { MatButton, MatIconButton } from "@angular/material/button";
+import { MatFormField, MatLabel } from "@angular/material/form-field";
+import { MatIcon } from "@angular/material/icon";
+import { MatInput } from "@angular/material/input";
+import { MatSlideToggle } from "@angular/material/slide-toggle";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
@@ -11,31 +26,26 @@ import {
   StocktakingService,
 } from "@efaps/pos-library";
 import { Subscription, debounceTime, skip, switchMap } from "rxjs";
-import { MatSlideToggle } from "@angular/material/slide-toggle";
-import { MatFormField, MatLabel } from "@angular/material/form-field";
-import { MatInput } from "@angular/material/input";
-import { MatIconButton, MatButton } from "@angular/material/button";
-import { MatIcon } from "@angular/material/icon";
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
 
 @Component({
-    selector: "app-stocktaking",
-    templateUrl: "./stocktaking.component.html",
-    styleUrls: ["./stocktaking.component.scss"],
-    imports: [
-        MatSlideToggle,
-        ReactiveFormsModule,
-        MatFormField,
-        MatInput,
-        MatAutocompleteTrigger,
-        MatAutocomplete,
-        MatOption,
-        MatIconButton,
-        MatIcon,
-        KeypadComponent,
-        MatButton,
-        MatLabel,
-    ],
+  selector: "app-stocktaking",
+  templateUrl: "./stocktaking.component.html",
+  styleUrls: ["./stocktaking.component.scss"],
+  imports: [
+    MatSlideToggle,
+    ReactiveFormsModule,
+    MatFormField,
+    MatInput,
+    MatAutocompleteTrigger,
+    MatAutocomplete,
+    MatOption,
+    MatIconButton,
+    MatIcon,
+    KeypadComponent,
+    MatButton,
+    MatLabel,
+  ],
 })
 export class StocktakingComponent implements OnInit {
   private router = inject(Router);

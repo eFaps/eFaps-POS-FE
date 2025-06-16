@@ -5,16 +5,16 @@ import { VirtKeyboardDirective } from "./virt-keyboard.directive";
 
 class MockMatKeyboardService extends MatKeyboardService {}
 
-@Component({ template: ` <div [appSameHeight]="aClassName"></div> `, })
+@Component({ template: ` <div [appSameHeight]="aClassName"></div> ` })
 class HostComponent {}
 
 describe("VirtKeyboardDirective", () => {
   let fixture: ComponentFixture<HostComponent>;
   beforeEach(async () => {
     TestBed.configureTestingModule({
-    imports: [VirtKeyboardDirective, HostComponent],
-    providers: [MockMatKeyboardService],
-}).compileComponents();
+      imports: [VirtKeyboardDirective, HostComponent],
+      providers: [MockMatKeyboardService],
+    }).compileComponents();
     fixture = TestBed.createComponent(HostComponent);
     fixture.detectChanges();
   });

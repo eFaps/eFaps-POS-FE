@@ -1,24 +1,38 @@
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
-import { FormGroup, UntypedFormBuilder, Validators, ReactiveFormsModule } from "@angular/forms";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { Discount, DiscountService, DiscountType, Order, PaymentService, UtilsService, WorkspaceService, PosLibraryModule } from "@efaps/pos-library";
-import { Subscription } from "rxjs";
+import {
+  FormGroup,
+  ReactiveFormsModule,
+  UntypedFormBuilder,
+  Validators,
+} from "@angular/forms";
 import { MatButton } from "@angular/material/button";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatFormField, MatPrefix } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
+import {
+  Discount,
+  DiscountService,
+  DiscountType,
+  Order,
+  PaymentService,
+  PosLibraryModule,
+  UtilsService,
+  WorkspaceService,
+} from "@efaps/pos-library";
+import { Subscription } from "rxjs";
 
 @Component({
-    selector: "app-discount",
-    templateUrl: "./discount.component.html",
-    styleUrls: ["./discount.component.scss"],
-    imports: [
-        MatButton,
-        ReactiveFormsModule,
-        MatFormField,
-        MatInput,
-        MatPrefix,
-        PosLibraryModule,
-    ],
+  selector: "app-discount",
+  templateUrl: "./discount.component.html",
+  styleUrls: ["./discount.component.scss"],
+  imports: [
+    MatButton,
+    ReactiveFormsModule,
+    MatFormField,
+    MatInput,
+    MatPrefix,
+    PosLibraryModule,
+  ],
 })
 export class DiscountComponent implements OnInit, OnDestroy {
   dialogRef = inject<MatDialogRef<DiscountComponent>>(MatDialogRef);

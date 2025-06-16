@@ -13,22 +13,17 @@ import {
   WorkspaceService,
 } from "@efaps/pos-library";
 
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { OrderDialogComponent } from "../order-dialog/order-dialog.component";
 import { NgClass } from "@angular/common";
 import { MatButton } from "@angular/material/button";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { TranslateDirective, TranslatePipe } from "@ngx-translate/core";
+import { OrderDialogComponent } from "../order-dialog/order-dialog.component";
 
 @Component({
-    selector: "app-commands",
-    templateUrl: "./commands.component.html",
-    styleUrls: ["./commands.component.scss"],
-    imports: [
-        NgClass,
-        MatButton,
-        TranslateDirective,
-        TranslatePipe,
-    ],
+  selector: "app-commands",
+  templateUrl: "./commands.component.html",
+  styleUrls: ["./commands.component.scss"],
+  imports: [NgClass, MatButton, TranslateDirective, TranslatePipe],
 })
 export class CommandsComponent implements OnInit {
   private router = inject(Router);

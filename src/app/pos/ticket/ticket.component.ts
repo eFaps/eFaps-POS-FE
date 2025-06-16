@@ -2,41 +2,60 @@ import {
   Component,
   effect,
   inject,
-  OnInit,
   input,
-  output
+  OnInit,
+  output,
 } from "@angular/core";
+import { MatButton, MatIconButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
+import { MatIcon } from "@angular/material/icon";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
-import { Currency, isChildItem, Item, PosService, PromoInfo, PosLibraryModule } from "@efaps/pos-library";
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+  MatTableDataSource,
+} from "@angular/material/table";
+import {
+  Currency,
+  isChildItem,
+  Item,
+  PosLibraryModule,
+  PosService,
+  PromoInfo,
+} from "@efaps/pos-library";
 import { Decimal } from "decimal.js";
 import { PromoDialogComponent } from "src/app/shared/promo-dialog/promo-dialog.component";
-import { MatIconButton, MatButton } from "@angular/material/button";
-import { MatIcon } from "@angular/material/icon";
 import { PartListRelationComponent } from "../../shared/part-list-relation/part-list-relation.component";
 
 @Component({
-    selector: "app-ticket",
-    templateUrl: "./ticket.component.html",
-    styleUrls: ["./ticket.component.scss"],
-    imports: [
-        MatTable,
-        MatColumnDef,
-        MatHeaderCellDef,
-        MatHeaderCell,
-        MatCellDef,
-        MatCell,
-        MatIconButton,
-        MatIcon,
-        MatButton,
-        PartListRelationComponent,
-        MatHeaderRowDef,
-        MatHeaderRow,
-        MatRowDef,
-        MatRow,
-        PosLibraryModule,
-    ],
+  selector: "app-ticket",
+  templateUrl: "./ticket.component.html",
+  styleUrls: ["./ticket.component.scss"],
+  imports: [
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatIconButton,
+    MatIcon,
+    MatButton,
+    PartListRelationComponent,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    PosLibraryModule,
+  ],
 })
 export class TicketComponent implements OnInit {
   private posService = inject(PosService);
@@ -99,7 +118,7 @@ export class TicketComponent implements OnInit {
 
       this.syncTicket();
       // TODO: The 'emit' function requires a mandatory any argument
-      this.multiplierClick.emit();
+      this.multiplierClick.emit(undefined);
     }
   }
 
@@ -149,7 +168,7 @@ export class TicketComponent implements OnInit {
       });
       this.syncTicket();
       // TODO: The 'emit' function requires a mandatory any argument
-      this.multiplierClick.emit();
+      this.multiplierClick.emit(undefined);
     }
   }
 

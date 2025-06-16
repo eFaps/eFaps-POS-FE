@@ -1,28 +1,40 @@
 import { Component, Input, OnInit, output } from "@angular/core";
-import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
-import { DocItem, Order, PosLibraryModule } from "@efaps/pos-library";
 import { MatButton } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+  MatTableDataSource,
+} from "@angular/material/table";
+import { DocItem, Order, PosLibraryModule } from "@efaps/pos-library";
 
 @Component({
-    selector: "app-reassign-item",
-    templateUrl: "./reassign-item.component.html",
-    styleUrls: ["./reassign-item.component.scss"],
-    imports: [
-        MatTable,
-        MatColumnDef,
-        MatHeaderCellDef,
-        MatHeaderCell,
-        MatCellDef,
-        MatCell,
-        MatButton,
-        MatIcon,
-        MatHeaderRowDef,
-        MatHeaderRow,
-        MatRowDef,
-        MatRow,
-        PosLibraryModule,
-    ],
+  selector: "app-reassign-item",
+  templateUrl: "./reassign-item.component.html",
+  styleUrls: ["./reassign-item.component.scss"],
+  imports: [
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatButton,
+    MatIcon,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    PosLibraryModule,
+  ],
 })
 export class ReassignItemComponent implements OnInit {
   private _position: "LEFT" | "RIGHT" = "LEFT";

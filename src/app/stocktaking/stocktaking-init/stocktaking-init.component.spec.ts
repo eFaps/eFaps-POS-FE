@@ -39,16 +39,16 @@ describe("StocktakingInitComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [MatDialogModule, MatSnackBarModule, StocktakingInitComponent],
-    providers: [
+      imports: [MatDialogModule, MatSnackBarModule, StocktakingInitComponent],
+      providers: [
         FormBuilder,
         MatSnackBar,
         { provide: InventoryService, useClass: InventoryServiceStub },
         { provide: StocktakingService, useClass: StocktakingServiceStub },
         { provide: PosConfigToken, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(StocktakingInitComponent);
     component = fixture.componentInstance;

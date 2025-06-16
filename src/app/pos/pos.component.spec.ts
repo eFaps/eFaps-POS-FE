@@ -120,7 +120,7 @@ describe("PosComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         BrowserAnimationsModule,
         ReactiveFormsModule,
         RouterTestingModule,
@@ -135,8 +135,8 @@ describe("PosComponent", () => {
         MockComponent(TicketComponent),
         MockComponent(TotalsComponent),
         MockComponent(CommandsComponent),
-    ],
-    providers: [
+      ],
+      providers: [
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: PosService, useClass: PosServiceStub },
         { provide: MsgService, useClass: MsgServiceStub },
@@ -153,8 +153,8 @@ describe("PosComponent", () => {
         { provide: MatSnackBar, useClass: MatSnackBar },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
     fixture = TestBed.createComponent(PosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

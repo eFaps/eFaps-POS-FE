@@ -9,48 +9,60 @@ import {
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort, MatSortHeader } from "@angular/material/sort";
-import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+  MatTableDataSource,
+} from "@angular/material/table";
 import { LocalStorage } from "@efaps/ngx-store";
 import { PageRequest, Product, ProductService } from "@efaps/pos-library";
 
-import { MatPaginator } from "@angular/material/paginator";
-import { debounceTime, merge, tap } from "rxjs";
-import { ProductComponent } from "../../shared/product/product.component";
-import { MatFormField } from "@angular/material/form-field";
-import { MatInput } from "@angular/material/input";
-import { VirtKeyboardDirective } from "../../services/virt-keyboard.directive";
-import { MatSlideToggle } from "@angular/material/slide-toggle";
 import { MatIconButton } from "@angular/material/button";
+import { MatFormField } from "@angular/material/form-field";
 import { MatIcon } from "@angular/material/icon";
+import { MatInput } from "@angular/material/input";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSlideToggle } from "@angular/material/slide-toggle";
 import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
+import { debounceTime, merge, tap } from "rxjs";
+import { VirtKeyboardDirective } from "../../services/virt-keyboard.directive";
+import { ProductComponent } from "../../shared/product/product.component";
 
 @Component({
-    selector: "app-producttable",
-    templateUrl: "./producttable.component.html",
-    styleUrls: ["./producttable.component.scss"],
-    imports: [
-        ReactiveFormsModule,
-        MatFormField,
-        MatInput,
-        VirtKeyboardDirective,
-        MatSlideToggle,
-        MatTable,
-        MatSort,
-        MatColumnDef,
-        MatHeaderCellDef,
-        MatHeaderCell,
-        MatSortHeader,
-        MatCellDef,
-        MatCell,
-        MatIconButton,
-        MatIcon,
-        MatHeaderRowDef,
-        MatHeaderRow,
-        MatRowDef,
-        MatRow,
-        MatPaginator,
-        MatKeyboardModule
-    ],
+  selector: "app-producttable",
+  templateUrl: "./producttable.component.html",
+  styleUrls: ["./producttable.component.scss"],
+  imports: [
+    ReactiveFormsModule,
+    MatFormField,
+    MatInput,
+    VirtKeyboardDirective,
+    MatSlideToggle,
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatSortHeader,
+    MatCellDef,
+    MatCell,
+    MatIconButton,
+    MatIcon,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatPaginator,
+    MatKeyboardModule,
+  ],
 })
 export class ProducttableComponent implements OnInit, OnDestroy {
   private productService = inject(ProductService);

@@ -6,10 +6,26 @@ import {
   ViewChild,
   inject,
 } from "@angular/core";
-import { FormGroup, UntypedFormBuilder, ReactiveFormsModule } from "@angular/forms";
+import {
+  FormGroup,
+  ReactiveFormsModule,
+  UntypedFormBuilder,
+} from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort, MatSortHeader } from "@angular/material/sort";
-import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+  MatTableDataSource,
+} from "@angular/material/table";
 import {
   AuthService,
   InventoryService,
@@ -22,42 +38,42 @@ import {
 import { Subscription } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 
+import { NgClass } from "@angular/common";
+import { MatIconButton } from "@angular/material/button";
+import { MatFormField } from "@angular/material/form-field";
+import { MatIcon } from "@angular/material/icon";
+import { MatInput } from "@angular/material/input";
+import { MatSlideToggle } from "@angular/material/slide-toggle";
 import { PosSyncService } from "src/app/services/pos-sync.service";
 import { KeypadService } from "../../services";
 import { ProductComponent } from "../../shared/product/product.component";
 import { AbstractProductSelector } from "../abstract-product-selector";
-import { MatFormField } from "@angular/material/form-field";
-import { MatInput } from "@angular/material/input";
-import { MatSlideToggle } from "@angular/material/slide-toggle";
-import { NgClass } from "@angular/common";
-import { MatIconButton } from "@angular/material/button";
-import { MatIcon } from "@angular/material/icon";
 
 @Component({
-    selector: "app-product-list",
-    templateUrl: "./product-list.component.html",
-    styleUrls: ["./product-list.component.scss"],
-    imports: [
-        ReactiveFormsModule,
-        MatFormField,
-        MatInput,
-        MatSlideToggle,
-        MatTable,
-        MatSort,
-        MatColumnDef,
-        MatHeaderCellDef,
-        MatHeaderCell,
-        MatSortHeader,
-        MatCellDef,
-        MatCell,
-        NgClass,
-        MatIconButton,
-        MatIcon,
-        MatHeaderRowDef,
-        MatHeaderRow,
-        MatRowDef,
-        MatRow,
-    ],
+  selector: "app-product-list",
+  templateUrl: "./product-list.component.html",
+  styleUrls: ["./product-list.component.scss"],
+  imports: [
+    ReactiveFormsModule,
+    MatFormField,
+    MatInput,
+    MatSlideToggle,
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatSortHeader,
+    MatCellDef,
+    MatCell,
+    NgClass,
+    MatIconButton,
+    MatIcon,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+  ],
 })
 export class ProductListComponent
   extends AbstractProductSelector

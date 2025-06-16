@@ -48,7 +48,7 @@ describe("CashComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         BrowserAnimationsModule,
         ReactiveFormsModule,
         MatGridListModule,
@@ -57,8 +57,8 @@ describe("CashComponent", () => {
         CashComponent,
         MockPipe(TranslatePipe),
         MockComponent(KeypadComponent),
-    ],
-    providers: [
+      ],
+      providers: [
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
@@ -66,8 +66,8 @@ describe("CashComponent", () => {
         { provide: UtilsService, useClass: UtilsServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

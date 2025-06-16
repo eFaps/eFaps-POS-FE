@@ -1,12 +1,11 @@
+import { Component, Input, OnInit, inject, input, output } from "@angular/core";
+import { MatIcon } from "@angular/material/icon";
 import {
-  Component,
-  Input,
-  OnInit,
-  inject,
-  input,
-  output
-} from "@angular/core";
-import { MatTabChangeEvent, MatTabGroup, MatTab, MatTabLabel } from "@angular/material/tabs";
+  MatTab,
+  MatTabChangeEvent,
+  MatTabGroup,
+  MatTabLabel,
+} from "@angular/material/tabs";
 import {
   Category,
   CategoryNode,
@@ -15,7 +14,6 @@ import {
   Product,
   ProductService,
 } from "@efaps/pos-library";
-import { MatIcon } from "@angular/material/icon";
 import { ProductsElementComponent } from "../products-element/products-element.component";
 
 const placeHolder: CategoryNode = {
@@ -25,16 +23,16 @@ const placeHolder: CategoryNode = {
 };
 
 @Component({
-    selector: "app-grid-element",
-    templateUrl: "./grid-element.component.html",
-    styleUrls: ["./grid-element.component.scss"],
-    imports: [
-        MatTabGroup,
-        MatTab,
-        MatTabLabel,
-        MatIcon,
-        ProductsElementComponent,
-    ],
+  selector: "app-grid-element",
+  templateUrl: "./grid-element.component.html",
+  styleUrls: ["./grid-element.component.scss"],
+  imports: [
+    MatTabGroup,
+    MatTab,
+    MatTabLabel,
+    MatIcon,
+    ProductsElementComponent,
+  ],
 })
 export class GridElementComponent implements OnInit {
   private productService = inject(ProductService);

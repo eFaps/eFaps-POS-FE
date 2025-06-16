@@ -35,11 +35,10 @@ import { MatInput } from "@angular/material/input";
 import { MatSelect } from "@angular/material/select";
 import { TranslatePipe } from "@ngx-translate/core";
 
-
-import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
+import { VirtKeyboardDirective } from "../../services/virt-keyboard.directive";
 import { DNIQueryComponent } from "../../shared/dniquery/dniquery.component";
 import { TaxpayerQueryComponent } from "../../shared/taxpayer-query/taxpayer-query.component";
-import { VirtKeyboardDirective } from "../../services/virt-keyboard.directive";
+import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
 
 @Component({
   selector: "app-create-contact-dialog",
@@ -61,8 +60,8 @@ import { VirtKeyboardDirective } from "../../services/virt-keyboard.directive";
     MatDialogActions,
     MatButton,
     MatDialogClose,
-    TranslatePipe
-],
+    TranslatePipe,
+  ],
 })
 export class CreateContactDialogComponent implements OnInit, OnDestroy {
   dialogRef = inject<MatDialogRef<CreateContactDialogComponent>>(MatDialogRef);

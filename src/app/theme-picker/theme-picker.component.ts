@@ -6,29 +6,29 @@ import {
 } from "@angular/core";
 import { LocalStorage } from "@efaps/ngx-store";
 
-import { DocsSiteTheme, StyleManagerService } from "../services/index";
 import { MatIconButton } from "@angular/material/button";
-import { MatTooltip } from "@angular/material/tooltip";
-import { MatMenuTrigger, MatMenu, MatMenuItem } from "@angular/material/menu";
-import { MatIcon } from "@angular/material/icon";
 import { MatGridList, MatGridTile } from "@angular/material/grid-list";
+import { MatIcon } from "@angular/material/icon";
+import { MatMenu, MatMenuItem, MatMenuTrigger } from "@angular/material/menu";
+import { MatTooltip } from "@angular/material/tooltip";
+import { DocsSiteTheme, StyleManagerService } from "../services/index";
 
 @Component({
-    selector: "app-theme-picker",
-    templateUrl: "./theme-picker.component.html",
-    styleUrls: ["./theme-picker.component.scss"],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None,
-    imports: [
-        MatIconButton,
-        MatTooltip,
-        MatMenuTrigger,
-        MatIcon,
-        MatMenu,
-        MatGridList,
-        MatGridTile,
-        MatMenuItem,
-    ],
+  selector: "app-theme-picker",
+  templateUrl: "./theme-picker.component.html",
+  styleUrls: ["./theme-picker.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    MatIconButton,
+    MatTooltip,
+    MatMenuTrigger,
+    MatIcon,
+    MatMenu,
+    MatGridList,
+    MatGridTile,
+    MatMenuItem,
+  ],
 })
 export class ThemePickerComponent {
   styleManager = inject(StyleManagerService);

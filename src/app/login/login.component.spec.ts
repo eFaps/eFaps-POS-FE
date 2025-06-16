@@ -95,7 +95,7 @@ describe("LoginComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         AngularSvgIconModule,
         BrowserAnimationsModule,
         MatCardModule,
@@ -110,8 +110,8 @@ describe("LoginComponent", () => {
         VirtKeyboardDirective,
         LoginComponent,
         MockPipe(TranslatePipe),
-    ],
-    providers: [
+      ],
+      providers: [
         { provide: CompanyService, useClass: CompanyServiceStub },
         { provide: MatKeyboardService, useClass: MatKeyboardServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
@@ -121,13 +121,13 @@ describe("LoginComponent", () => {
         { provide: UserService, useClass: UserServiceStub },
         { provide: Router, useClass: RouterStub },
         {
-            provide: SvgIconRegistryService,
-            useClass: SvgIconRegistryServiceStub,
+          provide: SvgIconRegistryService,
+          useClass: SvgIconRegistryServiceStub,
         },
         { provide: LiveAnnouncer, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   });
 
   describe("Standard Login", () => {

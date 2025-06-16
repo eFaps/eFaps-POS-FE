@@ -16,13 +16,13 @@ describe("DNIQueryComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [DNIQueryComponent],
-    providers: [
+      imports: [DNIQueryComponent],
+      providers: [
         { provide: EnquiryService, useClass: EnquiryServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DNIQueryComponent);
     component = fixture.componentInstance;

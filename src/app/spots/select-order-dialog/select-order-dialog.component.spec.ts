@@ -15,12 +15,17 @@ describe("SelectOrderDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [MatDialogModule, MatFormFieldModule, MatInputModule, SelectOrderDialogComponent],
-    providers: [
+      imports: [
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        SelectOrderDialogComponent,
+      ],
+      providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] },
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

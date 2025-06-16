@@ -5,36 +5,47 @@ import {
   ViewChild,
   inject,
 } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { MatPaginator } from "@angular/material/paginator";
-import { EnquiryService, Page, RUC } from "@efaps/pos-library";
-import { MatProgressSpinner } from "@angular/material/progress-spinner";
-import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
-import { MatIcon } from "@angular/material/icon";
-import { MatTooltip } from "@angular/material/tooltip";
 import { MatButton } from "@angular/material/button";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MatIcon } from "@angular/material/icon";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatProgressSpinner } from "@angular/material/progress-spinner";
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+} from "@angular/material/table";
+import { MatTooltip } from "@angular/material/tooltip";
+import { EnquiryService, Page, RUC } from "@efaps/pos-library";
 
 @Component({
-    selector: "app-taxpayer-result",
-    templateUrl: "./taxpayer-result.component.html",
-    styleUrls: ["./taxpayer-result.component.scss"],
-    imports: [
-        MatProgressSpinner,
-        MatTable,
-        MatColumnDef,
-        MatHeaderCellDef,
-        MatHeaderCell,
-        MatCellDef,
-        MatCell,
-        MatIcon,
-        MatTooltip,
-        MatButton,
-        MatHeaderRowDef,
-        MatHeaderRow,
-        MatRowDef,
-        MatRow,
-        MatPaginator,
-    ],
+  selector: "app-taxpayer-result",
+  templateUrl: "./taxpayer-result.component.html",
+  styleUrls: ["./taxpayer-result.component.scss"],
+  imports: [
+    MatProgressSpinner,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatIcon,
+    MatTooltip,
+    MatButton,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatPaginator,
+  ],
 })
 export class TaxpayerResultComponent implements OnInit, AfterViewInit {
   private dialogRef =

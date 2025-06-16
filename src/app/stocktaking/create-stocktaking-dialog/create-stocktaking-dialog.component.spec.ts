@@ -31,8 +31,8 @@ describe("CreateStocktakingDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [MatDialogModule, CreateStocktakingDialogComponent],
-    providers: [
+      imports: [MatDialogModule, CreateStocktakingDialogComponent],
+      providers: [
         FormBuilder,
         { provide: MatDialogRef, useValue: {} },
         { provide: InventoryService, useClass: InventoryServiceStub },
@@ -40,8 +40,8 @@ describe("CreateStocktakingDialogComponent", () => {
         { provide: PosConfigToken, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CreateStocktakingDialogComponent);
     component = fixture.componentInstance;

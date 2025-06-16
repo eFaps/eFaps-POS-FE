@@ -27,27 +27,30 @@ describe("SuccessDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [MatDialogModule, MockPipe(PosCurrencyPipe),
+      imports: [
+        MatDialogModule,
+        MockPipe(PosCurrencyPipe),
         MockComponent(PrintDisplayComponent),
-        SuccessDialogComponent],
-    providers: [
+        SuccessDialogComponent,
+      ],
+      providers: [
         { provide: MatDialogRef, useValue: {} },
         {
-            provide: MAT_DIALOG_DATA,
-            useValue: {
-                docType: 0,
-                change: 0,
-                document: {
-                    number: 123,
-                },
+          provide: MAT_DIALOG_DATA,
+          useValue: {
+            docType: 0,
+            change: 0,
+            document: {
+              number: 123,
             },
+          },
         },
         { provide: PosConfigToken, useValue: {} },
         { provide: PrintService, useClass: PrintServiceSub },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

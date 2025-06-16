@@ -18,7 +18,7 @@ describe("TaxpayerQueryComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         ReactiveFormsModule,
         NoopAnimationsModule,
         MatDialogModule,
@@ -27,12 +27,12 @@ describe("TaxpayerQueryComponent", () => {
         MatInputModule,
         MatSlideToggleModule,
         TaxpayerQueryComponent,
-    ],
-    providers: [
+      ],
+      providers: [
         { provide: EnquiryService, useClass: EnquiryServiceStub },
         { provide: MatDialogRef, useValue: {} },
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

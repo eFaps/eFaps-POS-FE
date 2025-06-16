@@ -39,7 +39,7 @@ describe("ExtendedSpotPickerComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         RouterTestingModule,
         MatDialogModule,
         MatSnackBarModule,
@@ -47,9 +47,10 @@ describe("ExtendedSpotPickerComponent", () => {
         MatTabsModule,
         MatTooltipModule,
         MatButtonModule,
-        ExtendedSpotPickerComponent, MockPipe(TranslatePipe),
-    ],
-    providers: [
+        ExtendedSpotPickerComponent,
+        MockPipe(TranslatePipe),
+      ],
+      providers: [
         { provide: PosService, useClass: PosServiceStub },
         { provide: DocumentService, useValue: {} },
         { provide: SpotService, useClass: SpotServiceStub },
@@ -58,8 +59,8 @@ describe("ExtendedSpotPickerComponent", () => {
         { provide: MatSnackBar, useClass: MatSnackBar },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

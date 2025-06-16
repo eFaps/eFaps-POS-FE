@@ -27,12 +27,16 @@ describe("WorkspaceComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [BrowserAnimationsModule, RouterTestingModule, WorkspaceComponent],
-    providers: [
+      imports: [
+        BrowserAnimationsModule,
+        RouterTestingModule,
+        WorkspaceComponent,
+      ],
+      providers: [
         { provide: PosService, useClass: PosServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

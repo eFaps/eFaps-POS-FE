@@ -1,34 +1,46 @@
 import { Component, OnInit, ViewChild, inject, input } from "@angular/core";
+import { MatFormField } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
 import { MatSort, MatSortHeader } from "@angular/material/sort";
-import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+  MatTableDataSource,
+} from "@angular/material/table";
 import {
   InventoryEntry,
   InventoryService,
   Warehouse,
 } from "@efaps/pos-library";
-import { MatFormField } from "@angular/material/form-field";
-import { MatInput } from "@angular/material/input";
 
 @Component({
-    selector: "app-inventory-table",
-    templateUrl: "./inventory-table.component.html",
-    styleUrls: ["./inventory-table.component.scss"],
-    imports: [
-        MatFormField,
-        MatInput,
-        MatTable,
-        MatSort,
-        MatColumnDef,
-        MatHeaderCellDef,
-        MatHeaderCell,
-        MatSortHeader,
-        MatCellDef,
-        MatCell,
-        MatHeaderRowDef,
-        MatHeaderRow,
-        MatRowDef,
-        MatRow,
-    ],
+  selector: "app-inventory-table",
+  templateUrl: "./inventory-table.component.html",
+  styleUrls: ["./inventory-table.component.scss"],
+  imports: [
+    MatFormField,
+    MatInput,
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatSortHeader,
+    MatCellDef,
+    MatCell,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+  ],
 })
 export class InventoryTableComponent implements OnInit {
   private inventoryService = inject(InventoryService);
@@ -41,14 +53,12 @@ export class InventoryTableComponent implements OnInit {
   ngOnInit() {
     const warehouse = this.warehouse();
     if (warehouse) {
-      this.inventoryService
-        .getInventory(warehouse.oid)
-        .subscribe((data) => {
-          this.dataSource.data = data;
-          this.dataSource.sort = this.sort;
-          this.dataSource.filterPredicate = this.filterPredicate;
-          this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
-        });
+      this.inventoryService.getInventory(warehouse.oid).subscribe((data) => {
+        this.dataSource.data = data;
+        this.dataSource.sort = this.sort;
+        this.dataSource.filterPredicate = this.filterPredicate;
+        this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
+      });
     }
   }
 

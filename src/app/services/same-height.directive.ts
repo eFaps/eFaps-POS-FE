@@ -4,10 +4,10 @@ import {
   ElementRef,
   HostListener,
   inject,
-  input
+  input,
 } from "@angular/core";
 
-@Directive({ selector: "[appSameHeight]", })
+@Directive({ selector: "[appSameHeight]" })
 export class SameHeightDirective implements AfterViewChecked {
   private el = inject(ElementRef);
 

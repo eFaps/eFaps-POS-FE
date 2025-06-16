@@ -1,13 +1,13 @@
 import { Component, Input, OnInit, inject } from "@angular/core";
+import { MatProgressSpinner } from "@angular/material/progress-spinner";
 import { PrintService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
-import { MatProgressSpinner } from "@angular/material/progress-spinner";
 
 @Component({
-    selector: "app-print-display",
-    templateUrl: "./print-display.component.html",
-    styleUrls: ["./print-display.component.scss"],
-    imports: [MatProgressSpinner],
+  selector: "app-print-display",
+  templateUrl: "./print-display.component.html",
+  styleUrls: ["./print-display.component.scss"],
+  imports: [MatProgressSpinner],
 })
 export class PrintDisplayComponent implements OnInit {
   private printService = inject(PrintService);

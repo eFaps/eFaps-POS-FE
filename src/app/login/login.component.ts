@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import {
   Component,
   ElementRef,
@@ -6,10 +7,24 @@ import {
   ViewChild,
   inject,
 } from "@angular/core";
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
-import { MatSlideToggleChange, MatSlideToggle } from "@angular/material/slide-toggle";
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { MatButton } from "@angular/material/button";
+import { MatButtonToggle } from "@angular/material/button-toggle";
+import { MatCard, MatCardContent } from "@angular/material/card";
+import { MatFormField } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import {
+  MatSlideToggle,
+  MatSlideToggleChange,
+} from "@angular/material/slide-toggle";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
+import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
 import { LocalStorage } from "@efaps/ngx-store";
 import {
   AuthService,
@@ -20,34 +35,27 @@ import {
   WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
-import { Subscription } from "rxjs";
-import { MatCard, MatCardContent } from "@angular/material/card";
 import { SvgIconComponent } from "angular-svg-icon";
-import { NgClass } from "@angular/common";
-import { MatFormField } from "@angular/material/form-field";
-import { MatInput } from "@angular/material/input";
+import { Subscription } from "rxjs";
 import { VirtKeyboardDirective } from "../services/virt-keyboard.directive";
-import { MatButton } from "@angular/material/button";
-import { MatButtonToggle } from "@angular/material/button-toggle";
-import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
 
 @Component({
-    templateUrl: "./login.component.html",
-    styleUrls: ["./login.component.scss"],
-    imports: [
-        MatCard,
-        MatCardContent,
-        SvgIconComponent,
-        NgClass,
-        ReactiveFormsModule,
-        MatFormField,
-        MatInput,
-        VirtKeyboardDirective,
-        MatButton,
-        MatSlideToggle,
-        MatButtonToggle,
-        MatKeyboardModule
-    ],
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"],
+  imports: [
+    MatCard,
+    MatCardContent,
+    SvgIconComponent,
+    NgClass,
+    ReactiveFormsModule,
+    MatFormField,
+    MatInput,
+    VirtKeyboardDirective,
+    MatButton,
+    MatSlideToggle,
+    MatButtonToggle,
+    MatKeyboardModule,
+  ],
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private router = inject(Router);

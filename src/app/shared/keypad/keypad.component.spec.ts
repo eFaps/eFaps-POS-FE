@@ -18,9 +18,14 @@ describe("KeypadComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [BrowserAnimationsModule, MatGridListModule, MatIconModule, KeypadComponent],
-    providers: [{ provide: HotkeysService, useClass: HotkeysServiceStub }],
-}).compileComponents();
+      imports: [
+        BrowserAnimationsModule,
+        MatGridListModule,
+        MatIconModule,
+        KeypadComponent,
+      ],
+      providers: [{ provide: HotkeysService, useClass: HotkeysServiceStub }],
+    }).compileComponents();
   });
 
   beforeEach(() => {

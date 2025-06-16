@@ -15,16 +15,16 @@ describe("CloseStocktakingDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [CloseStocktakingDialogComponent],
-    providers: [
+      imports: [CloseStocktakingDialogComponent],
+      providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] },
         { provide: PosConfigToken, useValue: {} },
         { provide: StocktakingService, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CloseStocktakingDialogComponent);
     component = fixture.componentInstance;

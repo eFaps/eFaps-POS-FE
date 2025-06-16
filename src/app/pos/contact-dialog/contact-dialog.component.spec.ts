@@ -15,12 +15,16 @@ describe("ContactDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [MatDialogModule, ContactDialogComponent, MockComponent(ContactComponent)],
-    providers: [
+      imports: [
+        MatDialogModule,
+        ContactDialogComponent,
+        MockComponent(ContactComponent),
+      ],
+      providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ContactDialogComponent);
     component = fixture.componentInstance;

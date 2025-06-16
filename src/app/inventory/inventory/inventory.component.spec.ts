@@ -22,12 +22,16 @@ describe("InventoryComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [BrowserAnimationsModule, MatTabsModule, InventoryComponent,
-        MockComponent(InventoryTableComponent)],
-    providers: [
+      imports: [
+        BrowserAnimationsModule,
+        MatTabsModule,
+        InventoryComponent,
+        MockComponent(InventoryTableComponent),
+      ],
+      providers: [
         { provide: InventoryService, useClass: InventoryServiceStub },
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

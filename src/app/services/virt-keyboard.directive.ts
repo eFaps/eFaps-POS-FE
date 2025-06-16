@@ -5,7 +5,7 @@ import {
   OnDestroy,
   inject,
   input,
-  output
+  output,
 } from "@angular/core";
 import { NgControl } from "@angular/forms";
 import {
@@ -14,10 +14,10 @@ import {
   MatKeyboardService,
 } from "@efaps/angular-onscreen-material-keyboard";
 
-@Directive({ 
-  selector: "input[appVirtKeyboard], textarea[appVirtKeyboard]", 
+@Directive({
+  selector: "input[appVirtKeyboard], textarea[appVirtKeyboard]",
   standalone: true,
-  providers: [MatKeyboardService]
+  providers: [MatKeyboardService],
 })
 export class VirtKeyboardDirective implements OnDestroy {
   private _elementRef = inject(ElementRef);

@@ -20,19 +20,23 @@ describe("PrintDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [BrowserAnimationsModule, MatDialogModule, PrintDialogComponent,
-        MockComponent(PrintDisplayComponent)],
-    providers: [
+      imports: [
+        BrowserAnimationsModule,
+        MatDialogModule,
+        PrintDialogComponent,
+        MockComponent(PrintDisplayComponent),
+      ],
+      providers: [
         { provide: PrintService, useClass: PrintServiceStub },
         { provide: MatDialogRef, useValue: {} },
         {
-            provide: MAT_DIALOG_DATA,
-            useValue: new Observable((observer) => {
-                observer.next([]);
-            }),
+          provide: MAT_DIALOG_DATA,
+          useValue: new Observable((observer) => {
+            observer.next([]);
+          }),
         },
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

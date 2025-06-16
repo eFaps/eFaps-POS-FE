@@ -9,12 +9,12 @@ describe("NoteDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [NoteDialogComponent],
-    providers: [
+      imports: [NoteDialogComponent],
+      providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] },
-    ],
-}).compileComponents();
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NoteDialogComponent);
     component = fixture.componentInstance;

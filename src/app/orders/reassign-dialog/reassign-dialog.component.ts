@@ -1,5 +1,10 @@
 import { Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogContent, MatDialogActions } from "@angular/material/dialog";
+import {
+  MAT_DIALOG_DATA,
+  MatDialogActions,
+  MatDialogContent,
+  MatDialogRef,
+} from "@angular/material/dialog";
 import {
   CalculatorService,
   DocItem,
@@ -9,24 +14,24 @@ import {
 } from "@efaps/pos-library";
 import { Observable, Subscription, zip } from "rxjs";
 
-import { ReassignItemComponent } from "../reassign-item/reassign-item.component";
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { MatFabButton, MatButton } from "@angular/material/button";
+import { MatButton, MatFabButton } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
+import { ReassignItemComponent } from "../reassign-item/reassign-item.component";
 
 @Component({
-    selector: "app-reassign-dialog",
-    templateUrl: "./reassign-dialog.component.html",
-    styleUrls: ["./reassign-dialog.component.scss"],
-    imports: [
-        CdkScrollable,
-        MatDialogContent,
-        MatFabButton,
-        ReassignItemComponent,
-        MatDialogActions,
-        MatButton,
-        MatIcon,
-    ],
+  selector: "app-reassign-dialog",
+  templateUrl: "./reassign-dialog.component.html",
+  styleUrls: ["./reassign-dialog.component.scss"],
+  imports: [
+    CdkScrollable,
+    MatDialogContent,
+    MatFabButton,
+    ReassignItemComponent,
+    MatDialogActions,
+    MatButton,
+    MatIcon,
+  ],
 })
 export class ReassignDialogComponent implements OnInit, OnDestroy {
   private documentService = inject(DocumentService);

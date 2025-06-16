@@ -1,8 +1,36 @@
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
+import { CdkScrollable } from "@angular/cdk/scrolling";
 import { Component, OnInit, inject } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
-import { MatChipInputEvent, MatChipGrid, MatChipRow, MatChipRemove, MatChipInput } from "@angular/material/chips";
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions } from "@angular/material/dialog";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { MatButton } from "@angular/material/button";
+import {
+  MatButtonToggle,
+  MatButtonToggleGroup,
+} from "@angular/material/button-toggle";
+import {
+  MatChipGrid,
+  MatChipInput,
+  MatChipInputEvent,
+  MatChipRemove,
+  MatChipRow,
+} from "@angular/material/chips";
+import {
+  MAT_DIALOG_DATA,
+  MatDialogActions,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
+} from "@angular/material/dialog";
+import { MatFormField } from "@angular/material/form-field";
+import { MatIcon } from "@angular/material/icon";
+import { MatRadioButton, MatRadioGroup } from "@angular/material/radio";
+import { MatStep, MatStepLabel, MatStepper } from "@angular/material/stepper";
 import {
   Indication,
   Product,
@@ -11,39 +39,32 @@ import {
   ProductService,
   ProductType,
 } from "@efaps/pos-library";
-import { CdkScrollable } from "@angular/cdk/scrolling";
-import { MatStepper, MatStep, MatStepLabel } from "@angular/material/stepper";
-import { MatRadioGroup, MatRadioButton } from "@angular/material/radio";
-import { MatButtonToggleGroup, MatButtonToggle } from "@angular/material/button-toggle";
-import { MatButton } from "@angular/material/button";
-import { MatFormField } from "@angular/material/form-field";
-import { MatIcon } from "@angular/material/icon";
 
 @Component({
-    selector: "app-config-dialog",
-    templateUrl: "./config-dialog.component.html",
-    styleUrls: ["./config-dialog.component.scss"],
-    imports: [
-        MatDialogTitle,
-        CdkScrollable,
-        MatDialogContent,
-        ReactiveFormsModule,
-        MatStepper,
-        MatStep,
-        MatStepLabel,
-        MatRadioGroup,
-        MatRadioButton,
-        MatButtonToggleGroup,
-        MatButtonToggle,
-        MatButton,
-        MatFormField,
-        MatChipGrid,
-        MatChipRow,
-        MatChipRemove,
-        MatIcon,
-        MatChipInput,
-        MatDialogActions,
-    ],
+  selector: "app-config-dialog",
+  templateUrl: "./config-dialog.component.html",
+  styleUrls: ["./config-dialog.component.scss"],
+  imports: [
+    MatDialogTitle,
+    CdkScrollable,
+    MatDialogContent,
+    ReactiveFormsModule,
+    MatStepper,
+    MatStep,
+    MatStepLabel,
+    MatRadioGroup,
+    MatRadioButton,
+    MatButtonToggleGroup,
+    MatButtonToggle,
+    MatButton,
+    MatFormField,
+    MatChipGrid,
+    MatChipRow,
+    MatChipRemove,
+    MatIcon,
+    MatChipInput,
+    MatDialogActions,
+  ],
 })
 export class ConfigDialogComponent implements OnInit {
   private matDialogRef =

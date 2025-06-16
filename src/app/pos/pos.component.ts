@@ -41,39 +41,39 @@ import {
   EmployeeDialogData,
 } from "../shared/employee-dialog/employee-dialog.component";
 
+import { NgIf, NgStyle, NgSwitch, NgSwitchCase } from "@angular/common";
+import { MatButton, MatFabButton } from "@angular/material/button";
+import { MatButtonToggle } from "@angular/material/button-toggle";
+import { MatIcon } from "@angular/material/icon";
+import { KeypadComponent } from "../shared/keypad/keypad.component";
 import { CategorySelectComponent } from "./category-select/category-select.component";
 import { CommandsComponent } from "./commands/commands.component";
 import { ContactDialogComponent } from "./contact-dialog/contact-dialog.component";
 import { ProductGridComponent } from "./product-grid/product-grid.component";
 import { ProductListComponent } from "./product-list/product-list.component";
-import { NgSwitch, NgStyle, NgSwitchCase, NgIf } from "@angular/common";
-import { MatButton, MatFabButton } from "@angular/material/button";
-import { MatIcon } from "@angular/material/icon";
-import { MatButtonToggle } from "@angular/material/button-toggle";
-import { KeypadComponent } from "../shared/keypad/keypad.component";
 import { TicketComponent } from "./ticket/ticket.component";
 import { TotalsComponent } from "./totals/totals.component";
 
 @Component({
-    selector: "app-pos",
-    templateUrl: "./pos.component.html",
-    styleUrls: ["./pos.component.scss"],
-    imports: [
-        NgSwitch,
-        NgStyle,
-        MatButton,
-        NgSwitchCase,
-        ProductGridComponent,
-        ProductListComponent,
-        NgIf,
-        MatFabButton,
-        MatIcon,
-        MatButtonToggle,
-        KeypadComponent,
-        TicketComponent,
-        TotalsComponent,
-        CommandsComponent,
-    ],
+  selector: "app-pos",
+  templateUrl: "./pos.component.html",
+  styleUrls: ["./pos.component.scss"],
+  imports: [
+    NgSwitch,
+    NgStyle,
+    MatButton,
+    NgSwitchCase,
+    ProductGridComponent,
+    ProductListComponent,
+    NgIf,
+    MatFabButton,
+    MatIcon,
+    MatButtonToggle,
+    KeypadComponent,
+    TicketComponent,
+    TotalsComponent,
+    CommandsComponent,
+  ],
 })
 export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   workspaceService = inject(WorkspaceService);

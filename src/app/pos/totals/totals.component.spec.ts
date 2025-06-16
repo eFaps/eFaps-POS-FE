@@ -41,11 +41,16 @@ describe("TotalsComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [BrowserAnimationsModule, RouterTestingModule, MatListModule, TotalsComponent,
+      imports: [
+        BrowserAnimationsModule,
+        RouterTestingModule,
+        MatListModule,
+        TotalsComponent,
         MockPipe(PosCurrencyPipe),
-        MockPipe(TranslatePipe)],
-    providers: [{ provide: PosService, useClass: PosServiceStub }],
-}).compileComponents();
+        MockPipe(TranslatePipe),
+      ],
+      providers: [{ provide: PosService, useClass: PosServiceStub }],
+    }).compileComponents();
   });
 
   beforeEach(() => {

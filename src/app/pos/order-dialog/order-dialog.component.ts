@@ -1,5 +1,13 @@
 import { Component, OnInit, inject } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from "@angular/material/dialog";
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
+} from "@angular/material/dialog";
 import {
   PrintService,
   WorkspaceFlag,
@@ -7,24 +15,24 @@ import {
   hasFlag,
 } from "@efaps/pos-library";
 
-import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
 import { CdkScrollable } from "@angular/cdk/scrolling";
 import { MatButton } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
+import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
 
 @Component({
-    selector: "app-order-dialog",
-    templateUrl: "./order-dialog.component.html",
-    styleUrls: ["./order-dialog.component.scss"],
-    imports: [
-        MatDialogTitle,
-        CdkScrollable,
-        MatDialogContent,
-        MatDialogActions,
-        MatButton,
-        MatDialogClose,
-        MatIcon,
-    ],
+  selector: "app-order-dialog",
+  templateUrl: "./order-dialog.component.html",
+  styleUrls: ["./order-dialog.component.scss"],
+  imports: [
+    MatDialogTitle,
+    CdkScrollable,
+    MatDialogContent,
+    MatDialogActions,
+    MatButton,
+    MatDialogClose,
+    MatIcon,
+  ],
 })
 export class OrderDialogComponent implements OnInit {
   private workspaceService = inject(WorkspaceService);

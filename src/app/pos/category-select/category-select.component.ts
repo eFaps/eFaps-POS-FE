@@ -1,13 +1,13 @@
 import { Component, OnInit, inject } from "@angular/core";
+import { MatButton } from "@angular/material/button";
 import { MatDialogRef } from "@angular/material/dialog";
 import { Category, ProductService } from "@efaps/pos-library";
-import { MatButton } from "@angular/material/button";
 
 @Component({
-    selector: "app-category-select",
-    templateUrl: "./category-select.component.html",
-    styleUrls: ["./category-select.component.scss"],
-    imports: [MatButton],
+  selector: "app-category-select",
+  templateUrl: "./category-select.component.html",
+  styleUrls: ["./category-select.component.scss"],
+  imports: [MatButton],
 })
 export class CategorySelectComponent implements OnInit {
   private productService = inject(ProductService);

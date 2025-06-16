@@ -1,26 +1,41 @@
+import { NgClass } from "@angular/common";
 import { Component, Input, inject, input } from "@angular/core";
+import { MatBadge } from "@angular/material/badge";
+import {
+  MatCard,
+  MatCardContent,
+  MatCardHeader,
+  MatCardImage,
+  MatCardTitle,
+} from "@angular/material/card";
 import { MatDialog } from "@angular/material/dialog";
-import { Currency, InventoryEntry, InventoryService, PosService, Product, ProductService, WorkspaceService, PosLibraryModule } from "@efaps/pos-library";
+import {
+  Currency,
+  InventoryEntry,
+  InventoryService,
+  PosLibraryModule,
+  PosService,
+  Product,
+  ProductService,
+  WorkspaceService,
+} from "@efaps/pos-library";
 import { KeypadService, PosSyncService } from "src/app/services";
 import { AbstractProductSelector } from "../../abstract-product-selector";
-import { NgClass } from "@angular/common";
-import { MatCard, MatCardHeader, MatCardTitle, MatCardImage, MatCardContent } from "@angular/material/card";
-import { MatBadge } from "@angular/material/badge";
 
 @Component({
-    selector: "app-products-element",
-    templateUrl: "./products-element.component.html",
-    styleUrls: ["./products-element.component.scss"],
-    imports: [
-        NgClass,
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatBadge,
-        MatCardImage,
-        MatCardContent,
-        PosLibraryModule,
-    ],
+  selector: "app-products-element",
+  templateUrl: "./products-element.component.html",
+  styleUrls: ["./products-element.component.scss"],
+  imports: [
+    NgClass,
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatBadge,
+    MatCardImage,
+    MatCardContent,
+    PosLibraryModule,
+  ],
 })
 export class ProductsElementComponent extends AbstractProductSelector {
   readonly products = input<Product[]>([]);

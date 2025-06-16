@@ -4,12 +4,50 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTabGroup } from "@angular/material/tabs";
 import { Router } from "@angular/router";
 import { LocalStorage } from "@efaps/ngx-store";
-import { Balance, BalanceService, ConfigService, Contact, ContactService, DocStatus, Document, DocumentService, DocumentType, Employee, EmployeeRelationType, EmployeeService, IdentificationType, Invoice, Payment, PaymentService, PaymentType, PrintService, Receipt, Ticket, WorkspaceFlag, WorkspaceService, hasFlag, PosLibraryModule } from "@efaps/pos-library";
-import { TranslateService, TranslatePipe } from "@ngx-translate/core";
+import {
+  Balance,
+  BalanceService,
+  ConfigService,
+  Contact,
+  ContactService,
+  DocStatus,
+  Document,
+  DocumentService,
+  DocumentType,
+  Employee,
+  EmployeeRelationType,
+  EmployeeService,
+  IdentificationType,
+  Invoice,
+  Payment,
+  PaymentService,
+  PaymentType,
+  PosLibraryModule,
+  PrintService,
+  Receipt,
+  Ticket,
+  WorkspaceFlag,
+  WorkspaceService,
+  hasFlag,
+} from "@efaps/pos-library";
+import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { PartialObserver, Subject, Subscription, debounceTime } from "rxjs";
 
+import { NgClass } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {
+  MatButton,
+  MatFabButton,
+  MatIconButton,
+} from "@angular/material/button";
+import { MatButtonToggle } from "@angular/material/button-toggle";
+import { MatLine } from "@angular/material/grid-list";
+import { MatIcon } from "@angular/material/icon";
+import { MatDivider, MatList, MatListItem } from "@angular/material/list";
+import { MatRadioButton, MatRadioGroup } from "@angular/material/radio";
 import { PAYABLE_ACTIVATENOTE, PAYMENT_REQUIRE } from "src/app/util/keys";
 import { ConfirmDialogComponent } from "../shared/confirm-dialog/confirm-dialog.component";
+import { ContactComponent } from "../shared/contact/contact.component";
 import { DocumentComponent } from "../shared/document/document.component";
 import {
   EmployeeDialogComponent,
@@ -18,43 +56,34 @@ import {
 import { NoteDialogComponent } from "../shared/note-dialog/note-dialog.component";
 import { PrintDialogComponent } from "../shared/print-dialog/print-dialog.component";
 import { DiscountComponent } from "./discount/discount.component";
-import { SuccessDialogComponent } from "./success-dialog/success-dialog.component";
-import { ContactComponent } from "../shared/contact/contact.component";
-import { MatRadioGroup, MatRadioButton } from "@angular/material/radio";
-import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-import { MatButtonToggle } from "@angular/material/button-toggle";
-import { MatFabButton, MatIconButton, MatButton } from "@angular/material/button";
-import { MatIcon } from "@angular/material/icon";
 import { PaymentTypeComponent } from "./payment-type/payment-type.component";
-import { MatDivider, MatList, MatListItem } from "@angular/material/list";
-import { MatLine } from "@angular/material/grid-list";
-import { NgClass } from "@angular/common";
+import { SuccessDialogComponent } from "./success-dialog/success-dialog.component";
 
 @Component({
-    selector: "app-payment",
-    templateUrl: "./payment.component.html",
-    styleUrls: ["./payment.component.scss"],
-    imports: [
-        ContactComponent,
-        MatRadioGroup,
-        ReactiveFormsModule,
-        FormsModule,
-        MatRadioButton,
-        MatButtonToggle,
-        DocumentComponent,
-        MatFabButton,
-        MatIcon,
-        PaymentTypeComponent,
-        MatDivider,
-        MatList,
-        MatListItem,
-        MatLine,
-        MatIconButton,
-        NgClass,
-        MatButton,
-        PosLibraryModule,
-        TranslatePipe,
-    ],
+  selector: "app-payment",
+  templateUrl: "./payment.component.html",
+  styleUrls: ["./payment.component.scss"],
+  imports: [
+    ContactComponent,
+    MatRadioGroup,
+    ReactiveFormsModule,
+    FormsModule,
+    MatRadioButton,
+    MatButtonToggle,
+    DocumentComponent,
+    MatFabButton,
+    MatIcon,
+    PaymentTypeComponent,
+    MatDivider,
+    MatList,
+    MatListItem,
+    MatLine,
+    MatIconButton,
+    NgClass,
+    MatButton,
+    PosLibraryModule,
+    TranslatePipe,
+  ],
 })
 export class PaymentComponent implements OnInit, OnDestroy {
   private router = inject(Router);
