@@ -1,6 +1,6 @@
 <mat-table [dataSource]="dataSource">
   <ng-container matColumnDef="cmdRight">
-    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-header-cell *matHeaderCellDef />
     <mat-cell *matCellDef="let item">
       <button (click)="move(item)" mat-stroked-button>
         <mat-icon  class="posIcon-36">fast_rewind</mat-icon>
@@ -28,13 +28,13 @@
     <mat-cell *matCellDef="let item"> {{item.crossPrice | posCurrency:order.currency }} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="cmdLeft">
-    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-header-cell *matHeaderCellDef />
     <mat-cell *matCellDef="let item">
       <button (click)="move(item)" mat-stroked-button>
         <mat-icon class="posIcon-36">fast_forward</mat-icon>
       </button>
     </mat-cell>
   </ng-container>
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  <mat-header-row *matHeaderRowDef="displayedColumns" />
+  <mat-row *matRowDef="let row; columns: displayedColumns;" />
 </mat-table>
