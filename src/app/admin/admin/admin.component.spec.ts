@@ -55,15 +55,14 @@ describe("AdminComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MatSlideToggleModule],
-      providers: [
+    imports: [ReactiveFormsModule, MatSlideToggleModule, AdminComponent, MockPipe(TranslatePipe)],
+    providers: [
         { provide: AdminService, useClass: AdminServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-      ],
-      declarations: [AdminComponent, MockPipe(TranslatePipe)],
-    }).compileComponents();
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {
