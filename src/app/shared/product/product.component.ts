@@ -1,11 +1,12 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, OnInit, inject, signal } from "@angular/core";
 import { MatButton } from "@angular/material/button";
 import {
   MAT_DIALOG_DATA,
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
+  MatDialogModule,
   MatDialogTitle,
 } from "@angular/material/dialog";
 import { MatLine } from "@angular/material/grid-list";
@@ -41,7 +42,7 @@ import {
     MatDialogActions,
     MatButton,
     MatDialogClose,
-    PosLibraryModule,
+    PosLibraryModule
   ],
 })
 export class ProductComponent implements OnInit {
@@ -51,7 +52,7 @@ export class ProductComponent implements OnInit {
   private inventoryService = inject(InventoryService);
   private data = inject(MAT_DIALOG_DATA);
 
-  product!: Product;
+  product = signal<Product|undefined>(undefined);
   currentCurrency: Currency = Currency.PEN;
   categories: string[] = [];
   loading: boolean = true;
@@ -66,7 +67,7 @@ export class ProductComponent implements OnInit {
       (_data) => (this.currentCurrency = _data),
     );
     this.productService.getProduct(this.data.oid).subscribe((product) => {
-      this.product = product;
+      this.product.set(product);
       this.isStockable = ProductService.isStockable(product);
       this.evalCategories(product.categories);
       this.loading = false;

@@ -1,4 +1,6 @@
-<h2 mat-dialog-title>{{product.sku}} - {{product.description}}</h2>
+@if (!loading) {
+<h2 mat-dialog-title>{{product().sku}} - {{product().description}}</h2>
+}
 <mat-dialog-content>
   <div>
     @if (loading) {
@@ -6,30 +8,30 @@
     }
     <div>
       @if (!loading) {
-      <img [src]="product.imageOid! | secure" alt="{{product.description}}">
+      <img [src]="product().imageOid! | secure" alt="{{product().description}}">
       }
     </div>
     <div>
       <p>
         <span class="property">Codigo:</span>@if (!loading) {
-        <span>{{product.sku}}</span>
+        <span>{{product().sku}}</span>
         }
       </p>
       <p>
         <span class="property">Descripcion:</span>@if (!loading) {
-        <span>{{product.description}}</span>
+        <span>{{product().description}}</span>
         }
       </p>
       <p>
         <span class="property">Precio Neto:</span>@if (!loading) {
-        <span> {{ product.netPrice |
+        <span> {{ product().netPrice |
           posCurrency:currentCurrency}}</span>
         }
 
       </p>
       <p>
         <span class="property">Precio Bruto:</span>@if (!loading) {
-        <span>{{ product.crossPrice |
+        <span>{{ product().crossPrice |
           posCurrency:currentCurrency}}</span>
         }
       </p>
@@ -43,11 +45,11 @@
           }
         </mat-list>
       </p>
-      @if (product.barcodes.length > 0) {
+      @if (product()?.barcodes.length > 0) {
       <p>
         <span class="property">Codigo de Barras:</span>
         <mat-list dense>
-          @for (barcode of product.barcodes; track barcode) {
+          @for (barcode of product().barcodes; track barcode) {
           <mat-list-item>
             <span matLine>{{barcode.type}} - {{barcode.code}}</span>
           </mat-list-item>
