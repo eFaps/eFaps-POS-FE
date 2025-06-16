@@ -66,9 +66,9 @@ export class BalanceDocumentListComponent {
     this.dataSource.sort = this.sort;
   }
 
-  show(_payable: PayableHead) {
+  show(payable: PayableHead) {
     this.dialog.open(DocumentDialogComponent, {
-      data: _payable,
+      data: payable,
       maxHeight: "95vh",
     });
   }

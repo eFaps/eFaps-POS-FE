@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>{{title}}</h2>
 <div class="wrapper" mat-dialog-content>
-  @if (!noDoc) {
-  <app-document [document]='data' [permitPrint]='true' [permitCreditNote]='true' [showContact]='true' [hideTitle]='true'></app-document>
+  @if (document()) {
+  <app-document [document]='document()' [permitPrint]='true' [permitCreditNote]='true' [showContact]='true' [hideTitle]='true'></app-document>
   }
 </div>
