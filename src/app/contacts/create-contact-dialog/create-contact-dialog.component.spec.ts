@@ -60,11 +60,6 @@ describe("CreateContactDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        CreateContactDialogComponent,
-        MockDirective(VirtKeyboardDirective),
-        MockPipe(TranslatePipe),
-      ],
       imports: [
         BrowserAnimationsModule,
         ReactiveFormsModule,
@@ -80,6 +75,9 @@ describe("CreateContactDialogComponent", () => {
             useFactory: TranslateLoaderFactory,
           },
         }),
+        CreateContactDialogComponent,
+        MockDirective(VirtKeyboardDirective),
+        MockPipe(TranslatePipe),
       ],
       providers: [
         ConfigService,

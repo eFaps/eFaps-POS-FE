@@ -34,7 +34,8 @@ import { CreateContactDialogComponent } from "./create-contact-dialog/create-con
     ReactiveFormsModule,
     ServicesModule,
     SharedModule,
+    ContactTableComponent,
+    CreateContactDialogComponent,
   ],
-  declarations: [ContactTableComponent, CreateContactDialogComponent],
 })
 export class ContactsModule {}

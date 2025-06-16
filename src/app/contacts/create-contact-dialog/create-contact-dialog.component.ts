@@ -1,6 +1,18 @@
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import {
+  MAT_DIALOG_DATA,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
+} from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { LocalStorage } from "@efaps/ngx-store";
 import {
@@ -14,14 +26,39 @@ import {
 } from "@efaps/pos-library";
 import { EnumValues } from "enum-values";
 
+import { CdkScrollable } from "@angular/cdk/scrolling";
 import { HttpContext } from "@angular/common/http";
+import { MatOption } from "@angular/material/autocomplete";
+import { MatButton } from "@angular/material/button";
+import { MatFormField, MatLabel } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import { MatSelect } from "@angular/material/select";
+import { TranslatePipe } from "@ngx-translate/core";
+import { ServicesModule } from "../../services/services.module";
+import { SharedModule } from "../../shared/shared.module";
 import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
 
 @Component({
   selector: "app-create-contact-dialog",
   templateUrl: "./create-contact-dialog.component.html",
   styleUrls: ["./create-contact-dialog.component.scss"],
-  standalone: false,
+  imports: [
+    MatDialogTitle,
+    CdkScrollable,
+    MatDialogContent,
+    ReactiveFormsModule,
+    MatFormField,
+    MatSelect,
+    MatOption,
+    SharedModule,
+    MatLabel,
+    MatInput,
+    ServicesModule,
+    MatDialogActions,
+    MatButton,
+    MatDialogClose,
+    TranslatePipe,
+  ],
 })
 export class CreateContactDialogComponent implements OnInit, OnDestroy {
   dialogRef = inject<MatDialogRef<CreateContactDialogComponent>>(MatDialogRef);

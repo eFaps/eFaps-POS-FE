@@ -66,7 +66,6 @@ describe("ContactTableComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MockPipe(TranslatePipe), ContactTableComponent],
       imports: [
         BrowserAnimationsModule,
         ReactiveFormsModule,
@@ -76,6 +75,8 @@ describe("ContactTableComponent", () => {
         MatInputModule,
         MatPaginatorModule,
         MatSortModule,
+        MockPipe(TranslatePipe),
+        ContactTableComponent,
       ],
       providers: [
         { provide: ConfigService, useClass: ConfigServiceStub },

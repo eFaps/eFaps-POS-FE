@@ -6,11 +6,23 @@ import {
   ViewChild,
   inject,
 } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
-import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
+import { MatSort, MatSortHeader } from "@angular/material/sort";
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+  MatTableDataSource,
+} from "@angular/material/table";
 import {
   ConfigService,
   Contact,
@@ -20,6 +32,10 @@ import {
 import { Subscription, merge } from "rxjs";
 import { debounceTime, tap } from "rxjs/operators";
 
+import { MatButton } from "@angular/material/button";
+import { MatFormField } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import { TranslatePipe } from "@ngx-translate/core";
 import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
 import { CreateContactDialogComponent } from "../create-contact-dialog/create-contact-dialog.component";
 
@@ -27,7 +43,26 @@ import { CreateContactDialogComponent } from "../create-contact-dialog/create-co
   selector: "app-contact-table",
   templateUrl: "./contact-table.component.html",
   styleUrls: ["./contact-table.component.scss"],
-  standalone: false,
+  imports: [
+    ReactiveFormsModule,
+    MatFormField,
+    MatInput,
+    MatButton,
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatSortHeader,
+    MatCellDef,
+    MatCell,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatPaginator,
+    TranslatePipe,
+  ],
 })
 export class ContactTableComponent implements OnInit, OnDestroy {
   private configService = inject(ConfigService);
