@@ -11,8 +11,8 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 
-import { ServicesModule } from "../services/services.module";
-import { SharedModule } from "../shared/shared.module";
+
+
 import { ContactTableComponent } from "./contact-table/contact-table.component";
 import { ContactsRoutingModule } from "./contacts-routing.module";
 import { CreateContactDialogComponent } from "./create-contact-dialog/create-contact-dialog.component";
@@ -32,10 +32,8 @@ import { CreateContactDialogComponent } from "./create-contact-dialog/create-con
     MatTableModule,
     MatPaginatorModule,
     ReactiveFormsModule,
-    ServicesModule,
-    SharedModule,
     ContactTableComponent,
     CreateContactDialogComponent,
-  ],
+],
 })
 export class ContactsModule {}

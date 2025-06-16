@@ -10,28 +10,26 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
-import { ServicesModule } from "../services/services.module";
-import { SharedModule } from "../shared/shared.module";
+
+
 import { ProductsRoutingModule } from "./products-routing.module";
 import { ProducttableComponent } from "./producttable/producttable.component";
 
 @NgModule({
     imports: [
-        CommonModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatSortModule,
-        MatTableModule,
-        ProductsRoutingModule,
-        ReactiveFormsModule,
-        ServicesModule,
-        SharedModule,
-        MatPaginatorModule,
-        MatSlideToggleModule,
-        MatDialogModule,
-        ProducttableComponent,
-    ],
+    CommonModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatSortModule,
+    MatTableModule,
+    ProductsRoutingModule,
+    ReactiveFormsModule,
+    MatPaginatorModule,
+    MatSlideToggleModule,
+    MatDialogModule,
+    ProducttableComponent,
+],
 })
 export class ProductsModule {}

@@ -10,7 +10,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatTooltipModule } from "@angular/material/tooltip";
 
-import { SharedModule } from "../shared/shared.module";
+
 import { BaseSpotPickerComponent } from "./base-spot-picker/base-spot-picker.component";
 import { ExtendedSpotPickerComponent } from "./extended-spot-picker/extended-spot-picker.component";
 import { SelectOrderDialogComponent } from "./select-order-dialog/select-order-dialog.component";
@@ -21,25 +21,24 @@ import { SpotsComponent } from "./spots/spots.component";
 
 @NgModule({
     imports: [
-        CommonModule,
-        DragDropModule,
-        MatButtonModule,
-        MatDialogModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatTabsModule,
-        MatTooltipModule,
-        ReactiveFormsModule,
-        SharedModule,
-        SpotsRoutingModule,
-        BaseSpotPickerComponent,
-        ExtendedSpotPickerComponent,
-        SelectOrderDialogComponent,
-        SplitDialogComponent,
-        SpotDialogComponent,
-        SpotsComponent,
-    ],
+    CommonModule,
+    DragDropModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatTabsModule,
+    MatTooltipModule,
+    ReactiveFormsModule,
+    SpotsRoutingModule,
+    BaseSpotPickerComponent,
+    ExtendedSpotPickerComponent,
+    SelectOrderDialogComponent,
+    SplitDialogComponent,
+    SpotDialogComponent,
+    SpotsComponent,
+],
     providers: [],
 })
 export class SpotsModule {}

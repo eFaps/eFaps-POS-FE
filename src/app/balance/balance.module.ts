@@ -12,7 +12,7 @@ import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
 import { PosLibraryModule } from "@efaps/pos-library";
 
-import { SharedModule } from "../shared/shared.module";
+
 import { BalanceDocumentListComponent } from "./balance-document-list/balance-document-list.component";
 import { BalanceListComponent } from "./balance-list/balance-list.component";
 import { BalancePaymentListComponent } from "./balance-payment-list/balance-payment-list.component";
@@ -40,7 +40,6 @@ import { OpeningBalanceDialogComponent } from "./opening-balance-dialog/opening-
     MatTabsModule,
     PosLibraryModule,
     ReactiveFormsModule,
-    SharedModule,
     BalanceComponent,
     BalanceDocumentListComponent,
     BalancePaymentListComponent,
@@ -51,6 +50,6 @@ import { OpeningBalanceDialogComponent } from "./opening-balance-dialog/opening-
     DocumentListComponent,
     BalanceSummaryDialogComponent,
     OpeningBalanceDialogComponent,
-  ],
+],
 })
 export class BalanceModule {}

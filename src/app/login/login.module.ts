@@ -10,25 +10,24 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { AngularSvgIconModule } from "angular-svg-icon";
 
 import { MatButtonModule } from "@angular/material/button";
-import { ServicesModule } from "../services/services.module";
+
 import { LoginRoutingModule } from "./login-routing.module";
 import { LoginComponent } from "./login.component";
 
 @NgModule({
     imports: [
-        AngularSvgIconModule,
-        CommonModule,
-        LoginRoutingModule,
-        MatButtonToggleModule,
-        MatFormFieldModule,
-        MatSlideToggleModule,
-        MatSnackBarModule,
-        MatInputModule,
-        MatButtonModule,
-        MatCardModule,
-        ReactiveFormsModule,
-        ServicesModule,
-        LoginComponent,
-    ],
+    AngularSvgIconModule,
+    CommonModule,
+    LoginRoutingModule,
+    MatButtonToggleModule,
+    MatFormFieldModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    LoginComponent,
+],
 })
 export class LoginModule {}

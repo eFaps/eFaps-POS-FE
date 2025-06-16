@@ -16,7 +16,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
-import { SharedModule } from "../shared/shared.module";
+
 import { CloseStocktakingDialogComponent } from "./close-stocktaking-dialog/close-stocktaking-dialog.component";
 import { CreateStocktakingDialogComponent } from "./create-stocktaking-dialog/create-stocktaking-dialog.component";
 import { StocktakingEntryTableComponent } from "./stocktaking-entry-table/stocktaking-entry-table.component";
@@ -27,30 +27,29 @@ import { StocktakingComponent } from "./stocktaking/stocktaking.component";
 
 @NgModule({
     imports: [
-        CommonModule,
-        StocktakingRoutingModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatAutocompleteModule,
-        ReactiveFormsModule,
-        MatOptionModule,
-        MatIconModule,
-        MatButtonModule,
-        MatSelectModule,
-        MatTableModule,
-        SharedModule,
-        MatDialogModule,
-        MatSnackBarModule,
-        MatPaginatorModule,
-        MatSortModule,
-        MatSlideToggleModule,
-        MatProgressSpinnerModule,
-        StocktakingComponent,
-        StocktakingInitComponent,
-        StocktakingTableComponent,
-        CreateStocktakingDialogComponent,
-        StocktakingEntryTableComponent,
-        CloseStocktakingDialogComponent,
-    ],
+    CommonModule,
+    StocktakingRoutingModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    MatOptionModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatTableModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSlideToggleModule,
+    MatProgressSpinnerModule,
+    StocktakingComponent,
+    StocktakingInitComponent,
+    StocktakingTableComponent,
+    CreateStocktakingDialogComponent,
+    StocktakingEntryTableComponent,
+    CloseStocktakingDialogComponent,
+],
 })
 export class StocktakingModule {}

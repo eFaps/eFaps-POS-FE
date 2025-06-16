@@ -22,7 +22,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSelectModule } from "@angular/material/select";
 import { MatTooltipModule } from "@angular/material/tooltip";
-import { ServicesModule } from "../services/services.module";
+
 import { ConfirmDialogComponent } from "./confirm-dialog/confirm-dialog.component";
 import { ContactComponent } from "./contact/contact.component";
 import { DNIQueryComponent } from "./dniquery/dniquery.component";
@@ -42,57 +42,4 @@ export function TranslateLoaderFactory(_httpClient: HttpClient) {
   return new TranslateHttpLoader(_httpClient, "./assets/i18n/");
 }
 
-@NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        MatAutocompleteModule,
-        MatButtonModule,
-        MatDialogModule,
-        MatFormFieldModule,
-        MatGridListModule,
-        MatTooltipModule,
-        MatIconModule,
-        MatInputModule,
-        MatKeyboardModule,
-        MatListModule,
-        MatPaginatorModule,
-        MatSlideToggleModule,
-        MatTableModule,
-        PosLibraryModule,
-        ReactiveFormsModule,
-        ServicesModule,
-        TranslateModule,
-        WebStorageModule,
-        MatProgressSpinnerModule,
-        MatSelectModule,
-        ConfirmDialogComponent,
-        ContactComponent,
-        DNIQueryComponent,
-        DocumentComponent,
-        ImageComponent,
-        KeypadComponent,
-        PrintDialogComponent,
-        PrintDisplayComponent,
-        ProductComponent,
-        TaxpayerQueryComponent,
-        TaxpayerResultComponent,
-        PartListRelationComponent,
-        EmployeeDialogComponent,
-        NoteDialogComponent,
-    ],
-    exports: [
-        ContactComponent,
-        DNIQueryComponent,
-        DocumentComponent,
-        KeypadComponent,
-        PosLibraryModule,
-        PrintDisplayComponent,
-        TaxpayerQueryComponent,
-        TaxpayerResultComponent,
-        TranslateModule,
-        WebStorageModule,
-        PartListRelationComponent,
-    ],
-})
-export class SharedModule {}
+

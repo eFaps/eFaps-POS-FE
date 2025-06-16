@@ -14,7 +14,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatTabsModule } from "@angular/material/tabs";
 
-import { SharedModule } from "../shared/shared.module";
+
 import { AutoComponent } from "./auto/auto.component";
 import { CardComponent } from "./card/card.component";
 import { CashComponent } from "./cash/cash.component";
@@ -27,32 +27,31 @@ import { SuccessDialogComponent } from "./success-dialog/success-dialog.componen
 
 @NgModule({
     imports: [
-        CommonModule,
-        FormsModule,
-        MatButtonModule,
-        MatButtonToggleModule,
-        MatDialogModule,
-        MatDividerModule,
-        MatFormFieldModule,
-        MatGridListModule,
-        MatIconModule,
-        MatInputModule,
-        MatInputModule,
-        MatListModule,
-        MatRadioModule,
-        MatTabsModule,
-        PaymentRoutingModule,
-        ReactiveFormsModule,
-        SharedModule,
-        MatProgressSpinnerModule,
-        AutoComponent,
-        CardComponent,
-        CashComponent,
-        DiscountComponent,
-        FreeComponent,
-        PaymentComponent,
-        PaymentTypeComponent,
-        SuccessDialogComponent,
-    ],
+    CommonModule,
+    FormsModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatInputModule,
+    MatListModule,
+    MatRadioModule,
+    MatTabsModule,
+    PaymentRoutingModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    AutoComponent,
+    CardComponent,
+    CashComponent,
+    DiscountComponent,
+    FreeComponent,
+    PaymentComponent,
+    PaymentTypeComponent,
+    SuccessDialogComponent,
+],
 })
 export class PaymentModule {}

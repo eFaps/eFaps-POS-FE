@@ -8,13 +8,14 @@ import {
 } from "@angular/material/dialog";
 import { DocumentService } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
-import { SharedModule } from "../../shared/shared.module";
+
+import { DocumentComponent } from "../../shared/document/document.component";
 
 @Component({
   selector: "app-document-dialog",
   templateUrl: "./document-dialog.component.html",
   styleUrls: ["./document-dialog.component.scss"],
-  imports: [MatDialogTitle, CdkScrollable, MatDialogContent, SharedModule],
+  imports: [MatDialogTitle, CdkScrollable, MatDialogContent, DocumentComponent],
 })
 export class DocumentDialogComponent implements OnInit {
   private documentService = inject(DocumentService);

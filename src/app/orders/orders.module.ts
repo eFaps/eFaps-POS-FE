@@ -11,7 +11,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 
-import { SharedModule } from "../shared/shared.module";
+
 import { OrderTableComponent } from "./order-table/order-table.component";
 import { OrdersRoutingModule } from "./orders-routing.module";
 import { ReassignDialogComponent } from "./reassign-dialog/reassign-dialog.component";
@@ -20,23 +20,22 @@ import { SplitOrderDialogComponent } from "./split-order-dialog/split-order-dial
 
 @NgModule({
     imports: [
-        CommonModule,
-        MatButtonModule,
-        MatDialogModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatPaginatorModule,
-        MatSlideToggleModule,
-        MatSortModule,
-        MatTableModule,
-        OrdersRoutingModule,
-        ReactiveFormsModule,
-        SharedModule,
-        OrderTableComponent,
-        ReassignDialogComponent,
-        SplitOrderDialogComponent,
-        ReassignItemComponent,
-    ],
+    CommonModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatSlideToggleModule,
+    MatSortModule,
+    MatTableModule,
+    OrdersRoutingModule,
+    ReactiveFormsModule,
+    OrderTableComponent,
+    ReassignDialogComponent,
+    SplitOrderDialogComponent,
+    ReassignItemComponent,
+],
 })
 export class OrdersModule {}

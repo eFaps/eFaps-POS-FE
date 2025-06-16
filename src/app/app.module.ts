@@ -33,7 +33,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ErrorInterceptor, SameHeightDirective } from "./services/index";
 import { PERSISTENCE } from "./services/local-storage-persistence";
-import { SharedModule, TranslateLoaderFactory } from "./shared/shared.module";
+import { TranslateLoaderFactory } from "./shared/shared.module";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
 
 @NgModule({
@@ -41,40 +41,39 @@ import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
     declarations: [AppComponent],
     bootstrap: [AppComponent],
     imports: [
-        BrowserAnimationsModule,
-        FormsModule,
-        ReactiveFormsModule,
-        LazyElementsModule,
-        AngularSvgIconModule.forRoot(),
-        AppRoutingModule,
-        SharedModule,
-        MatButtonModule,
-        MatGridListModule,
-        MatIconModule,
-        MatListModule,
-        MatMenuModule,
-        MatProgressBarModule,
-        MatSidenavModule,
-        MatSnackBarModule,
-        MatToolbarModule,
-        MatTooltipModule,
-        PosLibraryModule.forRoot({
-            baseUrl: "/api",
-            socketUrl: "/socket",
-            persistence: PERSISTENCE,
-        }),
-        HotkeyModule.forRoot({
-            cheatSheetDescription: "Presentar",
-        }),
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: TranslateLoaderFactory,
-                deps: [HttpClient],
-            },
-        }),
-        SameHeightDirective, ThemePickerComponent,
-    ],
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    LazyElementsModule,
+    AngularSvgIconModule.forRoot(),
+    AppRoutingModule,
+    MatButtonModule,
+    MatGridListModule,
+    MatIconModule,
+    MatListModule,
+    MatMenuModule,
+    MatProgressBarModule,
+    MatSidenavModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    PosLibraryModule.forRoot({
+        baseUrl: "/api",
+        socketUrl: "/socket",
+        persistence: PERSISTENCE,
+    }),
+    HotkeyModule.forRoot({
+        cheatSheetDescription: "Presentar",
+    }),
+    TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: TranslateLoaderFactory,
+            deps: [HttpClient],
+        },
+    }),
+    SameHeightDirective, ThemePickerComponent,
+],
     providers: [
         provideZonelessChangeDetection(),
         {
