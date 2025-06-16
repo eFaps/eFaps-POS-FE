@@ -6,7 +6,7 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, provideZonelessChangeDetection } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatGridListModule } from "@angular/material/grid-list";
@@ -31,6 +31,8 @@ import { ErrorInterceptor, SameHeightDirective } from "./services/index";
 import { PERSISTENCE } from "./services/local-storage-persistence";
 import { SharedModule, TranslateLoaderFactory } from "./shared/shared.module";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
+import { platformBrowser } from "@angular/platform-browser";
+
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -71,6 +73,7 @@ import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
     }),
   ],
   providers: [
+    provideZonelessChangeDetection(),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,

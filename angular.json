@@ -24,7 +24,6 @@
             "index": "src/index.html",
             "tsConfig": "tsconfig.app.json",
             "polyfills": [
-              "zone.js",
               "@angular/localize/init"
             ],
             "preserveSymlinks": true,
