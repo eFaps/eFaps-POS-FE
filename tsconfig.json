@@ -25,6 +25,7 @@
     "useDefineForClassFields": false,
     "skipLibCheck": true
   },
+  "types": ["@angular/localize"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
