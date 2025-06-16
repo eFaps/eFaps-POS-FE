@@ -20,7 +20,7 @@
       </button>
       }
 
-      <button class="remark-btn" (click)="toggleRemarkMode()" mat-fab color="{{remarkMode ? 'accent' : 'primary' }}">
+      <button class="remark-btn" (click)="toggleRemarkMode()" mat-fab [class.selected]="remarkMode">
         <mat-icon>description</mat-icon>
       </button>
       @if(this.workspaceService.getPosLayout() === PosLayout.BOTH) {

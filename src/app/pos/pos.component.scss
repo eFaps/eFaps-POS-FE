@@ -75,6 +75,9 @@ app-totals {
     & .posIcon-36 {
       position: relative;
     }
+    &.selected {
+      color: red;
+    }
   }
 }
 
