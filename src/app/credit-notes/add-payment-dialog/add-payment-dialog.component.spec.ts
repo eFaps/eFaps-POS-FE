@@ -21,7 +21,7 @@ describe("AddPaymentDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         ReactiveFormsModule,
         MatSelectModule,
         MatFormFieldModule,
@@ -29,18 +29,18 @@ describe("AddPaymentDialogComponent", () => {
         NoopAnimationsModule,
         MatIconModule,
         MatDialogModule,
-      ],
-      declarations: [AddPaymentDialogComponent, MockPipe(TranslatePipe)],
-      providers: [
+        AddPaymentDialogComponent, MockPipe(TranslatePipe),
+    ],
+    providers: [
         { provide: MatDialogRef, useValue: {} },
         {
-          provide: MAT_DIALOG_DATA,
-          useValue: {
-            order: "",
-          },
+            provide: MAT_DIALOG_DATA,
+            useValue: {
+                order: "",
+            },
         },
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

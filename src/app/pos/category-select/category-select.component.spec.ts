@@ -21,15 +21,14 @@ describe("CategorySelectComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CategorySelectComponent],
-      imports: [],
-      providers: [
+    imports: [CategorySelectComponent],
+    providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
         { provide: ProductService, useClass: ProductServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

@@ -1,12 +1,28 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { MatTableDataSource } from "@angular/material/table";
-import { DocItem, Order } from "@efaps/pos-library";
+import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
+import { DocItem, Order, PosLibraryModule } from "@efaps/pos-library";
+import { MatButton } from "@angular/material/button";
+import { MatIcon } from "@angular/material/icon";
 
 @Component({
-  selector: "app-reassign-item",
-  templateUrl: "./reassign-item.component.html",
-  styleUrls: ["./reassign-item.component.scss"],
-  standalone: false,
+    selector: "app-reassign-item",
+    templateUrl: "./reassign-item.component.html",
+    styleUrls: ["./reassign-item.component.scss"],
+    imports: [
+        MatTable,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatCellDef,
+        MatCell,
+        MatButton,
+        MatIcon,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+        PosLibraryModule,
+    ],
 })
 export class ReassignItemComponent implements OnInit {
   private _position: "LEFT" | "RIGHT" = "LEFT";

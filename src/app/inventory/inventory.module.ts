@@ -11,15 +11,15 @@ import { InventoryTableComponent } from "./inventory-table/inventory-table.compo
 import { InventoryComponent } from "./inventory/inventory.component";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    InventoryRoutingModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-  ],
-  declarations: [InventoryComponent, InventoryTableComponent],
+    imports: [
+        CommonModule,
+        InventoryRoutingModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSortModule,
+        MatTableModule,
+        MatTabsModule,
+        InventoryComponent, InventoryTableComponent,
+    ],
 })
 export class InventoryModule {}

@@ -6,26 +6,15 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
-import { MatSlideToggleChange } from "@angular/material/slide-toggle";
-import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
+import { MatSlideToggleChange, MatSlideToggle } from "@angular/material/slide-toggle";
+import { MatSort, MatSortHeader } from "@angular/material/sort";
+import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
 import { Router } from "@angular/router";
 import { LocalStorage } from "@efaps/ngx-store";
-import {
-  AuthService,
-  ContactService,
-  DocStatus,
-  DocumentService,
-  Order,
-  OrderWrapper,
-  PaymentService,
-  Permission,
-  PosService,
-  WorkspaceService,
-} from "@efaps/pos-library";
+import { AuthService, ContactService, DocStatus, DocumentService, Order, OrderWrapper, PaymentService, Permission, PosService, WorkspaceService, PosLibraryModule } from "@efaps/pos-library";
 
 import { Subscription } from "rxjs";
 import { debounceTime, map } from "rxjs/operators";
@@ -33,12 +22,39 @@ import { debounceTime, map } from "rxjs/operators";
 import { ConfirmDialogComponent } from "../../shared/confirm-dialog/confirm-dialog.component";
 import { ReassignDialogComponent } from "../reassign-dialog/reassign-dialog.component";
 import { SplitOrderDialogComponent } from "../split-order-dialog/split-order-dialog.component";
+import { MatFormField } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import { MatIconButton } from "@angular/material/button";
+import { MatIcon } from "@angular/material/icon";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
-  selector: "app-order-table",
-  templateUrl: "./order-table.component.html",
-  styleUrls: ["./order-table.component.scss"],
-  standalone: false,
+    selector: "app-order-table",
+    templateUrl: "./order-table.component.html",
+    styleUrls: ["./order-table.component.scss"],
+    imports: [
+        ReactiveFormsModule,
+        MatFormField,
+        MatInput,
+        MatSlideToggle,
+        MatTable,
+        MatSort,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatSortHeader,
+        MatCellDef,
+        MatCell,
+        MatIconButton,
+        MatIcon,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+        MatPaginator,
+        PosLibraryModule,
+        TranslatePipe,
+    ],
 })
 export class OrderTableComponent implements OnInit, OnDestroy {
   private router = inject(Router);

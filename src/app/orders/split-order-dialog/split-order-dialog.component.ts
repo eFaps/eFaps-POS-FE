@@ -1,13 +1,32 @@
 import { Component, OnInit, inject } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { MatTableDataSource } from "@angular/material/table";
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogContent, MatDialogActions } from "@angular/material/dialog";
+import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
 import { DocItem, DocStatus, Order, PosService } from "@efaps/pos-library";
+import { CdkScrollable } from "@angular/cdk/scrolling";
+import { MatButton } from "@angular/material/button";
+import { MatIcon } from "@angular/material/icon";
 
 @Component({
-  selector: "app-split-order-dialog",
-  templateUrl: "./split-order-dialog.component.html",
-  styleUrls: ["./split-order-dialog.component.scss"],
-  standalone: false,
+    selector: "app-split-order-dialog",
+    templateUrl: "./split-order-dialog.component.html",
+    styleUrls: ["./split-order-dialog.component.scss"],
+    imports: [
+        CdkScrollable,
+        MatDialogContent,
+        MatTable,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatCellDef,
+        MatCell,
+        MatButton,
+        MatIcon,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+        MatDialogActions,
+    ],
 })
 export class SplitOrderDialogComponent implements OnInit {
   private posService = inject(PosService);

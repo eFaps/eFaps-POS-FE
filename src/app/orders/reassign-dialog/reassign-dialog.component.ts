@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogContent, MatDialogActions } from "@angular/material/dialog";
 import {
   CalculatorService,
   DocItem,
@@ -10,12 +10,23 @@ import {
 import { Observable, Subscription, zip } from "rxjs";
 
 import { ReassignItemComponent } from "../reassign-item/reassign-item.component";
+import { CdkScrollable } from "@angular/cdk/scrolling";
+import { MatFabButton, MatButton } from "@angular/material/button";
+import { MatIcon } from "@angular/material/icon";
 
 @Component({
-  selector: "app-reassign-dialog",
-  templateUrl: "./reassign-dialog.component.html",
-  styleUrls: ["./reassign-dialog.component.scss"],
-  standalone: false,
+    selector: "app-reassign-dialog",
+    templateUrl: "./reassign-dialog.component.html",
+    styleUrls: ["./reassign-dialog.component.scss"],
+    imports: [
+        CdkScrollable,
+        MatDialogContent,
+        MatFabButton,
+        ReassignItemComponent,
+        MatDialogActions,
+        MatButton,
+        MatIcon,
+    ],
 })
 export class ReassignDialogComponent implements OnInit, OnDestroy {
   private documentService = inject(DocumentService);

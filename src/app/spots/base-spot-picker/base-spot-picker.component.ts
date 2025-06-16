@@ -10,12 +10,21 @@ import {
 } from "@efaps/pos-library";
 
 import { AbstractSpotPicker } from "../abstract-spot-picker";
+import { MatFabButton } from "@angular/material/button";
+import { MatTooltip } from "@angular/material/tooltip";
+import { MatIcon } from "@angular/material/icon";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
-  selector: "app-base-spot-picker",
-  templateUrl: "./base-spot-picker.component.html",
-  styleUrls: ["./base-spot-picker.component.scss"],
-  standalone: false,
+    selector: "app-base-spot-picker",
+    templateUrl: "./base-spot-picker.component.html",
+    styleUrls: ["./base-spot-picker.component.scss"],
+    imports: [
+        MatFabButton,
+        MatTooltip,
+        MatIcon,
+        TranslatePipe,
+    ],
 })
 export class BaseSpotPickerComponent
   extends AbstractSpotPicker

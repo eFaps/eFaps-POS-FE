@@ -15,15 +15,15 @@ describe("SplitDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         ReactiveFormsModule,
         BrowserAnimationsModule,
         MatFormFieldModule,
         MatInputModule,
-      ],
-      providers: [{ provide: MatDialogRef, useValue: {} }],
-      declarations: [SplitDialogComponent, MockComponent(KeypadComponent)],
-    }).compileComponents();
+        SplitDialogComponent, MockComponent(KeypadComponent),
+    ],
+    providers: [{ provide: MatDialogRef, useValue: {} }],
+}).compileComponents();
   });
 
   beforeEach(() => {

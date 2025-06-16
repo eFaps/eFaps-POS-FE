@@ -13,16 +13,16 @@ describe("ThemePickerComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         BrowserAnimationsModule,
         RouterTestingModule,
         MatMenuModule,
         MatGridListModule,
         MatIconModule,
-      ],
-      providers: [],
-      declarations: [ThemePickerComponent],
-    }).compileComponents();
+        ThemePickerComponent,
+    ],
+    providers: [],
+}).compileComponents();
   });
 
   beforeEach(() => {

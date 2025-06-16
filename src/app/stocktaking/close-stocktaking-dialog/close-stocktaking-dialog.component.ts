@@ -1,12 +1,21 @@
 import { Component, inject } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from "@angular/material/dialog";
 import { Stocktaking, StocktakingService } from "@efaps/pos-library";
+import { CdkScrollable } from "@angular/cdk/scrolling";
+import { MatButton } from "@angular/material/button";
 
 @Component({
-  selector: "app-close-stocktaking-dialog",
-  templateUrl: "./close-stocktaking-dialog.component.html",
-  styleUrls: ["./close-stocktaking-dialog.component.scss"],
-  standalone: false,
+    selector: "app-close-stocktaking-dialog",
+    templateUrl: "./close-stocktaking-dialog.component.html",
+    styleUrls: ["./close-stocktaking-dialog.component.scss"],
+    imports: [
+        MatDialogTitle,
+        CdkScrollable,
+        MatDialogContent,
+        MatDialogActions,
+        MatButton,
+        MatDialogClose,
+    ],
 })
 export class CloseStocktakingDialogComponent {
   private dialogRef =

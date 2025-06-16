@@ -6,7 +6,7 @@ import {
   Output,
   inject,
 } from "@angular/core";
-import { MatTabChangeEvent } from "@angular/material/tabs";
+import { MatTabChangeEvent, MatTabGroup, MatTab, MatTabLabel } from "@angular/material/tabs";
 import {
   Category,
   CategoryNode,
@@ -15,6 +15,8 @@ import {
   Product,
   ProductService,
 } from "@efaps/pos-library";
+import { MatIcon } from "@angular/material/icon";
+import { ProductsElementComponent } from "../products-element/products-element.component";
 
 const placeHolder: CategoryNode = {
   oid: "",
@@ -23,10 +25,16 @@ const placeHolder: CategoryNode = {
 };
 
 @Component({
-  selector: "app-grid-element",
-  templateUrl: "./grid-element.component.html",
-  styleUrls: ["./grid-element.component.scss"],
-  standalone: false,
+    selector: "app-grid-element",
+    templateUrl: "./grid-element.component.html",
+    styleUrls: ["./grid-element.component.scss"],
+    imports: [
+        MatTabGroup,
+        MatTab,
+        MatTabLabel,
+        MatIcon,
+        ProductsElementComponent,
+    ],
 })
 export class GridElementComponent implements OnInit {
   private productService = inject(ProductService);

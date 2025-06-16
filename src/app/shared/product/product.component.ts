@@ -1,24 +1,29 @@
 import { Component, OnInit, inject } from "@angular/core";
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import {
-  Currency,
-  InventoryEntry,
-  InventoryService,
-  PosService,
-  Product,
-  Product2Category,
-  ProductRelation,
-  ProductService,
-  ProductType,
-  RelationEntry,
-  WorkspaceService,
-} from "@efaps/pos-library";
+import { MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from "@angular/material/dialog";
+import { Currency, InventoryEntry, InventoryService, PosService, Product, Product2Category, ProductRelation, ProductService, ProductType, RelationEntry, WorkspaceService, PosLibraryModule } from "@efaps/pos-library";
+import { CdkScrollable } from "@angular/cdk/scrolling";
+import { MatProgressSpinner } from "@angular/material/progress-spinner";
+import { MatList, MatListItem } from "@angular/material/list";
+import { MatLine } from "@angular/material/grid-list";
+import { MatButton } from "@angular/material/button";
 
 @Component({
-  selector: "app-product",
-  templateUrl: "./product.component.html",
-  styleUrls: ["./product.component.scss"],
-  standalone: false,
+    selector: "app-product",
+    templateUrl: "./product.component.html",
+    styleUrls: ["./product.component.scss"],
+    imports: [
+        MatDialogTitle,
+        CdkScrollable,
+        MatDialogContent,
+        MatProgressSpinner,
+        MatList,
+        MatListItem,
+        MatLine,
+        MatDialogActions,
+        MatButton,
+        MatDialogClose,
+        PosLibraryModule,
+    ],
 })
 export class ProductComponent implements OnInit {
   private productService = inject(ProductService);

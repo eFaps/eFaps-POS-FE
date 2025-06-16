@@ -11,9 +11,9 @@ describe("PartListRelationComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PartListRelationComponent],
-      providers: [{ provide: ProductService, useClass: ProductServiceStub }],
-    }).compileComponents();
+    imports: [PartListRelationComponent],
+    providers: [{ provide: ProductService, useClass: ProductServiceStub }],
+}).compileComponents();
   });
 
   beforeEach(() => {

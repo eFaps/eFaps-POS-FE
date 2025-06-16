@@ -1,5 +1,5 @@
 import { Component, inject } from "@angular/core";
-import { UntypedFormBuilder, Validators } from "@angular/forms";
+import { UntypedFormBuilder, Validators, ReactiveFormsModule } from "@angular/forms";
 import {
   CollectOrder,
   CollectService,
@@ -13,12 +13,28 @@ import {
 } from "@efaps/pos-library";
 
 import { PaymentForm } from "../payment-form";
+import { MatFormField, MatPrefix } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import { MatButton } from "@angular/material/button";
+import { KeypadComponent } from "../../shared/keypad/keypad.component";
+import { MatRadioGroup, MatRadioButton } from "@angular/material/radio";
+import { MatProgressSpinner } from "@angular/material/progress-spinner";
 
 @Component({
-  selector: "app-auto",
-  templateUrl: "./auto.component.html",
-  styleUrls: ["./auto.component.scss"],
-  standalone: false,
+    selector: "app-auto",
+    templateUrl: "./auto.component.html",
+    styleUrls: ["./auto.component.scss"],
+    imports: [
+        ReactiveFormsModule,
+        MatFormField,
+        MatInput,
+        MatPrefix,
+        MatButton,
+        KeypadComponent,
+        MatRadioGroup,
+        MatRadioButton,
+        MatProgressSpinner,
+    ],
 })
 export class AutoComponent extends PaymentForm {
   private collectService = inject(CollectService);

@@ -1,4 +1,4 @@
-import { CdkDragEnd } from "@angular/cdk/drag-drop";
+import { CdkDragEnd, CdkDrag } from "@angular/cdk/drag-drop";
 import { Component, OnInit, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -20,12 +20,25 @@ import { forkJoin } from "rxjs";
 
 import { AbstractSpotPicker } from "../abstract-spot-picker";
 import { SplitDialogComponent } from "../split-dialog/split-dialog.component";
+import { MatTabGroup, MatTab } from "@angular/material/tabs";
+import { MatFabButton } from "@angular/material/button";
+import { MatTooltip } from "@angular/material/tooltip";
+import { MatIcon } from "@angular/material/icon";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
-  selector: "app-extended-spot-picker",
-  templateUrl: "./extended-spot-picker.component.html",
-  styleUrls: ["./extended-spot-picker.component.scss"],
-  standalone: false,
+    selector: "app-extended-spot-picker",
+    templateUrl: "./extended-spot-picker.component.html",
+    styleUrls: ["./extended-spot-picker.component.scss"],
+    imports: [
+        MatTabGroup,
+        MatTab,
+        MatFabButton,
+        CdkDrag,
+        MatTooltip,
+        MatIcon,
+        TranslatePipe,
+    ],
 })
 export class ExtendedSpotPickerComponent
   extends AbstractSpotPicker

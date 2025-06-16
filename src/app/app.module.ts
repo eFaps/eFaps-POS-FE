@@ -37,62 +37,63 @@ import { SharedModule, TranslateLoaderFactory } from "./shared/shared.module";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
 
 @NgModule({
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [AppComponent, SameHeightDirective, ThemePickerComponent],
-  bootstrap: [AppComponent],
-  imports: [
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    LazyElementsModule,
-    AngularSvgIconModule.forRoot(),
-    AppRoutingModule,
-    SharedModule,
-    MatButtonModule,
-    MatGridListModule,
-    MatIconModule,
-    MatListModule,
-    MatMenuModule,
-    MatProgressBarModule,
-    MatSidenavModule,
-    MatSnackBarModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    PosLibraryModule.forRoot({
-      baseUrl: "/api",
-      socketUrl: "/socket",
-      persistence: PERSISTENCE,
-    }),
-    HotkeyModule.forRoot({
-      cheatSheetDescription: "Presentar",
-    }),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: TranslateLoaderFactory,
-        deps: [HttpClient],
-      },
-    }),
-  ],
-  providers: [
-    provideZonelessChangeDetection(),
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoaderInterceptor,
-      multi: true,
-    },
-    { provide: MAT_DATE_LOCALE, useValue: "es-ES" },
-    // temporal workaround to deactivate the LiveAnnouncer
-    {
-      provide: LiveAnnouncer,
-      useValue: {},
-    },
-    provideHttpClient(withInterceptorsFromDi()),
-  ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    declarations: [AppComponent],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        LazyElementsModule,
+        AngularSvgIconModule.forRoot(),
+        AppRoutingModule,
+        SharedModule,
+        MatButtonModule,
+        MatGridListModule,
+        MatIconModule,
+        MatListModule,
+        MatMenuModule,
+        MatProgressBarModule,
+        MatSidenavModule,
+        MatSnackBarModule,
+        MatToolbarModule,
+        MatTooltipModule,
+        PosLibraryModule.forRoot({
+            baseUrl: "/api",
+            socketUrl: "/socket",
+            persistence: PERSISTENCE,
+        }),
+        HotkeyModule.forRoot({
+            cheatSheetDescription: "Presentar",
+        }),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: TranslateLoaderFactory,
+                deps: [HttpClient],
+            },
+        }),
+        SameHeightDirective, ThemePickerComponent,
+    ],
+    providers: [
+        provideZonelessChangeDetection(),
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorInterceptor,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: LoaderInterceptor,
+            multi: true,
+        },
+        { provide: MAT_DATE_LOCALE, useValue: "es-ES" },
+        // temporal workaround to deactivate the LiveAnnouncer
+        {
+            provide: LiveAnnouncer,
+            useValue: {},
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+    ],
 })
 export class AppModule {}

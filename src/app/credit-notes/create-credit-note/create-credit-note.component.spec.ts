@@ -55,12 +55,8 @@ describe("CreateCreditNoteComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        CreateCreditNoteComponent,
-        MockComponent(DocumentComponent),
-      ],
-      imports: [MatDialogModule, MatListModule, MatIconModule],
-      providers: [
+    imports: [MatDialogModule, MatListModule, MatIconModule, CreateCreditNoteComponent],
+    providers: [
         { provide: ActivatedRoute, useClass: ActivatedRouteStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
         { provide: BalanceService, useClass: BalanceServiceStub },
@@ -69,15 +65,15 @@ describe("CreateCreditNoteComponent", () => {
         { provide: ConfigService, useClass: ConfigServiceStub },
         { provide: MatDialogRef, useValue: {} },
         {
-          provide: PosConfigToken,
-          useValue: {
-            order: "",
-          },
+            provide: PosConfigToken,
+            useValue: {
+                order: "",
+            },
         },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

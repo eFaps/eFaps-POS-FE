@@ -54,8 +54,11 @@ describe("DiscountComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, ReactiveFormsModule],
-      providers: [
+    imports: [BrowserAnimationsModule, ReactiveFormsModule, DiscountComponent,
+        MockPipe(TranslatePipe),
+        MockPipe(PosCurrencyPipe),
+        MockComponent(KeypadComponent)],
+    providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: AuthService, useClass: AuthServiceStub },
@@ -66,14 +69,8 @@ describe("DiscountComponent", () => {
         { provide: UtilsService, useClass: UtilsServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
-      ],
-      declarations: [
-        DiscountComponent,
-        MockPipe(TranslatePipe),
-        MockPipe(PosCurrencyPipe),
-        MockComponent(KeypadComponent),
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

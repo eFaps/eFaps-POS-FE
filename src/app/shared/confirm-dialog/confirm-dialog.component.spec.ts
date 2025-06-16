@@ -14,18 +14,17 @@ describe("ConfirmDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MatDialogModule],
-      providers: [
+    imports: [BrowserAnimationsModule, MatDialogModule, ConfirmDialogComponent],
+    providers: [
         { provide: MatDialogRef, useValue: {} },
         {
-          provide: MAT_DIALOG_DATA,
-          useValue: {
-            oid: "132.456",
-          },
+            provide: MAT_DIALOG_DATA,
+            useValue: {
+                oid: "132.456",
+            },
         },
-      ],
-      declarations: [ConfirmDialogComponent],
-    }).compileComponents();
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

@@ -39,23 +39,20 @@ describe("PaymentTypeComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        MockComponent(AutoComponent),
+    imports: [BrowserAnimationsModule, MatTableModule, MatTabsModule, MockComponent(AutoComponent),
         MockComponent(CashComponent),
         MockComponent(CardComponent),
         MockComponent(DiscountComponent),
         MockComponent(FreeComponent),
-        PaymentTypeComponent,
-      ],
-      imports: [BrowserAnimationsModule, MatTableModule, MatTabsModule],
-      providers: [
+        PaymentTypeComponent],
+    providers: [
         { provide: PosConfigToken, useValue: {} },
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

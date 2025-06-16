@@ -32,15 +32,15 @@ describe("TicketComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         BrowserAnimationsModule,
         RouterTestingModule,
         MatSnackBarModule,
         MatTableModule,
-      ],
-      providers: [{ provide: PosService, useClass: PosServiceStub }],
-      declarations: [TicketComponent, MockPipe(PosCurrencyPipe)],
-    }).compileComponents();
+        TicketComponent, MockPipe(PosCurrencyPipe),
+    ],
+    providers: [{ provide: PosService, useClass: PosServiceStub }],
+}).compileComponents();
   });
 
   beforeEach(() => {

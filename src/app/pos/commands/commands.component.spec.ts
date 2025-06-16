@@ -59,18 +59,16 @@ describe("CommandsComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        CommandsComponent,
-        MockDirective(TranslateDirective),
-        MockPipe(TranslatePipe, (...args) => "Hallo"),
-      ],
-      imports: [
+    imports: [
         BrowserAnimationsModule,
         RouterTestingModule,
         MatDialogModule,
         MatSnackBarModule,
-      ],
-      providers: [
+        CommandsComponent,
+        MockDirective(TranslateDirective),
+        MockPipe(TranslatePipe, (...args) => "Hallo"),
+    ],
+    providers: [
         { provide: PosConfigToken, useValue: {} },
         { provide: AuthService, useValue: {} },
         { provide: PosService, useClass: PosServiceStub },
@@ -81,8 +79,8 @@ describe("CommandsComponent", () => {
         { provide: MatSnackBar, useClass: MatSnackBar },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

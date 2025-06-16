@@ -16,22 +16,22 @@ import { ProductsRoutingModule } from "./products-routing.module";
 import { ProducttableComponent } from "./producttable/producttable.component";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatSortModule,
-    MatTableModule,
-    ProductsRoutingModule,
-    ReactiveFormsModule,
-    ServicesModule,
-    SharedModule,
-    MatPaginatorModule,
-    MatSlideToggleModule,
-    MatDialogModule,
-  ],
-  declarations: [ProducttableComponent],
+    imports: [
+        CommonModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatSortModule,
+        MatTableModule,
+        ProductsRoutingModule,
+        ReactiveFormsModule,
+        ServicesModule,
+        SharedModule,
+        MatPaginatorModule,
+        MatSlideToggleModule,
+        MatDialogModule,
+        ProducttableComponent,
+    ],
 })
 export class ProductsModule {}

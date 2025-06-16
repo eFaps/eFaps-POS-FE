@@ -12,10 +12,9 @@ describe("GridElementComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MatTabsModule],
-      declarations: [GridElementComponent],
-      providers: [{ provide: ProductService, useClass: ProductServiceStub }],
-    }).compileComponents();
+    imports: [MatTabsModule, GridElementComponent],
+    providers: [{ provide: ProductService, useClass: ProductServiceStub }],
+}).compileComponents();
 
     fixture = TestBed.createComponent(GridElementComponent);
     component = fixture.componentInstance;

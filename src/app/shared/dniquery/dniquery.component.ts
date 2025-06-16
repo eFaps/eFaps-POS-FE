@@ -1,13 +1,21 @@
 import { Component, EventEmitter, Output, inject } from "@angular/core";
-import { FormGroup, NonNullableFormBuilder, Validators } from "@angular/forms";
+import { FormGroup, NonNullableFormBuilder, Validators, ReactiveFormsModule } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { DNI, EnquiryService } from "@efaps/pos-library";
+import { MatFormField } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import { MatButton } from "@angular/material/button";
 
 @Component({
-  selector: "app-dniquery",
-  templateUrl: "./dniquery.component.html",
-  styleUrl: "./dniquery.component.scss",
-  standalone: false,
+    selector: "app-dniquery",
+    templateUrl: "./dniquery.component.html",
+    styleUrl: "./dniquery.component.scss",
+    imports: [
+        ReactiveFormsModule,
+        MatFormField,
+        MatInput,
+        MatButton,
+    ],
 })
 export class DNIQueryComponent {
   private fb = inject(NonNullableFormBuilder);

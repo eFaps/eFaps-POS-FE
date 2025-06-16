@@ -56,7 +56,7 @@ describe("CardComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         BrowserAnimationsModule,
         ReactiveFormsModule,
         MatFormFieldModule,
@@ -64,8 +64,11 @@ describe("CardComponent", () => {
         MatRadioModule,
         MatSelectModule,
         RouterTestingModule,
-      ],
-      providers: [
+        CardComponent,
+        MockPipe(TranslatePipe),
+        MockComponent(KeypadComponent),
+    ],
+    providers: [
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
@@ -73,13 +76,8 @@ describe("CardComponent", () => {
         { provide: UtilsService, useClass: UtilsServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
-      ],
-      declarations: [
-        CardComponent,
-        MockPipe(TranslatePipe),
-        MockComponent(KeypadComponent),
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

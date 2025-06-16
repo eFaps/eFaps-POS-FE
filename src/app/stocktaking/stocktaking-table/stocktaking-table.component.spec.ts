@@ -30,15 +30,14 @@ describe("StocktakingTableComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [StocktakingTableComponent],
-      imports: [MatDialogModule],
-      providers: [
+    imports: [MatDialogModule, StocktakingTableComponent],
+    providers: [
         { provide: PosConfigToken, useValue: {} },
         { provide: StocktakingService, useClass: StocktakingServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
 
     fixture = TestBed.createComponent(StocktakingTableComponent);
     component = fixture.componentInstance;

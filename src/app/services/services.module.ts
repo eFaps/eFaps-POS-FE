@@ -3,8 +3,7 @@ import { NgModule } from "@angular/core";
 import { VirtKeyboardDirective } from ".";
 
 @NgModule({
-  declarations: [VirtKeyboardDirective],
-  imports: [CommonModule],
-  exports: [VirtKeyboardDirective],
+    imports: [CommonModule, VirtKeyboardDirective],
+    exports: [VirtKeyboardDirective],
 })
 export class ServicesModule {}

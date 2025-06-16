@@ -85,7 +85,7 @@ describe("OrderTableComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         BrowserAnimationsModule,
         MatDialogModule,
         RouterTestingModule,
@@ -95,8 +95,11 @@ describe("OrderTableComponent", () => {
         MatFormFieldModule,
         MatInputModule,
         MatSlideToggleModule,
-      ],
-      providers: [
+        OrderTableComponent,
+        MockPipe(PosCurrencyPipe),
+        MockPipe(TranslatePipe),
+    ],
+    providers: [
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },
         { provide: ContactService, useClass: ContactServiceStub },
@@ -105,13 +108,8 @@ describe("OrderTableComponent", () => {
         { provide: PosService, useClass: PosServiceStub },
         { provide: UtilsService, useClass: UtilsServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
-      ],
-      declarations: [
-        OrderTableComponent,
-        MockPipe(PosCurrencyPipe),
-        MockPipe(TranslatePipe),
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

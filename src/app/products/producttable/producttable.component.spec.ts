@@ -32,7 +32,7 @@ describe("ProducttableComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         BrowserAnimationsModule,
         MatKeyboardModule,
         ReactiveFormsModule,
@@ -43,17 +43,15 @@ describe("ProducttableComponent", () => {
         MatIconModule,
         MatPaginatorModule,
         MatSortModule,
-      ],
-      providers: [
-        { provide: ProductService, useClass: ProductServiceStub },
-        { provide: LiveAnnouncer, useValue: {} },
-      ],
-      declarations: [
         VirtKeyboardDirective,
         MockComponent(ProductComponent),
         ProducttableComponent,
-      ],
-    }).compileComponents();
+    ],
+    providers: [
+        { provide: ProductService, useClass: ProductServiceStub },
+        { provide: LiveAnnouncer, useValue: {} },
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

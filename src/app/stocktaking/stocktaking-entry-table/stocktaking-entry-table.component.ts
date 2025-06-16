@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, ViewChild, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
-import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
+import { MatSort, MatSortHeader } from "@angular/material/sort";
+import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
 import { Router } from "@angular/router";
 import {
   PageRequest,
@@ -12,12 +12,32 @@ import {
 } from "@efaps/pos-library";
 import { merge, tap } from "rxjs";
 import { ConfirmDialogComponent } from "src/app/shared/confirm-dialog/confirm-dialog.component";
+import { MatButton } from "@angular/material/button";
+import { MatIcon } from "@angular/material/icon";
+import { DatePipe } from "@angular/common";
 
 @Component({
-  selector: "app-stocktaking-entry-table",
-  templateUrl: "./stocktaking-entry-table.component.html",
-  styleUrls: ["./stocktaking-entry-table.component.scss"],
-  standalone: false,
+    selector: "app-stocktaking-entry-table",
+    templateUrl: "./stocktaking-entry-table.component.html",
+    styleUrls: ["./stocktaking-entry-table.component.scss"],
+    imports: [
+        MatTable,
+        MatSort,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatSortHeader,
+        MatCellDef,
+        MatCell,
+        MatButton,
+        MatIcon,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+        MatPaginator,
+        DatePipe,
+    ],
 })
 export class StocktakingEntryTableComponent {
   private changeDetectorRefs = inject(ChangeDetectorRef);

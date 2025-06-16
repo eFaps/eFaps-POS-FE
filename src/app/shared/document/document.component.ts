@@ -9,36 +9,46 @@ import {
 } from "@angular/core";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
+import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
 import { Router } from "@angular/router";
-import {
-  AuthService,
-  CreditNote,
-  Currency,
-  DocItem,
-  DocStatus,
-  Document,
-  DocumentService,
-  Employee,
-  EmployeeRelationType,
-  EmployeeService,
-  Payable,
-  Payment,
-  Permission,
-  PrintService,
-  PromoInfo,
-  PromotionService,
-  WorkspaceService,
-} from "@efaps/pos-library";
+import { AuthService, CreditNote, Currency, DocItem, DocStatus, Document, DocumentService, Employee, EmployeeRelationType, EmployeeService, Payable, Payment, Permission, PrintService, PromoInfo, PromotionService, WorkspaceService, PosLibraryModule } from "@efaps/pos-library";
 
 import { PrintDialogComponent } from "../print-dialog/print-dialog.component";
 import { PromoDialogComponent } from "../promo-dialog/promo-dialog.component";
+import { PartListRelationComponent } from "../part-list-relation/part-list-relation.component";
+import { MatIconButton, MatButton } from "@angular/material/button";
+import { MatIcon } from "@angular/material/icon";
+import { MatList, MatListItem } from "@angular/material/list";
+import { MatLine } from "@angular/material/grid-list";
+import { DecimalPipe } from "@angular/common";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
-  selector: "app-document",
-  templateUrl: "./document.component.html",
-  styleUrls: ["./document.component.scss"],
-  standalone: false,
+    selector: "app-document",
+    templateUrl: "./document.component.html",
+    styleUrls: ["./document.component.scss"],
+    imports: [
+        MatTable,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatCellDef,
+        MatCell,
+        PartListRelationComponent,
+        MatIconButton,
+        MatIcon,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+        MatList,
+        MatListItem,
+        MatLine,
+        MatButton,
+        DecimalPipe,
+        PosLibraryModule,
+        TranslatePipe,
+    ],
 })
 export class DocumentComponent implements OnInit {
   private router = inject(Router);

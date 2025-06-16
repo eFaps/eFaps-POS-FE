@@ -17,16 +17,13 @@ describe("SpotsComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [],
-      providers: [
-        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
-      ],
-      declarations: [
-        MockComponent(BaseSpotPickerComponent),
+    imports: [MockComponent(BaseSpotPickerComponent),
         MockComponent(ExtendedSpotPickerComponent),
-        SpotsComponent,
-      ],
-    }).compileComponents();
+        SpotsComponent],
+    providers: [
+        { provide: WorkspaceService, useClass: WorkspaceServiceStub },
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

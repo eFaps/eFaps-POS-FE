@@ -1,14 +1,24 @@
 import { Component, EventEmitter, Output, inject } from "@angular/core";
-import { FormGroup, NonNullableFormBuilder, Validators } from "@angular/forms";
+import { FormGroup, NonNullableFormBuilder, Validators, ReactiveFormsModule } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { EnquiryService, RUC } from "@efaps/pos-library";
 import { TaxpayerResultComponent } from "../taxpayer-result/taxpayer-result.component";
+import { MatFormField } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import { MatButton } from "@angular/material/button";
+import { MatSlideToggle } from "@angular/material/slide-toggle";
 
 @Component({
-  selector: "app-taxpayer-query",
-  templateUrl: "./taxpayer-query.component.html",
-  styleUrls: ["./taxpayer-query.component.scss"],
-  standalone: false,
+    selector: "app-taxpayer-query",
+    templateUrl: "./taxpayer-query.component.html",
+    styleUrls: ["./taxpayer-query.component.scss"],
+    imports: [
+        ReactiveFormsModule,
+        MatFormField,
+        MatInput,
+        MatButton,
+        MatSlideToggle,
+    ],
 })
 export class TaxpayerQueryComponent {
   private fb = inject(NonNullableFormBuilder);

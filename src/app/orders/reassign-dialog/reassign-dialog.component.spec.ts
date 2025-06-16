@@ -34,12 +34,9 @@ describe("ReassignDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        MockComponent(ReassignItemComponent),
-        ReassignDialogComponent,
-      ],
-      imports: [MatDialogModule, MatIconModule],
-      providers: [
+    imports: [MatDialogModule, MatIconModule, MockComponent(ReassignItemComponent),
+        ReassignDialogComponent],
+    providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
@@ -47,8 +44,8 @@ describe("ReassignDialogComponent", () => {
         { provide: CalculatorService, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

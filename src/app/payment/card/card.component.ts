@@ -1,5 +1,5 @@
 import { Component, inject } from "@angular/core";
-import { UntypedFormBuilder, Validators } from "@angular/forms";
+import { UntypedFormBuilder, Validators, ReactiveFormsModule } from "@angular/forms";
 import {
   Card,
   Currency,
@@ -11,12 +11,26 @@ import {
 } from "@efaps/pos-library";
 
 import { PaymentForm } from "../payment-form";
+import { MatFormField, MatPrefix } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import { MatButton } from "@angular/material/button";
+import { KeypadComponent } from "../../shared/keypad/keypad.component";
+import { MatRadioGroup, MatRadioButton } from "@angular/material/radio";
 
 @Component({
-  selector: "app-card",
-  templateUrl: "./card.component.html",
-  styleUrls: ["./card.component.scss"],
-  standalone: false,
+    selector: "app-card",
+    templateUrl: "./card.component.html",
+    styleUrls: ["./card.component.scss"],
+    imports: [
+        ReactiveFormsModule,
+        MatFormField,
+        MatInput,
+        MatPrefix,
+        MatButton,
+        KeypadComponent,
+        MatRadioGroup,
+        MatRadioButton,
+    ],
 })
 export class CardComponent extends PaymentForm {
   private workspaceService = inject(WorkspaceService);

@@ -1,18 +1,36 @@
 import { Component, OnInit, inject } from "@angular/core";
-import {
-  MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogRef,
-} from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from "@angular/material/dialog";
 import { LocalStorage } from "@efaps/ngx-store";
 import { Contact } from "@efaps/pos-library";
 import { CreateContactDialogComponent } from "src/app/contacts/create-contact-dialog/create-contact-dialog.component";
+import { CdkScrollable } from "@angular/cdk/scrolling";
+import { MatTabGroup, MatTab } from "@angular/material/tabs";
+import { ContactComponent } from "../../shared/contact/contact.component";
+import { MatButton } from "@angular/material/button";
+import { MatFormField, MatLabel } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 @Component({
-  selector: "app-contact-dialog",
-  templateUrl: "./contact-dialog.component.html",
-  styleUrls: ["./contact-dialog.component.scss"],
-  standalone: false,
+    selector: "app-contact-dialog",
+    templateUrl: "./contact-dialog.component.html",
+    styleUrls: ["./contact-dialog.component.scss"],
+    imports: [
+        MatDialogTitle,
+        CdkScrollable,
+        MatDialogContent,
+        MatTabGroup,
+        MatTab,
+        ContactComponent,
+        MatButton,
+        MatFormField,
+        MatLabel,
+        MatInput,
+        ReactiveFormsModule,
+        FormsModule,
+        MatDialogActions,
+        MatDialogClose,
+    ],
 })
 export class ContactDialogComponent implements OnInit {
   private dialogRef =

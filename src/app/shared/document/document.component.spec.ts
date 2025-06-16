@@ -49,19 +49,17 @@ describe("DocumentComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DocumentComponent,
-        MockPipe(TranslatePipe),
-        MockPipe(PosCurrencyPipe),
-      ],
-      imports: [
+    imports: [
         BrowserAnimationsModule,
         RouterTestingModule,
         MatDialogModule,
         MatListModule,
         MatTableModule,
-      ],
-      providers: [
+        DocumentComponent,
+        MockPipe(TranslatePipe),
+        MockPipe(PosCurrencyPipe),
+    ],
+    providers: [
         { provide: PosConfigToken, useValue: {} },
         { provide: Router, useValue: routerSpy },
         { provide: AuthService, useValue: {} },
@@ -71,8 +69,8 @@ describe("DocumentComponent", () => {
         { provide: EmployeeService, useValue: {} },
         { provide: PromotionService, useClass: PromotionServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

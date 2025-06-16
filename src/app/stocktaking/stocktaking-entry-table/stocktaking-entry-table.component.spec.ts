@@ -35,18 +35,18 @@ describe("StocktakingEntryTableComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         MatPaginatorModule,
         NoopAnimationsModule,
         MatSortModule,
         MatDialogModule,
-      ],
-      declarations: [StocktakingEntryTableComponent],
-      providers: [
+        StocktakingEntryTableComponent,
+    ],
+    providers: [
         { provide: StocktakingService, useClass: StocktakingServiceStub },
         { provide: Router, useClass: RouterStub },
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
 
     fixture = TestBed.createComponent(StocktakingEntryTableComponent);
     component = fixture.componentInstance;

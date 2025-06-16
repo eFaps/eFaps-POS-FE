@@ -21,26 +21,26 @@ describe("SplitOrderDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         BrowserAnimationsModule,
         ReactiveFormsModule,
         SharedModule,
         MatTableModule,
         MatIconModule,
         MatDialogModule,
-      ],
-      providers: [
+        SplitOrderDialogComponent,
+    ],
+    providers: [
         { provide: MatDialogRef, useValue: {} },
         {
-          provide: MAT_DIALOG_DATA,
-          useValue: {
-            items: [],
-          },
+            provide: MAT_DIALOG_DATA,
+            useValue: {
+                items: [],
+            },
         },
         { provide: PosService, useClass: PosServiceStub },
-      ],
-      declarations: [SplitOrderDialogComponent],
-    }).compileComponents();
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

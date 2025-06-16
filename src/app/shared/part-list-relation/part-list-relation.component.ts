@@ -2,10 +2,9 @@ import { Component, Input, OnInit, inject } from "@angular/core";
 import { Product, ProductRelation, ProductService } from "@efaps/pos-library";
 
 @Component({
-  selector: "app-part-list-relation",
-  templateUrl: "./part-list-relation.component.html",
-  styleUrls: ["./part-list-relation.component.scss"],
-  standalone: false,
+    selector: "app-part-list-relation",
+    templateUrl: "./part-list-relation.component.html",
+    styleUrls: ["./part-list-relation.component.scss"],
 })
 export class PartListRelationComponent implements OnInit {
   private productService = inject(ProductService);

@@ -9,22 +9,35 @@ import {
 } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { MatTableDataSource } from "@angular/material/table";
-import {
-  Currency,
-  isChildItem,
-  Item,
-  PosService,
-  PromoInfo,
-} from "@efaps/pos-library";
+import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
+import { Currency, isChildItem, Item, PosService, PromoInfo, PosLibraryModule } from "@efaps/pos-library";
 import { Decimal } from "decimal.js";
 import { PromoDialogComponent } from "src/app/shared/promo-dialog/promo-dialog.component";
+import { MatIconButton, MatButton } from "@angular/material/button";
+import { MatIcon } from "@angular/material/icon";
+import { PartListRelationComponent } from "../../shared/part-list-relation/part-list-relation.component";
 
 @Component({
-  selector: "app-ticket",
-  templateUrl: "./ticket.component.html",
-  styleUrls: ["./ticket.component.scss"],
-  standalone: false,
+    selector: "app-ticket",
+    templateUrl: "./ticket.component.html",
+    styleUrls: ["./ticket.component.scss"],
+    imports: [
+        MatTable,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatCellDef,
+        MatCell,
+        MatIconButton,
+        MatIcon,
+        MatButton,
+        PartListRelationComponent,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+        PosLibraryModule,
+    ],
 })
 export class TicketComponent implements OnInit {
   private posService = inject(PosService);

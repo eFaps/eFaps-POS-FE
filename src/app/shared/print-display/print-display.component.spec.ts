@@ -15,15 +15,14 @@ describe("PrintDisplayComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PrintDisplayComponent],
-      imports: [MatProgressSpinnerModule],
-      providers: [
+    imports: [MatProgressSpinnerModule, PrintDisplayComponent],
+    providers: [
         { provide: PrintService, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

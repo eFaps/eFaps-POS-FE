@@ -10,12 +10,20 @@ import {
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { KeypadService } from "../../services";
+import { MatGridList, MatGridTile } from "@angular/material/grid-list";
+import { MatButton } from "@angular/material/button";
+import { MatIcon } from "@angular/material/icon";
 
 @Component({
-  selector: "app-keypad",
-  templateUrl: "./keypad.component.html",
-  styleUrls: ["./keypad.component.scss"],
-  standalone: false,
+    selector: "app-keypad",
+    templateUrl: "./keypad.component.html",
+    styleUrls: ["./keypad.component.scss"],
+    imports: [
+        MatGridList,
+        MatGridTile,
+        MatButton,
+        MatIcon,
+    ],
 })
 export class KeypadComponent implements OnInit, OnDestroy {
   private keypadService = inject(KeypadService);

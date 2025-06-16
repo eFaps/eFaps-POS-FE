@@ -1,17 +1,34 @@
 import { Component, Input, OnInit, ViewChild, inject } from "@angular/core";
-import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
+import { MatSort, MatSortHeader } from "@angular/material/sort";
+import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
 import {
   InventoryEntry,
   InventoryService,
   Warehouse,
 } from "@efaps/pos-library";
+import { MatFormField } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
 
 @Component({
-  selector: "app-inventory-table",
-  templateUrl: "./inventory-table.component.html",
-  styleUrls: ["./inventory-table.component.scss"],
-  standalone: false,
+    selector: "app-inventory-table",
+    templateUrl: "./inventory-table.component.html",
+    styleUrls: ["./inventory-table.component.scss"],
+    imports: [
+        MatFormField,
+        MatInput,
+        MatTable,
+        MatSort,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatSortHeader,
+        MatCellDef,
+        MatCell,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+    ],
 })
 export class InventoryTableComponent implements OnInit {
   private inventoryService = inject(InventoryService);

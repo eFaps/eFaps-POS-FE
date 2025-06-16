@@ -1,13 +1,22 @@
 import { Component, OnInit, effect, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { Currency, PosService, PromoInfo } from "@efaps/pos-library";
+import { Currency, PosService, PromoInfo, PosLibraryModule } from "@efaps/pos-library";
 import { PromoDialogComponent } from "src/app/shared/promo-dialog/promo-dialog.component";
+import { MatList, MatListItem } from "@angular/material/list";
+import { MatButton } from "@angular/material/button";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
-  selector: "app-totals",
-  templateUrl: "./totals.component.html",
-  styleUrls: ["./totals.component.scss"],
-  standalone: false,
+    selector: "app-totals",
+    templateUrl: "./totals.component.html",
+    styleUrls: ["./totals.component.scss"],
+    imports: [
+        MatList,
+        MatListItem,
+        MatButton,
+        PosLibraryModule,
+        TranslatePipe,
+    ],
 })
 export class TotalsComponent implements OnInit {
   private dialog = inject(MatDialog);

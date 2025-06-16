@@ -17,24 +17,22 @@ import { CreditNotesRoutingModule } from "./credit-notes-routing.module";
 import { SuccessDialogComponent } from "./success-dialog/success-dialog.component";
 
 @NgModule({
-  declarations: [
-    CreateCreditNoteComponent,
-    AddPaymentDialogComponent,
-    SuccessDialogComponent,
-  ],
-  imports: [
-    CommonModule,
-    CreditNotesRoutingModule,
-    SharedModule,
-    MatButtonModule,
-    MatListModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    MatOptionModule,
-    MatDialogModule,
-  ],
+    imports: [
+        CommonModule,
+        CreditNotesRoutingModule,
+        SharedModule,
+        MatButtonModule,
+        MatListModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatDialogModule,
+        CreateCreditNoteComponent,
+        AddPaymentDialogComponent,
+        SuccessDialogComponent,
+    ],
 })
 export class CreditNotesModule {}

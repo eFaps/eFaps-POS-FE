@@ -15,17 +15,17 @@ describe("InventoryTableComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         BrowserAnimationsModule,
         MatTableModule,
         MatFormFieldModule,
         MatInputModule,
-      ],
-      providers: [
+        InventoryTableComponent,
+    ],
+    providers: [
         { provide: InventoryService, useClass: InventoryServiceStub },
-      ],
-      declarations: [InventoryTableComponent],
-    }).compileComponents();
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

@@ -11,9 +11,8 @@ describe("ReassignItemComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MatTableModule],
-      declarations: [MockPipe(PosCurrencyPipe), ReassignItemComponent],
-    }).compileComponents();
+    imports: [MatTableModule, MockPipe(PosCurrencyPipe), ReassignItemComponent],
+}).compileComponents();
   });
 
   beforeEach(() => {

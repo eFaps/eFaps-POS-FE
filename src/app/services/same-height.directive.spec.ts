@@ -8,18 +8,15 @@ export class MockElementRef extends ElementRef {
   }
 }
 
-@Component({
-  template: ` <div [appSameHeight]="aClassName"></div> `,
-  standalone: false,
-})
+@Component({ template: ` <div [appSameHeight]="aClassName"></div> `, })
 class HostComponent {}
 
 describe("SameHeightDirective", () => {
   let fixture: ComponentFixture<HostComponent>;
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [SameHeightDirective, HostComponent],
-    }).compileComponents();
+    imports: [SameHeightDirective, HostComponent],
+}).compileComponents();
 
     fixture = TestBed.createComponent(HostComponent);
     fixture.detectChanges();

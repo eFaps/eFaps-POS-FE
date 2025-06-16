@@ -1,12 +1,14 @@
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { SpotConfig, WorkspaceService } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
+import { BaseSpotPickerComponent } from "../base-spot-picker/base-spot-picker.component";
+import { ExtendedSpotPickerComponent } from "../extended-spot-picker/extended-spot-picker.component";
 
 @Component({
-  selector: "app-spots",
-  templateUrl: "./spots.component.html",
-  styleUrls: ["./spots.component.scss"],
-  standalone: false,
+    selector: "app-spots",
+    templateUrl: "./spots.component.html",
+    styleUrls: ["./spots.component.scss"],
+    imports: [BaseSpotPickerComponent, ExtendedSpotPickerComponent],
 })
 export class SpotsComponent implements OnInit, OnDestroy {
   private workspaceService = inject(WorkspaceService);

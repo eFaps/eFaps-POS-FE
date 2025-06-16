@@ -1,12 +1,26 @@
 import { Component, inject } from "@angular/core";
-import { FormControl } from "@angular/forms";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions } from "@angular/material/dialog";
+import { CdkScrollable } from "@angular/cdk/scrolling";
+import { MatFormField, MatLabel } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import { MatButton } from "@angular/material/button";
 
 @Component({
-  selector: "app-note-dialog",
-  templateUrl: "./note-dialog.component.html",
-  styleUrls: ["./note-dialog.component.scss"],
-  standalone: false,
+    selector: "app-note-dialog",
+    templateUrl: "./note-dialog.component.html",
+    styleUrls: ["./note-dialog.component.scss"],
+    imports: [
+        MatDialogTitle,
+        CdkScrollable,
+        MatDialogContent,
+        MatFormField,
+        MatLabel,
+        MatInput,
+        ReactiveFormsModule,
+        MatDialogActions,
+        MatButton,
+    ],
 })
 export class NoteDialogComponent {
   dialogRef = inject<MatDialogRef<NoteDialogComponent>>(MatDialogRef);

@@ -1,17 +1,33 @@
 import { Component, OnInit, inject } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { MatDialogRef } from "@angular/material/dialog";
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
+import { MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from "@angular/material/dialog";
 import {
   InventoryService,
   StocktakingService,
   Warehouse,
 } from "@efaps/pos-library";
+import { CdkScrollable } from "@angular/cdk/scrolling";
+import { MatFormField } from "@angular/material/form-field";
+import { MatSelect } from "@angular/material/select";
+import { MatOption } from "@angular/material/autocomplete";
+import { MatButton } from "@angular/material/button";
 
 @Component({
-  selector: "app-create-stocktaking-dialog",
-  templateUrl: "./create-stocktaking-dialog.component.html",
-  styleUrls: ["./create-stocktaking-dialog.component.scss"],
-  standalone: false,
+    selector: "app-create-stocktaking-dialog",
+    templateUrl: "./create-stocktaking-dialog.component.html",
+    styleUrls: ["./create-stocktaking-dialog.component.scss"],
+    imports: [
+        MatDialogTitle,
+        CdkScrollable,
+        MatDialogContent,
+        ReactiveFormsModule,
+        MatFormField,
+        MatSelect,
+        MatOption,
+        MatDialogActions,
+        MatButton,
+        MatDialogClose,
+    ],
 })
 export class CreateStocktakingDialogComponent implements OnInit {
   private dialogRef =

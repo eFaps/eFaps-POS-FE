@@ -45,7 +45,7 @@ describe("ProductListComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         BrowserAnimationsModule,
         ReactiveFormsModule,
         RouterTestingModule,
@@ -53,16 +53,16 @@ describe("ProductListComponent", () => {
         MatTableModule,
         MatFormFieldModule,
         MatInputModule,
-      ],
-      providers: [
+        MockComponent(ProductComponent), ProductListComponent,
+    ],
+    providers: [
         { provide: PosService, useClass: PosServiceStub },
         { provide: ProductService, useClass: ProductServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: InventoryService, useClass: InventoryServiceStub },
         { provide: AuthService, useClass: AuthServiceStub },
-      ],
-      declarations: [MockComponent(ProductComponent), ProductListComponent],
-    }).compileComponents();
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

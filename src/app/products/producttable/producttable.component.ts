@@ -6,22 +6,49 @@ import {
   ViewChild,
   inject,
 } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
+import { MatSort, MatSortHeader } from "@angular/material/sort";
+import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
 import { LocalStorage } from "@efaps/ngx-store";
 import { PageRequest, Product, ProductService } from "@efaps/pos-library";
 
 import { MatPaginator } from "@angular/material/paginator";
 import { debounceTime, merge, tap } from "rxjs";
 import { ProductComponent } from "../../shared/product/product.component";
+import { MatFormField } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import { VirtKeyboardDirective } from "../../services/virt-keyboard.directive";
+import { MatSlideToggle } from "@angular/material/slide-toggle";
+import { MatIconButton } from "@angular/material/button";
+import { MatIcon } from "@angular/material/icon";
 
 @Component({
-  selector: "app-producttable",
-  templateUrl: "./producttable.component.html",
-  styleUrls: ["./producttable.component.scss"],
-  standalone: false,
+    selector: "app-producttable",
+    templateUrl: "./producttable.component.html",
+    styleUrls: ["./producttable.component.scss"],
+    imports: [
+        ReactiveFormsModule,
+        MatFormField,
+        MatInput,
+        VirtKeyboardDirective,
+        MatSlideToggle,
+        MatTable,
+        MatSort,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatSortHeader,
+        MatCellDef,
+        MatCell,
+        MatIconButton,
+        MatIcon,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+        MatPaginator,
+    ],
 })
 export class ProducttableComponent implements OnInit, OnDestroy {
   private productService = inject(ProductService);

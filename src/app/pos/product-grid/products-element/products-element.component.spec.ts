@@ -48,9 +48,8 @@ describe("ProductsElementComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProductsElementComponent],
-      imports: [MatDialogModule],
-      providers: [
+    imports: [MatDialogModule, ProductsElementComponent],
+    providers: [
         { provide: PosConfigToken, useValue: {} },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: ProductService, useClass: ProductServiceStub },
@@ -59,8 +58,8 @@ describe("ProductsElementComponent", () => {
         { provide: PosService, useClass: PosServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
 
     fixture = TestBed.createComponent(ProductsElementComponent);
     component = fixture.componentInstance;

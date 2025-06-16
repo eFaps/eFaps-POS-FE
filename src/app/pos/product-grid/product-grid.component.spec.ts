@@ -57,28 +57,25 @@ describe("ProductgridComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        ProductGridComponent,
-        MockPipe(PosCurrencyPipe),
-        MockPipe(SecurePipe),
-      ],
-      imports: [
+    imports: [
         BrowserAnimationsModule,
         RouterTestingModule,
         MatDialogModule,
         MatTabsModule,
-      ],
-      providers: [
+        ProductGridComponent,
+        MockPipe(PosCurrencyPipe),
+        MockPipe(SecurePipe),
+    ],
+    providers: [
         { provide: PosConfigToken, useValue: {} },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: ProductService, useClass: ProductServiceStub },
         { provide: PosService, useClass: PosServiceStub },
         { provide: InventoryService, useValue: {} },
-
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

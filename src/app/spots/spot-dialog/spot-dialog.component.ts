@@ -1,13 +1,22 @@
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent } from "@angular/material/dialog";
 import { Spot, SpotConfig, SpotService } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
+import { CdkScrollable } from "@angular/cdk/scrolling";
+import { MatFabButton } from "@angular/material/button";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
-  selector: "app-spot-dialog",
-  templateUrl: "./spot-dialog.component.html",
-  styleUrls: ["./spot-dialog.component.scss"],
-  standalone: false,
+    selector: "app-spot-dialog",
+    templateUrl: "./spot-dialog.component.html",
+    styleUrls: ["./spot-dialog.component.scss"],
+    imports: [
+        MatDialogTitle,
+        CdkScrollable,
+        MatDialogContent,
+        MatFabButton,
+        TranslatePipe,
+    ],
 })
 export class SpotDialogComponent implements OnInit, OnDestroy {
   private dialogRef = inject<MatDialogRef<SpotDialogComponent>>(MatDialogRef);

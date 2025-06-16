@@ -7,10 +7,7 @@ import {
   inject,
 } from "@angular/core";
 
-@Directive({
-  selector: "[appSameHeight]",
-  standalone: false,
-})
+@Directive({ selector: "[appSameHeight]", })
 export class SameHeightDirective implements AfterViewChecked {
   private el = inject(ElementRef);
 

@@ -45,12 +45,8 @@ class HotkeysServiceStub {
 describe("AppComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent,
-        MockComponent(ThemePickerComponent),
-        MockPipe(TranslatePipe),
-      ],
-      imports: [
+    declarations: [AppComponent],
+    imports: [
         HotkeyModule,
         RouterTestingModule,
         AngularSvgIconModule,
@@ -59,28 +55,29 @@ describe("AppComponent", () => {
         MatListModule,
         MatIconModule,
         MatToolbarModule,
-      ],
-      providers: [
+        MockComponent(ThemePickerComponent),
+        MockPipe(TranslatePipe),
+    ],
+    providers: [
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: TranslateService, useClass: TranslateServiceSub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: UserService, useValue: {} },
         { provide: HotkeysService, useClass: HotkeysServiceStub },
         { provide: CompanyService, useValue: {} },
-
         {
-          provide: SvgIconRegistryService,
-          useClass: SvgIconRegistryServiceStub,
+            provide: SvgIconRegistryService,
+            useClass: SvgIconRegistryServiceStub,
         },
         {
-          provide: PosConfigToken,
-          useValue: {
-            order: "",
-          },
+            provide: PosConfigToken,
+            useValue: {
+                order: "",
+            },
         },
         provideHttpClient(withInterceptorsFromDi()),
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
   });
   it("should create the app", () => {
     const fixture = TestBed.createComponent(AppComponent);

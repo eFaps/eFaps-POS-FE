@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import {
   InventoryService,
@@ -7,12 +7,25 @@ import {
   Warehouse,
 } from "@efaps/pos-library";
 import { forkJoin } from "rxjs";
+import { MatFormField, MatLabel } from "@angular/material/form-field";
+import { MatSelect } from "@angular/material/select";
+import { MatOption } from "@angular/material/autocomplete";
+import { MatInput } from "@angular/material/input";
+import { MatButton } from "@angular/material/button";
 
 @Component({
-  selector: "app-stocktaking-init",
-  templateUrl: "./stocktaking-init.component.html",
-  styleUrls: ["./stocktaking-init.component.scss"],
-  standalone: false,
+    selector: "app-stocktaking-init",
+    templateUrl: "./stocktaking-init.component.html",
+    styleUrls: ["./stocktaking-init.component.scss"],
+    imports: [
+        ReactiveFormsModule,
+        MatFormField,
+        MatLabel,
+        MatSelect,
+        MatOption,
+        MatInput,
+        MatButton,
+    ],
 })
 export class StocktakingInitComponent implements OnInit {
   private router = inject(Router);
