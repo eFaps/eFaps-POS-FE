@@ -1,12 +1,11 @@
 import {
   ChangeDetectorRef,
   Component,
-  EventEmitter,
   Input,
   OnInit,
-  Output,
   ViewChild,
   inject,
+  output
 } from "@angular/core";
 import { UntypedFormControl, ReactiveFormsModule } from "@angular/forms";
 import { MatAutocomplete, MatAutocompleteTrigger, MatOption } from "@angular/material/autocomplete";
@@ -39,7 +38,7 @@ export class ContactComponent implements OnInit {
   searchControl: UntypedFormControl = new UntypedFormControl();
   searchResult: Contact[] = [];
   nameSearch = false;
-  @Output() contactSelected = new EventEmitter<Contact>();
+  readonly contactSelected = output<Contact>();
   @ViewChild(MatAutocomplete) autoComplete: MatAutocomplete | undefined;
 
   ngOnInit() {

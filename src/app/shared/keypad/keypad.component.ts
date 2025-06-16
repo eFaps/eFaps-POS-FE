@@ -1,12 +1,11 @@
 import {
   Component,
-  EventEmitter,
   HostListener,
   OnDestroy,
   OnInit,
-  Output,
   inject,
-  input
+  input,
+  output
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { KeypadService } from "../../services";
@@ -31,7 +30,7 @@ export class KeypadComponent implements OnInit, OnDestroy {
   readonly showTopClear = input<boolean>(true);
   readonly showBottomClear = input<boolean>(false);
   readonly showDoubleZero = input<boolean>(true);
-  @Output() number = new EventEmitter<string>();
+  readonly number = output<string>();
   private subscriptions = new Subscription();
 
   ngOnInit() {

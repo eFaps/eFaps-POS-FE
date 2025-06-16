@@ -1,11 +1,10 @@
 import {
   Component,
   effect,
-  EventEmitter,
   inject,
   OnInit,
-  Output,
-  input
+  input,
+  output
 } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -59,7 +58,7 @@ export class TicketComponent implements OnInit {
   promoInfo: PromoInfo | null = null;
 
   readonly isBarcode = input<boolean>(false);
-  @Output() multiplierClick = new EventEmitter<any>();
+  readonly multiplierClick = output<any>();
 
   constructor() {
     effect(() => {
@@ -99,6 +98,7 @@ export class TicketComponent implements OnInit {
         });
 
       this.syncTicket();
+      // TODO: The 'emit' function requires a mandatory any argument
       this.multiplierClick.emit();
     }
   }
@@ -148,6 +148,7 @@ export class TicketComponent implements OnInit {
         currentId++;
       });
       this.syncTicket();
+      // TODO: The 'emit' function requires a mandatory any argument
       this.multiplierClick.emit();
     }
   }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, Input, OnInit, output } from "@angular/core";
 import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
 import { DocItem, Order, PosLibraryModule } from "@efaps/pos-library";
 import { MatButton } from "@angular/material/button";
@@ -30,7 +30,7 @@ export class ReassignItemComponent implements OnInit {
 
   dataSource = new MatTableDataSource<DocItem>();
   displayedColumns: string[] = [];
-  @Output() moveItem: EventEmitter<DocItem> = new EventEmitter<DocItem>();
+  readonly moveItem = output<DocItem>();
 
   constructor() {}
 

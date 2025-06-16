@@ -1,12 +1,11 @@
 import {
   Directive,
   ElementRef,
-  EventEmitter,
   HostListener,
   OnDestroy,
-  Output,
   inject,
-  input
+  input,
+  output
 } from "@angular/core";
 import { NgControl } from "@angular/forms";
 import {
@@ -35,13 +34,13 @@ export class VirtKeyboardDirective implements OnDestroy {
 
   readonly activateKeyboard = input<boolean>(false);
 
-  @Output() enterClick: EventEmitter<void> = new EventEmitter<void>();
+  readonly enterClick = output<void>();
 
-  @Output() capsClick: EventEmitter<void> = new EventEmitter<void>();
+  readonly capsClick = output<void>();
 
-  @Output() altClick: EventEmitter<void> = new EventEmitter<void>();
+  readonly altClick = output<void>();
 
-  @Output() shiftClick: EventEmitter<void> = new EventEmitter<void>();
+  readonly shiftClick = output<void>();
 
   ngOnDestroy() {
     this._hideKeyboard();
@@ -62,14 +61,14 @@ export class VirtKeyboardDirective implements OnDestroy {
       }
 
       this._keyboardRef.instance.enterClick.subscribe(() =>
-        this.enterClick.next(),
+        this.enterClick.emit(),
       );
       this._keyboardRef.instance.capsClick.subscribe(() =>
-        this.capsClick.next(),
+        this.capsClick.emit(),
       );
-      this._keyboardRef.instance.altClick.subscribe(() => this.altClick.next());
+      this._keyboardRef.instance.altClick.subscribe(() => this.altClick.emit());
       this._keyboardRef.instance.shiftClick.subscribe(() =>
-        this.shiftClick.next(),
+        this.shiftClick.emit(),
       );
     }
   }

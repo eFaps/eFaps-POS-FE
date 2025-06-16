@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject } from "@angular/core";
+import { Component, inject, output } from "@angular/core";
 import { FormGroup, NonNullableFormBuilder, Validators, ReactiveFormsModule } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { EnquiryService, RUC } from "@efaps/pos-library";
@@ -27,8 +27,7 @@ export class TaxpayerQueryComponent {
 
   taxpayerForm: FormGroup;
   nameSearch = false;
-  @Output()
-  result: EventEmitter<RUC> = new EventEmitter<RUC>();
+  readonly result = output<RUC>();
 
   constructor() {
     this.taxpayerForm = this.fb.group({
@@ -57,13 +56,13 @@ export class TaxpayerQueryComponent {
       });
       dialogRef.afterClosed().subscribe({
         next: (taxpayer) => {
-          this.result.next(taxpayer);
+          this.result.emit(taxpayer);
         },
       });
     } else {
       this.enquiryService.getRUC(this.taxpayerForm.value.term).subscribe({
         next: (taxpayer) => {
-          this.result.next(taxpayer);
+          this.result.emit(taxpayer);
         },
       });
     }

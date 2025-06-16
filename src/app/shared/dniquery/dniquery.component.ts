@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject } from "@angular/core";
+import { Component, inject, output } from "@angular/core";
 import { FormGroup, NonNullableFormBuilder, Validators, ReactiveFormsModule } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { DNI, EnquiryService } from "@efaps/pos-library";
@@ -23,8 +23,7 @@ export class DNIQueryComponent {
   private snackBar = inject(MatSnackBar);
 
   dniForm: FormGroup;
-  @Output()
-  result: EventEmitter<DNI> = new EventEmitter<DNI>();
+  readonly result = output<DNI>();
 
   constructor() {
     this.dniForm = this.fb.group({
@@ -36,7 +35,7 @@ export class DNIQueryComponent {
     this.enquiryService.getDNI(this.dniForm.value.number).subscribe({
       next: (dni) => {
         if (dni) {
-          this.result.next(dni);
+          this.result.emit(dni);
         } else {
           this.snackBar.open("no hay resultados");
         }
