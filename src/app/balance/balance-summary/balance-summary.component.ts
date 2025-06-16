@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from "@angular/core";
+import { Component, input, OnInit, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import {
   BalanceSummary,
@@ -35,8 +35,8 @@ export class BalanceSummaryComponent implements OnInit {
 
   [x: string]: {};
   subscription$ = new Subscription();
-  @Input()
-  summary!: BalanceSummary;
+  
+  summary = input.required<BalanceSummary>();
   printer: boolean = false;
   printerDetailed: boolean = false;
   private workspaceOid!: string;
@@ -65,13 +65,13 @@ export class BalanceSummaryComponent implements OnInit {
     this.dialog.open(PrintDialogComponent, {
       data: this.printService.printBalance(
         this.workspaceOid,
-        this.summary.balance.id,
+        this.summary().balance.id,
         detailed,
       ),
     });
   }
 
   hasBalance(): boolean {
-    return this.summary && this.summary.balance != null;
+    return this.summary && this.summary().balance != null;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, inject } from "@angular/core";
+import { Component, OnDestroy, OnInit, inject, signal } from "@angular/core";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import {
   Balance,
@@ -56,7 +56,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
 
   currentBalance: Balance | undefined;
   payables: PayableHead[] = [];
-  summary: BalanceSummary | undefined;
+  summary = signal<BalanceSummary | undefined>(undefined);
   subscription$ = new Subscription();
   private print = false;
   private workspaceOid!: string;
@@ -80,7 +80,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
           );
           this.subscription$.add(
             this.balanceService.getSummary(balance).subscribe({
-              next: (summary) => (this.summary = summary),
+              next: (summary) => (this.summary.set(summary)),
             }),
           );
         }
@@ -176,7 +176,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
               }
               this.currentBalance = undefined;
               this.payables = [];
-              this.summary = undefined;
+              this.summary.set(undefined);
             },
           });
         }

@@ -2,14 +2,14 @@
   @if (hasBalance()) {
     <div class="header">
       <div class="info">
-        <p i18n="@@bs-number">Number: {{summary.balance.number}}</p>
-        <p i18n="@@bs-started">Started: {{summary.balance.startAt | date:'dd/MM/yy HH:mm' }}</p>
-        <p i18n="@@bs-ended">Ended: {{summary.balance.endAt | date:'dd/MM/yy HH:mm' }}</p>
+        <p i18n="@@bs-number">Number: {{summary().balance.number}}</p>
+        <p i18n="@@bs-started">Started: {{summary().balance.startAt | date:'dd/MM/yy HH:mm' }}</p>
+        <p i18n="@@bs-ended">Ended: {{summary().balance.endAt | date:'dd/MM/yy HH:mm' }}</p>
       </div>
-      @if (summary.cashEntries.length > 0) {
+      @if (summary().cashEntries.length > 0) {
         <div class="opening">
           <span>Registros</span>
-          @for (cashEntry of summary.cashEntries; track cashEntry) {
+          @for (cashEntry of summary().cashEntries; track cashEntry) {
             <div class="cashEntry">
               {{('CASHENTRYTYPE.' + cashEntry.entryType) | translate}}: {{cashEntry.amount | posCurrency:cashEntry.currency}}
             </div>
@@ -30,34 +30,34 @@
       </div>
     </div>
   }
-  @if (summary.invoiceDetail.documentCount > 0) {
+  @if (summary().invoiceDetail.documentCount > 0) {
     <div class="section">
       <p i18n="@@bs-invoices">Invoices</p>
-      <app-balance-summary-section [detail]="summary.invoiceDetail"></app-balance-summary-section>
+      <app-balance-summary-section [detail]="summary().invoiceDetail"></app-balance-summary-section>
     </div>
   }
-  @if (summary.receiptDetail.documentCount > 0) {
+  @if (summary().receiptDetail.documentCount > 0) {
     <div class="section">
       <p i18n="@@bs-receipts">Receipts</p>
-      <app-balance-summary-section [detail]="summary.receiptDetail"></app-balance-summary-section>
+      <app-balance-summary-section [detail]="summary().receiptDetail"></app-balance-summary-section>
     </div>
   }
-  @if (summary.ticketDetail.documentCount > 0) {
+  @if (summary().ticketDetail.documentCount > 0) {
     <div class="section">
       <p i18n="@@bs-tickets">Tickets</p>
-      <app-balance-summary-section [detail]="summary.ticketDetail"></app-balance-summary-section>
+      <app-balance-summary-section [detail]="summary().ticketDetail"></app-balance-summary-section>
     </div>
   }
-  @if (summary.creditNoteDetail.documentCount > 0) {
+  @if (summary().creditNoteDetail.documentCount > 0) {
     <div class="section">
       <p i18n="@@bs-creditNotes">Credit Notes</p>
-      <app-balance-summary-section [detail]="summary.creditNoteDetail"></app-balance-summary-section>
+      <app-balance-summary-section [detail]="summary().creditNoteDetail"></app-balance-summary-section>
     </div>
   }
-  @if (summary.detail.documentCount > 0) {
+  @if (summary().detail.documentCount > 0) {
     <div class="section">
       <p i18n="@@bs-overall">Over all</p>
-      <app-balance-summary-section [detail]="summary.detail"></app-balance-summary-section>
+      <app-balance-summary-section [detail]="summary().detail"></app-balance-summary-section>
     </div>
   }
 </div>

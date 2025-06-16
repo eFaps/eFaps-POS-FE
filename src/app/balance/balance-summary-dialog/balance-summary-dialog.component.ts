@@ -1,23 +1,24 @@
-import { Component, OnInit, inject } from "@angular/core";
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { Component, OnInit, inject, signal } from "@angular/core";
+import { MAT_DIALOG_DATA, MatDialogModule } from "@angular/material/dialog";
 import { BalanceService, BalanceSummary } from "@efaps/pos-library";
 import { BalanceSummaryComponent } from "../balance-summary/balance-summary.component";
+
 
 @Component({
   selector: "app-balance-summary-dialog",
   templateUrl: "./balance-summary-dialog.component.html",
   styleUrls: ["./balance-summary-dialog.component.scss"],
-  imports: [BalanceSummaryComponent],
+  imports: [BalanceSummaryComponent, MatDialogModule]
 })
-export class BalanceSummaryDialogComponent implements OnInit {
+export class BalanceSummaryDialogComponent {
   private balanceService = inject(BalanceService);
   private data = inject(MAT_DIALOG_DATA);
 
-  summary: BalanceSummary | undefined;
+  summary = signal<BalanceSummary| undefined>(undefined);
 
-  ngOnInit() {
+  constructor() {
     this.balanceService.getSummary(this.data.balance).subscribe({
-      next: (summary) => (this.summary = summary),
+      next: (summary) => (this.summary.set(summary)),
     });
   }
 }
