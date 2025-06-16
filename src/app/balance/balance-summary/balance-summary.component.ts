@@ -2,18 +2,31 @@ import { Component, Input, OnInit, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import {
   BalanceSummary,
+  PosLibraryModule,
   PrintService,
   WorkspaceService,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 
+import { DatePipe } from "@angular/common";
+import { MatButton } from "@angular/material/button";
+import { MatIcon } from "@angular/material/icon";
+import { TranslatePipe } from "@ngx-translate/core";
 import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
+import { BalanceSummarySectionComponent } from "../balance-summary-section/balance-summary-section.component";
 
 @Component({
   selector: "app-balance-summary",
   templateUrl: "./balance-summary.component.html",
   styleUrls: ["./balance-summary.component.scss"],
-  standalone: false,
+  imports: [
+    MatButton,
+    MatIcon,
+    BalanceSummarySectionComponent,
+    DatePipe,
+    PosLibraryModule,
+    TranslatePipe,
+  ],
 })
 export class BalanceSummaryComponent implements OnInit {
   private workspaceService = inject(WorkspaceService);

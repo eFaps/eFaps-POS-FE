@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
+import { provideNativeDateAdapter } from "@angular/material/core";
 import { SalesReportDialogComponent } from "./sales-report-dialog.component";
 
 describe("SalesReportDialogComponent", () => {
@@ -9,6 +10,7 @@ describe("SalesReportDialogComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [],
+      providers: [provideNativeDateAdapter()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SalesReportDialogComponent);

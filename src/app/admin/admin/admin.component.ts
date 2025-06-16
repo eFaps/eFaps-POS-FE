@@ -1,7 +1,19 @@
+import { LazyElementDynamicDirective } from "@angular-extensions/elements";
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
-import { MatChipInputEvent, MatChipGrid, MatChipRow, MatChipRemove, MatChipInput } from "@angular/material/chips";
+import { MatButton } from "@angular/material/button";
+import {
+  MatChipGrid,
+  MatChipInput,
+  MatChipInputEvent,
+  MatChipRemove,
+  MatChipRow,
+} from "@angular/material/chips";
 import { MatDialog } from "@angular/material/dialog";
+import { MatFormField, MatLabel } from "@angular/material/form-field";
+import { MatIcon } from "@angular/material/icon";
+import { MatInput } from "@angular/material/input";
+import { MatSlideToggle } from "@angular/material/slide-toggle";
 import { Router } from "@angular/router";
 import { LocalStorage } from "@efaps/ngx-store";
 import {
@@ -17,31 +29,25 @@ import {
 import { PrintDialogComponent } from "src/app/shared/print-dialog/print-dialog.component";
 import { STOCKTAKING_ACTIVATE } from "src/app/util/keys";
 import { SalesReportDialogComponent } from "../sales-report-dialog/sales-report-dialog.component";
-import { MatButton } from "@angular/material/button";
-import { MatSlideToggle } from "@angular/material/slide-toggle";
-import { MatFormField, MatLabel } from "@angular/material/form-field";
-import { MatInput } from "@angular/material/input";
-import { MatIcon } from "@angular/material/icon";
-import { LazyElementDynamicDirective } from "@angular-extensions/elements";
 
 @Component({
-    selector: "app-admin",
-    templateUrl: "./admin.component.html",
-    styleUrls: ["./admin.component.scss"],
-    imports: [
-        MatButton,
-        MatSlideToggle,
-        ReactiveFormsModule,
-        MatFormField,
-        MatLabel,
-        MatInput,
-        MatChipGrid,
-        MatChipRow,
-        MatIcon,
-        MatChipRemove,
-        MatChipInput,
-        LazyElementDynamicDirective,
-    ],
+  selector: "app-admin",
+  templateUrl: "./admin.component.html",
+  styleUrls: ["./admin.component.scss"],
+  imports: [
+    MatButton,
+    MatSlideToggle,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatChipGrid,
+    MatChipRow,
+    MatIcon,
+    MatChipRemove,
+    MatChipInput,
+    LazyElementDynamicDirective,
+  ],
 })
 export class AdminComponent implements OnInit, OnDestroy {
   private router = inject(Router);

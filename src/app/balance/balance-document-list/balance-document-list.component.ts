@@ -1,16 +1,48 @@
 import { Component, Input, ViewChild, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
-import { DocStatus, PayableHead } from "@efaps/pos-library";
+import { MatSort, MatSortHeader } from "@angular/material/sort";
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+  MatTableDataSource,
+} from "@angular/material/table";
+import { DocStatus, PayableHead, PosLibraryModule } from "@efaps/pos-library";
 
+import { MatIconButton } from "@angular/material/button";
+import { MatIcon } from "@angular/material/icon";
+import { TranslatePipe } from "@ngx-translate/core";
 import { DocumentDialogComponent } from "../document-dialog/document-dialog.component";
 
 @Component({
   selector: "app-balance-document-list",
   templateUrl: "./balance-document-list.component.html",
   styleUrls: ["./balance-document-list.component.scss"],
-  standalone: false,
+  imports: [
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatSortHeader,
+    MatCellDef,
+    MatCell,
+    MatIconButton,
+    MatIcon,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    PosLibraryModule,
+    TranslatePipe,
+  ],
 })
 export class BalanceDocumentListComponent {
   private dialog = inject(MatDialog);

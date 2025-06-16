@@ -27,11 +27,11 @@ describe("BalanceSummaryComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
+        MatDialogModule,
         MockComponent(BalanceSummarySectionComponent),
         BalanceSummaryComponent,
       ],
-      imports: [MatDialogModule],
       providers: [
         { provide: PosConfigToken, useValue: {} },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },

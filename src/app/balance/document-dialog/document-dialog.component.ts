@@ -1,13 +1,20 @@
+import { CdkScrollable } from "@angular/cdk/scrolling";
 import { Component, OnInit, inject } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import {
+  MAT_DIALOG_DATA,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
+} from "@angular/material/dialog";
 import { DocumentService } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
+import { SharedModule } from "../../shared/shared.module";
 
 @Component({
   selector: "app-document-dialog",
   templateUrl: "./document-dialog.component.html",
   styleUrls: ["./document-dialog.component.scss"],
-  standalone: false,
+  imports: [MatDialogTitle, CdkScrollable, MatDialogContent, SharedModule],
 })
 export class DocumentDialogComponent implements OnInit {
   private documentService = inject(DocumentService);
@@ -16,6 +23,7 @@ export class DocumentDialogComponent implements OnInit {
   dialogRef = inject<MatDialogRef<DocumentDialogComponent>>(MatDialogRef);
   data = inject(MAT_DIALOG_DATA);
   title = "";
+  noDoc: boolean = false;
 
   ngOnInit() {
     switch (this.data.type) {
@@ -51,6 +59,9 @@ export class DocumentDialogComponent implements OnInit {
           },
         });
         break;
+      default:
+        console.log("NO DOC?");
+        this.noDoc = true;
     }
   }
 

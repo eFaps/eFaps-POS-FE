@@ -1,19 +1,60 @@
 import { Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
-import { DocumentService, PayableHead } from "@efaps/pos-library";
+import { MatSort, MatSortHeader } from "@angular/material/sort";
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+  MatTableDataSource,
+} from "@angular/material/table";
+import {
+  DocumentService,
+  PayableHead,
+  PosLibraryModule,
+} from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 
+import { MatIconButton } from "@angular/material/button";
+import { MatFormField } from "@angular/material/form-field";
+import { MatIcon } from "@angular/material/icon";
+import { MatInput } from "@angular/material/input";
+import { TranslatePipe } from "@ngx-translate/core";
 import { DocumentDialogComponent } from "../document-dialog/document-dialog.component";
 
 @Component({
   selector: "app-document-list",
   templateUrl: "./document-list.component.html",
   styleUrls: ["./document-list.component.scss"],
-  standalone: false,
+  imports: [
+    ReactiveFormsModule,
+    MatFormField,
+    MatInput,
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatSortHeader,
+    MatCellDef,
+    MatCell,
+    MatIconButton,
+    MatIcon,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    PosLibraryModule,
+    TranslatePipe,
+  ],
 })
 export class DocumentListComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);

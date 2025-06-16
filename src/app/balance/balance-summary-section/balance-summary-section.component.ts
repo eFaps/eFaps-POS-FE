@@ -1,11 +1,15 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { PaymentInfo, SummaryDetail } from "@efaps/pos-library";
+import {
+  PaymentInfo,
+  PosLibraryModule,
+  SummaryDetail,
+} from "@efaps/pos-library";
 
 @Component({
   selector: "app-balance-summary-section",
   templateUrl: "./balance-summary-section.component.html",
   styleUrls: ["./balance-summary-section.component.scss"],
-  standalone: false,
+  imports: [PosLibraryModule],
 })
 export class BalanceSummarySectionComponent implements OnInit {
   _detail: SummaryDetail = {

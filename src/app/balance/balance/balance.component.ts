@@ -17,16 +17,33 @@ import { TranslateService } from "@ngx-translate/core";
 import { Subscription } from "rxjs";
 import { BALANCE_ACTIVATE_CASHENTRY } from "src/app/util/keys";
 
+import { MatButton } from "@angular/material/button";
+import { MatTab, MatTabContent, MatTabGroup } from "@angular/material/tabs";
 import { ConfirmDialogComponent } from "../../shared/confirm-dialog/confirm-dialog.component";
 import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
+import { BalanceDocumentListComponent } from "../balance-document-list/balance-document-list.component";
+import { BalanceListComponent } from "../balance-list/balance-list.component";
+import { BalancePaymentListComponent } from "../balance-payment-list/balance-payment-list.component";
+import { BalanceSummaryComponent } from "../balance-summary/balance-summary.component";
 import { CashEntryDialogComponent } from "../cash-entry-dialog/cash-entry-dialog.component";
+import { DocumentListComponent } from "../document-list/document-list.component";
 import { OpeningBalanceDialogComponent } from "../opening-balance-dialog/opening-balance-dialog.component";
 
 @Component({
   selector: "app-balance",
   templateUrl: "./balance.component.html",
   styleUrls: ["./balance.component.scss"],
-  standalone: false,
+  imports: [
+    MatTabGroup,
+    MatTab,
+    MatButton,
+    BalanceDocumentListComponent,
+    BalancePaymentListComponent,
+    BalanceSummaryComponent,
+    MatTabContent,
+    BalanceListComponent,
+    DocumentListComponent,
+  ],
 })
 export class BalanceComponent implements OnInit, OnDestroy {
   private balanceService = inject(BalanceService);

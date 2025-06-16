@@ -10,13 +10,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatTableModule } from "@angular/material/table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import {
-  DocumentService,
-  PosConfigToken,
-  PosCurrencyPipe,
-} from "@efaps/pos-library";
-import { TranslatePipe } from "@ngx-translate/core";
-import { MockPipe } from "ng-mocks";
+import { DocumentService, PosConfigToken } from "@efaps/pos-library";
 
 import { DocumentListComponent } from "./document-list.component";
 
@@ -26,11 +20,6 @@ describe("DocumentListComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DocumentListComponent,
-        MockPipe(TranslatePipe),
-        MockPipe(PosCurrencyPipe),
-      ],
       imports: [
         ReactiveFormsModule,
         BrowserAnimationsModule,
@@ -38,6 +27,7 @@ describe("DocumentListComponent", () => {
         MatTableModule,
         MatFormFieldModule,
         MatInputModule,
+        DocumentListComponent,
       ],
       providers: [
         { provide: PosConfigToken, useValue: {} },

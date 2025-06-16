@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { Currency, PosCurrencyPipe } from "@efaps/pos-library";
-import { MockPipe } from "ng-mocks";
+import { Currency } from "@efaps/pos-library";
 import { BalanceSummarySectionComponent } from "./balance-summary-section.component";
 
 describe("BalanceSummarySectionComponent", () => {
@@ -10,7 +9,7 @@ describe("BalanceSummarySectionComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BalanceSummarySectionComponent, MockPipe(PosCurrencyPipe)],
+      imports: [BalanceSummarySectionComponent],
     }).compileComponents();
   });
 

@@ -41,8 +41,6 @@ import { OpeningBalanceDialogComponent } from "./opening-balance-dialog/opening-
     PosLibraryModule,
     ReactiveFormsModule,
     SharedModule,
-  ],
-  declarations: [
     BalanceComponent,
     BalanceDocumentListComponent,
     BalancePaymentListComponent,

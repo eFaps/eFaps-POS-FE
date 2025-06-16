@@ -69,7 +69,10 @@ describe("BalanceComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
+        BrowserAnimationsModule,
+        MatDialogModule,
+        MatTabsModule,
         BalanceComponent,
         MockComponent(BalanceSummaryComponent),
         MockComponent(BalanceListComponent),
@@ -78,7 +81,6 @@ describe("BalanceComponent", () => {
         MockComponent(DocumentListComponent),
         MockPipe(TranslatePipe),
       ],
-      imports: [BrowserAnimationsModule, MatDialogModule, MatTabsModule],
       providers: [
         { provide: BalanceService, useClass: BalanceServiceStub },
         { provide: DocumentService, useClass: DocumentServiceStub },

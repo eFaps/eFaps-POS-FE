@@ -19,9 +19,13 @@ describe("BalanceListComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MatDialogModule, MatTableModule],
+      imports: [
+        BrowserAnimationsModule,
+        MatDialogModule,
+        MatTableModule,
+        BalanceListComponent,
+      ],
       providers: [{ provide: BalanceService, useClass: BalanceServiceStub }],
-      declarations: [BalanceListComponent],
     }).compileComponents();
   });
 

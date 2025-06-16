@@ -1,13 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import {
-  BalanceService,
-  DocumentService,
-  PosCurrencyPipe,
-} from "@efaps/pos-library";
-import { TranslatePipe } from "@ngx-translate/core";
-import { MockPipe } from "ng-mocks";
+import { BalanceService, DocumentService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
 import { MatTableModule } from "@angular/material/table";
@@ -33,15 +27,15 @@ describe("BalanceDocumentListComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MatDialogModule, MatTableModule],
+      imports: [
+        BrowserAnimationsModule,
+        MatDialogModule,
+        MatTableModule,
+        BalanceDocumentListComponent,
+      ],
       providers: [
         { provide: DocumentService, useClass: DocumentServiceStub },
         { provide: BalanceService, useClass: BalanceServiceStub },
-      ],
-      declarations: [
-        BalanceDocumentListComponent,
-        MockPipe(PosCurrencyPipe),
-        MockPipe(TranslatePipe),
       ],
     }).compileComponents();
   });

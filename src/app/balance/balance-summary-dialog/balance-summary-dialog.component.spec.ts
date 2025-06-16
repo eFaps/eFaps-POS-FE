@@ -20,14 +20,14 @@ describe("BalanceSummaryDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule],
+      imports: [
+        BrowserAnimationsModule,
+        MockComponent(BalanceSummaryComponent),
+        BalanceSummaryDialogComponent,
+      ],
       providers: [
         { provide: BalanceService, useClass: BalanceServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: [] },
-      ],
-      declarations: [
-        MockComponent(BalanceSummaryComponent),
-        BalanceSummaryDialogComponent,
       ],
     }).compileComponents();
   });

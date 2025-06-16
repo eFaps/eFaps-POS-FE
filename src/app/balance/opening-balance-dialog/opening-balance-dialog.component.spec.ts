@@ -19,8 +19,8 @@ describe("OpeningBalanceDialogComponent", () => {
         MatInputModule,
         ReactiveFormsModule,
         NoopAnimationsModule,
+        OpeningBalanceDialogComponent,
       ],
-      declarations: [OpeningBalanceDialogComponent],
       providers: [FormBuilder],
     }).compileComponents();
 

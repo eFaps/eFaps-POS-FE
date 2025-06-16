@@ -28,12 +28,16 @@ describe("BalancePaymentListComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MatListModule],
+      imports: [
+        BrowserAnimationsModule,
+        MatListModule,
+        BalancePaymentListComponent,
+        MockPipe(TranslatePipe),
+      ],
       providers: [
         { provide: DocumentService, useClass: DocumentServiceStub },
         { provide: BalanceService, useClass: BalanceServiceStub },
       ],
-      declarations: [BalancePaymentListComponent, MockPipe(TranslatePipe)],
     }).compileComponents();
   });
 
