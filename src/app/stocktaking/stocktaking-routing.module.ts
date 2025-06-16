@@ -1,15 +1,15 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { StocktakingEntryTableComponent } from "./stocktaking-entry-table/stocktaking-entry-table.component";
-import { StocktakingInitComponent } from "./stocktaking-init/stocktaking-init.component";
-import { StocktakingTableComponent } from "./stocktaking-table/stocktaking-table.component";
-import { StocktakingComponent } from "./stocktaking/stocktaking.component";
+
+
+
+
 
 const routes: Routes = [
-  { path: "init", component: StocktakingInitComponent },
-  { path: "entries", component: StocktakingEntryTableComponent },
-  { path: ":oid", component: StocktakingComponent },
-  { path: "", component: StocktakingTableComponent },
+  { path: "init", loadComponent: () => import('./stocktaking-init/stocktaking-init.component').then(m => m.StocktakingInitComponent) },
+  { path: "entries", loadComponent: () => import('./stocktaking-entry-table/stocktaking-entry-table.component').then(m => m.StocktakingEntryTableComponent) },
+  { path: ":oid", loadComponent: () => import('./stocktaking/stocktaking.component').then(m => m.StocktakingComponent) },
+  { path: "", loadComponent: () => import('./stocktaking-table/stocktaking-table.component').then(m => m.StocktakingTableComponent) },
 ];
 
 @NgModule({

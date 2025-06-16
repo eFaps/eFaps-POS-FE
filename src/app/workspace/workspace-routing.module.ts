@@ -1,8 +1,8 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { WorkspaceComponent } from "./workspace.component";
 
-const routes: Routes = [{ path: "", component: WorkspaceComponent }];
+
+const routes: Routes = [{ path: "", loadComponent: () => import('./workspace.component').then(m => m.WorkspaceComponent) }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -1,9 +1,9 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { ContactTableComponent } from "./contact-table/contact-table.component";
 
-const routes: Routes = [{ path: "", component: ContactTableComponent }];
+
+const routes: Routes = [{ path: "", loadComponent: () => import('./contact-table/contact-table.component').then(m => m.ContactTableComponent) }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

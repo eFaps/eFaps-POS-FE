@@ -1,8 +1,8 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { OrderTableComponent } from "./order-table/order-table.component";
 
-const routes: Routes = [{ path: "", component: OrderTableComponent }];
+
+const routes: Routes = [{ path: "", loadComponent: () => import('./order-table/order-table.component').then(m => m.OrderTableComponent) }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
