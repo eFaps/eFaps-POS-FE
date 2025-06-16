@@ -1,5 +1,5 @@
 <div class="pos-productgrid" [ngClass]="size()">
-  @for (product of products(); track product) {
+  @for (product of products(); track product.oid) {
     <mat-card appearance="outlined" class="pos-card" (click)="select(product)">
       <mat-card-header>
         <mat-card-title>{{product.sku}}</mat-card-title>

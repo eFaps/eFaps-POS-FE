@@ -1,36 +1,41 @@
 <div class="content">
   <div [ngSwitch]="currentLayout" class="selector" [ngStyle]="{'height.px': screenHeight - 66 }">
     @if(contact != null || shoutOut != null) {
-      <div class="contact">
-        @if(contact != null) {
-          <span>Contacto: {{contact.idType}}: {{contact.idNumber}} - {{contact.name}}</span>
-        } @else {
-          <span>ShoutOut: {{shoutOut}}</span>
-        }
-        <button mat-stroked-button (click)="assignContact(true)">Cambiar</button>
-      </div>
+    <div class="contact">
+      @if(contact != null) {
+      <span>Contacto: {{contact.idType}}: {{contact.idNumber}} - {{contact.name}}</span>
+      } @else {
+      <span>ShoutOut: {{shoutOut}}</span>
+      }
+      <button mat-stroked-button (click)="assignContact(true)">Cambiar</button>
+    </div>
     }
-    <app-product-grid *ngSwitchCase="PosLayout.GRID" [remarkMode]="remarkMode"></app-product-grid>
+    <app-product-grid *ngSwitchCase="PosLayout.GRID" [remarkMode]="remarkMode" [(selectedIndex)]="selectedTabIndex"></app-product-grid>
     <app-product-list *ngSwitchCase="PosLayout.LIST" [remarkMode]="remarkMode"
       [isBarcode]="isBarcode"></app-product-list>
     <div class="button-list">
-      <button *ngIf="currentLayout === PosLayout.GRID" mat-fab color="primary" (click)="openCatSelect()"
-        class="catSelect">
+      @if(currentLayout === PosLayout.GRID) {
+      <button mat-fab color="primary" (click)="openCatSelect()" class="catSelect">
         <mat-icon>category</mat-icon>
       </button>
+      }
+
       <button class="remark-btn" (click)="toggleRemarkMode()" mat-fab color="{{remarkMode ? 'accent' : 'primary' }}">
         <mat-icon>description</mat-icon>
       </button>
-      <button mat-fab color="primary" (click)="switchLayout()"
-        *ngIf="this.workspaceService.getPosLayout() === PosLayout.BOTH" class="switch">
+      @if(this.workspaceService.getPosLayout() === PosLayout.BOTH) {
+      <button mat-fab color="primary" (click)="switchLayout()" class="switch">
         <mat-icon>sync_alt</mat-icon>
       </button>
-      <div *ngIf="allowAssignSeller" class="seller">
+      }
+      @if(allowAssignSeller) {
+      <div class="seller">
         <button mat-fab color="primary" class="employee-btn" (click)="assignSeller()">
           <mat-icon>person_pin</mat-icon>
         </button>
         <div class="seller-label" *ngIf="seller"><span>{{seller.firstName}} {{seller.surName}}</span></div>
       </div>
+      }
     </div>
   </div>
   <div class='ticket' [ngStyle]="{'height.px': screenHeight - 68 - 6}">

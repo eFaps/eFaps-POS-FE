@@ -1,15 +1,17 @@
-<mat-tab-group appSameHeight="mat-card-image" (selectedTabChange)="tabChanged($event)" [selectedIndex]="selectedIndex">
-  @for (category of categories; track category; let i = $index) {
-    <mat-tab label="{{categories[i].name}}">
-      <ng-template matTabContent>
-        @if (category.children.length) {
-          <app-grid-element [categories]="category.children" (categorySelected)="onChildCategorySelected($event)"
-            [currency]="currentCurrency" [showInventory]="showInventory" [size]="size" [showPrices]="showPrices"
-            [inventory]="inventory" [remarkMode]="remarkMode()" />
-        }
-        <app-products-element [products]="products" [currency]="currentCurrency"
-          [showInventory]="showInventory" [size]="size" [showPrices]="showPrices" [inventory]="inventory" [remarkMode]="remarkMode()" />
-      </ng-template>
-    </mat-tab>
+@if(categories && categories.length > 0) {
+<mat-tab-group appSameHeight="mat-card-image" (selectedTabChange)="tabChanged($event)" [(selectedIndex)]="selectedIndex">
+  @for (category of categories; track category.oid; let i = $index) {
+  <mat-tab label="{{category.name}}">
+    <ng-template matTabContent>
+      @if (category.children.length) {
+      <app-grid-element [categories]="category.children" (categorySelected)="onChildCategorySelected($event)"
+        [currency]="currentCurrency" [showInventory]="showInventory" [size]="size" [showPrices]="showPrices"
+        [inventory]="inventory" [remarkMode]="remarkMode()" />
+      }
+      <app-products-element [products]="products" [currency]="currentCurrency" [showInventory]="showInventory"
+        [size]="size" [showPrices]="showPrices" [inventory]="inventory" [remarkMode]="remarkMode()" />
+    </ng-template>
+  </mat-tab>
   }
 </mat-tab-group>
+}

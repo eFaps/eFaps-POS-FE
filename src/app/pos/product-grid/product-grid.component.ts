@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, inject } from "@angular/core";
+import { Component, OnDestroy, OnInit, inject, input, model } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import {
   MatTab,
@@ -42,7 +42,7 @@ export class ProductGridComponent
   implements OnInit, OnDestroy
 {
   categories: CategoryNode[] = [];
-  selectedIndex = 0;
+  selectedIndex = model<number>();
   currentCurrency: Currency = Currency.PEN;
   //size = 'small';
   //size = 'medium' | big;
@@ -72,18 +72,16 @@ export class ProductGridComponent
       keypadService,
       dialog,
     );
+      this.productService.getCategoryTree().subscribe({
+        next: (categories) => {
+          this.categories = categories;
+        },
+      })
+    
   }
 
   override ngOnInit() {
     super.ngOnInit();
-    this.subscription$.add(
-      this.productService.getCategoryTree().subscribe({
-        next: (_categories) => {
-          this.categories = _categories;
-        },
-      }),
-    );
-
     this.workspaceService.currentWorkspace.subscribe({
       next: (workspace) => {
         if (workspace) {
@@ -115,6 +113,7 @@ export class ProductGridComponent
   }
 
   tabChanged(event: MatTabChangeEvent): void {
+    console.log("demo")
     this.currentCategory = this.categories[event.index];
     event.tab.isActive;
     this.productService

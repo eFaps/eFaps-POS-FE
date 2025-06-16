@@ -7,6 +7,7 @@ import {
   OnInit,
   ViewChild,
   inject,
+  signal,
 } from "@angular/core";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -93,6 +94,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   private keypadService = inject(KeypadService);
   private changeDetectorRef = inject<ChangeDetectorRef>(ChangeDetectorRef);
 
+  selectedTabIndex = signal(0)
   PosLayout = PosLayout;
   ticket: Item[] = [];
   screenHeight: number = 0;
@@ -428,7 +430,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     ref.afterClosed().subscribe({
       next: (index) => {
         if (this.productGrid) {
-          this.productGrid.selectedIndex = index;
+           this.selectedTabIndex.set(index)
         }
       },
     });
