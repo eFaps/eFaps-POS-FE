@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, inject, input, model } from "@angular/core";
+import { Component, OnDestroy, OnInit, inject, model } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import {
   MatTab,
@@ -72,12 +72,11 @@ export class ProductGridComponent
       keypadService,
       dialog,
     );
-      this.productService.getCategoryTree().subscribe({
-        next: (categories) => {
-          this.categories = categories;
-        },
-      })
-    
+    this.productService.getCategoryTree().subscribe({
+      next: (categories) => {
+        this.categories = categories;
+      },
+    });
   }
 
   override ngOnInit() {
@@ -113,7 +112,7 @@ export class ProductGridComponent
   }
 
   tabChanged(event: MatTabChangeEvent): void {
-    console.log("demo")
+    console.log("demo");
     this.currentCategory = this.categories[event.index];
     event.tab.isActive;
     this.productService

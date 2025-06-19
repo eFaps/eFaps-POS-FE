@@ -7,7 +7,7 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from "@angular/material/dialog";
-import { DocumentService, Document } from "@efaps/pos-library";
+import { Document, DocumentService } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
 
 import { DocumentComponent } from "../../shared/document/document.component";
@@ -16,7 +16,13 @@ import { DocumentComponent } from "../../shared/document/document.component";
   selector: "app-document-dialog",
   templateUrl: "./document-dialog.component.html",
   styleUrls: ["./document-dialog.component.scss"],
-  imports: [MatDialogTitle, CdkScrollable, MatDialogContent, DocumentComponent, MatDialogModule],
+  imports: [
+    MatDialogTitle,
+    CdkScrollable,
+    MatDialogContent,
+    DocumentComponent,
+    MatDialogModule,
+  ],
 })
 export class DocumentDialogComponent implements OnInit {
   private documentService = inject(DocumentService);
@@ -26,7 +32,7 @@ export class DocumentDialogComponent implements OnInit {
   data = inject(MAT_DIALOG_DATA);
   title = "";
 
-  document= signal<Document|undefined>(undefined)
+  document = signal<Document | undefined>(undefined);
 
   ngOnInit() {
     switch (this.data.type) {

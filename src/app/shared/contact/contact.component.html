@@ -3,7 +3,7 @@
     <mat-label>{{nameSearch ? 'Nombre' : 'Numero de Doc.' }}</mat-label>
     <input matInput aria-label="Contacto" [matAutocomplete]="auto" [formControl]="searchControl" class="left">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selectContact($event)">
-      @for (item of searchResult; track item) {
+      @for (item of searchResult(); track item.id) {
         <mat-option [value]="item">
           {{nameSearch ? item?.name + ' - ' + item?.idNumber : item?.idNumber + ' - ' + item?.name}}
         </mat-option>

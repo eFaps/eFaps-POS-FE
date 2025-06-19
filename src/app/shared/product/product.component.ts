@@ -6,7 +6,6 @@ import {
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
-  MatDialogModule,
   MatDialogTitle,
 } from "@angular/material/dialog";
 import { MatLine } from "@angular/material/grid-list";
@@ -42,7 +41,7 @@ import {
     MatDialogActions,
     MatButton,
     MatDialogClose,
-    PosLibraryModule
+    PosLibraryModule,
   ],
 })
 export class ProductComponent implements OnInit {
@@ -52,7 +51,7 @@ export class ProductComponent implements OnInit {
   private inventoryService = inject(InventoryService);
   private data = inject(MAT_DIALOG_DATA);
 
-  product = signal<Product|undefined>(undefined);
+  product = signal<Product | undefined>(undefined);
   currentCurrency: Currency = Currency.PEN;
   categories: string[] = [];
   loading: boolean = true;

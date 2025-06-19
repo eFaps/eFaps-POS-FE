@@ -6,11 +6,12 @@ import {
   ViewChild,
   inject,
   output,
+  signal,
 } from "@angular/core";
 import { ReactiveFormsModule, UntypedFormControl } from "@angular/forms";
 import {
   MatAutocomplete,
-  MatAutocompleteTrigger,
+  MatAutocompleteModule,
   MatOption,
 } from "@angular/material/autocomplete";
 
@@ -28,9 +29,8 @@ import { debounceTime } from "rxjs/operators";
     MatFormField,
     MatLabel,
     MatInput,
-    MatAutocompleteTrigger,
+    MatAutocompleteModule,
     ReactiveFormsModule,
-    MatAutocomplete,
     MatOption,
     MatSlideToggle,
   ],
@@ -38,9 +38,10 @@ import { debounceTime } from "rxjs/operators";
 export class ContactComponent implements OnInit {
   private contactService = inject(ContactService);
   private changeDetectorRefs = inject(ChangeDetectorRef);
+  searchResult = signal<Contact[]>([]);
 
   searchControl: UntypedFormControl = new UntypedFormControl();
-  searchResult: Contact[] = [];
+
   nameSearch = false;
   readonly contactSelected = output<Contact>();
   @ViewChild(MatAutocomplete) autoComplete: MatAutocomplete | undefined;
@@ -52,7 +53,7 @@ export class ContactComponent implements OnInit {
         this.contactService
           .searchContacts(data, this.nameSearch)
           .subscribe((response) => {
-            this.searchResult = response;
+            this.searchResult.set(response);
           });
       });
   }
@@ -60,7 +61,7 @@ export class ContactComponent implements OnInit {
   @Input()
   set contact(contact: Contact | undefined) {
     if (contact) {
-      this.searchResult = [contact];
+      this.searchResult.set([contact]);
       this.changeDetectorRefs.detectChanges();
       this.searchControl.setValue(this.autoComplete!!.options.first.value);
     }

@@ -80,7 +80,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
           );
           this.subscription$.add(
             this.balanceService.getSummary(balance).subscribe({
-              next: (summary) => (this.summary.set(summary)),
+              next: (summary) => this.summary.set(summary),
             }),
           );
         }

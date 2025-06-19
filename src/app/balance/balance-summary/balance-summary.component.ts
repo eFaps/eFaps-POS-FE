@@ -1,4 +1,4 @@
-import { Component, input, OnInit, inject } from "@angular/core";
+import { Component, inject, input, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import {
   BalanceSummary,
@@ -35,7 +35,7 @@ export class BalanceSummaryComponent implements OnInit {
 
   [x: string]: {};
   subscription$ = new Subscription();
-  
+
   summary = input.required<BalanceSummary>();
   printer: boolean = false;
   printerDetailed: boolean = false;

@@ -6,6 +6,7 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  effect,
   inject,
   signal,
 } from "@angular/core";
@@ -42,7 +43,7 @@ import {
   EmployeeDialogData,
 } from "../shared/employee-dialog/employee-dialog.component";
 
-import { NgIf, NgStyle, NgSwitch, NgSwitchCase } from "@angular/common";
+import { NgStyle } from "@angular/common";
 import { MatButton, MatFabButton } from "@angular/material/button";
 import { MatButtonToggle } from "@angular/material/button-toggle";
 import { MatIcon } from "@angular/material/icon";
@@ -60,13 +61,10 @@ import { TotalsComponent } from "./totals/totals.component";
   templateUrl: "./pos.component.html",
   styleUrls: ["./pos.component.scss"],
   imports: [
-    NgSwitch,
     NgStyle,
     MatButton,
-    NgSwitchCase,
     ProductGridComponent,
     ProductListComponent,
-    NgIf,
     MatFabButton,
     MatIcon,
     MatButtonToggle,
@@ -94,7 +92,10 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   private keypadService = inject(KeypadService);
   private changeDetectorRef = inject<ChangeDetectorRef>(ChangeDetectorRef);
 
-  selectedTabIndex = signal(0)
+  shoutOut = signal<string | undefined>(undefined);
+  contact = signal<Contact | undefined>(undefined);
+
+  selectedTabIndex = signal(0);
   PosLayout = PosLayout;
   ticket: Item[] = [];
   screenHeight: number = 0;
@@ -119,11 +120,25 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   sticky = false;
   private subscriptions = new Subscription();
   private requiresContact = false;
-  private _contact: Contact | null = null;
   private closing = false;
   private dialogRef: MatDialogRef<ContactDialogComponent, any> | undefined;
   private _seller: Employee | null = null;
-  private _shoutOut: string | undefined = undefined;
+
+  constructor() {
+    effect(() => {
+      let value = this.shoutOut();
+      console.log(`effect: ${value}`);
+      this.posService.shoutOut = value;
+    });
+    effect(() => {
+      let value = this.contact();
+      if (value) {
+        this.posService.contactOid = value.oid == null ? value.id : value.oid;
+      } else {
+        this.posService.contactOid = null;
+      }
+    });
+  }
 
   ngOnInit() {
     this.subscriptions.add(
@@ -156,18 +171,18 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
           if (order && !this.orderId) {
             this.msgService.publishStartEditOrder(order.id!);
             this.orderId = order.id;
-            this.shoutOut = order.shoutout;
+            this.shoutOut.set(order.shoutout);
             if (order.contactOid) {
               this.contactService.getContact(order.contactOid).subscribe({
                 next: (contactResp) => {
-                  this.contact = contactResp;
+                  this.contact.set(contactResp);
                   this.posService.contactOid =
                     contactResp.oid == null ? contactResp.id : contactResp.oid;
                   this.assignContact(false);
                 },
               });
             } else {
-              this.contact = null;
+              this.contact.set(undefined);
               this.assignContact(false);
             }
             if (order.employeeRelations) {
@@ -185,8 +200,8 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
               }
             }
           } else {
-            this.contact = null;
-            this.shoutOut = undefined;
+            this.contact.set(undefined);
+            this.shoutOut.set(undefined);
             this.assignContact(false);
             if (this.allowAssignSeller) {
               this.subscriptions.add(
@@ -248,8 +263,8 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
       update ||
       (!this.closing &&
         (this.requiresContact || this.allowAssignShoutOut) &&
-        this.contact == null &&
-        this.shoutOut === undefined)
+        this.contact() == null &&
+        this.shoutOut() === undefined)
     ) {
       this.keypadService.deactivate();
       this.dialogRef = this.dialog.open(ContactDialogComponent, {
@@ -263,53 +278,24 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
         next: (contactOrShoutOut) => {
           this.keypadService.activate();
           if (contactOrShoutOut) {
-            if (contactOrShoutOut.oid) {
-              this.contact = contactOrShoutOut;
-              this.shoutOut = undefined;
+            if (contactOrShoutOut.id) {
+              this.contact.set(contactOrShoutOut);
+              this.shoutOut.set(undefined);
             } else {
-              this.contact = null;
-              this.shoutOut = contactOrShoutOut;
+              this.contact.set(undefined);
+              this.shoutOut.set(contactOrShoutOut);
             }
           } else {
             if (!this.allowAssignShoutOut) {
               this.router.navigate(["orders"]);
             } else {
-              this.contact = null;
-              this.shoutOut = undefined;
+              this.contact.set(undefined);
+              this.shoutOut.set(undefined);
             }
           }
         },
       });
     }
-  }
-
-  set shoutOut(shoutOut: string | undefined | null) {
-    if (shoutOut == null) {
-      this._shoutOut = undefined;
-      this.posService.shoutOut = undefined;
-    } else {
-      this._shoutOut = shoutOut;
-      this.posService.shoutOut = shoutOut;
-    }
-  }
-
-  get shoutOut() {
-    return this._shoutOut;
-  }
-
-  set contact(contact: Contact | null) {
-    if (contact == null) {
-      this._contact = null;
-      this.posService.contactOid = null;
-    } else {
-      this._contact = contact;
-      this.posService.contactOid =
-        contact.oid == null ? contact.id : contact.oid;
-    }
-  }
-
-  get contact() {
-    return this._contact;
   }
 
   ngAfterContentChecked() {
@@ -430,7 +416,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     ref.afterClosed().subscribe({
       next: (index) => {
         if (this.productGrid) {
-           this.selectedTabIndex.set(index)
+          this.selectedTabIndex.set(index);
         }
       },
     });
