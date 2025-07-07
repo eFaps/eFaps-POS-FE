@@ -31,7 +31,7 @@
     "@angular/forms": "^20.0.0",
     "@angular/material": "^20.0.1",
     "@angular/platform-browser": "^20.0.0",
-    "@angular/platform-browser-dynamic": "^20.0.0",
+    "@angular/platform-browser-dynamic": "^20.0.6",
     "@angular/router": "^20.0.0",
     "@efaps/angular-onscreen-material-keyboard": "^0.20.0",
     "@efaps/ngx-store": "^11.0.0",
