@@ -1,3 +1,4 @@
+import { DecimalPipe } from "@angular/common";
 import {
   Component,
   Input,
@@ -6,8 +7,13 @@ import {
   inject,
   input,
   output,
+  destroyPlatform,
 } from "@angular/core";
+import { MatButton, MatIconButton } from "@angular/material/button";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { MatLine } from "@angular/material/grid-list";
+import { MatIcon } from "@angular/material/icon";
+import { MatList, MatListItem } from "@angular/material/list";
 import { MatSort } from "@angular/material/sort";
 import {
   MatCell,
@@ -43,13 +49,8 @@ import {
   PromotionService,
   WorkspaceService,
 } from "@efaps/pos-library";
-
-import { DecimalPipe } from "@angular/common";
-import { MatButton, MatIconButton } from "@angular/material/button";
-import { MatLine } from "@angular/material/grid-list";
-import { MatIcon } from "@angular/material/icon";
-import { MatList, MatListItem } from "@angular/material/list";
 import { TranslatePipe } from "@ngx-translate/core";
+
 import { PartListRelationComponent } from "../part-list-relation/part-list-relation.component";
 import { PrintDialogComponent } from "../print-dialog/print-dialog.component";
 import { PromoDialogComponent } from "../promo-dialog/promo-dialog.component";

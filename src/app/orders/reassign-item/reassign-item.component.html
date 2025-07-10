@@ -3,29 +3,33 @@
     <mat-header-cell *matHeaderCellDef />
     <mat-cell *matCellDef="let item">
       <button (click)="move(item)" mat-stroked-button>
-        <mat-icon  class="posIcon-36">fast_rewind</mat-icon>
+        <mat-icon class="posIcon-36">fast_rewind</mat-icon>
       </button>
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="index">
     <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-    <mat-cell *matCellDef="let item"> {{item.index}} </mat-cell>
+    <mat-cell *matCellDef="let item"> {{ item.index }} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="quantity">
     <mat-header-cell *matHeaderCellDef> C. </mat-header-cell>
-    <mat-cell *matCellDef="let item"> {{item.quantity}} </mat-cell>
+    <mat-cell *matCellDef="let item"> {{ item.quantity }} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="productDesc">
     <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
-    <mat-cell *matCellDef="let item"> {{item.product.description}} </mat-cell>
+    <mat-cell *matCellDef="let item"> {{ item.product.description }} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="crossUnitPrice">
     <mat-header-cell *matHeaderCellDef> P.U. </mat-header-cell>
-    <mat-cell *matCellDef="let item"> {{item.crossUnitPrice | posCurrency:order.currency }} </mat-cell>
+    <mat-cell *matCellDef="let item">
+      {{ item.crossUnitPrice | posCurrency: order.currency }}
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="crossPrice">
     <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
-    <mat-cell *matCellDef="let item"> {{item.crossPrice | posCurrency:order.currency }} </mat-cell>
+    <mat-cell *matCellDef="let item">
+      {{ item.crossPrice | posCurrency: order.currency }}
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="cmdLeft">
     <mat-header-cell *matHeaderCellDef />
@@ -36,5 +40,5 @@
     </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns" />
-  <mat-row *matRowDef="let row; columns: displayedColumns;" />
+  <mat-row *matRowDef="let row; columns: displayedColumns" />
 </mat-table>

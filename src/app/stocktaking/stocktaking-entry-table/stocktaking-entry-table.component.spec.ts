@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
@@ -7,6 +6,7 @@ import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { Router } from "@angular/router";
 import { PageRequest, StocktakingService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
+
 import { StocktakingEntryTableComponent } from "./stocktaking-entry-table.component";
 
 class RouterStub {

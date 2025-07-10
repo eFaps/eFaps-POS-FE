@@ -5,20 +5,24 @@
   <mat-table #table [dataSource]="dataSource">
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef i18n="@@taxpayer-ID">Taxpayer-ID </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.number}} </mat-cell>
+      <mat-cell *matCellDef="let item"> {{ item.number }} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef i18n="@@taxpayer-Name">Name</mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.name}} </mat-cell>
+      <mat-cell *matCellDef="let item"> {{ item.name }} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="warnings">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let item">
-        @if (item.homeState != 'HABIDO') {
-          <mat-icon class="posIcon-36" [matTooltip]="'Condición del Contribuyente: ' + item.state">warning</mat-icon>
+        @if (item.homeState != "HABIDO") {
+          <mat-icon class="posIcon-36" [matTooltip]="'Condición del Contribuyente: ' + item.state"
+            >warning</mat-icon
+          >
         }
-        @if (item.state != 'ACTIVO') {
-          <mat-icon class="posIcon-36" [matTooltip]="'Estado del Contribuyente: ' + item.homeState">warning</mat-icon>
+        @if (item.state != "ACTIVO") {
+          <mat-icon class="posIcon-36" [matTooltip]="'Estado del Contribuyente: ' + item.homeState"
+            >warning</mat-icon
+          >
         }
       </mat-cell>
     </ng-container>
@@ -33,7 +37,10 @@
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
-  <mat-paginator [pageSizeOptions]="[5,10,20]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    [pageSize]="5"
+    showFirstLastButtons></mat-paginator>
 </div>

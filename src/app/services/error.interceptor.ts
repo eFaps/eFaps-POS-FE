@@ -5,12 +5,10 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from "@angular/common/http";
-
-import { IGNORED_STATUSES } from "@efaps/pos-library";
-
 import { Injectable, inject } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
+import { IGNORED_STATUSES } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
 

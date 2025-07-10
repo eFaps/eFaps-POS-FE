@@ -1,3 +1,4 @@
+import { NgStyle } from "@angular/common";
 import {
   AfterContentChecked,
   ChangeDetectorRef,
@@ -10,7 +11,10 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { MatButton, MatFabButton } from "@angular/material/button";
+import { MatButtonToggle } from "@angular/material/button-toggle";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { MatIcon } from "@angular/material/icon";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { LocalStorage } from "@efaps/ngx-store";
@@ -36,17 +40,13 @@ import {
 } from "@efaps/pos-library";
 import { Subscription, combineLatest } from "rxjs";
 import { skip } from "rxjs/operators";
+
 import { KeypadService } from "../services";
 import { PosSyncService } from "../services/pos-sync.service";
 import {
   EmployeeDialogComponent,
   EmployeeDialogData,
 } from "../shared/employee-dialog/employee-dialog.component";
-
-import { NgStyle } from "@angular/common";
-import { MatButton, MatFabButton } from "@angular/material/button";
-import { MatButtonToggle } from "@angular/material/button-toggle";
-import { MatIcon } from "@angular/material/icon";
 import { KeypadComponent } from "../shared/keypad/keypad.component";
 import { CategorySelectComponent } from "./category-select/category-select.component";
 import { CommandsComponent } from "./commands/commands.component";

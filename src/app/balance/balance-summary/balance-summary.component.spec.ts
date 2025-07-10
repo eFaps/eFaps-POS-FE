@@ -10,8 +10,8 @@ import {
   WorkspaceService,
 } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
-
 import { Observable } from "rxjs";
+
 import { BalanceSummarySectionComponent } from "../balance-summary-section/balance-summary-section.component";
 import { BalanceSummaryComponent } from "./balance-summary.component";
 

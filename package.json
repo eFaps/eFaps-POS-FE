@@ -18,7 +18,10 @@
     "test": "ng test --browsers ChromeHeadlessNoSandbox --no-progress --no-watch",
     "lint": "ng lint",
     "i18n": "ng extract-i18n --output-path src/locale",
-    "prettier": "prettier --write \"src/**/*.ts\""
+    "prettier-html": "prettier --print-width 100 --write \"src/**/*.html\" ",
+    "prettier-scss": "prettier --write \"src/**/*.scss\" ",
+    "prettier-ts": "prettier --write \"src/**/*.ts\"",
+    "prettier": "npm run prettier-html && npm run prettier-scss && npm run prettier-ts"
   },
   "private": true,
   "dependencies": {
@@ -81,6 +84,7 @@
     "ng-mocks": "^14.13.5",
     "prettier": "^3.6.2",
     "prettier-plugin-organize-imports": "^4.1.0",
+     "prettier-plugin-sort-imports": "^1.8.8",
     "replace-in-file": "^8.3.0",
     "sass": "^1.89.2",
     "ts-node": "^10.9.2",
@@ -99,8 +103,18 @@
   },
   "prettier": {
     "plugins": [
-      "prettier-plugin-organize-imports"
-    ]
+      "prettier-plugin-organize-imports",
+      "prettier-plugin-sort-imports"
+    ],
+     "sortingMethod": "alphabetical",
+    "stripNewlines": true,
+    "newlineBetweenTypes": true,
+    "importTypeOrder": [
+      "NPMPackages",
+      "localImportsValue",
+      "localImportsType"
+    ],
+    "bracketSameLine": true
   },
   "build": {
     "appId": "efaps.pos.fe",

@@ -1,3 +1,7 @@
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatButtonModule } from "@angular/material/button";
@@ -19,10 +23,6 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from "@angular/common/http";
 import { ExtendedSpotPickerComponent } from "./extended-spot-picker.component";
 
 class PosServiceStub {}

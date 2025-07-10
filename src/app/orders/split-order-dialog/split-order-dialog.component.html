@@ -4,23 +4,23 @@
       <mat-table #originTable [dataSource]="originDataSource">
         <ng-container matColumnDef="index">
           <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-          <mat-cell *matCellDef="let item"> {{item.index}} </mat-cell>
+          <mat-cell *matCellDef="let item"> {{ item.index }} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="quantity">
           <mat-header-cell *matHeaderCellDef> C. </mat-header-cell>
-          <mat-cell *matCellDef="let item"> {{item.quantity}} </mat-cell>
+          <mat-cell *matCellDef="let item"> {{ item.quantity }} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="productDesc">
           <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
-          <mat-cell *matCellDef="let item"> {{item.product.description}} </mat-cell>
+          <mat-cell *matCellDef="let item"> {{ item.product.description }} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="crossUnitPrice">
           <mat-header-cell *matHeaderCellDef> P.U. </mat-header-cell>
-          <mat-cell *matCellDef="let item"> {{item.crossUnitPrice}} </mat-cell>
+          <mat-cell *matCellDef="let item"> {{ item.crossUnitPrice }} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="crossPrice">
           <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
-          <mat-cell *matCellDef="let item"> {{item.crossPrice }} </mat-cell>
+          <mat-cell *matCellDef="let item"> {{ item.crossPrice }} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="cmd">
           <mat-header-cell *matHeaderCellDef></mat-header-cell>
@@ -31,7 +31,7 @@
           </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="originColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: originColumns;"></mat-row>
+        <mat-row *matRowDef="let row; columns: originColumns"></mat-row>
       </mat-table>
     </div>
     <div class="orderTable mat-elevation-z8">
@@ -46,26 +46,26 @@
         </ng-container>
         <ng-container matColumnDef="index">
           <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-          <mat-cell *matCellDef="let item"> {{item.index}} </mat-cell>
+          <mat-cell *matCellDef="let item"> {{ item.index }} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="quantity">
           <mat-header-cell *matHeaderCellDef> C. </mat-header-cell>
-          <mat-cell *matCellDef="let item"> {{item.quantity}} </mat-cell>
+          <mat-cell *matCellDef="let item"> {{ item.quantity }} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="productDesc">
           <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
-          <mat-cell *matCellDef="let item"> {{item.product.description}} </mat-cell>
+          <mat-cell *matCellDef="let item"> {{ item.product.description }} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="crossUnitPrice">
           <mat-header-cell *matHeaderCellDef> P.U. </mat-header-cell>
-          <mat-cell *matCellDef="let item"> {{item.crossUnitPrice}} </mat-cell>
+          <mat-cell *matCellDef="let item"> {{ item.crossUnitPrice }} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="crossPrice">
           <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
-          <mat-cell *matCellDef="let item"> {{item.crossPrice}} </mat-cell>
+          <mat-cell *matCellDef="let item"> {{ item.crossPrice }} </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="targetColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: targetColumns;"></mat-row>
+        <mat-row *matRowDef="let row; columns: targetColumns"></mat-row>
       </mat-table>
     </div>
   </div>

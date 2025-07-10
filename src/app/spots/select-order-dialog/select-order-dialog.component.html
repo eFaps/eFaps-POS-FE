@@ -1,9 +1,9 @@
 <div class="wrapper">
   @for (order of orders; track order; let i = $index) {
     <div class="orderbutton">
-      <span>{{i + 1}}</span>
+      <span>{{ i + 1 }}</span>
       <button mat-fab (click)="selectOrder(order)">
-        {{order.number}}
+        {{ order.number }}
       </button>
     </div>
   }

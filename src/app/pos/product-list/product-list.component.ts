@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import {
   Component,
   Input,
@@ -11,7 +12,12 @@ import {
   ReactiveFormsModule,
   UntypedFormBuilder,
 } from "@angular/forms";
+import { MatIconButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
+import { MatFormField } from "@angular/material/form-field";
+import { MatIcon } from "@angular/material/icon";
+import { MatInput } from "@angular/material/input";
+import { MatSlideToggle } from "@angular/material/slide-toggle";
 import { MatSort, MatSortHeader } from "@angular/material/sort";
 import {
   MatCell,
@@ -38,16 +44,10 @@ import {
 import { Subscription } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 
-import { NgClass } from "@angular/common";
-import { MatIconButton } from "@angular/material/button";
-import { MatFormField } from "@angular/material/form-field";
-import { MatIcon } from "@angular/material/icon";
-import { MatInput } from "@angular/material/input";
-import { MatSlideToggle } from "@angular/material/slide-toggle";
-import { PosSyncService } from "src/app/services/pos-sync.service";
 import { KeypadService } from "../../services";
 import { ProductComponent } from "../../shared/product/product.component";
 import { AbstractProductSelector } from "../abstract-product-selector";
+import { PosSyncService } from "src/app/services/pos-sync.service";
 
 @Component({
   selector: "app-product-list",

@@ -1,12 +1,5 @@
 /// <reference types="@angular/localize" />
 
-import {
-  enableProdMode,
-  importProvidersFrom,
-  provideZonelessChangeDetection,
-} from "@angular/core";
-import { bootstrapApplication } from "@angular/platform-browser";
-
 import { LazyElementsModule } from "@angular-extensions/elements";
 import { LiveAnnouncer } from "@angular/cdk/a11y";
 import {
@@ -15,6 +8,11 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import {
+  enableProdMode,
+  importProvidersFrom,
+  provideZonelessChangeDetection,
+} from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MAT_DATE_LOCALE } from "@angular/material/core";
@@ -27,12 +25,14 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { bootstrapApplication } from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideRouter } from "@angular/router";
 import { LoaderInterceptor, PosLibraryModule } from "@efaps/pos-library";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { AngularSvgIconModule } from "angular-svg-icon";
 import { HotkeyModule } from "angular2-hotkeys";
+
 import { AppComponent } from "./app/app.component";
 import { routes } from "./app/app.routes";
 import { ErrorInterceptor } from "./app/services/index";

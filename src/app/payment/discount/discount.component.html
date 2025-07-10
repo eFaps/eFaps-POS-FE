@@ -2,14 +2,16 @@
   <div class="type-wrapper">
     @for (discount of percentDiscounts; track discount) {
       <button mat-raised-button (click)="applyDiscount(discount)">
-        {{ discount.label ? discount.label : discount.value + ' %'}}
+        {{ discount.label ? discount.label : discount.value + " %" }}
       </button>
     }
   </div>
   <div class="type-wrapper">
     @for (discount of amountDiscounts; track discount) {
       <button mat-raised-button (click)="applyDiscount(discount)">
-        {{ discount.label ? discount.label : discount.value | posCurrency:paymentService.currency }}
+        {{
+          discount.label ? discount.label : (discount.value | posCurrency: paymentService.currency)
+        }}
       </button>
     }
   </div>
@@ -17,12 +19,15 @@
     @if (manualPercent) {
       <form [formGroup]="percentForm">
         <mat-form-field>
-          <input matInput i18n-placeholder="@@percentage"placeholder="Percentage" type="text" formControlName="percent">
+          <input
+            matInput
+            i18n-placeholder="@@percentage"
+            placeholder="Percentage"
+            type="text"
+            formControlName="percent" />
           <span matPrefix></span>
         </mat-form-field>
-        <button mat-raised-button (click)="applyPercentAmount()">
-          %
-        </button>
+        <button mat-raised-button (click)="applyPercentAmount()">%</button>
       </form>
     }
   </div>
@@ -30,8 +35,13 @@
     @if (manualAmount) {
       <form [formGroup]="amountForm">
         <mat-form-field>
-          <input matInput i18n-placeholder="@@amount" placeholder="Amount" type="text" formControlName="amount">
-          <span matPrefix>{{currency}}&nbsp;</span>
+          <input
+            matInput
+            i18n-placeholder="@@amount"
+            placeholder="Amount"
+            type="text"
+            formControlName="amount" />
+          <span matPrefix>{{ currency }}&nbsp;</span>
         </mat-form-field>
         <button mat-raised-button (click)="applyManualAmount()">
           {{ currency }}
@@ -40,8 +50,6 @@
     }
   </div>
   <div class="type-wrapper">
-    <button mat-raised-button (click)="applyDiscount(null)">
-      Limpiar
-    </button>
+    <button mat-raised-button (click)="applyDiscount(null)">Limpiar</button>
   </div>
 </div>

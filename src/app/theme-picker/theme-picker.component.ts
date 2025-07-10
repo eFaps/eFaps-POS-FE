@@ -4,13 +4,13 @@ import {
   ViewEncapsulation,
   inject,
 } from "@angular/core";
-import { LocalStorage } from "@efaps/ngx-store";
-
 import { MatIconButton } from "@angular/material/button";
 import { MatGridList, MatGridTile } from "@angular/material/grid-list";
 import { MatIcon } from "@angular/material/icon";
 import { MatMenu, MatMenuItem, MatMenuTrigger } from "@angular/material/menu";
 import { MatTooltip } from "@angular/material/tooltip";
+import { LocalStorage } from "@efaps/ngx-store";
+
 import { DocsSiteTheme, StyleManagerService } from "../services/index";
 
 @Component({

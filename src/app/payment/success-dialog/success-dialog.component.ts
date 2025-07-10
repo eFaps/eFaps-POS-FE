@@ -11,6 +11,7 @@ import {
 } from "@angular/material/dialog";
 import { PosLibraryModule, PrintService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
+
 import { PrintDisplayComponent } from "../../shared/print-display/print-display.component";
 
 @Component({

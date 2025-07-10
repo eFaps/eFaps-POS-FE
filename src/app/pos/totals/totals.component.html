@@ -1,38 +1,30 @@
 <mat-list>
   <mat-list-item class="amount">
-    <div matLine>
-      Op. Gravada: {{net | posCurrency:currentCurrency}}
-    </div>
+    <div matLine>Op. Gravada: {{ net | posCurrency: currentCurrency }}</div>
   </mat-list-item>
   @for (tax of taxesEntries; track tax) {
     <mat-list-item class="amount">
-      <div matLine>
-        {{tax[0] | translate}}: {{tax[1] | posCurrency:currentCurrency}}
-      </div>
+      <div matLine>{{ tax[0] | translate }}: {{ tax[1] | posCurrency: currentCurrency }}</div>
     </mat-list-item>
   }
   @if (totalDiscount && totalDiscount > 0) {
     <mat-list-item class="amount">
       <div matLine class="totalDiscount">
-        <button mat-button (click)="showPromoInfo()">Descuento: {{totalDiscount | posCurrency:currentCurrency}}</button>
+        <button mat-button (click)="showPromoInfo()">
+          Descuento: {{ totalDiscount | posCurrency: currentCurrency }}
+        </button>
       </div>
     </mat-list-item>
   }
   <mat-list-item class="amount">
-    <div matLine>
-      Total: {{cross | posCurrency:currentCurrency}}
-    </div>
+    <div matLine>Total: {{ cross | posCurrency: currentCurrency }}</div>
   </mat-list-item>
   @if (payableAmount && payableAmount > 0 && payableAmount != cross) {
     <mat-list-item class="amount">
-      <div matLine>
-        Redondeo: {{payableAmount - cross | posCurrency:currentCurrency}}
-      </div>
+      <div matLine>Redondeo: {{ payableAmount - cross | posCurrency: currentCurrency }}</div>
     </mat-list-item>
     <mat-list-item class="amount">
-      <div matLine>
-        Por pagar: {{payableAmount | posCurrency:currentCurrency}}
-      </div>
+      <div matLine>Por pagar: {{ payableAmount | posCurrency: currentCurrency }}</div>
     </mat-list-item>
   }
 </mat-list>

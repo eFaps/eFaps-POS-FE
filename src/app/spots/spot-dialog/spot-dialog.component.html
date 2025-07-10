@@ -1,10 +1,20 @@
-<h3 mat-dialog-title>{{(select ? 'SPOT.SWAP.SELECTORIGIN' : 'SPOT.SWAP.SELECTTARGET') | translate}}</h3>
+<h3 mat-dialog-title>
+  {{ (select ? "SPOT.SWAP.SELECTORIGIN" : "SPOT.SWAP.SELECTTARGET") | translate }}
+</h3>
 <mat-dialog-content>
   <div fxLayout="row wrap" fxLayoutAlign="start" class="spotsContainer">
     @for (spot of spots; track spot) {
       <div>
-        @if ((spot.orders && spot.orders.length > 0 && select) || (!select && !(spot.orders && spot.orders.length > 0))) {
-          <button  mat-fab color="{{spot.orders && spot.orders.length > 0 ? 'accent' : 'primary'}}" (click)="selectSpot(spot)">{{spot.label}}</button>
+        @if (
+          (spot.orders && spot.orders.length > 0 && select) ||
+          (!select && !(spot.orders && spot.orders.length > 0))
+        ) {
+          <button
+            mat-fab
+            color="{{ spot.orders && spot.orders.length > 0 ? 'accent' : 'primary' }}"
+            (click)="selectSpot(spot)">
+            {{ spot.label }}
+          </button>
         }
       </div>
     }

@@ -4,6 +4,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatTableModule } from "@angular/material/table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
@@ -26,7 +27,6 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { OrderTableComponent } from "./order-table.component";
 
 class AuthServiceStub {

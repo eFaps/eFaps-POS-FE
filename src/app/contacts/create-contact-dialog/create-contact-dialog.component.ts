@@ -1,3 +1,5 @@
+import { CdkScrollable } from "@angular/cdk/scrolling";
+import { HttpContext } from "@angular/common/http";
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import {
   FormBuilder,
@@ -5,6 +7,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { MatOption } from "@angular/material/autocomplete";
+import { MatButton } from "@angular/material/button";
 import {
   MAT_DIALOG_DATA,
   MatDialogActions,
@@ -13,6 +17,9 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from "@angular/material/dialog";
+import { MatFormField, MatLabel } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import { MatSelect } from "@angular/material/select";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { LocalStorage } from "@efaps/ngx-store";
 import {
@@ -24,16 +31,8 @@ import {
   IdentificationType,
   RUC,
 } from "@efaps/pos-library";
-import { EnumValues } from "enum-values";
-
-import { CdkScrollable } from "@angular/cdk/scrolling";
-import { HttpContext } from "@angular/common/http";
-import { MatOption } from "@angular/material/autocomplete";
-import { MatButton } from "@angular/material/button";
-import { MatFormField, MatLabel } from "@angular/material/form-field";
-import { MatInput } from "@angular/material/input";
-import { MatSelect } from "@angular/material/select";
 import { TranslatePipe } from "@ngx-translate/core";
+import { EnumValues } from "enum-values";
 
 import { VirtKeyboardDirective } from "../../services/virt-keyboard.directive";
 import { DNIQueryComponent } from "../../shared/dniquery/dniquery.component";

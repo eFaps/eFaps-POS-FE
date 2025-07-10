@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { ProductRelationType, ProductService } from "@efaps/pos-library";
+
 import { PartListRelationComponent } from "./part-list-relation.component";
 
 class ProductServiceStub {}

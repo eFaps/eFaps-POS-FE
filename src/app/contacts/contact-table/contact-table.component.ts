@@ -7,7 +7,10 @@ import {
   inject,
 } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { MatButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
+import { MatFormField } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort, MatSortHeader } from "@angular/material/sort";
 import {
@@ -29,13 +32,10 @@ import {
   ContactService,
   PageRequest,
 } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
 import { Subscription, merge } from "rxjs";
 import { debounceTime, tap } from "rxjs/operators";
 
-import { MatButton } from "@angular/material/button";
-import { MatFormField } from "@angular/material/form-field";
-import { MatInput } from "@angular/material/input";
-import { TranslatePipe } from "@ngx-translate/core";
 import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
 import { CreateContactDialogComponent } from "../create-contact-dialog/create-contact-dialog.component";
 

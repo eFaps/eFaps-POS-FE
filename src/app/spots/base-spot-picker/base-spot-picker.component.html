@@ -1,12 +1,19 @@
 <div fxLayout="row wrap" fxLayoutAlign="start" class="spotsContainer">
   @for (spot of spots; track spot) {
     <div>
-      <button mat-fab color="{{spot.orders ? 'accent' : 'primary'}}" (click)="selectSpot(spot)">{{spot.label}}</button>
+      <button mat-fab color="{{ spot.orders ? 'accent' : 'primary' }}" (click)="selectSpot(spot)">
+        {{ spot.label }}
+      </button>
     </div>
   }
 </div>
 <div class="swap">
-  <button (click)="showSwapModal()" mat-fab color="primary" matTooltip="{{'SPOT.SWAP.CMD' | translate}}">
+  <button
+    (click)="showSwapModal()"
+    mat-fab
+    color="primary"
+    matTooltip="{{ 'SPOT.SWAP.CMD' | translate }}">
     <mat-icon class="posIcon-36">swap_horiz</mat-icon>
   </button>
-  <div>
+  <div></div>
+</div>

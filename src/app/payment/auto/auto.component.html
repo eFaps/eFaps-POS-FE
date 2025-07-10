@@ -3,10 +3,15 @@
     <div class="payment-form-wrapper">
       <form class="payment-form" [formGroup]="paymentForm">
         <mat-form-field>
-          <input matInput placeholder="Monto" type="text" formControlName="amount" class="right-align">
-          <span matPrefix>{{currency}}&nbsp;</span>
+          <input
+            matInput
+            placeholder="Monto"
+            type="text"
+            formControlName="amount"
+            class="right-align" />
+          <span matPrefix>{{ currency }}&nbsp;</span>
         </mat-form-field>
-        <button type="button" mat-stroked-button (click)="setChange()">{{'<<'}}</button>
+        <button type="button" mat-stroked-button (click)="setChange()">{{ "<<" }}</button>
       </form>
       <app-keypad (number)="setNumber($event)"></app-keypad>
     </div>
@@ -14,17 +19,24 @@
       <form class="payment-form" [formGroup]="paymentForm">
         <mat-radio-group class="collector-radio-group" formControlName="collectorFrmCtrl">
           @for (collector of collectors; track collector; let idx = $index) {
-          <mat-radio-button class="collector-radio-button" [value]="collector">
-            {{collector.label}}
-          </mat-radio-button>
+            <mat-radio-button class="collector-radio-button" [value]="collector">
+              {{ collector.label }}
+            </mat-radio-button>
           }
         </mat-radio-group>
         @if (collecting) {
-        <mat-spinner></mat-spinner>
+          <mat-spinner></mat-spinner>
         }
       </form>
     </div>
-    <button type="submit" class="btn btn-success" mat-raised-button color="primary" [disabled]="buttonTimeout"
-      (click)="addPayment()">Agregar Pago</button>
+    <button
+      type="submit"
+      class="btn btn-success"
+      mat-raised-button
+      color="primary"
+      [disabled]="buttonTimeout"
+      (click)="addPayment()">
+      Agregar Pago
+    </button>
   </div>
 </div>

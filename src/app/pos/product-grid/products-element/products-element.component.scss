@@ -3,104 +3,103 @@ $medium-size: 140px;
 $big-size: 170px;
 
 .pos-productgrid {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    gap: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 5px;
 
+  .pos-card {
+    .mat-mdc-card-header {
+      justify-content: center;
+    }
+
+    .pos-card-image {
+      position: relative;
+      margin-left: 10px;
+      margin-right: 10px;
+      padding: 2px;
+
+      .mat-mdc-card-image {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .pos-card-price {
+      bottom: 0;
+      border-radius: 2px;
+      color: var(--mat-sys-primary);
+      text-align: center;
+      position: absolute;
+      height: 20px;
+      width: 100%;
+    }
+  }
+
+  .mat-mdc-card-content {
+    text-align: center;
+  }
+
+  &.small {
     .pos-card {
-          
-        .mat-mdc-card-header {
-            justify-content: center;
-        }
+      width: $small-size;
 
-        .pos-card-image {
-            position: relative;
-            margin-left: 10px;
-            margin-right: 10px;
-            padding: 2px;
-
-            .mat-mdc-card-image { 
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
-
-        .pos-card-price {
-            bottom: 0;
-            border-radius: 2px;
-            color: var(--mat-sys-primary);
-            text-align: center;
-            position: absolute;
-            height: 20px;
-            width: 100%;
-        }
-    }
-
-    .mat-mdc-card-content {
+      .mat-mdc-card-header .mat-mdc-card-title {
+        font-size: 14px;
         text-align: center;
-    }
+      }
 
-    &.small {
-        .pos-card {
-            width: $small-size;
-          
-            .mat-mdc-card-header .mat-mdc-card-title {
-                font-size: 14px;
-                text-align: center;
-            }
+      .pos-card-image {
+        height: $small-size + 5px;
 
-            .pos-card-image {
-                height: $small-size + 5px;
-
-                .mat-mdc-card-image {
-                    max-width: $small-size - 25px;
-                    max-height: $small-size;
-                    margin: 0;
-                }
-            }
+        .mat-mdc-card-image {
+          max-width: $small-size - 25px;
+          max-height: $small-size;
+          margin: 0;
         }
+      }
     }
+  }
 
-    &.medium {
-        .pos-card {
-            width: $medium-size;
-        
-            .mat-mdc-card-header .mat-mdc-card-title {
-                font-size: 16px;
-                text-align: center;
-            }
+  &.medium {
+    .pos-card {
+      width: $medium-size;
 
-            .pos-card-image {
-                height: $medium-size + 5px;
+      .mat-mdc-card-header .mat-mdc-card-title {
+        font-size: 16px;
+        text-align: center;
+      }
 
-                .mat-mdc-card-image {
-                    max-width: $medium-size - 25px;
-                    max-height: $medium-size;
-                    margin: 0;
-                }
-            }
+      .pos-card-image {
+        height: $medium-size + 5px;
+
+        .mat-mdc-card-image {
+          max-width: $medium-size - 25px;
+          max-height: $medium-size;
+          margin: 0;
         }
+      }
     }
+  }
 
-    &.large {
-        .pos-card {
-            width: $big-size;
-      
-            .mat-mdc-card-header .mat-mdc-card-title {
-                font-size: 16px;
-                text-align: center;
-            }
+  &.large {
+    .pos-card {
+      width: $big-size;
 
-            .pos-card-image {
-                height: $big-size + 5px;
+      .mat-mdc-card-header .mat-mdc-card-title {
+        font-size: 16px;
+        text-align: center;
+      }
 
-                .mat-mdc-card-image {
-                    max-width: $big-size - 25px;
-                    max-height: $big-size;
-                    margin: 0;
-                }
-            }
+      .pos-card-image {
+        height: $big-size + 5px;
+
+        .mat-mdc-card-image {
+          max-width: $big-size - 25px;
+          max-height: $big-size;
+          margin: 0;
         }
+      }
     }
+  }
 }

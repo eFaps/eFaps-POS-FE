@@ -1,68 +1,76 @@
 <div class="content">
- 
-  <div class="selector" [ngStyle]="{'height.px': screenHeight - 66 }">
-    @if(contact() || shoutOut()) {
-    <div class="contact">
-      @if(contact()) {
-      <span>Contacto: {{contact().idType}}: {{contact().idNumber}} - {{contact().name}}</span>
-      } @else {
-      <span>ShoutOut: {{shoutOut()}}</span>
-      }
-      <button mat-stroked-button (click)="assignContact(true)">Cambiar</button>
-    </div>
+  <div class="selector" [ngStyle]="{ 'height.px': screenHeight - 66 }">
+    @if (contact() || shoutOut()) {
+      <div class="contact">
+        @if (contact()) {
+          <span
+            >Contacto: {{ contact().idType }}: {{ contact().idNumber }} - {{ contact().name }}</span
+          >
+        } @else {
+          <span>ShoutOut: {{ shoutOut() }}</span>
+        }
+        <button mat-stroked-button (click)="assignContact(true)">Cambiar</button>
+      </div>
     }
     @switch (currentLayout) {
-    @case  (PosLayout.GRID) {
-      <app-product-grid [remarkMode]="remarkMode" [(selectedIndex)]="selectedTabIndex"></app-product-grid>
-    }
-    @case  (PosLayout.LIST) {
-    <app-product-list [remarkMode]="remarkMode" [isBarcode]="isBarcode"></app-product-list>
-    }
+      @case (PosLayout.GRID) {
+        <app-product-grid
+          [remarkMode]="remarkMode"
+          [(selectedIndex)]="selectedTabIndex"></app-product-grid>
+      }
+      @case (PosLayout.LIST) {
+        <app-product-list [remarkMode]="remarkMode" [isBarcode]="isBarcode"></app-product-list>
+      }
     }
     <div class="button-list">
-      @if(currentLayout === PosLayout.GRID) {
-      <button mat-fab color="primary" (click)="openCatSelect()" class="catSelect">
-        <mat-icon>category</mat-icon>
-      </button>
+      @if (currentLayout === PosLayout.GRID) {
+        <button mat-fab color="primary" (click)="openCatSelect()" class="catSelect">
+          <mat-icon>category</mat-icon>
+        </button>
       }
 
       <button class="remark-btn" (click)="toggleRemarkMode()" mat-fab [class.selected]="remarkMode">
         <mat-icon>description</mat-icon>
       </button>
-      @if(this.workspaceService.getPosLayout() === PosLayout.BOTH) {
-      <button mat-fab color="primary" (click)="switchLayout()" class="switch">
-        <mat-icon>sync_alt</mat-icon>
-      </button>
-      }
-      @if(allowAssignSeller) {
-      <div class="seller">
-        <button mat-fab color="primary" class="employee-btn" (click)="assignSeller()">
-          <mat-icon>person_pin</mat-icon>
+      @if (this.workspaceService.getPosLayout() === PosLayout.BOTH) {
+        <button mat-fab color="primary" (click)="switchLayout()" class="switch">
+          <mat-icon>sync_alt</mat-icon>
         </button>
-        @if(seller) {
-          <div class="seller-label"><span>{{seller.firstName}} {{seller.surName}}</span></div>
-        }
-      </div>
+      }
+      @if (allowAssignSeller) {
+        <div class="seller">
+          <button mat-fab color="primary" class="employee-btn" (click)="assignSeller()">
+            <mat-icon>person_pin</mat-icon>
+          </button>
+          @if (seller) {
+            <div class="seller-label">
+              <span>{{ seller.firstName }} {{ seller.surName }}</span>
+            </div>
+          }
+        </div>
       }
     </div>
   </div>
-  <div class='ticket' [ngStyle]="{'height.px': screenHeight - 68 - 6}">
+  <div class="ticket" [ngStyle]="{ 'height.px': screenHeight - 68 - 6 }">
     <div>
-      <div class='numPad-wrapper'>
+      <div class="numPad-wrapper">
         <mat-button-toggle [checked]="numPad" (click)="toggleNumPad()">
           <mat-icon>dialpad</mat-icon>
         </mat-button-toggle>
-        @if(numPad) {
-        <div class='numPad-form-wrapper'>
-          <div>
-            <span class="right-align">{{multiplierLabel}}</span>
+        @if (numPad) {
+          <div class="numPad-form-wrapper">
+            <div>
+              <span class="right-align">{{ multiplierLabel }}</span>
+            </div>
+            <app-keypad
+              [showTopClear]="false"
+              [showBottomClear]="true"
+              (number)="setMultiplier($event)"></app-keypad>
           </div>
-          <app-keypad [showTopClear]="false" [showBottomClear]="true" (number)="setMultiplier($event)"></app-keypad>
-        </div>
         }
       </div>
       <app-ticket (multiplierClick)="resetMultiplier()" [isBarcode]="isBarcode"></app-ticket>
-      <app-totals [ngStyle]="{'display': (sticky ? 'block' : 'unset')}"></app-totals>
+      <app-totals [ngStyle]="{ display: sticky ? 'block' : 'unset' }"></app-totals>
     </div>
     <app-commands></app-commands>
   </div>

@@ -1,25 +1,25 @@
 <h1 mat-dialog-title>Promociones</h1>
 <mat-dialog-content>
-    @if (docPromotions.length > 0) {
+  @if (docPromotions.length > 0) {
     <span>Documento:</span>
     <mat-list>
-        @for (promotion of docPromotions; track promotion.oid) {
+      @for (promotion of docPromotions; track promotion.oid) {
         <mat-list-item role="listitem">
-            <span matListItemTitle>{{promotion.name}}</span>
-            <span matListItemLine>{{promotion.description}}</span>
+          <span matListItemTitle>{{ promotion.name }}</span>
+          <span matListItemLine>{{ promotion.description }}</span>
         </mat-list-item>
-        }
+      }
     </mat-list>
-    }
-    @if (docPromotions.length > 0 && detailPromotions.length > 0) {
+  }
+  @if (docPromotions.length > 0 && detailPromotions.length > 0) {
     <span>Detalles:</span>
+  }
+  <mat-list>
+    @for (promotion of detailPromotions; track promotion.oid) {
+      <mat-list-item role="listitem">
+        <span matListItemTitle>{{ promotion.name }}</span>
+        <span matListItemLine>{{ promotion.description }}</span>
+      </mat-list-item>
     }
-    <mat-list>
-        @for (promotion of detailPromotions; track promotion.oid) {
-        <mat-list-item role="listitem">
-            <span matListItemTitle>{{promotion.name}}</span>
-            <span matListItemLine>{{promotion.description}}</span>
-        </mat-list-item>
-        }
-    </mat-list>
+  </mat-list>
 </mat-dialog-content>

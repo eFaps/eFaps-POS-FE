@@ -7,7 +7,13 @@ import {
   inject,
 } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { MatIconButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
+import { MatFormField } from "@angular/material/form-field";
+import { MatIcon } from "@angular/material/icon";
+import { MatInput } from "@angular/material/input";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSlideToggle } from "@angular/material/slide-toggle";
 import { MatSort, MatSortHeader } from "@angular/material/sort";
 import {
   MatCell,
@@ -22,17 +28,11 @@ import {
   MatTable,
   MatTableDataSource,
 } from "@angular/material/table";
+import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
 import { LocalStorage } from "@efaps/ngx-store";
 import { PageRequest, Product, ProductService } from "@efaps/pos-library";
-
-import { MatIconButton } from "@angular/material/button";
-import { MatFormField } from "@angular/material/form-field";
-import { MatIcon } from "@angular/material/icon";
-import { MatInput } from "@angular/material/input";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatSlideToggle } from "@angular/material/slide-toggle";
-import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
 import { debounceTime, merge, tap } from "rxjs";
+
 import { VirtKeyboardDirective } from "../../services/virt-keyboard.directive";
 import { ProductComponent } from "../../shared/product/product.component";
 

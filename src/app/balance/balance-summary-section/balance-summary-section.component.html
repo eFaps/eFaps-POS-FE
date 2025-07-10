@@ -1,26 +1,27 @@
 <div class="wrapper">
   <div class="document">
     <div>
-      <span i18n="@@bs-payments">Payments:</span><span>{{detail.paymentCount}}</span>
+      <span i18n="@@bs-payments">Payments:</span><span>{{ detail.paymentCount }}</span>
     </div>
     <div>
-      <span i18n="@@bs-documents">Documents:</span><span>{{detail.documentCount}}</span>
+      <span i18n="@@bs-documents">Documents:</span><span>{{ detail.documentCount }}</span>
     </div>
     <div>
       <span i18n="@@bs-nettotal">Net Total:</span>
       @for (total of detail.netTotals; track total) {
-        <span>{{ total.amount | posCurrency:total.currency}}</span>
+        <span>{{ total.amount | posCurrency: total.currency }}</span>
       }
     </div>
     @for (taxEntry of detail.taxEntries; track taxEntry) {
       <div>
-        <span>{{taxEntry.tax.name}}:</span><span>{{taxEntry.amount | posCurrency:taxEntry.currency}}</span>
+        <span>{{ taxEntry.tax.name }}:</span
+        ><span>{{ taxEntry.amount | posCurrency: taxEntry.currency }}</span>
       </div>
     }
     <div>
       <span i18n="@@bs-crosstotal">Cross Total:</span>
       @for (total of detail.crossTotals; track total) {
-        <span>{{ total.amount | posCurrency:total.currency}}</span>
+        <span>{{ total.amount | posCurrency: total.currency }}</span>
       }
     </div>
   </div>
@@ -28,13 +29,26 @@
     @for (info of detail.paymentInfos; track info) {
       <div class="paymentInfo">
         <div class="paymentInfoType">
-          <span i18n="@@paymentType">{info.type, select, CASH {Cash} FREE {Free} CARD {Cards} CHANGE {Change} AUTO {Auto} ELECTRONIC {Auto} LOYALTY_POINTS {Puntos} } {{info.label ? " - " + info.label : ""}} - {{ undefined | posCurrency:info.currency}}</span>
+          <span i18n="@@paymentType"
+            >{info.type, select,
+              CASH {Cash}
+              FREE {Free}
+              CARD {Cards}
+              CHANGE {Change}
+              AUTO {Auto}
+              ELECTRONIC {Auto}
+              LOYALTY_POINTS {Puntos}
+            }
+            {{ info.label ? " - " + info.label : "" }} -
+            {{ undefined | posCurrency: info.currency }}</span
+          >
         </div>
         <div>
-          <span i18n="@@bs-count">Count:</span><span>{{info.count}}</span>
+          <span i18n="@@bs-count">Count:</span><span>{{ info.count }}</span>
         </div>
         <div>
-          <span i18n="@@bs-amount">Amount:</span><span>{{info.amount | posCurrency:info.currency }}</span>
+          <span i18n="@@bs-amount">Amount:</span
+          ><span>{{ info.amount | posCurrency: info.currency }}</span>
         </div>
       </div>
     }

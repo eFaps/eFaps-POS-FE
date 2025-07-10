@@ -1,5 +1,6 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
 import { Component, OnInit, inject } from "@angular/core";
+import { MatButton } from "@angular/material/button";
 import {
   MAT_DIALOG_DATA,
   MatDialogActions,
@@ -11,7 +12,6 @@ import {
 import { PrintService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
-import { MatButton } from "@angular/material/button";
 import { PrintDisplayComponent } from "../../shared/print-display/print-display.component";
 
 @Component({

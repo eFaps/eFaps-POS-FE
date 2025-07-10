@@ -1,4 +1,8 @@
 import { LiveAnnouncer } from "@angular/cdk/a11y";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
@@ -27,10 +31,6 @@ import {
 import { MockDirective, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from "@angular/common/http";
 import { VirtKeyboardDirective } from "../../services";
 import { TranslateLoaderFactory } from "../../shared/shared.module";
 import { CreateContactDialogComponent } from "./create-contact-dialog.component";

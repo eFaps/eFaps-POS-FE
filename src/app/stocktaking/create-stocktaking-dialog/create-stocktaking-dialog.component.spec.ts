@@ -1,10 +1,9 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-
 import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormBuilder } from "@angular/forms";
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import {
@@ -13,6 +12,7 @@ import {
   StocktakingService,
 } from "@efaps/pos-library";
 import { Observable } from "rxjs";
+
 import { CreateStocktakingDialogComponent } from "./create-stocktaking-dialog.component";
 
 class InventoryServiceStub {

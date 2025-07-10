@@ -16,8 +16,9 @@ import { MatInput } from "@angular/material/input";
 import { MatTab, MatTabGroup } from "@angular/material/tabs";
 import { LocalStorage } from "@efaps/ngx-store";
 import { Contact } from "@efaps/pos-library";
-import { CreateContactDialogComponent } from "src/app/contacts/create-contact-dialog/create-contact-dialog.component";
+
 import { ContactComponent } from "../../shared/contact/contact.component";
+import { CreateContactDialogComponent } from "src/app/contacts/create-contact-dialog/create-contact-dialog.component";
 
 @Component({
   selector: "app-contact-dialog",

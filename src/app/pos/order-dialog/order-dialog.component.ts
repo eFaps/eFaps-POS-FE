@@ -1,4 +1,6 @@
+import { CdkScrollable } from "@angular/cdk/scrolling";
 import { Component, OnInit, inject } from "@angular/core";
+import { MatButton } from "@angular/material/button";
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -8,6 +10,7 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from "@angular/material/dialog";
+import { MatIcon } from "@angular/material/icon";
 import {
   PrintService,
   WorkspaceFlag,
@@ -15,9 +18,6 @@ import {
   hasFlag,
 } from "@efaps/pos-library";
 
-import { CdkScrollable } from "@angular/cdk/scrolling";
-import { MatButton } from "@angular/material/button";
-import { MatIcon } from "@angular/material/icon";
 import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
 
 @Component({

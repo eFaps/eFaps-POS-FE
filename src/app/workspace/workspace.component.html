@@ -2,7 +2,7 @@
   @for (ws of workspaces; track ws) {
     <mat-card appearance="outlined" class="pos-ws-card" (click)="select(ws)">
       <mat-card-header>
-        <mat-card-title>{{ws.name}}</mat-card-title>
+        <mat-card-title>{{ ws.name }}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         {{ getPosName(ws) }}

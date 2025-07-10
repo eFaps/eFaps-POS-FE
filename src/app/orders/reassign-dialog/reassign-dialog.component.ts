@@ -1,10 +1,13 @@
+import { CdkScrollable } from "@angular/cdk/scrolling";
 import { Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
+import { MatButton, MatFabButton } from "@angular/material/button";
 import {
   MAT_DIALOG_DATA,
   MatDialogActions,
   MatDialogContent,
   MatDialogRef,
 } from "@angular/material/dialog";
+import { MatIcon } from "@angular/material/icon";
 import {
   CalculatorService,
   DocItem,
@@ -14,9 +17,6 @@ import {
 } from "@efaps/pos-library";
 import { Observable, Subscription, zip } from "rxjs";
 
-import { CdkScrollable } from "@angular/cdk/scrolling";
-import { MatButton, MatFabButton } from "@angular/material/button";
-import { MatIcon } from "@angular/material/icon";
 import { ReassignItemComponent } from "../reassign-item/reassign-item.component";
 
 @Component({

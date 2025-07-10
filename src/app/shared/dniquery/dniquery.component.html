@@ -3,10 +3,17 @@
   <form [formGroup]="dniForm">
     <div>
       <mat-form-field>
-        <input matInput placeholder="DNI" formControlName="number" autocomplete="off">
+        <input matInput placeholder="DNI" formControlName="number" autocomplete="off" />
       </mat-form-field>
-      <button mat-raised-button color="primary" type="button" i18n="@@search" (click)="query()"
-        [disabled]="dniForm.invalid">Buscar</button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        i18n="@@search"
+        (click)="query()"
+        [disabled]="dniForm.invalid">
+        Buscar
+      </button>
     </div>
   </form>
 </div>

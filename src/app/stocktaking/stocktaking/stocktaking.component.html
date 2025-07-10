@@ -1,20 +1,30 @@
 <div class="mat-elevation-z8">
   <div class="header">
-    <div>Inventario :{{stocktaking?.number}}</div>
+    <div>Inventario :{{ stocktaking?.number }}</div>
     <div>
       <mat-slide-toggle [checked]="searchByBarcode" (change)="toggleSearchByBarcode()">
-        {{ (searchByBarcode ? "Codigo de Barras" : "Búsqueda general")}}
+        {{ searchByBarcode ? "Codigo de Barras" : "Búsqueda general" }}
       </mat-slide-toggle>
     </div>
   </div>
   <form [formGroup]="searchForm">
     <mat-form-field appearance="outline" class="searchInput">
-      <input matInput placeholder="Buscar" autocomplete="off" [formControl]="searchControl" [matAutocomplete]="auto"
-        class="left" (focus)="onFocusEvent($event)" (blur)="onBlurEvent($event)">
-      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selectProduct($event)">
+      <input
+        matInput
+        placeholder="Buscar"
+        autocomplete="off"
+        [formControl]="searchControl"
+        [matAutocomplete]="auto"
+        class="left"
+        (focus)="onFocusEvent($event)"
+        (blur)="onBlurEvent($event)" />
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        [displayWith]="displayFn"
+        (optionSelected)="selectProduct($event)">
         @for (item of searchResult; track item) {
           <mat-option [value]="item">
-            {{item.sku + " " + item.description}}
+            {{ item.sku + " " + item.description }}
           </mat-option>
         }
       </mat-autocomplete>
@@ -27,9 +37,11 @@
 <div class="selection">
   <app-keypad [showTopClear]="false" (number)="setQuantity($event)"></app-keypad>
   <div class="confirmation">
-    <div class="quantity">{{quantity}}</div>
+    <div class="quantity">{{ quantity }}</div>
     <div class="confirmation-btn">
-      <button mat-raised-button color="accent" [disabled]="disabled" (click)="save()">Confirmar</button>
+      <button mat-raised-button color="accent" [disabled]="disabled" (click)="save()">
+        Confirmar
+      </button>
     </div>
   </div>
 </div>
@@ -37,7 +49,7 @@
   <form [formGroup]="commentForm">
     <mat-form-field appearance="outline" class="searchInput">
       <mat-label>Comentario</mat-label>
-      <input matInput formControlName="comment" class="left">
+      <input matInput formControlName="comment" class="left" />
     </mat-form-field>
   </form>
 </div>

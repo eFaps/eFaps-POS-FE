@@ -3,6 +3,7 @@ import { MatTab, MatTabGroup } from "@angular/material/tabs";
 import { LocalStorage } from "@efaps/ngx-store";
 import { AuthService, WorkspaceService } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
+
 import { AutoComponent } from "../auto/auto.component";
 import { CardComponent } from "../card/card.component";
 import { CashComponent } from "../cash/cash.component";

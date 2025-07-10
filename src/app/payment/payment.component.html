@@ -7,14 +7,20 @@
       <div>
         <mat-radio-group class="docType-radio-group" [(ngModel)]="docType">
           @for (type of docTypes; track type; let idx = $index) {
-            <mat-radio-button class="docType-radio-button"
-              [value]="DocumentType[type]" (click)="setDocType(type)">
-              {{type.toString() | translate}}
+            <mat-radio-button
+              class="docType-radio-button"
+              [value]="DocumentType[type]"
+              (click)="setDocType(type)">
+              {{ type.toString() | translate }}
             </mat-radio-button>
           }
         </mat-radio-group>
-        <mat-button-toggle [value]="showContact" (change)="toggleContact()" [disabled]="!permitToggleContact">{{
-        showContact ? 'Desc.' : 'Cliente'}}</mat-button-toggle>
+        <mat-button-toggle
+          [value]="showContact"
+          (change)="toggleContact()"
+          [disabled]="!permitToggleContact"
+          >{{ showContact ? "Desc." : "Cliente" }}</mat-button-toggle
+        >
         <div class="balance">
           @if (balance) {
             <span i18n>Balance - {{ balance.number }}</span>
@@ -36,7 +42,9 @@
             <mat-icon>person_pin</mat-icon>
           </button>
           @if (seller) {
-            <div class="seller-label"><span>{{seller.firstName}} {{seller.surName}}</span></div>
+            <div class="seller-label">
+              <span>{{ seller.firstName }} {{ seller.surName }}</span>
+            </div>
           }
         </div>
       }
@@ -51,8 +59,14 @@
       <mat-list dense>
         @for (payment of payments; track payment) {
           <mat-list-item>
-            <span matLine>{{ payment.cardTypeId ? payment.cardLabel : ('PAYMENT.' + PaymentType[payment.type]) | translate
-            }} {{payment.amount | posCurrency:paymentService.currency}}</span>
+            <span matLine
+              >{{
+                payment.cardTypeId
+                  ? payment.cardLabel
+                  : ("PAYMENT." + PaymentType[payment.type] | translate)
+              }}
+              {{ payment.amount | posCurrency: paymentService.currency }}</span
+            >
             <button mat-icon-button (click)="delPayment(payment)">
               <mat-icon>highlight_off</mat-icon>
             </button>
@@ -61,14 +75,21 @@
       </mat-list>
       <div>
         <div class="payTotal">
-          <h2 i18n="@@payment-total">Total: {{total | posCurrency:paymentService.currency}}</h2>
-          <h2 [ngClass]="{'negative': change < 0}" i18n="@@payment-change">Change: {{change |
-            posCurrency:paymentService.currency}}</h2>
+          <h2 i18n="@@payment-total">Total: {{ total | posCurrency: paymentService.currency }}</h2>
+          <h2 [ngClass]="{ negative: change < 0 }" i18n="@@payment-change">
+            Change: {{ change | posCurrency: paymentService.currency }}
+          </h2>
         </div>
         <div class="createDocument">
           @if (balance) {
-            <button mat-raised-button color="primary"
-            (click)="submitDocument()" [disabled]="submitDisabled" i18n="@@payment-submit">Enviar</button>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="submitDocument()"
+              [disabled]="submitDisabled"
+              i18n="@@payment-submit">
+              Enviar
+            </button>
           }
           @if (allowPrintPreliminary) {
             <button mat-button (click)="printPreliminary()">
@@ -79,3 +100,4 @@
       </div>
     </div>
   </div>
+</div>

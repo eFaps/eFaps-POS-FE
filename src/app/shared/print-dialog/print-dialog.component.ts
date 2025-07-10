@@ -1,6 +1,7 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
 import { Component, OnInit, inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogContent } from "@angular/material/dialog";
+
 import { PrintDisplayComponent } from "../print-display/print-display.component";
 
 @Component({

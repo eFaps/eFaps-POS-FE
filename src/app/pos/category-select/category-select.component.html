@@ -2,11 +2,11 @@
 <mat-dialog-content>
   <div class="container">
     @for (category of rootCategories; track category.oid; let i = $index) {
-    <div class="category">
-      <button mat-raised-button (click)="selectCategory(i)">
-        {{ category.name }}
-      </button>
-    </div>
+      <div class="category">
+        <button mat-raised-button (click)="selectCategory(i)">
+          {{ category.name }}
+        </button>
+      </div>
     }
   </div>
 </mat-dialog-content>

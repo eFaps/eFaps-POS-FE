@@ -1,5 +1,8 @@
+import { NgClass } from "@angular/common";
 import { Component, ElementRef, OnInit, inject } from "@angular/core";
+import { MatButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import {
   AuthService,
@@ -12,11 +15,8 @@ import {
   ProductService,
   WorkspaceService,
 } from "@efaps/pos-library";
-
-import { NgClass } from "@angular/common";
-import { MatButton } from "@angular/material/button";
-import { MatSnackBar } from "@angular/material/snack-bar";
 import { TranslateDirective, TranslatePipe } from "@ngx-translate/core";
+
 import { OrderDialogComponent } from "../order-dialog/order-dialog.component";
 
 @Component({

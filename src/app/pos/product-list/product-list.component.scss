@@ -4,17 +4,16 @@ form {
   align-content: stretch;
   gap: 15px;
   flex-wrap: wrap;
-  
+
   mat-form-field {
     padding-left: 10px;
-    flex-grow: 3; 
+    flex-grow: 3;
   }
   mat-slide-toggle {
-    flex-grow: 2; 
+    flex-grow: 2;
     margin-top: auto;
     margin-bottom: auto;
   }
-
 }
 .product-list {
   height: calc(100% - 78px);

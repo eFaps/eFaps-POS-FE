@@ -7,7 +7,11 @@ import {
   ViewChild,
 } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { MatIconButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
+import { MatFormField } from "@angular/material/form-field";
+import { MatIcon } from "@angular/material/icon";
+import { MatInput } from "@angular/material/input";
 import { MatPaginator } from "@angular/material/paginator";
 import {
   MatSlideToggle,
@@ -42,15 +46,10 @@ import {
   PosService,
   WorkspaceService,
 } from "@efaps/pos-library";
-
+import { TranslatePipe } from "@ngx-translate/core";
 import { Subscription } from "rxjs";
 import { debounceTime, map } from "rxjs/operators";
 
-import { MatIconButton } from "@angular/material/button";
-import { MatFormField } from "@angular/material/form-field";
-import { MatIcon } from "@angular/material/icon";
-import { MatInput } from "@angular/material/input";
-import { TranslatePipe } from "@ngx-translate/core";
 import { ConfirmDialogComponent } from "../../shared/confirm-dialog/confirm-dialog.component";
 import { ReassignDialogComponent } from "../reassign-dialog/reassign-dialog.component";
 import { SplitOrderDialogComponent } from "../split-order-dialog/split-order-dialog.component";

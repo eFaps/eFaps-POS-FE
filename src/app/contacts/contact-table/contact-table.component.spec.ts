@@ -1,8 +1,16 @@
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { DebugElement } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { By } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -17,14 +25,6 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from "@angular/common/http";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
-import { MatPaginatorModule } from "@angular/material/paginator";
-import { MatSortModule } from "@angular/material/sort";
 import { ContactTableComponent } from "./contact-table.component";
 
 class ContactServiceStub {

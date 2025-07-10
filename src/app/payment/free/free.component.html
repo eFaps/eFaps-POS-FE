@@ -1,11 +1,23 @@
 <div class="wrapper">
   <form class="payment-form" [formGroup]="paymentForm">
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Monto" type="text" formControlName="amount" class="right-align">
-      <span matPrefix>{{currency}}&nbsp;</span>
+      <input
+        matInput
+        placeholder="Monto"
+        type="text"
+        formControlName="amount"
+        class="right-align" />
+      <span matPrefix>{{ currency }}&nbsp;</span>
     </mat-form-field>
-    <button type="button" mat-stroked-button (click)="setChange()">{{'<<'}}</button>
+    <button type="button" mat-stroked-button (click)="setChange()">{{ "<<" }}</button>
   </form>
   <app-keypad (number)="setNumber($event)"></app-keypad>
-  <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="addPayment()">Agregar Pago</button>
+  <button
+    type="submit"
+    class="btn btn-success"
+    mat-raised-button
+    color="primary"
+    (click)="addPayment()">
+    Agregar Pago
+  </button>
 </div>

@@ -32,8 +32,9 @@ import {
   PromoInfo,
 } from "@efaps/pos-library";
 import { Decimal } from "decimal.js";
-import { PromoDialogComponent } from "src/app/shared/promo-dialog/promo-dialog.component";
+
 import { PartListRelationComponent } from "../../shared/part-list-relation/part-list-relation.component";
+import { PromoDialogComponent } from "src/app/shared/promo-dialog/promo-dialog.component";
 
 @Component({
   selector: "app-ticket",

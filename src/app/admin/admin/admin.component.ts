@@ -26,9 +26,10 @@ import {
   Versions,
   WorkspaceService,
 } from "@efaps/pos-library";
+
+import { SalesReportDialogComponent } from "../sales-report-dialog/sales-report-dialog.component";
 import { PrintDialogComponent } from "src/app/shared/print-dialog/print-dialog.component";
 import { STOCKTAKING_ACTIVATE } from "src/app/util/keys";
-import { SalesReportDialogComponent } from "../sales-report-dialog/sales-report-dialog.component";
 
 @Component({
   selector: "app-admin",

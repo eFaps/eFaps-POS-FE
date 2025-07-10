@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { Currency } from "@efaps/pos-library";
+
 import { BalanceSummarySectionComponent } from "./balance-summary-section.component";
 
 describe("BalanceSummarySectionComponent", () => {

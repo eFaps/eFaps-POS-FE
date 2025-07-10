@@ -1,5 +1,17 @@
+import { NgClass } from "@angular/common";
 import { Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {
+  MatButton,
+  MatFabButton,
+  MatIconButton,
+} from "@angular/material/button";
+import { MatButtonToggle } from "@angular/material/button-toggle";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { MatLine } from "@angular/material/grid-list";
+import { MatIcon } from "@angular/material/icon";
+import { MatDivider, MatList, MatListItem } from "@angular/material/list";
+import { MatRadioButton, MatRadioGroup } from "@angular/material/radio";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTabGroup } from "@angular/material/tabs";
 import { Router } from "@angular/router";
@@ -33,19 +45,6 @@ import {
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { PartialObserver, Subject, Subscription, debounceTime } from "rxjs";
 
-import { NgClass } from "@angular/common";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import {
-  MatButton,
-  MatFabButton,
-  MatIconButton,
-} from "@angular/material/button";
-import { MatButtonToggle } from "@angular/material/button-toggle";
-import { MatLine } from "@angular/material/grid-list";
-import { MatIcon } from "@angular/material/icon";
-import { MatDivider, MatList, MatListItem } from "@angular/material/list";
-import { MatRadioButton, MatRadioGroup } from "@angular/material/radio";
-import { PAYABLE_ACTIVATENOTE, PAYMENT_REQUIRE } from "src/app/util/keys";
 import { ConfirmDialogComponent } from "../shared/confirm-dialog/confirm-dialog.component";
 import { ContactComponent } from "../shared/contact/contact.component";
 import { DocumentComponent } from "../shared/document/document.component";
@@ -58,6 +57,7 @@ import { PrintDialogComponent } from "../shared/print-dialog/print-dialog.compon
 import { DiscountComponent } from "./discount/discount.component";
 import { PaymentTypeComponent } from "./payment-type/payment-type.component";
 import { SuccessDialogComponent } from "./success-dialog/success-dialog.component";
+import { PAYABLE_ACTIVATENOTE, PAYMENT_REQUIRE } from "src/app/util/keys";
 
 @Component({
   selector: "app-payment",

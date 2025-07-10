@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { MatListModule } from "@angular/material/list";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BalanceService, DocumentService } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { MatListModule } from "@angular/material/list";
 import { BalancePaymentListComponent } from "./balance-payment-list.component";
 
 class BalanceServiceStub {

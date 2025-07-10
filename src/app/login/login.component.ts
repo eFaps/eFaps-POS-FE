@@ -37,6 +37,7 @@ import {
 import { TranslateService } from "@ngx-translate/core";
 import { SvgIconComponent } from "angular-svg-icon";
 import { Subscription } from "rxjs";
+
 import { VirtKeyboardDirective } from "../services/virt-keyboard.directive";
 
 @Component({

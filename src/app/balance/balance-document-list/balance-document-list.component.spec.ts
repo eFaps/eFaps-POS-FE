@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatTableModule } from "@angular/material/table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BalanceService, DocumentService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
-import { MatTableModule } from "@angular/material/table";
 import { BalanceDocumentListComponent } from "./balance-document-list.component";
 
 class BalanceServiceStub {

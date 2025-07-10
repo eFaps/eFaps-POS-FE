@@ -1,22 +1,22 @@
 @keyframes spinner {
-    to {
-        transform: rotate(360deg);
-    }
+  to {
+    transform: rotate(360deg);
+  }
 }
 .spinner {
-    height: 200px;
+  height: 200px;
 }
 
 .spinner:before {
-    content: '';
-    box-sizing: border-box;
-    position: absolute;
-    top: calc(50% - 40px);
-    left: calc(50% - 40px);
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 5px solid #ffffff;
-    border-top-color: #000000;
-    animation: spinner .8s linear infinite;
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: calc(50% - 40px);
+  left: calc(50% - 40px);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 5px solid #ffffff;
+  border-top-color: #000000;
+  animation: spinner 0.8s linear infinite;
 }

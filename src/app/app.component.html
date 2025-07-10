@@ -4,90 +4,147 @@
 <div class="pos-container">
   <mat-toolbar color="primary">
     <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
-    @if (!router.url.includes('login')) {
+    @if (!router.url.includes("login")) {
       <svg-icon src="./assets/logo.svg" class="logo white"></svg-icon>
     }
     <div>
-      <span class="workspace">{{userInfo?.firstName}} {{userInfo?.surName}} {{userInfo && company ? ' - ' : ''}} {{workspace}} {{workspace && company ? ' - ' : ''}} {{company}}</span>
+      <span class="workspace"
+        >{{ userInfo?.firstName }} {{ userInfo?.surName }} {{ userInfo && company ? " - " : "" }}
+        {{ workspace }} {{ workspace && company ? " - " : "" }} {{ company }}</span
+      >
       <app-theme-picker></app-theme-picker>
     </div>
   </mat-toolbar>
   <mat-sidenav-container class="pos-sidenav">
-    <mat-sidenav #sidenav [mode]="(screenWidth > 840) ? 'side' : 'over'">
+    <mat-sidenav #sidenav [mode]="screenWidth > 840 ? 'side' : 'over'">
       <mat-list>
         @if (hasPermission(Permission.ORDER)) {
           <mat-list-item>
-            <button mat-icon-button routerLink="/pos" i18n-matTooltip="@@pos" matTooltip="Register" matTooltipPosition="right">
+            <button
+              mat-icon-button
+              routerLink="/pos"
+              i18n-matTooltip="@@pos"
+              matTooltip="Register"
+              matTooltipPosition="right">
               <mat-icon aria-label="POS">shop</mat-icon>
             </button>
           </mat-list-item>
         }
         @if (isLoggedIn()) {
           <mat-list-item>
-            <button mat-icon-button routerLink="/products" i18n-matTooltip="@@products" matTooltip="Products" matTooltipPosition="right">
-              <mat-icon aria-label="products" >store</mat-icon>
+            <button
+              mat-icon-button
+              routerLink="/products"
+              i18n-matTooltip="@@products"
+              matTooltip="Products"
+              matTooltipPosition="right">
+              <mat-icon aria-label="products">store</mat-icon>
             </button>
           </mat-list-item>
         }
         @if (isLoggedIn()) {
           <mat-list-item>
-            <button mat-icon-button routerLink="/orders" i18n-matTooltip="@@orders" matTooltip="Orders" matTooltipPosition="right">
-              <mat-icon aria-label="Orders" >dns</mat-icon>
+            <button
+              mat-icon-button
+              routerLink="/orders"
+              i18n-matTooltip="@@orders"
+              matTooltip="Orders"
+              matTooltipPosition="right">
+              <mat-icon aria-label="Orders">dns</mat-icon>
             </button>
           </mat-list-item>
         }
         @if (spots) {
           <mat-list-item>
-            <button mat-icon-button routerLink="/spots" i18n-matTooltip="@@spots" matTooltip="Tables" matTooltipPosition="right">
-              <mat-icon aria-label="Spots" >place</mat-icon>
+            <button
+              mat-icon-button
+              routerLink="/spots"
+              i18n-matTooltip="@@spots"
+              matTooltip="Tables"
+              matTooltipPosition="right">
+              <mat-icon aria-label="Spots">place</mat-icon>
             </button>
           </mat-list-item>
         }
         @if (inventory) {
           <mat-list-item>
-            <button mat-icon-button routerLink="/inventory" i18n-matTooltip="@@inventory" matTooltip="Inventory" matTooltipPosition="right">
-              <mat-icon aria-label="inventory" >domain</mat-icon>
+            <button
+              mat-icon-button
+              routerLink="/inventory"
+              i18n-matTooltip="@@inventory"
+              matTooltip="Inventory"
+              matTooltipPosition="right">
+              <mat-icon aria-label="inventory">domain</mat-icon>
             </button>
           </mat-list-item>
         }
         @if (isLoggedIn()) {
           <mat-list-item>
-            <button mat-icon-button routerLink="/contacts"  i18n-matTooltip="@@contacts" matTooltip="Contacts" matTooltipPosition="right">
-              <mat-icon aria-label="Contacts" >contacts</mat-icon>
+            <button
+              mat-icon-button
+              routerLink="/contacts"
+              i18n-matTooltip="@@contacts"
+              matTooltip="Contacts"
+              matTooltipPosition="right">
+              <mat-icon aria-label="Contacts">contacts</mat-icon>
             </button>
           </mat-list-item>
         }
         @if (isLoggedIn() && allowPayment) {
           <mat-list-item>
-            <button mat-icon-button routerLink="/balance" i18n-matTooltip="@@balance" matTooltip="Balance" matTooltipPosition="right">
-              <mat-icon aria-label="Balance" >account_balance</mat-icon>
+            <button
+              mat-icon-button
+              routerLink="/balance"
+              i18n-matTooltip="@@balance"
+              matTooltip="Balance"
+              matTooltipPosition="right">
+              <mat-icon aria-label="Balance">account_balance</mat-icon>
             </button>
           </mat-list-item>
         }
         @if (isLoggedIn()) {
           <mat-list-item>
-            <button mat-icon-button routerLink="/workspaces" i18n-matTooltip="@@workspaces" matTooltip="Workspaces" matTooltipPosition="right">
-              <mat-icon aria-label="Workspaces" >devices</mat-icon>
+            <button
+              mat-icon-button
+              routerLink="/workspaces"
+              i18n-matTooltip="@@workspaces"
+              matTooltip="Workspaces"
+              matTooltipPosition="right">
+              <mat-icon aria-label="Workspaces">devices</mat-icon>
             </button>
           </mat-list-item>
         }
         @if (hasPermission(Permission.ADMIN)) {
-          <mat-list-item >
-            <button mat-icon-button routerLink="/admin" i18n-matTooltip="@@admin" matTooltip="Admin" matTooltipPosition="right">
-              <mat-icon aria-label="Admin" >build</mat-icon>
+          <mat-list-item>
+            <button
+              mat-icon-button
+              routerLink="/admin"
+              i18n-matTooltip="@@admin"
+              matTooltip="Admin"
+              matTooltipPosition="right">
+              <mat-icon aria-label="Admin">build</mat-icon>
             </button>
           </mat-list-item>
         }
         @if (isLoggedIn() && showRemote && hasPermission(Permission.CREDITNOTE)) {
-          <mat-list-item >
-            <button  mat-icon-button routerLink="/remote" matTooltip="Nube" matTooltipPosition="right">
-              <mat-icon aria-label="Nube" >cloud</mat-icon>
+          <mat-list-item>
+            <button
+              mat-icon-button
+              routerLink="/remote"
+              matTooltip="Nube"
+              matTooltipPosition="right">
+              <mat-icon aria-label="Nube">cloud</mat-icon>
             </button>
           </mat-list-item>
         }
         <mat-list-item>
-          <button  mat-icon-button routerLink="/login" i18n-matTooltip="@@loginlogout" matTooltip="Login / Logout" matTooltipPosition="right">
-            <mat-icon aria-label="login" >bubble_chart</mat-icon>
+          <button
+            mat-icon-button
+            routerLink="/login"
+            i18n-matTooltip="@@loginlogout"
+            matTooltip="Login / Logout"
+            matTooltipPosition="right">
+            <mat-icon aria-label="login">bubble_chart</mat-icon>
           </button>
         </mat-list-item>
       </mat-list>

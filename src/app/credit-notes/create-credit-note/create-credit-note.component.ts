@@ -1,5 +1,8 @@
 import { Component, OnInit, inject } from "@angular/core";
+import { MatButton, MatIconButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
+import { MatIcon } from "@angular/material/icon";
+import { MatList, MatListItem } from "@angular/material/list";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
@@ -17,16 +20,13 @@ import {
   PosLibraryModule,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
 import clone from "just-clone";
-import { CREDITNOTE_PERMITPARTIAL } from "src/app/util/keys";
+
+import { DocumentComponent } from "../../shared/document/document.component";
 import { AddPaymentDialogComponent } from "../add-payment-dialog/add-payment-dialog.component";
 import { SuccessDialogComponent } from "../success-dialog/success-dialog.component";
-
-import { MatButton, MatIconButton } from "@angular/material/button";
-import { MatIcon } from "@angular/material/icon";
-import { MatList, MatListItem } from "@angular/material/list";
-import { TranslatePipe } from "@ngx-translate/core";
-import { DocumentComponent } from "../../shared/document/document.component";
+import { CREDITNOTE_PERMITPARTIAL } from "src/app/util/keys";
 
 @Component({
   selector: "app-create-credit-note",

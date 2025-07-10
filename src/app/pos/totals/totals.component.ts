@@ -9,6 +9,7 @@ import {
   PromoInfo,
 } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
+
 import { PromoDialogComponent } from "src/app/shared/promo-dialog/promo-dialog.component";
 
 @Component({

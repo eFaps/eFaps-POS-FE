@@ -1,41 +1,43 @@
 <button mat-raised-button color="accent" (click)="count()">Start/Resume</button>
 <button mat-raised-button (click)="createStocktaking()">Crear</button>
 <mat-table #table [dataSource]="dataSource" matSort matSortActive="number" matSortDirection="desc">
-    <ng-container matColumnDef="number">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Number </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.number}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="warehouse">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Almacen </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element?.warehouse?.name}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="user">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> User </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element?.user?.firstName}} {{element?.user?.surName}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="startAt">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> StartAt </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.startAt | date:'dd/MM/yy HH:mm'}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="endAt">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> EndAt </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.endAt | date:'dd/MM/yy HH:mm'}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="status">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="cmd">
-        <mat-header-cell *matHeaderCellDef />
-        <mat-cell *matCellDef="let element">
-            <button (click)="show(element)" mat-stroked-button>
-                <mat-icon class="posIcon-36">list</mat-icon>
-            </button>
-            <button (click)="close(element)" mat-stroked-button [disabled]="element.status!='OPEN'">
-                <mat-icon  class="posIcon-36">close</mat-icon>
-            </button>
-        </mat-cell>
-    </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" />
-    <mat-row *matRowDef="let row; columns: displayedColumns;" />
+  <ng-container matColumnDef="number">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Number </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.number }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="warehouse">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Almacen </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element?.warehouse?.name }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="user">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> User </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{ element?.user?.firstName }} {{ element?.user?.surName }}
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="startAt">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> StartAt </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.startAt | date: "dd/MM/yy HH:mm" }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="endAt">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> EndAt </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.endAt | date: "dd/MM/yy HH:mm" }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.status }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="cmd">
+    <mat-header-cell *matHeaderCellDef />
+    <mat-cell *matCellDef="let element">
+      <button (click)="show(element)" mat-stroked-button>
+        <mat-icon class="posIcon-36">list</mat-icon>
+      </button>
+      <button (click)="close(element)" mat-stroked-button [disabled]="element.status != 'OPEN'">
+        <mat-icon class="posIcon-36">close</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" />
+  <mat-row *matRowDef="let row; columns: displayedColumns" />
 </mat-table>

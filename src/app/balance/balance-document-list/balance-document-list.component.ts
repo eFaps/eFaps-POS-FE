@@ -1,5 +1,7 @@
 import { Component, Input, ViewChild, inject } from "@angular/core";
+import { MatIconButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
+import { MatIcon } from "@angular/material/icon";
 import { MatSort, MatSortHeader } from "@angular/material/sort";
 import {
   MatCell,
@@ -15,10 +17,8 @@ import {
   MatTableDataSource,
 } from "@angular/material/table";
 import { DocStatus, PayableHead, PosLibraryModule } from "@efaps/pos-library";
-
-import { MatIconButton } from "@angular/material/button";
-import { MatIcon } from "@angular/material/icon";
 import { TranslatePipe } from "@ngx-translate/core";
+
 import { DocumentDialogComponent } from "../document-dialog/document-dialog.component";
 
 @Component({

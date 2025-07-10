@@ -19,8 +19,9 @@ import {
   ProductService,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { KeypadService, PosSyncService } from "src/app/services";
+
 import { AbstractProductSelector } from "../../abstract-product-selector";
+import { KeypadService, PosSyncService } from "src/app/services";
 
 @Component({
   selector: "app-products-element",

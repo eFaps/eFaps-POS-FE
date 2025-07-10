@@ -2,18 +2,29 @@
   @for (category of categories; track category; let i = $index) {
     <mat-tab>
       <ng-template mat-tab-label>
-        @if (category.name=='PLACEHOLDER') {
+        @if (category.name == "PLACEHOLDER") {
           <mat-icon class="example-tab-icon">turned_in_not</mat-icon>
         }
-        {{category?.name}}
+        {{ category?.name }}
       </ng-template>
       @if (category?.children?.length) {
-        <app-grid-element [categories]="category.children" (categorySelected)="onChildCategorySelected($event)"
-          [currency]="currency()" [showInventory]="showInventory()" [size]="size()" [showPrices]="showPrices()"
+        <app-grid-element
+          [categories]="category.children"
+          (categorySelected)="onChildCategorySelected($event)"
+          [currency]="currency()"
+          [showInventory]="showInventory()"
+          [size]="size()"
+          [showPrices]="showPrices()"
           [inventory]="inventory()" />
       }
-      <app-products-element [products]="products" [currency]="currency()"
-        [showInventory]="showInventory()" [size]="size()" [showPrices]="showPrices()" [inventory]="inventory()" [remarkMode]="remarkMode()" />
+      <app-products-element
+        [products]="products"
+        [currency]="currency()"
+        [showInventory]="showInventory()"
+        [size]="size()"
+        [showPrices]="showPrices()"
+        [inventory]="inventory()"
+        [remarkMode]="remarkMode()" />
     </mat-tab>
   }
 </mat-tab-group>

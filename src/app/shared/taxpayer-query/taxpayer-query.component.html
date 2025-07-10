@@ -3,9 +3,21 @@
   <form [formGroup]="taxpayerForm">
     <div>
       <mat-form-field>
-        <input matInput placeholder="{{nameSearch ? 'Nombre' : 'R.U.C.' }}" formControlName="term" autocomplete="off">
+        <input
+          matInput
+          placeholder="{{ nameSearch ? 'Nombre' : 'R.U.C.' }}"
+          formControlName="term"
+          autocomplete="off" />
       </mat-form-field>
-      <button mat-raised-button color="primary" type="button" i18n="@@search" (click)="query()" [disabled]="taxpayerForm.invalid">Search</button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        i18n="@@search"
+        (click)="query()"
+        [disabled]="taxpayerForm.invalid">
+        Search
+      </button>
     </div>
     <mat-slide-toggle [checked]="nameSearch" (change)="setNameSearch()">
       @if (nameSearch) {

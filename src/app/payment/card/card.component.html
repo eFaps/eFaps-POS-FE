@@ -3,10 +3,15 @@
     <div class="payment-form-wrapper">
       <form class="payment-form" [formGroup]="paymentForm">
         <mat-form-field>
-          <input matInput placeholder="Monto" type="text" formControlName="amount" class="right-align">
-          <span matPrefix>{{currency}}&nbsp;</span>
+          <input
+            matInput
+            placeholder="Monto"
+            type="text"
+            formControlName="amount"
+            class="right-align" />
+          <span matPrefix>{{ currency }}&nbsp;</span>
         </mat-form-field>
-        <button type="button" mat-stroked-button (click)="setChange()">{{'<<'}}</button>
+        <button type="button" mat-stroked-button (click)="setChange()">{{ "<<" }}</button>
       </form>
       <app-keypad (number)="setNumber($event)"></app-keypad>
     </div>
@@ -14,13 +19,20 @@
       <form class="payment-form" [formGroup]="paymentForm">
         <mat-radio-group class="card-radio-group" formControlName="card">
           @for (card of cards; track card; let idx = $index) {
-          <mat-radio-button class="card-radio-button" [value]="card">
-            {{card.label}}
-          </mat-radio-button>
+            <mat-radio-button class="card-radio-button" [value]="card">
+              {{ card.label }}
+            </mat-radio-button>
           }
         </mat-radio-group>
       </form>
     </div>
   </div>
-  <button type="submit" class="btn btn-success" mat-raised-button color="primary" (click)="addPayment()">Agregar Pago</button>
+  <button
+    type="submit"
+    class="btn btn-success"
+    mat-raised-button
+    color="primary"
+    (click)="addPayment()">
+    Agregar Pago
+  </button>
 </div>

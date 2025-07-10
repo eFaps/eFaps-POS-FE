@@ -1,10 +1,11 @@
 <mat-tab-group [class.header-less-tabs]="floors.length <= 1" animationDuration="0ms" dynamicHeight>
   @for (floor of floors; track floor; let i = $index) {
-    <mat-tab label="{{floor?.name}}" >
+    <mat-tab label="{{ floor?.name }}">
       <div class="floor" [class.sidenav]="sidenav" [style.background-image]="image(floor)">
         @for (spot of floor.spots; track spot; let i = $index) {
-          <button mat-fab
-            color="{{spot.orders && spot.orders.length > 0 ? 'accent' : 'primary'}}"
+          <button
+            mat-fab
+            color="{{ spot.orders && spot.orders.length > 0 ? 'accent' : 'primary' }}"
             (click)="selectSpot(spot)"
             cdkDrag
             [cdkDragDisabled]="!editMode"
@@ -14,7 +15,7 @@
             [cdkDragFreeDragPosition]="spot.position!"
             [style.left]="getLeft(i)"
             [style.top]="getTop(i)">
-            {{spot.label}}
+            {{ spot.label }}
           </button>
         }
       </div>
@@ -22,17 +23,30 @@
   }
 </mat-tab-group>
 <div class="editModeButton">
-  <button mat-fab (click)="togglEditMode()" color="{{editMode ? 'accent' : 'primary' }}" matTooltip="Edit Mode">
+  <button
+    mat-fab
+    (click)="togglEditMode()"
+    color="{{ editMode ? 'accent' : 'primary' }}"
+    matTooltip="Edit Mode">
     <mat-icon>edit</mat-icon>
   </button>
 </div>
 <div class="split">
-  <button mat-fab (click)="toggleSplitMode()"  color="{{splitMode ? 'accent' : 'primary' }}" matTooltip="{{'SPOT.SPLIT.CMD' | translate}}">
+  <button
+    mat-fab
+    (click)="toggleSplitMode()"
+    color="{{ splitMode ? 'accent' : 'primary' }}"
+    matTooltip="{{ 'SPOT.SPLIT.CMD' | translate }}">
     <mat-icon>open_with</mat-icon>
   </button>
 </div>
 <div class="swap">
-  <button (click)="showSwapModal()" mat-fab color="primary" matTooltip="{{'SPOT.SWAP.CMD' | translate}}">
+  <button
+    (click)="showSwapModal()"
+    mat-fab
+    color="primary"
+    matTooltip="{{ 'SPOT.SWAP.CMD' | translate }}">
     <mat-icon>swap_horiz</mat-icon>
   </button>
-  <div>
+  <div></div>
+</div>

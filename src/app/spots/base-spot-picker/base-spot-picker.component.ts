@@ -1,5 +1,8 @@
 import { Component, OnInit, inject } from "@angular/core";
+import { MatFabButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
+import { MatIcon } from "@angular/material/icon";
+import { MatTooltip } from "@angular/material/tooltip";
 import { Router } from "@angular/router";
 import {
   DocumentService,
@@ -8,11 +11,8 @@ import {
   SpotConfig,
   SpotService,
 } from "@efaps/pos-library";
-
-import { MatFabButton } from "@angular/material/button";
-import { MatIcon } from "@angular/material/icon";
-import { MatTooltip } from "@angular/material/tooltip";
 import { TranslatePipe } from "@ngx-translate/core";
+
 import { AbstractSpotPicker } from "../abstract-spot-picker";
 
 @Component({

@@ -1,5 +1,12 @@
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { DebugElement } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { By } from "@angular/platform-browser";
 import {
   AdminService,
@@ -11,13 +18,6 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from "@angular/common/http";
-import { provideHttpClientTesting } from "@angular/common/http/testing";
-import { ReactiveFormsModule } from "@angular/forms";
-import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { AdminComponent } from "./admin.component";
 
 class AdminServiceStub {

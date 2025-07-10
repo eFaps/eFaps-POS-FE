@@ -2,23 +2,25 @@
   <mat-tab i18n-label="@@currentBalance" label="Balance actual">
     <div class="currentBalance">
       @if (hasBalance()) {
-      <span class="balanceNumber" i18n="@@balanceWithNumber">Balance - {{currentBalance?.number}}</span>
-      <button mat-flat-button (click)="close()" i18n="@@closeBalance">Cerrar</button>
-      @if (useCashEntry) {
-      <button mat-flat-button (click)="register()">Registar</button>
-      }
+        <span class="balanceNumber" i18n="@@balanceWithNumber"
+          >Balance - {{ currentBalance?.number }}</span
+        >
+        <button mat-flat-button (click)="close()" i18n="@@closeBalance">Cerrar</button>
+        @if (useCashEntry) {
+          <button mat-flat-button (click)="register()">Registar</button>
+        }
       } @else {
-      <button mat-flat-button (click)="init()" i18n="@@initBalance">Init</button>
+        <button mat-flat-button (click)="init()" i18n="@@initBalance">Init</button>
       }
     </div>
     <app-balance-document-list [payables]="payables" />
     @if (summary()) {
-    <app-balance-payment-list [summary]="summary()" />
+      <app-balance-payment-list [summary]="summary()" />
     }
   </mat-tab>
   <mat-tab i18n-label="@@balanceSummary" label="Resumen">
     @if (summary()) {
-    <app-balance-summary [summary]="summary()" />
+      <app-balance-summary [summary]="summary()" />
     }
   </mat-tab>
   <mat-tab i18n-label="@@balances" label="Balances">

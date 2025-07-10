@@ -5,9 +5,9 @@ import {
   MatDialogRef,
 } from "@angular/material/dialog";
 import { MockComponent } from "ng-mocks";
-import { ContactComponent } from "src/app/shared/contact/contact.component";
 
 import { ContactDialogComponent } from "./contact-dialog.component";
+import { ContactComponent } from "src/app/shared/contact/contact.component";
 
 describe("ContactDialogComponent", () => {
   let component: ContactDialogComponent;

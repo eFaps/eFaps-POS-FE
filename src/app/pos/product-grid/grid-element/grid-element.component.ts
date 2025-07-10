@@ -14,6 +14,7 @@ import {
   Product,
   ProductService,
 } from "@efaps/pos-library";
+
 import { ProductsElementComponent } from "../products-element/products-element.component";
 
 const placeHolder: CategoryNode = {

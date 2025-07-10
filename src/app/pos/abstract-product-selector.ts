@@ -12,6 +12,7 @@ import {
   ProductType,
   WorkspaceService,
 } from "@efaps/pos-library";
+
 import { KeypadService, PosSyncService } from "../services";
 import { ConfigDialogComponent } from "./config-dialog/config-dialog.component";
 

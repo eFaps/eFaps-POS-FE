@@ -4,6 +4,9 @@ import {
 } from "@angular/common/http";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatRadioModule } from "@angular/material/radio";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   CollectService,
@@ -15,9 +18,6 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockComponent, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
-import { MatRadioModule } from "@angular/material/radio";
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
 import { AutoComponent } from "./auto.component";
 

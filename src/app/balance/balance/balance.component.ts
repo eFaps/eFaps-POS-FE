@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit, inject, signal } from "@angular/core";
+import { MatButton } from "@angular/material/button";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { MatTab, MatTabContent, MatTabGroup } from "@angular/material/tabs";
 import {
   Balance,
   BalanceService,
@@ -15,10 +17,7 @@ import {
 } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
 import { Subscription } from "rxjs";
-import { BALANCE_ACTIVATE_CASHENTRY } from "src/app/util/keys";
 
-import { MatButton } from "@angular/material/button";
-import { MatTab, MatTabContent, MatTabGroup } from "@angular/material/tabs";
 import { ConfirmDialogComponent } from "../../shared/confirm-dialog/confirm-dialog.component";
 import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
 import { BalanceDocumentListComponent } from "../balance-document-list/balance-document-list.component";
@@ -28,6 +27,7 @@ import { BalanceSummaryComponent } from "../balance-summary/balance-summary.comp
 import { CashEntryDialogComponent } from "../cash-entry-dialog/cash-entry-dialog.component";
 import { DocumentListComponent } from "../document-list/document-list.component";
 import { OpeningBalanceDialogComponent } from "../opening-balance-dialog/opening-balance-dialog.component";
+import { BALANCE_ACTIVATE_CASHENTRY } from "src/app/util/keys";
 
 @Component({
   selector: "app-balance",

@@ -1,11 +1,11 @@
-<h1 mat-dialog-title>{{title}}</h1>
+<h1 mat-dialog-title>{{ title }}</h1>
 <mat-dialog-content>
   <mat-form-field appearance="fill">
     <mat-label>Vendedor</mat-label>
     <mat-select [formControl]="employeeCtrl" [compareWith]="compareFunction">
       <mat-option />
       @for (option of employees; track option) {
-        <mat-option [value]="option">{{option.firstName}} {{option.surName}}</mat-option>
+        <mat-option [value]="option">{{ option.firstName }} {{ option.surName }}</mat-option>
       }
     </mat-select>
   </mat-form-field>

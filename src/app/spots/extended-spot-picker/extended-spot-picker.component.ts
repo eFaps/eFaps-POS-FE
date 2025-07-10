@@ -1,7 +1,11 @@
 import { CdkDrag, CdkDragEnd } from "@angular/cdk/drag-drop";
 import { Component, OnInit, inject } from "@angular/core";
+import { MatFabButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
+import { MatIcon } from "@angular/material/icon";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatTab, MatTabGroup } from "@angular/material/tabs";
+import { MatTooltip } from "@angular/material/tooltip";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import {
@@ -16,13 +20,9 @@ import {
   SpotService,
   SpotsLayout,
 } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
 import { forkJoin } from "rxjs";
 
-import { MatFabButton } from "@angular/material/button";
-import { MatIcon } from "@angular/material/icon";
-import { MatTab, MatTabGroup } from "@angular/material/tabs";
-import { MatTooltip } from "@angular/material/tooltip";
-import { TranslatePipe } from "@ngx-translate/core";
 import { AbstractSpotPicker } from "../abstract-spot-picker";
 import { SplitDialogComponent } from "../split-dialog/split-dialog.component";
 

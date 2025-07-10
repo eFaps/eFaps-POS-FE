@@ -1,3 +1,7 @@
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatTableModule } from "@angular/material/table";
@@ -10,10 +14,6 @@ import {
 } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from "@angular/common/http";
 import { AutoComponent } from "../auto/auto.component";
 import { CardComponent } from "../card/card.component";
 import { CashComponent } from "../cash/cash.component";

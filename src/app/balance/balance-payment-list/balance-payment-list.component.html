@@ -2,8 +2,8 @@
   @for (cashEntry of cashEntries; track cashEntry) {
     <mat-list-item>
       <p matLine>
-        <span class="cashEntry">{{('CASHENTRYTYPE.' + cashEntry.entryType) | translate}}: </span>
-        <span class="amount">{{cashEntry.amount | posCurrency:cashEntry.currency}}</span>
+        <span class="cashEntry">{{ "CASHENTRYTYPE." + cashEntry.entryType | translate }}: </span>
+        <span class="amount">{{ cashEntry.amount | posCurrency: cashEntry.currency }}</span>
       </p>
     </mat-list-item>
   }
@@ -11,8 +11,11 @@
   @for (paymentInfo of payments; track paymentInfo) {
     <mat-list-item>
       <p matLine>
-        <span class="paymentType">{{('PAYMENT.' + paymentInfo.type) | translate}} {{paymentInfo.label}} - {{ undefined | posCurrency:paymentInfo.currency}}:</span>
-        <span class="amount">{{paymentInfo.amount | posCurrency:paymentInfo.currency}}</span>
+        <span class="paymentType"
+          >{{ "PAYMENT." + paymentInfo.type | translate }} {{ paymentInfo.label }} -
+          {{ undefined | posCurrency: paymentInfo.currency }}:</span
+        >
+        <span class="amount">{{ paymentInfo.amount | posCurrency: paymentInfo.currency }}</span>
       </p>
     </mat-list-item>
   }
@@ -20,6 +23,6 @@
 <div class="total">
   <span>Totales</span>
   @for (total of crossTotals; track total) {
-    <span>{{ total.amount | posCurrency:total.currency}}</span>
+    <span>{{ total.amount | posCurrency: total.currency }}</span>
   }
 </div>

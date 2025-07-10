@@ -7,6 +7,17 @@ import {
   inject,
   OnInit,
 } from "@angular/core";
+import { MatIconButton } from "@angular/material/button";
+import { MatIcon, MatIconRegistry } from "@angular/material/icon";
+import { MatList, MatListItem } from "@angular/material/list";
+import { MatProgressBar } from "@angular/material/progress-bar";
+import {
+  MatSidenav,
+  MatSidenavContainer,
+  MatSidenavContent,
+} from "@angular/material/sidenav";
+import { MatToolbar } from "@angular/material/toolbar";
+import { MatTooltip } from "@angular/material/tooltip";
 import { Router, RouterLink, RouterOutlet } from "@angular/router";
 import { LocalStorage } from "@efaps/ngx-store";
 import {
@@ -23,20 +34,9 @@ import {
   WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
+import { SvgIconComponent } from "angular-svg-icon";
 import { Hotkey, HotkeyModule, HotkeysService } from "angular2-hotkeys";
 
-import { MatIconButton } from "@angular/material/button";
-import { MatIcon, MatIconRegistry } from "@angular/material/icon";
-import { MatList, MatListItem } from "@angular/material/list";
-import { MatProgressBar } from "@angular/material/progress-bar";
-import {
-  MatSidenav,
-  MatSidenavContainer,
-  MatSidenavContent,
-} from "@angular/material/sidenav";
-import { MatToolbar } from "@angular/material/toolbar";
-import { MatTooltip } from "@angular/material/tooltip";
-import { SvgIconComponent } from "angular-svg-icon";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
 
 @Component({

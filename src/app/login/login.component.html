@@ -2,11 +2,10 @@
   <div class="companies">
     <div class="pos-companiesgrid">
       @for (company of companies; track company) {
-        <mat-card appearance="outlined" class="pos-companycard"
-          (click)="setCompany(company)">
+        <mat-card appearance="outlined" class="pos-companycard" (click)="setCompany(company)">
           <mat-card-content>
             <svg-icon src="./assets/enterprise.svg" class="logo"></svg-icon>
-            {{company.label}}
+            {{ company.label }}
           </mat-card-content>
         </mat-card>
       }
@@ -14,13 +13,16 @@
   </div>
 }
 <div class="usergrid-wrapper">
-  <div class="pos-usergrid" [style.display]="!hiddenUser?'none':'flex'">
+  <div class="pos-usergrid" [style.display]="!hiddenUser ? 'none' : 'flex'">
     @for (user of users; track user) {
-      <mat-card appearance="outlined" class="pos-usercard" (click)="select(user)"
-        [ngClass]="{'pos-card-selected': this.loginForm.value.userName==user.username}">
+      <mat-card
+        appearance="outlined"
+        class="pos-usercard"
+        (click)="select(user)"
+        [ngClass]="{ 'pos-card-selected': this.loginForm.value.userName == user.username }">
         <mat-card-content>
           <svg-icon src="./assets/user.svg" class="logo"></svg-icon>
-          {{user.firstName}} {{user.surName}}
+          {{ user.firstName }} {{ user.surName }}
         </mat-card-content>
       </mat-card>
     }
@@ -30,28 +32,60 @@
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div [hidden]="hiddenUser">
       <mat-form-field class="example-full-width">
-        <input i18n-placeholder="@@user" placeholder="User" class="form-control" matInput formControlName="userName"
-          [appVirtKeyboard] class="left">
+        <input
+          i18n-placeholder="@@user"
+          placeholder="User"
+          class="form-control"
+          matInput
+          formControlName="userName"
+          [appVirtKeyboard]
+          class="left" />
       </mat-form-field>
     </div>
     <mat-form-field class="example-full-width">
-      <input #pwd i18n-placeholder="@@password" placeholder="Password" type="password" (keyup.enter)="login()"
-        (enterClick)="login()" matInput formControlName="password" [appVirtKeyboard] [activateKeyboard]="virtKeyboard"
-        class="left">
+      <input
+        #pwd
+        i18n-placeholder="@@password"
+        placeholder="Password"
+        type="password"
+        (keyup.enter)="login()"
+        (enterClick)="login()"
+        matInput
+        formControlName="password"
+        [appVirtKeyboard]
+        [activateKeyboard]="virtKeyboard"
+        class="left" />
     </mat-form-field>
     <div>
-      <button type="submit" class="btn btn-success" mat-raised-button color="primary" i18n="@@login">Login</button>
+      <button
+        type="submit"
+        class="btn btn-success"
+        mat-raised-button
+        color="primary"
+        i18n="@@login">
+        Login
+      </button>
     </div>
   </form>
 </div>
-<svg-icon src="./assets/logo.svg" class="logo" [svgStyle]="{ 'width.px':200 }" />
+<svg-icon src="./assets/logo.svg" class="logo" [svgStyle]="{ 'width.px': 200 }" />
 <div class="config">
-  <mat-slide-toggle [checked]="virtKeyboard" (change)="toggleVirtKeyboard($event)" i18n="@@virtualKeyboard">Virtual
-    Keyboard</mat-slide-toggle>
+  <mat-slide-toggle
+    [checked]="virtKeyboard"
+    (change)="toggleVirtKeyboard($event)"
+    i18n="@@virtualKeyboard"
+    >Virtual Keyboard</mat-slide-toggle
+  >
 </div>
-<mat-button-toggle [value]="hiddenUser" (change)="toggleUser()" class="hiddenUser" i18n="@@hiddenUser">hidden
-  User</mat-button-toggle>
+<mat-button-toggle
+  [value]="hiddenUser"
+  (change)="toggleUser()"
+  class="hiddenUser"
+  i18n="@@hiddenUser"
+  >hidden User</mat-button-toggle
+>
 @if (companies.length > 1) {
-  <mat-button-toggle (change)="showCompanies()" class="showCompanies"
-  i18n="@@selectCompany">Select Company</mat-button-toggle>
+  <mat-button-toggle (change)="showCompanies()" class="showCompanies" i18n="@@selectCompany"
+    >Select Company</mat-button-toggle
+  >
 }

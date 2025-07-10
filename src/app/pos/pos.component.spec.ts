@@ -1,3 +1,8 @@
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
@@ -26,11 +31,6 @@ import {
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from "@angular/common/http";
-import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { KeypadService, PosSyncService } from "../services";
 import { CommandsComponent } from "./commands/commands.component";
 import { PosComponent } from "./pos.component";

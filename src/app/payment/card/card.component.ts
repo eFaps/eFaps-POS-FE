@@ -4,6 +4,10 @@ import {
   UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
+import { MatButton } from "@angular/material/button";
+import { MatFormField, MatPrefix } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import { MatRadioButton, MatRadioGroup } from "@angular/material/radio";
 import {
   Card,
   Currency,
@@ -14,10 +18,6 @@ import {
   WorkspaceService,
 } from "@efaps/pos-library";
 
-import { MatButton } from "@angular/material/button";
-import { MatFormField, MatPrefix } from "@angular/material/form-field";
-import { MatInput } from "@angular/material/input";
-import { MatRadioButton, MatRadioGroup } from "@angular/material/radio";
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
 import { PaymentForm } from "../payment-form";
 

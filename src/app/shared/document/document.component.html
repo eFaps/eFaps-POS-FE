@@ -1,27 +1,34 @@
 @if (document) {
   <div class="mat-typography">
     @if (!hideTitle()) {
-      <h3>{{document.type! | translate}}: {{document.number}}</h3>
+      <h3>{{ document.type! | translate }}: {{ document.number }}</h3>
     }
     @if (showContact() && document.contact) {
       <div class="contact-document">
         <span>Cliente:</span>
-        <span>{{ 'IDTYPE.' + document.contact.idType | translate}}: {{document.contact.idNumber}} -
-        {{document.contact.name}}</span>
+        <span
+          >{{ "IDTYPE." + document.contact.idType | translate }}: {{ document.contact.idNumber }} -
+          {{ document.contact.name }}</span
+        >
       </div>
     }
     <div class="pos-doc-container mat-elevation-z8">
-      <mat-table #table [dataSource]="dataSource" matSort matSortActive="index" matSortDirection="asc"
+      <mat-table
+        #table
+        [dataSource]="dataSource"
+        matSort
+        matSortActive="index"
+        matSortDirection="asc"
         multiTemplateDataRows>
         <ng-container matColumnDef="index">
           <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
-          <mat-cell *matCellDef="let item"> {{item.index}} </mat-cell>
+          <mat-cell *matCellDef="let item"> {{ item.index }} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="quantity">
           <mat-header-cell *matHeaderCellDef mat-sort-header> C. </mat-header-cell>
           <mat-cell *matCellDef="let item">
             @if (!isChild(item)) {
-              {{item.quantity}}
+              {{ item.quantity }}
             }
           </mat-cell>
         </ng-container>
@@ -29,20 +36,20 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
           <mat-cell *matCellDef="let item">
             @if (isChild(item)) {
-              {{item.quantity}}
+              {{ item.quantity }}
             }
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="productDesc">
           <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
-          <mat-cell *matCellDef="let item"> {{item.product.description}} </mat-cell>
+          <mat-cell *matCellDef="let item"> {{ item.product.description }} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="crossUnitPrice">
-          <mat-header-cell *matHeaderCellDef><div> P.U. </div></mat-header-cell>
+          <mat-header-cell *matHeaderCellDef><div>P.U.</div></mat-header-cell>
           <mat-cell *matCellDef="let item">
             @if (!isChild(item)) {
               <div>
-                {{item.crossUnitPrice | posCurrency:document.currency}}
+                {{ item.crossUnitPrice | posCurrency: document.currency }}
               </div>
             }
           </mat-cell>
@@ -52,32 +59,39 @@
           <mat-cell *matCellDef="let item">
             @if (!isChild(item)) {
               <div>
-                {{item.crossPrice | posCurrency:document.currency}}
+                {{ item.crossPrice | posCurrency: document.currency }}
               </div>
             }
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="relationDetail">
-          <mat-cell *matCellDef="let item" [attr.colspan]="displayedColumns.length" class="relation-detail">
-            @for (relation of item.product.relations ; track relation) {
-              @if (relation.type =='SALESBOM') {
+          <mat-cell
+            *matCellDef="let item"
+            [attr.colspan]="displayedColumns.length"
+            class="relation-detail">
+            @for (relation of item.product.relations; track relation) {
+              @if (relation.type == "SALESBOM") {
                 <app-part-list-relation [productRelation]="relation"></app-part-list-relation>
               }
             }
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="cmd">
-          <mat-header-cell *matHeaderCellDef > <div>&nbsp;</div></mat-header-cell>
+          <mat-header-cell *matHeaderCellDef> <div>&nbsp;</div></mat-header-cell>
           <mat-cell *matCellDef="let item">
             <button (click)="btnClick(item)" mat-icon-button>
-              <mat-icon>{{getBtnIcon(item)}}</mat-icon>
+              <mat-icon>{{ getBtnIcon(item) }}</mat-icon>
             </button>
           </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;" [class.invalid-row]="isInvalid(row)"></mat-row>
-        <mat-row *matRowDef="let row; columns: ['relationDetail']" class="details-row"
-        [class.details-partlist]="row.product.type == 'PARTLIST'"></mat-row>
+        <mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          [class.invalid-row]="isInvalid(row)"></mat-row>
+        <mat-row
+          *matRowDef="let row; columns: ['relationDetail']"
+          class="details-row"
+          [class.details-partlist]="row.product.type == 'PARTLIST'"></mat-row>
       </mat-table>
     </div>
     <div class="footer">
@@ -89,9 +103,14 @@
               @for (payment of payments; track payment) {
                 <mat-list-item>
                   <p matLine>
-                    <span class="paymentType">{{ payment.cardTypeId ? payment.cardLabel : ('PAYMENT.' + payment.type) |
-                    translate}}: </span>
-                    <span class="amount">{{payment.amount | number:'1.2-2'}}</span>
+                    <span class="paymentType"
+                      >{{
+                        payment.cardTypeId
+                          ? payment.cardLabel
+                          : ("PAYMENT." + payment.type | translate)
+                      }}:
+                    </span>
+                    <span class="amount">{{ payment.amount | number: "1.2-2" }}</span>
                   </p>
                 </mat-list-item>
               }
@@ -104,8 +123,10 @@
             @for (relation of employeeRelations; track relation) {
               <mat-list-item>
                 <p matLine>
-                  <span class="employeeRealtionType">{{ relation.type}}: </span>
-                  <span class="employee">{{ relation.employee?.firstName}} {{ relation.employee?.surName}}</span>
+                  <span class="employeeRealtionType">{{ relation.type }}: </span>
+                  <span class="employee"
+                    >{{ relation.employee?.firstName }} {{ relation.employee?.surName }}</span
+                  >
                 </p>
               </mat-list-item>
             }
@@ -116,7 +137,9 @@
             <span>Nota:</span>
             <mat-list dense>
               <mat-list-item>
-                <p matLine><span>{{document.note}}</span></p>
+                <p matLine>
+                  <span>{{ document.note }}</span>
+                </p>
               </mat-list-item>
             </mat-list>
           </div>
@@ -134,38 +157,42 @@
       <div>
         <mat-list>
           <mat-list-item class="amount">
-            <div matLine>
-              Op. Gravada: {{document.netTotal | posCurrency:document.currency}}
-            </div>
+            <div matLine>Op. Gravada: {{ document.netTotal | posCurrency: document.currency }}</div>
           </mat-list-item>
           @for (taxEntry of document.taxes; track taxEntry) {
             <mat-list-item class="amount">
               <div matLine>
-                {{taxEntry.tax.name | translate}}: {{taxEntry.amount | posCurrency:document.currency}}
+                {{ taxEntry.tax.name | translate }}:
+                {{ taxEntry.amount | posCurrency: document.currency }}
               </div>
             </mat-list-item>
           }
           @if (promoInfo != null) {
             <mat-list-item class="amount">
               <div matLine class="totalDiscount">
-                <button mat-button (click)="showPromoInfo()">Descuento: {{promoInfo.crossTotalDiscount | posCurrency:document.currency}}</button>
+                <button mat-button (click)="showPromoInfo()">
+                  Descuento: {{ promoInfo.crossTotalDiscount | posCurrency: document.currency }}
+                </button>
               </div>
             </mat-list-item>
           }
           <mat-list-item class="amount">
-            <div matLine>
-              Total: {{document.crossTotal | posCurrency:document.currency}}
-            </div>
+            <div matLine>Total: {{ document.crossTotal | posCurrency: document.currency }}</div>
           </mat-list-item>
-          @if (document.payableAmount && document.payableAmount > 0 && document.payableAmount != document.crossTotal) {
+          @if (
+            document.payableAmount &&
+            document.payableAmount > 0 &&
+            document.payableAmount != document.crossTotal
+          ) {
             <mat-list-item class="amount">
               <div matLine>
-                Redondeo: {{document.payableAmount - document.crossTotal | posCurrency:document.currency}}
+                Redondeo:
+                {{ document.payableAmount - document.crossTotal | posCurrency: document.currency }}
               </div>
             </mat-list-item>
             <mat-list-item class="amount">
               <div matLine>
-                Por pagar: {{document.payableAmount | posCurrency:document.currency}}
+                Por pagar: {{ document.payableAmount | posCurrency: document.currency }}
               </div>
             </mat-list-item>
           }
@@ -174,14 +201,15 @@
     </div>
     <div>
       @if (showCreditNoteBtn) {
-        <button mat-raised-button color="primary" (click)="createCreditNote()">Nota de
-        Credito</button>
+        <button mat-raised-button color="primary" (click)="createCreditNote()">
+          Nota de Credito
+        </button>
       }
       @for (creditNote of creditNotes; track creditNote) {
-        <span>Nota de Credito {{creditNote.number}}</span>
+        <span>Nota de Credito {{ creditNote.number }}</span>
       }
       @if (sourceDoc) {
-        <span>{{sourceDoc.type! | translate}}: {{sourceDoc.number}}</span>
+        <span>{{ sourceDoc.type! | translate }}: {{ sourceDoc.number }}</span>
       }
     </div>
   </div>

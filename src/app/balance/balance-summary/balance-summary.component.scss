@@ -5,16 +5,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
     .opening {
       display: flex;
       flex-direction: column;
       margin-left: 50px;
-      
+
       .cashEntry {
         display: flex;
       }
-
     }
   }
 

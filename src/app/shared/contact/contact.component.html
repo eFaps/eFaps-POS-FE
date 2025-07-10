@@ -1,16 +1,26 @@
 <div class="contact-form">
   <mat-form-field class="contact-full-width">
-    <mat-label>{{nameSearch ? 'Nombre' : 'Numero de Doc.' }}</mat-label>
-    <input matInput aria-label="Contacto" [matAutocomplete]="auto" [formControl]="searchControl" class="left">
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selectContact($event)">
+    <mat-label>{{ nameSearch ? "Nombre" : "Numero de Doc." }}</mat-label>
+    <input
+      matInput
+      aria-label="Contacto"
+      [matAutocomplete]="auto"
+      [formControl]="searchControl"
+      class="left" />
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      [displayWith]="displayFn"
+      (optionSelected)="selectContact($event)">
       @for (item of searchResult(); track item.id) {
         <mat-option [value]="item">
-          {{nameSearch ? item?.name + ' - ' + item?.idNumber : item?.idNumber + ' - ' + item?.name}}
+          {{
+            nameSearch ? item?.name + " - " + item?.idNumber : item?.idNumber + " - " + item?.name
+          }}
         </mat-option>
       }
     </mat-autocomplete>
   </mat-form-field>
   <mat-slide-toggle [checked]="nameSearch" (change)="setNameSearch()">
-    {{nameSearch ? 'Buscar por Nombre' : 'Buscar por Numero de Documento' }}
+    {{ nameSearch ? "Buscar por Nombre" : "Buscar por Numero de Documento" }}
   </mat-slide-toggle>
 </div>

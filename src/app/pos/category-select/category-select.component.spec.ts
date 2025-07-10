@@ -5,8 +5,8 @@ import {
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogRef } from "@angular/material/dialog";
 import { Category, PosConfigToken, ProductService } from "@efaps/pos-library";
-
 import { Observable } from "rxjs";
+
 import { CategorySelectComponent } from "./category-select.component";
 
 class ProductServiceStub {

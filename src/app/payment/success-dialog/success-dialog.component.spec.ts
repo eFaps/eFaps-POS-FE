@@ -1,3 +1,7 @@
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import {
@@ -8,10 +12,6 @@ import {
 import { PosConfigToken, PrintService, UtilsService } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from "@angular/common/http";
 import { PrintDisplayComponent } from "../../shared/print-display/print-display.component";
 import { SuccessDialogComponent } from "./success-dialog.component";
 

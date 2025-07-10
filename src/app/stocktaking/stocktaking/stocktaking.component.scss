@@ -1,36 +1,35 @@
 .header {
-    display: flex;
-    gap: 5px;
-    justify-content: space-between;
-    padding-top: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .searchInput {
-    margin: 10px;
-    width: calc(100% - 80px);
+  margin: 10px;
+  width: calc(100% - 80px);
 }
 
 .selection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .confirmation {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    .confirmation {
-        display: flex;
-        min-height: 150px;
-        .quantity {
-            width: 150px;
-            margin-top: auto;
-            margin-bottom: auto;
-            text-align: center;
-            font-size: larger;
-            font-weight: bold;
-        }
-        .confirmation-btn {
-            margin-top: auto;
-            margin-bottom: auto;
-        }
-
+    min-height: 150px;
+    .quantity {
+      width: 150px;
+      margin-top: auto;
+      margin-bottom: auto;
+      text-align: center;
+      font-size: larger;
+      font-weight: bold;
     }
+    .confirmation-btn {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+  }
 }

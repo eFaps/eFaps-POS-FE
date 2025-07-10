@@ -5,13 +5,11 @@ $theme-picker-grid-cells-per-row: 2;
 $theme-picker-swatch-size: 36px;
 $theme-picker-accent-stripe-size: 6px;
 
-
 .docs-theme-picker-menu {
-  
   .mat-mdc-menu-content {
     padding: $theme-picker-menu-padding;
   }
-  &.mat-mdc-menu-panel  {
+  &.mat-mdc-menu-panel {
     overflow: hidden;
   }
 
@@ -26,27 +24,30 @@ $theme-picker-accent-stripe-size: 6px;
     position: relative;
     width: $theme-picker-swatch-size;
     height: $theme-picker-swatch-size;
-    margin: math.div($theme-picker-grid-cell-size - $theme-picker-swatch-size, 2);
+    margin: math.div(
+      $theme-picker-grid-cell-size - $theme-picker-swatch-size,
+      2
+    );
     border-radius: 50%;
     overflow: hidden;
 
     .docs-theme-chosen-icon {
       color: white;
       position: absolute;
-      left: 50%; 
+      left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
     }
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       box-sizing: border-box;
-      border: 1px solid rgba(0,0,0,.2);
+      border: 1px solid rgba(0, 0, 0, 0.2);
       border-radius: 50%;
     }
   }

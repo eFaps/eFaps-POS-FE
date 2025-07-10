@@ -7,17 +7,21 @@
           <ng-template matStepLabel>Selecionar Lote / No de serie</ng-template>
           <mat-radio-group formControlName="selectedIndividual">
             @for (product of individualProducts; track product) {
-              <mat-radio-button class="example-radio-button" [value]="product">{{product.sku}} - {{product.description}}</mat-radio-button>
+              <mat-radio-button class="example-radio-button" [value]="product"
+                >{{ product.sku }} - {{ product.description }}</mat-radio-button
+              >
             }
           </mat-radio-group>
         </mat-step>
       }
       @for (bomGroup of product.bomGroupConfigs; track bomGroup) {
         <mat-step>
-          <ng-template matStepLabel>{{bomGroup.description}}</ng-template>
+          <ng-template matStepLabel>{{ bomGroup.description }}</ng-template>
           <mat-button-toggle-group [formControlName]="bomGroup.oid" multiple="true">
             @for (bomProduct of getProducts4BOMGroup(bomGroup.oid); track bomProduct) {
-              <mat-button-toggle [value]="bomProduct">{{bomProduct.description}}</mat-button-toggle>
+              <mat-button-toggle [value]="bomProduct">{{
+                bomProduct.description
+              }}</mat-button-toggle>
             }
           </mat-button-toggle-group>
         </mat-step>
@@ -27,10 +31,10 @@
           <ng-template matStepLabel>Indicaciones / Comentarios</ng-template>
           <div class="indicationSet">
             @for (indicationSet of product.indicationSets; track indicationSet) {
-              <div>{{indicationSet.name}}</div>
+              <div>{{ indicationSet.name }}</div>
               <div>
                 @for (indication of indicationSet.indications; track indication) {
-                  <button mat-button (click)="select(indication)">{{indication.value}}</button>
+                  <button mat-button (click)="select(indication)">{{ indication.value }}</button>
                 }
               </div>
             }
@@ -39,7 +43,7 @@
             <mat-chip-grid #chipList>
               @for (indication of indications; track indication) {
                 <mat-chip-row (removed)="remove(indication)">
-                  {{indication.value}}
+                  {{ indication.value }}
                   @if (removable) {
                     <button matChipRemove>
                       <mat-icon>cancel</mat-icon>
@@ -47,9 +51,15 @@
                   }
                 </mat-chip-row>
               }
-              <input [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="add($event)" placeholder="Remark"
-                i18n-placeholder="@@remark" formControlName="remark" class="left">
+              <input
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="true"
+                (matChipInputTokenEnd)="add($event)"
+                placeholder="Remark"
+                i18n-placeholder="@@remark"
+                formControlName="remark"
+                class="left" />
             </mat-chip-grid>
           </mat-form-field>
         </mat-step>

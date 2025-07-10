@@ -1,64 +1,101 @@
 <form [formGroup]="filterForm">
   <mat-form-field>
-    <input matInput i18n-placeholder="@@filter" placeholder="Filter" formControlName="filter" class="left">
+    <input
+      matInput
+      i18n-placeholder="@@filter"
+      placeholder="Filter"
+      formControlName="filter"
+      class="left" />
   </mat-form-field>
   <mat-slide-toggle [checked]="lazyLoadOrders" (change)="toggleLazyLoadOrders($event)">
-    {{ (lazyLoadOrders ? "ORDERS.LAZYLOADON" : "ORDERS.LAZYLOADOFF") | translate}}
+    {{ (lazyLoadOrders ? "ORDERS.LAZYLOADON" : "ORDERS.LAZYLOADOFF") | translate }}
   </mat-slide-toggle>
 </form>
 <div class="pos-order-container mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource" matSort matSortActive="status" matSortDirection="desc">
+  <mat-table
+    #table
+    [dataSource]="dataSource"
+    matSort
+    matSortActive="status"
+    matSortDirection="desc">
     <ng-container matColumnDef="number">
       <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@orderNumber"> No </mat-header-cell>
-      <mat-cell *matCellDef="let order"> {{order.number}} </mat-cell>
+      <mat-cell *matCellDef="let order"> {{ order.number }} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="date">
       <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@orderDate"> Date </mat-header-cell>
-      <mat-cell *matCellDef="let order"> {{order.date}} </mat-cell>
+      <mat-cell *matCellDef="let order"> {{ order.date }} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@orderStatus"> Status </mat-header-cell>
-      <mat-cell *matCellDef="let order"> {{order.status | translate}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@orderStatus">
+        Status
+      </mat-header-cell>
+      <mat-cell *matCellDef="let order"> {{ order.status | translate }} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="total">
-      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@orderCrossTotal"> Cross Total </mat-header-cell>
-      <mat-cell *matCellDef="let order"> {{order.crossTotal | posCurrency:order.currency}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@orderCrossTotal">
+        Cross Total
+      </mat-header-cell>
+      <mat-cell *matCellDef="let order">
+        {{ order.crossTotal | posCurrency: order.currency }}
+      </mat-cell>
     </ng-container>
     <ng-container matColumnDef="contact">
-      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@orderCrossTotal"> Contacto / ShoutOut </mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.contactLabel}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@orderCrossTotal">
+        Contacto / ShoutOut
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.contactLabel }}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="spot">
       <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@spot"> Spot </mat-header-cell>
-      <mat-cell *matCellDef="let order">{{order.spotLabel}}</mat-cell>
+      <mat-cell *matCellDef="let order">{{ order.spotLabel }}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="cmd">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let order">
         <div>
-          @if (order.status===DocStatus[DocStatus.OPEN] && allowPos) {
-            <button (click)="pos(order)" mat-icon-button i18n-matTooltip="@@orders" matTooltip="Orders">
+          @if (order.status === DocStatus[DocStatus.OPEN] && allowPos) {
+            <button
+              (click)="pos(order)"
+              mat-icon-button
+              i18n-matTooltip="@@orders"
+              matTooltip="Orders">
               <mat-icon>shop</mat-icon>
             </button>
           }
-          @if (order.status===DocStatus[DocStatus.OPEN] && allowPayment && order.crossTotal > 0) {
-            <button (click)="payment(order)" mat-icon-button
-              i18n-matTooltip="@@payment" matTooltip="Payment">
+          @if (order.status === DocStatus[DocStatus.OPEN] && allowPayment && order.crossTotal > 0) {
+            <button
+              (click)="payment(order)"
+              mat-icon-button
+              i18n-matTooltip="@@payment"
+              matTooltip="Payment">
               <mat-icon>monetization_on</mat-icon>
             </button>
           }
-          @if (isAdmin && order.status===DocStatus[DocStatus.OPEN]) {
-            <button (click)="delete(order)" mat-icon-button i18n-matTooltip="@@cancel" matTooltip="Cancel">
+          @if (isAdmin && order.status === DocStatus[DocStatus.OPEN]) {
+            <button
+              (click)="delete(order)"
+              mat-icon-button
+              i18n-matTooltip="@@cancel"
+              matTooltip="Cancel">
               <mat-icon>delete</mat-icon>
             </button>
           }
-          @if (isAdmin && order.status===DocStatus[DocStatus.OPEN]) {
-            <button (click)="split(order)" mat-icon-button i18n-matTooltip="@@splitIntoNew" matTooltip="Split">
+          @if (isAdmin && order.status === DocStatus[DocStatus.OPEN]) {
+            <button
+              (click)="split(order)"
+              mat-icon-button
+              i18n-matTooltip="@@splitIntoNew"
+              matTooltip="Split">
               <mat-icon>call_split</mat-icon>
             </button>
           }
-          @if (isAdmin && order.status===DocStatus[DocStatus.OPEN] && order.multiple) {
-            <button (click)="reassign(order)" mat-icon-button i18n-matTooltip="@@reassign" matTooltip="Reassign">
+          @if (isAdmin && order.status === DocStatus[DocStatus.OPEN] && order.multiple) {
+            <button
+              (click)="reassign(order)"
+              mat-icon-button
+              i18n-matTooltip="@@reassign"
+              matTooltip="Reassign">
               <mat-icon>open_with</mat-icon>
             </button>
           }
@@ -66,7 +103,7 @@
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
   <mat-paginator [pageSizeOptions]="[25, 50, 100]"></mat-paginator>
 </div>

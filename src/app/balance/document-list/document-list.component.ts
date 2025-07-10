@@ -1,6 +1,10 @@
 import { Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { MatIconButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
+import { MatFormField } from "@angular/material/form-field";
+import { MatIcon } from "@angular/material/icon";
+import { MatInput } from "@angular/material/input";
 import { MatSort, MatSortHeader } from "@angular/material/sort";
 import {
   MatCell,
@@ -20,14 +24,10 @@ import {
   PayableHead,
   PosLibraryModule,
 } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
 import { Subscription } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 
-import { MatIconButton } from "@angular/material/button";
-import { MatFormField } from "@angular/material/form-field";
-import { MatIcon } from "@angular/material/icon";
-import { MatInput } from "@angular/material/input";
-import { TranslatePipe } from "@ngx-translate/core";
 import { DocumentDialogComponent } from "../document-dialog/document-dialog.component";
 
 @Component({

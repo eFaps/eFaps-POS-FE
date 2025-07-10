@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatKeyboardService } from "@efaps/angular-onscreen-material-keyboard";
+
 import { VirtKeyboardDirective } from "./virt-keyboard.directive";
 
 class MockMatKeyboardService extends MatKeyboardService {}

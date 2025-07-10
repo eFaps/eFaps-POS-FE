@@ -1,18 +1,18 @@
 .wrapper {
   height: 400px;
-.content {
-  display: flex;
-
-  .payment-form-wrapper {
+  .content {
     display: flex;
-    flex-direction: column;
 
-    .keypad-warpper {
+    .payment-form-wrapper {
       display: flex;
-      gap: 20px;
+      flex-direction: column;
+
+      .keypad-warpper {
+        display: flex;
+        gap: 20px;
+      }
     }
   }
-}
 }
 
 .right-align {
@@ -45,7 +45,6 @@ mat-spinner {
   border-radius: 8px;
   max-width: 62px;
   padding: 0;
-   
 
   .mat-icon {
     font-size: unset;

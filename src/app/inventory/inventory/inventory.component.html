@@ -1,6 +1,6 @@
 <mat-tab-group>
   @for (warehouse of warehouses; track warehouse; let i = $index) {
-    <mat-tab label="{{warehouses[i].name}}">
+    <mat-tab label="{{ warehouses[i].name }}">
       <ng-template matTabContent>
         <app-inventory-table [warehouse]="warehouse" />
       </ng-template>

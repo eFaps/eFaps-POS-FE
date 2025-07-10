@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { SpotConfig, WorkspaceService } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
+
 import { BaseSpotPickerComponent } from "../base-spot-picker/base-spot-picker.component";
 import { ExtendedSpotPickerComponent } from "../extended-spot-picker/extended-spot-picker.component";
 

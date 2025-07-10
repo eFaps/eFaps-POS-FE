@@ -1,20 +1,27 @@
 <div class="example-container mat-elevation-z8">
   <form [formGroup]="filterForm">
     <mat-form-field>
-      <input matInput formControlName="filter" placeholder="Filter" [appVirtKeyboard] [activateKeyboard]="virtKeyboard" autocomplete="off" class="left">
+      <input
+        matInput
+        formControlName="filter"
+        placeholder="Filter"
+        [appVirtKeyboard]
+        [activateKeyboard]="virtKeyboard"
+        autocomplete="off"
+        class="left" />
     </mat-form-field>
     <mat-slide-toggle [checked]="textSearch" (change)="setTextSearch()">
-      {{textSearch ? 'Buscar por texto' : 'Buscar exacto' }}
+      {{ textSearch ? "Buscar por texto" : "Buscar exacto" }}
     </mat-slide-toggle>
   </form>
   <mat-table #table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="sku">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.sku}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{ element.sku }} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="description">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{ element.description }} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="cmd">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
@@ -25,7 +32,7 @@
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
   <mat-paginator [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons></mat-paginator>
 </div>

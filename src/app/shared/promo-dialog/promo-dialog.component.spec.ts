@@ -1,12 +1,12 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-
 import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { PromotionService } from "@efaps/pos-library";
+
 import { PromoDialogComponent } from "./promo-dialog.component";
 
 describe("PromoDialogComponent", () => {

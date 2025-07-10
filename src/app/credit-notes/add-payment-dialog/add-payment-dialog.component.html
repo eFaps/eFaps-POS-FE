@@ -1,13 +1,13 @@
 <form class="payment-form" [formGroup]="paymentForm">
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Monto" type="text" formControlName="amount" class="right-align">
+    <input matInput placeholder="Monto" type="text" formControlName="amount" class="right-align" />
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Tipo de pago</mat-label>
     <mat-select name="paymentTypes" formControlName="paymentType">
       @for (paymentType of paymentTypes; track paymentType) {
         <mat-option [value]="paymentType">
-          {{('PAYMENT.' + paymentType) | translate}}
+          {{ "PAYMENT." + paymentType | translate }}
         </mat-option>
       }
     </mat-select>

@@ -26,6 +26,7 @@ import {
   StocktakingService,
 } from "@efaps/pos-library";
 import { Subscription, debounceTime, skip, switchMap } from "rxjs";
+
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
 
 @Component({

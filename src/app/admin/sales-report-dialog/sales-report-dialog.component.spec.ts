@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { provideNativeDateAdapter } from "@angular/material/core";
+
 import { SalesReportDialogComponent } from "./sales-report-dialog.component";
 
 describe("SalesReportDialogComponent", () => {

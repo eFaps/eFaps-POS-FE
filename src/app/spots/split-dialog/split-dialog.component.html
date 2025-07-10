@@ -3,13 +3,16 @@
     <div class="quantity">
       <form [formGroup]="quantityForm">
         <mat-form-field>
-          <input matInput formControlName="quantity" autocomplete="off" class="right-align">
+          <input matInput formControlName="quantity" autocomplete="off" class="right-align" />
         </mat-form-field>
       </form>
-      <app-keypad [showTopClear]="false" [showBottomClear]="true" [showDoubleZero]="false"
+      <app-keypad
+        [showTopClear]="false"
+        [showBottomClear]="true"
+        [showDoubleZero]="false"
         (number)="setQuantity($event)"></app-keypad>
     </div>
-  </div>  
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions>
   <div class="footer">

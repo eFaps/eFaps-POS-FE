@@ -1,6 +1,11 @@
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatTabsModule } from "@angular/material/tabs";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   Balance,
@@ -16,11 +21,6 @@ import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { MockComponent, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from "@angular/common/http";
-import { MatTabsModule } from "@angular/material/tabs";
 import { BalanceDocumentListComponent } from "../balance-document-list/balance-document-list.component";
 import { BalanceListComponent } from "../balance-list/balance-list.component";
 import { BalancePaymentListComponent } from "../balance-payment-list/balance-payment-list.component";

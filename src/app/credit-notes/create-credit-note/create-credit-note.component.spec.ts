@@ -1,6 +1,11 @@
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { ActivatedRoute, provideRouter } from "@angular/router";
 import {
@@ -15,15 +20,10 @@ import {
   Receipt,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { Observable } from "rxjs";
-
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from "@angular/common/http";
-import { MatIconModule } from "@angular/material/icon";
 import { provideTranslateService, TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
+import { Observable } from "rxjs";
+
 import { CreateCreditNoteComponent } from "./create-credit-note.component";
 
 class DocumentServiceStub {

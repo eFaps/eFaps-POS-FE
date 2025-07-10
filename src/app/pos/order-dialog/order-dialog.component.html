@@ -1,8 +1,6 @@
-<h1 mat-dialog-title>Order No: {{data.order.number}}</h1>
+<h1 mat-dialog-title>Order No: {{ data.order.number }}</h1>
 <div mat-dialog-content>
-  <p>
-    Archivado
-  </p>
+  <p>Archivado</p>
 </div>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>OK</button>
@@ -11,7 +9,7 @@
   }
   @if (allowPrintJobs) {
     <button mat-button (click)="printJobs()">
-      <mat-icon  class="posIcon-36">print</mat-icon>
+      <mat-icon class="posIcon-36">print</mat-icon>
     </button>
   }
 </mat-dialog-actions>

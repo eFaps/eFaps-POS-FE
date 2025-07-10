@@ -4,9 +4,9 @@ import {
 } from "@angular/common/http";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-
 import { DocumentService, PosConfigToken } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
+
 import { DocumentDialogComponent } from "./document-dialog.component";
 
 class DocumentServiceStub {}

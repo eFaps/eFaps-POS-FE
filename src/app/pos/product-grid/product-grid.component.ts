@@ -19,11 +19,11 @@ import {
   hasFlag,
 } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
-import { KeypadService, PosSyncService } from "src/app/services";
 
 import { AbstractProductSelector } from "../abstract-product-selector";
 import { GridElementComponent } from "./grid-element/grid-element.component";
 import { ProductsElementComponent } from "./products-element/products-element.component";
+import { KeypadService, PosSyncService } from "src/app/services";
 
 @Component({
   selector: "app-product-grid",

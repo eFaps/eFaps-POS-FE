@@ -1,6 +1,7 @@
 import { Component, inject, signal } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogModule } from "@angular/material/dialog";
 import { BalanceService, BalanceSummary } from "@efaps/pos-library";
+
 import { BalanceSummaryComponent } from "../balance-summary/balance-summary.component";
 
 @Component({
