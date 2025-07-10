@@ -33,7 +33,6 @@ import {
 } from "@angular/common/http";
 import { VirtKeyboardDirective } from "../../services";
 import {
-  SharedModule,
   TranslateLoaderFactory,
 } from "../../shared/shared.module";
 import { CreateContactDialogComponent } from "./create-contact-dialog.component";
@@ -67,7 +66,6 @@ describe("CreateContactDialogComponent", () => {
         MatFormFieldModule,
         MatSelectModule,
         MatInputModule,
-        SharedModule,
         MatDialogModule,
         TranslateModule.forRoot({
           loader: {

@@ -32,7 +32,6 @@ import {
 } from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { KeypadService, PosSyncService } from "../services";
-import { SharedModule } from "../shared/shared.module";
 import { CommandsComponent } from "./commands/commands.component";
 import { PosComponent } from "./pos.component";
 import { ProductGridComponent } from "./product-grid/product-grid.component";
@@ -124,7 +123,6 @@ describe("PosComponent", () => {
         BrowserAnimationsModule,
         ReactiveFormsModule,
         RouterTestingModule,
-        SharedModule,
         MatIconModule,
         MatButtonToggleModule,
         MatButtonModule,

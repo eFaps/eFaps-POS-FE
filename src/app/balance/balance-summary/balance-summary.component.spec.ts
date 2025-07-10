@@ -52,7 +52,8 @@ describe("BalanceSummaryComponent", () => {
       paymentInfos: [],
       taxEntries: [],
     };
-    component.summary = {
+    
+    fixture.componentRef.setInput('summary',  {
       balance: {
         id: "",
         oid: "",
@@ -67,7 +68,8 @@ describe("BalanceSummaryComponent", () => {
       receiptDetail: detail,
       ticketDetail: detail,
       creditNoteDetail: detail,
-    };
+    });
+
     fixture.detectChanges();
   });
 

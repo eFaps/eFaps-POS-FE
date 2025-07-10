@@ -10,7 +10,6 @@ import { MatTableModule } from "@angular/material/table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PosService } from "@efaps/pos-library";
 
-import { SharedModule } from "../../shared/shared.module";
 import { SplitOrderDialogComponent } from "./split-order-dialog.component";
 
 class PosServiceStub {}
@@ -24,7 +23,6 @@ describe("SplitOrderDialogComponent", () => {
       imports: [
         BrowserAnimationsModule,
         ReactiveFormsModule,
-        SharedModule,
         MatTableModule,
         MatIconModule,
         MatDialogModule,
