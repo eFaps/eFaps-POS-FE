@@ -5,12 +5,8 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from "@angular/material/dialog";
-import {
-  PosConfigToken,
-  PosCurrencyPipe,
-  PrintService,
-} from "@efaps/pos-library";
-import { MockComponent, MockPipe } from "ng-mocks";
+import { PosConfigToken, PrintService, UtilsService } from "@efaps/pos-library";
+import { MockComponent } from "ng-mocks";
 
 import {
   provideHttpClient,
@@ -21,6 +17,12 @@ import { SuccessDialogComponent } from "./success-dialog.component";
 
 class PrintServiceSub {}
 
+class UtilsServiceStub {
+  getCurrencySymbol() {
+    return "S./";
+  }
+}
+
 describe("SuccessDialogComponent", () => {
   let component: SuccessDialogComponent;
   let fixture: ComponentFixture<SuccessDialogComponent>;
@@ -29,7 +31,6 @@ describe("SuccessDialogComponent", () => {
     TestBed.configureTestingModule({
       imports: [
         MatDialogModule,
-        MockPipe(PosCurrencyPipe),
         MockComponent(PrintDisplayComponent),
         SuccessDialogComponent,
       ],
@@ -47,6 +48,7 @@ describe("SuccessDialogComponent", () => {
         },
         { provide: PosConfigToken, useValue: {} },
         { provide: PrintService, useClass: PrintServiceSub },
+        { provide: UtilsService, useClass: UtilsServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],

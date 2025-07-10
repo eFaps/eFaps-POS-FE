@@ -159,7 +159,7 @@ export class CreateCreditNoteComponent implements OnInit {
       },
       error: () => {
         this.loading = false;
-      }
+      },
     });
   }
 

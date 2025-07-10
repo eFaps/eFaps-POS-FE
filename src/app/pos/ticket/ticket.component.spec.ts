@@ -2,8 +2,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
-import { PosCurrencyPipe, PosService, PromoInfo } from "@efaps/pos-library";
-import { MockPipe } from "ng-mocks";
+import { PosService, PromoInfo } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
 import { signal } from "@angular/core";
@@ -38,7 +37,6 @@ describe("TicketComponent", () => {
         MatSnackBarModule,
         MatTableModule,
         TicketComponent,
-        MockPipe(PosCurrencyPipe),
       ],
       providers: [{ provide: PosService, useClass: PosServiceStub }],
     }).compileComponents();

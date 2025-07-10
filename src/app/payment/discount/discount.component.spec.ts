@@ -8,7 +8,6 @@ import {
   DiscountService,
   DocumentService,
   PaymentService,
-  PosCurrencyPipe,
   PosService,
   UtilsService,
   WorkspaceService,
@@ -59,7 +58,6 @@ describe("DiscountComponent", () => {
         ReactiveFormsModule,
         DiscountComponent,
         MockPipe(TranslatePipe),
-        MockPipe(PosCurrencyPipe),
         MockComponent(KeypadComponent),
       ],
       providers: [

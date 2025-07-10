@@ -14,7 +14,6 @@ import {
   DocumentService,
   Order,
   PaymentService,
-  PosCurrencyPipe,
   PosGridSize,
   PosLayout,
   PosService,
@@ -96,7 +95,6 @@ describe("OrderTableComponent", () => {
         MatInputModule,
         MatSlideToggleModule,
         OrderTableComponent,
-        MockPipe(PosCurrencyPipe),
         MockPipe(TranslatePipe),
       ],
       providers: [

@@ -2,13 +2,17 @@ import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { MatListModule } from "@angular/material/list";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, provideRouter } from "@angular/router";
 import {
   BalanceService,
   ConfigService,
+  CreditNote,
+  Currency,
+  DocStatus,
   DocumentService,
   PaymentService,
   PosConfigToken,
+  Receipt,
   WorkspaceService,
 } from "@efaps/pos-library";
 import { Observable } from "rxjs";
@@ -18,9 +22,39 @@ import {
   withInterceptorsFromDi,
 } from "@angular/common/http";
 import { MatIconModule } from "@angular/material/icon";
+import { provideTranslateService, TranslatePipe } from "@ngx-translate/core";
+import { MockPipe } from "ng-mocks";
 import { CreateCreditNoteComponent } from "./create-credit-note.component";
 
-class DocumentServiceStub {}
+class DocumentServiceStub {
+  getReceipt(id: string): Observable<Receipt> {
+    return new Observable((observer) => {
+      observer.next({
+        id: "6546816",
+        balanceOid: "0815",
+        payments: [],
+        oid: null,
+        number: null,
+        currency: Currency.PEN,
+        items: [],
+        status: DocStatus.OPEN,
+        netTotal: 0,
+        crossTotal: 0,
+        exchangeRate: 0,
+        payableAmount: 0,
+        taxes: [],
+        discount: null,
+      });
+    });
+  }
+  getCreditNotes4SourceDocument(id: string): Observable<CreditNote[]> {
+    return new Observable();
+  }
+
+  validateForCreditNote(): Observable<any> {
+    return new Observable();
+  }
+}
 class BalanceServiceStub {
   currentBalance = new Observable((observer) => {
     observer.next({ number: "test" });
@@ -37,7 +71,11 @@ class WorkspaceServiceStub {
 }
 class PaymentServiceStub {}
 class ActivatedRouteStub {
-  queryParams = new Observable((observer) => {});
+  queryParams = new Observable((observer) => {
+    observer.next({
+      sourceType: "RECEIPT",
+    });
+  });
 }
 class ConfigServiceStub {
   getSystemConfig(key: string) {
@@ -47,6 +85,8 @@ class ConfigServiceStub {
   }
 }
 
+class TestComponent {}
+
 describe("CreateCreditNoteComponent", () => {
   let component: CreateCreditNoteComponent;
   let fixture: ComponentFixture<CreateCreditNoteComponent>;
@@ -54,14 +94,20 @@ describe("CreateCreditNoteComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
+        MockPipe(TranslatePipe),
         MatDialogModule,
         MatListModule,
         MatIconModule,
         CreateCreditNoteComponent,
       ],
       providers: [
+        provideRouter([{ path: "pos", component: TestComponent }]),
         { provide: ActivatedRoute, useClass: ActivatedRouteStub },
         { provide: DocumentService, useClass: DocumentServiceStub },
+
+        provideTranslateService({
+          defaultLanguage: "en",
+        }),
         { provide: BalanceService, useClass: BalanceServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: PaymentService, useClass: PaymentServiceStub },

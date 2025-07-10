@@ -32,9 +32,7 @@ import {
   withInterceptorsFromDi,
 } from "@angular/common/http";
 import { VirtKeyboardDirective } from "../../services";
-import {
-  TranslateLoaderFactory,
-} from "../../shared/shared.module";
+import { TranslateLoaderFactory } from "../../shared/shared.module";
 import { CreateContactDialogComponent } from "./create-contact-dialog.component";
 
 class TranslateServiceStub {

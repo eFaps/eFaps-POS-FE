@@ -14,7 +14,6 @@ import {
   DocumentService,
   EmployeeService,
   PosConfigToken,
-  PosCurrencyPipe,
   PrintService,
   PromotionService,
   WorkspaceService,
@@ -57,7 +56,6 @@ describe("DocumentComponent", () => {
         MatTableModule,
         DocumentComponent,
         MockPipe(TranslatePipe),
-        MockPipe(PosCurrencyPipe),
       ],
       providers: [
         { provide: PosConfigToken, useValue: {} },

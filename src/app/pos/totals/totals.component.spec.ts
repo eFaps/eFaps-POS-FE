@@ -2,9 +2,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatListModule } from "@angular/material/list";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
-import { PosCurrencyPipe, PosService, PromoInfo } from "@efaps/pos-library";
-import { TranslatePipe } from "@ngx-translate/core";
-import { MockPipe } from "ng-mocks";
+import { PosService, PromoInfo, UtilsService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
 import { signal } from "@angular/core";
@@ -35,6 +33,12 @@ class PosServiceStub {
   promotionInfo = signal<PromoInfo | null>(null);
 }
 
+class UtilsServiceStub {
+  getCurrencySymbol() {
+    return "S./";
+  }
+}
+
 describe("TotalsComponent", () => {
   let component: TotalsComponent;
   let fixture: ComponentFixture<TotalsComponent>;
@@ -46,10 +50,13 @@ describe("TotalsComponent", () => {
         RouterTestingModule,
         MatListModule,
         TotalsComponent,
-        MockPipe(PosCurrencyPipe),
-        MockPipe(TranslatePipe),
+        // MockPipe(PosCurrencyPipe),
+        // MockPipe(TranslatePipe),
       ],
-      providers: [{ provide: PosService, useClass: PosServiceStub }],
+      providers: [
+        { provide: PosService, useClass: PosServiceStub },
+        { provide: UtilsService, useClass: UtilsServiceStub },
+      ],
     }).compileComponents();
   });
 

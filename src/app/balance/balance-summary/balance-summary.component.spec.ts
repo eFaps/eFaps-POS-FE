@@ -52,8 +52,8 @@ describe("BalanceSummaryComponent", () => {
       paymentInfos: [],
       taxEntries: [],
     };
-    
-    fixture.componentRef.setInput('summary',  {
+
+    fixture.componentRef.setInput("summary", {
       balance: {
         id: "",
         oid: "",
