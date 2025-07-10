@@ -83,8 +83,7 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "ng-mocks": "^14.13.5",
     "prettier": "^3.6.2",
-    "prettier-plugin-organize-imports": "^4.1.0",
-     "prettier-plugin-sort-imports": "^1.8.8",
+    "prettier-plugin-sort-imports": "^1.8.8",
     "replace-in-file": "^8.3.0",
     "sass": "^1.89.2",
     "ts-node": "^10.9.2",
@@ -103,10 +102,9 @@
   },
   "prettier": {
     "plugins": [
-      "prettier-plugin-organize-imports",
       "prettier-plugin-sort-imports"
     ],
-     "sortingMethod": "alphabetical",
+    "sortingMethod": "alphabetical",
     "stripNewlines": true,
     "newlineBetweenTypes": true,
     "importTypeOrder": [
