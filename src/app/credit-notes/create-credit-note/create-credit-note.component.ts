@@ -65,6 +65,7 @@ export class CreateCreditNoteComponent implements OnInit {
   print: boolean = false;
   permitPartial = false;
   validated = false;
+  loading = false;
 
   ngOnInit(): void {
     this.balanceService.currentBalance.subscribe((balance) => {
@@ -142,6 +143,7 @@ export class CreateCreditNoteComponent implements OnInit {
   }
 
   createCreditNote() {
+    this.loading = true;
     this.creditNote!.sourceDocOid = this.sourceDocument.oid
       ? this.sourceDocument.oid
       : this.sourceDocument.id!;
@@ -153,7 +155,11 @@ export class CreateCreditNoteComponent implements OnInit {
       next: (doc) => {
         this.router.navigate(["/balance"]);
         this.showSuccess(doc);
+        this.loading = false;
       },
+      error: () => {
+        this.loading = false;
+      }
     });
   }
 
