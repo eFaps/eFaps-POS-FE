@@ -4,7 +4,7 @@
       <div class="contact">
         @if (contact()) {
           <span
-            >Contacto: {{ contact().idType }}: {{ contact().idNumber }} - {{ contact().name }}</span
+            >Contacto: {{ contact()!!.idType }}: {{ contact()!!.idNumber }} - {{ contact()!!.name }}</span
           >
         } @else {
           <span>ShoutOut: {{ shoutOut() }}</span>

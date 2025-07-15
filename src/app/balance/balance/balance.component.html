@@ -15,12 +15,12 @@
     </div>
     <app-balance-document-list [payables]="payables" />
     @if (summary()) {
-      <app-balance-payment-list [summary]="summary()" />
+      <app-balance-payment-list [summary]="summary()!!" />
     }
   </mat-tab>
   <mat-tab i18n-label="@@balanceSummary" label="Resumen">
     @if (summary()) {
-      <app-balance-summary [summary]="summary()" />
+      <app-balance-summary [summary]="summary()!!" />
     }
   </mat-tab>
   <mat-tab i18n-label="@@balances" label="Balances">

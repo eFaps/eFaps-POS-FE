@@ -1,5 +1,5 @@
 import { LazyElementDynamicDirective } from "@angular-extensions/elements";
-import { Component, OnDestroy, OnInit, inject } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButton } from "@angular/material/button";
 import {
@@ -35,6 +35,7 @@ import { STOCKTAKING_ACTIVATE } from "src/app/util/keys";
   selector: "app-admin",
   templateUrl: "./admin.component.html",
   styleUrls: ["./admin.component.scss"],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     MatButton,
     MatSlideToggle,

@@ -2,7 +2,7 @@
 <div class="wrapper" mat-dialog-content>
   @if (document()) {
     <app-document
-      [document]="document()"
+      [document]="document()!!"
       [permitPrint]="true"
       [permitCreditNote]="true"
       [showContact]="true"
