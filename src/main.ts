@@ -29,7 +29,7 @@ import { bootstrapApplication } from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideRouter } from "@angular/router";
 import { LoaderInterceptor, PosLibraryModule } from "@efaps/pos-library";
-import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import { provideTranslateService } from "@ngx-translate/core";
 import { AngularSvgIconModule } from "angular-svg-icon";
 import { HotkeyModule } from "angular2-hotkeys";
 
@@ -37,8 +37,8 @@ import { AppComponent } from "./app/app.component";
 import { routes } from "./app/app.routes";
 import { ErrorInterceptor } from "./app/services/index";
 import { PERSISTENCE } from "./app/services/local-storage-persistence";
-import { TranslateLoaderFactory } from "./app/shared/shared.module";
 import { environment } from "./environments/environment";
+import {provideTranslateHttpLoader} from '@ngx-translate/http-loader';
 
 if (environment.production) {
   enableProdMode();
@@ -69,14 +69,10 @@ bootstrapApplication(AppComponent, {
       HotkeyModule.forRoot({
         cheatSheetDescription: "Presentar",
       }),
-      TranslateModule.forRoot({
-        loader: {
-          provide: TranslateLoader,
-          useFactory: TranslateLoaderFactory,
-          deps: [HttpClient],
-        },
-      }),
     ),
+    provideTranslateService({
+      loader:  provideTranslateHttpLoader(),
+}),
     provideZonelessChangeDetection(),
     {
       provide: HTTP_INTERCEPTORS,
@@ -99,3 +95,5 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes),
   ],
 }).catch((err) => console.log(err));
+
+
