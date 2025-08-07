@@ -52,23 +52,23 @@ export class ProductComponent implements OnInit {
   private data = inject(MAT_DIALOG_DATA);
 
   product = signal<Product>({
-        oid: "N/A",
-        sku: "",
-        type: ProductType.STANDART,
-        description: "",
-        note: "",
-        imageOid: "",
-        netPrice: 0,
-        crossPrice: 0,
-        currency: Currency.PEN,
-        categories: [],
-        taxes: [],
-        relations: [],
-        indicationSets: [],
-        barcodes: [],
-        bomGroupConfigs: [],
-        configurationBOMs: [],
-  });  
+    oid: "N/A",
+    sku: "",
+    type: ProductType.STANDART,
+    description: "",
+    note: "",
+    imageOid: "",
+    netPrice: 0,
+    crossPrice: 0,
+    currency: Currency.PEN,
+    categories: [],
+    taxes: [],
+    relations: [],
+    indicationSets: [],
+    barcodes: [],
+    bomGroupConfigs: [],
+    configurationBOMs: [],
+  });
   currentCurrency: Currency = Currency.PEN;
   categories: string[] = [];
   loading: boolean = true;

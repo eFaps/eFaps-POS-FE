@@ -1,5 +1,11 @@
 import { LazyElementDynamicDirective } from "@angular-extensions/elements";
-import { CUSTOM_ELEMENTS_SCHEMA, Component, OnDestroy, OnInit, inject } from "@angular/core";
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  Component,
+  OnDestroy,
+  OnInit,
+  inject,
+} from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButton } from "@angular/material/button";
 import {

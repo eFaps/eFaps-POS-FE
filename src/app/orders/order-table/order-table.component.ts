@@ -122,7 +122,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
     this.isAdmin = this.authService.hasPermission(Permission.ADMIN);
     this.allowPayment =
       this.workspaceService.allowPayment() &&
-      this.authService.hasPermission(Permission.COLLECT);
+      this.authService.hasPermission(Permission.COLLECT, Permission.ADMIN);
     this.allowPos = this.authService.hasPermission(Permission.ORDER);
 
     this.formCtrlSub = this.filterForm.valueChanges

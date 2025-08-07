@@ -13,4 +13,9 @@
       <app-auto />
     </mat-tab>
   }
+  @if (hasPermission(Permission.REDEEM_CREDITNOTE)) {
+    <mat-tab i18n-label="@@redeem-creditnote-payment" label="Nota de Credito">
+      <app-redeem-credit-note />
+    </mat-tab>
+  }
 </mat-tab-group>

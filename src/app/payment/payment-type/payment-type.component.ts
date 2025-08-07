@@ -1,13 +1,14 @@
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { MatTab, MatTabGroup } from "@angular/material/tabs";
 import { LocalStorage } from "@efaps/ngx-store";
-import { AuthService, WorkspaceService } from "@efaps/pos-library";
+import { AuthService, Permission, WorkspaceService } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 
 import { AutoComponent } from "../auto/auto.component";
 import { CardComponent } from "../card/card.component";
 import { CashComponent } from "../cash/cash.component";
 import { FreeComponent } from "../free/free.component";
+import { RedeemCreditNoteComponent } from "../redeem-credit-note/redeem-credit-note.component";
 
 @Component({
   selector: "app-payment-type",
@@ -20,6 +21,7 @@ import { FreeComponent } from "../free/free.component";
     CardComponent,
     FreeComponent,
     AutoComponent,
+    RedeemCreditNoteComponent,
   ],
 })
 export class PaymentTypeComponent implements OnInit, OnDestroy {
@@ -29,6 +31,8 @@ export class PaymentTypeComponent implements OnInit, OnDestroy {
   private subscription$ = new Subscription();
 
   @LocalStorage() selectedPayment: any = {};
+
+  Permission = Permission;
 
   ngOnInit() {}
 
@@ -51,5 +55,9 @@ export class PaymentTypeComponent implements OnInit, OnDestroy {
   setIndex(data: any) {
     this.selectedPayment[this.authService.getCurrentUsername()] = data;
     this.selectedPayment.save();
+  }
+
+  hasPermission(...permission: Permission[]): boolean {
+    return this.authService.hasPermission(...permission);
   }
 }
