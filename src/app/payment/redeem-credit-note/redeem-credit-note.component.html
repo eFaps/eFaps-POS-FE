@@ -11,7 +11,7 @@
   </button>
   </div>
   <div>
-  @for (creditNote of creditNotes; track creditNote.oid) {
+  @for (creditNote of creditNotes; track creditNote) {
    <mat-card appearance="outlined" class="document-card">
           <mat-card-header>
             <mat-card-title> {{ creditNote.number }}</mat-card-title>
@@ -29,7 +29,7 @@
             </mat-list>
           </mat-card-content>
           <mat-card-actions align="end">
-            <button mat-button (click)="addRedeemPayment(creditNote.oid!!)">Selecionar</button>
+            <button mat-button (click)="addRedeemPayment(creditNote)">Selecionar</button>
           </mat-card-actions>
         </mat-card>
   }

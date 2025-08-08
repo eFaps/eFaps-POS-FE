@@ -87,18 +87,15 @@ export class RedeemCreditNoteComponent extends PaymentForm {
     });
   }
 
-  addRedeemPayment(creditNoteOid: string) {
-
-    const creditNote = this.creditNotes.find(val => {
-      return val.oid == creditNoteOid
-    })
+  addRedeemPayment(creditNote: CreditNote) {
     if (creditNote) {
       const amount = creditNote.crossTotal;
       let payment = this.getPayment();
-      payment.redeemDocOid = creditNoteOid;
+      payment.redeemDocOid = creditNote.oid == null ? creditNote.id!! : creditNote.oid;
       payment.amount = amount;
       this.payments.push(payment);
       this.paymentService.updatePayments(this.payments);
+      this.creditNotes = []
     }
   }
 }

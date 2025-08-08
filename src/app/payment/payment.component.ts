@@ -136,6 +136,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.paymentService.updatePayments([]);
     this.subscriptions$.add(
       this.paymentService.currentDocument.subscribe((_doc) => {
         this.document = _doc;
