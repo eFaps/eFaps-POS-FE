@@ -9,6 +9,7 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   AuthService,
+  Permission,
   PosConfigToken,
   WorkspaceService,
 } from "@efaps/pos-library";
@@ -24,6 +25,9 @@ import { PaymentTypeComponent } from "./payment-type.component";
 class AuthServiceStub {
   getCurrentUsername() {
     return "usename";
+  }
+  hasPermission(...permissions: Permission[]) {
+    return false;
   }
 }
 

@@ -32,13 +32,13 @@ import { LoaderInterceptor, PosLibraryModule } from "@efaps/pos-library";
 import { provideTranslateService } from "@ngx-translate/core";
 import { AngularSvgIconModule } from "angular-svg-icon";
 import { HotkeyModule } from "angular2-hotkeys";
+import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 
 import { AppComponent } from "./app/app.component";
 import { routes } from "./app/app.routes";
 import { ErrorInterceptor } from "./app/services/index";
 import { PERSISTENCE } from "./app/services/local-storage-persistence";
 import { environment } from "./environments/environment";
-import {provideTranslateHttpLoader} from '@ngx-translate/http-loader';
 
 if (environment.production) {
   enableProdMode();
@@ -71,8 +71,8 @@ bootstrapApplication(AppComponent, {
       }),
     ),
     provideTranslateService({
-      loader:  provideTranslateHttpLoader(),
-}),
+      loader: provideTranslateHttpLoader(),
+    }),
     provideZonelessChangeDetection(),
     {
       provide: HTTP_INTERCEPTORS,
@@ -95,5 +95,3 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes),
   ],
 }).catch((err) => console.log(err));
-
-

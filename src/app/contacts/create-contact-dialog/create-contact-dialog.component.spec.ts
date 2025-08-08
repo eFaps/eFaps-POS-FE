@@ -32,7 +32,6 @@ import { MockDirective, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
 import { VirtKeyboardDirective } from "../../services";
-import { TranslateLoaderFactory } from "../../shared/shared.module";
 import { CreateContactDialogComponent } from "./create-contact-dialog.component";
 
 class TranslateServiceStub {
@@ -65,12 +64,6 @@ describe("CreateContactDialogComponent", () => {
         MatSelectModule,
         MatInputModule,
         MatDialogModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: TranslateLoaderFactory,
-          },
-        }),
         CreateContactDialogComponent,
         MockDirective(VirtKeyboardDirective),
         MockPipe(TranslatePipe),

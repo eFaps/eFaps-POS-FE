@@ -5,7 +5,9 @@ import {
   Validators,
 } from "@angular/forms";
 import { MatButton } from "@angular/material/button";
+import { MatCardModule } from "@angular/material/card";
 import { MatFormField, MatInputModule } from "@angular/material/input";
+import { MatListModule } from "@angular/material/list";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import {
   CreditNote,
@@ -17,15 +19,22 @@ import {
   PosLibraryModule,
   UtilsService,
 } from "@efaps/pos-library";
+import { TranslateModule } from "@ngx-translate/core";
 
 import { PaymentForm } from "../payment-form";
-import { MatCardModule } from "@angular/material/card";
-import { TranslateModule } from "@ngx-translate/core";
-import { MatListModule } from "@angular/material/list";
 
 @Component({
   selector: "app-redeem-credit-note",
-  imports: [MatButton, ReactiveFormsModule, MatFormField, MatInputModule, MatCardModule, MatListModule, PosLibraryModule, TranslateModule],
+  imports: [
+    MatButton,
+    ReactiveFormsModule,
+    MatFormField,
+    MatInputModule,
+    MatCardModule,
+    MatListModule,
+    PosLibraryModule,
+    TranslateModule,
+  ],
   templateUrl: "./redeem-credit-note.component.html",
   styleUrl: "./redeem-credit-note.component.scss",
 })
@@ -91,11 +100,12 @@ export class RedeemCreditNoteComponent extends PaymentForm {
     if (creditNote) {
       const amount = creditNote.crossTotal;
       let payment = this.getPayment();
-      payment.redeemDocOid = creditNote.oid == null ? creditNote.id!! : creditNote.oid;
+      payment.redeemDocOid =
+        creditNote.oid == null ? creditNote.id!! : creditNote.oid;
       payment.amount = amount;
       this.payments.push(payment);
       this.paymentService.updatePayments(this.payments);
-      this.creditNotes = []
+      this.creditNotes = [];
     }
   }
 }
