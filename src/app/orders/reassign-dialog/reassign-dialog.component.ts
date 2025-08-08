@@ -1,6 +1,6 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
 import { Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
-import { MatButton, MatFabButton } from "@angular/material/button";
+import { MatButton, MatButtonModule, MatFabButton } from "@angular/material/button";
 import {
   MAT_DIALOG_DATA,
   MatDialogActions,
@@ -29,7 +29,7 @@ import { ReassignItemComponent } from "../reassign-item/reassign-item.component"
     MatFabButton,
     ReassignItemComponent,
     MatDialogActions,
-    MatButton,
+    MatButtonModule,
     MatIcon,
   ],
 })

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, output } from "@angular/core";
-import { MatButton } from "@angular/material/button";
+import { MatButtonModule } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 import {
   MatCell,
@@ -27,7 +27,7 @@ import { DocItem, Order, PosLibraryModule } from "@efaps/pos-library";
     MatHeaderCell,
     MatCellDef,
     MatCell,
-    MatButton,
+    MatButtonModule,
     MatIcon,
     MatHeaderRowDef,
     MatHeaderRow,

@@ -2,8 +2,8 @@
   <ng-container matColumnDef="cmdRight">
     <mat-header-cell *matHeaderCellDef />
     <mat-cell *matCellDef="let item">
-      <button (click)="move(item)" mat-stroked-button>
-        <mat-icon class="posIcon-36">fast_rewind</mat-icon>
+      <button (click)="move(item)" matIconButton>
+        <mat-icon>fast_rewind</mat-icon>
       </button>
     </mat-cell>
   </ng-container>
@@ -34,8 +34,8 @@
   <ng-container matColumnDef="cmdLeft">
     <mat-header-cell *matHeaderCellDef />
     <mat-cell *matCellDef="let item">
-      <button (click)="move(item)" mat-stroked-button>
-        <mat-icon class="posIcon-36">fast_forward</mat-icon>
+      <button (click)="move(item)" matIconButton>
+        <mat-icon>fast_forward</mat-icon>
       </button>
     </mat-cell>
   </ng-container>

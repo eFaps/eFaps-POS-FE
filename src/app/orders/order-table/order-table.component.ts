@@ -185,7 +185,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
 
   reassign(order: Order) {
     const dialogRef = this.dialog.open(ReassignDialogComponent, {
-      width: "90%",
+      minWidth: "80vw",
       minHeight: "200",
       maxHeight: "90vh",
       data: order,
