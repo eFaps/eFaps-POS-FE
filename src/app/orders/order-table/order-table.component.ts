@@ -116,7 +116,12 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    if (this.workspaceService.showSpots()) {
+    if (
+      this.workspaceService.showSpots() &&
+      this.displayedColumns.findIndex((key) => {
+        return key == "spot";
+      }) < 0
+    ) {
       this.displayedColumns.splice(4, 0, "spot");
     }
     this.isAdmin = this.authService.hasPermission(Permission.ADMIN);
@@ -166,7 +171,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
 
   split(order: Order) {
     const dialogRef = this.dialog.open(SplitOrderDialogComponent, {
-      width: "90%",
+      minWidth: "80vw",
       minHeight: "200",
       maxHeight: "90vh",
       data: order,

@@ -30,9 +30,9 @@ import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideRouter } from "@angular/router";
 import { LoaderInterceptor, PosLibraryModule } from "@efaps/pos-library";
 import { provideTranslateService } from "@ngx-translate/core";
+import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 import { AngularSvgIconModule } from "angular-svg-icon";
 import { HotkeyModule } from "angular2-hotkeys";
-import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 
 import { AppComponent } from "./app/app.component";
 import { routes } from "./app/app.routes";

@@ -8,11 +8,12 @@ import {
 import { MatIconModule } from "@angular/material/icon";
 import { MatTableModule } from "@angular/material/table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { PosService } from "@efaps/pos-library";
+import { CalculatorService, DocumentService } from "@efaps/pos-library";
 
 import { SplitOrderDialogComponent } from "./split-order-dialog.component";
 
-class PosServiceStub {}
+class DocumentServiceStub {}
+class CalculatorServiceStub {}
 
 describe("SplitOrderDialogComponent", () => {
   let component: SplitOrderDialogComponent;
@@ -36,7 +37,8 @@ describe("SplitOrderDialogComponent", () => {
             items: [],
           },
         },
-        { provide: PosService, useClass: PosServiceStub },
+        { provide: DocumentService, useClass: DocumentServiceStub },
+        { provide: CalculatorService, useClass: CalculatorServiceStub },
       ],
     }).compileComponents();
   });

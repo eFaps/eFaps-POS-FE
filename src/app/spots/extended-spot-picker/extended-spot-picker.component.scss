@@ -1,4 +1,4 @@
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 
 .mat-mdc-tab-group {
   height: 100%;
@@ -65,9 +65,11 @@
   }
 }
 
-.active{
-  @include mat.fab-overrides((
-    container-color: var(--mat-sys-on-primary-container),
-    foreground-color: var(--mat-sys-primary-container)
-  ));
+.active {
+  @include mat.fab-overrides(
+    (
+      container-color: var(--mat-sys-on-primary-container),
+      foreground-color: var(--mat-sys-primary-container),
+    )
+  );
 }
