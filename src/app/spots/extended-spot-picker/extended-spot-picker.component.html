@@ -5,7 +5,7 @@
         @for (spot of floor.spots; track spot; let i = $index) {
           <button
             mat-fab
-            color="{{ spot.orders && spot.orders.length > 0 ? 'accent' : 'primary' }}"
+            class="{{ spot.orders && spot.orders.length > 0 ? 'active' : '' }}"
             (click)="selectSpot(spot)"
             cdkDrag
             [cdkDragDisabled]="!editMode"
@@ -26,7 +26,7 @@
   <button
     mat-fab
     (click)="togglEditMode()"
-    color="{{ editMode ? 'accent' : 'primary' }}"
+    class="{{ editMode ? 'active' : '' }}"
     matTooltip="Edit Mode">
     <mat-icon>edit</mat-icon>
   </button>
@@ -35,7 +35,7 @@
   <button
     mat-fab
     (click)="toggleSplitMode()"
-    color="{{ splitMode ? 'accent' : 'primary' }}"
+    class="{{ splitMode ? 'active' : '' }}"
     matTooltip="{{ 'SPOT.SPLIT.CMD' | translate }}">
     <mat-icon>open_with</mat-icon>
   </button>

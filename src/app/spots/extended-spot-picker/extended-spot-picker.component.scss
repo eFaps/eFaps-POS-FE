@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 .mat-mdc-tab-group {
   height: 100%;
   ::ng-deep .mat-mdc-tab-body-wrapper {
@@ -61,4 +63,11 @@
     top: -5px;
     position: relative;
   }
+}
+
+.active{
+  @include mat.fab-overrides((
+    container-color: var(--mat-sys-on-primary-container),
+    foreground-color: var(--mat-sys-primary-container)
+  ));
 }
