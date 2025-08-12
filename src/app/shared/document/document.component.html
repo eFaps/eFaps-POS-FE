@@ -209,7 +209,7 @@
         <span>Nota de Credito {{ creditNote.number }}</span>
       }
       @if (sourceDoc()) {
-        <span>{{ sourceDoc().type! | translate }}: {{ sourceDoc().number }}</span>
+        <span>{{ sourceDoc()?.type! | translate }}: {{ sourceDoc()?.number }}</span>
       }
     </div>
   </div>
