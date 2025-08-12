@@ -8,6 +8,7 @@ import {
   input,
   output,
   destroyPlatform,
+  signal,
 } from "@angular/core";
 import { MatButton, MatIconButton } from "@angular/material/button";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
@@ -95,6 +96,15 @@ export class DocumentComponent implements OnInit {
     optional: true,
   });
 
+  readonly permitPrint = input(false);
+  readonly showContact = input(false);
+  readonly permitCreditNote = input(false);
+  readonly hideTitle = input<Boolean>();
+  readonly showCmd = input<Boolean>();
+
+  creditNotes = signal<CreditNote[]>([]);
+  sourceDoc = signal<Document | undefined>(undefined);
+
   displayedColumns = [
     "index",
     "quantity",
@@ -108,18 +118,14 @@ export class DocumentComponent implements OnInit {
   _document: Document;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   private workspaceOid: string = "";
-  readonly permitPrint = input(false);
-  readonly showContact = input(false);
+  
   hasCopyPrintCmd = false;
-  readonly permitCreditNote = input(false);
-  creditNotes: CreditNote[] = [];
-  sourceDoc: Document | undefined;
+  
+ 
   employeeRelations: EmployeeRelationDisplay[] = [];
   promoInfo: PromoInfo | undefined;
 
-  readonly hideTitle = input<Boolean>();
-  readonly showCmd = input<Boolean>();
-
+  
   markInvalid = input<(item: DocItem) => boolean>();
   btnIcon = input<(item: DocItem) => string>();
   onItemClick = output<DocItem>();
@@ -173,7 +179,7 @@ export class DocumentComponent implements OnInit {
       this.loadEmployeeRelations();
     } else {
       this.dataSource.data = [];
-      this.creditNotes = [];
+      this.creditNotes.set([]);
       this.employeeRelations = [];
     }
     const cmd = this.showCmd();
@@ -204,23 +210,23 @@ export class DocumentComponent implements OnInit {
         )
         .subscribe({
           next: (docs) => {
-            this.creditNotes = docs;
+            this.creditNotes.set(docs);
           },
         });
     } else {
-      this.creditNotes = [];
+      this.creditNotes.set([]);
       if ((<CreditNote>this._document).sourceDocOid) {
         this.documentService
           .getPayableByIdent((<CreditNote>this._document).sourceDocOid)
           .subscribe({
             next: (doc) => {
               if (doc) {
-                this.sourceDoc = doc;
+                this.sourceDoc.set(doc);
               }
-              error: (_err: any) => {
-                console.log(_err);
-              };
             },
+            error: (_err: any) => {
+                console.log(_err);
+            }
           });
       }
     }
@@ -247,7 +253,7 @@ export class DocumentComponent implements OnInit {
       this.permitCreditNote() &&
       this.authService.hasPermission(Permission.ADMIN) &&
       this._document.type != "CREDITNOTE" &&
-      this.creditNotes.length == 0
+      this.creditNotes().length == 0
     );
   }
 

@@ -148,7 +148,7 @@
       @if (permitPrint() && hasCopyPrintCmd) {
         <div class="print-container">
           @if (true) {
-            <button mat-button (click)="printCopy()">
+            <button matIconButton (click)="printCopy()">
               <mat-icon>print</mat-icon>
             </button>
           }
@@ -205,11 +205,11 @@
           Nota de Credito
         </button>
       }
-      @for (creditNote of creditNotes; track creditNote) {
+      @for (creditNote of creditNotes(); track creditNote.id) {
         <span>Nota de Credito {{ creditNote.number }}</span>
       }
-      @if (sourceDoc) {
-        <span>{{ sourceDoc.type! | translate }}: {{ sourceDoc.number }}</span>
+      @if (sourceDoc()) {
+        <span>{{ sourceDoc().type! | translate }}: {{ sourceDoc().number }}</span>
       }
     </div>
   </div>
