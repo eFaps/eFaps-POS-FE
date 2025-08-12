@@ -71,7 +71,9 @@ bootstrapApplication(AppComponent, {
       }),
     ),
     provideTranslateService({
-      loader: provideTranslateHttpLoader(),
+      loader: provideTranslateHttpLoader({
+         prefix: './assets/i18n/'
+      }),
     }),
     provideZonelessChangeDetection(),
     {
