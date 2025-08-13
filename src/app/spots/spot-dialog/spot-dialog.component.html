@@ -3,7 +3,7 @@
 </h3>
 <mat-dialog-content>
   <div fxLayout="row wrap" fxLayoutAlign="start" class="spotsContainer">
-    @for (spot of spots; track spot) {
+    @for (spot of spots(); track spot) {
       <div>
         @if (
           (spot.orders && spot.orders.length > 0 && select) ||

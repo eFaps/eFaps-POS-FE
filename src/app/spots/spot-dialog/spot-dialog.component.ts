@@ -1,5 +1,5 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, OnDestroy, OnInit, inject } from "@angular/core";
+import { Component, OnDestroy, OnInit, inject, signal } from "@angular/core";
 import { MatFabButton } from "@angular/material/button";
 import {
   MAT_DIALOG_DATA,
@@ -27,8 +27,8 @@ export class SpotDialogComponent implements OnInit, OnDestroy {
   private dialogRef = inject<MatDialogRef<SpotDialogComponent>>(MatDialogRef);
   private spotService = inject(SpotService);
   data = inject(MAT_DIALOG_DATA);
+  spots = signal<Spot[]>([]);
 
-  spots: Spot[] = [];
   select = true;
   origin!: Spot;
   private subscription$ = new Subscription();
@@ -38,12 +38,13 @@ export class SpotDialogComponent implements OnInit, OnDestroy {
       this.spotService.getLayout().subscribe({
         next: (layout) =>
           layout.floors.forEach((floor) => {
-            this.spots = this.spots.concat(floor.spots);
+            const current = this.spots()
+            this.spots.set(current.concat(floor.spots));
           }),
       });
     } else {
-      this.spotService.getSpots().subscribe((_spots) => {
-        this.spots = _spots;
+      this.spotService.getSpots().subscribe((spots) => {
+        this.spots.set(spots);
       });
     }
   }
