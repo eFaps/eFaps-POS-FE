@@ -36,6 +36,7 @@ import { EnumValues } from "enum-values";
 import { DNIQueryComponent } from "../../shared/dniquery/dniquery.component";
 import { TaxpayerQueryComponent } from "../../shared/taxpayer-query/taxpayer-query.component";
 import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
+import { LocalStorage } from "@efaps/ngx-store";
 
 @Component({
   selector: "app-create-contact-dialog",
@@ -56,7 +57,7 @@ import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
     MatDialogActions,
     MatButton,
     MatDialogClose,
-    TranslatePipe,
+    TranslatePipe
   ],
 })
 export class CreateContactDialogComponent implements OnInit, OnDestroy {
@@ -70,7 +71,7 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
   identificationType = IdentificationType;
   idTypes: IdentificationType[] = [];
   contactForm: FormGroup;
-  //@LocalStorage() virtKeyboard = false;
+  @LocalStorage() virtKeyboard = false;
   useEmail: boolean = false;
 
   constructor() {
