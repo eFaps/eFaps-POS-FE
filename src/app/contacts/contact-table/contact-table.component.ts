@@ -4,7 +4,7 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
-  inject,
+  inject
 } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButton } from "@angular/material/button";
@@ -160,8 +160,7 @@ export class ContactTableComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe((_result) => {
       if (_result) {
         this.dataSource = new MatTableDataSource<Contact>();
-        this.ngOnInit();
-        this.changeDetectorRefs.detectChanges();
+        this.loadContacts()
       }
     });
   }

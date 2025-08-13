@@ -21,7 +21,6 @@ import { MatFormField, MatLabel } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
 import { MatSelect } from "@angular/material/select";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { LocalStorage } from "@efaps/ngx-store";
 import {
   ConfigService,
   Contact,
@@ -34,7 +33,6 @@ import {
 import { TranslatePipe } from "@ngx-translate/core";
 import { EnumValues } from "enum-values";
 
-import { VirtKeyboardDirective } from "../../services/virt-keyboard.directive";
 import { DNIQueryComponent } from "../../shared/dniquery/dniquery.component";
 import { TaxpayerQueryComponent } from "../../shared/taxpayer-query/taxpayer-query.component";
 import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
@@ -55,7 +53,6 @@ import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
     TaxpayerQueryComponent,
     MatLabel,
     MatInput,
-    VirtKeyboardDirective,
     MatDialogActions,
     MatButton,
     MatDialogClose,
@@ -73,7 +70,7 @@ export class CreateContactDialogComponent implements OnInit, OnDestroy {
   identificationType = IdentificationType;
   idTypes: IdentificationType[] = [];
   contactForm: FormGroup;
-  @LocalStorage() virtKeyboard = false;
+  //@LocalStorage() virtKeyboard = false;
   useEmail: boolean = false;
 
   constructor() {
