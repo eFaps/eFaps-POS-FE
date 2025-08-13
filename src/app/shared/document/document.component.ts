@@ -118,14 +118,12 @@ export class DocumentComponent implements OnInit {
   _document: Document;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   private workspaceOid: string = "";
-  
+
   hasCopyPrintCmd = false;
-  
- 
+
   employeeRelations: EmployeeRelationDisplay[] = [];
   promoInfo: PromoInfo | undefined;
 
-  
   markInvalid = input<(item: DocItem) => boolean>();
   btnIcon = input<(item: DocItem) => string>();
   onItemClick = output<DocItem>();
@@ -225,8 +223,8 @@ export class DocumentComponent implements OnInit {
               }
             },
             error: (_err: any) => {
-                console.log(_err);
-            }
+              console.log(_err);
+            },
           });
       }
     }

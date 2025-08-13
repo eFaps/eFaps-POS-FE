@@ -1,16 +1,25 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
-import { MatButton, MatButtonModule, MatFabButton } from "@angular/material/button";
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  inject,
+  signal,
+} from "@angular/core";
+import { MatButtonModule } from "@angular/material/button";
 import {
   MAT_DIALOG_DATA,
   MatDialogActions,
   MatDialogContent,
   MatDialogRef,
 } from "@angular/material/dialog";
-import { MatIcon } from "@angular/material/icon";
+import { MatIconModule } from "@angular/material/icon";
 import {
   CalculatorService,
+  Currency,
   DocItem,
+  DocStatus,
   Document,
   DocumentService,
   Order,
@@ -26,11 +35,10 @@ import { ReassignItemComponent } from "../reassign-item/reassign-item.component"
   imports: [
     CdkScrollable,
     MatDialogContent,
-    MatFabButton,
     ReassignItemComponent,
     MatDialogActions,
     MatButtonModule,
-    MatIcon,
+    MatIconModule,
   ],
 })
 export class ReassignDialogComponent implements OnInit, OnDestroy {
@@ -40,9 +48,35 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
     inject<MatDialogRef<ReassignDialogComponent>>(MatDialogRef);
   private data = inject(MAT_DIALOG_DATA);
 
-  orders: Order[] = [];
-  orderLeft!: Order;
-  orderRight!: Order;
+  orders = signal<Order[]>([]);
+  orderLeft = signal<Order>({
+    id: null,
+    oid: null,
+    number: null,
+    currency: Currency.PEN,
+    items: [],
+    status: DocStatus.OPEN,
+    netTotal: 0,
+    crossTotal: 0,
+    exchangeRate: 0,
+    payableAmount: 0,
+    taxes: [],
+    discount: null,
+  });
+  orderRight = signal<Order>({
+    id: null,
+    oid: null,
+    number: null,
+    currency: Currency.PEN,
+    items: [],
+    status: DocStatus.OPEN,
+    netTotal: 0,
+    crossTotal: 0,
+    exchangeRate: 0,
+    payableAmount: 0,
+    taxes: [],
+    discount: null,
+  });
 
   @ViewChild("left")
   private left!: ReassignItemComponent;
@@ -56,7 +90,7 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
       this.documentService.getOpenOrders().subscribe({
         next: (orders) => {
           if (orders) {
-            this.orders = orders
+            const spotOrders = orders
               .filter((item) => {
                 return item.spot && item.spot.id == this.data.spot.id;
               })
@@ -69,8 +103,9 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
                 }
                 return 0;
               });
-            this.orderLeft = this.orders[0];
-            this.orderRight = this.orders[1];
+            this.orders.set(spotOrders);
+            this.orderLeft.set(spotOrders[0]);
+            this.orderRight.set(spotOrders[1]);
           }
         },
       }),
@@ -82,26 +117,26 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
   }
 
   selectOrderLeft(order: Order) {
-    this.orderLeft = order;
-    if (this.orderLeft === this.orderRight) {
-      if (this.orderLeft == this.orders[0]) {
-        this.orderRight = this.orders[1];
+    this.orderLeft.set(order);
+    if (this.orderLeft() === this.orderRight()) {
+      if (this.orderLeft() == this.orders()[0]) {
+        this.orderRight.set(this.orders()[1]);
       } else {
-        this.orderRight = this.orders[0];
+        this.orderRight.set(this.orders()[0]);
       }
     }
   }
 
   selectOrderRight(order: Order) {
-    this.orderRight = order;
+    this.orderRight.set(order);
   }
 
   moveToRight(item: DocItem) {
-    this.move(item, this.orderLeft, this.orderRight);
+    this.move(item, this.orderLeft()!, this.orderRight()!);
   }
 
   moveToLeft(item: DocItem) {
-    this.move(item, this.orderRight, this.orderLeft);
+    this.move(item, this.orderRight()!, this.orderLeft()!);
   }
 
   private move(item: DocItem, origin: Order, target: Order) {
@@ -146,13 +181,13 @@ export class ReassignDialogComponent implements OnInit, OnDestroy {
     target.items.forEach((item) => (item.index = idx++));
 
     // reload in child
-    this.left.order = this.orderLeft;
-    this.right.order = this.orderRight;
+    this.left.order = this.orderLeft()!;
+    this.right.order = this.orderRight()!;
   }
 
   save() {
     const orderObs: Observable<Document>[] = [];
-    this.orders.forEach((order) => {
+    this.orders().forEach((order) => {
       orderObs.push(this.calculatorService.calculateDoc(order));
     });
 
