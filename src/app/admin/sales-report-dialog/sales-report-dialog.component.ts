@@ -7,6 +7,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { MatButton } from "@angular/material/button";
+import { provideNativeDateAdapter } from "@angular/material/core";
 import {
   MatDatepicker,
   MatDatepickerInput,
@@ -43,6 +44,7 @@ import { MatInput } from "@angular/material/input";
     MatButton,
     MatDialogClose,
   ],
+  providers: [provideNativeDateAdapter()],
 })
 export class SalesReportDialogComponent {
   reportForm: FormGroup;
