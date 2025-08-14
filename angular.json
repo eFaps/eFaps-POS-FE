@@ -152,6 +152,7 @@
             "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
             "polyfills": [
+              "zone.js",
               "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
