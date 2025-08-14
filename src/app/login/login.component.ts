@@ -24,7 +24,11 @@ import {
 } from "@angular/material/slide-toggle";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
-import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
+import {
+  MatKeyboardDirective,
+  MatKeyboardModule,
+  MatKeyboardService,
+} from "@efaps/angular-onscreen-material-keyboard";
 import { LocalStorage } from "@efaps/ngx-store";
 import {
   AuthService,
@@ -38,8 +42,6 @@ import { TranslateService } from "@ngx-translate/core";
 import { SvgIconComponent } from "angular-svg-icon";
 import { Subscription } from "rxjs";
 
-import { VirtKeyboardDirective } from "../services/virt-keyboard.directive";
-
 @Component({
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
@@ -51,12 +53,13 @@ import { VirtKeyboardDirective } from "../services/virt-keyboard.directive";
     ReactiveFormsModule,
     MatFormField,
     MatInput,
-    VirtKeyboardDirective,
+    MatKeyboardDirective,
+    MatKeyboardModule,
     MatButton,
     MatSlideToggle,
     MatButtonToggle,
-    MatKeyboardModule,
   ],
+  providers: [MatKeyboardService],
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private router = inject(Router);
@@ -67,6 +70,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   private snackBar = inject(MatSnackBar);
   private translateService = inject(TranslateService);
+  private matKeyboardService = inject(MatKeyboardService);
 
   private subscription: Subscription = new Subscription();
   companies: Company[] = [];
@@ -88,6 +92,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // reset login status
+    this.matKeyboardService.enableDirective = this.virtKeyboard;
     this.authService.logout();
     this.workspaceService.logout();
     if (this.companyService.hasCompany()) {
@@ -162,6 +167,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   toggleVirtKeyboard(_toggle: MatSlideToggleChange) {
     this.virtKeyboard = !this.virtKeyboard;
+    this.matKeyboardService.enableDirective = this.virtKeyboard;
   }
 
   setCompany(company: Company) {

@@ -21,6 +21,7 @@ import { MatFormField, MatLabel } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
 import { MatSelect } from "@angular/material/select";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { LocalStorage } from "@efaps/ngx-store";
 import {
   ConfigService,
   Contact,
@@ -36,7 +37,6 @@ import { EnumValues } from "enum-values";
 import { DNIQueryComponent } from "../../shared/dniquery/dniquery.component";
 import { TaxpayerQueryComponent } from "../../shared/taxpayer-query/taxpayer-query.component";
 import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
-import { LocalStorage } from "@efaps/ngx-store";
 
 @Component({
   selector: "app-create-contact-dialog",
@@ -57,7 +57,7 @@ import { LocalStorage } from "@efaps/ngx-store";
     MatDialogActions,
     MatButton,
     MatDialogClose,
-    TranslatePipe
+    TranslatePipe,
   ],
 })
 export class CreateContactDialogComponent implements OnInit, OnDestroy {

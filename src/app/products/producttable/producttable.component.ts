@@ -28,12 +28,14 @@ import {
   MatTable,
   MatTableDataSource,
 } from "@angular/material/table";
-import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
+import {
+  MatKeyboardDirective,
+  MatKeyboardModule,
+} from "@efaps/angular-onscreen-material-keyboard";
 import { LocalStorage } from "@efaps/ngx-store";
 import { PageRequest, Product, ProductService } from "@efaps/pos-library";
 import { debounceTime, merge, tap } from "rxjs";
 
-import { VirtKeyboardDirective } from "../../services/virt-keyboard.directive";
 import { ProductComponent } from "../../shared/product/product.component";
 
 @Component({
@@ -44,7 +46,7 @@ import { ProductComponent } from "../../shared/product/product.component";
     ReactiveFormsModule,
     MatFormField,
     MatInput,
-    VirtKeyboardDirective,
+    MatKeyboardDirective,
     MatSlideToggle,
     MatTable,
     MatSort,

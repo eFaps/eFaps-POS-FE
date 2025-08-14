@@ -4,7 +4,6 @@ import { LazyElementsModule } from "@angular-extensions/elements";
 import { LiveAnnouncer } from "@angular/cdk/a11y";
 import {
   HTTP_INTERCEPTORS,
-  HttpClient,
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
@@ -28,6 +27,7 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { bootstrapApplication } from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideRouter } from "@angular/router";
+import { MatKeyboardService } from "@efaps/angular-onscreen-material-keyboard";
 import { LoaderInterceptor, PosLibraryModule } from "@efaps/pos-library";
 import { provideTranslateService } from "@ngx-translate/core";
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
@@ -92,6 +92,7 @@ bootstrapApplication(AppComponent, {
       provide: LiveAnnouncer,
       useValue: {},
     },
+    { provide: MatKeyboardService },
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimations(),
     provideRouter(routes),

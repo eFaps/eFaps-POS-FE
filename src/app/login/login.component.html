@@ -38,7 +38,7 @@
           class="form-control"
           matInput
           formControlName="userName"
-          [appVirtKeyboard]
+          matKeyboard
           class="left" />
       </mat-form-field>
     </div>
@@ -52,8 +52,7 @@
         (enterClick)="login()"
         matInput
         formControlName="password"
-        [appVirtKeyboard]
-        [activateKeyboard]="virtKeyboard"
+        matKeyboard
         class="left" />
     </mat-form-field>
     <div>

@@ -21,28 +21,16 @@
     }
     <mat-form-field>
       <mat-label i18n="@@documentId">ID</mat-label>
-      <input
-        matInput
-        formControlName="idNumber"
-        autocomplete="off"
-        class="left" />
+      <input matInput formControlName="idNumber" autocomplete="off" class="left" />
     </mat-form-field>
     <mat-form-field>
       <mat-label i18n="@@contactName">Name</mat-label>
-      <input
-        matInput
-        formControlName="name"
-        autocomplete="off"
-        class="left" />
+      <input matInput formControlName="name" autocomplete="off" class="left" />
     </mat-form-field>
     @if (useEmail) {
       <mat-form-field>
         <mat-label i18n="@@contactEmail">Email</mat-label>
-        <input
-          matInput
-          formControlName="email"
-          autocomplete="off"
-          class="left" />
+        <input matInput formControlName="email" autocomplete="off" class="left" />
       </mat-form-field>
     }
   </form>

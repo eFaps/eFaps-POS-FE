@@ -38,7 +38,7 @@ export class SpotDialogComponent implements OnInit, OnDestroy {
       this.spotService.getLayout().subscribe({
         next: (layout) =>
           layout.floors.forEach((floor) => {
-            const current = this.spots()
+            const current = this.spots();
             this.spots.set(current.concat(floor.spots));
           }),
       });
