@@ -75,7 +75,6 @@ export class ProducttableComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<Product>();
   _paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
-  @LocalStorage() virtKeyboard = false;
   filterForm: FormGroup;
   textSearch = false;
 

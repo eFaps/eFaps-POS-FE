@@ -23,15 +23,12 @@ import {
   WorkspaceService,
 } from "@efaps/pos-library";
 import {
-  TranslateLoader,
-  TranslateModule,
   TranslatePipe,
   TranslateService,
 } from "@ngx-translate/core";
 import { MockDirective, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { VirtKeyboardDirective } from "../../services";
 import { CreateContactDialogComponent } from "./create-contact-dialog.component";
 
 class TranslateServiceStub {
@@ -65,7 +62,6 @@ describe("CreateContactDialogComponent", () => {
         MatInputModule,
         MatDialogModule,
         CreateContactDialogComponent,
-        MockDirective(VirtKeyboardDirective),
         MockPipe(TranslatePipe),
       ],
       providers: [

@@ -34,7 +34,6 @@ import { AngularSvgIconModule, SvgIconRegistryService } from "angular-svg-icon";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { VirtKeyboardDirective } from "../services";
 import { LoginComponent } from "./login.component";
 
 const user = {
@@ -107,7 +106,6 @@ describe("LoginComponent", () => {
         RouterTestingModule,
         MatSlideToggleModule,
         MatButtonToggleModule,
-        VirtKeyboardDirective,
         LoginComponent,
         MockPipe(TranslatePipe),
       ],

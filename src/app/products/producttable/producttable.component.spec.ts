@@ -14,7 +14,6 @@ import { ProductService } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
 
-import { VirtKeyboardDirective } from "../../services";
 import { ProductComponent } from "../../shared/product/product.component";
 import { ProducttableComponent } from "./producttable.component";
 
@@ -43,7 +42,6 @@ describe("ProducttableComponent", () => {
         MatIconModule,
         MatPaginatorModule,
         MatSortModule,
-        VirtKeyboardDirective,
         MockComponent(ProductComponent),
         ProducttableComponent,
       ],
