@@ -58,8 +58,7 @@ import { Subscription } from "rxjs";
     MatButton,
     MatSlideToggle,
     MatButtonToggle,
-  ],
-  providers: [MatKeyboardService],
+  ]
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private router = inject(Router);

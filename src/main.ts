@@ -27,7 +27,7 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { bootstrapApplication } from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideRouter } from "@angular/router";
-import { MatKeyboardService } from "@efaps/angular-onscreen-material-keyboard";
+import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
 import { LoaderInterceptor, PosLibraryModule } from "@efaps/pos-library";
 import { provideTranslateService } from "@ngx-translate/core";
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
@@ -69,6 +69,7 @@ bootstrapApplication(AppComponent, {
       HotkeyModule.forRoot({
         cheatSheetDescription: "Presentar",
       }),
+      MatKeyboardModule
     ),
     provideTranslateService({
       loader: provideTranslateHttpLoader({
@@ -92,7 +93,6 @@ bootstrapApplication(AppComponent, {
       provide: LiveAnnouncer,
       useValue: {},
     },
-    { provide: MatKeyboardService },
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimations(),
     provideRouter(routes),
