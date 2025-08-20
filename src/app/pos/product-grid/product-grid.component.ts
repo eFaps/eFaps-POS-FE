@@ -1,4 +1,11 @@
-import { Component, OnDestroy, OnInit, inject, model } from "@angular/core";
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  inject,
+  model,
+  signal,
+} from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import {
   MatTab,
@@ -41,7 +48,7 @@ export class ProductGridComponent
   extends AbstractProductSelector
   implements OnInit, OnDestroy
 {
-  categories: CategoryNode[] = [];
+  categories = signal<CategoryNode[]>([]);
   selectedIndex = model<number>();
   currentCurrency: Currency = Currency.PEN;
   //size = 'small';
@@ -49,8 +56,8 @@ export class ProductGridComponent
   size = "large";
   showPrices = true;
 
-  currentCategory: CategoryNode | undefined;
-  products: Product[] = [];
+  currentCategory = signal<CategoryNode | undefined>(undefined);
+  products = signal<Product[]>([]);
 
   private subscription$ = new Subscription();
 
@@ -74,7 +81,9 @@ export class ProductGridComponent
     );
     this.productService.getCategoryTree().subscribe({
       next: (categories) => {
-        this.categories = categories;
+        this.categories.set(categories);
+        this.currentCategory.set(this.categories()[0]);
+        this.loadProducts(this.currentCategory()!!.oid);
       },
     });
   }
@@ -112,25 +121,21 @@ export class ProductGridComponent
   }
 
   tabChanged(event: MatTabChangeEvent): void {
-    console.log("demo");
-    this.currentCategory = this.categories[event.index];
-    event.tab.isActive;
-    this.productService
-      .getProductsByCategory(this.currentCategory.oid)
-      .subscribe({
-        next: (products) => (this.products = products),
-      });
+    this.currentCategory.set(this.categories()[event.index]);
+    this.loadProducts(this.currentCategory()!!.oid);
   }
 
   onChildCategorySelected(childCategory: Category) {
     if (childCategory == null) {
-      this.productService
-        .getProductsByCategory(this.currentCategory!!.oid)
-        .subscribe({
-          next: (products) => (this.products = products),
-        });
+      this.loadProducts(this.currentCategory()!!.oid);
     } else {
-      this.products = [];
+      this.products.set([]);
     }
+  }
+
+  loadProducts(categoryOid: string) {
+    this.productService.getProductsByCategory(categoryOid).subscribe({
+      next: (products) => this.products.set(products),
+    });
   }
 }

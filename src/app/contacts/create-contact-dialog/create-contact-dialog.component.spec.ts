@@ -22,10 +22,7 @@ import {
   PosConfigToken,
   WorkspaceService,
 } from "@efaps/pos-library";
-import {
-  TranslatePipe,
-  TranslateService,
-} from "@ngx-translate/core";
+import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { MockDirective, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 

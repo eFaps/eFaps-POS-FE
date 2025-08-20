@@ -69,7 +69,7 @@ bootstrapApplication(AppComponent, {
       HotkeyModule.forRoot({
         cheatSheetDescription: "Presentar",
       }),
-      MatKeyboardModule
+      MatKeyboardModule,
     ),
     provideTranslateService({
       loader: provideTranslateHttpLoader({

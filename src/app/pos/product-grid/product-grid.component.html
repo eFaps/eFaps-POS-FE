@@ -1,9 +1,9 @@
-@if (categories && categories.length > 0) {
+@if (categories().length > 0) {
   <mat-tab-group
     appSameHeight="mat-card-image"
     (selectedTabChange)="tabChanged($event)"
     [(selectedIndex)]="selectedIndex">
-    @for (category of categories; track category.oid; let i = $index) {
+    @for (category of categories(); track category.oid; let i = $index) {
       <mat-tab label="{{ category.name }}">
         <ng-template matTabContent>
           @if (category.children.length) {
@@ -18,7 +18,7 @@
               [remarkMode]="remarkMode()" />
           }
           <app-products-element
-            [products]="products"
+            [products]="products()"
             [currency]="currentCurrency"
             [showInventory]="showInventory"
             [size]="size"
