@@ -82,8 +82,10 @@ export class ProductGridComponent
     this.productService.getCategoryTree().subscribe({
       next: (categories) => {
         this.categories.set(categories);
-        this.currentCategory.set(this.categories()[0]);
-        this.loadProducts(this.currentCategory()!!.oid);
+        if (this.categories()[0]) {
+          this.currentCategory.set(this.categories()[0]);
+          this.loadProducts(this.currentCategory()!!.oid);
+        }
       },
     });
   }
