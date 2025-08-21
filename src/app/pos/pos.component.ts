@@ -94,8 +94,10 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
 
   shoutOut = signal<string | undefined>(undefined);
   contact = signal<Contact | undefined>(undefined);
-
   selectedTabIndex = signal(0);
+  numPad = signal<boolean>(false);
+  multiplierLabel = signal<string>("");
+
   PosLayout = PosLayout;
   ticket: Item[] = [];
   screenHeight: number = 0;
@@ -103,9 +105,9 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   private orderId: string | null = null;
   currentLayout: PosLayout = PosLayout.GRID;
   @LocalStorage() posLayouts: any = {};
-  numPad = false;
+
   @LocalStorage() posNumPad: any = {};
-  multiplierLabel = "";
+
   @ViewChild(CommandsComponent, { static: true }) cmdComp!: CommandsComponent;
   @ViewChild(ProductGridComponent) productGrid:
     | ProductGridComponent
@@ -127,7 +129,6 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   constructor() {
     effect(() => {
       let value = this.shoutOut();
-      console.log(`effect: ${value}`);
       this.posService.shoutOut = value;
     });
     effect(() => {
@@ -232,7 +233,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
       this.currentLayout = this.workspaceService.getPosLayout();
     }
 
-    this.numPad = this.posNumPad[this.authService.getCurrentUsername()];
+    this.numPad.set(this.posNumPad[this.authService.getCurrentUsername()]);
     this.subscriptions.add(
       this.barcodeScannerService.barcode.pipe(skip(1)).subscribe({
         next: (barcode) => {
@@ -381,13 +382,13 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   setMultiplier(_number: string) {
     switch (_number) {
       case "clear":
-        this.multiplierLabel = "";
+        this.multiplierLabel.set("");
         break;
       default:
-        this.multiplierLabel = "" + this.multiplierLabel + _number;
+        this.multiplierLabel.update((current) => "" + current + _number);
         break;
     }
-    this.posService.setMultiplier(Number(this.multiplierLabel));
+    this.posService.setMultiplier(Number(this.multiplierLabel()));
   }
 
   afterSelection() {
@@ -399,16 +400,20 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
 
   resetMultiplier() {
     this.posService.setMultiplier(Number(0));
-    this.multiplierLabel = "";
+    this.multiplierLabel.set("");
   }
 
   toggleNumPad() {
-    this.numPad = !this.numPad;
-    this.posNumPad[this.authService.getCurrentUsername()] = this.numPad;
+    this.numPad.update((current) => !current);
+    this.posNumPad[this.authService.getCurrentUsername()] = this.numPad();
     this.posNumPad.save();
-    this.changeDetectorRef.detectChanges();
+
     this.cmdComp.evalSticky();
     this.sticky = this.cmdComp.sticky;
+    // on closing
+    if (!this.numPad()) {
+      this.resetMultiplier();
+    }
   }
 
   openCatSelect() {

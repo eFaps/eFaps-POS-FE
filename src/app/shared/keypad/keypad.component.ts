@@ -10,7 +10,7 @@ import {
 import { MatButton } from "@angular/material/button";
 import { MatGridList, MatGridTile } from "@angular/material/grid-list";
 import { MatIcon } from "@angular/material/icon";
-import { Subscription } from "rxjs";
+import { skip, Subscription } from "rxjs";
 
 import { KeypadService } from "../../services";
 
@@ -31,9 +31,13 @@ export class KeypadComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.add(
-      this.keypadService.currentKey.subscribe((data) => {
-        this.clickBtn(data);
-      }),
+      this.keypadService.currentKey
+        .pipe(
+          skip(1), // Skips the first value
+        )
+        .subscribe((data) => {
+          this.clickBtn(data);
+        }),
     );
   }
 

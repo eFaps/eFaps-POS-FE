@@ -55,13 +55,13 @@
   <div class="ticket" [ngStyle]="{ 'height.px': screenHeight - 68 - 6 }">
     <div>
       <div class="numPad-wrapper">
-        <mat-button-toggle [checked]="numPad" (click)="toggleNumPad()">
+        <mat-button-toggle [checked]="numPad()" (click)="toggleNumPad()">
           <mat-icon>dialpad</mat-icon>
         </mat-button-toggle>
-        @if (numPad) {
+        @if (numPad()) {
           <div class="numPad-form-wrapper">
             <div>
-              <span class="right-align">{{ multiplierLabel }}</span>
+              <span class="right-align">{{ multiplierLabel() }}</span>
             </div>
             <app-keypad
               [showTopClear]="false"
@@ -70,6 +70,7 @@
           </div>
         }
       </div>
+      {{ multiplierLabel() }}
       <app-ticket (multiplierClick)="resetMultiplier()" [isBarcode]="isBarcode"></app-ticket>
       <app-totals [ngStyle]="{ display: sticky ? 'block' : 'unset' }"></app-totals>
     </div>
