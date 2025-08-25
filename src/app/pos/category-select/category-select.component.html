@@ -1,7 +1,7 @@
 <h3 mat-dialog-title>Elegir categoria</h3>
 <mat-dialog-content>
   <div class="container">
-    @for (category of rootCategories; track category.oid; let i = $index) {
+    @for (category of rootCategories(); track category.oid; let i = $index) {
       <div class="category">
         <button mat-raised-button (click)="selectCategory(i)">
           {{ category.name }}

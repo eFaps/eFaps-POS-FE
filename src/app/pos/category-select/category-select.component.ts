@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
 import { MatButton } from "@angular/material/button";
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { Category, ProductService } from "@efaps/pos-library";
@@ -13,12 +13,13 @@ export class CategorySelectComponent {
   private productService = inject(ProductService);
   dialogRef = inject<MatDialogRef<CategorySelectComponent>>(MatDialogRef);
 
-  rootCategories: Category[] = [];
+  rootCategories= signal<Category[]>([]);
   constructor() {
     this.productService.getCategories().subscribe((categories) => {
-      this.rootCategories = categories.filter(
+       const cats = categories.filter(
         (category) => category.parentOid == null,
       );
+      this.rootCategories.set(cats)
     });
   }
 
