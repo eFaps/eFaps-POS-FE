@@ -73,7 +73,7 @@
     "@types/sockjs-client": "^1.5.4",
     "angular-eslint": "20.1.1",
     "codelyzer": "^6.0.2",
-    "eslint": "^9.33.0",
+    "eslint": "^9.35.0",
     "import-sort-style-module": "^6.0.0",
     "jasmine-core": "~5.9.0",
     "karma": "~6.4.4",
