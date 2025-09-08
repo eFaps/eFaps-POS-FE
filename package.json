@@ -64,7 +64,7 @@
     "@angular/build": "^20.1.5",
     "@angular/cli": "^20.1.6",
     "@angular/compiler-cli": "^20.1.6",
-    "@angular/localize": "^20.1.7",
+    "@angular/localize": "^20.2.4",
     "@types/core-js": "^2.5.8",
     "@types/jasmine": "^5.1.8",
     "@types/jasminewd2": "^2.0.13",
