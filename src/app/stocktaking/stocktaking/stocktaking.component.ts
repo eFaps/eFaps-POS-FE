@@ -77,7 +77,7 @@ export class StocktakingComponent implements OnInit {
     const router = this.router;
     const fb = inject(FormBuilder);
 
-    const state = router.getCurrentNavigation()!!.extras.state;
+    const state = router.currentNavigation()!!.extras.state;
     if (state != undefined) {
       this.defaultComment = state["comment"];
     }
