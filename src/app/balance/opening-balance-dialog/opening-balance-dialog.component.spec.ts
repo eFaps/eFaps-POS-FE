@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
@@ -21,7 +22,7 @@ describe("OpeningBalanceDialogComponent", () => {
         NoopAnimationsModule,
         OpeningBalanceDialogComponent,
       ],
-      providers: [FormBuilder],
+      providers: [provideZonelessChangeDetection(), FormBuilder],
     }).compileComponents();
 
     fixture = TestBed.createComponent(OpeningBalanceDialogComponent);

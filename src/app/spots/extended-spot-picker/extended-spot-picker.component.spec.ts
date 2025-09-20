@@ -3,6 +3,7 @@ import {
   withInterceptorsFromDi,
 } from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from "@angular/material/dialog";
@@ -51,6 +52,7 @@ describe("ExtendedSpotPickerComponent", () => {
         MockPipe(TranslatePipe),
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: PosService, useClass: PosServiceStub },
         { provide: DocumentService, useValue: {} },
         { provide: SpotService, useClass: SpotServiceStub },

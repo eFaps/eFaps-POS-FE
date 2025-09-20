@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
@@ -11,6 +12,7 @@ describe("NoteDialogComponent", () => {
     TestBed.configureTestingModule({
       imports: [NoteDialogComponent],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] },
       ],

@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ProductRelationType, ProductService } from "@efaps/pos-library";
 
@@ -12,7 +13,10 @@ describe("PartListRelationComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [PartListRelationComponent],
-      providers: [{ provide: ProductService, useClass: ProductServiceStub }],
+      providers: [
+        provideZonelessChangeDetection(),
+        { provide: ProductService, useClass: ProductServiceStub },
+      ],
     }).compileComponents();
   });
 

@@ -3,7 +3,7 @@ import {
   withInterceptorsFromDi,
 } from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
-import { DebugElement } from "@angular/core";
+import { DebugElement, provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
@@ -79,6 +79,7 @@ describe("ContactTableComponent", () => {
         ContactTableComponent,
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: ConfigService, useClass: ConfigServiceStub },
         { provide: ContactService, useClass: ContactServiceStub },
         { provide: PosConfigToken, useValue: {} },

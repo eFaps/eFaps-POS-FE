@@ -3,7 +3,7 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
-import { DebugElement } from "@angular/core";
+import { DebugElement, provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed, inject } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
@@ -110,6 +110,7 @@ describe("LoginComponent", () => {
         MockPipe(TranslatePipe),
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: CompanyService, useClass: CompanyServiceStub },
         { provide: MatKeyboardService, useClass: MatKeyboardServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },

@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatTableModule } from "@angular/material/table";
@@ -34,6 +35,7 @@ describe("BalanceDocumentListComponent", () => {
         BalanceDocumentListComponent,
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: DocumentService, useClass: DocumentServiceStub },
         { provide: BalanceService, useClass: BalanceServiceStub },
       ],

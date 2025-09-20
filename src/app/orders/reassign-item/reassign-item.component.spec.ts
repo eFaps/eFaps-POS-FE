@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatTableModule } from "@angular/material/table";
 
@@ -10,6 +11,7 @@ describe("ReassignItemComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [MatTableModule, ReassignItemComponent],
+      providers: [provideZonelessChangeDetection()],
     }).compileComponents();
   });
 

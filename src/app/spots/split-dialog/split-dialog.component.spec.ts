@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
@@ -23,7 +24,10 @@ describe("SplitDialogComponent", () => {
         SplitDialogComponent,
         MockComponent(KeypadComponent),
       ],
-      providers: [{ provide: MatDialogRef, useValue: {} }],
+      providers: [
+        provideZonelessChangeDetection(),
+        { provide: MatDialogRef, useValue: {} },
+      ],
     }).compileComponents();
   });
 

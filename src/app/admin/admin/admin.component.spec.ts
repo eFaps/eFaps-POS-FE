@@ -3,7 +3,7 @@ import {
   withInterceptorsFromDi,
 } from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
-import { DebugElement } from "@angular/core";
+import { DebugElement, provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
@@ -62,6 +62,7 @@ describe("AdminComponent", () => {
         MockPipe(TranslatePipe),
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: AdminService, useClass: AdminServiceStub },
         { provide: ConfigService, useClass: ConfigServiceStub },
         provideHttpClient(withInterceptorsFromDi()),

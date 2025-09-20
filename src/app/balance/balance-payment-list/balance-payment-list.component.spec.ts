@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatListModule } from "@angular/material/list";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -35,6 +36,7 @@ describe("BalancePaymentListComponent", () => {
         MockPipe(TranslatePipe),
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: DocumentService, useClass: DocumentServiceStub },
         { provide: BalanceService, useClass: BalanceServiceStub },
       ],

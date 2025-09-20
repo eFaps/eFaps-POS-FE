@@ -3,6 +3,7 @@ import {
   withInterceptorsFromDi,
 } from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import {
@@ -39,6 +40,7 @@ describe("EmployeeDialogComponent", () => {
         EmployeeDialogComponent,
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: EmployeeService, useClass: EmployeeServiceStub },
         { provide: MatDialogRef, useValue: {} },
         {

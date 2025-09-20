@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { Currency } from "@efaps/pos-library";
 
@@ -10,6 +11,7 @@ describe("BalanceSummarySectionComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [BalanceSummarySectionComponent],
+      providers: [provideZonelessChangeDetection()],
     }).compileComponents();
   });
 

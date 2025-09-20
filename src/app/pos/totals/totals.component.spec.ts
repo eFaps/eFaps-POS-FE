@@ -1,4 +1,4 @@
-import { signal } from "@angular/core";
+import { provideZonelessChangeDetection, signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatListModule } from "@angular/material/list";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -54,6 +54,7 @@ describe("TotalsComponent", () => {
         // MockPipe(TranslatePipe),
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: PosService, useClass: PosServiceStub },
         { provide: UtilsService, useClass: UtilsServiceStub },
       ],

@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
@@ -57,6 +58,7 @@ describe("ProductListComponent", () => {
         ProductListComponent,
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: PosService, useClass: PosServiceStub },
         { provide: ProductService, useClass: ProductServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },

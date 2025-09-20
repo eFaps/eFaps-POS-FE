@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatIconModule } from "@angular/material/icon";
@@ -24,7 +25,10 @@ describe("KeypadComponent", () => {
         MatIconModule,
         KeypadComponent,
       ],
-      providers: [{ provide: HotkeysService, useClass: HotkeysServiceStub }],
+      providers: [
+        provideZonelessChangeDetection(),
+        { provide: HotkeysService, useClass: HotkeysServiceStub },
+      ],
     }).compileComponents();
   });
 

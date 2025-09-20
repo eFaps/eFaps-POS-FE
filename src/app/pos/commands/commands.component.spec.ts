@@ -3,6 +3,7 @@ import {
   withInterceptorsFromDi,
 } from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
@@ -69,6 +70,7 @@ describe("CommandsComponent", () => {
         MockPipe(TranslatePipe, (...args) => "Hallo"),
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: PosConfigToken, useValue: {} },
         { provide: AuthService, useValue: {} },
         { provide: PosService, useClass: PosServiceStub },

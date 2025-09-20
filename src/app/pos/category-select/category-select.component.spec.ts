@@ -2,6 +2,7 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogRef } from "@angular/material/dialog";
 import { Category, PosConfigToken, ProductService } from "@efaps/pos-library";
@@ -23,6 +24,7 @@ describe("CategorySelectComponent", () => {
     TestBed.configureTestingModule({
       imports: [CategorySelectComponent],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: MatDialogRef, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
         { provide: ProductService, useClass: ProductServiceStub },

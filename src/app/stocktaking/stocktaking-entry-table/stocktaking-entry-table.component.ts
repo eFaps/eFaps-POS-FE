@@ -75,9 +75,7 @@ export class StocktakingEntryTableComponent {
   constructor() {
     const router = inject(Router);
 
-    this.stocktaking = <Stocktaking>(
-      router.currentNavigation()!!.extras.state
-    );
+    this.stocktaking = <Stocktaking>router.currentNavigation()!!.extras.state;
     this.allowDelete = this.stocktaking.status == "OPEN";
   }
 

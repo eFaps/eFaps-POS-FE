@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatTabsModule } from "@angular/material/tabs";
 import { ProductService } from "@efaps/pos-library";
@@ -13,7 +14,10 @@ describe("GridElementComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [MatTabsModule, GridElementComponent],
-      providers: [{ provide: ProductService, useClass: ProductServiceStub }],
+      providers: [
+        provideZonelessChangeDetection(),
+        { provide: ProductService, useClass: ProductServiceStub },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GridElementComponent);

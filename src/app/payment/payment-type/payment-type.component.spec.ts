@@ -3,6 +3,7 @@ import {
   withInterceptorsFromDi,
 } from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
@@ -55,6 +56,7 @@ describe("PaymentTypeComponent", () => {
         PaymentTypeComponent,
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: PosConfigToken, useValue: {} },
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },

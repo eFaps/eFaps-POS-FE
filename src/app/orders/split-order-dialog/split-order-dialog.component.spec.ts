@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import {
@@ -30,6 +31,7 @@ describe("SplitOrderDialogComponent", () => {
         SplitOrderDialogComponent,
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: MatDialogRef, useValue: {} },
         {
           provide: MAT_DIALOG_DATA,

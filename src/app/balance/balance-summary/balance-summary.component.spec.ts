@@ -2,6 +2,7 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import {
@@ -33,6 +34,7 @@ describe("BalanceSummaryComponent", () => {
         BalanceSummaryComponent,
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: PosConfigToken, useValue: {} },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: PrintService, useValue: {} },

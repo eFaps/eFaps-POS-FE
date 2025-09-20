@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -26,6 +27,7 @@ describe("BalanceSummaryDialogComponent", () => {
         BalanceSummaryDialogComponent,
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: BalanceService, useClass: BalanceServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: [] },
       ],

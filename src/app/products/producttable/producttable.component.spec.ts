@@ -1,4 +1,5 @@
 import { LiveAnnouncer } from "@angular/cdk/a11y";
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
@@ -46,6 +47,7 @@ describe("ProducttableComponent", () => {
         ProducttableComponent,
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: ProductService, useClass: ProductServiceStub },
         { provide: LiveAnnouncer, useValue: {} },
       ],

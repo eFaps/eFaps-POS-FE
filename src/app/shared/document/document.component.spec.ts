@@ -2,6 +2,7 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatListModule } from "@angular/material/list";
@@ -58,6 +59,7 @@ describe("DocumentComponent", () => {
         MockPipe(TranslatePipe),
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: PosConfigToken, useValue: {} },
         { provide: Router, useValue: routerSpy },
         { provide: AuthService, useValue: {} },

@@ -2,6 +2,7 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { DocumentService, PosConfigToken } from "@efaps/pos-library";
@@ -19,6 +20,7 @@ describe("DocumentDialogComponent", () => {
     TestBed.configureTestingModule({
       imports: [DocumentDialogComponent],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: TranslateService, useValue: {} },
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },

@@ -3,6 +3,7 @@ import {
   withInterceptorsFromDi,
 } from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { PromotionService } from "@efaps/pos-library";
@@ -17,6 +18,7 @@ describe("PromoDialogComponent", () => {
     await TestBed.configureTestingModule({
       imports: [PromoDialogComponent],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: PromotionService, useValue: {} },
         { provide: MatDialogRef, useValue: {} },
         {

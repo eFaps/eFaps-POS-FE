@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatPaginatorModule } from "@angular/material/paginator";
@@ -10,7 +11,7 @@ import { Observable } from "rxjs";
 import { StocktakingEntryTableComponent } from "./stocktaking-entry-table.component";
 
 class RouterStub {
-  getCurrentNavigation() {
+  currentNavigation() {
     return {
       extras: {
         state: {},
@@ -43,6 +44,7 @@ describe("StocktakingEntryTableComponent", () => {
         StocktakingEntryTableComponent,
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: StocktakingService, useClass: StocktakingServiceStub },
         { provide: Router, useClass: RouterStub },
       ],

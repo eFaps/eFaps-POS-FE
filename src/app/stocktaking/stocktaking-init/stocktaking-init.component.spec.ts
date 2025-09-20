@@ -2,6 +2,7 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from "@angular/common/http";
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormBuilder } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
@@ -41,6 +42,7 @@ describe("StocktakingInitComponent", () => {
     TestBed.configureTestingModule({
       imports: [MatDialogModule, MatSnackBarModule, StocktakingInitComponent],
       providers: [
+        provideZonelessChangeDetection(),
         FormBuilder,
         MatSnackBar,
         { provide: InventoryService, useClass: InventoryServiceStub },

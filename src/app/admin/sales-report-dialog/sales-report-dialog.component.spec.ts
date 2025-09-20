@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { provideNativeDateAdapter } from "@angular/material/core";
 
@@ -10,7 +11,7 @@ describe("SalesReportDialogComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [],
-      providers: [provideNativeDateAdapter()],
+      providers: [provideZonelessChangeDetection(), provideNativeDateAdapter()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SalesReportDialogComponent);

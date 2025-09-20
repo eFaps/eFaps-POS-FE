@@ -3,6 +3,7 @@ import {
   withInterceptorsFromDi,
 } from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormBuilder } from "@angular/forms";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
@@ -24,7 +25,7 @@ class ActivatedRouteStub {
 
 class StocktakingServiceStub {}
 class RouterStub {
-  getCurrentNavigation() {
+  currentNavigation() {
     return {
       extras: {
         state: {},
@@ -40,6 +41,7 @@ describe("StocktakingComponent", () => {
     TestBed.configureTestingModule({
       imports: [MatDialogModule, MatAutocompleteModule, StocktakingComponent],
       providers: [
+        provideZonelessChangeDetection(),
         MatSnackBar,
         FormBuilder,
         { provide: Router, useClass: RouterStub },

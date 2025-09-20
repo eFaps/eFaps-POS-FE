@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import {
   MAT_DIALOG_DATA,
@@ -27,6 +28,7 @@ describe("PrintDialogComponent", () => {
         MockComponent(PrintDisplayComponent),
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: PrintService, useClass: PrintServiceStub },
         { provide: MatDialogRef, useValue: {} },
         {

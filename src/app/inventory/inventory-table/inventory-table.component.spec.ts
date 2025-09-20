@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
@@ -28,6 +29,7 @@ describe("InventoryTableComponent", () => {
         InventoryTableComponent,
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: InventoryService, useClass: InventoryServiceStub },
       ],
     }).compileComponents();

@@ -13,13 +13,11 @@ export class CategorySelectComponent {
   private productService = inject(ProductService);
   dialogRef = inject<MatDialogRef<CategorySelectComponent>>(MatDialogRef);
 
-  rootCategories= signal<Category[]>([]);
+  rootCategories = signal<Category[]>([]);
   constructor() {
     this.productService.getCategories().subscribe((categories) => {
-       const cats = categories.filter(
-        (category) => category.parentOid == null,
-      );
-      this.rootCategories.set(cats)
+      const cats = categories.filter((category) => category.parentOid == null);
+      this.rootCategories.set(cats);
     });
   }
 

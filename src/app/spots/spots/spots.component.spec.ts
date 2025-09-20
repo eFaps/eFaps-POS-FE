@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { Workspace, WorkspaceService } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
@@ -23,6 +24,7 @@ describe("SpotsComponent", () => {
         SpotsComponent,
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
       ],
     }).compileComponents();

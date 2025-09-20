@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { PrintService } from "@efaps/pos-library";
@@ -12,6 +13,7 @@ describe("SuccessDialogComponent", () => {
     await TestBed.configureTestingModule({
       imports: [SuccessDialogComponent],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: PrintService, useValue: {} },
         { provide: MatDialogRef, useValue: {} },
         {

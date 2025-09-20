@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatIconModule } from "@angular/material/icon";
@@ -21,7 +22,7 @@ describe("ThemePickerComponent", () => {
         MatIconModule,
         ThemePickerComponent,
       ],
-      providers: [],
+      providers: [provideZonelessChangeDetection()],
     }).compileComponents();
   });
 

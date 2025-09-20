@@ -3,6 +3,7 @@ import {
   withInterceptorsFromDi,
 } from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
@@ -101,6 +102,7 @@ describe("CreateCreditNoteComponent", () => {
         CreateCreditNoteComponent,
       ],
       providers: [
+        provideZonelessChangeDetection(),
         provideRouter([{ path: "pos", component: TestComponent }]),
         { provide: ActivatedRoute, useClass: ActivatedRouteStub },
         { provide: DocumentService, useClass: DocumentServiceStub },

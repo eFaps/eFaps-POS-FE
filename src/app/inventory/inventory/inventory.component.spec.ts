@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatTabsModule } from "@angular/material/tabs";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -29,6 +30,7 @@ describe("InventoryComponent", () => {
         MockComponent(InventoryTableComponent),
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: InventoryService, useClass: InventoryServiceStub },
       ],
     }).compileComponents();

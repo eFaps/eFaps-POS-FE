@@ -1,4 +1,8 @@
-import { Component, ElementRef } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  provideZonelessChangeDetection,
+} from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { SameHeightDirective } from "./same-height.directive";
@@ -17,6 +21,7 @@ describe("SameHeightDirective", () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [SameHeightDirective, HostComponent],
+      providers: [provideZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HostComponent);
