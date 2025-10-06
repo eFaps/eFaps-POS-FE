@@ -88,7 +88,7 @@
     "replace-in-file": "^8.3.0",
     "sass": "^1.93.2",
     "ts-node": "^10.9.2",
-    "typescript": "~5.8.3",
+    "typescript": "~5.9.3",
     "typescript-eslint": "~8.44.1"
   },
   "importSort": {
