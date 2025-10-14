@@ -70,7 +70,6 @@
           </div>
         }
       </div>
-      {{ multiplierLabel() }}
       <app-ticket (multiplierClick)="resetMultiplier()" [isBarcode]="isBarcode"></app-ticket>
       <app-totals [ngStyle]="{ display: sticky ? 'block' : 'unset' }"></app-totals>
     </div>
