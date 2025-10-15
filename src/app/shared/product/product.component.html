@@ -39,7 +39,7 @@
       <p>
         <span class="property">Categories:</span>
         <mat-list dense>
-          @for (category of categories; track category) {
+          @for (category of categories(); track category) {
             <mat-list-item>
               <span matLine>{{ category }}</span>
             </mat-list-item>
@@ -58,11 +58,11 @@
           </mat-list>
         </p>
       }
-      @if (showInventory && isStockable) {
+      @if (showInventory && isStockable()) {
         <p>
           <span class="property">Stock:</span>
           <mat-list dense>
-            @for (entry of inventory; track entry) {
+            @for (entry of inventory(); track entry) {
               <mat-list-item>
                 <span matLine>{{ entry.warehouse.name }}: {{ entry.quantity }}</span>
               </mat-list-item>
@@ -72,11 +72,11 @@
       }
     </div>
   </div>
-  @if (relations.length > 0) {
+  @if (relations().length > 0) {
     <div>
       <mat-list>
         <span class="property">Relacionados:</span>
-        @for (relation of relations; track relation) {
+        @for (relation of relations(); track relation) {
           <mat-list-item>
             <span matLine
               >{{ relation.label }}: {{ relation.product.sku }}

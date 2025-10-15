@@ -70,12 +70,12 @@ export class ProductComponent implements OnInit {
     configurationBOMs: [],
   });
   currentCurrency: Currency = Currency.PEN;
-  categories: string[] = [];
+  categories = signal<string[]>([]);
   loading: boolean = true;
   showInventory: boolean = false;
-  isStockable: boolean = false;
-  inventory: InventoryEntry[] = [];
-  relations: RelationEntry[] = [];
+  isStockable = signal<boolean>(false);
+  inventory = signal<InventoryEntry[]>([]);
+  relations = signal<RelationEntry[]>([]);
 
   ngOnInit() {
     this.showInventory = this.workspaceService.showInventory();
@@ -84,7 +84,7 @@ export class ProductComponent implements OnInit {
     );
     this.productService.getProduct(this.data.oid).subscribe((product) => {
       this.product.set(product);
-      this.isStockable = ProductService.isStockable(product);
+      this.isStockable.set(ProductService.isStockable(product));
       this.evalCategories(product.categories);
       this.loading = false;
       this.evalRelations(product.relations);
@@ -92,8 +92,8 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  private evalRelations(_productRelations: ProductRelation[]) {
-    for (const relation of _productRelations) {
+  private evalRelations(productRelations: ProductRelation[]) {
+    for (const relation of productRelations) {
       this.productService
         .getProduct(relation.productOid)
         .subscribe((product) => {
@@ -109,10 +109,13 @@ export class ProductComponent implements OnInit {
           } else {
             label = relation.label;
           }
-          this.relations.push({
-            label,
-            product,
-          });
+          this.relations.update(current => {
+            current.push({
+              label,
+              product,
+            })
+            return [...current]
+          } ) ;
         });
     }
   }
@@ -122,17 +125,20 @@ export class ProductComponent implements OnInit {
       this.productService
         .getCategory(prod2cat.categoryOid)
         .subscribe((category) => {
-          this.categories.push(category.name);
+          this.categories.update(current => {
+            current.push(category.name)
+            return [...current]
+          })
         });
     }
   }
 
   private evalInventory(product: Product) {
-    if (this.showInventory && this.isStockable) {
+    if (this.showInventory && this.isStockable()) {
       this.inventoryService
         .getInventory4Product(product.oid)
-        .subscribe((_entry) => {
-          _entry.forEach((inv) => this.inventory.push(inv));
+        .subscribe((entries) => {
+          this.inventory.set(entries)
         });
     }
   }
