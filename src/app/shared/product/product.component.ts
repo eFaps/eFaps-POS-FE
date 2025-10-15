@@ -109,13 +109,13 @@ export class ProductComponent implements OnInit {
           } else {
             label = relation.label;
           }
-          this.relations.update(current => {
+          this.relations.update((current) => {
             current.push({
               label,
               product,
-            })
-            return [...current]
-          } ) ;
+            });
+            return [...current];
+          });
         });
     }
   }
@@ -125,10 +125,10 @@ export class ProductComponent implements OnInit {
       this.productService
         .getCategory(prod2cat.categoryOid)
         .subscribe((category) => {
-          this.categories.update(current => {
-            current.push(category.name)
-            return [...current]
-          })
+          this.categories.update((current) => {
+            current.push(category.name);
+            return [...current];
+          });
         });
     }
   }
@@ -138,7 +138,7 @@ export class ProductComponent implements OnInit {
       this.inventoryService
         .getInventory4Product(product.oid)
         .subscribe((entries) => {
-          this.inventory.set(entries)
+          this.inventory.set(entries);
         });
     }
   }

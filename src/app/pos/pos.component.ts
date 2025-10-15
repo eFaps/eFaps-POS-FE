@@ -382,7 +382,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   setMultiplier(_number: string) {
     if (this.isBarcode) {
       // if a barcode was recieved do not except an additional mulitplier
-      return
+      return;
     }
     switch (_number) {
       case "clear":
