@@ -1,10 +1,11 @@
-import { LazyElementDynamicDirective } from "@angular-extensions/elements";
+import { LazyElementDirective, LazyElementDynamicDirective, LazyElementsLoaderService } from "@angular-extensions/elements";
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   Component,
   OnDestroy,
   OnInit,
   inject,
+  signal,
 } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButton } from "@angular/material/button";
@@ -54,8 +55,10 @@ import { STOCKTAKING_ACTIVATE } from "src/app/util/keys";
     MatIcon,
     MatChipRemove,
     MatChipInput,
+    LazyElementDirective,
     LazyElementDynamicDirective,
   ],
+  providers:[LazyElementsLoaderService]
 })
 export class AdminComponent implements OnInit, OnDestroy {
   private router = inject(Router);
@@ -68,7 +71,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   private dialog = inject(MatDialog);
 
   versions: Versions | undefined;
-  lazyElements: Extension[] = [];
+  lazyElements=  signal<Extension[]>([]);
   @LocalStorage() barcodeOptions: BarcodeOptions = {};
   barcodeOptionsForm: FormGroup;
   stocktakingActivate = false;
@@ -100,11 +103,9 @@ export class AdminComponent implements OnInit, OnDestroy {
 
     this.configService.getExtensions().subscribe({
       next: (extensions) => {
-        extensions
+        const exts = extensions
           .filter((extension) => extension.key === "admin")
-          .forEach((extension) => {
-            this.lazyElements.push(extension);
-          });
+          this.lazyElements.set(exts)
       },
     });
     this.configService

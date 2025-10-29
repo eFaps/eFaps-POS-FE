@@ -67,9 +67,11 @@
       </form>
     }
   </div>
-  @for (element of lazyElements; track element) {
+  @for (element of lazyElements(); track element.url) {
     <div class="mat-elevation-z3 element">
-      <ax-lazy-element *axLazyElementDynamic="element.tag; url: element.url"></ax-lazy-element>
+      <ng-template #loading>Loading...</ng-template>
+      <ng-template #error>Loading failed...</ng-template>
+      <ax-lazy-element *axLazyElementDynamic="element.tag, url: element.url;errorTemplate: error;loadingTemplate: loading;"></ax-lazy-element>
     </div>
   }
 </div>
