@@ -17,11 +17,11 @@
       @for (bomGroup of product.bomGroupConfigs; track bomGroup) {
         <mat-step>
           <ng-template matStepLabel>{{ bomGroup.description }}</ng-template>
-          <mat-button-toggle-group [formControlName]="bomGroup.oid" multiple="true">
+          <mat-button-toggle-group [formControlName]="bomGroup.oid" [multiple]="isBomGroupMultiple(bomGroup)">
             @for (bomProduct of getProducts4BOMGroup(bomGroup.oid); track bomProduct) {
-              <mat-button-toggle [value]="bomProduct">{{
-                bomProduct.description
-              }}</mat-button-toggle>
+              <mat-button-toggle [value]="bomProduct">
+                {{ bomProduct.description }}
+              </mat-button-toggle>
             }
           </mat-button-toggle-group>
         </mat-step>
@@ -68,5 +68,6 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button (click)="close()">OK</button>
+  <button matButton (click)="cancel()">Cancelar</button>
+  <button matButton (click)="submit()">OK</button>
 </mat-dialog-actions>

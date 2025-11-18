@@ -32,6 +32,9 @@ import { MatIcon } from "@angular/material/icon";
 import { MatRadioButton, MatRadioGroup } from "@angular/material/radio";
 import { MatStep, MatStepLabel, MatStepper } from "@angular/material/stepper";
 import {
+  BOMGroupConfig,
+  BOMGroupConfigFlag,
+  hasFlag,
   Indication,
   Product,
   ProductIndividual,
@@ -142,6 +145,10 @@ export class ConfigDialogComponent implements OnInit {
     return this.products.has(oid) ? <Product[]>this.products.get(oid) : [];
   }
 
+  isBomGroupMultiple(bomGroupConfig: BOMGroupConfig) {
+    return !hasFlag(bomGroupConfig, BOMGroupConfigFlag.onlyOne)
+  }
+
   remove(indication: any): void {
     const index = this.indications.indexOf(indication);
 
@@ -175,7 +182,7 @@ export class ConfigDialogComponent implements OnInit {
     }
   }
 
-  close() {
+  submit() {
     if (this.formGroup.valid) {
       const remarks: string[] = [];
       const childProducts: Product[] = [];
@@ -200,5 +207,9 @@ export class ConfigDialogComponent implements OnInit {
         selectedIndividual: this.formGroup.value.selectedIndividual,
       });
     }
+  }
+
+  cancel() {
+    this.matDialogRef.close()
   }
 }
