@@ -6,33 +6,40 @@ import { LocalStorageService } from "ngx-localstorage";
 export class LocalStoragePersistence implements PersistenceService {
   private readonly storageService = inject(LocalStorageService);
   
-  _workspaces = {
+  private _workspaces = {
     save: () => {
-      this.storageService.set("workspaces", this);
+      this.storageService.set("workspaces", this._workspaces);
     },
   };
 
-  _positions = {
+  private _positions = {
     save: () => {
-      this.storageService.set("positions", this);
+      this.storageService.set("positions", this._positions);
     },
   };
 
-  _currentCompany: CurrentCompany = {
+  private _currentCompany: CurrentCompany = {
     save: () => {
-      this.storageService.set("currentCompany", this);
+      this.storageService.set("currentCompany", this._currentCompany);
     },
     label: "",
     key: ""
   };
 
-  _currentUser = {
+  private _currentUser : CurrentUser = {
     username: undefined,
     tokens: undefined,
     save: () => {
-      this.storageService.set("currentUser", this);
+      this.storageService.set("currentUser", {
+        username: this._currentUser.username,
+        tokens: this._currentUser.tokens
+      });
     },
-    clean() {},
+    clean: () => {
+       this.storageService.remove("currentUser")
+       this._currentUser.username = undefined
+       this._currentUser.tokens = undefined
+    },
   };
 
   spotPositions() {
@@ -42,18 +49,13 @@ export class LocalStoragePersistence implements PersistenceService {
   currentCompany() {
     return this._currentCompany;
   }
+
   workspaces() {
     return this._workspaces;
   }
 
   currentUser(): CurrentUser {
-    const ret = this._currentUser;
-    ret.clean = () => {
-      localStorage.removeItem("synerPOS_currentUser");
-      ret.username = undefined;
-      ret.tokens = undefined;
-    };
-    return ret;
+    return this._currentUser;;
   }
 }
 
