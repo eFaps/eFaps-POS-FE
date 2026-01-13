@@ -13,6 +13,7 @@ import {
 import { MatIcon } from "@angular/material/icon";
 import {
   PrintService,
+  Workspace,
   WorkspaceFlag,
   WorkspaceService,
   hasFlag,
@@ -41,23 +42,27 @@ export class OrderDialogComponent implements OnInit {
   dialogRef = inject<MatDialogRef<OrderDialogComponent>>(MatDialogRef);
   data = inject(MAT_DIALOG_DATA);
 
-  allowPayment: boolean = false;
-  allowPrintJobs: boolean = false;
-  workspaceOid!: string;
+  private workspace: Workspace | undefined = undefined;
 
   ngOnInit() {
     this.workspaceService.currentWorkspace.subscribe((workspace) => {
-      this.allowPayment = workspace.docTypes && workspace.docTypes.length > 0;
-      this.allowPrintJobs =
-        workspace.printCmds.some((x) => x.target === "JOB") &&
-        !hasFlag(workspace.flags, WorkspaceFlag.jobOnPayment);
-      this.workspaceOid = workspace.oid;
+      this.workspace = workspace;
     });
   }
 
   printJobs() {
     const dialogRef = this.dialog.open(PrintDialogComponent, {
-      data: this.printService.printJobs(this.workspaceOid, this.data.order),
+      data: this.printService.printJobs(this.workspace!!.oid, this.data.order)
     });
+  }
+
+  allowPayment() : boolean {
+    return this.workspace != undefined && this.workspace?.docTypes && this.workspace?.docTypes.length > 0
+    && this.data.order.crossTotal > 0;
+  }
+
+  allowPrintJobs() : boolean{
+    return this.workspace != undefined && this.workspace?.printCmds.some((x) => x.target === "JOB") &&
+        !hasFlag(this.workspace.flags, WorkspaceFlag.jobOnPayment);
   }
 }

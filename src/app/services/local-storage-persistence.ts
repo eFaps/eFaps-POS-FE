@@ -14,7 +14,7 @@ export class LocalStoragePersistence implements PersistenceService {
 
   private _positions = {
     save: () => {
-      this.storageService.set("positions", this._positions);
+      this.storageService.set("spotPositions", this._positions);
     },
   };
 
@@ -43,14 +43,26 @@ export class LocalStoragePersistence implements PersistenceService {
   };
 
   spotPositions() {
+    const sp = this.storageService.get("spotPositions");
+     if (sp != null) {
+      Object. assign(this._positions, sp)
+    }
     return this._positions;
   }
 
   currentCompany() {
+     const cc = this.storageService.get("currentCompany");
+     if (cc != null) {
+      Object. assign(this._currentCompany, cc)
+    }
     return this._currentCompany;
   }
 
   workspaces() {
+    const ws = this.storageService.get("workspaces");
+    if (ws != null) {
+      Object. assign(this._workspaces, ws)
+    }
     return this._workspaces;
   }
 
