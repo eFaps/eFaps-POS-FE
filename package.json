@@ -41,7 +41,7 @@
     "@efaps/ngx-store": "^11.0.0",
     "@efaps/pos-library": "^12.3.0",
     "@fontsource/roboto": "^5.2.8",
-    "@ngx-pwa/local-storage": "^20.0.1",
+    "@ngx-pwa/local-storage": "^21.0.0",
     "@ngx-translate/core": "^17.0.0",
     "@ngx-translate/http-loader": "^17.0.0",
     "@stomp/rx-stomp": "^2.2.0",
