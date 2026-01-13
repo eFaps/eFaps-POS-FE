@@ -29,7 +29,6 @@ import {
   MatKeyboardModule,
   MatKeyboardService,
 } from "@efaps/angular-onscreen-material-keyboard";
-import { LocalStorage } from "@efaps/ngx-store";
 import {
   AuthService,
   Company,
@@ -40,6 +39,7 @@ import {
 } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
 import { SvgIconComponent } from "angular-svg-icon";
+import { LocalStorageService } from "ngx-localstorage";
 import { Subscription } from "rxjs";
 
 @Component({
@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private snackBar = inject(MatSnackBar);
   private translateService = inject(TranslateService);
   private matKeyboardService = inject(MatKeyboardService);
+  private readonly storageService = inject(LocalStorageService);
 
   private subscription: Subscription = new Subscription();
   companies: Company[] = [];
@@ -77,7 +78,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   loading = false;
   hiddenUser = true;
-  @LocalStorage() virtKeyboard = false;
+  _virtKeyboard: boolean | null =
+    this.storageService.get<boolean>("virtKeyboard");
   @ViewChild("pwd") pwdField!: ElementRef;
 
   showCompanySelection = false;
@@ -182,5 +184,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  get virtKeyboard(): boolean {
+    return this._virtKeyboard == null ? false : this._virtKeyboard;
+  }
+
+  set virtKeyboard(value: boolean) {
+    this._virtKeyboard = value;
+    this.storageService.set("virtKeyboard", value);
   }
 }

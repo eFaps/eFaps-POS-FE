@@ -146,7 +146,7 @@ export class ConfigDialogComponent implements OnInit {
   }
 
   isBomGroupMultiple(bomGroupConfig: BOMGroupConfig) {
-    return !hasFlag(bomGroupConfig, BOMGroupConfigFlag.onlyOne)
+    return !hasFlag(bomGroupConfig, BOMGroupConfigFlag.onlyOne);
   }
 
   remove(indication: any): void {
@@ -210,6 +210,6 @@ export class ConfigDialogComponent implements OnInit {
   }
 
   cancel() {
-    this.matDialogRef.close()
+    this.matDialogRef.close();
   }
 }

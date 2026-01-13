@@ -17,7 +17,6 @@ import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatIcon } from "@angular/material/icon";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
-import { LocalStorage } from "@efaps/ngx-store";
 import {
   AuthService,
   BarcodeScannerService,
@@ -38,6 +37,7 @@ import {
   WorkspaceService,
   hasFlag,
 } from "@efaps/pos-library";
+import { LocalStorageService } from "ngx-localstorage";
 import { Subscription, combineLatest } from "rxjs";
 import { skip } from "rxjs/operators";
 
@@ -91,6 +91,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   private contactService = inject(ContactService);
   private keypadService = inject(KeypadService);
   private changeDetectorRef = inject<ChangeDetectorRef>(ChangeDetectorRef);
+  private readonly storageService = inject(LocalStorageService);
 
   shoutOut = signal<string | undefined>(undefined);
   contact = signal<Contact | undefined>(undefined);
@@ -104,9 +105,10 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   screenWidth: number = 0;
   private orderId: string | null = null;
   currentLayout: PosLayout = PosLayout.GRID;
-  @LocalStorage() posLayouts: any = {};
 
-  @LocalStorage() posNumPad: any = {};
+  _posLayouts: any | null = this.storageService.get<any>("posLayouts");
+
+  _posNumPad: any | null = this.storageService.get<any>("posNumPad");
 
   @ViewChild(CommandsComponent, { static: true }) cmdComp!: CommandsComponent;
   @ViewChild(ProductGridComponent) productGrid:
@@ -471,5 +473,23 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
 
   get seller(): Employee | null {
     return this._seller;
+  }
+
+  get posLayouts(): any {
+    return this._posLayouts == null ? {} : this._posLayouts;
+  }
+
+  set posLayouts(value: any) {
+    this._posLayouts = value;
+    this.storageService.set("posLayouts", value);
+  }
+
+  get posNumPad(): any {
+    return this._posNumPad == null ? {} : this._posNumPad;
+  }
+
+  set posNumPad(value: any) {
+    this._posNumPad = value;
+    this.storageService.set("posNumPad", value);
   }
 }

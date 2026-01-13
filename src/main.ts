@@ -33,6 +33,7 @@ import { provideTranslateService } from "@ngx-translate/core";
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 import { AngularSvgIconModule } from "angular-svg-icon";
 import { HotkeyModule } from "angular2-hotkeys";
+import { provideNgxLocalstorage } from "ngx-localstorage";
 
 import { AppComponent } from "./app/app.component";
 import { routes } from "./app/app.routes";
@@ -46,6 +47,9 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
+    provideNgxLocalstorage({
+      prefix: environment.storagePrefix,
+    }),
     importProvidersFrom(
       FormsModule,
       ReactiveFormsModule,

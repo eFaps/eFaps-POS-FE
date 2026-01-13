@@ -71,7 +71,13 @@
     <div class="mat-elevation-z3 element">
       <ng-template #loading>Loading...</ng-template>
       <ng-template #error>Loading failed...</ng-template>
-      <ax-lazy-element *axLazyElementDynamic="element.tag, url: element.url;errorTemplate: error;loadingTemplate: loading;"></ax-lazy-element>
+      <ax-lazy-element
+        *axLazyElementDynamic="
+          element.tag;
+          url: element.url;
+          errorTemplate: error;
+          loadingTemplate: loading
+        "></ax-lazy-element>
     </div>
   }
 </div>

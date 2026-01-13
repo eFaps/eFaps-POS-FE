@@ -32,7 +32,6 @@ import {
   MatKeyboardDirective,
   MatKeyboardModule,
 } from "@efaps/angular-onscreen-material-keyboard";
-import { LocalStorage } from "@efaps/ngx-store";
 import { PageRequest, Product, ProductService } from "@efaps/pos-library";
 import { debounceTime, merge, tap } from "rxjs";
 
@@ -66,7 +65,7 @@ import { ProductComponent } from "../../shared/product/product.component";
     MatKeyboardModule,
   ],
 })
-export class ProducttableComponent implements OnInit, OnDestroy {
+export class ProducttableComponent implements OnInit {
   private productService = inject(ProductService);
   private dialog = inject(MatDialog);
   private changeDetectorRefs = inject(ChangeDetectorRef);
@@ -100,10 +99,6 @@ export class ProducttableComponent implements OnInit, OnDestroy {
       .get("filter")!
       .valueChanges.pipe(debounceTime(400))
       .subscribe((value) => this.applyFilter(value));
-  }
-
-  ngOnDestroy() {
-    // event empty method is needed to allow ngx-store handle class destruction
   }
 
   loadProducts() {

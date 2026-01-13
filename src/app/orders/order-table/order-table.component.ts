@@ -32,7 +32,6 @@ import {
   MatTableDataSource,
 } from "@angular/material/table";
 import { Router } from "@angular/router";
-import { LocalStorage } from "@efaps/ngx-store";
 import {
   AuthService,
   ContactService,
@@ -47,6 +46,7 @@ import {
   WorkspaceService,
 } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
+import { LocalStorageService } from "ngx-localstorage";
 import { Subscription } from "rxjs";
 import { debounceTime, map } from "rxjs/operators";
 
@@ -93,6 +93,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   private dialog = inject(MatDialog);
   private changeDetectorRefs = inject(ChangeDetectorRef);
+  private readonly storageService = inject(LocalStorageService);
 
   DocStatus = DocStatus;
   filterForm: FormGroup;
@@ -104,7 +105,10 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   isAdmin = false;
   allowPayment = false;
   allowPos = false;
-  @LocalStorage() lazyLoadOrders = false;
+
+  _lazyLoadOrders: boolean | null =
+    this.storageService.get<boolean>("lazyLoadOrders");
+
   private subscriptions = new Subscription();
   private displayContact = false;
 
@@ -318,6 +322,15 @@ export class OrderTableComponent implements OnInit, OnDestroy {
         row.contactLabel = row.shoutout;
       }
     }
+  }
+
+  get lazyLoadOrders(): boolean {
+    return this._lazyLoadOrders == null ? false : this._lazyLoadOrders;
+  }
+
+  set lazyLoadOrders(value: boolean) {
+    this._lazyLoadOrders = value;
+    this.storageService.set("lazyLoadOrders", value);
   }
 }
 interface OrderTableRow extends OrderWrapper {

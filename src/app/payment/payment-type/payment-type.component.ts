@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { MatTab, MatTabGroup } from "@angular/material/tabs";
-import { LocalStorage } from "@efaps/ngx-store";
 import { AuthService, Permission, WorkspaceService } from "@efaps/pos-library";
+import { LocalStorageService } from "ngx-localstorage";
 import { Subscription } from "rxjs";
 
 import { AutoComponent } from "../auto/auto.component";
@@ -27,10 +27,12 @@ import { RedeemCreditNoteComponent } from "../redeem-credit-note/redeem-credit-n
 export class PaymentTypeComponent implements OnInit, OnDestroy {
   private authService = inject(AuthService);
   private workspaceService = inject(WorkspaceService);
+  private readonly storageService = inject(LocalStorageService);
 
   private subscription$ = new Subscription();
 
-  @LocalStorage() selectedPayment: any = {};
+  _selectedPayment: any | null =
+    this.storageService.get<any>("selectedPayment");
 
   Permission = Permission;
 
@@ -59,5 +61,14 @@ export class PaymentTypeComponent implements OnInit, OnDestroy {
 
   hasPermission(...permission: Permission[]): boolean {
     return this.authService.hasPermission(...permission);
+  }
+
+  get selectedPayment(): any {
+    return this._selectedPayment == null ? {} : this._selectedPayment;
+  }
+
+  set selectedPayment(value: any) {
+    this._selectedPayment = value;
+    this.storageService.set("selectedPayment", value);
   }
 }

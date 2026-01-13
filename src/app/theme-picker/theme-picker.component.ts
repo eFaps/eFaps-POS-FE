@@ -9,7 +9,7 @@ import { MatGridList, MatGridTile } from "@angular/material/grid-list";
 import { MatIcon } from "@angular/material/icon";
 import { MatMenu, MatMenuItem, MatMenuTrigger } from "@angular/material/menu";
 import { MatTooltip } from "@angular/material/tooltip";
-import { LocalStorage } from "@efaps/ngx-store";
+import { LocalStorageService } from "ngx-localstorage";
 
 import { DocsSiteTheme, StyleManagerService } from "../services/index";
 
@@ -32,8 +32,11 @@ import { DocsSiteTheme, StyleManagerService } from "../services/index";
 })
 export class ThemePickerComponent {
   styleManager = inject(StyleManagerService);
+  private readonly storageService = inject(LocalStorageService);
 
-  @LocalStorage() currentTheme: DocsSiteTheme | undefined;
+  private _currentTheme: DocsSiteTheme | null =
+    this.storageService.get<DocsSiteTheme>("currentTheme");
+
   themes: DocsSiteTheme[] = [
     {
       color: "#343dff",
@@ -74,5 +77,18 @@ export class ThemePickerComponent {
 
   private _getCurrentThemeFromHref(href: string): DocsSiteTheme | undefined {
     return this.themes.find((theme) => theme.href === href);
+  }
+
+  get currentTheme(): DocsSiteTheme | undefined {
+    return this._currentTheme == null ? undefined : this._currentTheme;
+  }
+
+  set currentTheme(value: DocsSiteTheme | undefined) {
+    if (value) {
+      this._currentTheme = value;
+      this.storageService.set("currentTheme", value);
+    } else {
+      this.storageService.remove("currentTheme");
+    }
   }
 }

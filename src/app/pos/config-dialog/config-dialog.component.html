@@ -17,7 +17,9 @@
       @for (bomGroup of product.bomGroupConfigs; track bomGroup) {
         <mat-step>
           <ng-template matStepLabel>{{ bomGroup.description }}</ng-template>
-          <mat-button-toggle-group [formControlName]="bomGroup.oid" [multiple]="isBomGroupMultiple(bomGroup)">
+          <mat-button-toggle-group
+            [formControlName]="bomGroup.oid"
+            [multiple]="isBomGroupMultiple(bomGroup)">
             @for (bomProduct of getProducts4BOMGroup(bomGroup.oid); track bomProduct) {
               <mat-button-toggle [value]="bomProduct">
                 {{ bomProduct.description }}

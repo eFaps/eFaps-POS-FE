@@ -15,7 +15,6 @@ import { MatRadioButton, MatRadioGroup } from "@angular/material/radio";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTabGroup } from "@angular/material/tabs";
 import { Router } from "@angular/router";
-import { LocalStorage } from "@efaps/ngx-store";
 import {
   Balance,
   BalanceService,
@@ -43,6 +42,7 @@ import {
   hasFlag,
 } from "@efaps/pos-library";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
+import { LocalStorageService } from "ngx-localstorage";
 import { PartialObserver, Subject, Subscription, debounceTime } from "rxjs";
 
 import { ConfirmDialogComponent } from "../shared/confirm-dialog/confirm-dialog.component";
@@ -98,11 +98,14 @@ export class PaymentComponent implements OnInit, OnDestroy {
   private dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
   paymentService = inject(PaymentService);
+  private readonly storageService = inject(LocalStorageService);
 
   @ViewChild(MatTabGroup, { static: true }) tabGroup!: MatTabGroup;
   @ViewChild(DocumentComponent, { static: true })
   documentComponent!: DocumentComponent;
-  @LocalStorage() selectedPaymentTypeItem: number = 0;
+  _selectedPaymentTypeItem: number | null = this.storageService.get<number>(
+    "selectedPaymentTypeItem",
+  );
   DocumentType = DocumentType;
   PaymentType = PaymentType;
   document!: Document;
@@ -519,5 +522,16 @@ export class PaymentComponent implements OnInit, OnDestroy {
         }
       },
     });
+  }
+
+  get selectedPaymentTypeItem(): number {
+    return this._selectedPaymentTypeItem == null
+      ? 0
+      : this._selectedPaymentTypeItem;
+  }
+
+  set selectedPaymentTypeItem(value: number) {
+    this._selectedPaymentTypeItem = value;
+    this.storageService.set("selectedPaymentTypeItem", value);
   }
 }

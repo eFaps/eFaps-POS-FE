@@ -1,23 +1,37 @@
-import { LocalStorage } from "@efaps/ngx-store";
-import { CurrentUser, PersistenceService } from "@efaps/pos-library";
+import { inject, Injector, Type } from "@angular/core";
+import { CurrentCompany, CurrentUser, PersistenceService, PersistenceServiceProvider } from "@efaps/pos-library";
+import { LocalStorageService } from "ngx-localstorage";
+
 
 export class LocalStoragePersistence implements PersistenceService {
-  @LocalStorage("workspaces") _workspaces = {
-    save() {},
+  private readonly storageService = inject(LocalStorageService);
+  
+  _workspaces = {
+    save: () => {
+      this.storageService.set("workspaces", this);
+    },
   };
 
-  @LocalStorage("positions") _positions = {
-    save() {},
+  _positions = {
+    save: () => {
+      this.storageService.set("positions", this);
+    },
   };
 
-  @LocalStorage("currentCompany") _currentCompany = {
-    save() {},
+  _currentCompany: CurrentCompany = {
+    save: () => {
+      this.storageService.set("currentCompany", this);
+    },
+    label: "",
+    key: ""
   };
 
-  @LocalStorage("currentUser") _currentUser = {
+  _currentUser = {
     username: undefined,
     tokens: undefined,
-    save() {},
+    save: () => {
+      this.storageService.set("currentUser", this);
+    },
     clean() {},
   };
 
@@ -42,4 +56,12 @@ export class LocalStoragePersistence implements PersistenceService {
     return ret;
   }
 }
-export const PERSISTENCE = new LocalStoragePersistence();
+
+export class LocalPersistenceServiceProvider implements PersistenceServiceProvider {
+  get() { 
+    return new LocalStoragePersistence()
+  };
+}
+
+
+export const PERSISTENCE = new LocalPersistenceServiceProvider();

@@ -19,7 +19,6 @@ import {
 import { MatToolbar } from "@angular/material/toolbar";
 import { MatTooltip } from "@angular/material/tooltip";
 import { Router, RouterLink, RouterOutlet } from "@angular/router";
-import { LocalStorage } from "@efaps/ngx-store";
 import {
   AuthService,
   BarcodeOptions,
@@ -36,6 +35,7 @@ import {
 import { TranslateService } from "@ngx-translate/core";
 import { SvgIconComponent } from "angular-svg-icon";
 import { Hotkey, HotkeyModule, HotkeysService } from "angular2-hotkeys";
+import { LocalStorageService } from "ngx-localstorage";
 
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
 
@@ -73,6 +73,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   private companyService = inject(CompanyService);
   private barcodeScannerService = inject(BarcodeScannerService);
   private loaderService = inject(LoaderService);
+  private readonly storageService = inject(LocalStorageService);
 
   Permission = Permission;
   title = "app";
@@ -83,7 +84,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
   inventory = false;
   allowPayment = false;
   showRemote = false;
-  @LocalStorage() barcodeOptions: BarcodeOptions | null = null;
+  barcodeOptions: BarcodeOptions | null =
+    this.storageService.get<BarcodeOptions>("barcodeOptions");
   userInfo: User | null = null;
   isLoading = this.loaderService.isLoading;
 

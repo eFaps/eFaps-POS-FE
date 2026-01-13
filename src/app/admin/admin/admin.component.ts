@@ -1,4 +1,8 @@
-import { LazyElementDirective, LazyElementDynamicDirective, LazyElementsLoaderService } from "@angular-extensions/elements";
+import {
+  LazyElementDirective,
+  LazyElementDynamicDirective,
+  LazyElementsLoaderService,
+} from "@angular-extensions/elements";
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   Component,
@@ -22,7 +26,6 @@ import { MatIcon } from "@angular/material/icon";
 import { MatInput } from "@angular/material/input";
 import { MatSlideToggle } from "@angular/material/slide-toggle";
 import { Router } from "@angular/router";
-import { LocalStorage } from "@efaps/ngx-store";
 import {
   AdminService,
   BarcodeOptions,
@@ -33,6 +36,7 @@ import {
   Versions,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { LocalStorageService } from "ngx-localstorage";
 
 import { SalesReportDialogComponent } from "../sales-report-dialog/sales-report-dialog.component";
 import { PrintDialogComponent } from "src/app/shared/print-dialog/print-dialog.component";
@@ -58,7 +62,7 @@ import { STOCKTAKING_ACTIVATE } from "src/app/util/keys";
     LazyElementDirective,
     LazyElementDynamicDirective,
   ],
-  providers:[LazyElementsLoaderService]
+  providers: [LazyElementsLoaderService],
 })
 export class AdminComponent implements OnInit, OnDestroy {
   private router = inject(Router);
@@ -69,10 +73,12 @@ export class AdminComponent implements OnInit, OnDestroy {
   private printService = inject(PrintService);
   private fb = inject(FormBuilder);
   private dialog = inject(MatDialog);
+  private readonly storageService = inject(LocalStorageService);
 
   versions: Versions | undefined;
-  lazyElements=  signal<Extension[]>([]);
-  @LocalStorage() barcodeOptions: BarcodeOptions = {};
+  lazyElements = signal<Extension[]>([]);
+  _barcodeOptions: BarcodeOptions | null =
+    this.storageService.get<BarcodeOptions>("barcodeOptions");
   barcodeOptionsForm: FormGroup;
   stocktakingActivate = false;
   salesReportActive = false;
@@ -103,9 +109,10 @@ export class AdminComponent implements OnInit, OnDestroy {
 
     this.configService.getExtensions().subscribe({
       next: (extensions) => {
-        const exts = extensions
-          .filter((extension) => extension.key === "admin")
-          this.lazyElements.set(exts)
+        const exts = extensions.filter(
+          (extension) => extension.key === "admin",
+        );
+        this.lazyElements.set(exts);
       },
     });
     this.configService
@@ -199,5 +206,14 @@ export class AdminComponent implements OnInit, OnDestroy {
         }
       },
     });
+  }
+
+  get barcodeOptions(): BarcodeOptions {
+    return this._barcodeOptions == null ? {} : this._barcodeOptions;
+  }
+
+  set barcodeOptions(options: BarcodeOptions) {
+    this._barcodeOptions = options;
+    this.storageService.set("barcodeOptions", options);
   }
 }
