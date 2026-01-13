@@ -70,7 +70,7 @@
     "@types/mousetrap": "^1.6.15",
     "@types/node": "^24.10.1",
     "@types/sockjs-client": "^1.5.4",
-    "angular-eslint": "20.6.0",
+    "angular-eslint": "21.1.0",
     "codelyzer": "^6.0.2",
     "eslint": "^9.39.1",
     "import-sort-style-module": "^6.0.0",
