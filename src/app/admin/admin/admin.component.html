@@ -26,8 +26,12 @@
   }
   <div class="mat-elevation-z3 versions">
     <h1>Versions:</h1>
+    <p i18n="@@versionCloud">App: {{ appVersion }}</p>
     <p i18n="@@versionCloud">Cloud: {{ versions?.remote }}</p>
-    <p i18n="@@versionLocal">Local: {{ versions?.local }}</p>
+    <p i18n="@@versionLocal">Local BE: {{ versions?.local }}</p>
+    @if (minBEVersion > versions?.local ) {
+<p class="minWarning">Minium backend version: {{minBEVersion}}</p>
+    }
   </div>
   <div class="mat-elevation-z3 versions">
     <h1>Barcode Scanner:</h1>

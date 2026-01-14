@@ -41,6 +41,8 @@ import { LocalStorageService } from "ngx-localstorage";
 import { SalesReportDialogComponent } from "../sales-report-dialog/sales-report-dialog.component";
 import { PrintDialogComponent } from "src/app/shared/print-dialog/print-dialog.component";
 import { STOCKTAKING_ACTIVATE } from "src/app/util/keys";
+import { environment } from "../../../environments/environment";
+
 
 @Component({
   selector: "app-admin",
@@ -74,6 +76,9 @@ export class AdminComponent implements OnInit, OnDestroy {
   private dialog = inject(MatDialog);
   private readonly storageService = inject(LocalStorageService);
 
+
+  appVersion = environment.version
+  minBEVersion = environment.minBEVersion
   versions: Versions | undefined;
   lazyElements = signal<Extension[]>([]);
   _barcodeOptions: BarcodeOptions | null =

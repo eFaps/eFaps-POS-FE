@@ -7,4 +7,5 @@ export const environment = {
   production: false,
   version: "1.0.0-dev",
   storagePrefix: "efapsPOS",
+  minBEVersion: "1.0.0"
 };
