@@ -73,7 +73,7 @@ export class LocalStoragePersistence implements PersistenceService {
   currentUser(): CurrentUser {
     const cu = this.storageService.get("currentUser");
     if (cu != null) {
-       Object.assign(this._currentUser, cu);
+      Object.assign(this._currentUser, cu);
     }
     return this._currentUser;
   }

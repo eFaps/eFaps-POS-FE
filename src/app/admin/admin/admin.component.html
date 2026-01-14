@@ -29,8 +29,8 @@
     <p i18n="@@versionCloud">App: {{ appVersion }}</p>
     <p i18n="@@versionCloud">Cloud: {{ versions?.remote }}</p>
     <p i18n="@@versionLocal">Local BE: {{ versions?.local }}</p>
-    @if (minBEVersion > versions?.local ) {
-<p class="minWarning">Minium backend version: {{minBEVersion}}</p>
+    @if (versions && minBEVersion > versions!!.local) {
+      <p class="minWarning">Minium backend version: {{ minBEVersion }}</p>
     }
   </div>
   <div class="mat-elevation-z3 versions">
