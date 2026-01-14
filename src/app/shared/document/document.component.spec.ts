@@ -22,10 +22,13 @@ import {
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
+import { vi } from "vitest";
 
 import { DocumentComponent } from "./document.component";
 
-const routerSpy = jasmine.createSpyObj("Router", ["navigate"]);
+const routerSpy = {
+  navigate: vi.fn().mockName("Router.navigate"),
+};
 
 class WorkspaceServiceStub {
   currentWorkspace = new Observable((observer) => {

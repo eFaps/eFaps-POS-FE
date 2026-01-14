@@ -16,7 +16,7 @@
     "start-es": "ng serve --configuration es --proxy-config proxy.conf.js --host 0.0.0.0",
     "build": "ng build --configuration production --localize",
     "build2": "ng build --aot --source-map false",
-    "test": "ng test --browsers ChromeHeadlessNoSandbox --no-progress --no-watch",
+    "test": "ng test --browsers chromiumHeadless --no-progress --no-watch",
     "lint": "ng lint",
     "i18n": "ng extract-i18n --output-path src/locale",
     "prettier-html": "prettier --print-width 100 --write \"src/**/*.html\" ",
@@ -69,17 +69,14 @@
     "@types/mousetrap": "^1.6.15",
     "@types/node": "^25.0.8",
     "@types/sockjs-client": "^1.5.4",
+    "@vitest/browser-playwright": "^4.0.17",
     "angular-eslint": "21.1.0",
     "codelyzer": "^6.0.2",
     "eslint": "^9.39.2",
     "import-sort-style-module": "^6.0.0",
     "jasmine-core": "~5.13.0",
-    "karma": "~6.4.4",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.1",
+    "jsdom": "^27.4.0",
     "karma-coverage-istanbul-reporter": "^3.0.3",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
     "ng-mocks": "^14.15.0",
     "prettier": "^3.7.4",
     "prettier-plugin-sort-imports": "^1.8.9",
@@ -87,7 +84,8 @@
     "sass": "^1.97.2",
     "ts-node": "^10.9.2",
     "typescript": "~5.9.3",
-    "typescript-eslint": "~8.53.0"
+    "typescript-eslint": "~8.53.0",
+    "vitest": "^4.0.17"
   },
   "importSort": {
     ".js, .jsx, .es6, .es": {

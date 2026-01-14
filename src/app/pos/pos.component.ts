@@ -360,7 +360,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   }
 
   @HostListener("window:resize", ["$event"])
-  onResize(_event?: undefined) {
+  onResize(_event?: UIEvent) {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
     this.cmdComp.evalSticky();

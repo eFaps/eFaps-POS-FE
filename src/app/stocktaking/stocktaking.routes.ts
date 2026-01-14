@@ -11,9 +11,9 @@ export const routes: Routes = [
   {
     path: "entries",
     loadComponent: () =>
-      import(
-        "./stocktaking-entry-table/stocktaking-entry-table.component"
-      ).then((m) => m.StocktakingEntryTableComponent),
+      import("./stocktaking-entry-table/stocktaking-entry-table.component").then(
+        (m) => m.StocktakingEntryTableComponent,
+      ),
   },
   {
     path: ":oid",

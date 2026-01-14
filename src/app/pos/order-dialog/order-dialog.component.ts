@@ -52,17 +52,24 @@ export class OrderDialogComponent implements OnInit {
 
   printJobs() {
     const dialogRef = this.dialog.open(PrintDialogComponent, {
-      data: this.printService.printJobs(this.workspace!!.oid, this.data.order)
+      data: this.printService.printJobs(this.workspace!!.oid, this.data.order),
     });
   }
 
-  allowPayment() : boolean {
-    return this.workspace != undefined && this.workspace?.docTypes && this.workspace?.docTypes.length > 0
-    && this.data.order.crossTotal > 0;
+  allowPayment(): boolean {
+    return (
+      this.workspace != undefined &&
+      this.workspace?.docTypes &&
+      this.workspace?.docTypes.length > 0 &&
+      this.data.order.crossTotal > 0
+    );
   }
 
-  allowPrintJobs() : boolean{
-    return this.workspace != undefined && this.workspace?.printCmds.some((x) => x.target === "JOB") &&
-        !hasFlag(this.workspace.flags, WorkspaceFlag.jobOnPayment);
+  allowPrintJobs(): boolean {
+    return (
+      this.workspace != undefined &&
+      this.workspace?.printCmds.some((x) => x.target === "JOB") &&
+      !hasFlag(this.workspace.flags, WorkspaceFlag.jobOnPayment)
+    );
   }
 }

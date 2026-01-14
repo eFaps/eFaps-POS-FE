@@ -59,7 +59,6 @@ import { STOCKTAKING_ACTIVATE } from "src/app/util/keys";
     MatIcon,
     MatChipRemove,
     MatChipInput,
-    LazyElementDirective,
     LazyElementDynamicDirective,
   ],
   providers: [LazyElementsLoaderService],

@@ -122,7 +122,11 @@
               "localize": [
                 "es"
               ]
+            },
+            "development": {
+              
             }
+
           },
           "defaultConfiguration": ""
         },
@@ -147,58 +151,9 @@
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "src/test.ts",
-            "karmaConfig": "./karma.conf.js",
-            "polyfills": [
-              "@angular/localize/init"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "scripts": [],
-            "styles": [
-              {
-                "input": "src/styles.scss"
-              },
-              {
-                "inject": false,
-                "input": "src/scss/azure-blue.scss",
-                "bundleName": "azure-blue"
-              },
-              {
-                "inject": false,
-                "input": "src/scss/cyan-orange.scss",
-                "bundleName": "cyan-orange"
-              },
-              {
-                "inject": false,
-                "input": "src/scss/magenta-violet.scss",
-                "bundleName": "magenta-violet"
-              },
-              {
-                "inject": false,
-                "input": "src/scss/rose-red.scss",
-                "bundleName": "rose-red"
-              }
-            ],
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "src/assets",
-                "output": "/assets"
-              },
-              {
-                "glob": "favicon.ico",
-                "input": "src",
-                "output": "/"
-              }
-            ],
-            "fileReplacements": [
-              {
-                "replace": "src/app/util/translate-file-loader.ts",
-                "with": "src/app/util/translate-file-loader.noop.ts"
-              }
-            ]
+             "browsers": ["chromium"]
           }
         },
         "lint": {

@@ -1,6 +1,7 @@
 import {
   Component,
   ElementRef,
+  NO_ERRORS_SCHEMA,
   provideZonelessChangeDetection,
 } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
@@ -13,7 +14,10 @@ export class MockElementRef extends ElementRef {
   }
 }
 
-@Component({ template: ` <div [appSameHeight]="aClassName"></div> ` })
+@Component({
+  template: ` <div [appSameHeight]="aClassName"></div> `,
+  imports: [SameHeightDirective],
+})
 class HostComponent {}
 
 describe("SameHeightDirective", () => {
