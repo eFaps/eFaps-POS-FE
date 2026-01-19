@@ -217,6 +217,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
             this.docTypes.push(_value);
           }
         });
+        if (this.docTypes.findIndex((x) => x == DocumentType.RECEIPT) < 0) {
+          this.docType = this.docTypes[0];
+        }
       }),
     );
     this.subscriptions$.add(
