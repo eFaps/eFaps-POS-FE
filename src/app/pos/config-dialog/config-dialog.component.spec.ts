@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { PosConfigToken, ProductService } from "@efaps/pos-library";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { ConfigDialogComponent } from "./config-dialog.component";
 
 describe("ConfigDialogComponent", () => {

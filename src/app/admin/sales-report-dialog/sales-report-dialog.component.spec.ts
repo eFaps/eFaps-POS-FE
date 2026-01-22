@@ -2,6 +2,7 @@ import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { provideNativeDateAdapter } from "@angular/material/core";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { SalesReportDialogComponent } from "./sales-report-dialog.component";
 
 describe("SalesReportDialogComponent", () => {

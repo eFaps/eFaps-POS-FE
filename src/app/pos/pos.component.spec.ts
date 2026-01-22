@@ -30,6 +30,7 @@ import {
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { KeypadService, PosSyncService } from "../services";
 import { CommandsComponent } from "./commands/commands.component";
 import { PosComponent } from "./pos.component";

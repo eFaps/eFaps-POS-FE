@@ -5,6 +5,7 @@ import { InventoryService } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { InventoryTableComponent } from "../inventory-table/inventory-table.component";
 import { InventoryComponent } from "./inventory.component";
 

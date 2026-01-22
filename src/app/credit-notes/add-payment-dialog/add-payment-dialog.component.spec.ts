@@ -14,6 +14,7 @@ import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { AddPaymentDialogComponent } from "./add-payment-dialog.component";
 
 describe("AddPaymentDialogComponent", () => {

@@ -15,6 +15,7 @@ import {
 } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { AutoComponent } from "../auto/auto.component";
 import { CardComponent } from "../card/card.component";
 import { CashComponent } from "../cash/cash.component";

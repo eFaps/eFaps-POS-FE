@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { PosService, WorkspaceService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { WorkspaceComponent } from "./workspace.component";
 
 class PosServiceStub {

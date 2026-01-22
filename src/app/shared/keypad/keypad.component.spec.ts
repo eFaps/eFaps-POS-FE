@@ -4,6 +4,7 @@ import { MatGridListModule } from "@angular/material/grid-list";
 import { MatIconModule } from "@angular/material/icon";
 import { Hotkey, HotkeysService } from "angular2-hotkeys";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { KeypadComponent } from "./keypad.component";
 
 class HotkeysServiceStub {

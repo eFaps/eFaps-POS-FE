@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatTabsModule } from "@angular/material/tabs";
 import { ProductService } from "@efaps/pos-library";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { GridElementComponent } from "./grid-element.component";
 
 class ProductServiceStub {}

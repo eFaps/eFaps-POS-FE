@@ -6,6 +6,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { OpeningBalanceDialogComponent } from "./opening-balance-dialog.component";
 
 describe("OpeningBalanceDialogComponent", () => {

@@ -14,6 +14,7 @@ import {
 } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { CreateStocktakingDialogComponent } from "./create-stocktaking-dialog.component";
 
 class InventoryServiceStub {

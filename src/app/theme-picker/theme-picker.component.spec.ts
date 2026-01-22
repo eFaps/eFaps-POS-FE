@@ -4,6 +4,7 @@ import { MatGridListModule } from "@angular/material/grid-list";
 import { MatIconModule } from "@angular/material/icon";
 import { MatMenuModule } from "@angular/material/menu";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { ThemePickerComponent } from "./theme-picker.component";
 
 describe("ThemePickerComponent", () => {

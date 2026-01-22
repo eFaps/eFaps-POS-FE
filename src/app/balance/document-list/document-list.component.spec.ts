@@ -12,6 +12,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatTableModule } from "@angular/material/table";
 import { DocumentService, PosConfigToken } from "@efaps/pos-library";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { DocumentListComponent } from "./document-list.component";
 
 describe("DocumentListComponent", () => {

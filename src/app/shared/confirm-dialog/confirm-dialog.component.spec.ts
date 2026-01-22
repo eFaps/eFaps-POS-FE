@@ -6,6 +6,7 @@ import {
   MatDialogRef,
 } from "@angular/material/dialog";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { ConfirmDialogComponent } from "./confirm-dialog.component";
 
 describe("ConfirmDialogComponent", () => {

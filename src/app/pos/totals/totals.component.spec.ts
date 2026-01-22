@@ -4,6 +4,7 @@ import { MatListModule } from "@angular/material/list";
 import { PosService, PromoInfo, UtilsService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { TotalsComponent } from "./totals.component";
 
 class PosServiceStub {

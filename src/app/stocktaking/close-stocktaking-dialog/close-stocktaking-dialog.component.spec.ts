@@ -8,6 +8,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { PosConfigToken, StocktakingService } from "@efaps/pos-library";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { CloseStocktakingDialogComponent } from "./close-stocktaking-dialog.component";
 
 describe("CloseStocktakingDialogComponent", () => {

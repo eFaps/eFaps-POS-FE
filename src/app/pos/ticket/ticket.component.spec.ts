@@ -5,6 +5,7 @@ import { MatTableModule } from "@angular/material/table";
 import { PosService, PromoInfo } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { TicketComponent } from "./ticket.component";
 
 class PosServiceStub {

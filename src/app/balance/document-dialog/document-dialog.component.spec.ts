@@ -8,6 +8,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { DocumentService, PosConfigToken } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { DocumentDialogComponent } from "./document-dialog.component";
 
 class DocumentServiceStub {}

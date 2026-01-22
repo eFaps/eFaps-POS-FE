@@ -8,6 +8,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { PosConfigToken, PrintService } from "@efaps/pos-library";
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { PrintDisplayComponent } from "./print-display.component";
 
 describe("PrintDisplayComponent", () => {
