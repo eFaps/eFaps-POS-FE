@@ -24,9 +24,9 @@ import {
 import { provideTranslateService, TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { CreateCreditNoteComponent } from "./create-credit-note.component";
-
 class DocumentServiceStub {
   getReceipt(id: string): Observable<Receipt> {
     return new Observable((observer) => {

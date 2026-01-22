@@ -3,9 +3,9 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { ImageComponent } from "./image.component";
-
 describe("ImageComponent", () => {
   let component: ImageComponent;
   let fixture: ComponentFixture<ImageComponent>;

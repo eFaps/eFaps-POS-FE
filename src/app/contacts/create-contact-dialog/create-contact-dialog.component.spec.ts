@@ -26,6 +26,7 @@ import {
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { MockDirective, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { CreateContactDialogComponent } from "./create-contact-dialog.component";
 

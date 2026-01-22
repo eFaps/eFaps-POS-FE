@@ -6,9 +6,9 @@ import { MatTableModule } from "@angular/material/table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { InventoryEntry, InventoryService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { InventoryTableComponent } from "./inventory-table.component";
-
 class InventoryServiceStub {
   getInventory(): Observable<InventoryEntry[]> {
     return new Observable();

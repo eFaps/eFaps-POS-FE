@@ -15,6 +15,7 @@ import {
   WorkspaceService,
 } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { AutoComponent } from "../auto/auto.component";
 import { CardComponent } from "../card/card.component";
@@ -22,7 +23,6 @@ import { CashComponent } from "../cash/cash.component";
 import { DiscountComponent } from "../discount/discount.component";
 import { FreeComponent } from "../free/free.component";
 import { PaymentTypeComponent } from "./payment-type.component";
-
 class AuthServiceStub {
   getCurrentUsername() {
     return "usename";

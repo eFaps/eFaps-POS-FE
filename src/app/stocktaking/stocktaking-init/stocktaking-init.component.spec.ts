@@ -13,9 +13,9 @@ import {
   StocktakingService,
 } from "@efaps/pos-library";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { StocktakingInitComponent } from "./stocktaking-init.component";
-
 class InventoryServiceStub {
   getWarehouses() {
     return new Observable((observer) => {

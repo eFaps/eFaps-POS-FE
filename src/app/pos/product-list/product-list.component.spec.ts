@@ -16,10 +16,10 @@ import {
 } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { ProductComponent } from "../../shared/product/product.component";
 import { ProductListComponent } from "./product-list.component";
-
 class PosServiceStub {
   currentOrder = new Observable((observer) => {
     observer.next({});

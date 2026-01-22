@@ -5,9 +5,9 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from "@angular/material/dialog";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { CashEntryDialogComponent } from "./cash-entry-dialog.component";
-
 describe("CashEntryDialogComponent", () => {
   let component: CashEntryDialogComponent;
   let fixture: ComponentFixture<CashEntryDialogComponent>;

@@ -34,9 +34,9 @@ import { AngularSvgIconModule, SvgIconRegistryService } from "angular-svg-icon";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 import { vi } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { LoginComponent } from "./login.component";
-
 const user = {
   username: "demo",
   firstName: "Firstname",

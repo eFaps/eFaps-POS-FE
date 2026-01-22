@@ -5,6 +5,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatMenuModule } from "@angular/material/menu";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { ThemePickerComponent } from "./theme-picker.component";
 

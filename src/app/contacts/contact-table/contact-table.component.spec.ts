@@ -24,6 +24,7 @@ import {
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { ContactTableComponent } from "./contact-table.component";
 

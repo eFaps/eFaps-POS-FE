@@ -21,9 +21,9 @@ import {
 import { TranslateDirective, TranslatePipe } from "@ngx-translate/core";
 import { MockDirective, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { CommandsComponent } from "./commands.component";
-
 class PosServiceStub {
   currentOrder = new Observable((observer) => {
     observer.next({});

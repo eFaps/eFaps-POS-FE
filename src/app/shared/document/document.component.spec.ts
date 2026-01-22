@@ -23,6 +23,7 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 import { vi } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { DocumentComponent } from "./document.component";
 

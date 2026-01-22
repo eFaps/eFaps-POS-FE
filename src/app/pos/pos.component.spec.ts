@@ -31,6 +31,7 @@ import {
 } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { KeypadService, PosSyncService } from "../services";
 import { CommandsComponent } from "./commands/commands.component";
@@ -39,7 +40,6 @@ import { ProductGridComponent } from "./product-grid/product-grid.component";
 import { ProductListComponent } from "./product-list/product-list.component";
 import { TicketComponent } from "./ticket/ticket.component";
 import { TotalsComponent } from "./totals/totals.component";
-
 class AuthServiceStub {
   getCurrentUsername() {
     return "blabla";

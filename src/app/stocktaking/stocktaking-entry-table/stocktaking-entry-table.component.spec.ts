@@ -7,9 +7,9 @@ import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { Router } from "@angular/router";
 import { PageRequest, StocktakingService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { StocktakingEntryTableComponent } from "./stocktaking-entry-table.component";
-
 class RouterStub {
   currentNavigation() {
     return {

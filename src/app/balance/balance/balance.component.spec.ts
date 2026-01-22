@@ -21,6 +21,7 @@ import {
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { MockComponent, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { BalanceDocumentListComponent } from "../balance-document-list/balance-document-list.component";
 import { BalanceListComponent } from "../balance-list/balance-list.component";
@@ -28,7 +29,6 @@ import { BalancePaymentListComponent } from "../balance-payment-list/balance-pay
 import { BalanceSummaryComponent } from "../balance-summary/balance-summary.component";
 import { DocumentListComponent } from "../document-list/document-list.component";
 import { BalanceComponent } from "./balance.component";
-
 class BalanceServiceStub {
   currentBalance = new Observable((observer) => {
     observer.next([]);

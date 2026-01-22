@@ -4,9 +4,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import { PosService, WorkspaceService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { WorkspaceComponent } from "./workspace.component";
-
 class PosServiceStub {
   getPoss() {
     return new Observable((observer) => {

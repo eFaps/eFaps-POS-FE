@@ -3,11 +3,11 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { Workspace, WorkspaceService } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { BaseSpotPickerComponent } from "../base-spot-picker/base-spot-picker.component";
 import { ExtendedSpotPickerComponent } from "../extended-spot-picker/extended-spot-picker.component";
 import { SpotsComponent } from "./spots.component";
-
 class WorkspaceServiceStub {
   currentWorkspace = new Observable<Workspace>();
 }

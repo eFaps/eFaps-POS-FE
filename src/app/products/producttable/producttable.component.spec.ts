@@ -14,10 +14,10 @@ import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
 import { ProductService } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { ProductComponent } from "../../shared/product/product.component";
 import { ProducttableComponent } from "./producttable.component";
-
 class ProductServiceStub {
   getProducts() {
     return new Observable((observer) => {

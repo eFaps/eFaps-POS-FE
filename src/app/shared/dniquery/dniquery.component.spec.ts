@@ -10,7 +10,7 @@ import { EnquiryService } from "@efaps/pos-library";
 import { DNIQueryComponent } from "./dniquery.component";
 
 class EnquiryServiceStub {}
-
+import { beforeEach, describe, expect, it } from "vitest";
 describe("DNIQueryComponent", () => {
   let component: DNIQueryComponent;
   let fixture: ComponentFixture<DNIQueryComponent>;

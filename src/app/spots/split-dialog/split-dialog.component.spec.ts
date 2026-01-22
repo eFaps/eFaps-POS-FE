@@ -6,10 +6,10 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MockComponent } from "ng-mocks";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
 import { SplitDialogComponent } from "./split-dialog.component";
-
 describe("SplitDialogComponent", () => {
   let component: SplitDialogComponent;
   let fixture: ComponentFixture<SplitDialogComponent>;

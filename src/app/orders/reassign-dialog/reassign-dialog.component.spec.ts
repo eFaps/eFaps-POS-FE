@@ -19,10 +19,10 @@ import {
 } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { ReassignItemComponent } from "../reassign-item/reassign-item.component";
 import { ReassignDialogComponent } from "./reassign-dialog.component";
-
 class DocumentServiceStub {
   getOpenOrders(): Observable<Order[]> {
     return new Observable();

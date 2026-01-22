@@ -10,9 +10,9 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatTableModule } from "@angular/material/table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CalculatorService, DocumentService } from "@efaps/pos-library";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { SplitOrderDialogComponent } from "./split-order-dialog.component";
-
 class DocumentServiceStub {}
 class CalculatorServiceStub {}
 

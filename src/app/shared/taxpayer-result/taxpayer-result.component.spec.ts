@@ -11,9 +11,9 @@ import { MatTableModule } from "@angular/material/table";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { EnquiryService, Page, PageRequest, RUC } from "@efaps/pos-library";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { TaxpayerResultComponent } from "./taxpayer-result.component";
-
 class EnquiryServiceStub {
   public findRUCs(term: string, pageable?: PageRequest): Observable<Page<RUC>> {
     return new Observable((observer) => {

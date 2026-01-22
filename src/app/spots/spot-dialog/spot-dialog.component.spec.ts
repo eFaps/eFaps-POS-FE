@@ -11,9 +11,9 @@ import { Spot, SpotService } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { SpotDialogComponent } from "./spot-dialog.component";
-
 class SpotServiceStub {
   getSpots(): Observable<Spot[]> {
     return new Observable();

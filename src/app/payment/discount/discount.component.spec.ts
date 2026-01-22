@@ -16,10 +16,10 @@ import {
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockComponent, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
 import { DiscountComponent } from "./discount.component";
-
 class AuthServiceStub {}
 class ConfigServiceStub {}
 class DocumentServiceStub {}

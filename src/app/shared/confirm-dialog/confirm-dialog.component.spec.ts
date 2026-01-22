@@ -6,9 +6,9 @@ import {
   MatDialogRef,
 } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { ConfirmDialogComponent } from "./confirm-dialog.component";
-
 describe("ConfirmDialogComponent", () => {
   let component: ConfirmDialogComponent;
   let fixture: ComponentFixture<ConfirmDialogComponent>;

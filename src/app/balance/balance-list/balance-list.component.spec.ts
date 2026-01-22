@@ -5,9 +5,9 @@ import { MatTableModule } from "@angular/material/table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Balance, BalanceService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { BalanceListComponent } from "./balance-list.component";
-
 class BalanceServiceStub {
   getBalances(): Observable<Balance[]> {
     return new Observable();

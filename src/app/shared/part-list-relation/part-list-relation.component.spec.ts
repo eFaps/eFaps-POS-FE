@@ -1,9 +1,9 @@
 import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ProductRelationType, ProductService } from "@efaps/pos-library";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { PartListRelationComponent } from "./part-list-relation.component";
-
 class ProductServiceStub {}
 
 describe("PartListRelationComponent", () => {

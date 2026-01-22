@@ -5,10 +5,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Balance, BalanceService, BalanceSummary } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { BalanceSummaryComponent } from "../balance-summary/balance-summary.component";
 import { BalanceSummaryDialogComponent } from "./balance-summary-dialog.component";
-
 class BalanceServiceStub {
   getSummary(balance: Balance): Observable<BalanceSummary> {
     return new Observable();
