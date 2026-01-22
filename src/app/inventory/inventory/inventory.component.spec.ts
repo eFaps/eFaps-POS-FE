@@ -1,14 +1,13 @@
 import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatTabsModule } from "@angular/material/tabs";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { InventoryService } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { InventoryTableComponent } from "../inventory-table/inventory-table.component";
 import { InventoryComponent } from "./inventory.component";
+
 class InventoryServiceStub {
   getWarehouses() {
     return new Observable((observer) => {
@@ -24,7 +23,6 @@ describe("InventoryComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
         MatTabsModule,
         InventoryComponent,
         MockComponent(InventoryTableComponent),

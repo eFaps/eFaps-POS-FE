@@ -7,7 +7,6 @@ import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   AuthService,
   Permission,
@@ -16,13 +15,13 @@ import {
 } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { AutoComponent } from "../auto/auto.component";
 import { CardComponent } from "../card/card.component";
 import { CashComponent } from "../cash/cash.component";
 import { DiscountComponent } from "../discount/discount.component";
 import { FreeComponent } from "../free/free.component";
 import { PaymentTypeComponent } from "./payment-type.component";
+
 class AuthServiceStub {
   getCurrentUsername() {
     return "usename";
@@ -45,7 +44,6 @@ describe("PaymentTypeComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
         MatTableModule,
         MatTabsModule,
         MockComponent(AutoComponent),

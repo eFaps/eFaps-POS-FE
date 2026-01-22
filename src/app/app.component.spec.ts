@@ -27,9 +27,9 @@ import {
 import { MockComponent, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { AppComponent } from "./app.component";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
+
 class AuthServiceStub {
   currentEvent = new Observable();
   hasPermission(...permissions: Permission[]): boolean {

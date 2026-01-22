@@ -15,8 +15,8 @@ import {
 } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { ProductsElementComponent } from "./products-element.component";
+
 class PosServiceStub {
   currentOrder = new Observable((observer) => {
     observer.next({});

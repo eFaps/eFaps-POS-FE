@@ -2,10 +2,8 @@ import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatIconModule } from "@angular/material/icon";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Hotkey, HotkeysService } from "angular2-hotkeys";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { KeypadComponent } from "./keypad.component";
 
 class HotkeysServiceStub {
@@ -20,12 +18,7 @@ describe("KeypadComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        MatGridListModule,
-        MatIconModule,
-        KeypadComponent,
-      ],
+      imports: [MatGridListModule, MatIconModule, KeypadComponent],
       providers: [
         provideZonelessChangeDetection(),
         { provide: HotkeysService, useClass: HotkeysServiceStub },

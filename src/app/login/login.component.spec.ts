@@ -4,7 +4,7 @@ import {
   withInterceptorsFromDi,
 } from "@angular/common/http";
 import { DebugElement, provideZonelessChangeDetection } from "@angular/core";
-import { ComponentFixture, TestBed, inject } from "@angular/core/testing";
+import { ComponentFixture, inject, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatCardModule } from "@angular/material/card";
@@ -13,9 +13,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { By } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Router } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
 import {
   MatKeyboardModule,
   MatKeyboardService,
@@ -33,10 +31,9 @@ import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { AngularSvgIconModule, SvgIconRegistryService } from "angular-svg-icon";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
-import { vi } from "vitest";
-import { beforeEach, describe, expect, it } from "vitest";
-
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { LoginComponent } from "./login.component";
+
 const user = {
   username: "demo",
   firstName: "Firstname",
@@ -97,14 +94,14 @@ describe("LoginComponent", () => {
     TestBed.configureTestingModule({
       imports: [
         AngularSvgIconModule,
-        BrowserAnimationsModule,
+
         MatCardModule,
         MatKeyboardModule,
         MatSnackBarModule,
         MatFormFieldModule,
         MatInputModule,
         ReactiveFormsModule,
-        RouterTestingModule,
+
         MatSlideToggleModule,
         MatButtonToggleModule,
         LoginComponent,

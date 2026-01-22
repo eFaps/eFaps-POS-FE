@@ -1,14 +1,13 @@
 import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatListModule } from "@angular/material/list";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BalanceService, DocumentService } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { BalancePaymentListComponent } from "./balance-payment-list.component";
+
 class BalanceServiceStub {
   currentBalance = new Observable((observer) => {
     observer.next([]);
@@ -30,7 +29,6 @@ describe("BalancePaymentListComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
         MatListModule,
         BalancePaymentListComponent,
         MockPipe(TranslatePipe),

@@ -2,7 +2,6 @@ import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   AuthService,
   ConfigService,
@@ -17,9 +16,9 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockComponent, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
 import { DiscountComponent } from "./discount.component";
+
 class AuthServiceStub {}
 class ConfigServiceStub {}
 class DocumentServiceStub {}
@@ -55,7 +54,6 @@ describe("DiscountComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
         ReactiveFormsModule,
         DiscountComponent,
         MockPipe(TranslatePipe),

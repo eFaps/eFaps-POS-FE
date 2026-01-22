@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { PrintService } from "@efaps/pos-library";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { SuccessDialogComponent } from "./success-dialog.component";
+
 describe("SuccessDialogComponent", () => {
   let component: SuccessDialogComponent;
   let fixture: ComponentFixture<SuccessDialogComponent>;

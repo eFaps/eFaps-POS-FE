@@ -11,7 +11,6 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatTooltipModule } from "@angular/material/tooltip";
-import { RouterTestingModule } from "@angular/router/testing";
 import {
   DocumentService,
   ImageService,
@@ -24,7 +23,6 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { ExtendedSpotPickerComponent } from "./extended-spot-picker.component";
 
 class PosServiceStub {}
@@ -42,7 +40,6 @@ describe("ExtendedSpotPickerComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         MatDialogModule,
         MatSnackBarModule,
         MatIconModule,

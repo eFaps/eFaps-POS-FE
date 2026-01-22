@@ -13,9 +13,9 @@ import {
 import { PosConfigToken, PrintService, UtilsService } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { PrintDisplayComponent } from "../../shared/print-display/print-display.component";
 import { SuccessDialogComponent } from "./success-dialog.component";
+
 class PrintServiceSub {}
 
 class UtilsServiceStub {

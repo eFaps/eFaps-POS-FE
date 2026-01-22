@@ -1,7 +1,7 @@
 import { Routes } from "@angular/router";
 import {
-  Permission,
   authGuard,
+  Permission,
   permissionGuard,
   workspaceGuard,
 } from "@efaps/pos-library";

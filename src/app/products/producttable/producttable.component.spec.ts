@@ -9,15 +9,14 @@ import { MatInputModule } from "@angular/material/input";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
 import { ProductService } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { ProductComponent } from "../../shared/product/product.component";
 import { ProducttableComponent } from "./producttable.component";
+
 class ProductServiceStub {
   getProducts() {
     return new Observable((observer) => {
@@ -33,7 +32,6 @@ describe("ProducttableComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
         MatKeyboardModule,
         ReactiveFormsModule,
         MatDialogModule,

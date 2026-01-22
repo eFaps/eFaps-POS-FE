@@ -2,12 +2,11 @@ import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatTableModule } from "@angular/material/table";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BalanceService, DocumentService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { BalanceDocumentListComponent } from "./balance-document-list.component";
+
 class BalanceServiceStub {
   currentBalance = new Observable((observer) => {
     observer.next([]);
@@ -28,12 +27,7 @@ describe("BalanceDocumentListComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        MatDialogModule,
-        MatTableModule,
-        BalanceDocumentListComponent,
-      ],
+      imports: [MatDialogModule, MatTableModule, BalanceDocumentListComponent],
       providers: [
         provideZonelessChangeDetection(),
         { provide: DocumentService, useClass: DocumentServiceStub },

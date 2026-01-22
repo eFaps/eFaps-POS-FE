@@ -7,8 +7,8 @@ import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { PosConfigToken } from "@efaps/pos-library";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { RemoteComponent } from "./remote.component";
+
 describe("RemoteComponent", () => {
   let component: RemoteComponent;
   let fixture: ComponentFixture<RemoteComponent>;

@@ -5,14 +5,13 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from "@angular/material/dialog";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PrintService } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { PrintDisplayComponent } from "../print-display/print-display.component";
 import { PrintDialogComponent } from "./print-dialog.component";
+
 class PrintServiceStub {}
 
 describe("PrintDialogComponent", () => {
@@ -22,7 +21,6 @@ describe("PrintDialogComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
         MatDialogModule,
         PrintDialogComponent,
         MockComponent(PrintDisplayComponent),

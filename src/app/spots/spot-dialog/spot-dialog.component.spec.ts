@@ -5,15 +5,13 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from "@angular/material/dialog";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { RouterTestingModule } from "@angular/router/testing";
 import { Spot, SpotService } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { SpotDialogComponent } from "./spot-dialog.component";
+
 class SpotServiceStub {
   getSpots(): Observable<Spot[]> {
     return new Observable();
@@ -26,13 +24,7 @@ describe("SpotDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        RouterTestingModule,
-        MatDialogModule,
-        SpotDialogComponent,
-        MockPipe(TranslatePipe),
-      ],
+      imports: [MatDialogModule, SpotDialogComponent, MockPipe(TranslatePipe)],
       providers: [
         provideZonelessChangeDetection(),
         { provide: MatDialogRef, useValue: {} },

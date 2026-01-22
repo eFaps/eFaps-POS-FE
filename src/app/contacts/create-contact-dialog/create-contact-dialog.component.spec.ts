@@ -16,7 +16,6 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   ConfigService,
   ContactService,
@@ -27,7 +26,6 @@ import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { MockDirective, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { CreateContactDialogComponent } from "./create-contact-dialog.component";
 
 class TranslateServiceStub {
@@ -53,7 +51,6 @@ describe("CreateContactDialogComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
         ReactiveFormsModule,
         MatSnackBarModule,
         MatFormFieldModule,

@@ -16,7 +16,6 @@ import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { EmployeeService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { EmployeeDialogComponent } from "./employee-dialog.component";
 
 class EmployeeServiceStub {

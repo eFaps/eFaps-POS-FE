@@ -3,10 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatIconModule } from "@angular/material/icon";
 import { MatMenuModule } from "@angular/material/menu";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { RouterTestingModule } from "@angular/router/testing";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { ThemePickerComponent } from "./theme-picker.component";
 
 describe("ThemePickerComponent", () => {
@@ -16,8 +13,6 @@ describe("ThemePickerComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
-        RouterTestingModule,
         MatMenuModule,
         MatGridListModule,
         MatIconModule,

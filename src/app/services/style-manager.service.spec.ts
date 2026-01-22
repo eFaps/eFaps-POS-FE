@@ -1,8 +1,8 @@
 import { provideZonelessChangeDetection } from "@angular/core";
-import { TestBed, inject } from "@angular/core/testing";
+import { inject, TestBed } from "@angular/core/testing";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { StyleManagerService } from "./style-manager.service";
+
 describe("StyleManagerService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({

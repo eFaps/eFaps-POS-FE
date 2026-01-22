@@ -8,8 +8,8 @@ import { MatDialogRef } from "@angular/material/dialog";
 import { Category, PosConfigToken, ProductService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { CategorySelectComponent } from "./category-select.component";
+
 class ProductServiceStub {
   getCategories(): Observable<Category[]> {
     return new Observable();

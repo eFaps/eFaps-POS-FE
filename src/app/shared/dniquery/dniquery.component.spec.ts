@@ -6,11 +6,11 @@ import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { EnquiryService } from "@efaps/pos-library";
-
+import { beforeEach, describe, expect, it } from "vitest";
 import { DNIQueryComponent } from "./dniquery.component";
 
 class EnquiryServiceStub {}
-import { beforeEach, describe, expect, it } from "vitest";
+
 describe("DNIQueryComponent", () => {
   let component: DNIQueryComponent;
   let fixture: ComponentFixture<DNIQueryComponent>;

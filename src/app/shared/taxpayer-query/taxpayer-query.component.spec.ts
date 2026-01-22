@@ -9,8 +9,8 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { EnquiryService } from "@efaps/pos-library";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { TaxpayerQueryComponent } from "./taxpayer-query.component";
+
 class EnquiryServiceStub {}
 
 describe("TaxpayerQueryComponent", () => {

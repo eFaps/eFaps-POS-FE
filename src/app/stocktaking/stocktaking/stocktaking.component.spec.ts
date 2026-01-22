@@ -17,8 +17,8 @@ import {
 } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { StocktakingComponent } from "./stocktaking.component";
+
 class ActivatedRouteStub {
   params = new Observable((observer) => {});
 }

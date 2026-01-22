@@ -13,7 +13,6 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { By } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   ConfigService,
   Contact,
@@ -25,7 +24,6 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { ContactTableComponent } from "./contact-table.component";
 
 class ContactServiceStub {
@@ -68,7 +66,6 @@ describe("ContactTableComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
         ReactiveFormsModule,
         MatDialogModule,
         MatTableModule,

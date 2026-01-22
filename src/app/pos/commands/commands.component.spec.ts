@@ -7,8 +7,6 @@ import { provideZonelessChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { RouterTestingModule } from "@angular/router/testing";
 import {
   AuthService,
   InventoryService,
@@ -22,8 +20,8 @@ import { TranslateDirective, TranslatePipe } from "@ngx-translate/core";
 import { MockDirective, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { CommandsComponent } from "./commands.component";
+
 class PosServiceStub {
   currentOrder = new Observable((observer) => {
     observer.next({});
@@ -61,8 +59,6 @@ describe("CommandsComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
-        RouterTestingModule,
         MatDialogModule,
         MatSnackBarModule,
         CommandsComponent,

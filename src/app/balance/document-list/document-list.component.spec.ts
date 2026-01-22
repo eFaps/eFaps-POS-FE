@@ -10,11 +10,10 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatTableModule } from "@angular/material/table";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { DocumentService, PosConfigToken } from "@efaps/pos-library";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { DocumentListComponent } from "./document-list.component";
+
 describe("DocumentListComponent", () => {
   let component: DocumentListComponent;
   let fixture: ComponentFixture<DocumentListComponent>;
@@ -23,7 +22,7 @@ describe("DocumentListComponent", () => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
-        BrowserAnimationsModule,
+
         MatDialogModule,
         MatTableModule,
         MatFormFieldModule,

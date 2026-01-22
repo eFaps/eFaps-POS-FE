@@ -6,7 +6,6 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatTableModule } from "@angular/material/table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { RouterTestingModule } from "@angular/router/testing";
 import {
   AuthService,
   InventoryService,
@@ -17,9 +16,9 @@ import {
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { ProductComponent } from "../../shared/product/product.component";
 import { ProductListComponent } from "./product-list.component";
+
 class PosServiceStub {
   currentOrder = new Observable((observer) => {
     observer.next({});
@@ -49,7 +48,6 @@ describe("ProductListComponent", () => {
       imports: [
         BrowserAnimationsModule,
         ReactiveFormsModule,
-        RouterTestingModule,
         MatDialogModule,
         MatTableModule,
         MatFormFieldModule,

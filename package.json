@@ -63,6 +63,7 @@
     "@angular/cli": "^21.1.1",
     "@angular/compiler-cli": "^21.1.1",
     "@angular/localize": "^21.1.1",
+    "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
     "@types/core-js": "^2.5.8",
     "@types/mousetrap": "^1.6.15",
     "@types/node": "^25.0.10",
@@ -75,7 +76,6 @@
     "jsdom": "^27.4.0",
     "ng-mocks": "^14.15.0",
     "prettier": "^3.8.1",
-    "prettier-plugin-sort-imports": "^1.8.9",
     "replace-in-file": "^8.4.0",
     "sass": "^1.97.3",
     "ts-node": "^10.9.2",
@@ -95,7 +95,7 @@
   },
   "prettier": {
     "plugins": [
-      "prettier-plugin-sort-imports"
+      "@ianvs/prettier-plugin-sort-imports"
     ],
     "sortingMethod": "alphabetical",
     "stripNewlines": true,
@@ -115,38 +115,6 @@
       "@angular/forms": "^21.1.1",
       "@angular/platform-browser": "^21.1.1",
       "rxjs": "~7.8.2"
-    }
-  },
-  "build": {
-    "appId": "efaps.pos.fe",
-    "productName": "eFaps-POS-FE",
-    "directories": {
-      "output": "distribution"
-    },
-    "linux": {
-      "category": "Office",
-      "description": "POS",
-      "target": [
-        "AppImage",
-        "deb",
-        "zip"
-      ]
-    },
-    "win": {
-      "target": [
-        {
-          "target": "nsis",
-          "arch": [
-            "x64"
-          ]
-        },
-        {
-          "target": "portable",
-          "arch": [
-            "x64"
-          ]
-        }
-      ]
     }
   }
 }

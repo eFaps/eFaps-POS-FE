@@ -4,12 +4,11 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MockComponent } from "ng-mocks";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { KeypadComponent } from "../../shared/keypad/keypad.component";
 import { SplitDialogComponent } from "./split-dialog.component";
+
 describe("SplitDialogComponent", () => {
   let component: SplitDialogComponent;
   let fixture: ComponentFixture<SplitDialogComponent>;
@@ -18,7 +17,7 @@ describe("SplitDialogComponent", () => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
-        BrowserAnimationsModule,
+
         MatFormFieldModule,
         MatInputModule,
         SplitDialogComponent,

@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { DocumentService, PaymentService } from "@efaps/pos-library";
 import { Observable } from "rxjs/internal/Observable";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { RedeemCreditNoteComponent } from "./redeem-credit-note.component";
+
 describe("RedeemCreditNoteComponent", () => {
   let component: RedeemCreditNoteComponent;
   let fixture: ComponentFixture<RedeemCreditNoteComponent>;

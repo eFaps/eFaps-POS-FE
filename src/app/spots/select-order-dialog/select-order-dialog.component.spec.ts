@@ -8,8 +8,8 @@ import {
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { SelectOrderDialogComponent } from "./select-order-dialog.component";
+
 describe("SelectOrderDialogComponent", () => {
   let component: SelectOrderDialogComponent;
   let fixture: ComponentFixture<SelectOrderDialogComponent>;

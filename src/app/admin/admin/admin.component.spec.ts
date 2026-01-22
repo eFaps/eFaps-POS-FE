@@ -18,9 +18,9 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { environment } from "../../../environments/environment";
 import { AdminComponent } from "./admin.component";
+
 class AdminServiceStub {
   version(): Observable<Versions> {
     return new Observable((observer) => {

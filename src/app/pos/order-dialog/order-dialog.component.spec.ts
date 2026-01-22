@@ -5,12 +5,11 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from "@angular/material/dialog";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PrintService, WorkspaceService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
-
 import { OrderDialogComponent } from "./order-dialog.component";
+
 class PrintServiceStub {}
 class WorkspaceServiceStub {
   currentWorkspace = new Observable((observer) => {
@@ -28,7 +27,7 @@ describe("OrderDialogComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MatDialogModule, OrderDialogComponent],
+      imports: [MatDialogModule, OrderDialogComponent],
       providers: [
         provideZonelessChangeDetection(),
         { provide: MatDialogRef, useValue: {} },

@@ -34,7 +34,6 @@ import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 import { AngularSvgIconModule } from "angular-svg-icon";
 import { HotkeyModule } from "angular2-hotkeys";
 import { provideNgxLocalstorage } from "ngx-localstorage";
-
 import { AppComponent } from "./app/app.component";
 import { routes } from "./app/app.routes";
 import { ErrorInterceptor } from "./app/services/index";

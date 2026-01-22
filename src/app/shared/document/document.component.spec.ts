@@ -7,9 +7,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatListModule } from "@angular/material/list";
 import { MatTableModule } from "@angular/material/table";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Router } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
 import {
   AuthService,
   DocumentService,
@@ -22,9 +20,7 @@ import {
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
-import { vi } from "vitest";
-import { beforeEach, describe, expect, it } from "vitest";
-
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { DocumentComponent } from "./document.component";
 
 const routerSpy = {
@@ -54,8 +50,6 @@ describe("DocumentComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
-        RouterTestingModule,
         MatDialogModule,
         MatListModule,
         MatTableModule,
