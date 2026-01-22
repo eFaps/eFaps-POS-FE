@@ -1,7 +1,8 @@
-import { Component, Input, OnInit, inject } from "@angular/core";
+import { Component, Input, inject, input, signal } from "@angular/core";
+import { MatDialogRef } from "@angular/material/dialog";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
 import { PrintService } from "@efaps/pos-library";
-import { Observable } from "rxjs";
+import { Observable, timer } from "rxjs";
 
 @Component({
   selector: "app-print-display",
@@ -9,26 +10,24 @@ import { Observable } from "rxjs";
   styleUrls: ["./print-display.component.scss"],
   imports: [MatProgressSpinner],
 })
-export class PrintDisplayComponent implements OnInit {
+export class PrintDisplayComponent {
   private printService = inject(PrintService);
 
-  previewUrls: any[] = [];
-  loaded = false;
-  showEmptyMsg = false;
-  success = false;
+  dialogRef = input<MatDialogRef<any>>();
 
-  ngOnInit() {}
+  loaded = signal<boolean>(false);
+  showEmptyMsg = signal<boolean>(false);
+  success = signal<boolean>(false);
+
+  previewUrls: any[] = [];
 
   @Input()
   set printObservable(printObservable: Observable<any> | undefined) {
     const t = this;
     if (printObservable) {
-      printObservable.subscribe((_printResponses) => {
-        if (_printResponses.length < 1) {
-          t.loaded = true;
-          t.showEmptyMsg = true;
-        } else {
-          _printResponses.forEach(
+      printObservable.subscribe((printResponses) => {
+        if (printResponses != null && printResponses.length > 0) {
+          printResponses.forEach(
             (_printResponse: { printer: { type: string }; key: string }) => {
               if (_printResponse.printer.type === "PREVIEW") {
                 this.printService
@@ -39,18 +38,24 @@ export class PrintDisplayComponent implements OnInit {
                       "load",
                       () => {
                         t.previewUrls.push(reader.result);
-                        t.loaded = true;
+                        t.loaded.set(true);
                       },
                       false,
                     );
                     reader.readAsDataURL(preview);
                   });
               } else {
-                t.success = true;
-                t.loaded = true;
+                t.loaded.set(true);
+                t.success.set(true);
+                timer(5000).subscribe(() => {
+                  this.dialogRef()?.close();
+                });
               }
             },
           );
+        } else {
+          t.loaded.set(true);
+          t.showEmptyMsg.set(true);
         }
       });
     }

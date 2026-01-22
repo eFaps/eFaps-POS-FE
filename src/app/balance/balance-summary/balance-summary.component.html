@@ -8,13 +8,18 @@
       </div>
       @if (summary().cashEntries.length > 0) {
         <div class="opening">
-          <span>Registros</span>
-          @for (cashEntry of summary().cashEntries; track cashEntry) {
-            <div class="cashEntry">
-              {{ "CASHENTRYTYPE." + cashEntry.entryType | translate }}:
-              {{ cashEntry.amount | posCurrency: cashEntry.currency }}
-            </div>
-          }
+          <span class="openingTitle">Registros de Salida / Ingreso:</span>
+          <ul>
+            @for (cashEntry of summary().cashEntries; track cashEntry) {
+              <li>
+                <div class="cashEntry">
+                  {{ "CASHENTRYTYPE." + cashEntry.entryType | translate }}:
+                  {{ cashEntry.amount | posCurrency: cashEntry.currency }} -
+                  {{ cashEntry.description }}
+                </div>
+              </li>
+            }
+          </ul>
         </div>
       }
       <div class="print">

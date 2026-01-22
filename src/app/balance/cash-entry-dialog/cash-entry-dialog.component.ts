@@ -48,6 +48,7 @@ export class CashEntryDialogComponent {
     this.cashEntryForm = this.fb.group({
       type: [undefined, [Validators.required]],
       currency: [undefined, [Validators.required]],
+      description: ["", Validators.required],
       amount: ["", Validators.required],
     });
   }

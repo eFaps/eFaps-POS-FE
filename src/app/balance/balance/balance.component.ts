@@ -141,6 +141,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
                     entryType: CashEntryType.OPENING,
                     amount: Number.parseFloat(_result[property]),
                     currency: Currency[property as keyof typeof Currency],
+                    description: "",
                   });
                 }
                 this.balanceService
@@ -193,18 +194,19 @@ export class BalanceComponent implements OnInit, OnDestroy {
       .open(CashEntryDialogComponent)
       .afterClosed()
       .subscribe({
-        next: (data) => {
-          if (data) {
-            this.balanceService
-              .addCashEntries(this.currentBalance!, [
+        next: (cashEntryData) => {
+          if (cashEntryData) {
+            this.dialog.open(PrintDialogComponent, {
+              data: this.balanceService.addCashEntries(this.currentBalance!, [
                 {
                   balanceOid: this.currentBalance!.id,
-                  entryType: data.type,
-                  amount: data.amount,
-                  currency: data.currency,
+                  entryType: cashEntryData.type,
+                  amount: cashEntryData.amount,
+                  currency: cashEntryData.currency,
+                  description: cashEntryData.description,
                 },
-              ])
-              .subscribe();
+              ]),
+            });
           }
         },
       });

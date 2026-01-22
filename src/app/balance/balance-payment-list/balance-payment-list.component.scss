@@ -1,6 +1,10 @@
 $col1: 150px;
 $col2: 60px;
 
+.wrapper {
+  padding: 15px;
+}
+
 .paymentType,
 .amount {
   font-weight: bold;
@@ -18,7 +22,7 @@ $col2: 60px;
 
 .total {
   padding-left: 15px;
-
+  margin-bottom: 20px;
   span {
     font-weight: bold;
     display: inline-block;

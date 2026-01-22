@@ -1,8 +1,13 @@
 .wrapper {
+  min-width: 500px;
   form {
     display: flex;
     flex-direction: column;
     gap: 10px;
     align-items: center;
+
+    .mat-mdc-form-field {
+      min-width: 100%;
+    }
   }
 }

@@ -1,10 +1,10 @@
-@if (!loaded) {
+@if (!loaded()) {
   <mat-spinner />
 }
-@if (showEmptyMsg) {
+@if (showEmptyMsg()) {
   <h2>No se impremi nada</h2>
 }
-@if (!showEmptyMsg && success) {
+@if (!showEmptyMsg && success()) {
   <h2 class="success">LISTO</h2>
 }
 @for (url of previewUrls; track url; let i = $index) {
