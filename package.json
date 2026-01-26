@@ -67,7 +67,7 @@
     "@types/mousetrap": "^1.6.15",
     "@types/node": "^25.0.10",
     "@types/sockjs-client": "^1.5.4",
-    "@vitest/browser-playwright": "^4.0.17",
+    "@vitest/browser-playwright": "^4.0.18",
     "angular-eslint": "21.1.0",
     "codelyzer": "^6.0.2",
     "eslint": "^9.39.2",
