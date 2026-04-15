@@ -62,17 +62,17 @@ export class InventoryTableComponent implements OnInit {
     }
   }
 
-  sortingDataAccessor(_entry: InventoryEntry, _sortHeaderId: string) {
-    switch (_sortHeaderId) {
+  sortingDataAccessor(entry: InventoryEntry, sortHeaderId: string) {
+    switch (sortHeaderId) {
       case "quantity":
-        return _entry.quantity;
+        return entry.quantity;
       case "sku":
-        return _entry.product.sku;
+        return entry.product.sku;
       case "description":
-        return _entry.product.description;
+        return entry.product.description ? entry.product.description : "";
       default:
+        return "";
     }
-    return "";
   }
 
   filterPredicate(_entry: InventoryEntry, _filter: string) {
@@ -81,7 +81,7 @@ export class InventoryTableComponent implements OnInit {
       " " +
       _entry.product.sku.toLowerCase() +
       " " +
-      _entry.product.description.toLowerCase();
+      _entry.product.description?.toLowerCase();
     return dataStr.indexOf(_filter) !== -1;
   }
 

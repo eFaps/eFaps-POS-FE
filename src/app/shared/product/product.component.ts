@@ -21,6 +21,7 @@ import {
   Product2Category,
   ProductRelation,
   ProductService,
+  ProductStatus,
   ProductType,
   RelationEntry,
   WorkspaceService,
@@ -56,7 +57,6 @@ export class ProductComponent implements OnInit {
     sku: "",
     type: ProductType.STANDART,
     description: "",
-    note: "",
     imageOid: "",
     netPrice: 0,
     crossPrice: 0,
@@ -68,6 +68,7 @@ export class ProductComponent implements OnInit {
     barcodes: [],
     bomGroupConfigs: [],
     configurationBOMs: [],
+    status: ProductStatus.ACTIVE,
   });
   currentCurrency: Currency = Currency.PEN;
   categories = signal<string[]>([]);
