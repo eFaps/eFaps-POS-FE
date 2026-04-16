@@ -70,19 +70,8 @@ export class BalanceComponent implements OnInit, OnDestroy {
           (this.currentBalance == undefined ||
             this.currentBalance.id != balance.id)
         ) {
-          this.payables = [];
           this.currentBalance = balance;
-          this.subscription$.add(
-            this.documentService.getDocuments4Balance(balance).subscribe({
-              next: (payables) =>
-                (this.payables = this.payables.concat(payables)),
-            }),
-          );
-          this.subscription$.add(
-            this.balanceService.getSummary(balance).subscribe({
-              next: (summary) => this.summary.set(summary),
-            }),
-          );
+          this.loadData();
         }
       }),
     );
@@ -111,6 +100,20 @@ export class BalanceComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription$.unsubscribe();
+  }
+
+  loadData() {
+    if (this.currentBalance) {
+      this.payables = [];
+      (this.documentService
+        .getDocuments4Balance(this.currentBalance)
+        .subscribe({
+          next: (payables) => (this.payables = this.payables.concat(payables)),
+        }),
+        this.balanceService.getSummary(this.currentBalance).subscribe({
+          next: (summary) => this.summary.set(summary),
+        }));
+    }
   }
 
   init() {
@@ -207,6 +210,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
                 },
               ]),
             });
+            this.loadData();
           }
         },
       });
