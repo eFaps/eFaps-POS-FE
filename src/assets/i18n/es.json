@@ -71,7 +71,11 @@
     "OPENING": "Initial",
     "WITHDRAWAL": "Retiro",
     "DEPOSIT": "Ingreso"
+  },
+  "PRODUCTSTATUS": {
+    "ACTIVE": "Activo",
+    "ARCHIVED": "Inactivo",
+    "DRAFT": "Borrador",
+    "UNLISTED": "Descatalogado"
   }
-
-
 }

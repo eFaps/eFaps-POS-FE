@@ -19,6 +19,7 @@ import {
   ProductService,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
 
 import { AbstractProductSelector } from "../../abstract-product-selector";
 import { KeypadService, PosSyncService } from "src/app/services";
@@ -36,6 +37,7 @@ import { KeypadService, PosSyncService } from "src/app/services";
     MatCardImage,
     MatCardContent,
     PosLibraryModule,
+    TranslatePipe,
   ],
 })
 export class ProductsElementComponent extends AbstractProductSelector {

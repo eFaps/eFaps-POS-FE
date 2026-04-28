@@ -1,7 +1,6 @@
 import {
   ChangeDetectorRef,
   Component,
-  OnDestroy,
   OnInit,
   ViewChild,
   inject,
@@ -33,6 +32,7 @@ import {
   MatKeyboardModule,
 } from "@efaps/angular-onscreen-material-keyboard";
 import { PageRequest, Product, ProductService } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
 import { debounceTime, merge, tap } from "rxjs";
 
 import { ProductComponent } from "../../shared/product/product.component";
@@ -63,6 +63,7 @@ import { ProductComponent } from "../../shared/product/product.component";
     MatRow,
     MatPaginator,
     MatKeyboardModule,
+    TranslatePipe,
   ],
 })
 export class ProducttableComponent implements OnInit {
@@ -70,7 +71,7 @@ export class ProducttableComponent implements OnInit {
   private dialog = inject(MatDialog);
   private changeDetectorRefs = inject(ChangeDetectorRef);
 
-  displayedColumns = ["sku", "description", "cmd"];
+  displayedColumns = ["sku", "description", "status", "cmd"];
   dataSource = new MatTableDataSource<Product>();
   _paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
@@ -141,9 +142,9 @@ export class ProducttableComponent implements OnInit {
     this.applyFilter(this.filterForm.value["filter"]);
   }
 
-  show(_product: Product) {
-    const dialogRef = this.dialog.open(ProductComponent, {
-      data: _product,
+  show(product: Product) {
+    this.dialog.open(ProductComponent, {
+      data: product,
       minWidth: "50%",
       minHeight: "70%",
     });

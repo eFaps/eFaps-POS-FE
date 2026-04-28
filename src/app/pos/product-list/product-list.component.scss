@@ -36,3 +36,15 @@ mat-cell.BATCH {
   font-style: italic;
   font-weight: bolder;
 }
+mat-cell.UNLISTED {
+  text-decoration: line-through;
+  color: rgb(172, 172, 172);
+}
+mat-cell.DRAFT {
+  text-decoration: line-through;
+  color: rgb(138, 127, 113);
+}
+mat-cell.ARCHIVED {
+  text-decoration: line-through;
+  color: rgb(194, 130, 130);
+}

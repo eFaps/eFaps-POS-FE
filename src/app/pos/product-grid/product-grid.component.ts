@@ -18,9 +18,11 @@ import {
   CategoryNode,
   Currency,
   InventoryService,
+  Permission,
   PosService,
   Product,
   ProductService,
+  ProductStatus,
   WorkspaceFlag,
   WorkspaceService,
   hasFlag,
@@ -136,7 +138,12 @@ export class ProductGridComponent
   }
 
   loadProducts(categoryOid: string) {
-    this.productService.getProductsByCategory(categoryOid).subscribe({
+    let stati: [ProductStatus] | undefined = [ProductStatus.ACTIVE];
+    if (this.authService.hasPermission(Permission.IGNORE_PRODUCTSTATUS)) {
+      stati = undefined;
+    }
+
+    this.productService.getProductsByCategory(categoryOid, stati).subscribe({
       next: (products) => this.products.set(products),
     });
   }

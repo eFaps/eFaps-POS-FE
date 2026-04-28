@@ -19,8 +19,14 @@
       <mat-cell *matCellDef="let element"> {{ element.sku }} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="description">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{ element.description }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ "PRODUCTSTATUS." + element.status | translate }}</mat-cell
+      >
     </ng-container>
     <ng-container matColumnDef="cmd">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>

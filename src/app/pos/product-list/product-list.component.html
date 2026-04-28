@@ -17,20 +17,22 @@
   <mat-table #table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="sku">
       <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@product-SKU">SKU</mat-header-cell>
-      <mat-cell *matCellDef="let product" [ngClass]="product.type"> {{ product.sku }} </mat-cell>
+      <mat-cell *matCellDef="let product" [ngClass]="[product.type, product.status]">
+        {{ product.sku }}
+      </mat-cell>
     </ng-container>
     <ng-container matColumnDef="description">
-      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@product-Description"
-        >Description</mat-header-cell
-      >
-      <mat-cell *matCellDef="let product" [ngClass]="product.type">
+      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@product-Description">
+        Description
+      </mat-header-cell>
+      <mat-cell *matCellDef="let product" [ngClass]="[product.type, product.status]">
         {{ product.description }}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="stock">
-      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@product-Stock"
-        >Stock</mat-header-cell
-      >
+      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@product-Stock">
+        Stock
+      </mat-header-cell>
       <mat-cell *matCellDef="let product">
         {{ isStockable(product) ? stock(product) : "" }}
       </mat-cell>
@@ -42,9 +44,9 @@
           <mat-icon>info</mat-icon>
         </button>
         <button (click)="select(product)" [disabled]="!selectable(product)" mat-icon-button>
-          <mat-icon [class.mat-warn]="isStockable(product) && !hasStock(product)"
-            >check_circle_outline</mat-icon
-          >
+          <mat-icon [class.mat-warn]="isStockable(product) && !hasStock(product)">
+            check_circle_outline
+          </mat-icon>
         </button>
       </mat-cell>
     </ng-container>

@@ -26,6 +26,7 @@ import {
   RelationEntry,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
   selector: "app-product",
@@ -43,6 +44,7 @@ import {
     MatButton,
     MatDialogClose,
     PosLibraryModule,
+    TranslatePipe,
   ],
 })
 export class ProductComponent implements OnInit {
@@ -72,7 +74,7 @@ export class ProductComponent implements OnInit {
   });
   currentCurrency: Currency = Currency.PEN;
   categories = signal<string[]>([]);
-  loading: boolean = true;
+  loading = signal<boolean>(true);
   showInventory: boolean = false;
   isStockable = signal<boolean>(false);
   inventory = signal<InventoryEntry[]>([]);
@@ -87,7 +89,7 @@ export class ProductComponent implements OnInit {
       this.product.set(product);
       this.isStockable.set(ProductService.isStockable(product));
       this.evalCategories(product.categories);
-      this.loading = false;
+      this.loading.set(false);
       this.evalRelations(product.relations);
       this.evalInventory(product);
     });

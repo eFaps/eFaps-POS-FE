@@ -9,6 +9,35 @@ $big-size: 170px;
   gap: 5px;
 
   .pos-card {
+    cursor: pointer;
+
+    &.UNLISTED {
+      background-color: rgb(202 202 202);
+      cursor: default;
+
+      img {
+        filter: grayscale(100%);
+      }
+    }
+
+    &.DRAFT {
+      background-color: rgb(199, 183, 163);
+      cursor: default;
+
+      img {
+        filter: grayscale(100%);
+      }
+    }
+
+    &.ARCHIVED {
+      background-color: rgb(252, 160, 160);
+      cursor: default;
+
+      img {
+        filter: grayscale(100%);
+      }
+    }
+
     .mat-mdc-card-header {
       justify-content: center;
     }
@@ -33,6 +62,11 @@ $big-size: 170px;
       position: absolute;
       height: 20px;
       width: 100%;
+    }
+
+    .productStatus {
+      color: var(--mat-sys-error);
+      font-weight: bolder;
     }
   }
 

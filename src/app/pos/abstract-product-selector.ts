@@ -1,9 +1,12 @@
-import { Directive, OnInit, input } from "@angular/core";
+import { Directive, OnInit, inject, input } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import {
+  AuthService,
   InventoryEntry,
   InventoryService,
   Item,
+  Permission,
   PosService,
   Product,
   ProductIndividual,
@@ -12,12 +15,18 @@ import {
   ProductType,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { TranslateService } from "@ngx-translate/core";
 
 import { KeypadService, PosSyncService } from "../services";
+import { ConfirmDialogComponent } from "../shared/confirm-dialog/confirm-dialog.component";
 import { ConfigDialogComponent } from "./config-dialog/config-dialog.component";
 
 @Directive()
 export abstract class AbstractProductSelector implements OnInit {
+  protected authService = inject(AuthService);
+  private translate = inject(TranslateService);
+  private snackBar = inject(MatSnackBar);
+
   ticket: Item[] = [];
   multiplier: number = 1;
   readonly remarkMode = input(false);
@@ -47,6 +56,55 @@ export abstract class AbstractProductSelector implements OnInit {
   }
 
   select(product: Product) {
+    if (product.status == "ACTIVE") {
+      if (
+        !this.showInventory ||
+        !this.isStockable(product) ||
+        this.hasStock(product)
+      ) {
+        this.selectInternal(product);
+      } else if (this.authService.hasPermission(Permission.OVERWRITE_STOCK)) {
+        let msg = "Producto sin stock";
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+          data: { title: msg },
+        });
+        dialogRef.afterClosed().subscribe({
+          next: (result) => {
+            if (result) {
+              this.selectInternal(product);
+            }
+          },
+        });
+      } else {
+        this.snackBar.open("Producto sin stock", "", { duration: 3000 });
+      }
+    } else if (
+      this.authService.hasPermission(Permission.IGNORE_PRODUCTSTATUS)
+    ) {
+      let msg =
+        "Estado del producto: " +
+        this.translate.instant("PRODUCTSTATUS." + product.status);
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        data: { title: msg },
+      });
+      dialogRef.afterClosed().subscribe({
+        next: (result) => {
+          if (result) {
+            this.selectInternal(product);
+          }
+        },
+      });
+    } else {
+      this.snackBar.open(
+        "Producto en estado: " +
+          this.translate.instant("PRODUCTSTATUS." + product.status),
+        "",
+        { duration: 3000 },
+      );
+    }
+  }
+
+  private selectInternal(product: Product) {
     const remarkMode = this.remarkMode();
     if (
       remarkMode ||

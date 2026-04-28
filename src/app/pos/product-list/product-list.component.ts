@@ -31,16 +31,18 @@ import {
   MatRowDef,
   MatTable,
   MatTableDataSource,
+  MatTableModule,
 } from "@angular/material/table";
 import {
-  AuthService,
   InventoryService,
   Permission,
   PosService,
   Product,
   ProductService,
+  ProductStatus,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
 import { Subscription } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 
@@ -58,7 +60,7 @@ import { PosSyncService } from "src/app/services/pos-sync.service";
     MatFormField,
     MatInput,
     MatSlideToggle,
-    MatTable,
+    MatTableModule,
     MatSort,
     MatColumnDef,
     MatHeaderCellDef,
@@ -73,13 +75,13 @@ import { PosSyncService } from "src/app/services/pos-sync.service";
     MatHeaderRow,
     MatRowDef,
     MatRow,
+    TranslatePipe,
   ],
 })
 export class ProductListComponent
   extends AbstractProductSelector
   implements OnInit, OnDestroy
 {
-  private authService = inject(AuthService);
   private fb = inject(UntypedFormBuilder);
 
   filterForm: FormGroup;
@@ -134,26 +136,36 @@ export class ProductListComponent
       : ["sku", "description", "cmd"];
   }
 
-  applyFilter(_filterValue: string) {
+  applyFilter(filterValue: string) {
+    let stati: [ProductStatus] | undefined = [ProductStatus.ACTIVE];
+    if (this.authService.hasPermission(Permission.IGNORE_PRODUCTSTATUS)) {
+      stati = undefined;
+    }
+
     this.productService
-      .findProducts(_filterValue, this.textSearch)
-      .subscribe((_products) => {
-        this.dataSource.data = _products;
+      .findProducts(filterValue, this.textSearch, stati)
+      .subscribe((products) => {
+        this.dataSource.data = products;
         this.dataSource.sort = this.sort;
       });
   }
 
-  show(_product: Product) {
-    const dialogRef = this.dialog.open(ProductComponent, {
-      data: _product,
+  show(product: Product) {
+    this.dialog.open(ProductComponent, {
+      data: product,
     });
   }
 
-  selectable(_product: Product) {
+  selectable(product: Product) {
     return (
-      !this.isStockable(_product) ||
-      this.hasStock(_product) ||
-      this.authService.hasPermission(Permission.ADMIN)
+      (product.status == "ACTIVE" &&
+        (!this.showInventory ||
+          !this.isStockable(product) ||
+          this.hasStock(product))) ||
+      this.authService.hasPermission(
+        Permission.IGNORE_PRODUCTSTATUS,
+        Permission.OVERWRITE_STOCK,
+      )
     );
   }
 
