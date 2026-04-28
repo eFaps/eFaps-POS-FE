@@ -1,75 +1,115 @@
 <h2 mat-dialog-title>Composición</h2>
 <mat-dialog-content>
-  <form [formGroup]="formGroup" autocomplete="off">
-    <mat-stepper orientation="vertical" [linear]="false" #stepper>
-      @if (individualProducts.length > 0) {
-        <mat-step>
-          <ng-template matStepLabel>Selecionar Lote / No de serie</ng-template>
-          <mat-radio-group formControlName="selectedIndividual">
-            @for (product of individualProducts; track product) {
-              <mat-radio-button class="example-radio-button" [value]="product"
-                >{{ product.sku }} - {{ product.description }}</mat-radio-button
-              >
-            }
-          </mat-radio-group>
-        </mat-step>
-      }
-      @for (bomGroup of product.bomGroupConfigs; track bomGroup) {
-        <mat-step>
-          <ng-template matStepLabel>{{ bomGroup.description }}</ng-template>
-          <mat-button-toggle-group
-            [formControlName]="bomGroup.oid"
-            [multiple]="isBomGroupMultiple(bomGroup)">
-            @for (bomProduct of getProducts4BOMGroup(bomGroup.oid); track bomProduct) {
-              <mat-button-toggle [value]="bomProduct">
-                {{ bomProduct.description }}
+  @if (loaded()) {
+  <mat-vertical-stepper [linear]="false" #stepper>
+     @for (step of steps(); track step; let idx = $index) {
+      <mat-step [stepControl]="step.formGroup"  [optional]="isBomGroupOptional(step.bomGroup)">
+          <form [formGroup]="step.formGroup">
+            <ng-template matStepLabel>{{ step.label }}</ng-template>
+            @if (step.type=="BOMGroup") {
+
+            <mat-button-toggle-group [formControlName]="step.ctrlName" [multiple]="isBomGroupMultiple(step.bomGroup)">
+              @for (bomEntry of getBOMEntries4BOMGroup(step.bomGroup.oid); track bomEntry.oid) {
+              <mat-button-toggle [value]="bomEntry">
+                {{ bomEntry.product.description }}
               </mat-button-toggle>
-            }
-          </mat-button-toggle-group>
-        </mat-step>
-      }
-      @if (remarkMode || (product.indicationSets && product.indicationSets!!.length > 0)) {
-        <mat-step>
-          <ng-template matStepLabel>Indicaciones / Comentarios</ng-template>
-          <div class="indicationSet">
-            @for (indicationSet of product.indicationSets; track indicationSet) {
-              <div>{{ indicationSet.name }}</div>
-              <div>
-                @for (indication of indicationSet.indications; track indication) {
-                  <button mat-button (click)="select(indication)">{{ indication.value }}</button>
-                }
-              </div>
-            }
-          </div>
-          <mat-form-field>
-            <mat-chip-grid #chipList>
-              @for (indication of indications; track indication) {
-                <mat-chip-row (removed)="remove(indication)">
-                  {{ indication.value }}
-                  @if (removable) {
-                    <button matChipRemove>
-                      <mat-icon>cancel</mat-icon>
-                    </button>
-                  }
-                </mat-chip-row>
               }
-              <input
-                [matChipInputFor]="chipList"
-                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                [matChipInputAddOnBlur]="true"
-                (matChipInputTokenEnd)="add($event)"
-                placeholder="Remark"
-                i18n-placeholder="@@remark"
-                formControlName="remark"
-                class="left" />
-            </mat-chip-grid>
-          </mat-form-field>
-        </mat-step>
-      }
-    </mat-stepper>
-  </form>
+            </mat-button-toggle-group>
+
+            } @else {
+            
+            
+              <mat-form-field>
+              <input matInput placeholder="Last name, First name" [formControlName]="step.ctrlName" required>
+              </mat-form-field>
+            }
+            <div class="buttons">
+              @if (idx>0) {
+              <button matButton matStepperPrevious>atrás</button>
+              }
+              @if (idx < steps().length - 1) {
+                <button matButton matStepperNext>próximo</button>
+              }
+            </div>
+          </form>
+      </mat-step>
+    }
+
+
+    <!--
+    @if (individualProducts.length > 0) {
+    <mat-step>
+      <ng-template matStepLabel>Selecionar Lote / No de serie</ng-template>
+      <mat-radio-group formControlName="selectedIndividual">
+        @for (product of individualProducts; track product) {
+        <mat-radio-button class="example-radio-button" [value]="product">{{ product.sku }} - {{ product.description
+          }}</mat-radio-button>
+        }
+      </mat-radio-group>
+      <div>
+        <button matButton matStepperPrevious type="button">Back</button>
+        <button matButton matStepperNext type="button">Next</button>
+      </div>
+    </mat-step>
+    }
+    @for (bomGroup of product.bomGroupConfigs; track bomGroup) {
+    <mat-step>
+      <ng-template matStepLabel>{{ bomGroup.description }}</ng-template>
+      <mat-button-toggle-group [formControlName]="bomGroup.oid" [multiple]="isBomGroupMultiple(bomGroup)">
+        @for (bomProduct of getProducts4BOMGroup(bomGroup.oid); track bomProduct) {
+        <mat-button-toggle [value]="bomProduct">
+          {{ bomProduct.description }}
+        </mat-button-toggle>
+        }
+      </mat-button-toggle-group>
+      <div>
+        <button matButton matStepperPrevious type="button">Back</button>
+        <button matButton matStepperNext type="button">Next</button>
+      </div>
+    </mat-step>
+    }
+    @if (remarkMode || (product.indicationSets && product.indicationSets!!.length > 0)) {
+    <mat-step>
+      <ng-template matStepLabel>Indicaciones / Comentarios</ng-template>
+      <div class="indicationSet">
+        @for (indicationSet of product.indicationSets; track indicationSet) {
+        <div>{{ indicationSet.name }}</div>
+        <div>
+          @for (indication of indicationSet.indications; track indication) {
+          <button mat-button (click)="select(indication)">{{ indication.value }}</button>
+          }
+        </div>
+        }
+      </div>
+      <mat-form-field>
+        <mat-chip-grid #chipList>
+          @for (indication of indications; track indication) {
+          <mat-chip-row (removed)="remove(indication)">
+            {{ indication.value }}
+            @if (removable) {
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+            }
+          </mat-chip-row>
+          }
+          <input [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="add($event)" placeholder="Remark"
+            i18n-placeholder="@@remark" formControlName="remark" class="left" />
+        </mat-chip-grid>
+      </mat-form-field>
+      <div>
+        <button matButton matStepperPrevious type="button">Back</button>
+        <button matButton matStepperNext type="button">Next</button>
+      </div>
+    </mat-step>
+    }
+  -->
+
+  </mat-vertical-stepper>
+}
 </mat-dialog-content>
 <mat-dialog-actions>
   <button matButton (click)="cancel()">Cancelar</button>
-  <button matButton (click)="submit()">OK</button>
+  <button matButton (click)="submit()" [disabled]="!validate()" cdkFocusInitial>OK</button>
 </mat-dialog-actions>

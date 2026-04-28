@@ -1,10 +1,11 @@
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, OnInit, effect, inject, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
@@ -27,10 +28,11 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from "@angular/material/dialog";
-import { MatFormField } from "@angular/material/form-field";
+import { MatFormField, MatFormFieldModule } from "@angular/material/form-field";
 import { MatIcon } from "@angular/material/icon";
+import { MatInputModule } from "@angular/material/input";
 import { MatRadioButton, MatRadioGroup } from "@angular/material/radio";
-import { MatStep, MatStepLabel, MatStepper } from "@angular/material/stepper";
+import { MatStep, MatStepLabel, MatStepper, MatStepperModule } from "@angular/material/stepper";
 import {
   BOMGroupConfig,
   BOMGroupConfigFlag,
@@ -42,6 +44,7 @@ import {
   ProductService,
   ProductType,
 } from "@efaps/pos-library";
+import { forkJoin, Observable } from "rxjs";
 
 @Component({
   selector: "app-config-dialog",
@@ -51,10 +54,12 @@ import {
     MatDialogTitle,
     CdkScrollable,
     MatDialogContent,
+    FormsModule,
     ReactiveFormsModule,
     MatStepper,
     MatStep,
     MatStepLabel,
+    MatStepperModule,
     MatRadioGroup,
     MatRadioButton,
     MatButtonToggleGroup,
@@ -67,6 +72,8 @@ import {
     MatIcon,
     MatChipInput,
     MatDialogActions,
+    MatFormFieldModule,
+    MatInputModule
   ],
 })
 export class ConfigDialogComponent implements OnInit {
@@ -75,7 +82,7 @@ export class ConfigDialogComponent implements OnInit {
   private productService = inject(ProductService);
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  private products: Map<String, Product[]> = new Map();
+  private bomEntries: Map<String, BOMEntry[]> = new Map();
 
   product: Product;
   individualProducts: Product[] = [];
@@ -85,6 +92,9 @@ export class ConfigDialogComponent implements OnInit {
   visible = true;
   removable = true;
   selectable = true;
+
+  steps = signal<ConfigStep[]>([])
+  loaded = signal<Boolean>(false)
 
   constructor() {
     const fb = inject(FormBuilder);
@@ -99,24 +109,62 @@ export class ConfigDialogComponent implements OnInit {
         new FormControl<Product | undefined>(undefined, [Validators.required]),
       );
     }
-    this.product.bomGroupConfigs.forEach((element) => {
-      const formName = element.oid as string;
-      this.formGroup.addControl(formName, new FormControl<any>(""));
+    const steps: ConfigStep[] = []
+
+    this.product.bomGroupConfigs.sort((a, b) => a.weight - b.weight).forEach((bomGroup) => {
+      const formName = bomGroup.oid as string;
+      const formGrp = fb.group({})
+
+      const optional = this.isBomGroupOptional(bomGroup)
+
+      formGrp.addControl(formName, new FormControl<any>("", optional ? [] : [Validators.required]));
+      steps.push({
+        type: "BOMGroup",
+        formGroup: formGrp,
+        label: bomGroup.description,
+        ctrlName: formName,
+        bomGroup: bomGroup
+      })
     });
+    this.steps.set(steps)
   }
 
   ngOnInit(): void {
+    const calls: Observable<Product>[] = []
     this.product.configurationBOMs.forEach((element) => {
-      this.productService.getProduct(element.toProductOid).subscribe({
-        next: (product) => {
-          if (!this.products.has(element.bomGroupOid)) {
-            this.products.set(element.bomGroupOid, []);
-          }
-          const toProducts = this.products.get(element.bomGroupOid);
-          toProducts?.push(product);
-        },
-      });
+      calls.push(this.productService.getProduct(element.toProductOid))
+    })
+
+    forkJoin(calls).subscribe({
+      next: allProducts => {
+        let maxLength = 0;
+        this.product.configurationBOMs.sort((a, b) => a.position - b.position).forEach((element) => {
+          allProducts.filter(product => product.oid == element.toProductOid).forEach(product => {
+            if (!this.bomEntries.has(element.bomGroupOid)) {
+              this.bomEntries.set(element.bomGroupOid, []);
+            }
+            const toProducts = this.bomEntries.get(element.bomGroupOid);
+            toProducts!.push({ oid: element.oid, product: product });
+
+            if (toProducts!.length > 2) {
+              let length = 0
+              toProducts!.forEach(entry => {
+                length = length + (entry.product.description ? entry.product.description!.length : entry.product.sku.length)
+              })
+              if (length > maxLength) {
+                maxLength = length
+              }
+            }
+          })
+        })
+        if (maxLength > 40) {
+          const width = maxLength * 10 + "px"
+          this.matDialogRef.updateSize(width, "")
+        }
+        this.loaded.set(true)
+      }
     });
+
     if (this.isSelectIndividual()) {
       this.product.relations
         .filter((relation) => {
@@ -141,12 +189,16 @@ export class ConfigDialogComponent implements OnInit {
     );
   }
 
-  getProducts4BOMGroup(oid: String): Product[] {
-    return this.products.has(oid) ? <Product[]>this.products.get(oid) : [];
+  getBOMEntries4BOMGroup(oid: String): BOMEntry[] {
+    return this.bomEntries.has(oid) ? <BOMEntry[]>this.bomEntries.get(oid) : [];
   }
 
   isBomGroupMultiple(bomGroupConfig: BOMGroupConfig) {
     return !hasFlag(bomGroupConfig, BOMGroupConfigFlag.onlyOne);
+  }
+
+  isBomGroupOptional(bomGroupConfig: BOMGroupConfig) {
+    return hasFlag(bomGroupConfig, BOMGroupConfigFlag.optional);
   }
 
   remove(indication: any): void {
@@ -183,15 +235,10 @@ export class ConfigDialogComponent implements OnInit {
   }
 
   submit() {
-    if (this.formGroup.valid) {
-      const remarks: string[] = [];
-      const childProducts: Product[] = [];
-
-      this.indications.forEach((ind) => {
-        remarks.push(ind.value);
-      });
-      this.product.bomGroupConfigs.forEach((element) => {
-        var value = this.formGroup.value[element.oid as string];
+    const childProducts: BOMEntry[] = [];
+    this.steps().forEach(step => {
+      if (step.type == "BOMGroup") {
+        var value = step.formGroup.value[step.bomGroup!.oid]
         if (Array.isArray(value)) {
           value.forEach((val) => {
             childProducts.push(val);
@@ -199,17 +246,46 @@ export class ConfigDialogComponent implements OnInit {
         } else if (value) {
           childProducts.push(value);
         }
-      });
+      }
+    });
 
-      this.matDialogRef.close({
-        remark: remarks.join("\n"),
-        childProducts: childProducts,
-        selectedIndividual: this.formGroup.value.selectedIndividual,
-      });
-    }
+    const remarks: string[] = [];
+
+    this.indications.forEach((ind) => {
+      remarks.push(ind.value);
+    });
+
+
+    this.matDialogRef.close({
+      remark: remarks.join("\n"),
+      bomEntries: childProducts,
+      selectedIndividual: this.formGroup.value.selectedIndividual,
+    });
+
   }
 
   cancel() {
     this.matDialogRef.close();
   }
+
+  validate(): boolean {
+    let valid = true
+    this.steps().forEach(element => {
+      valid = valid && element.formGroup.valid
+    });
+    return valid
+  }
+}
+
+interface ConfigStep {
+  type: "BOMGroup" | "OTHER"
+  formGroup: FormGroup,
+  label: string
+  ctrlName: string
+  bomGroup?: BOMGroupConfig
+}
+
+export interface BOMEntry {
+  oid: string,
+  product: Product
 }

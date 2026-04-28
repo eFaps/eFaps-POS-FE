@@ -61,6 +61,10 @@
               <div>
                 {{ item.crossPrice | posCurrency: document.currency }}
               </div>
+            } @else if(item.crossPrice > 0) {
+               <div>
+                {{ item.crossPrice | posCurrency: document.currency }}
+              </div>
             }
           </mat-cell>
         </ng-container>

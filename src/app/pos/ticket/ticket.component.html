@@ -16,10 +16,9 @@
         }
       </td>
     </ng-container>
-
     <ng-container matColumnDef="productDesc">
       <th mat-header-cell *matHeaderCellDef>Descripcion</th>
-      <td mat-cell *matCellDef="let item" [attr.colspan]="isChild(item) ? 2 : 0">
+      <td mat-cell *matCellDef="let item">
         <div class="description">
           {{ item.product.description }}
           @if (item.remark) {
@@ -52,6 +51,8 @@
       <th mat-header-cell *matHeaderCellDef>Precio</th>
       <td mat-cell *matCellDef="let item">
         @if (!isChild(item)) {
+          {{ item.price | posCurrency: currentCurrency }}
+        } @else if(item.price > 0) {
           {{ item.price | posCurrency: currentCurrency }}
         }
       </td>

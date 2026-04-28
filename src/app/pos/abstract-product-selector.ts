@@ -19,7 +19,7 @@ import { TranslateService } from "@ngx-translate/core";
 
 import { KeypadService, PosSyncService } from "../services";
 import { ConfirmDialogComponent } from "../shared/confirm-dialog/confirm-dialog.component";
-import { ConfigDialogComponent } from "./config-dialog/config-dialog.component";
+import { BOMEntry, ConfigDialogComponent } from "./config-dialog/config-dialog.component";
 
 @Directive()
 export abstract class AbstractProductSelector implements OnInit {
@@ -118,8 +118,9 @@ export abstract class AbstractProductSelector implements OnInit {
           product: product,
           remarkMode: remarkMode,
         },
-        minWidth: "50%",
+        maxWidth: "100%"
       });
+    
       dialogRef.afterClosed().subscribe({
         next: (selection) => {
           this.keypadService.activate();
@@ -127,7 +128,7 @@ export abstract class AbstractProductSelector implements OnInit {
             product,
             selection.selectedIndividual,
             selection.remark,
-            selection.childProducts,
+            selection.bomEntries,
           );
         },
         error: (err: any) => {
@@ -171,7 +172,7 @@ export abstract class AbstractProductSelector implements OnInit {
     product: Product,
     standIn?: Product,
     remark?: string | null,
-    childProducts?: Product[] | null,
+    bomEntries?: BOMEntry[] | null,
   ) {
     const quantity = this.multiplier > 0 ? this.multiplier : 1;
     const idx = this.ticket.length + 1;
@@ -185,17 +186,18 @@ export abstract class AbstractProductSelector implements OnInit {
       currency: this.posService.currency,
       exchangeRate: this.posService.exchangeRate,
     });
-    if (childProducts) {
-      childProducts.forEach((childProduct) => {
+    if (bomEntries) {
+      bomEntries.forEach((bomEntry) => {
         this.ticket.push({
           index: this.ticket.length + 1,
           parentIdx: idx,
-          product: childProduct,
+          product: bomEntry.product,
           quantity: 1,
           price: 0,
           remark: null,
           currency: this.posService.currency,
           exchangeRate: this.posService.exchangeRate,
+          bomOid: bomEntry.oid
         });
       });
     }
