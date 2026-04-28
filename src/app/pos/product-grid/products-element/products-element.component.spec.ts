@@ -17,6 +17,7 @@ import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { ProductsElementComponent } from "./products-element.component";
+import { TranslateService } from "@ngx-translate/core";
 
 class PosServiceStub {
   currentOrder = new Observable((observer) => {
@@ -45,6 +46,8 @@ class WorkspaceServiceStub {
   }
 }
 
+class TranslateServiceStub {}
+
 describe("ProductsElementComponent", () => {
   let component: ProductsElementComponent;
   let fixture: ComponentFixture<ProductsElementComponent>;
@@ -60,6 +63,7 @@ describe("ProductsElementComponent", () => {
         { provide: PosService, useValue: {} },
         { provide: InventoryService, useValue: {} },
         { provide: PosService, useClass: PosServiceStub },
+        { provide: TranslateService, useClass: TranslateServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],

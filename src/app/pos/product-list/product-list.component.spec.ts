@@ -19,6 +19,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 
 import { ProductComponent } from "../../shared/product/product.component";
 import { ProductListComponent } from "./product-list.component";
+import { TranslateService } from "@ngx-translate/core";
 
 class PosServiceStub {
   currentOrder = new Observable((observer) => {
@@ -39,6 +40,8 @@ class WorkspaceServiceStub {
 }
 class InventoryServiceStub {}
 class AuthServiceStub {}
+class TranslateServiceStub {}
+
 
 describe("ProductListComponent", () => {
   let component: ProductListComponent;
@@ -58,6 +61,7 @@ describe("ProductListComponent", () => {
       ],
       providers: [
         provideZonelessChangeDetection(),
+        { provide: TranslateService, useClass: TranslateServiceStub },
         { provide: PosService, useClass: PosServiceStub },
         { provide: ProductService, useClass: ProductServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },

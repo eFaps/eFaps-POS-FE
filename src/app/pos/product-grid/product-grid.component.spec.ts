@@ -21,6 +21,7 @@ import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { ProductGridComponent } from "./product-grid.component";
+import { TranslateService } from "@ngx-translate/core";
 
 class PosServiceStub {
   currentOrder = new Observable((observer) => {
@@ -51,6 +52,8 @@ class WorkspaceServiceStub {
   });
 }
 
+class TranslateServiceStub {}
+
 describe("ProductgridComponent", () => {
   let component: ProductGridComponent;
   let fixture: ComponentFixture<ProductGridComponent>;
@@ -63,6 +66,7 @@ describe("ProductgridComponent", () => {
         ProductGridComponent,
         MockPipe(PosCurrencyPipe),
         MockPipe(SecurePipe),
+        
       ],
       providers: [
         provideZonelessChangeDetection(),
@@ -71,6 +75,7 @@ describe("ProductgridComponent", () => {
         { provide: ProductService, useClass: ProductServiceStub },
         { provide: PosService, useClass: PosServiceStub },
         { provide: InventoryService, useValue: {} },
+        { provide: TranslateService, useClass: TranslateServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
