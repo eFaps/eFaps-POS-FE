@@ -19,7 +19,10 @@ import { TranslateService } from "@ngx-translate/core";
 
 import { KeypadService, PosSyncService } from "../services";
 import { ConfirmDialogComponent } from "../shared/confirm-dialog/confirm-dialog.component";
-import { BOMEntry, ConfigDialogComponent } from "./config-dialog/config-dialog.component";
+import {
+  BOMEntry,
+  ConfigDialogComponent,
+} from "./config-dialog/config-dialog.component";
 
 @Directive()
 export abstract class AbstractProductSelector implements OnInit {
@@ -118,9 +121,9 @@ export abstract class AbstractProductSelector implements OnInit {
           product: product,
           remarkMode: remarkMode,
         },
-        maxWidth: "100%"
+        maxWidth: "100%",
       });
-    
+
       dialogRef.afterClosed().subscribe({
         next: (selection) => {
           this.keypadService.activate();
@@ -197,7 +200,7 @@ export abstract class AbstractProductSelector implements OnInit {
           remark: null,
           currency: this.posService.currency,
           exchangeRate: this.posService.exchangeRate,
-          bomOid: bomEntry.oid
+          bomOid: bomEntry.oid,
         });
       });
     }

@@ -13,13 +13,13 @@ import {
   ProductService,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { TranslateService } from "@ngx-translate/core";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { ProductComponent } from "../../shared/product/product.component";
 import { ProductListComponent } from "./product-list.component";
-import { TranslateService } from "@ngx-translate/core";
 
 class PosServiceStub {
   currentOrder = new Observable((observer) => {
@@ -41,7 +41,6 @@ class WorkspaceServiceStub {
 class InventoryServiceStub {}
 class AuthServiceStub {}
 class TranslateServiceStub {}
-
 
 describe("ProductListComponent", () => {
   let component: ProductListComponent;

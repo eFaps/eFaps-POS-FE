@@ -13,11 +13,11 @@ import {
   ProductService,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { TranslateService } from "@ngx-translate/core";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { ProductsElementComponent } from "./products-element.component";
-import { TranslateService } from "@ngx-translate/core";
 
 class PosServiceStub {
   currentOrder = new Observable((observer) => {
