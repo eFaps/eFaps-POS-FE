@@ -29,7 +29,6 @@ import {
   MatHeaderRowDef,
   MatRow,
   MatRowDef,
-  MatTable,
   MatTableDataSource,
   MatTableModule,
 } from "@angular/material/table";
@@ -74,8 +73,7 @@ import { PosSyncService } from "src/app/services/pos-sync.service";
     MatHeaderRowDef,
     MatHeaderRow,
     MatRowDef,
-    MatRow,
-    TranslatePipe,
+    MatRow
   ],
 })
 export class ProductListComponent

@@ -9,8 +9,8 @@
             @if (step.type == "BOMGRP") {
               <mat-button-toggle-group
                 [formControlName]="step.ctrlName"
-                [multiple]="isBomGroupMultiple(step.bomGroup)">
-                @for (bomEntry of getBOMEntries4BOMGroup(step.bomGroup.oid); track bomEntry.oid) {
+                [multiple]="isBomGroupMultiple(step.bomGroup!)">
+                @for (bomEntry of getBOMEntries4BOMGroup(step.bomGroup!.oid); track bomEntry.oid) {
                   <mat-button-toggle [value]="bomEntry">
                     {{ bomEntry.product.description }}
                   </mat-button-toggle>
