@@ -1,11 +1,11 @@
 $small-size: 100px;
 $medium-size: 140px;
-$big-size: 170px;
+$large-size: 170px;
 
 .pos-productgrid {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 500px);
+  justify-content: center;
   gap: 5px;
 
   .pos-card {
@@ -75,6 +75,7 @@ $big-size: 170px;
   }
 
   &.small {
+    grid-template-columns: repeat(auto-fill, $small-size);
     .pos-card {
       width: $small-size;
 
@@ -96,6 +97,7 @@ $big-size: 170px;
   }
 
   &.medium {
+    grid-template-columns: repeat(auto-fill, $medium-size);
     .pos-card {
       width: $medium-size;
 
@@ -117,8 +119,9 @@ $big-size: 170px;
   }
 
   &.large {
+    grid-template-columns: repeat(auto-fill, $large-size);
     .pos-card {
-      width: $big-size;
+      width: $large-size;
 
       .mat-mdc-card-header .mat-mdc-card-title {
         font-size: 16px;
@@ -126,11 +129,11 @@ $big-size: 170px;
       }
 
       .pos-card-image {
-        height: $big-size + 5px;
+        height: $large-size + 5px;
 
         .mat-mdc-card-image {
-          max-width: $big-size - 25px;
-          max-height: $big-size;
+          max-width: $large-size - 25px;
+          max-height: $large-size;
           margin: 0;
         }
       }

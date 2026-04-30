@@ -73,7 +73,7 @@ import { PosSyncService } from "src/app/services/pos-sync.service";
     MatHeaderRowDef,
     MatHeaderRow,
     MatRowDef,
-    MatRow
+    MatRow,
   ],
 })
 export class ProductListComponent
