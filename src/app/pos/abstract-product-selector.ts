@@ -127,12 +127,14 @@ export abstract class AbstractProductSelector implements OnInit {
       dialogRef.afterClosed().subscribe({
         next: (selection) => {
           this.keypadService.activate();
-          this.selectProduct(
-            product,
-            selection.selectedIndividual,
-            selection.remark,
-            selection.bomEntries,
-          );
+          if (selection) {
+            this.selectProduct(
+              product,
+              selection.selectedIndividual,
+              selection.remark,
+              selection.bomEntries,
+            );
+          }
         },
         error: (err: any) => {
           this.keypadService.activate();

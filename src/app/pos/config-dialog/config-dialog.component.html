@@ -48,7 +48,7 @@
                     (matChipInputTokenEnd)="add($event)"
                     placeholder="Remark"
                     i18n-placeholder="@@remark"
-                    formControlName="remark"
+                    [formControlName]="step.ctrlName"
                     class="left" />
                 </mat-chip-grid>
               </mat-form-field>
