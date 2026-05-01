@@ -26,11 +26,14 @@
   }
   <div class="mat-elevation-z3 versions">
     <h1>Versions:</h1>
-    <p i18n="@@versionCloud">App: {{ appVersion }}</p>
-    <p i18n="@@versionCloud">Cloud: {{ versions?.remote }}</p>
-    <p i18n="@@versionLocal">Local BE: {{ versions?.local }}</p>
+    <p i18n="@@versionCloud"><span class="versionKey">App: </span>{{ appVersion }}</p>
+    <p i18n="@@versionCloud"><span class="versionKey">Cloud: </span>{{ versions?.remote }}</p>
+    <p i18n="@@versionLocal"><span class="versionKey">Local BE: </span>{{ versions?.local }}</p>
     @if (versions && minBEVersion > versions!!.local) {
       <p class="minWarning">Minium backend version: {{ minBEVersion }}</p>
+    }
+    @for (entry of versionEntries(); track entry) {
+      <p><span class="versionKey">{{entry[0]}}: </span>{{entry[1]}}</p>
     }
   </div>
   <div class="mat-elevation-z3 versions">
