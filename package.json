@@ -62,7 +62,7 @@
     "@angular/build": "^21.2.8",
     "@angular/cli": "^21.2.8",
     "@angular/compiler-cli": "^21.2.10",
-    "@angular/localize": "^21.2.10",
+    "@angular/localize": "^21.2.11",
     "@types/core-js": "^2.5.8",
     "@types/mousetrap": "^1.6.15",
     "@types/node": "^25.6.0",
