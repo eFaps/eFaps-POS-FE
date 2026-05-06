@@ -42,7 +42,7 @@
     "@fontsource/roboto": "^5.2.10",
     "@ngx-translate/core": "^17.0.0",
     "@ngx-translate/http-loader": "^17.0.0",
-    "@stomp/rx-stomp": "^2.3.0",
+    "@stomp/rx-stomp": "^2.4.0",
     "ajv-keywords": "^5.1.0",
     "angular-svg-icon": "^19.1.1",
     "angular2-hotkeys": "^16.0.1",
