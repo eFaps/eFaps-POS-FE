@@ -10,14 +10,15 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { By } from "@angular/platform-browser";
 import {
   AdminService,
+  AuthService,
   ConfigService,
   Extension,
   Versions,
 } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
-import { Observable } from "rxjs";
-import { beforeEach, describe, expect, it } from "vitest";
+import { Observable} from "rxjs";
+import { beforeEach, describe, expect, it, Mock, Mocked, vi } from "vitest";
 
 import { environment } from "../../../environments/environment";
 import { AdminComponent } from "./admin.component";
@@ -32,6 +33,7 @@ class AdminServiceStub {
     });
   }
 }
+
 class ConfigServiceStub {
   getExtensions(): Observable<Extension[]> {
     return new Observable((observer) => {
@@ -52,6 +54,11 @@ class ConfigServiceStub {
 }
 
 describe("AdminComponent", () => {
+ 
+  const authServiceMock: Partial<AuthService> = {
+     hasPermission : vi.fn(() => false)
+  };
+ 
   let component: AdminComponent;
   let fixture: ComponentFixture<AdminComponent>;
 
@@ -66,14 +73,53 @@ describe("AdminComponent", () => {
       providers: [
         provideZonelessChangeDetection(),
         { provide: AdminService, useClass: AdminServiceStub },
+        { provide: AuthService, useValue: authServiceMock},
         { provide: ConfigService, useClass: ConfigServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
     }).compileComponents();
+    environment.minBEVersion = "0.2.0";
+    fixture = TestBed.createComponent(AdminComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
+   it("should hide the Reload button if no access", () => {
+    const baseDe: DebugElement = fixture.debugElement;
+    const baseEl: HTMLElement = baseDe.nativeElement;
+    const button = baseEl.querySelector("button")!
+    expect(button.textContent).not.toContain("Reload");
+  });
+});
+
+
+describe("AdminComponent", () => {
+ 
+  const authServiceMock: Partial<AuthService> = {
+     hasPermission : vi.fn(() => true)
+  };
+ 
+  let component: AdminComponent;
+  let fixture: ComponentFixture<AdminComponent>;
+
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        ReactiveFormsModule,
+        MatSlideToggleModule,
+        AdminComponent,
+        MockPipe(TranslatePipe),
+      ],
+      providers: [
+        provideZonelessChangeDetection(),
+        { provide: AdminService, useClass: AdminServiceStub },
+        { provide: AuthService, useValue: authServiceMock},
+        { provide: ConfigService, useClass: ConfigServiceStub },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ],
+    }).compileComponents();
     environment.minBEVersion = "0.2.0";
     fixture = TestBed.createComponent(AdminComponent);
     component = fixture.componentInstance;
@@ -110,5 +156,12 @@ describe("AdminComponent", () => {
     const versionsDe = baseDe.query(By.css(".versions"));
     const p: HTMLElement = versionsDe.nativeElement;
     expect(p.textContent).toContain("Minium backend version: 0.2.0");
+  });
+
+  it("should render the Reload button", () => {
+    const baseDe: DebugElement = fixture.debugElement;
+    const baseEl: HTMLElement = baseDe.nativeElement;
+    const button = baseEl.querySelector("button")!
+    expect(button.textContent).toContain("Reload");
   });
 });

@@ -17,6 +17,7 @@
     "build": "ng build --configuration production --localize",
     "build2": "ng build --aot --source-map false",
     "test": "ng test --browsers chromiumHeadless --no-progress --no-watch",
+    "test-jsdom": "ng test",
     "lint": "ng lint",
     "i18n": "ng extract-i18n --output-path src/locale",
     "prettier-html": "prettier --print-width 100 --write \"src/**/*.html\" ",
