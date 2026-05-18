@@ -27,10 +27,12 @@ import { MatSlideToggle } from "@angular/material/slide-toggle";
 import { Router } from "@angular/router";
 import {
   AdminService,
+  AuthService,
   BarcodeOptions,
   BarcodeScannerService,
   ConfigService,
   Extension,
+  Permission,
   PrintService,
   Versions,
   WorkspaceService,
@@ -66,6 +68,7 @@ import { STOCKTAKING_ACTIVATE } from "src/app/util/keys";
 export class AdminComponent implements OnInit, OnDestroy {
   private router = inject(Router);
   private adminService = inject(AdminService);
+  private authService = inject(AuthService);
   private configService = inject(ConfigService);
   private barcodeScannerService = inject(BarcodeScannerService);
   private workspaceService = inject(WorkspaceService);
@@ -227,5 +230,9 @@ export class AdminComponent implements OnInit, OnDestroy {
   set barcodeOptions(options: BarcodeOptions) {
     this._barcodeOptions = options;
     this.storageService.set("barcodeOptions", options);
+  }
+
+  hasSyncPermission(): boolean {
+    return this.authService.hasPermission(Permission.ADMIN_SYNC);
   }
 }
