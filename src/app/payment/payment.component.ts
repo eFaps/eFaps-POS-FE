@@ -21,6 +21,7 @@ import {
   ConfigService,
   Contact,
   ContactService,
+  Currency,
   DocStatus,
   Document,
   DocumentService,
@@ -108,7 +109,20 @@ export class PaymentComponent implements OnInit, OnDestroy {
   );
   DocumentType = DocumentType;
   PaymentType = PaymentType;
-  document!: Document;
+  document: Document = {
+    id: null,
+    oid: null,
+    number: null,
+    currency: Currency.PEN,
+    items: [],
+    status: DocStatus.OPEN,
+    netTotal: 0,
+    crossTotal: 0,
+    exchangeRate: 0,
+    payableAmount: 0,
+    taxes: [],
+    discount: null,
+  };
   payments: Payment[] = [];
   total = 0;
   change = 0;
@@ -141,9 +155,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.paymentService.updatePayments([]);
     this.subscriptions$.add(
-      this.paymentService.currentDocument.subscribe((_doc) => {
-        this.document = _doc;
-        this.documentComponent.document = _doc;
+      this.paymentService.currentDocument.subscribe((doc) => {
+        this.document = doc;
+        this.documentComponent.document.set(doc);
         if (this.document) {
           if (this.document.contactOid) {
             this.showContact = true;

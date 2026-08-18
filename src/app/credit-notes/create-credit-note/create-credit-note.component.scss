@@ -3,6 +3,16 @@
 
   .header {
     position: sticky;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .reason-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    align-items: flex-start;
   }
 
   .documents {
@@ -16,19 +26,20 @@
     }
   }
 
-  .footer {
-    border-top: 2px solid lightgrey;
-    padding-top: 1rem;
-
+  .paymentWrapper {
     display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+
+    .paymentToggle {
+      margin-right: 50px;
+    }
 
     .payments {
-      flex-grow: 1;
+      margin-left: 50px;
     }
-
-    .buttons {
-      flex-grow: 1;
-      text-align: center;
-    }
+  }
+  .submitBtn {
+    margin-top: 20px;
   }
 }

@@ -10,6 +10,7 @@ import { MatButton } from "@angular/material/button";
 import {
   MAT_DIALOG_DATA,
   MatDialogActions,
+  MatDialogContent,
   MatDialogRef,
 } from "@angular/material/dialog";
 import { MatFormField, MatLabel } from "@angular/material/form-field";
@@ -31,6 +32,7 @@ import { TranslatePipe } from "@ngx-translate/core";
     MatSelect,
     MatOption,
     MatDialogActions,
+    MatDialogContent,
     MatButton,
     MatIcon,
     TranslatePipe,

@@ -1,9 +1,21 @@
-import { Component, OnInit, inject } from "@angular/core";
+import { StepperSelectionEvent } from "@angular/cdk/stepper";
+import { Component, OnInit, inject, signal } from "@angular/core";
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
 import { MatButton, MatIconButton } from "@angular/material/button";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatDialog } from "@angular/material/dialog";
+import { MatDividerModule } from "@angular/material/divider";
 import { MatIcon } from "@angular/material/icon";
 import { MatList, MatListItem } from "@angular/material/list";
+import { MatRadioModule } from "@angular/material/radio";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatStepperModule } from "@angular/material/stepper";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
   Balance,
@@ -27,18 +39,29 @@ import { DocumentComponent } from "../../shared/document/document.component";
 import { AddPaymentDialogComponent } from "../add-payment-dialog/add-payment-dialog.component";
 import { SuccessDialogComponent } from "../success-dialog/success-dialog.component";
 import { CREDITNOTE_PERMITPARTIAL } from "src/app/util/keys";
+interface Reason {
+  key: string;
+  label: string;
+  partial: boolean;
+}
 
 @Component({
   selector: "app-create-credit-note",
   templateUrl: "./create-credit-note.component.html",
   styleUrls: ["./create-credit-note.component.scss"],
   imports: [
+    ReactiveFormsModule,
+    FormsModule,
     DocumentComponent,
     MatIconButton,
     MatIcon,
     MatButton,
     MatList,
     MatListItem,
+    MatStepperModule,
+    MatRadioModule,
+    MatButtonToggleModule,
+    MatDividerModule,
     PosLibraryModule,
     TranslatePipe,
   ],
@@ -53,19 +76,39 @@ export class CreateCreditNoteComponent implements OnInit {
   private balanceService = inject(BalanceService);
   private workspaceService = inject(WorkspaceService);
   private configService = inject(ConfigService);
+  private formBuilder = inject(FormBuilder);
+
+  reasonFormGroup: FormGroup = this.formBuilder.group({
+    creditNoteReason: ["", Validators.required],
+  });
 
   paymentService = inject(PaymentService);
+
+  _creditNoteReasons: Reason[] = [
+    {
+      key: "01",
+      label: "Anulación de la operación",
+      partial: false,
+    },
+    {
+      key: "05",
+      label: "Devolución por ítem",
+      partial: true,
+    },
+  ];
 
   sourceDocument!: Payable;
   creditNote!: CreditNote;
   balance!: Balance;
-  payments: Payment[] = [];
+  payment = true;
+  payments = signal<Payment[]>([]);
   PaymentType = PaymentType;
   workspaceOid!: string;
   print: boolean = false;
   permitPartial = false;
   validated = false;
   loading = false;
+  activatePartial = signal<boolean>(false);
 
   ngOnInit(): void {
     this.balanceService.currentBalance.subscribe((balance) => {
@@ -138,7 +181,11 @@ export class CreateCreditNoteComponent implements OnInit {
     };
     this.sourceDocument.payments.forEach((payment) => {
       payment.amount = -payment.amount;
-      this.payments.push(payment);
+
+      this.payments.update((current) => {
+        current.push(payment);
+        return [...current];
+      });
     });
   }
 
@@ -147,7 +194,9 @@ export class CreateCreditNoteComponent implements OnInit {
     this.creditNote!.sourceDocOid = this.sourceDocument.oid
       ? this.sourceDocument.oid
       : this.sourceDocument.id!;
-    this.creditNote!.payments = this.payments;
+    if (this.payment) {
+      this.creditNote!.payments = this.payments();
+    }
     this.creditNote!.items = this.creditNote!.items.filter(
       (item) => item.quantity > 0,
     );
@@ -177,27 +226,33 @@ export class CreateCreditNoteComponent implements OnInit {
   }
 
   delPayment(_payment: Payment) {
-    const index: number = this.payments.indexOf(_payment);
+    const index: number = this.payments().indexOf(_payment);
     if (index !== -1) {
-      this.payments.splice(index, 1);
+      this.payments.update((current) => {
+        current.splice(index, 1);
+        return [...current];
+      });
     }
   }
 
   openPaymentDialog() {
     let amount = this.sourceDocument.crossTotal;
-    this.payments.forEach((payment) => {
+    this.payments().forEach((payment) => {
       amount = amount + payment.amount;
     });
     let dialogRef = this.dialog.open(AddPaymentDialogComponent, {
       data: amount,
     });
     dialogRef.afterClosed().subscribe({
-      next: (info) => {
-        this.payments.push({
-          amount: -info.amount,
-          currency: this.creditNote.currency,
-          exchangeRate: this.creditNote!.exchangeRate,
-          type: info.paymentType,
+      next: (data) => {
+        this.payments.update((current) => {
+          current.push({
+            amount: -data.amount,
+            currency: this.creditNote.currency,
+            exchangeRate: this.creditNote!.exchangeRate,
+            type: data.paymentType,
+          });
+          return [...current];
         });
       },
     });
@@ -213,7 +268,10 @@ export class CreateCreditNoteComponent implements OnInit {
       .calculateDoc(this.creditNote, this.sourceDocument.id!!)
       .subscribe({
         next: (doc) => {
-          console.log(doc);
+          this.payments.update((current) => {
+            if (current.length == 1) [(current[0].amount = doc.crossTotal)];
+            return [...current];
+          });
         },
       });
   }
@@ -234,7 +292,7 @@ export class CreateCreditNoteComponent implements OnInit {
   }
 
   reset() {
-    this.payments = [];
+    this.payments.set([]);
     this.initCreditNote();
   }
 
@@ -251,5 +309,17 @@ export class CreateCreditNoteComponent implements OnInit {
       this.setItem(item);
     });
     this.calculate();
+  }
+
+  get creditNoteReasons(): Reason[] {
+    return this.permitPartial
+      ? this._creditNoteReasons
+      : this._creditNoteReasons.filter((reason) => reason.partial == false);
+  }
+
+  onSelectionChange(selectionChange: StepperSelectionEvent) {
+    this.activatePartial.set(
+      this.permitPartial && this.reasonFormGroup.value.creditNoteReason.partial,
+    );
   }
 }

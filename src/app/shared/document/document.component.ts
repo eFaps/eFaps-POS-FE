@@ -4,10 +4,11 @@ import {
   Input,
   OnInit,
   ViewChild,
+  effect,
   inject,
   input,
+  model,
   output,
-  destroyPlatform,
   signal,
 } from "@angular/core";
 import { MatButton, MatIconButton } from "@angular/material/button";
@@ -101,6 +102,32 @@ export class DocumentComponent implements OnInit {
   readonly permitCreditNote = input(false);
   readonly hideTitle = input<Boolean>();
   readonly showCmd = input<Boolean>();
+  readonly document = model.required<Document>();
+
+  constructor() {
+    effect(() => {
+      const doc = this.document();
+      if (doc && doc.items) {
+        this.dataSource.data = doc.items.sort((a, b) =>
+          a.index < b.index ? -1 : 1,
+        );
+        this.dataSource.sort = this.sort;
+        this.loadCreditNote();
+        this.loadEmployeeRelations();
+      } else {
+        this.dataSource.data = [];
+        this.creditNotes.set([]);
+        this.employeeRelations = [];
+      }
+      if (this.showCmd()) {
+        if (this.displayedColumns.length == 6) {
+          this.displayedColumns.push("cmd");
+        }
+      } else if (this.displayedColumns.length == 7) {
+        this.displayedColumns.pop();
+      }
+    });
+  }
 
   creditNotes = signal<CreditNote[]>([]);
   sourceDoc = signal<Document | undefined>(undefined);
@@ -115,7 +142,7 @@ export class DocumentComponent implements OnInit {
   ];
 
   dataSource = new MatTableDataSource<DocItem>();
-  _document: Document;
+
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   private workspaceOid: string = "";
 
@@ -128,26 +155,8 @@ export class DocumentComponent implements OnInit {
   btnIcon = input<(item: DocItem) => string>();
   onItemClick = output<DocItem>();
 
-  constructor() {
-    this._document = {
-      type: "ORDER",
-      id: null,
-      oid: null,
-      number: null,
-      currency: Currency.PEN,
-      items: [],
-      status: DocStatus.OPEN,
-      netTotal: 0,
-      crossTotal: 0,
-      exchangeRate: 0,
-      payableAmount: 0,
-      taxes: [],
-      discount: null,
-    };
-  }
-
   ngOnInit() {
-    if (this.matDialogRef && !this._document) {
+    if (this.matDialogRef && !this.document()) {
       this.router.navigate(["/pos"]);
     }
     this.workspaceService.currentWorkspace.subscribe({
@@ -159,53 +168,25 @@ export class DocumentComponent implements OnInit {
       },
     });
     this.promotionService
-      .getPromotionInfoForDocument(this.document.id!!)
+      .getPromotionInfoForDocument(this.document()?.id!!)
       .subscribe({
         next: (promoInfo) => (this.promoInfo = promoInfo),
       });
   }
 
-  @Input()
-  set document(document: Document) {
-    this._document = document;
-    if (document && document.items) {
-      this.dataSource.data = this._document.items.sort((a, b) =>
-        a.index < b.index ? -1 : 1,
-      );
-      this.dataSource.sort = this.sort;
-      this.loadCreditNote();
-      this.loadEmployeeRelations();
-    } else {
-      this.dataSource.data = [];
-      this.creditNotes.set([]);
-      this.employeeRelations = [];
-    }
-    const cmd = this.showCmd();
-    if (cmd) {
-      if (this.displayedColumns.length == 6) {
-        this.displayedColumns.push("cmd");
-      }
-    }
-  }
-
-  get document(): Document {
-    return this._document;
-  }
-
   isPayable(): boolean {
-    return "payments" in this._document;
+    return "payments" in this.document();
   }
 
   get payments(): Payment[] {
-    return this.isPayable() ? (<Payable>this._document).payments : [];
+    return this.isPayable() ? (<Payable>this.document()).payments : [];
   }
 
   loadCreditNote() {
-    if (this._document.type != "CREDITNOTE") {
+    const doc = this.document();
+    if (doc.type != "CREDITNOTE") {
       this.documentService
-        .getCreditNotes4SourceDocument(
-          this._document.oid ? this._document.oid : this._document.id!,
-        )
+        .getCreditNotes4SourceDocument(doc.oid ? doc.oid : doc.id!)
         .subscribe({
           next: (docs) => {
             this.creditNotes.set(docs);
@@ -213,9 +194,9 @@ export class DocumentComponent implements OnInit {
         });
     } else {
       this.creditNotes.set([]);
-      if ((<CreditNote>this._document).sourceDocOid) {
+      if ((<CreditNote>doc).sourceDocOid) {
         this.documentService
-          .getPayableByIdent((<CreditNote>this._document).sourceDocOid)
+          .getPayableByIdent((<CreditNote>doc).sourceDocOid)
           .subscribe({
             next: (doc) => {
               if (doc) {
@@ -232,15 +213,15 @@ export class DocumentComponent implements OnInit {
 
   printCopy() {
     this.dialog.open(PrintDialogComponent, {
-      data: this.printService.printCopy(this.workspaceOid, this._document),
+      data: this.printService.printCopy(this.workspaceOid, this.document()),
     });
   }
 
   createCreditNote() {
     this.router.navigate(["/credit-notes"], {
       queryParams: {
-        sourceId: this.document.id,
-        sourceType: this.document.type,
+        sourceId: this.document().id,
+        sourceType: this.document().type,
       },
     });
     this.matDialogRef?.close();
@@ -248,16 +229,17 @@ export class DocumentComponent implements OnInit {
 
   get showCreditNoteBtn(): boolean {
     return (
+      this.document().type != "CREDITNOTE" &&
+      this.document().type != "TICKET" &&
       this.permitCreditNote() &&
       this.authService.hasPermission(Permission.ADMIN) &&
-      this._document.type != "CREDITNOTE" &&
       this.creditNotes().length == 0
     );
   }
 
   loadEmployeeRelations() {
-    if (this._document.employeeRelations) {
-      this._document.employeeRelations.forEach((entry) => {
+    if (this.document().employeeRelations) {
+      this.document().employeeRelations!!.forEach((entry) => {
         const relation: EmployeeRelationDisplay = {
           type: entry.type,
         };

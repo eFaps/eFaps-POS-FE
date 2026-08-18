@@ -1,14 +1,14 @@
-@if (document) {
+@if (document()) {
   <div class="mat-typography">
     @if (!hideTitle()) {
-      <h3>{{ document.type! | translate }}: {{ document.number }}</h3>
+      <h3>{{ document().type! | translate }}: {{ document().number }}</h3>
     }
-    @if (showContact() && document.contact) {
+    @if (showContact() && document().contact) {
       <div class="contact-document">
         <span>Cliente:</span>
         <span
-          >{{ "IDTYPE." + document.contact.idType | translate }}: {{ document.contact.idNumber }} -
-          {{ document.contact.name }}</span
+          >{{ "IDTYPE." + document().contact!!.idType | translate }}:
+          {{ document().contact!!.idNumber }} - {{ document().contact!!.name }}</span
         >
       </div>
     }
@@ -49,7 +49,7 @@
           <mat-cell *matCellDef="let item">
             @if (!isChild(item)) {
               <div>
-                {{ item.crossUnitPrice | posCurrency: document.currency }}
+                {{ item.crossUnitPrice | posCurrency: document().currency }}
               </div>
             }
           </mat-cell>
@@ -59,11 +59,11 @@
           <mat-cell *matCellDef="let item">
             @if (!isChild(item)) {
               <div>
-                {{ item.crossPrice | posCurrency: document.currency }}
+                {{ item.crossPrice | posCurrency: document().currency }}
               </div>
             } @else if (item.crossPrice > 0) {
               <div>
-                {{ item.crossPrice | posCurrency: document.currency }}
+                {{ item.crossPrice | posCurrency: document().currency }}
               </div>
             }
           </mat-cell>
@@ -136,13 +136,13 @@
             }
           </mat-list>
         }
-        @if (document.note) {
+        @if (document().note) {
           <div>
             <span>Nota:</span>
             <mat-list dense>
               <mat-list-item>
                 <p matLine>
-                  <span>{{ document.note }}</span>
+                  <span>{{ document().note }}</span>
                 </p>
               </mat-list-item>
             </mat-list>
@@ -161,13 +161,15 @@
       <div>
         <mat-list>
           <mat-list-item class="amount">
-            <div matLine>Op. Gravada: {{ document.netTotal | posCurrency: document.currency }}</div>
+            <div matLine>
+              Op. Gravada: {{ document().netTotal | posCurrency: document().currency }}
+            </div>
           </mat-list-item>
-          @for (taxEntry of document.taxes; track taxEntry) {
+          @for (taxEntry of document().taxes; track taxEntry) {
             <mat-list-item class="amount">
               <div matLine>
                 {{ taxEntry.tax.name | translate }}:
-                {{ taxEntry.amount | posCurrency: document.currency }}
+                {{ taxEntry.amount | posCurrency: document().currency }}
               </div>
             </mat-list-item>
           }
@@ -175,28 +177,31 @@
             <mat-list-item class="amount">
               <div matLine class="totalDiscount">
                 <button mat-button (click)="showPromoInfo()">
-                  Descuento: {{ promoInfo.crossTotalDiscount | posCurrency: document.currency }}
+                  Descuento: {{ promoInfo.crossTotalDiscount | posCurrency: document().currency }}
                 </button>
               </div>
             </mat-list-item>
           }
           <mat-list-item class="amount">
-            <div matLine>Total: {{ document.crossTotal | posCurrency: document.currency }}</div>
+            <div matLine>Total: {{ document().crossTotal | posCurrency: document().currency }}</div>
           </mat-list-item>
           @if (
-            document.payableAmount &&
-            document.payableAmount > 0 &&
-            document.payableAmount != document.crossTotal
+            document().payableAmount &&
+            document().payableAmount > 0 &&
+            document().payableAmount != document().crossTotal
           ) {
             <mat-list-item class="amount">
               <div matLine>
                 Redondeo:
-                {{ document.payableAmount - document.crossTotal | posCurrency: document.currency }}
+                {{
+                  document().payableAmount - document().crossTotal
+                    | posCurrency: document().currency
+                }}
               </div>
             </mat-list-item>
             <mat-list-item class="amount">
               <div matLine>
-                Por pagar: {{ document.payableAmount | posCurrency: document.currency }}
+                Por pagar: {{ document().payableAmount | posCurrency: document().currency }}
               </div>
             </mat-list-item>
           }

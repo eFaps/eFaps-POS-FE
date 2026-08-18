@@ -17,7 +17,7 @@ import {
 } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
-import { Observable} from "rxjs";
+import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it, Mock, Mocked, vi } from "vitest";
 
 import { environment } from "../../../environments/environment";
@@ -54,11 +54,10 @@ class ConfigServiceStub {
 }
 
 describe("AdminComponent", () => {
- 
   const authServiceMock: Partial<AuthService> = {
-     hasPermission : vi.fn(() => false)
+    hasPermission: vi.fn(() => false),
   };
- 
+
   let component: AdminComponent;
   let fixture: ComponentFixture<AdminComponent>;
 
@@ -73,7 +72,7 @@ describe("AdminComponent", () => {
       providers: [
         provideZonelessChangeDetection(),
         { provide: AdminService, useClass: AdminServiceStub },
-        { provide: AuthService, useValue: authServiceMock},
+        { provide: AuthService, useValue: authServiceMock },
         { provide: ConfigService, useClass: ConfigServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -85,21 +84,19 @@ describe("AdminComponent", () => {
     fixture.detectChanges();
   });
 
-   it("should hide the Reload button if no access", () => {
+  it("should hide the Reload button if no access", () => {
     const baseDe: DebugElement = fixture.debugElement;
     const baseEl: HTMLElement = baseDe.nativeElement;
-    const button = baseEl.querySelector("button")!
+    const button = baseEl.querySelector("button")!;
     expect(button.textContent).not.toContain("Reload");
   });
 });
 
-
 describe("AdminComponent", () => {
- 
   const authServiceMock: Partial<AuthService> = {
-     hasPermission : vi.fn(() => true)
+    hasPermission: vi.fn(() => true),
   };
- 
+
   let component: AdminComponent;
   let fixture: ComponentFixture<AdminComponent>;
 
@@ -114,7 +111,7 @@ describe("AdminComponent", () => {
       providers: [
         provideZonelessChangeDetection(),
         { provide: AdminService, useClass: AdminServiceStub },
-        { provide: AuthService, useValue: authServiceMock},
+        { provide: AuthService, useValue: authServiceMock },
         { provide: ConfigService, useClass: ConfigServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -161,7 +158,7 @@ describe("AdminComponent", () => {
   it("should render the Reload button", () => {
     const baseDe: DebugElement = fixture.debugElement;
     const baseEl: HTMLElement = baseDe.nativeElement;
-    const button = baseEl.querySelector("button")!
+    const button = baseEl.querySelector("button")!;
     expect(button.textContent).toContain("Reload");
   });
 });

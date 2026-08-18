@@ -1,16 +1,16 @@
 <div class="adminpage">
-   @if (hasSyncPermission()) {
-  <div>
-    <button
-      type="submit"
-      class="btn btn-success"
-      mat-raised-button
-      color="primary"
-      (click)="reload()"
-      i18n="@@reload">
-      Reload
-    </button>
-  </div>
+  @if (hasSyncPermission()) {
+    <div>
+      <button
+        type="submit"
+        class="btn btn-success"
+        mat-raised-button
+        color="primary"
+        (click)="reload()"
+        i18n="@@reload">
+        Reload
+      </button>
+    </div>
   }
   @if (stocktakingActivate) {
     <div>
@@ -35,7 +35,9 @@
       <p class="minWarning">Minium backend version: {{ minBEVersion }}</p>
     }
     @for (entry of versionEntries(); track entry) {
-      <p><span class="versionKey">{{entry[0]}}: </span>{{entry[1]}}</p>
+      <p>
+        <span class="versionKey">{{ entry[0] }}: </span>{{ entry[1] }}
+      </p>
     }
   </div>
   <div class="mat-elevation-z3 versions">

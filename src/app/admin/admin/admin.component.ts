@@ -80,7 +80,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   appVersion = environment.version;
   minBEVersion = environment.minBEVersion;
   versions: Versions | undefined;
-  versionEntries = signal<string[][]>([])
+  versionEntries = signal<string[][]>([]);
 
   lazyElements = signal<Extension[]>([]);
   _barcodeOptions: BarcodeOptions | null =
@@ -109,18 +109,16 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.adminService
-      .version()
-      .subscribe((versions) => { 
-        this.versions = versions 
-        const entries : string[][]= []
-        for (const key in this.versions) {
-          if (key != "local" && key != "remote") {
-            entries.push([key, this.versions[key]])
-          }
+    this.adminService.version().subscribe((versions) => {
+      this.versions = versions;
+      const entries: string[][] = [];
+      for (const key in this.versions) {
+        if (key != "local" && key != "remote") {
+          entries.push([key, this.versions[key]]);
         }
-        this.versionEntries.set(entries)
-      });
+      }
+      this.versionEntries.set(entries);
+    });
 
     this.configService.getExtensions().subscribe({
       next: (extensions) => {

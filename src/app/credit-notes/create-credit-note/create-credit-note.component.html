@@ -1,54 +1,97 @@
 <div class="wrapper">
   <div class="header">
     <h2 i18n>Balance - {{ balance.number }}</h2>
+    <h3>Emision de Nota de Credito</h3>
   </div>
-  <div class="documents">
-    <div>
-      <app-document [document]="sourceDocument" [showContact]="true"></app-document>
-    </div>
-    <div>
-      <div class="toggle">
-        <button mat-icon-button (click)="toggle()">
-          <mat-icon>autorenew</mat-icon>
+
+  <mat-stepper
+    orientation="vertical"
+    [linear]="true"
+    #stepper
+    (selectionChange)="onSelectionChange($event)">
+    <mat-step [stepControl]="reasonFormGroup">
+      <form [formGroup]="reasonFormGroup">
+        <ng-template matStepLabel>Motivo de la Nota de Credito</ng-template>
+        <mat-radio-group class="reason-radio-group" formControlName="creditNoteReason">
+          @for (reason of creditNoteReasons; track reason) {
+            <mat-radio-button [value]="reason">{{ reason.label }}</mat-radio-button>
+          }
+        </mat-radio-group>
+      </form>
+      <div>
+        <button matButton matStepperNext>Proximo</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Eligir items</ng-template>
+      <div class="documents">
+        <div>
+          <app-document [document]="sourceDocument" [showContact]="true"></app-document>
+        </div>
+        <div>
+          @if (activatePartial()) {
+            <div class="toggle">
+              <button mat-icon-button (click)="toggle()">
+                <mat-icon>autorenew</mat-icon>
+              </button>
+            </div>
+          }
+          <app-document
+            [document]="creditNote!!"
+            [showContact]="true"
+            [showCmd]="activatePartial()"
+            (onItemClick)="itemClick($event)"
+            [markInvalid]="itemInvalid"
+            [btnIcon]="btnIcon"></app-document>
+          @if (activatePartial()) {
+            <button mat-raised-button color="primary" (click)="reset()">Reiniciar</button>
+          }
+        </div>
+      </div>
+      <div>
+        <button matButton matStepperNext>Proximo</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Registrar pagos/reembolsos</ng-template>
+      <div class="paymentWrapper">
+        <div class="paymentToggle">
+          <mat-button-toggle-group [(ngModel)]="payment">
+            <mat-button-toggle [value]="true">Reembolsar</mat-button-toggle>
+            <mat-button-toggle [value]="false">Canjear</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+        @if (payment) {
+          <mat-divider [vertical]="true"></mat-divider>
+          <div class="payments">
+            <button mat-raised-button color="secondary" (click)="openPaymentDialog()">
+              Anadir Pago
+            </button>
+            <mat-list dense>
+              @for (payment of payments(); track payment) {
+                <mat-list-item>
+                  <span matLine
+                    >{{
+                      payment.cardTypeId
+                        ? payment.cardLabel
+                        : ("PAYMENT." + payment.type | translate)
+                    }}
+                    {{ payment.amount | posCurrency: paymentService.currency }}</span
+                  >
+                  <button mat-icon-button (click)="delPayment(payment)">
+                    <mat-icon>highlight_off</mat-icon>
+                  </button>
+                </mat-list-item>
+              }
+            </mat-list>
+          </div>
+        }
+      </div>
+      <div class="submitBtn">
+        <button matButton (click)="createCreditNote()" [disabled]="!validated || loading">
+          Emitir Nota de Credito
         </button>
       </div>
-      <app-document
-        [document]="creditNote!!"
-        [showContact]="true"
-        [showCmd]="permitPartial"
-        (onItemClick)="itemClick($event)"
-        [markInvalid]="itemInvalid"
-        [btnIcon]="btnIcon"></app-document>
-      <button mat-raised-button color="primary" (click)="reset()">Reiniciar</button>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="payments">
-      <button mat-raised-button color="secondary" (click)="openPaymentDialog()">Anadir Pago</button>
-      <mat-list dense>
-        @for (payment of payments; track payment) {
-          <mat-list-item>
-            <span matLine
-              >{{
-                payment.cardTypeId ? payment.cardLabel : ("PAYMENT." + payment.type | translate)
-              }}
-              {{ payment.amount | posCurrency: paymentService.currency }}</span
-            >
-            <button mat-icon-button (click)="delPayment(payment)">
-              <mat-icon>highlight_off</mat-icon>
-            </button>
-          </mat-list-item>
-        }
-      </mat-list>
-    </div>
-    <div class="buttons">
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="createCreditNote()"
-        [disabled]="!validated || loading">
-        Emitir Nota de Credito
-      </button>
-    </div>
-  </div>
+    </mat-step>
+  </mat-stepper>
 </div>
