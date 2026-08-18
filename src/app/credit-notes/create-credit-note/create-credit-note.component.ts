@@ -200,6 +200,8 @@ export class CreateCreditNoteComponent implements OnInit {
     this.creditNote!.items = this.creditNote!.items.filter(
       (item) => item.quantity > 0,
     );
+    this.creditNote!.creditReason =
+      this.reasonFormGroup.value.creditNoteReason.key;
     this.documentService.createCreditNote(this.creditNote!).subscribe({
       next: (doc) => {
         this.router.navigate(["/balance"]);
