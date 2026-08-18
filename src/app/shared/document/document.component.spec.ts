@@ -10,6 +10,9 @@ import { MatTableModule } from "@angular/material/table";
 import { Router } from "@angular/router";
 import {
   AuthService,
+  CreditNote,
+  Currency,
+  DocStatus,
   DocumentService,
   EmployeeService,
   PosConfigToken,
@@ -44,6 +47,16 @@ class PromotionServiceStub {
   }
 }
 
+class DocumentServiceStub {
+  getCreditNotes4SourceDocument(
+    sourceDocOid: string,
+  ): Observable<CreditNote[]> {
+    return new Observable((observer) => {
+      observer.next([]);
+    });
+  }
+}
+
 describe("DocumentComponent", () => {
   let component: DocumentComponent;
   let fixture: ComponentFixture<DocumentComponent>;
@@ -64,7 +77,7 @@ describe("DocumentComponent", () => {
         { provide: AuthService, useValue: {} },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: PrintService, useClass: PrintServiceStub },
-        { provide: DocumentService, useValue: {} },
+        { provide: DocumentService, useClass: DocumentServiceStub },
         { provide: EmployeeService, useValue: {} },
         { provide: PromotionService, useClass: PromotionServiceStub },
         provideHttpClient(withInterceptorsFromDi()),
@@ -75,6 +88,20 @@ describe("DocumentComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DocumentComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput("document", {
+      id: null,
+      oid: null,
+      number: null,
+      currency: Currency.PEN,
+      items: [],
+      status: DocStatus.OPEN,
+      netTotal: 0,
+      crossTotal: 0,
+      exchangeRate: 0,
+      payableAmount: 0,
+      taxes: [],
+      discount: null,
+    });
     fixture.detectChanges();
   });
 
