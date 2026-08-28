@@ -271,7 +271,7 @@ export class CreateCreditNoteComponent implements OnInit {
       .subscribe({
         next: (doc) => {
           this.payments.update((current) => {
-            if (current.length == 1) [(current[0].amount = doc.crossTotal)];
+            if (current.length == 1) [(current[0].amount = -doc.crossTotal)];
             return [...current];
           });
         },
