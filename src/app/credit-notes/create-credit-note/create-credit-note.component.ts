@@ -38,6 +38,7 @@ import clone from "just-clone";
 import { DocumentComponent } from "../../shared/document/document.component";
 import { AddPaymentDialogComponent } from "../add-payment-dialog/add-payment-dialog.component";
 import { SuccessDialogComponent } from "../success-dialog/success-dialog.component";
+import { ConfirmDialogComponent } from "src/app/shared/confirm-dialog/confirm-dialog.component";
 import { CREDITNOTE_PERMITPARTIAL } from "src/app/util/keys";
 interface Reason {
   key: string;
@@ -106,8 +107,9 @@ export class CreateCreditNoteComponent implements OnInit {
   workspaceOid!: string;
   print: boolean = false;
   permitPartial = false;
-  validated = false;
+  emitable = false;
   loading = false;
+
   activatePartial = signal<boolean>(false);
 
   ngOnInit(): void {
@@ -133,7 +135,7 @@ export class CreateCreditNoteComponent implements OnInit {
           this.documentService.getReceipt(sourceId).subscribe({
             next: (receipt) => {
               this.sourceDocument = receipt;
-              this.validate();
+              this.canBeEmited();
               this.initCreditNote();
             },
           });
@@ -142,7 +144,7 @@ export class CreateCreditNoteComponent implements OnInit {
           this.documentService.getInvoice(sourceId).subscribe({
             next: (invoice) => {
               this.sourceDocument = invoice;
-              this.validate();
+              this.canBeEmited();
               this.initCreditNote();
             },
           });
@@ -158,12 +160,12 @@ export class CreateCreditNoteComponent implements OnInit {
       });
   }
 
-  validate() {
+  private canBeEmited() {
     this.documentService
       .validateForCreditNote({ payableOid: this.sourceDocument.oid!! })
       .subscribe({
         next: (response) => {
-          this.validated = response.valid;
+          this.emitable = response.valid;
         },
       });
   }
@@ -190,6 +192,32 @@ export class CreateCreditNoteComponent implements OnInit {
   }
 
   createCreditNote() {
+    var total = this.creditNote.crossTotal;
+    var paymentAmount = this.payments().reduce(
+      (accumulator, current) => accumulator + current.amount,
+      0,
+    );
+
+    if (this.payment && total + paymentAmount != 0) {
+      let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        data: {
+          title: "Verificar",
+          msg: `Suma de pagos (${paymentAmount}) y monto de la Nota de Credito (${total}) no coinciden!`,
+          cancel: "Regresar",
+          confirm: "Emitir Nota de Credito",
+        },
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.createInternal();
+        }
+      });
+    } else {
+      this.createInternal();
+    }
+  }
+
+  private createInternal() {
     this.loading = true;
     this.creditNote!.sourceDocOid = this.sourceDocument.oid
       ? this.sourceDocument.oid
@@ -323,5 +351,9 @@ export class CreateCreditNoteComponent implements OnInit {
     this.activatePartial.set(
       this.permitPartial && this.reasonFormGroup.value.creditNoteReason.partial,
     );
+  }
+
+  get valid(): boolean {
+    return this.emitable && !this.loading;
   }
 }

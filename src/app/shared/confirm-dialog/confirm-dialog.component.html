@@ -1,5 +1,14 @@
 <h1 mat-dialog-title>{{ data.title }}</h1>
+@if (data.msg) {
+  <mat-dialog-content>
+    <div class="content">
+      {{ data.msg }}
+    </div>
+  </mat-dialog-content>
+}
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true">OK</button>
+  <button mat-button mat-dialog-close>{{ data.cancel ? data.cancel : "Cancelar" }}</button>
+  <button mat-button [mat-dialog-close]="true">
+    {{ data.confirm ? data.confirm : "Confirmar" }}
+  </button>
 </mat-dialog-actions>

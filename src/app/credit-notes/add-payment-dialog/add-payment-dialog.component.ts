@@ -52,8 +52,8 @@ export class AddPaymentDialogComponent {
       isNaN(Number(f)),
     );
     this.paymentForm = this.fb.group({
-      amount: [this.data, Validators.min(0)],
-      paymentType: [],
+      amount: [this.data, Validators.min(0.01)],
+      paymentType: [, Validators.required],
     });
   }
 

@@ -4,6 +4,7 @@ import {
   MAT_DIALOG_DATA,
   MatDialogActions,
   MatDialogClose,
+  MatDialogContent,
   MatDialogRef,
   MatDialogTitle,
 } from "@angular/material/dialog";
@@ -11,7 +12,13 @@ import {
 @Component({
   selector: "app-confirm-dialog",
   templateUrl: "./confirm-dialog.component.html",
-  imports: [MatDialogTitle, MatDialogActions, MatButton, MatDialogClose],
+  imports: [
+    MatDialogTitle,
+    MatDialogActions,
+    MatButton,
+    MatDialogClose,
+    MatDialogContent,
+  ],
 })
 export class ConfirmDialogComponent {
   dialogRef = inject<MatDialogRef<ConfirmDialogComponent>>(MatDialogRef);
