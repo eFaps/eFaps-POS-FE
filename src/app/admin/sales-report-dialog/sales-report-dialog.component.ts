@@ -1,5 +1,5 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -44,6 +44,7 @@ import { MatInput } from "@angular/material/input";
     MatButton,
     MatDialogClose,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [provideNativeDateAdapter()],
 })
 export class SalesReportDialogComponent {

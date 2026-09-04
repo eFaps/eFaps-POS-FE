@@ -1,9 +1,17 @@
-import { Component, OnInit, inject } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatFabButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIcon } from "@angular/material/icon";
 import { MatTooltip } from "@angular/material/tooltip";
 import { Router } from "@angular/router";
+import { TranslatePipe } from "@ngx-translate/core";
+
+import { AbstractSpotPicker } from "../abstract-spot-picker";
 import {
   DocumentService,
   PosService,
@@ -11,14 +19,12 @@ import {
   SpotConfig,
   SpotService,
 } from "@efaps/pos-library";
-import { TranslatePipe } from "@ngx-translate/core";
-
-import { AbstractSpotPicker } from "../abstract-spot-picker";
 
 @Component({
   selector: "app-base-spot-picker",
   templateUrl: "./base-spot-picker.component.html",
   styleUrls: ["./base-spot-picker.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatFabButton, MatTooltip, MatIcon, TranslatePipe],
 })
 export class BaseSpotPickerComponent

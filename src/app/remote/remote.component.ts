@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -14,8 +14,9 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTabsModule } from "@angular/material/tabs";
 import { Router } from "@angular/router";
-import { DocumentService, Payable, PosLibraryModule } from "@efaps/pos-library";
 import { TranslateModule } from "@ngx-translate/core";
+
+import { DocumentService, Payable, PosLibraryModule } from "@efaps/pos-library";
 
 @Component({
   selector: "app-remote",
@@ -33,6 +34,7 @@ import { TranslateModule } from "@ngx-translate/core";
     TranslateModule,
   ],
   templateUrl: "./remote.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: "./remote.component.scss",
 })
 export class RemoteComponent {

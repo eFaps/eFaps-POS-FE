@@ -8,7 +8,8 @@
         <span>Cliente:</span>
         <span
           >{{ "IDTYPE." + document().contact!!.idType | translate }}:
-          {{ document().contact!!.idNumber }} - {{ document().contact!!.name }}</span
+          {{ document().contact!!.idNumber }} -
+          {{ document().contact!!.name }}</span
         >
       </div>
     }
@@ -21,11 +22,15 @@
         matSortDirection="asc"
         multiTemplateDataRows>
         <ng-container matColumnDef="index">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            No.
+          </mat-header-cell>
           <mat-cell *matCellDef="let item"> {{ item.index }} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="quantity">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> C. </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            C.
+          </mat-header-cell>
           <mat-cell *matCellDef="let item">
             @if (!isChild(item)) {
               {{ item.quantity }}
@@ -42,7 +47,9 @@
         </ng-container>
         <ng-container matColumnDef="productDesc">
           <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
-          <mat-cell *matCellDef="let item"> {{ item.product.description }} </mat-cell>
+          <mat-cell *matCellDef="let item">
+            {{ item.product.description }}
+          </mat-cell>
         </ng-container>
         <ng-container matColumnDef="crossUnitPrice">
           <mat-header-cell *matHeaderCellDef><div>P.U.</div></mat-header-cell>
@@ -55,7 +62,9 @@
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="crossPrice">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> <div>Precio</div></mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            <div>Precio</div></mat-header-cell
+          >
           <mat-cell *matCellDef="let item">
             @if (!isChild(item)) {
               <div>
@@ -75,13 +84,16 @@
             class="relation-detail">
             @for (relation of item.product.relations; track relation) {
               @if (relation.type == "SALESBOM") {
-                <app-part-list-relation [productRelation]="relation"></app-part-list-relation>
+                <app-part-list-relation
+                  [productRelation]="relation"></app-part-list-relation>
               }
             }
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="cmd">
-          <mat-header-cell *matHeaderCellDef> <div>&nbsp;</div></mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>
+            <div>&nbsp;</div></mat-header-cell
+          >
           <mat-cell *matCellDef="let item">
             <button (click)="btnClick(item)" mat-icon-button>
               <mat-icon>{{ getBtnIcon(item) }}</mat-icon>
@@ -114,7 +126,9 @@
                           : ("PAYMENT." + payment.type | translate)
                       }}:
                     </span>
-                    <span class="amount">{{ payment.amount | number: "1.2-2" }}</span>
+                    <span class="amount">{{
+                      payment.amount | number: "1.2-2"
+                    }}</span>
                   </p>
                 </mat-list-item>
               }
@@ -127,9 +141,12 @@
             @for (relation of employeeRelations; track relation) {
               <mat-list-item>
                 <p matLine>
-                  <span class="employeeRealtionType">{{ relation.type }}: </span>
+                  <span class="employeeRealtionType"
+                    >{{ relation.type }}:
+                  </span>
                   <span class="employee"
-                    >{{ relation.employee?.firstName }} {{ relation.employee?.surName }}</span
+                    >{{ relation.employee?.firstName }}
+                    {{ relation.employee?.surName }}</span
                   >
                 </p>
               </mat-list-item>
@@ -162,7 +179,8 @@
         <mat-list>
           <mat-list-item class="amount">
             <div matLine>
-              Op. Gravada: {{ document().netTotal | posCurrency: document().currency }}
+              Op. Gravada:
+              {{ document().netTotal | posCurrency: document().currency }}
             </div>
           </mat-list-item>
           @for (taxEntry of document().taxes; track taxEntry) {
@@ -177,13 +195,20 @@
             <mat-list-item class="amount">
               <div matLine class="totalDiscount">
                 <button mat-button (click)="showPromoInfo()">
-                  Descuento: {{ promoInfo.crossTotalDiscount | posCurrency: document().currency }}
+                  Descuento:
+                  {{
+                    promoInfo.crossTotalDiscount
+                      | posCurrency: document().currency
+                  }}
                 </button>
               </div>
             </mat-list-item>
           }
           <mat-list-item class="amount">
-            <div matLine>Total: {{ document().crossTotal | posCurrency: document().currency }}</div>
+            <div matLine>
+              Total:
+              {{ document().crossTotal | posCurrency: document().currency }}
+            </div>
           </mat-list-item>
           @if (
             document().payableAmount &&
@@ -201,7 +226,10 @@
             </mat-list-item>
             <mat-list-item class="amount">
               <div matLine>
-                Por pagar: {{ document().payableAmount | posCurrency: document().currency }}
+                Por pagar:
+                {{
+                  document().payableAmount | posCurrency: document().currency
+                }}
               </div>
             </mat-list-item>
           }
@@ -218,7 +246,10 @@
         <span>Nota de Credito {{ creditNote.number }}</span>
       }
       @if (sourceDoc()) {
-        <span>{{ sourceDoc()?.type! | translate }}: {{ sourceDoc()?.number }}</span>
+        <span
+          >{{ $safeNavigationMigration(sourceDoc()?.type)! | translate }}:
+          {{ sourceDoc()?.number }}</span
+        >
       }
     </div>
   </div>

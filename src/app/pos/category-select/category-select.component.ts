@@ -1,12 +1,19 @@
-import { Component, inject, signal } from "@angular/core";
+import {
+  Component,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatButton } from "@angular/material/button";
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+
 import { Category, ProductService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-category-select",
   templateUrl: "./category-select.component.html",
   styleUrls: ["./category-select.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatButton, MatDialogModule],
 })
 export class CategorySelectComponent {

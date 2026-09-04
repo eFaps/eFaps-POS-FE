@@ -1,5 +1,5 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { MatButton } from "@angular/material/button";
 import {
@@ -16,6 +16,7 @@ import { MatInput } from "@angular/material/input";
   selector: "app-note-dialog",
   templateUrl: "./note-dialog.component.html",
   styleUrls: ["./note-dialog.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,

@@ -1,5 +1,11 @@
 import { NgClass } from "@angular/common";
-import { Component, Input, inject, input } from "@angular/core";
+import {
+  Component,
+  Input,
+  inject,
+  input,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatBadge } from "@angular/material/badge";
 import {
   MatCard,
@@ -9,6 +15,9 @@ import {
   MatCardTitle,
 } from "@angular/material/card";
 import { MatDialog } from "@angular/material/dialog";
+import { TranslatePipe } from "@ngx-translate/core";
+
+import { AbstractProductSelector } from "../../abstract-product-selector";
 import {
   Currency,
   InventoryEntry,
@@ -19,15 +28,13 @@ import {
   ProductService,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { TranslatePipe } from "@ngx-translate/core";
-
-import { AbstractProductSelector } from "../../abstract-product-selector";
 import { KeypadService, PosSyncService } from "src/app/services";
 
 @Component({
   selector: "app-products-element",
   templateUrl: "./products-element.component.html",
   styleUrls: ["./products-element.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     NgClass,
     MatCard,

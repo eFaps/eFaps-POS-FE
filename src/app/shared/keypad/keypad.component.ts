@@ -6,6 +6,7 @@ import {
   inject,
   input,
   output,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { MatButton } from "@angular/material/button";
 import { MatGridList, MatGridTile } from "@angular/material/grid-list";
@@ -18,6 +19,7 @@ import { KeypadService } from "../../services";
   selector: "app-keypad",
   templateUrl: "./keypad.component.html",
   styleUrls: ["./keypad.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatGridList, MatGridTile, MatButton, MatIcon],
 })
 export class KeypadComponent implements OnInit, OnDestroy {

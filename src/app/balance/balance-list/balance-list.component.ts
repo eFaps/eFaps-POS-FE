@@ -1,5 +1,12 @@
 import { DatePipe } from "@angular/common";
-import { Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatIconButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIcon } from "@angular/material/icon";
@@ -17,15 +24,16 @@ import {
   MatTable,
   MatTableDataSource,
 } from "@angular/material/table";
-import { Balance, BalanceService } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 
 import { BalanceSummaryDialogComponent } from "../balance-summary-dialog/balance-summary-dialog.component";
+import { Balance, BalanceService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-balance-list",
   templateUrl: "./balance-list.component.html",
   styleUrls: ["./balance-list.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatTable,
     MatSort,

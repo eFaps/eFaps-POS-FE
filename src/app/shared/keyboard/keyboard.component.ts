@@ -7,6 +7,7 @@ import {
   HostListener,
   inject,
   ViewEncapsulation,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 
 import { KeyboardService } from "src/app/services/keyboard.service";
@@ -16,6 +17,7 @@ import { KeyboardService } from "src/app/services/keyboard.service";
   imports: [],
   templateUrl: "./keyboard.component.html",
   styleUrl: "./keyboard.component.scss",
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class KeyboardComponent implements AfterViewInit {

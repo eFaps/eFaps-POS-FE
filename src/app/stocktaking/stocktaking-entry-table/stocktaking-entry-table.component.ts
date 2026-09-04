@@ -1,5 +1,11 @@
 import { DatePipe } from "@angular/common";
-import { ChangeDetectorRef, Component, ViewChild, inject } from "@angular/core";
+import {
+  ChangeDetectorRef,
+  Component,
+  ViewChild,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIcon } from "@angular/material/icon";
@@ -19,20 +25,21 @@ import {
   MatTableDataSource,
 } from "@angular/material/table";
 import { Router } from "@angular/router";
+import { merge, tap } from "rxjs";
+
 import {
   PageRequest,
   Stocktaking,
   StocktakingEntry,
   StocktakingService,
 } from "@efaps/pos-library";
-import { merge, tap } from "rxjs";
-
 import { ConfirmDialogComponent } from "src/app/shared/confirm-dialog/confirm-dialog.component";
 
 @Component({
   selector: "app-stocktaking-entry-table",
   templateUrl: "./stocktaking-entry-table.component.html",
   styleUrls: ["./stocktaking-entry-table.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatTable,
     MatSort,

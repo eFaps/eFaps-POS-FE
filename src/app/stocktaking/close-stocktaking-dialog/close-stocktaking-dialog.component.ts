@@ -1,5 +1,5 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { MatButton } from "@angular/material/button";
 import {
   MAT_DIALOG_DATA,
@@ -9,12 +9,14 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from "@angular/material/dialog";
+
 import { Stocktaking, StocktakingService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-close-stocktaking-dialog",
   templateUrl: "./close-stocktaking-dialog.component.html",
   styleUrls: ["./close-stocktaking-dialog.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,

@@ -6,6 +6,7 @@ import {
   HostListener,
   inject,
   OnInit,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { MatIconButton } from "@angular/material/button";
 import { MatIcon, MatIconRegistry } from "@angular/material/icon";
@@ -19,6 +20,13 @@ import {
 import { MatToolbar } from "@angular/material/toolbar";
 import { MatTooltip } from "@angular/material/tooltip";
 import { Router, RouterLink, RouterOutlet } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
+import { SvgIconComponent } from "angular-svg-icon";
+import { Hotkey, HotkeyModule, HotkeysService } from "angular2-hotkeys";
+import { LocalStorageService } from "ngx-localstorage";
+
+import { KeyboardComponent } from "./shared/keyboard/keyboard.component";
+import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
 import {
   AuthService,
   BarcodeOptions,
@@ -32,18 +40,12 @@ import {
   WorkspaceFlag,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { TranslateService } from "@ngx-translate/core";
-import { SvgIconComponent } from "angular-svg-icon";
-import { Hotkey, HotkeyModule, HotkeysService } from "angular2-hotkeys";
-import { LocalStorageService } from "ngx-localstorage";
-
-import { KeyboardComponent } from "./shared/keyboard/keyboard.component";
-import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatProgressBar,
     MatToolbar,

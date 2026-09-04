@@ -1,13 +1,19 @@
-import { Component, OnInit, inject } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatTab, MatTabContent, MatTabGroup } from "@angular/material/tabs";
-import { InventoryService, Warehouse } from "@efaps/pos-library";
 
 import { InventoryTableComponent } from "../inventory-table/inventory-table.component";
+import { InventoryService, Warehouse } from "@efaps/pos-library";
 
 @Component({
   selector: "app-inventory",
   templateUrl: "./inventory.component.html",
   styleUrls: ["./inventory.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatTabGroup, MatTab, MatTabContent, InventoryTableComponent],
 })
 export class InventoryComponent implements OnInit {

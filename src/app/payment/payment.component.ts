@@ -1,5 +1,12 @@
 import { NgClass } from "@angular/common";
-import { Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
   MatButton,
@@ -15,6 +22,22 @@ import { MatRadioButton, MatRadioGroup } from "@angular/material/radio";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTabGroup } from "@angular/material/tabs";
 import { Router } from "@angular/router";
+import { TranslatePipe, TranslateService } from "@ngx-translate/core";
+import { LocalStorageService } from "ngx-localstorage";
+import { PartialObserver, Subject, Subscription, debounceTime } from "rxjs";
+
+import { ConfirmDialogComponent } from "../shared/confirm-dialog/confirm-dialog.component";
+import { ContactComponent } from "../shared/contact/contact.component";
+import { DocumentComponent } from "../shared/document/document.component";
+import {
+  EmployeeDialogComponent,
+  EmployeeDialogData,
+} from "../shared/employee-dialog/employee-dialog.component";
+import { NoteDialogComponent } from "../shared/note-dialog/note-dialog.component";
+import { PrintDialogComponent } from "../shared/print-dialog/print-dialog.component";
+import { DiscountComponent } from "./discount/discount.component";
+import { PaymentTypeComponent } from "./payment-type/payment-type.component";
+import { SuccessDialogComponent } from "./success-dialog/success-dialog.component";
 import {
   Balance,
   BalanceService,
@@ -42,28 +65,13 @@ import {
   WorkspaceService,
   hasFlag,
 } from "@efaps/pos-library";
-import { TranslatePipe, TranslateService } from "@ngx-translate/core";
-import { LocalStorageService } from "ngx-localstorage";
-import { PartialObserver, Subject, Subscription, debounceTime } from "rxjs";
-
-import { ConfirmDialogComponent } from "../shared/confirm-dialog/confirm-dialog.component";
-import { ContactComponent } from "../shared/contact/contact.component";
-import { DocumentComponent } from "../shared/document/document.component";
-import {
-  EmployeeDialogComponent,
-  EmployeeDialogData,
-} from "../shared/employee-dialog/employee-dialog.component";
-import { NoteDialogComponent } from "../shared/note-dialog/note-dialog.component";
-import { PrintDialogComponent } from "../shared/print-dialog/print-dialog.component";
-import { DiscountComponent } from "./discount/discount.component";
-import { PaymentTypeComponent } from "./payment-type/payment-type.component";
-import { SuccessDialogComponent } from "./success-dialog/success-dialog.component";
 import { PAYABLE_ACTIVATENOTE, PAYMENT_REQUIRE } from "src/app/util/keys";
 
 @Component({
   selector: "app-payment",
   templateUrl: "./payment.component.html",
   styleUrls: ["./payment.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ContactComponent,
     MatRadioGroup,

@@ -1,16 +1,18 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
   MatDialogRef,
 } from "@angular/material/dialog";
 import { MatListModule } from "@angular/material/list";
+
 import { PromoInfo, Promotion, PromotionService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-promo-dialog",
   imports: [MatDialogModule, MatListModule],
   templateUrl: "./promo-dialog.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: "./promo-dialog.component.scss",
 })
 export class PromoDialogComponent {

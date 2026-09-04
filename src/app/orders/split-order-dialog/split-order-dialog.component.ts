@@ -1,5 +1,11 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, OnInit, inject, viewChild } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  inject,
+  viewChild,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import {
   MAT_DIALOG_DATA,
@@ -23,6 +29,8 @@ import {
   MatTableDataSource,
   MatTableModule,
 } from "@angular/material/table";
+import { merge } from "rxjs";
+
 import {
   CalculatorService,
   DocItem,
@@ -30,12 +38,12 @@ import {
   DocumentService,
   Order,
 } from "@efaps/pos-library";
-import { merge } from "rxjs";
 
 @Component({
   selector: "app-split-order-dialog",
   templateUrl: "./split-order-dialog.component.html",
   styleUrls: ["./split-order-dialog.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CdkScrollable,
     MatDialogContent,

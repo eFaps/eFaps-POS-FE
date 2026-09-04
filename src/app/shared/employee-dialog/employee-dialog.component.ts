@@ -1,5 +1,10 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, OnInit, inject } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { MatOption } from "@angular/material/autocomplete";
 import { MatButton } from "@angular/material/button";
@@ -12,12 +17,14 @@ import {
 } from "@angular/material/dialog";
 import { MatFormField, MatLabel } from "@angular/material/form-field";
 import { MatSelect } from "@angular/material/select";
+
 import { Employee, EmployeeService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-employee-dialog",
   templateUrl: "./employee-dialog.component.html",
   styleUrls: ["./employee-dialog.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,

@@ -1,5 +1,11 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, OnInit, inject, signal } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatButton } from "@angular/material/button";
 import {
   MAT_DIALOG_DATA,
@@ -11,6 +17,8 @@ import {
 import { MatLine } from "@angular/material/grid-list";
 import { MatList, MatListItem } from "@angular/material/list";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
+import { TranslatePipe } from "@ngx-translate/core";
+
 import {
   Currency,
   InventoryEntry,
@@ -26,12 +34,12 @@ import {
   RelationEntry,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
   selector: "app-product",
   templateUrl: "./product.component.html",
   styleUrls: ["./product.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,

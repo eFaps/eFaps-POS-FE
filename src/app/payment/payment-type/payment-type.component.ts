@@ -1,6 +1,11 @@
-import { Component, OnDestroy, OnInit, inject } from "@angular/core";
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatTab, MatTabGroup } from "@angular/material/tabs";
-import { AuthService, Permission, WorkspaceService } from "@efaps/pos-library";
 import { LocalStorageService } from "ngx-localstorage";
 import { Subscription } from "rxjs";
 
@@ -9,11 +14,13 @@ import { CardComponent } from "../card/card.component";
 import { CashComponent } from "../cash/cash.component";
 import { FreeComponent } from "../free/free.component";
 import { RedeemCreditNoteComponent } from "../redeem-credit-note/redeem-credit-note.component";
+import { AuthService, Permission, WorkspaceService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-payment-type",
   templateUrl: "./payment-type.component.html",
   styleUrls: ["./payment-type.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatTabGroup,
     MatTab,

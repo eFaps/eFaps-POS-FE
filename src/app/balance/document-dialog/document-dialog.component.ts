@@ -1,5 +1,11 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, OnInit, inject, signal } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import {
   MAT_DIALOG_DATA,
   MatDialogContent,
@@ -7,15 +13,16 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from "@angular/material/dialog";
-import { Document, DocumentService } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
 
 import { DocumentComponent } from "../../shared/document/document.component";
+import { Document, DocumentService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-document-dialog",
   templateUrl: "./document-dialog.component.html",
   styleUrls: ["./document-dialog.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,

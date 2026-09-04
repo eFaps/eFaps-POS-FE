@@ -1,24 +1,31 @@
 import { DatePipe } from "@angular/common";
-import { Component, inject, input, OnInit } from "@angular/core";
+import {
+  Component,
+  inject,
+  input,
+  OnInit,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIcon } from "@angular/material/icon";
+import { TranslatePipe } from "@ngx-translate/core";
+import { Subscription } from "rxjs";
+
+import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
+import { BalanceSummarySectionComponent } from "../balance-summary-section/balance-summary-section.component";
 import {
   BalanceSummary,
   PosLibraryModule,
   PrintService,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { TranslatePipe } from "@ngx-translate/core";
-import { Subscription } from "rxjs";
-
-import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
-import { BalanceSummarySectionComponent } from "../balance-summary-section/balance-summary-section.component";
 
 @Component({
   selector: "app-balance-summary",
   templateUrl: "./balance-summary.component.html",
   styleUrls: ["./balance-summary.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatButton,
     MatIcon,

@@ -1,5 +1,10 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, OnInit, inject } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatButton } from "@angular/material/button";
 import {
   MAT_DIALOG_DATA,
@@ -11,6 +16,8 @@ import {
   MatDialogTitle,
 } from "@angular/material/dialog";
 import { MatIcon } from "@angular/material/icon";
+
+import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
 import {
   PrintService,
   Workspace,
@@ -19,12 +26,11 @@ import {
   hasFlag,
 } from "@efaps/pos-library";
 
-import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
-
 @Component({
   selector: "app-order-dialog",
   templateUrl: "./order-dialog.component.html",
   styleUrls: ["./order-dialog.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,

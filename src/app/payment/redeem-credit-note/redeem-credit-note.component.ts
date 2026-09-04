@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import {
   ReactiveFormsModule,
   UntypedFormBuilder,
@@ -9,6 +9,9 @@ import { MatCardModule } from "@angular/material/card";
 import { MatFormField, MatInputModule } from "@angular/material/input";
 import { MatListModule } from "@angular/material/list";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { TranslateModule } from "@ngx-translate/core";
+
+import { PaymentForm } from "../payment-form";
 import {
   CreditNote,
   Currency,
@@ -19,9 +22,6 @@ import {
   PosLibraryModule,
   UtilsService,
 } from "@efaps/pos-library";
-import { TranslateModule } from "@ngx-translate/core";
-
-import { PaymentForm } from "../payment-form";
 
 @Component({
   selector: "app-redeem-credit-note",
@@ -36,6 +36,7 @@ import { PaymentForm } from "../payment-form";
     TranslateModule,
   ],
   templateUrl: "./redeem-credit-note.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: "./redeem-credit-note.component.scss",
 })
 export class RedeemCreditNoteComponent extends PaymentForm {

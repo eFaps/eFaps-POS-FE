@@ -1,5 +1,5 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import {
   MAT_DIALOG_DATA,
   MatDialogContent,
@@ -12,6 +12,7 @@ import { PrintDisplayComponent } from "../print-display/print-display.component"
   selector: "app-print-dialog",
   templateUrl: "./print-dialog.component.html",
   styleUrls: ["./print-dialog.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CdkScrollable, MatDialogContent, PrintDisplayComponent],
 })
 export class PrintDialogComponent {

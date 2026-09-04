@@ -1,5 +1,5 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -14,13 +14,15 @@ import {
 } from "@angular/material/dialog";
 import { MatFormField } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
-import { Currency } from "@efaps/pos-library";
 import { EnumValues } from "enum-values";
+
+import { Currency } from "@efaps/pos-library";
 
 @Component({
   selector: "app-opening-balance-dialog",
   templateUrl: "./opening-balance-dialog.component.html",
   styleUrls: ["./opening-balance-dialog.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CdkScrollable,
     MatDialogContent,

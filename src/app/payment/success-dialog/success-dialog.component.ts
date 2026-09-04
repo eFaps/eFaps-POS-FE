@@ -1,5 +1,10 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, OnInit, inject } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatButton } from "@angular/material/button";
 import {
   MAT_DIALOG_DATA,
@@ -9,14 +14,15 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from "@angular/material/dialog";
-import { PosLibraryModule, PrintService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
 import { PrintDisplayComponent } from "../../shared/print-display/print-display.component";
+import { PosLibraryModule, PrintService } from "@efaps/pos-library";
 
 @Component({
   templateUrl: "./success-dialog.component.html",
   styleUrls: ["./success-dialog.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,

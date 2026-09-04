@@ -5,6 +5,7 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatIconButton } from "@angular/material/button";
@@ -32,6 +33,14 @@ import {
   MatTableDataSource,
 } from "@angular/material/table";
 import { Router } from "@angular/router";
+import { TranslatePipe } from "@ngx-translate/core";
+import { LocalStorageService } from "ngx-localstorage";
+import { Subscription } from "rxjs";
+import { debounceTime, map } from "rxjs/operators";
+
+import { ConfirmDialogComponent } from "../../shared/confirm-dialog/confirm-dialog.component";
+import { ReassignDialogComponent } from "../reassign-dialog/reassign-dialog.component";
+import { SplitOrderDialogComponent } from "../split-order-dialog/split-order-dialog.component";
 import {
   AuthService,
   ContactService,
@@ -45,19 +54,12 @@ import {
   PosService,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { TranslatePipe } from "@ngx-translate/core";
-import { LocalStorageService } from "ngx-localstorage";
-import { Subscription } from "rxjs";
-import { debounceTime, map } from "rxjs/operators";
-
-import { ConfirmDialogComponent } from "../../shared/confirm-dialog/confirm-dialog.component";
-import { ReassignDialogComponent } from "../reassign-dialog/reassign-dialog.component";
-import { SplitOrderDialogComponent } from "../split-order-dialog/split-order-dialog.component";
 
 @Component({
   selector: "app-order-table",
   templateUrl: "./order-table.component.html",
   styleUrls: ["./order-table.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     MatFormField,

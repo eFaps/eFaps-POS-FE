@@ -7,6 +7,7 @@ import {
   inject,
   output,
   signal,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { ReactiveFormsModule, UntypedFormControl } from "@angular/forms";
 import {
@@ -17,13 +18,15 @@ import {
 import { MatFormField, MatLabel } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
 import { MatSlideToggle } from "@angular/material/slide-toggle";
-import { Contact, ContactService } from "@efaps/pos-library";
 import { debounceTime } from "rxjs/operators";
+
+import { Contact, ContactService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-contact",
   templateUrl: "./contact.component.html",
   styleUrls: ["./contact.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatFormField,
     MatLabel,

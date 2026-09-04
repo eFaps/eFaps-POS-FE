@@ -1,5 +1,10 @@
 import { CdkDrag, CdkDragEnd } from "@angular/cdk/drag-drop";
-import { Component, OnInit, inject } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatFabButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIcon } from "@angular/material/icon";
@@ -8,6 +13,11 @@ import { MatTab, MatTabGroup } from "@angular/material/tabs";
 import { MatTooltip } from "@angular/material/tooltip";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
+import { TranslatePipe } from "@ngx-translate/core";
+import { forkJoin } from "rxjs";
+
+import { AbstractSpotPicker } from "../abstract-spot-picker";
+import { SplitDialogComponent } from "../split-dialog/split-dialog.component";
 import {
   DocStatus,
   DocumentService,
@@ -20,16 +30,12 @@ import {
   SpotService,
   SpotsLayout,
 } from "@efaps/pos-library";
-import { TranslatePipe } from "@ngx-translate/core";
-import { forkJoin } from "rxjs";
-
-import { AbstractSpotPicker } from "../abstract-spot-picker";
-import { SplitDialogComponent } from "../split-dialog/split-dialog.component";
 
 @Component({
   selector: "app-extended-spot-picker",
   templateUrl: "./extended-spot-picker.component.html",
   styleUrls: ["./extended-spot-picker.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatTabGroup,
     MatTab,

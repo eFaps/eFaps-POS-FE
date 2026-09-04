@@ -1,14 +1,21 @@
-import { Component, OnDestroy, OnInit, inject } from "@angular/core";
-import { SpotConfig, WorkspaceService } from "@efaps/pos-library";
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { Subscription } from "rxjs";
 
 import { BaseSpotPickerComponent } from "../base-spot-picker/base-spot-picker.component";
 import { ExtendedSpotPickerComponent } from "../extended-spot-picker/extended-spot-picker.component";
+import { SpotConfig, WorkspaceService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-spots",
   templateUrl: "./spots.component.html",
   styleUrls: ["./spots.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [BaseSpotPickerComponent, ExtendedSpotPickerComponent],
 })
 export class SpotsComponent implements OnInit, OnDestroy {

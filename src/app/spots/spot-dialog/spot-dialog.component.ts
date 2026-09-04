@@ -1,5 +1,12 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, OnDestroy, OnInit, inject, signal } from "@angular/core";
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatFabButton } from "@angular/material/button";
 import {
   MAT_DIALOG_DATA,
@@ -7,14 +14,16 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from "@angular/material/dialog";
-import { Spot, SpotConfig, SpotService } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { Subscription } from "rxjs";
+
+import { Spot, SpotConfig, SpotService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-spot-dialog",
   templateUrl: "./spot-dialog.component.html",
   styleUrls: ["./spot-dialog.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,

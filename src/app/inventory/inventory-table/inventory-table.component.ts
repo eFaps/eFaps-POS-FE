@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewChild, inject, input } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  inject,
+  input,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatFormField } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
 import { MatSort, MatSortHeader } from "@angular/material/sort";
@@ -15,6 +22,7 @@ import {
   MatTable,
   MatTableDataSource,
 } from "@angular/material/table";
+
 import {
   InventoryEntry,
   InventoryService,
@@ -25,6 +33,7 @@ import {
   selector: "app-inventory-table",
   templateUrl: "./inventory-table.component.html",
   styleUrls: ["./inventory-table.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatFormField,
     MatInput,

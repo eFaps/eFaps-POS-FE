@@ -5,6 +5,7 @@ import {
   OnInit,
   ViewChild,
   inject,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButton } from "@angular/material/button";
@@ -26,23 +27,24 @@ import {
   MatTable,
   MatTableDataSource,
 } from "@angular/material/table";
-import {
-  ConfigService,
-  Contact,
-  ContactService,
-  PageRequest,
-} from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { Subscription, merge } from "rxjs";
 import { debounceTime, tap } from "rxjs/operators";
 
 import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
 import { CreateContactDialogComponent } from "../create-contact-dialog/create-contact-dialog.component";
+import {
+  ConfigService,
+  Contact,
+  ContactService,
+  PageRequest,
+} from "@efaps/pos-library";
 
 @Component({
   selector: "app-contact-table",
   templateUrl: "./contact-table.component.html",
   styleUrls: ["./contact-table.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     MatFormField,

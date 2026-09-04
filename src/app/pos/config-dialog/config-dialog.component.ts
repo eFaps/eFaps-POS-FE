@@ -1,6 +1,13 @@
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, OnInit, effect, inject, signal } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  effect,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -38,6 +45,8 @@ import {
   MatStepper,
   MatStepperModule,
 } from "@angular/material/stepper";
+import { forkJoin, Observable } from "rxjs";
+
 import {
   BOMGroupConfig,
   BOMGroupConfigFlag,
@@ -49,12 +58,12 @@ import {
   ProductService,
   ProductType,
 } from "@efaps/pos-library";
-import { forkJoin, Observable } from "rxjs";
 
 @Component({
   selector: "app-config-dialog",
   templateUrl: "./config-dialog.component.html",
   styleUrls: ["./config-dialog.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,

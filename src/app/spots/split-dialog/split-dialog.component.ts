@@ -1,5 +1,10 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, OnInit, inject } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import {
   ReactiveFormsModule,
   UntypedFormBuilder,
@@ -20,6 +25,7 @@ import { KeypadComponent } from "../../shared/keypad/keypad.component";
   selector: "app-split-dialog",
   templateUrl: "./split-dialog.component.html",
   styleUrls: ["./split-dialog.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CdkScrollable,
     MatDialogContent,

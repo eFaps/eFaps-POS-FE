@@ -10,6 +10,7 @@ import {
   model,
   output,
   signal,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { MatButton, MatIconButton } from "@angular/material/button";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
@@ -31,6 +32,11 @@ import {
   MatTableDataSource,
 } from "@angular/material/table";
 import { Router } from "@angular/router";
+import { TranslatePipe } from "@ngx-translate/core";
+
+import { PartListRelationComponent } from "../part-list-relation/part-list-relation.component";
+import { PrintDialogComponent } from "../print-dialog/print-dialog.component";
+import { PromoDialogComponent } from "../promo-dialog/promo-dialog.component";
 import {
   AuthService,
   CreditNote,
@@ -51,16 +57,12 @@ import {
   PromotionService,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { TranslatePipe } from "@ngx-translate/core";
-
-import { PartListRelationComponent } from "../part-list-relation/part-list-relation.component";
-import { PrintDialogComponent } from "../print-dialog/print-dialog.component";
-import { PromoDialogComponent } from "../promo-dialog/promo-dialog.component";
 
 @Component({
   selector: "app-document",
   templateUrl: "./document.component.html",
   styleUrls: ["./document.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatTable,
     MatColumnDef,

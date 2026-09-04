@@ -5,6 +5,7 @@ import {
   input,
   OnInit,
   output,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { MatButton, MatIconButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
@@ -23,6 +24,9 @@ import {
   MatTable,
   MatTableDataSource,
 } from "@angular/material/table";
+import { Decimal } from "decimal.js";
+
+import { PartListRelationComponent } from "../../shared/part-list-relation/part-list-relation.component";
 import {
   Currency,
   isChildItem,
@@ -31,15 +35,13 @@ import {
   PosService,
   PromoInfo,
 } from "@efaps/pos-library";
-import { Decimal } from "decimal.js";
-
-import { PartListRelationComponent } from "../../shared/part-list-relation/part-list-relation.component";
 import { PromoDialogComponent } from "src/app/shared/promo-dialog/promo-dialog.component";
 
 @Component({
   selector: "app-ticket",
   templateUrl: "./ticket.component.html",
   styleUrls: ["./ticket.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatTable,
     MatColumnDef,

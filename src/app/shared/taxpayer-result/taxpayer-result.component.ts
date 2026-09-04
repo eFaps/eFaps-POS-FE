@@ -4,6 +4,7 @@ import {
   OnInit,
   ViewChild,
   inject,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { MatButton } from "@angular/material/button";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
@@ -23,12 +24,14 @@ import {
   MatTable,
 } from "@angular/material/table";
 import { MatTooltip } from "@angular/material/tooltip";
+
 import { EnquiryService, Page, RUC } from "@efaps/pos-library";
 
 @Component({
   selector: "app-taxpayer-result",
   templateUrl: "./taxpayer-result.component.html",
   styleUrls: ["./taxpayer-result.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatProgressSpinner,
     MatTable,

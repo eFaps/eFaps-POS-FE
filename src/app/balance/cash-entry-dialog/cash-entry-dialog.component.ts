@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -16,8 +16,9 @@ import {
 } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { Currency } from "@efaps/pos-library";
 import { EnumValues } from "enum-values";
+
+import { Currency } from "@efaps/pos-library";
 
 @Component({
   selector: "app-cash-entry-dialog",
@@ -33,6 +34,7 @@ import { EnumValues } from "enum-values";
     MatInputModule,
   ],
   templateUrl: "./cash-entry-dialog.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: "./cash-entry-dialog.component.scss",
 })
 export class CashEntryDialogComponent {

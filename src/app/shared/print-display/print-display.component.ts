@@ -1,13 +1,22 @@
-import { Component, Input, inject, input, signal } from "@angular/core";
+import {
+  Component,
+  Input,
+  inject,
+  input,
+  signal,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
-import { PrintService } from "@efaps/pos-library";
 import { Observable, timer } from "rxjs";
+
+import { PrintService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-print-display",
   templateUrl: "./print-display.component.html",
   styleUrls: ["./print-display.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatProgressSpinner],
 })
 export class PrintDisplayComponent {

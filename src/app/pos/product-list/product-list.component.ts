@@ -6,6 +6,7 @@ import {
   OnInit,
   ViewChild,
   inject,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import {
   FormGroup,
@@ -32,6 +33,13 @@ import {
   MatTableDataSource,
   MatTableModule,
 } from "@angular/material/table";
+import { TranslatePipe } from "@ngx-translate/core";
+import { Subscription } from "rxjs";
+import { debounceTime } from "rxjs/operators";
+
+import { KeypadService } from "../../services";
+import { ProductComponent } from "../../shared/product/product.component";
+import { AbstractProductSelector } from "../abstract-product-selector";
 import {
   InventoryService,
   Permission,
@@ -41,19 +49,13 @@ import {
   ProductStatus,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { TranslatePipe } from "@ngx-translate/core";
-import { Subscription } from "rxjs";
-import { debounceTime } from "rxjs/operators";
-
-import { KeypadService } from "../../services";
-import { ProductComponent } from "../../shared/product/product.component";
-import { AbstractProductSelector } from "../abstract-product-selector";
 import { PosSyncService } from "src/app/services/pos-sync.service";
 
 @Component({
   selector: "app-product-list",
   templateUrl: "./product-list.component.html",
   styleUrls: ["./product-list.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     MatFormField,

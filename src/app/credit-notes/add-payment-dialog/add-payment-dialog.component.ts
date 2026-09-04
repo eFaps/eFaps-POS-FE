@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -17,13 +17,15 @@ import { MatFormField, MatLabel } from "@angular/material/form-field";
 import { MatIcon } from "@angular/material/icon";
 import { MatInput } from "@angular/material/input";
 import { MatSelect } from "@angular/material/select";
-import { PaymentType } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
+
+import { PaymentType } from "@efaps/pos-library";
 
 @Component({
   selector: "app-add-payment-dialog",
   templateUrl: "./add-payment-dialog.component.html",
   styleUrls: ["./add-payment-dialog.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     MatFormField,

@@ -1,4 +1,10 @@
-import { Component, Input, ViewChild, inject } from "@angular/core";
+import {
+  Component,
+  Input,
+  ViewChild,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatIconButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIcon } from "@angular/material/icon";
@@ -16,15 +22,16 @@ import {
   MatTable,
   MatTableDataSource,
 } from "@angular/material/table";
-import { DocStatus, PayableHead, PosLibraryModule } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 
 import { DocumentDialogComponent } from "../document-dialog/document-dialog.component";
+import { DocStatus, PayableHead, PosLibraryModule } from "@efaps/pos-library";
 
 @Component({
   selector: "app-balance-document-list",
   templateUrl: "./balance-document-list.component.html",
   styleUrls: ["./balance-document-list.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatTable,
     MatSort,

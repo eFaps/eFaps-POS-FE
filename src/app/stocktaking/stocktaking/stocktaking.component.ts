@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, inject } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -18,6 +24,9 @@ import { MatInput } from "@angular/material/input";
 import { MatSlideToggle } from "@angular/material/slide-toggle";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Subscription, debounceTime, skip, switchMap } from "rxjs";
+
+import { KeypadComponent } from "../../shared/keypad/keypad.component";
 import {
   BarcodeScannerService,
   Product,
@@ -25,14 +34,12 @@ import {
   Stocktaking,
   StocktakingService,
 } from "@efaps/pos-library";
-import { Subscription, debounceTime, skip, switchMap } from "rxjs";
-
-import { KeypadComponent } from "../../shared/keypad/keypad.component";
 
 @Component({
   selector: "app-stocktaking",
   templateUrl: "./stocktaking.component.html",
   styleUrls: ["./stocktaking.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatSlideToggle,
     ReactiveFormsModule,

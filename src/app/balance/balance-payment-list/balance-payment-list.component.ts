@@ -1,5 +1,7 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, ChangeDetectionStrategy } from "@angular/core";
 import { MatList, MatListItem } from "@angular/material/list";
+import { TranslatePipe } from "@ngx-translate/core";
+
 import {
   BalanceSummary,
   CashEntry,
@@ -8,12 +10,12 @@ import {
   PaymentType,
   PosLibraryModule,
 } from "@efaps/pos-library";
-import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
   selector: "app-balance-payment-list",
   templateUrl: "./balance-payment-list.component.html",
   styleUrls: ["./balance-payment-list.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatList, MatListItem, PosLibraryModule, TranslatePipe],
 })
 export class BalancePaymentListComponent {

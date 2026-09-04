@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, output } from "@angular/core";
+import {
+  Component,
+  Input,
+  OnInit,
+  output,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 import {
@@ -14,12 +20,14 @@ import {
   MatTable,
   MatTableDataSource,
 } from "@angular/material/table";
+
 import { DocItem, Order, PosLibraryModule } from "@efaps/pos-library";
 
 @Component({
   selector: "app-reassign-item",
   templateUrl: "./reassign-item.component.html",
   styleUrls: ["./reassign-item.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatTable,
     MatColumnDef,

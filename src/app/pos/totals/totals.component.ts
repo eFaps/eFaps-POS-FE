@@ -1,21 +1,28 @@
-import { Component, OnInit, effect, inject } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  effect,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
 import { MatList, MatListItem } from "@angular/material/list";
+import { TranslatePipe } from "@ngx-translate/core";
+
 import {
   Currency,
   PosLibraryModule,
   PosService,
   PromoInfo,
 } from "@efaps/pos-library";
-import { TranslatePipe } from "@ngx-translate/core";
-
 import { PromoDialogComponent } from "src/app/shared/promo-dialog/promo-dialog.component";
 
 @Component({
   selector: "app-totals",
   templateUrl: "./totals.component.html",
   styleUrls: ["./totals.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatList, MatListItem, MatButton, PosLibraryModule, TranslatePipe],
 })
 export class TotalsComponent implements OnInit {

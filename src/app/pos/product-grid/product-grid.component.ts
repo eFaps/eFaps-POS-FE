@@ -5,6 +5,7 @@ import {
   inject,
   model,
   signal,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import {
@@ -13,6 +14,11 @@ import {
   MatTabContent,
   MatTabGroup,
 } from "@angular/material/tabs";
+import { Subscription } from "rxjs";
+
+import { AbstractProductSelector } from "../abstract-product-selector";
+import { GridElementComponent } from "./grid-element/grid-element.component";
+import { ProductsElementComponent } from "./products-element/products-element.component";
 import {
   Category,
   CategoryNode,
@@ -27,17 +33,13 @@ import {
   WorkspaceService,
   hasFlag,
 } from "@efaps/pos-library";
-import { Subscription } from "rxjs";
-
-import { AbstractProductSelector } from "../abstract-product-selector";
-import { GridElementComponent } from "./grid-element/grid-element.component";
-import { ProductsElementComponent } from "./products-element/products-element.component";
 import { KeypadService, PosSyncService } from "src/app/services";
 
 @Component({
   selector: "app-product-grid",
   templateUrl: "./product-grid.component.html",
   styleUrls: ["./product-grid.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatTabGroup,
     MatTab,

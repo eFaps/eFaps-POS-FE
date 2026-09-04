@@ -1,4 +1,12 @@
-import { Component, Input, OnInit, inject, input, output } from "@angular/core";
+import {
+  Component,
+  Input,
+  OnInit,
+  inject,
+  input,
+  output,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatIcon } from "@angular/material/icon";
 import {
   MatTab,
@@ -6,6 +14,8 @@ import {
   MatTabGroup,
   MatTabLabel,
 } from "@angular/material/tabs";
+
+import { ProductsElementComponent } from "../products-element/products-element.component";
 import {
   Category,
   CategoryNode,
@@ -14,8 +24,6 @@ import {
   Product,
   ProductService,
 } from "@efaps/pos-library";
-
-import { ProductsElementComponent } from "../products-element/products-element.component";
 
 const placeHolder: CategoryNode = {
   oid: "",
@@ -27,6 +35,7 @@ const placeHolder: CategoryNode = {
   selector: "app-grid-element",
   templateUrl: "./grid-element.component.html",
   styleUrls: ["./grid-element.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatTabGroup,
     MatTab,

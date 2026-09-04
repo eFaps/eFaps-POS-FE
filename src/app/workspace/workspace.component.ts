@@ -1,4 +1,9 @@
-import { Component, OnInit, inject } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import {
   MatCard,
   MatCardContent,
@@ -6,6 +11,7 @@ import {
   MatCardTitle,
 } from "@angular/material/card";
 import { Router } from "@angular/router";
+
 import {
   Pos,
   PosService,
@@ -17,6 +23,7 @@ import {
   selector: "app-workspace",
   templateUrl: "./workspace.component.html",
   styleUrls: ["./workspace.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent],
 })
 export class WorkspaceComponent implements OnInit {

@@ -6,6 +6,7 @@ import {
   ViewChild,
   inject,
   signal,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import {
@@ -15,6 +16,9 @@ import {
   MatDialogRef,
 } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
+import { Observable, Subscription, zip } from "rxjs";
+
+import { ReassignItemComponent } from "../reassign-item/reassign-item.component";
 import {
   CalculatorService,
   Currency,
@@ -24,14 +28,12 @@ import {
   DocumentService,
   Order,
 } from "@efaps/pos-library";
-import { Observable, Subscription, zip } from "rxjs";
-
-import { ReassignItemComponent } from "../reassign-item/reassign-item.component";
 
 @Component({
   selector: "app-reassign-dialog",
   templateUrl: "./reassign-dialog.component.html",
   styleUrls: ["./reassign-dialog.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CdkScrollable,
     MatDialogContent,

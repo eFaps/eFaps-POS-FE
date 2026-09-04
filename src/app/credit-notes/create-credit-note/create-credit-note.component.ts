@@ -1,5 +1,11 @@
 import { StepperSelectionEvent } from "@angular/cdk/stepper";
-import { Component, OnInit, inject, signal } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -17,6 +23,12 @@ import { MatRadioModule } from "@angular/material/radio";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatStepperModule } from "@angular/material/stepper";
 import { ActivatedRoute, Router } from "@angular/router";
+import { TranslatePipe } from "@ngx-translate/core";
+import clone from "just-clone";
+
+import { DocumentComponent } from "../../shared/document/document.component";
+import { AddPaymentDialogComponent } from "../add-payment-dialog/add-payment-dialog.component";
+import { SuccessDialogComponent } from "../success-dialog/success-dialog.component";
 import {
   Balance,
   BalanceService,
@@ -32,12 +44,6 @@ import {
   PosLibraryModule,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { TranslatePipe } from "@ngx-translate/core";
-import clone from "just-clone";
-
-import { DocumentComponent } from "../../shared/document/document.component";
-import { AddPaymentDialogComponent } from "../add-payment-dialog/add-payment-dialog.component";
-import { SuccessDialogComponent } from "../success-dialog/success-dialog.component";
 import { ConfirmDialogComponent } from "src/app/shared/confirm-dialog/confirm-dialog.component";
 import { CREDITNOTE_PERMITPARTIAL } from "src/app/util/keys";
 interface Reason {
@@ -50,6 +56,7 @@ interface Reason {
   selector: "app-create-credit-note",
   templateUrl: "./create-credit-note.component.html",
   styleUrls: ["./create-credit-note.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     FormsModule,

@@ -1,9 +1,18 @@
 import { NgClass } from "@angular/common";
-import { Component, ElementRef, OnInit, inject } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { MatButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
+import { TranslateDirective, TranslatePipe } from "@ngx-translate/core";
+
+import { OrderDialogComponent } from "../order-dialog/order-dialog.component";
 import {
   AuthService,
   InventoryService,
@@ -15,14 +24,12 @@ import {
   ProductService,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { TranslateDirective, TranslatePipe } from "@ngx-translate/core";
-
-import { OrderDialogComponent } from "../order-dialog/order-dialog.component";
 
 @Component({
   selector: "app-commands",
   templateUrl: "./commands.component.html",
   styleUrls: ["./commands.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgClass, MatButton, TranslateDirective, TranslatePipe],
 })
 export class CommandsComponent implements OnInit {

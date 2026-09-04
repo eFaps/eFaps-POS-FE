@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from "@angular/core";
+import {
+  Component,
+  Input,
+  OnInit,
+  ChangeDetectionStrategy,
+} from "@angular/core";
+
 import {
   PaymentInfo,
   PosLibraryModule,
@@ -9,6 +15,7 @@ import {
   selector: "app-balance-summary-section",
   templateUrl: "./balance-summary-section.component.html",
   styleUrls: ["./balance-summary-section.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [PosLibraryModule],
 })
 export class BalanceSummarySectionComponent implements OnInit {

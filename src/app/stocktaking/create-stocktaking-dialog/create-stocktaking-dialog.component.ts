@@ -1,5 +1,10 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, OnInit, inject } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -17,6 +22,7 @@ import {
 } from "@angular/material/dialog";
 import { MatFormField } from "@angular/material/form-field";
 import { MatSelect } from "@angular/material/select";
+
 import {
   InventoryService,
   StocktakingService,
@@ -27,6 +33,7 @@ import {
   selector: "app-create-stocktaking-dialog",
   templateUrl: "./create-stocktaking-dialog.component.html",
   styleUrls: ["./create-stocktaking-dialog.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatDialogTitle,
     CdkScrollable,

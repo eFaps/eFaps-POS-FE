@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import {
   ReactiveFormsModule,
   UntypedFormBuilder,
@@ -8,6 +8,9 @@ import { MatButton } from "@angular/material/button";
 import { MatFormField, MatPrefix } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
 import { MatRadioButton, MatRadioGroup } from "@angular/material/radio";
+
+import { KeypadComponent } from "../../shared/keypad/keypad.component";
+import { PaymentForm } from "../payment-form";
 import {
   Card,
   Currency,
@@ -18,13 +21,11 @@ import {
   WorkspaceService,
 } from "@efaps/pos-library";
 
-import { KeypadComponent } from "../../shared/keypad/keypad.component";
-import { PaymentForm } from "../payment-form";
-
 @Component({
   selector: "app-card",
   templateUrl: "./card.component.html",
   styleUrls: ["./card.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     MatFormField,

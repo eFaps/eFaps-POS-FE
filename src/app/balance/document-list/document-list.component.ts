@@ -1,4 +1,11 @@
-import { Component, OnDestroy, OnInit, ViewChild, inject } from "@angular/core";
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatIconButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
@@ -19,21 +26,22 @@ import {
   MatTable,
   MatTableDataSource,
 } from "@angular/material/table";
-import {
-  DocumentService,
-  PayableHead,
-  PosLibraryModule,
-} from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { Subscription } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 
 import { DocumentDialogComponent } from "../document-dialog/document-dialog.component";
+import {
+  DocumentService,
+  PayableHead,
+  PosLibraryModule,
+} from "@efaps/pos-library";
 
 @Component({
   selector: "app-document-list",
   templateUrl: "./document-list.component.html",
   styleUrls: ["./document-list.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     MatFormField,

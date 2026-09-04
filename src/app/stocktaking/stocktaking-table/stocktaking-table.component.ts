@@ -5,6 +5,7 @@ import {
   OnInit,
   ViewChild,
   inject,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { MatButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
@@ -24,6 +25,9 @@ import {
   MatTableDataSource,
 } from "@angular/material/table";
 import { Router } from "@angular/router";
+
+import { CloseStocktakingDialogComponent } from "../close-stocktaking-dialog/close-stocktaking-dialog.component";
+import { CreateStocktakingDialogComponent } from "../create-stocktaking-dialog/create-stocktaking-dialog.component";
 import {
   Stocktaking,
   StocktakingService,
@@ -31,13 +35,11 @@ import {
   Warehouse,
 } from "@efaps/pos-library";
 
-import { CloseStocktakingDialogComponent } from "../close-stocktaking-dialog/close-stocktaking-dialog.component";
-import { CreateStocktakingDialogComponent } from "../create-stocktaking-dialog/create-stocktaking-dialog.component";
-
 @Component({
   selector: "app-stocktaking-table",
   templateUrl: "./stocktaking-table.component.html",
   styleUrls: ["./stocktaking-table.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatButton,
     MatTable,
