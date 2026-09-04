@@ -25,11 +25,6 @@ import {
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import {
-  MatKeyboardDirective,
-  MatKeyboardModule,
-  MatKeyboardService,
-} from "@efaps/angular-onscreen-material-keyboard";
-import {
   AuthService,
   Company,
   CompanyService,
@@ -42,6 +37,9 @@ import { SvgIconComponent } from "angular-svg-icon";
 import { LocalStorageService } from "ngx-localstorage";
 import { Subscription } from "rxjs";
 
+import { KeyboardDirective } from "../services/keyboard.directive";
+import { KeyboardService } from "../services/keyboard.service";
+
 @Component({
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
@@ -53,11 +51,10 @@ import { Subscription } from "rxjs";
     ReactiveFormsModule,
     MatFormField,
     MatInput,
-    MatKeyboardDirective,
-    MatKeyboardModule,
     MatButton,
     MatSlideToggle,
     MatButtonToggle,
+    KeyboardDirective,
   ],
 })
 export class LoginComponent implements OnInit, OnDestroy {
@@ -69,7 +66,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   private snackBar = inject(MatSnackBar);
   private translateService = inject(TranslateService);
-  private matKeyboardService = inject(MatKeyboardService);
+  private keyboardService = inject(KeyboardService);
   private readonly storageService = inject(LocalStorageService);
 
   private subscription: Subscription = new Subscription();
@@ -93,7 +90,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // reset login status
-    this.matKeyboardService.enableDirective = this.virtKeyboard;
+    this.keyboardService.enable = this.virtKeyboard;
     this.authService.logout();
     this.workspaceService.logout();
     if (this.companyService.hasCompany()) {
@@ -168,7 +165,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   toggleVirtKeyboard(_toggle: MatSlideToggleChange) {
     this.virtKeyboard = !this.virtKeyboard;
-    this.matKeyboardService.enableDirective = this.virtKeyboard;
+    this.keyboardService.enable = this.virtKeyboard;
   }
 
   setCompany(company: Company) {

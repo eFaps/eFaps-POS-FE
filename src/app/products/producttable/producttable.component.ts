@@ -27,25 +27,22 @@ import {
   MatTable,
   MatTableDataSource,
 } from "@angular/material/table";
-import {
-  MatKeyboardDirective,
-  MatKeyboardModule,
-} from "@efaps/angular-onscreen-material-keyboard";
 import { PageRequest, Product, ProductService } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { debounceTime, merge, tap } from "rxjs";
 
 import { ProductComponent } from "../../shared/product/product.component";
+import { KeyboardDirective } from "src/app/services/keyboard.directive";
 
 @Component({
   selector: "app-producttable",
   templateUrl: "./producttable.component.html",
   styleUrls: ["./producttable.component.scss"],
   imports: [
+    KeyboardDirective,
     ReactiveFormsModule,
     MatFormField,
     MatInput,
-    MatKeyboardDirective,
     MatSlideToggle,
     MatTable,
     MatSort,
@@ -62,7 +59,6 @@ import { ProductComponent } from "../../shared/product/product.component";
     MatRowDef,
     MatRow,
     MatPaginator,
-    MatKeyboardModule,
     TranslatePipe,
   ],
 })

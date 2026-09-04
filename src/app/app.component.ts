@@ -37,6 +37,7 @@ import { SvgIconComponent } from "angular-svg-icon";
 import { Hotkey, HotkeyModule, HotkeysService } from "angular2-hotkeys";
 import { LocalStorageService } from "ngx-localstorage";
 
+import { KeyboardComponent } from "./shared/keyboard/keyboard.component";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
 
 @Component({
@@ -59,6 +60,7 @@ import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
     MatSidenavContent,
     RouterOutlet,
     HotkeyModule,
+    KeyboardComponent,
   ],
 })
 export class AppComponent implements OnInit, AfterViewChecked {

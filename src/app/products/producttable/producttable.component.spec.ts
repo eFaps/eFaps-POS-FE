@@ -9,7 +9,6 @@ import { MatInputModule } from "@angular/material/input";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
-import { MatKeyboardModule } from "@efaps/angular-onscreen-material-keyboard";
 import { ProductService } from "@efaps/pos-library";
 import { MockComponent } from "ng-mocks";
 import { Observable } from "rxjs";
@@ -33,7 +32,6 @@ describe("ProducttableComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatKeyboardModule,
         ReactiveFormsModule,
         MatDialogModule,
         MatTableModule,
