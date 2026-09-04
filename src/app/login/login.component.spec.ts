@@ -15,10 +15,6 @@ import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { By } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import {
-  MatKeyboardModule,
-  MatKeyboardService,
-} from "@efaps/angular-onscreen-material-keyboard";
-import {
   AuthService,
   Company,
   CompanyService,
@@ -97,7 +93,6 @@ describe("LoginComponent", () => {
         AngularSvgIconModule,
 
         MatCardModule,
-        MatKeyboardModule,
         MatSnackBarModule,
         MatFormFieldModule,
         MatInputModule,
@@ -111,7 +106,6 @@ describe("LoginComponent", () => {
       providers: [
         provideZonelessChangeDetection(),
         { provide: CompanyService, useClass: CompanyServiceStub },
-        { provide: MatKeyboardService, useClass: MatKeyboardServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },
         { provide: TranslateService, useClass: TranslateServiceStub },
         { provide: AuthService, useClass: AuthServiceStub },

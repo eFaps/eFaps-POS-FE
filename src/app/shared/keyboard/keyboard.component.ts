@@ -3,11 +3,9 @@ import {
   AfterViewInit,
   Component,
   computed,
-  effect,
   ElementRef,
   HostListener,
   inject,
-  signal,
   ViewEncapsulation,
 } from "@angular/core";
 
