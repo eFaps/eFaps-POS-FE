@@ -69,9 +69,6 @@
     "@types/node": "^25.6.0",
     "@types/sockjs-client": "^1.5.4",
     "@vitest/browser-playwright": "^4.0.18",
-    "angular-eslint": "21.4.0",
-    "codelyzer": "^6.0.2",
-    "eslint": "^9.39.2",
     "import-sort-style-module": "^6.0.0",
     "jsdom": "^29.1.1",
     "ng-mocks": "^14.15.2",
@@ -81,7 +78,6 @@
     "sass": "^1.99.0",
     "ts-node": "^10.9.2",
     "typescript": "~5.9.3",
-    "typescript-eslint": "~8.53.1",
     "vitest": "^4.0.18"
   },
   "importSort": {
