@@ -5,11 +5,11 @@ import {
   inject,
   ChangeDetectionStrategy,
 } from "@angular/core";
+import { SpotConfig, WorkspaceService } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 
 import { BaseSpotPickerComponent } from "../base-spot-picker/base-spot-picker.component";
 import { ExtendedSpotPickerComponent } from "../extended-spot-picker/extended-spot-picker.component";
-import { SpotConfig, WorkspaceService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-spots",
@@ -27,13 +27,12 @@ export class SpotsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription$.add(
       this.workspaceService.currentWorkspace.subscribe({
-        next: workspace => {
+        next: (workspace) => {
           if (workspace && workspace.spotConfig) {
-              this.spotConfig = workspace.spotConfig
+            this.spotConfig = workspace.spotConfig;
           } else {
-             this.spotConfig = SpotConfig.NONE
+            this.spotConfig = SpotConfig.NONE;
           }
-         
         },
       }),
     );

@@ -14,8 +14,6 @@ import {
   MatTabGroup,
   MatTabLabel,
 } from "@angular/material/tabs";
-
-import { ProductsElementComponent } from "../products-element/products-element.component";
 import {
   Category,
   CategoryNode,
@@ -24,6 +22,8 @@ import {
   Product,
   ProductService,
 } from "@efaps/pos-library";
+
+import { ProductsElementComponent } from "../products-element/products-element.component";
 
 const placeHolder: CategoryNode = {
   oid: "",

@@ -25,12 +25,10 @@ export class ErrorInterceptor implements HttpInterceptor {
       tap({
         error: (error) => {
           if (error instanceof HttpErrorResponse) {
-            if (
-              !(
-                request.context.has(IGNORED_STATUSES) &&
-                request.context.get(IGNORED_STATUSES).includes(error.status)
-              )
-            ) {
+            if (!(
+              request.context.has(IGNORED_STATUSES) &&
+              request.context.get(IGNORED_STATUSES).includes(error.status)
+            )) {
               if (error.status === 401) {
                 this.router.navigate(["/login"]);
               } else {

@@ -25,14 +25,14 @@ import {
   MatTableDataSource,
 } from "@angular/material/table";
 import { Router } from "@angular/router";
-import { merge, tap } from "rxjs";
-
 import {
   PageRequest,
   Stocktaking,
   StocktakingEntry,
   StocktakingService,
 } from "@efaps/pos-library";
+import { merge, tap } from "rxjs";
+
 import { ConfirmDialogComponent } from "src/app/shared/confirm-dialog/confirm-dialog.component";
 
 @Component({

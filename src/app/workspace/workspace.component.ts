@@ -11,7 +11,6 @@ import {
   MatCardTitle,
 } from "@angular/material/card";
 import { Router } from "@angular/router";
-
 import {
   Pos,
   PosService,

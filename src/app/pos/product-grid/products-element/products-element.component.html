@@ -14,7 +14,9 @@
         [matBadgeHidden]="!showInventory || !isStockable(product)"
         [matBadgeColor]="hasStock(product) ? 'primary' : 'warn'"
         matBadgeSize="large">
-        <img mat-card-image [src]="product.imageOid | secure" alt="{{ product.description }}" />
+        @if (product.imageOid) {
+          <img mat-card-image [src]="product.imageOid | secure" alt="{{ product.description }}" />
+        }
         @if (showPrices()) {
           <div class="pos-card-price">
             {{ product.crossPrice | posCurrency: currency() }}

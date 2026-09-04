@@ -15,8 +15,6 @@ import { MatButton } from "@angular/material/button";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatFormField, MatPrefix } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
-import { Subscription } from "rxjs";
-
 import {
   Discount,
   DiscountService,
@@ -27,6 +25,7 @@ import {
   UtilsService,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-discount",
@@ -76,7 +75,9 @@ export class DiscountComponent implements OnInit, OnDestroy {
       }),
     );
     this.document = this.data;
-    this.currency = this.utilsService.getCurrencySymbol(this.paymentService.currency!);
+    this.currency = this.utilsService.getCurrencySymbol(
+      this.paymentService.currency!,
+    );
   }
 
   get percentDiscounts() {

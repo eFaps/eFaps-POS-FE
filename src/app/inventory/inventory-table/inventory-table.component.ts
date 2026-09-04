@@ -22,7 +22,6 @@ import {
   MatTable,
   MatTableDataSource,
 } from "@angular/material/table";
-
 import {
   InventoryEntry,
   InventoryService,

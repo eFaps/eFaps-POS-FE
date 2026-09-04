@@ -45,8 +45,6 @@ import {
   MatStepper,
   MatStepperModule,
 } from "@angular/material/stepper";
-import { forkJoin, Observable } from "rxjs";
-
 import {
   BOMGroupConfig,
   BOMGroupConfigFlag,
@@ -58,6 +56,7 @@ import {
   ProductService,
   ProductType,
 } from "@efaps/pos-library";
+import { forkJoin, Observable } from "rxjs";
 
 @Component({
   selector: "app-config-dialog",

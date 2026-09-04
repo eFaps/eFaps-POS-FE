@@ -14,10 +14,10 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from "@angular/material/dialog";
+import { PosLibraryModule, PrintService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 
 import { PrintDisplayComponent } from "../../shared/print-display/print-display.component";
-import { PosLibraryModule, PrintService } from "@efaps/pos-library";
 
 @Component({
   templateUrl: "./success-dialog.component.html",

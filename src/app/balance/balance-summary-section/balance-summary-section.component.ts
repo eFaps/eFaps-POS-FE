@@ -4,7 +4,6 @@ import {
   OnInit,
   ChangeDetectionStrategy,
 } from "@angular/core";
-
 import {
   PaymentInfo,
   PosLibraryModule,

@@ -5,7 +5,6 @@ import {
   MatDialogRef,
 } from "@angular/material/dialog";
 import { MatListModule } from "@angular/material/list";
-
 import { PromoInfo, Promotion, PromotionService } from "@efaps/pos-library";
 
 @Component({

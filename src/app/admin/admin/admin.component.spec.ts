@@ -54,7 +54,7 @@ class ConfigServiceStub {
     });
   }
   get persistence(): PersistenceService {
-    return new MemoryPersitenceService()
+    return new MemoryPersitenceService();
   }
 }
 

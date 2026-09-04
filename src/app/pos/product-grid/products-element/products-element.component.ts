@@ -15,9 +15,6 @@ import {
   MatCardTitle,
 } from "@angular/material/card";
 import { MatDialog } from "@angular/material/dialog";
-import { TranslatePipe } from "@ngx-translate/core";
-
-import { AbstractProductSelector } from "../../abstract-product-selector";
 import {
   Currency,
   InventoryEntry,
@@ -28,6 +25,9 @@ import {
   ProductService,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
+
+import { AbstractProductSelector } from "../../abstract-product-selector";
 import { KeypadService, PosSyncService } from "src/app/services";
 
 @Component({

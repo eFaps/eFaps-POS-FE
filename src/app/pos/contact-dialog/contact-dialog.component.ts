@@ -19,10 +19,10 @@ import {
 import { MatFormField, MatLabel } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
 import { MatTab, MatTabGroup } from "@angular/material/tabs";
+import { Contact } from "@efaps/pos-library";
 import { LocalStorageService } from "ngx-localstorage";
 
 import { ContactComponent } from "../../shared/contact/contact.component";
-import { Contact } from "@efaps/pos-library";
 import { CreateContactDialogComponent } from "src/app/contacts/create-contact-dialog/create-contact-dialog.component";
 
 @Component({

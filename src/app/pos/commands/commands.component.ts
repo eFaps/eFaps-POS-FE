@@ -10,9 +10,6 @@ import { MatButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
-import { TranslateDirective, TranslatePipe } from "@ngx-translate/core";
-
-import { OrderDialogComponent } from "../order-dialog/order-dialog.component";
 import {
   AuthService,
   InventoryService,
@@ -24,6 +21,9 @@ import {
   ProductService,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { TranslateDirective, TranslatePipe } from "@ngx-translate/core";
+
+import { OrderDialogComponent } from "../order-dialog/order-dialog.component";
 
 @Component({
   selector: "app-commands",
@@ -52,7 +52,7 @@ export class CommandsComponent implements OnInit {
   ngOnInit() {
     this.showInventory = this.workspaceService.showInventory();
     this.posService.currentOrder.subscribe(
-      order => this.currentOrder = order == null ? undefined : order,
+      (order) => (this.currentOrder = order == null ? undefined : order),
     );
     this.posService.currentTicket.subscribe(
       (ticket) =>

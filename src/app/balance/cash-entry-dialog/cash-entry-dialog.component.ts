@@ -16,9 +16,8 @@ import {
 } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { EnumValues } from "enum-values";
-
 import { Currency } from "@efaps/pos-library";
+import { EnumValues } from "enum-values";
 
 @Component({
   selector: "app-cash-entry-dialog",

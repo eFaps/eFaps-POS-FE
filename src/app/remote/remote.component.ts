@@ -14,8 +14,8 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTabsModule } from "@angular/material/tabs";
 import { Router } from "@angular/router";
-
 import { DocumentService, Payable, PosLibraryModule } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
   selector: "app-remote",
@@ -30,6 +30,7 @@ import { DocumentService, Payable, PosLibraryModule } from "@efaps/pos-library";
     MatSnackBarModule,
     MatCardModule,
     PosLibraryModule,
+    TranslatePipe,
   ],
   templateUrl: "./remote.component.html",
   changeDetection: ChangeDetectionStrategy.Eager,

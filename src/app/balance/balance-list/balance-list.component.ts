@@ -24,10 +24,10 @@ import {
   MatTable,
   MatTableDataSource,
 } from "@angular/material/table";
+import { Balance, BalanceService } from "@efaps/pos-library";
 import { Subscription } from "rxjs";
 
 import { BalanceSummaryDialogComponent } from "../balance-summary-dialog/balance-summary-dialog.component";
-import { Balance, BalanceService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-balance-list",

@@ -17,8 +17,6 @@ import {
 import { MatLine } from "@angular/material/grid-list";
 import { MatList, MatListItem } from "@angular/material/list";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
-import { TranslatePipe } from "@ngx-translate/core";
-
 import {
   Currency,
   InventoryEntry,
@@ -34,6 +32,7 @@ import {
   RelationEntry,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
   selector: "app-product",

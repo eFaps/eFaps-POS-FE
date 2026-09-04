@@ -27,18 +27,18 @@ import {
   MatTable,
   MatTableDataSource,
 } from "@angular/material/table";
-import { TranslatePipe } from "@ngx-translate/core";
-import { Subscription, merge } from "rxjs";
-import { debounceTime, tap } from "rxjs/operators";
-
-import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
-import { CreateContactDialogComponent } from "../create-contact-dialog/create-contact-dialog.component";
 import {
   ConfigService,
   Contact,
   ContactService,
   PageRequest,
 } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
+import { Subscription, merge } from "rxjs";
+import { debounceTime, tap } from "rxjs/operators";
+
+import { CONTACT_ACTIVATE_EMAIL } from "../../util/keys";
+import { CreateContactDialogComponent } from "../create-contact-dialog/create-contact-dialog.component";
 
 @Component({
   selector: "app-contact-table",

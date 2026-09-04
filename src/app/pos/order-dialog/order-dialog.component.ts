@@ -16,8 +16,6 @@ import {
   MatDialogTitle,
 } from "@angular/material/dialog";
 import { MatIcon } from "@angular/material/icon";
-
-import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
 import {
   PrintService,
   Workspace,
@@ -25,6 +23,8 @@ import {
   WorkspaceService,
   hasFlag,
 } from "@efaps/pos-library";
+
+import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
 
 @Component({
   selector: "app-order-dialog",
@@ -52,7 +52,7 @@ export class OrderDialogComponent implements OnInit {
 
   ngOnInit() {
     this.workspaceService.currentWorkspace.subscribe((workspace) => {
-      this.workspace = workspace == null ?undefined : workspace;
+      this.workspace = workspace == null ? undefined : workspace;
     });
   }
 

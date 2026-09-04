@@ -5,7 +5,6 @@ import {
   inject,
   ChangeDetectionStrategy,
 } from "@angular/core";
-
 import { Product, ProductRelation, ProductService } from "@efaps/pos-library";
 
 @Component({

@@ -9,17 +9,17 @@ import {
 import { MatButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIcon } from "@angular/material/icon";
-import { TranslatePipe } from "@ngx-translate/core";
-import { Subscription } from "rxjs";
-
-import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
-import { BalanceSummarySectionComponent } from "../balance-summary-section/balance-summary-section.component";
 import {
   BalanceSummary,
   PosLibraryModule,
   PrintService,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
+import { Subscription } from "rxjs";
+
+import { PrintDialogComponent } from "../../shared/print-dialog/print-dialog.component";
+import { BalanceSummarySectionComponent } from "../balance-summary-section/balance-summary-section.component";
 
 @Component({
   selector: "app-balance-summary",

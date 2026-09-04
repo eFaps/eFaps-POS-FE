@@ -24,7 +24,6 @@ import {
   MatTable,
 } from "@angular/material/table";
 import { MatTooltip } from "@angular/material/tooltip";
-
 import { EnquiryService, Page, RUC } from "@efaps/pos-library";
 
 @Component({

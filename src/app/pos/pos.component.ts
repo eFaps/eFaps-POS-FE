@@ -18,24 +18,6 @@ import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatIcon } from "@angular/material/icon";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
-import { LocalStorageService } from "ngx-localstorage";
-import { Subscription, combineLatest } from "rxjs";
-import { skip } from "rxjs/operators";
-
-import { KeypadService } from "../services";
-import { PosSyncService } from "../services/pos-sync.service";
-import {
-  EmployeeDialogComponent,
-  EmployeeDialogData,
-} from "../shared/employee-dialog/employee-dialog.component";
-import { KeypadComponent } from "../shared/keypad/keypad.component";
-import { CategorySelectComponent } from "./category-select/category-select.component";
-import { CommandsComponent } from "./commands/commands.component";
-import { ContactDialogComponent } from "./contact-dialog/contact-dialog.component";
-import { ProductGridComponent } from "./product-grid/product-grid.component";
-import { ProductListComponent } from "./product-list/product-list.component";
-import { TicketComponent } from "./ticket/ticket.component";
-import { TotalsComponent } from "./totals/totals.component";
 import {
   AuthService,
   BarcodeScannerService,
@@ -56,6 +38,24 @@ import {
   WorkspaceService,
   hasFlag,
 } from "@efaps/pos-library";
+import { LocalStorageService } from "ngx-localstorage";
+import { Subscription, combineLatest } from "rxjs";
+import { skip } from "rxjs/operators";
+
+import { KeypadService } from "../services";
+import { PosSyncService } from "../services/pos-sync.service";
+import {
+  EmployeeDialogComponent,
+  EmployeeDialogData,
+} from "../shared/employee-dialog/employee-dialog.component";
+import { KeypadComponent } from "../shared/keypad/keypad.component";
+import { CategorySelectComponent } from "./category-select/category-select.component";
+import { CommandsComponent } from "./commands/commands.component";
+import { ContactDialogComponent } from "./contact-dialog/contact-dialog.component";
+import { ProductGridComponent } from "./product-grid/product-grid.component";
+import { ProductListComponent } from "./product-list/product-list.component";
+import { TicketComponent } from "./ticket/ticket.component";
+import { TotalsComponent } from "./totals/totals.component";
 
 @Component({
   selector: "app-pos",
@@ -159,19 +159,19 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
       }).subscribe({
         next: ({ order, workspace }) => {
           if (workspace) {
-          this.requiresContact = hasFlag(
-            workspace,
-            WorkspaceFlag.orderRequiresContact,
-          );
-          this.allowAssignSeller = hasFlag(
-            workspace,
-            WorkspaceFlag.assignSeller,
-          );
-          this.allowAssignShoutOut = hasFlag(
-            workspace,
-            WorkspaceFlag.assignShoutOut,
-          );
-        }
+            this.requiresContact = hasFlag(
+              workspace,
+              WorkspaceFlag.orderRequiresContact,
+            );
+            this.allowAssignSeller = hasFlag(
+              workspace,
+              WorkspaceFlag.assignSeller,
+            );
+            this.allowAssignShoutOut = hasFlag(
+              workspace,
+              WorkspaceFlag.assignShoutOut,
+            );
+          }
           if (order && !this.orderId) {
             this.msgService.publishStartEditOrder(order.id!);
             this.orderId = order.id;
@@ -378,7 +378,8 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   }
 
   private storeCurrentLayout() {
-    this.posLayouts[this.authService.getCurrentUsername()!] = this.currentLayout;
+    this.posLayouts[this.authService.getCurrentUsername()!] =
+      this.currentLayout;
     this.posLayouts.save();
   }
 

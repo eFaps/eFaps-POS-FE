@@ -14,10 +14,9 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from "@angular/material/dialog";
+import { Spot, SpotConfig, SpotService } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import { Subscription } from "rxjs";
-
-import { Spot, SpotConfig, SpotService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-spot-dialog",

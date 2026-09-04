@@ -3,9 +3,6 @@ import { ReactiveFormsModule, UntypedFormBuilder } from "@angular/forms";
 import { MatButton } from "@angular/material/button";
 import { MatFormField, MatPrefix } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
-
-import { KeypadComponent } from "../../shared/keypad/keypad.component";
-import { PaymentForm } from "../payment-form";
 import {
   Currency,
   Payment,
@@ -13,6 +10,9 @@ import {
   PaymentType,
   UtilsService,
 } from "@efaps/pos-library";
+
+import { KeypadComponent } from "../../shared/keypad/keypad.component";
+import { PaymentForm } from "../payment-form";
 
 @Component({
   selector: "app-free",

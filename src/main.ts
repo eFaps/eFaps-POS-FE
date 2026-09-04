@@ -27,6 +27,7 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { bootstrapApplication } from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideRouter } from "@angular/router";
+import { LoaderInterceptor, PosLibraryModule } from "@efaps/pos-library";
 import { provideTranslateService } from "@ngx-translate/core";
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 import { AngularSvgIconModule } from "angular-svg-icon";
@@ -38,7 +39,6 @@ import { routes } from "./app/app.routes";
 import { ErrorInterceptor } from "./app/services/index";
 import { PERSISTENCE } from "./app/services/local-storage-persistence";
 import { environment } from "./environments/environment";
-import { LoaderInterceptor, PosLibraryModule } from "@efaps/pos-library";
 
 if (environment.production) {
   enableProdMode();

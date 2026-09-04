@@ -6,7 +6,6 @@ import {
 } from "@angular/core";
 import { MatButton } from "@angular/material/button";
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
-
 import { Category, ProductService } from "@efaps/pos-library";
 
 @Component({

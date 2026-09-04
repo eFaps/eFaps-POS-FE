@@ -8,9 +8,8 @@ import {
 } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
-import { Observable, timer } from "rxjs";
-
 import { PrintService } from "@efaps/pos-library";
+import { Observable, timer } from "rxjs";
 
 @Component({
   selector: "app-print-display",

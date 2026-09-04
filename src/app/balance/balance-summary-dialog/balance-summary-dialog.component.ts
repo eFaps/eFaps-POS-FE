@@ -5,9 +5,9 @@ import {
   ChangeDetectionStrategy,
 } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogModule } from "@angular/material/dialog";
+import { BalanceService, BalanceSummary } from "@efaps/pos-library";
 
 import { BalanceSummaryComponent } from "../balance-summary/balance-summary.component";
-import { BalanceService, BalanceSummary } from "@efaps/pos-library";
 
 @Component({
   selector: "app-balance-summary-dialog",

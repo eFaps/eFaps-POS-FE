@@ -20,18 +20,14 @@
             <mat-card-title> {{ payable.number }}</mat-card-title>
             <mat-card-subtitle
               >{{ payable.date }} -
-              {{
-                payable.crossTotal | posCurrency: payable.currency
-              }}</mat-card-subtitle
+              {{ payable.crossTotal | posCurrency: payable.currency }}</mat-card-subtitle
             >
           </mat-card-header>
           <mat-card-content>
             <mat-list>
               <mat-list-item>
                 <span matListItemTitle>Cliente</span>
-                <span matListItemLine>{{
-                  payable?.contact?.name
-                }}</span> </mat-list-item
+                <span matListItemLine>{{ payable?.contact?.name }}</span> </mat-list-item
               ><mat-list-item>
                 <span matListItemTitle>Estatus</span>
                 <span matListItemLine>{{ payable.status | translate }}</span>

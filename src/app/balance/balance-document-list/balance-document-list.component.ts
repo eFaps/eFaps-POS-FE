@@ -22,10 +22,10 @@ import {
   MatTable,
   MatTableDataSource,
 } from "@angular/material/table";
+import { DocStatus, PayableHead, PosLibraryModule } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 
 import { DocumentDialogComponent } from "../document-dialog/document-dialog.component";
-import { DocStatus, PayableHead, PosLibraryModule } from "@efaps/pos-library";
 
 @Component({
   selector: "app-balance-document-list",

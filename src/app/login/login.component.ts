@@ -25,13 +25,6 @@ import {
 } from "@angular/material/slide-toggle";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
-import { TranslateService } from "@ngx-translate/core";
-import { SvgIconComponent } from "angular-svg-icon";
-import { LocalStorageService } from "ngx-localstorage";
-import { Subscription } from "rxjs";
-
-import { KeyboardDirective } from "../services/keyboard.directive";
-import { KeyboardService } from "../services/keyboard.service";
 import {
   AuthService,
   Company,
@@ -40,6 +33,13 @@ import {
   UserService,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { TranslateService } from "@ngx-translate/core";
+import { SvgIconComponent } from "angular-svg-icon";
+import { LocalStorageService } from "ngx-localstorage";
+import { Subscription } from "rxjs";
+
+import { KeyboardDirective } from "../services/keyboard.directive";
+import { KeyboardService } from "../services/keyboard.service";
 
 @Component({
   templateUrl: "./login.component.html",

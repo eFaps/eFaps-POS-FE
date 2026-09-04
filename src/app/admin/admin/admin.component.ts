@@ -26,10 +26,6 @@ import { MatIcon } from "@angular/material/icon";
 import { MatInput } from "@angular/material/input";
 import { MatSlideToggle } from "@angular/material/slide-toggle";
 import { Router } from "@angular/router";
-import { LocalStorageService } from "ngx-localstorage";
-
-import { environment } from "../../../environments/environment";
-import { SalesReportDialogComponent } from "../sales-report-dialog/sales-report-dialog.component";
 import {
   AdminService,
   AuthService,
@@ -42,6 +38,10 @@ import {
   Versions,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { LocalStorageService } from "ngx-localstorage";
+
+import { environment } from "../../../environments/environment";
+import { SalesReportDialogComponent } from "../sales-report-dialog/sales-report-dialog.component";
 import { PrintDialogComponent } from "src/app/shared/print-dialog/print-dialog.component";
 import { STOCKTAKING_ACTIVATE } from "src/app/util/keys";
 

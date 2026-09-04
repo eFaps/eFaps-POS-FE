@@ -22,22 +22,6 @@ import { MatRadioButton, MatRadioGroup } from "@angular/material/radio";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTabGroup } from "@angular/material/tabs";
 import { Router } from "@angular/router";
-import { TranslatePipe, TranslateService } from "@ngx-translate/core";
-import { LocalStorageService } from "ngx-localstorage";
-import { PartialObserver, Subject, Subscription, debounceTime } from "rxjs";
-
-import { ConfirmDialogComponent } from "../shared/confirm-dialog/confirm-dialog.component";
-import { ContactComponent } from "../shared/contact/contact.component";
-import { DocumentComponent } from "../shared/document/document.component";
-import {
-  EmployeeDialogComponent,
-  EmployeeDialogData,
-} from "../shared/employee-dialog/employee-dialog.component";
-import { NoteDialogComponent } from "../shared/note-dialog/note-dialog.component";
-import { PrintDialogComponent } from "../shared/print-dialog/print-dialog.component";
-import { DiscountComponent } from "./discount/discount.component";
-import { PaymentTypeComponent } from "./payment-type/payment-type.component";
-import { SuccessDialogComponent } from "./success-dialog/success-dialog.component";
 import {
   Balance,
   BalanceService,
@@ -65,6 +49,22 @@ import {
   WorkspaceService,
   hasFlag,
 } from "@efaps/pos-library";
+import { TranslatePipe, TranslateService } from "@ngx-translate/core";
+import { LocalStorageService } from "ngx-localstorage";
+import { PartialObserver, Subject, Subscription, debounceTime } from "rxjs";
+
+import { ConfirmDialogComponent } from "../shared/confirm-dialog/confirm-dialog.component";
+import { ContactComponent } from "../shared/contact/contact.component";
+import { DocumentComponent } from "../shared/document/document.component";
+import {
+  EmployeeDialogComponent,
+  EmployeeDialogData,
+} from "../shared/employee-dialog/employee-dialog.component";
+import { NoteDialogComponent } from "../shared/note-dialog/note-dialog.component";
+import { PrintDialogComponent } from "../shared/print-dialog/print-dialog.component";
+import { DiscountComponent } from "./discount/discount.component";
+import { PaymentTypeComponent } from "./payment-type/payment-type.component";
+import { SuccessDialogComponent } from "./success-dialog/success-dialog.component";
 import { PAYABLE_ACTIVATENOTE, PAYMENT_REQUIRE } from "src/app/util/keys";
 
 @Component({
@@ -164,7 +164,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.paymentService.updatePayments([]);
     this.subscriptions$.add(
       this.paymentService.currentDocument.subscribe((doc) => {
-        this.document = doc;
+        this.document = doc!;
         this.documentComponent.document.set(doc);
         if (this.document) {
           if (this.document.contactOid) {
@@ -205,7 +205,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     );
     this.subscriptions$.add(
       this.balanceService.currentBalance.subscribe(
-        (_balance) => (this.balance = _balance),
+        (balance) => (this.balance = balance!),
       ),
     );
     this.subscriptions$.add(
@@ -222,25 +222,30 @@ export class PaymentComponent implements OnInit, OnDestroy {
     );
     this.subscriptions$.add(
       this.workspaceService.currentWorkspace.subscribe((workspace) => {
-        this.workspaceOid = workspace.oid;
-        this.allowAssignSeller = hasFlag(workspace, WorkspaceFlag.assignSeller);
-        this.allowPrintPreliminary = workspace.printCmds.some(
-          (x) => x.target === "PRELIMINARY",
-        );
-        this.requirePrintJob =
-          hasFlag(workspace.flags, WorkspaceFlag.jobOnPayment) &&
-          workspace.printCmds.some((x) => x.target === "JOB");
-        this.printTicket = workspace.printCmds.some(
-          (x) => x.target === "TICKET",
-        );
-        this.docTypes = [];
-        workspace.docTypes.forEach((_value) => {
-          if (_value != DocumentType.CREDITNOTE) {
-            this.docTypes.push(_value);
+        if (workspace) {
+          this.workspaceOid = workspace.oid;
+          this.allowAssignSeller = hasFlag(
+            workspace,
+            WorkspaceFlag.assignSeller,
+          );
+          this.allowPrintPreliminary = workspace.printCmds.some(
+            (x) => x.target === "PRELIMINARY",
+          );
+          this.requirePrintJob =
+            hasFlag(workspace.flags, WorkspaceFlag.jobOnPayment) &&
+            workspace.printCmds.some((x) => x.target === "JOB");
+          this.printTicket = workspace.printCmds.some(
+            (x) => x.target === "TICKET",
+          );
+          this.docTypes = [];
+          workspace.docTypes.forEach((_value) => {
+            if (_value != DocumentType.CREDITNOTE) {
+              this.docTypes.push(_value);
+            }
+          });
+          if (this.docTypes.findIndex((x) => x == DocumentType.RECEIPT) < 0) {
+            this.docType = this.docTypes[0];
           }
-        });
-        if (this.docTypes.findIndex((x) => x == DocumentType.RECEIPT) < 0) {
-          this.docType = this.docTypes[0];
         }
       }),
     );

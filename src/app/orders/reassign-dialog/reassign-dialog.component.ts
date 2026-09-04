@@ -16,9 +16,6 @@ import {
   MatDialogRef,
 } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
-import { Observable, Subscription, zip } from "rxjs";
-
-import { ReassignItemComponent } from "../reassign-item/reassign-item.component";
 import {
   CalculatorService,
   Currency,
@@ -28,6 +25,9 @@ import {
   DocumentService,
   Order,
 } from "@efaps/pos-library";
+import { Observable, Subscription, zip } from "rxjs";
+
+import { ReassignItemComponent } from "../reassign-item/reassign-item.component";
 
 @Component({
   selector: "app-reassign-dialog",

@@ -33,13 +33,6 @@ import {
   MatTableDataSource,
   MatTableModule,
 } from "@angular/material/table";
-import { TranslatePipe } from "@ngx-translate/core";
-import { Subscription } from "rxjs";
-import { debounceTime } from "rxjs/operators";
-
-import { KeypadService } from "../../services";
-import { ProductComponent } from "../../shared/product/product.component";
-import { AbstractProductSelector } from "../abstract-product-selector";
 import {
   InventoryService,
   Permission,
@@ -49,6 +42,13 @@ import {
   ProductStatus,
   WorkspaceService,
 } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
+import { Subscription } from "rxjs";
+import { debounceTime } from "rxjs/operators";
+
+import { KeypadService } from "../../services";
+import { ProductComponent } from "../../shared/product/product.component";
+import { AbstractProductSelector } from "../abstract-product-selector";
 import { PosSyncService } from "src/app/services/pos-sync.service";
 
 @Component({

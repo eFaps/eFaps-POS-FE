@@ -13,10 +13,10 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from "@angular/material/dialog";
+import { Document, DocumentService } from "@efaps/pos-library";
 import { TranslateService } from "@ngx-translate/core";
 
 import { DocumentComponent } from "../../shared/document/document.component";
-import { Document, DocumentService } from "@efaps/pos-library";
 
 @Component({
   selector: "app-document-dialog",

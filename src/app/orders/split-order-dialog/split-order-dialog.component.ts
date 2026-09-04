@@ -29,8 +29,6 @@ import {
   MatTableDataSource,
   MatTableModule,
 } from "@angular/material/table";
-import { merge } from "rxjs";
-
 import {
   CalculatorService,
   DocItem,
@@ -38,6 +36,7 @@ import {
   DocumentService,
   Order,
 } from "@efaps/pos-library";
+import { merge } from "rxjs";
 
 @Component({
   selector: "app-split-order-dialog",

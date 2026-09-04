@@ -6,7 +6,6 @@ import {
 } from "@angular/core";
 import { MatFabButton } from "@angular/material/button";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-
 import { Order } from "@efaps/pos-library";
 
 @Component({

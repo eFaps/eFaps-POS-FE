@@ -13,11 +13,6 @@ import { MatTab, MatTabGroup } from "@angular/material/tabs";
 import { MatTooltip } from "@angular/material/tooltip";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
-import { TranslatePipe } from "@ngx-translate/core";
-import { forkJoin } from "rxjs";
-
-import { AbstractSpotPicker } from "../abstract-spot-picker";
-import { SplitDialogComponent } from "../split-dialog/split-dialog.component";
 import {
   DocStatus,
   DocumentService,
@@ -30,6 +25,11 @@ import {
   SpotService,
   SpotsLayout,
 } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
+import { forkJoin } from "rxjs";
+
+import { AbstractSpotPicker } from "../abstract-spot-picker";
+import { SplitDialogComponent } from "../split-dialog/split-dialog.component";
 
 @Component({
   selector: "app-extended-spot-picker",

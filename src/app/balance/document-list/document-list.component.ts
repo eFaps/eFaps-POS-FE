@@ -26,16 +26,16 @@ import {
   MatTable,
   MatTableDataSource,
 } from "@angular/material/table";
-import { TranslatePipe } from "@ngx-translate/core";
-import { Subscription } from "rxjs";
-import { debounceTime } from "rxjs/operators";
-
-import { DocumentDialogComponent } from "../document-dialog/document-dialog.component";
 import {
   DocumentService,
   PayableHead,
   PosLibraryModule,
 } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
+import { Subscription } from "rxjs";
+import { debounceTime } from "rxjs/operators";
+
+import { DocumentDialogComponent } from "../document-dialog/document-dialog.component";
 
 @Component({
   selector: "app-document-list",

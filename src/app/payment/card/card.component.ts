@@ -8,9 +8,6 @@ import { MatButton } from "@angular/material/button";
 import { MatFormField, MatPrefix } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
 import { MatRadioButton, MatRadioGroup } from "@angular/material/radio";
-
-import { KeypadComponent } from "../../shared/keypad/keypad.component";
-import { PaymentForm } from "../payment-form";
 import {
   Card,
   Currency,
@@ -20,6 +17,9 @@ import {
   UtilsService,
   WorkspaceService,
 } from "@efaps/pos-library";
+
+import { KeypadComponent } from "../../shared/keypad/keypad.component";
+import { PaymentForm } from "../payment-form";
 
 @Component({
   selector: "app-card",

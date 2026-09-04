@@ -9,9 +9,6 @@ import { MatCardModule } from "@angular/material/card";
 import { MatFormField, MatInputModule } from "@angular/material/input";
 import { MatListModule } from "@angular/material/list";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { TranslateDirective } from "@ngx-translate/core";
-
-import { PaymentForm } from "../payment-form";
 import {
   CreditNote,
   Currency,
@@ -22,6 +19,9 @@ import {
   PosLibraryModule,
   UtilsService,
 } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
+
+import { PaymentForm } from "../payment-form";
 
 @Component({
   selector: "app-redeem-credit-note",
@@ -33,7 +33,7 @@ import {
     MatCardModule,
     MatListModule,
     PosLibraryModule,
-    TranslateDirective
+    TranslatePipe,
   ],
   templateUrl: "./redeem-credit-note.component.html",
   changeDetection: ChangeDetectionStrategy.Eager,

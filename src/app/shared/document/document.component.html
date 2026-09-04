@@ -8,8 +8,7 @@
         <span>Cliente:</span>
         <span
           >{{ "IDTYPE." + document().contact!!.idType | translate }}:
-          {{ document().contact!!.idNumber }} -
-          {{ document().contact!!.name }}</span
+          {{ document().contact!!.idNumber }} - {{ document().contact!!.name }}</span
         >
       </div>
     }
@@ -22,15 +21,11 @@
         matSortDirection="asc"
         multiTemplateDataRows>
         <ng-container matColumnDef="index">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            No.
-          </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
           <mat-cell *matCellDef="let item"> {{ item.index }} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="quantity">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            C.
-          </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> C. </mat-header-cell>
           <mat-cell *matCellDef="let item">
             @if (!isChild(item)) {
               {{ item.quantity }}
@@ -62,9 +57,7 @@
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="crossPrice">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            <div>Precio</div></mat-header-cell
-          >
+          <mat-header-cell *matHeaderCellDef mat-sort-header> <div>Precio</div></mat-header-cell>
           <mat-cell *matCellDef="let item">
             @if (!isChild(item)) {
               <div>
@@ -84,16 +77,13 @@
             class="relation-detail">
             @for (relation of item.product.relations; track relation) {
               @if (relation.type == "SALESBOM") {
-                <app-part-list-relation
-                  [productRelation]="relation"></app-part-list-relation>
+                <app-part-list-relation [productRelation]="relation"></app-part-list-relation>
               }
             }
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="cmd">
-          <mat-header-cell *matHeaderCellDef>
-            <div>&nbsp;</div></mat-header-cell
-          >
+          <mat-header-cell *matHeaderCellDef> <div>&nbsp;</div></mat-header-cell>
           <mat-cell *matCellDef="let item">
             <button (click)="btnClick(item)" mat-icon-button>
               <mat-icon>{{ getBtnIcon(item) }}</mat-icon>
@@ -126,9 +116,7 @@
                           : ("PAYMENT." + payment.type | translate)
                       }}:
                     </span>
-                    <span class="amount">{{
-                      payment.amount | number: "1.2-2"
-                    }}</span>
+                    <span class="amount">{{ payment.amount | number: "1.2-2" }}</span>
                   </p>
                 </mat-list-item>
               }
@@ -141,12 +129,9 @@
             @for (relation of employeeRelations; track relation) {
               <mat-list-item>
                 <p matLine>
-                  <span class="employeeRealtionType"
-                    >{{ relation.type }}:
-                  </span>
+                  <span class="employeeRealtionType">{{ relation.type }}: </span>
                   <span class="employee"
-                    >{{ relation.employee?.firstName }}
-                    {{ relation.employee?.surName }}</span
+                    >{{ relation.employee?.firstName }} {{ relation.employee?.surName }}</span
                   >
                 </p>
               </mat-list-item>
@@ -196,10 +181,7 @@
               <div matLine class="totalDiscount">
                 <button mat-button (click)="showPromoInfo()">
                   Descuento:
-                  {{
-                    promoInfo.crossTotalDiscount
-                      | posCurrency: document().currency
-                  }}
+                  {{ promoInfo.crossTotalDiscount | posCurrency: document().currency }}
                 </button>
               </div>
             </mat-list-item>
@@ -227,9 +209,7 @@
             <mat-list-item class="amount">
               <div matLine>
                 Por pagar:
-                {{
-                  document().payableAmount | posCurrency: document().currency
-                }}
+                {{ document().payableAmount | posCurrency: document().currency }}
               </div>
             </mat-list-item>
           }

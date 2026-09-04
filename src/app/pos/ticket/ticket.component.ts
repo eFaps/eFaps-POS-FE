@@ -24,9 +24,6 @@ import {
   MatTable,
   MatTableDataSource,
 } from "@angular/material/table";
-import { Decimal } from "decimal.js";
-
-import { PartListRelationComponent } from "../../shared/part-list-relation/part-list-relation.component";
 import {
   Currency,
   isChildItem,
@@ -35,6 +32,9 @@ import {
   PosService,
   PromoInfo,
 } from "@efaps/pos-library";
+import { Decimal } from "decimal.js";
+
+import { PartListRelationComponent } from "../../shared/part-list-relation/part-list-relation.component";
 import { PromoDialogComponent } from "src/app/shared/promo-dialog/promo-dialog.component";
 
 @Component({

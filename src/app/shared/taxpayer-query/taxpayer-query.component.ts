@@ -15,9 +15,9 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatFormField } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
 import { MatSlideToggle } from "@angular/material/slide-toggle";
+import { EnquiryService, RUC } from "@efaps/pos-library";
 
 import { TaxpayerResultComponent } from "../taxpayer-result/taxpayer-result.component";
-import { EnquiryService, RUC } from "@efaps/pos-library";
 
 @Component({
   selector: "app-taxpayer-query",

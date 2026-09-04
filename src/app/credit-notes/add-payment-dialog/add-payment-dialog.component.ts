@@ -17,9 +17,8 @@ import { MatFormField, MatLabel } from "@angular/material/form-field";
 import { MatIcon } from "@angular/material/icon";
 import { MatInput } from "@angular/material/input";
 import { MatSelect } from "@angular/material/select";
-import { TranslatePipe } from "@ngx-translate/core";
-
 import { PaymentType } from "@efaps/pos-library";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
   selector: "app-add-payment-dialog",

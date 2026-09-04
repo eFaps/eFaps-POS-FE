@@ -5,9 +5,9 @@ import {
   ChangeDetectionStrategy,
 } from "@angular/core";
 import { MatTab, MatTabContent, MatTabGroup } from "@angular/material/tabs";
+import { InventoryService, Warehouse } from "@efaps/pos-library";
 
 import { InventoryTableComponent } from "../inventory-table/inventory-table.component";
-import { InventoryService, Warehouse } from "@efaps/pos-library";
 
 @Component({
   selector: "app-inventory",

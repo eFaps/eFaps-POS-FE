@@ -14,9 +14,8 @@ import {
 } from "@angular/material/dialog";
 import { MatFormField } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
-import { EnumValues } from "enum-values";
-
 import { Currency } from "@efaps/pos-library";
+import { EnumValues } from "enum-values";
 
 @Component({
   selector: "app-opening-balance-dialog",
