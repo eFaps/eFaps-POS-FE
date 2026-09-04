@@ -1,4 +1,6 @@
-.wrapper {
+// view encapsulation is off --> unique names required
+
+.keyboard-wrapper {
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -8,7 +10,7 @@
   overflow: hidden;
   transition: max-height 0.5s;
 
-  &.hidden {
+  &.keyboard-hidden {
     max-height: 0px;
   }
 

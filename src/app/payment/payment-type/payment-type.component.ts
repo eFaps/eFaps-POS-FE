@@ -63,7 +63,7 @@ export class PaymentTypeComponent implements OnInit, OnDestroy {
 
   setIndex(data: any) {
     this.selectedPayment[this.authService.getCurrentUsername()!] = data;
-    this.selectedPayment.save();
+    this.selectedPayment = this.selectedPayment;
   }
 
   hasPermission(...permission: Permission[]): boolean {
