@@ -57,7 +57,9 @@ export class CardComponent extends PaymentForm {
       card: [],
     });
     this.workspaceService.currentWorkspace.subscribe((workspace) => {
-      this.cards = workspace.cards;
+      if (workspace) {
+        this.cards = workspace.cards;
+      }
       this.paymentForm.patchValue({ card: this.cards[0] });
     });
   }

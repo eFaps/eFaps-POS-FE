@@ -110,9 +110,9 @@ export class ProductGridComponent
               }),
             );
           }
-          if (this.showInventory) {
+          if (this.showInventory && this.workspaceService.getWarehouseOid()) {
             this.inventoryService
-              .getInventory(this.workspaceService.getWarehouseOid())
+              .getInventory(this.workspaceService.getWarehouseOid()!)
               .subscribe((_entries) => {
                 this.inventory = _entries;
               });

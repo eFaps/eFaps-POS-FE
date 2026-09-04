@@ -54,7 +54,7 @@ export class PaymentTypeComponent implements OnInit, OnDestroy {
   }
 
   get selected() {
-    const index = this.selectedPayment[this.authService.getCurrentUsername()];
+    const index = this.selectedPayment[this.authService.getCurrentUsername()!];
     if (index) {
       return index;
     }
@@ -62,7 +62,7 @@ export class PaymentTypeComponent implements OnInit, OnDestroy {
   }
 
   setIndex(data: any) {
-    this.selectedPayment[this.authService.getCurrentUsername()] = data;
+    this.selectedPayment[this.authService.getCurrentUsername()!] = data;
     this.selectedPayment.save();
   }
 

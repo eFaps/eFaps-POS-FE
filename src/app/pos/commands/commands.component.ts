@@ -52,7 +52,7 @@ export class CommandsComponent implements OnInit {
   ngOnInit() {
     this.showInventory = this.workspaceService.showInventory();
     this.posService.currentOrder.subscribe(
-      (_order) => (this.currentOrder = _order),
+      order => this.currentOrder = order == null ? undefined : order,
     );
     this.posService.currentTicket.subscribe(
       (ticket) =>
@@ -110,7 +110,7 @@ export class CommandsComponent implements OnInit {
     }
     this.inventoryService
       .validateStock({
-        warehouseOid: this.workspaceService.getWarehouseOid(),
+        warehouseOid: this.workspaceService.getWarehouseOid()!,
         entries: items.map((item) => {
           return { productOid: item.product.oid, quantity: item.quantity };
         }),

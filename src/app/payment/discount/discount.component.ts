@@ -70,13 +70,13 @@ export class DiscountComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscriptions$.add(
       this.workspaceService.currentWorkspace.subscribe((ws) => {
-        this._discounts = ws.discounts;
+        if (ws) {
+          this._discounts = ws.discounts;
+        }
       }),
     );
     this.document = this.data;
-    this.currency = this.utilsService.getCurrencySymbol(
-      this.paymentService.currency,
-    );
+    this.currency = this.utilsService.getCurrencySymbol(this.paymentService.currency!);
   }
 
   get percentDiscounts() {

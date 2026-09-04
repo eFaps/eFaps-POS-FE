@@ -14,7 +14,6 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTabsModule } from "@angular/material/tabs";
 import { Router } from "@angular/router";
-import { TranslateModule } from "@ngx-translate/core";
 
 import { DocumentService, Payable, PosLibraryModule } from "@efaps/pos-library";
 
@@ -31,7 +30,6 @@ import { DocumentService, Payable, PosLibraryModule } from "@efaps/pos-library";
     MatSnackBarModule,
     MatCardModule,
     PosLibraryModule,
-    TranslateModule,
   ],
   templateUrl: "./remote.component.html",
   changeDetection: ChangeDetectionStrategy.Eager,

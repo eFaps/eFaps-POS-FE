@@ -109,7 +109,7 @@ describe("CreateCreditNoteComponent", () => {
         { provide: DocumentService, useClass: DocumentServiceStub },
 
         provideTranslateService({
-          defaultLanguage: "en",
+          fallbackLang: "en",
         }),
         { provide: BalanceService, useClass: BalanceServiceStub },
         { provide: WorkspaceService, useClass: WorkspaceServiceStub },

@@ -27,7 +27,14 @@ export class SpotsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription$.add(
       this.workspaceService.currentWorkspace.subscribe({
-        next: (workspace) => (this.spotConfig = workspace.spotConfig),
+        next: workspace => {
+          if (workspace && workspace.spotConfig) {
+              this.spotConfig = workspace.spotConfig
+          } else {
+             this.spotConfig = SpotConfig.NONE
+          }
+         
+        },
       }),
     );
   }

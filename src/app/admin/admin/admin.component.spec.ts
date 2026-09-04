@@ -13,6 +13,8 @@ import {
   AuthService,
   ConfigService,
   Extension,
+  MemoryPersitenceService,
+  PersistenceService,
   Versions,
 } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
@@ -50,6 +52,9 @@ class ConfigServiceStub {
     return new Observable((observer) => {
       observer.next(false);
     });
+  }
+  get persistence(): PersistenceService {
+    return new MemoryPersitenceService()
   }
 }
 

@@ -9,7 +9,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatFormField, MatInputModule } from "@angular/material/input";
 import { MatListModule } from "@angular/material/list";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { TranslateModule } from "@ngx-translate/core";
+import { TranslateDirective } from "@ngx-translate/core";
 
 import { PaymentForm } from "../payment-form";
 import {
@@ -33,7 +33,7 @@ import {
     MatCardModule,
     MatListModule,
     PosLibraryModule,
-    TranslateModule,
+    TranslateDirective
   ],
   templateUrl: "./redeem-credit-note.component.html",
   changeDetection: ChangeDetectionStrategy.Eager,

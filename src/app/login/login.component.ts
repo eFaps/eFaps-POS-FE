@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authService.logout();
     this.workspaceService.logout();
     if (this.companyService.hasCompany()) {
-      this.setCompany(this.companyService.currentCompany);
+      this.setCompany(this.companyService.currentCompany!);
       this.subscription.add(
         this.companyService.getCompanies().subscribe({
           next: (companies) => (this.companies = companies),

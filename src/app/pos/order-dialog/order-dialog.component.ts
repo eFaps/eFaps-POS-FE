@@ -52,7 +52,7 @@ export class OrderDialogComponent implements OnInit {
 
   ngOnInit() {
     this.workspaceService.currentWorkspace.subscribe((workspace) => {
-      this.workspace = workspace;
+      this.workspace = workspace == null ?undefined : workspace;
     });
   }
 

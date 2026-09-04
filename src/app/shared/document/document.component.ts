@@ -40,9 +40,7 @@ import { PromoDialogComponent } from "../promo-dialog/promo-dialog.component";
 import {
   AuthService,
   CreditNote,
-  Currency,
   DocItem,
-  DocStatus,
   Document,
   DocumentService,
   Employee,
@@ -163,10 +161,12 @@ export class DocumentComponent implements OnInit {
     }
     this.workspaceService.currentWorkspace.subscribe({
       next: (workspace) => {
-        this.workspaceOid = workspace.oid;
-        this.hasCopyPrintCmd = workspace.printCmds.some(
-          (x) => x.target === "COPY",
-        );
+        if (workspace) {
+          this.workspaceOid = workspace.oid;
+          this.hasCopyPrintCmd = workspace.printCmds.some(
+            (x) => x.target === "COPY",
+          );
+        }
       },
     });
     this.promotionService

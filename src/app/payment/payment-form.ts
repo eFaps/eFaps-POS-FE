@@ -31,7 +31,7 @@ export abstract class PaymentForm implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription$.add(
       this.paymentService.currentDocument.subscribe(
-        (_doc) => (this.document = _doc),
+        (_doc) => (this.document = _doc!),
       ),
     );
     this.subscription$.add(

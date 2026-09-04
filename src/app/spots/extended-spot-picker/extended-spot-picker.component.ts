@@ -78,7 +78,7 @@ export class ExtendedSpotPickerComponent
         this.floors = layout.floors;
         this.floors.forEach((floor) => {
           this.imageService.getBase64Image(floor.imageOid).subscribe({
-            next: (data) => this.images.set(floor.imageOid, data),
+            next: (data) => this.images.set(floor.imageOid, data ? data : ""),
           });
         });
       },

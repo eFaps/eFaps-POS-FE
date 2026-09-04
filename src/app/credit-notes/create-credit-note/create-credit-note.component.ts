@@ -130,9 +130,11 @@ export class CreateCreditNoteComponent implements OnInit {
         this.router.navigate(["/"]);
       }
     });
-    this.workspaceService.currentWorkspace.subscribe((data) => {
-      this.workspaceOid = data.oid;
-      this.print = data.printCmds.some((x) => x.target === "TICKET");
+    this.workspaceService.currentWorkspace.subscribe((ws) => {
+      if (ws) {
+        this.workspaceOid = ws.oid;
+        this.print = ws.printCmds.some((x) => x.target === "TICKET");
+      }
     });
     this.route.queryParams.subscribe((params) => {
       const sourceId = params["sourceId"];

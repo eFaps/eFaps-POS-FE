@@ -158,6 +158,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
         workspace: this.workspaceService.currentWorkspace,
       }).subscribe({
         next: ({ order, workspace }) => {
+          if (workspace) {
           this.requiresContact = hasFlag(
             workspace,
             WorkspaceFlag.orderRequiresContact,
@@ -170,7 +171,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
             workspace,
             WorkspaceFlag.assignShoutOut,
           );
-
+        }
           if (order && !this.orderId) {
             this.msgService.publishStartEditOrder(order.id!);
             this.orderId = order.id;
@@ -227,7 +228,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     );
 
     if (this.workspaceService.getPosLayout() === PosLayout.BOTH) {
-      const layout = this.posLayouts[this.authService.getCurrentUsername()];
+      const layout = this.posLayouts[this.authService.getCurrentUsername()!];
       if (layout) {
         this.currentLayout = layout;
       }
@@ -235,7 +236,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
       this.currentLayout = this.workspaceService.getPosLayout();
     }
 
-    this.numPad.set(this.posNumPad[this.authService.getCurrentUsername()]);
+    this.numPad.set(this.posNumPad[this.authService.getCurrentUsername()!]);
     this.subscriptions.add(
       this.barcodeScannerService.barcode.pipe(skip(1)).subscribe({
         next: (barcode) => {
@@ -377,7 +378,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   }
 
   private storeCurrentLayout() {
-    this.posLayouts[this.authService.getCurrentUsername()] = this.currentLayout;
+    this.posLayouts[this.authService.getCurrentUsername()!] = this.currentLayout;
     this.posLayouts.save();
   }
 
@@ -411,7 +412,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
 
   toggleNumPad() {
     this.numPad.update((current) => !current);
-    this.posNumPad[this.authService.getCurrentUsername()] = this.numPad();
+    this.posNumPad[this.authService.getCurrentUsername()!] = this.numPad();
     this.posNumPad.save();
 
     this.cmdComp.evalSticky();
