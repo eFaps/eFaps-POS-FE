@@ -165,7 +165,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.subscriptions$.add(
       this.paymentService.currentDocument.subscribe((doc) => {
         this.document = doc!;
-        this.documentComponent.document.set(doc);
+        this.documentComponent.document.set(doc!);
         if (this.document) {
           if (this.document.contactOid) {
             this.showContact = true;

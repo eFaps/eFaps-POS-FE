@@ -76,7 +76,7 @@
                         ? payment.cardLabel
                         : ("PAYMENT." + payment.type | translate)
                     }}
-                    {{ payment.amount | posCurrency: paymentService.currency }}</span
+                    {{ payment.amount | posCurrency: paymentService.currency! }}</span
                   >
                   <button mat-icon-button (click)="delPayment(payment)">
                     <mat-icon>highlight_off</mat-icon>

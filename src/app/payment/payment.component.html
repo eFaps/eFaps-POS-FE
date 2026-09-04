@@ -65,7 +65,7 @@
                   ? payment.cardLabel
                   : ("PAYMENT." + PaymentType[payment.type] | translate)
               }}
-              {{ payment.amount | posCurrency: paymentService.currency }}</span
+              {{ payment.amount | posCurrency: paymentService.currency! }}</span
             >
             <button mat-icon-button (click)="delPayment(payment)">
               <mat-icon>highlight_off</mat-icon>
@@ -75,9 +75,9 @@
       </mat-list>
       <div>
         <div class="payTotal">
-          <h2 i18n="@@payment-total">Total: {{ total | posCurrency: paymentService.currency }}</h2>
+          <h2 i18n="@@payment-total">Total: {{ total | posCurrency: paymentService.currency! }}</h2>
           <h2 [ngClass]="{ negative: change < 0 }" i18n="@@payment-change">
-            Change: {{ change | posCurrency: paymentService.currency }}
+            Change: {{ change | posCurrency: paymentService.currency! }}
           </h2>
         </div>
         <div class="createDocument">
