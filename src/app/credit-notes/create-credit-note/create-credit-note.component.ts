@@ -99,7 +99,7 @@ export class CreateCreditNoteComponent implements OnInit {
       partial: false,
     },
     {
-      key: "05",
+      key: "07",
       label: "Devolución por ítem",
       partial: true,
     },
