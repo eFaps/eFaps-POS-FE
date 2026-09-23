@@ -40,12 +40,14 @@ import {
 } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import clone from "just-clone";
+import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 
 import { DocumentComponent } from "../../shared/document/document.component";
 import { AddPaymentDialogComponent } from "../add-payment-dialog/add-payment-dialog.component";
 import { SuccessDialogComponent } from "../success-dialog/success-dialog.component";
 import { ConfirmDialogComponent } from "src/app/shared/confirm-dialog/confirm-dialog.component";
 import { CREDITNOTE_PERMITPARTIAL } from "src/app/util/keys";
+
 interface Reason {
   key: string;
   label: string;
@@ -85,6 +87,9 @@ export class CreateCreditNoteComponent implements OnInit {
   private workspaceService = inject(WorkspaceService);
   private configService = inject(ConfigService);
   private formBuilder = inject(FormBuilder);
+  private breakpointObserver = inject(BreakpointObserver);
+
+  flexDirection = signal<"row" | "column">("row");
 
   reasonFormGroup: FormGroup = this.formBuilder.group({
     creditNoteReason: ["", Validators.required],
@@ -118,6 +123,14 @@ export class CreateCreditNoteComponent implements OnInit {
   loading = false;
 
   activatePartial = signal<boolean>(false);
+
+  constructor() {
+    this.breakpointObserver
+      .observe([Breakpoints.Handset])
+      .subscribe((result) => {
+        this.flexDirection.set(result.matches ? "column" : "row");
+      });
+  }
 
   ngOnInit(): void {
     this.balanceService.currentBalance.subscribe((balance) => {
