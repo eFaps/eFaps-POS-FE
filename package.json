@@ -62,7 +62,7 @@
   "devDependencies": {
     "@angular/build": "^22.1.8",
     "@angular/cli": "^22.1.8",
-    "@angular/compiler-cli": "^22.1.7",
+    "@angular/compiler-cli": "^22.2.0",
     "@angular/localize": "^22.1.7",
     "@types/core-js": "^2.5.8",
     "@types/mousetrap": "^1.6.15",
