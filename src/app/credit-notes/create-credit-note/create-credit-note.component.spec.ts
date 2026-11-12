@@ -53,7 +53,7 @@ class DocumentServiceStub {
     return new Observable();
   }
 
-  validateForCreditNote(): Observable<any> {
+  creditNoteEmitValidity(): Observable<any> {
     return new Observable();
   }
 }
