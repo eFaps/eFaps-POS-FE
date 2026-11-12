@@ -8,6 +8,18 @@
     gap: 1rem;
   }
 
+  .validation {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+  }
+
+  .warning {
+    color: var(--mat-sys-error);
+    font-size: large;
+    font-weight: bold;
+  }
+
   .reason-radio-group {
     display: flex;
     flex-direction: column;

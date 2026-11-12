@@ -93,6 +93,17 @@ export class RemoteComponent {
           });
         },
       });
+    } else if (type == "INVOICE") {
+      this.documentService.getInvoiceByIdent(payableOid, true).subscribe({
+        next: (invoice) => {
+          this.router.navigate(["/credit-notes"], {
+            queryParams: {
+              sourceId: invoice.id,
+              sourceType: invoice.type,
+            },
+          });
+        },
+      });
     }
   }
 }

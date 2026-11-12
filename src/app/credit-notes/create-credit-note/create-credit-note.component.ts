@@ -47,6 +47,7 @@ import { AddPaymentDialogComponent } from "../add-payment-dialog/add-payment-dia
 import { SuccessDialogComponent } from "../success-dialog/success-dialog.component";
 import { ConfirmDialogComponent } from "src/app/shared/confirm-dialog/confirm-dialog.component";
 import { CREDITNOTE_PERMITPARTIAL } from "src/app/util/keys";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 interface Reason {
   key: string;
@@ -74,6 +75,7 @@ interface Reason {
     MatDividerModule,
     PosLibraryModule,
     TranslatePipe,
+    MatProgressSpinnerModule
   ],
 })
 export class CreateCreditNoteComponent implements OnInit {
@@ -119,7 +121,8 @@ export class CreateCreditNoteComponent implements OnInit {
   workspaceOid!: string;
   print: boolean = false;
   permitPartial = false;
-  emitable = false;
+  validating = signal<boolean>(true);
+  emitable = signal<boolean>(false);
   loading = false;
 
   activatePartial = signal<boolean>(false);
@@ -184,10 +187,11 @@ export class CreateCreditNoteComponent implements OnInit {
 
   private canBeEmited() {
     this.documentService
-      .validateForCreditNote({ payableOid: this.sourceDocument.oid!! })
+      .creditNoteEmitValidity({ sourceOid: this.sourceDocument.oid!! })
       .subscribe({
         next: (response) => {
-          this.emitable = response.valid;
+          this.emitable.set(response.valid);
+          this.validating.set(false)
         },
       });
   }
@@ -376,6 +380,6 @@ export class CreateCreditNoteComponent implements OnInit {
   }
 
   get valid(): boolean {
-    return this.emitable && !this.loading;
+    return this.emitable() && !this.loading;
   }
 }

@@ -3,7 +3,16 @@
     <h2 i18n>Balance - {{ balance.number }}</h2>
     <h3>Emision de Nota de Credito</h3>
   </div>
-
+  <div class="validation">
+    @if (validating()) {
+      <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
+    }
+    @if (!emitable()) {
+      <div class="warning">
+        Emision de Nota de Credito no es posible/permitido
+      </div>
+    }
+  </div>
   <mat-stepper
     orientation="vertical"
     [linear]="true"
