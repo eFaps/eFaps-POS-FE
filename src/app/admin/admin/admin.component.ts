@@ -42,6 +42,7 @@ import { LocalStorageService } from "ngx-localstorage";
 
 import { environment } from "../../../environments/environment";
 import { SalesReportDialogComponent } from "../sales-report-dialog/sales-report-dialog.component";
+import { DateTime } from "node_modules/@types/luxon";
 import { PrintDialogComponent } from "src/app/shared/print-dialog/print-dialog.component";
 import { STOCKTAKING_ACTIVATE } from "src/app/util/keys";
 
@@ -210,12 +211,11 @@ export class AdminComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe({
       next: (value) => {
         if (value && value.date) {
-          console.log((value.date as Date).toISOString());
-          const localDate = (value.date as Date).toISOString().substring(0, 10);
+          const localDate = (value.date as DateTime).toISODate();
           this.dialog.open(PrintDialogComponent, {
             data: this.printService.printSalesReport(
               this.workspaceOid,
-              localDate,
+              localDate!,
             ),
           });
         }

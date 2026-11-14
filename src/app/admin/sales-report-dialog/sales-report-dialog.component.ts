@@ -6,8 +6,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { provideLuxonDateAdapter } from "@angular/material-luxon-adapter";
 import { MatButton } from "@angular/material/button";
-import { provideNativeDateAdapter } from "@angular/material/core";
 import {
   MatDatepicker,
   MatDatepickerInput,
@@ -24,6 +24,7 @@ import {
   MatSuffix,
 } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
+import { DateTime } from "luxon";
 
 @Component({
   selector: "app-sales-report-dialog",
@@ -45,7 +46,19 @@ import { MatInput } from "@angular/material/input";
     MatDialogClose,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
-  providers: [provideNativeDateAdapter()],
+  providers: [
+    provideLuxonDateAdapter({
+      parse: {
+        dateInput: "d/L/yy",
+      },
+      display: {
+        dateInput: "dd/LL/yyyy",
+        monthYearLabel: "MMM yyyy",
+        dateA11yLabel: "dd/LL/yyyy",
+        monthYearA11yLabel: "dd/LL/yyyy",
+      },
+    }),
+  ],
 })
 export class SalesReportDialogComponent {
   reportForm: FormGroup;
@@ -53,12 +66,8 @@ export class SalesReportDialogComponent {
   constructor() {
     const fb = inject(FormBuilder);
 
-    const date = new Date();
-    date.setHours(0);
-    date.setMinutes(0, 0, 0);
-
     this.reportForm = fb.group({
-      date: [date, [Validators.required]],
+      date: [DateTime.now(), [Validators.required]],
     });
   }
 }
