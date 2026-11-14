@@ -29,7 +29,7 @@
         <button matButton matStepperNext>Proximo</button>
       </div>
     </mat-step>
-    <mat-step>
+    <mat-step [completed]="selectionCompleted()">
       <ng-template matStepLabel>Eligir items</ng-template>
       <div class="documents" [style.flex-direction]="flexDirection()">
         <div>

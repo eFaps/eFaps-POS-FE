@@ -382,4 +382,12 @@ export class CreateCreditNoteComponent implements OnInit {
   get valid(): boolean {
     return this.emitable() && !this.loading;
   }
+
+  selectionCompleted(): boolean {
+    return (
+      this.reasonFormGroup.valid &&
+      (!this.activatePartial() ||
+        (this.activatePartial() && this.creditNote.crossTotal > 0))
+    );
+  }
 }
