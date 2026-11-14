@@ -378,9 +378,9 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
   }
 
   private storeCurrentLayout() {
-    this.posLayouts[this.authService.getCurrentUsername()!] =
-      this.currentLayout;
-    this.posLayouts.save();
+    const layouts = this.posLayouts;
+    layouts[this.authService.getCurrentUsername()!] = this.currentLayout;
+    this.storageService.set("posLayouts", layouts);
   }
 
   setMultiplier(_number: string) {
@@ -413,8 +413,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
 
   toggleNumPad() {
     this.numPad.update((current) => !current);
-    this.posNumPad[this.authService.getCurrentUsername()!] = this.numPad();
-    this.posNumPad.save();
+    this.storePosNumPadToggle();
 
     this.cmdComp.evalSticky();
     this.sticky = this.cmdComp.sticky;
@@ -422,6 +421,12 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     if (!this.numPad()) {
       this.resetMultiplier();
     }
+  }
+
+  private storePosNumPadToggle() {
+    const posNumPadObj = this.posNumPad;
+    posNumPadObj[this.authService.getCurrentUsername()!] = this.numPad();
+    this.storageService.set("posNumPad", posNumPadObj);
   }
 
   openCatSelect() {
@@ -481,17 +486,7 @@ export class PosComponent implements AfterContentChecked, OnInit, OnDestroy {
     return this._posLayouts == null ? {} : this._posLayouts;
   }
 
-  set posLayouts(value: any) {
-    this._posLayouts = value;
-    this.storageService.set("posLayouts", value);
-  }
-
   get posNumPad(): any {
     return this._posNumPad == null ? {} : this._posNumPad;
-  }
-
-  set posNumPad(value: any) {
-    this._posNumPad = value;
-    this.storageService.set("posNumPad", value);
   }
 }

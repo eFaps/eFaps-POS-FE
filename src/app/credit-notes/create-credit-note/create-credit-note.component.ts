@@ -1,3 +1,4 @@
+import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { StepperSelectionEvent } from "@angular/cdk/stepper";
 import {
   Component,
@@ -19,6 +20,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatIcon } from "@angular/material/icon";
 import { MatList, MatListItem } from "@angular/material/list";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatStepperModule } from "@angular/material/stepper";
@@ -40,14 +42,12 @@ import {
 } from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
 import clone from "just-clone";
-import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 
 import { DocumentComponent } from "../../shared/document/document.component";
 import { AddPaymentDialogComponent } from "../add-payment-dialog/add-payment-dialog.component";
 import { SuccessDialogComponent } from "../success-dialog/success-dialog.component";
 import { ConfirmDialogComponent } from "src/app/shared/confirm-dialog/confirm-dialog.component";
 import { CREDITNOTE_PERMITPARTIAL } from "src/app/util/keys";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 interface Reason {
   key: string;
@@ -75,7 +75,7 @@ interface Reason {
     MatDividerModule,
     PosLibraryModule,
     TranslatePipe,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
 })
 export class CreateCreditNoteComponent implements OnInit {
@@ -191,7 +191,7 @@ export class CreateCreditNoteComponent implements OnInit {
       .subscribe({
         next: (response) => {
           this.emitable.set(response.valid);
-          this.validating.set(false)
+          this.validating.set(false);
         },
       });
   }
