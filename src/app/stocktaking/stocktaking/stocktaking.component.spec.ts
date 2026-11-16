@@ -21,7 +21,9 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { StocktakingComponent } from "./stocktaking.component";
 
 class ActivatedRouteStub {
-  params = new Observable((observer) => {});
+  params = new Observable((observer) => {
+    observer.next({})
+  });
 }
 
 class StocktakingServiceStub {}

@@ -4,8 +4,8 @@ import { Observable } from "rxjs";
 
 export class TranslateFileLoader implements TranslateLoader {
   constructor(
-    private prefix: string = "./assets/i18n",
-    private suffix: string = ".json",
+    private prefix = "./assets/i18n",
+    private suffix = ".json",
   ) {}
 
   /**
@@ -13,8 +13,8 @@ export class TranslateFileLoader implements TranslateLoader {
    * @param lang
    * @returns {any}
    */
-  public getTranslation(lang: string): Observable<any> {
-    return Observable.create((observer) => {
+  public getTranslation(lang: string): Observable<unknown> {
+    return new Observable((observer) => {
       const fileName = `${__dirname}/${this.prefix}/${lang}${this.suffix}`;
       observer.next(JSON.parse(fs.readFileSync(fileName, "utf8")));
       observer.complete();

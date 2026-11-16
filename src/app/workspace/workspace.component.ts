@@ -1,8 +1,7 @@
 import {
   Component,
   OnInit,
-  inject,
-  ChangeDetectionStrategy,
+  inject
 } from "@angular/core";
 import {
   MatCard,
@@ -22,7 +21,6 @@ import {
   selector: "app-workspace",
   templateUrl: "./workspace.component.html",
   styleUrls: ["./workspace.component.scss"],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent],
 })
 export class WorkspaceComponent implements OnInit {

@@ -2,8 +2,7 @@ import {
   Component,
   OnInit,
   ViewChild,
-  inject,
-  ChangeDetectionStrategy,
+  inject
 } from "@angular/core";
 import {
   FormBuilder,
@@ -39,7 +38,6 @@ import { KeypadComponent } from "../../shared/keypad/keypad.component";
   selector: "app-stocktaking",
   templateUrl: "./stocktaking.component.html",
   styleUrls: ["./stocktaking.component.scss"],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatSlideToggle,
     ReactiveFormsModule,
@@ -84,7 +82,7 @@ export class StocktakingComponent implements OnInit {
     const router = this.router;
     const fb = inject(FormBuilder);
 
-    const state = router.currentNavigation()!!.extras.state;
+    const state = router.currentNavigation()!.extras.state;
     if (state != undefined) {
       this.defaultComment = state["comment"];
     }
@@ -133,7 +131,7 @@ export class StocktakingComponent implements OnInit {
             this.stocktaking = stocktaking;
           }
         },
-        error: (err: any) => {
+        error: (err) => {
           if (err.status == 404) {
             this.router.navigate(["stocktaking", "init"]);
           }
@@ -210,11 +208,11 @@ export class StocktakingComponent implements OnInit {
     this.quantity = undefined;
   }
 
-  onFocusEvent(event: Event) {
+  onFocusEvent(_event: FocusEvent) {
     this.preventKeyPad = true;
   }
 
-  onBlurEvent(event: Event) {
+  onBlurEvent(_event: FocusEvent) {
     this.preventKeyPad = false;
   }
 

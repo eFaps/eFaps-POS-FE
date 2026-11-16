@@ -3,11 +3,11 @@ import { Observable } from "rxjs";
 
 export class TranslateFileLoader implements TranslateLoader {
   constructor(
-    private _prefix: string = "./assets/i18n",
-    private _suffix: string = ".json",
+    private _prefix = "./assets/i18n",
+    private _suffix = ".json",
   ) {}
 
-  public getTranslation(_lang: string): Observable<any> {
+  public getTranslation(): Observable<unknown> {
     return new Observable();
   }
 }
