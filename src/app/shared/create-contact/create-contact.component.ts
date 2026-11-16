@@ -32,8 +32,6 @@ import { TaxpayerQueryComponent } from "@shared/taxpayer-query/taxpayer-query.co
 
 @Component({
   imports: [
-    MatDialogTitle,
-    CdkScrollable,
     ReactiveFormsModule,
     MatFormField,
     MatSelect,
@@ -42,7 +40,6 @@ import { TaxpayerQueryComponent } from "@shared/taxpayer-query/taxpayer-query.co
     TaxpayerQueryComponent,
     MatLabel,
     MatInput,
-    MatButton,
     TranslatePipe,
   ],
   selector: "app-create-contact",

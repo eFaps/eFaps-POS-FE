@@ -75,12 +75,10 @@ import { PAYABLE_ACTIVATENOTE, PAYMENT_REQUIRE } from "@app/util/keys";
   styleUrls: ["./payment.component.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    ContactComponent,
     MatRadioGroup,
     ReactiveFormsModule,
     FormsModule,
     MatRadioButton,
-    MatButtonToggle,
     DocumentComponent,
     MatFabButton,
     MatIcon,

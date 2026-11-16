@@ -28,7 +28,6 @@ import { CreateContactComponent } from "@shared/create-contact/create-contact.co
     ContactComponent,
     CreateContactComponent,
     MatExpansionPanel,
-    MatExpansionPanelContent,
     MatExpansionPanelHeader,
     MatExpansionPanelTitle,
     MatAccordion,
