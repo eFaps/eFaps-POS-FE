@@ -6,6 +6,7 @@ import {
   ViewChild,
   inject,
   ChangeDetectionStrategy,
+  signal,
 } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
@@ -137,12 +138,14 @@ export class PaymentComponent implements OnInit, OnDestroy {
   change = 0;
   docType: DocumentType = DocumentType.RECEIPT;
   docTypes: DocumentType[] = [];
-  contact: Contact | undefined;
+  
+  contact = signal<Contact | undefined>(undefined);
+
   workspaceOid!: string;
   balance!: Balance;
   note: string | undefined;
-  showContact = false;
-  permitToggleContact = true;
+  
+  
   allowPrintPreliminary = true;
   allowAssignSeller = true;
   activateNote = true;
@@ -169,14 +172,13 @@ export class PaymentComponent implements OnInit, OnDestroy {
         this.documentComponent.document.set(doc!);
         if (this.document) {
           if (this.document.contactOid) {
-            this.showContact = true;
             if ((this.document as any).contact) {
-              this.contact = (this.document as any).contact;
+              this.contact.set((this.document as any).contact);
             } else {
               this.contactService
                 .getContact(this.document.contactOid)
                 .subscribe({
-                  next: (contact) => (this.contact = contact),
+                  next: (contact) => (this.contact.set(contact)),
                 });
             }
           }
@@ -282,7 +284,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   validate() {
     let ret = true;
-    if (DocumentType.INVOICE === this.docType && this.contact == null) {
+    if (DocumentType.INVOICE === this.docType && this.contact() == undefined) {
       this.snackBar.open(
         this.translateService.instant("PAYMENT.NOCONTACTMSG"),
         "",
@@ -291,8 +293,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
       ret = false;
     } else if (
       DocumentType.INVOICE === this.docType &&
-      this.contact &&
-      this.contact.idType != IdentificationType.RUC
+      this.contact() &&
+      this.contact()!.idType != IdentificationType.RUC
     ) {
       this.snackBar.open(
         "Solo se puede generar facturas con un número de RUC válido.",
@@ -302,7 +304,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
       ret = false;
     } else if (
       DocumentType.RECEIPT === this.docType &&
-      this.contact == null &&
+      this.contact() == undefined &&
       this.document.crossTotal > 700
     ) {
       this.snackBar.open(
@@ -369,10 +371,10 @@ export class PaymentComponent implements OnInit, OnDestroy {
       crossTotal: this.document.crossTotal,
       payableAmount: this.document.payableAmount,
       taxes: this.document.taxes,
-      contactOid: this.contact
-        ? this.contact.oid
-          ? this.contact.oid
-          : this.contact.id
+      contactOid: this.contact()
+        ? this.contact()!.oid
+          ? this.contact()!.oid
+          : this.contact()!.id
         : null,
       workspaceOid: this.workspaceOid,
       balanceOid: this.balance.oid ? this.balance.oid : this.balance.id,
@@ -463,19 +465,14 @@ export class PaymentComponent implements OnInit, OnDestroy {
   }
 
   selectContact(_contact: Contact) {
-    this.contact = _contact;
-  }
-
-  toggleContact() {
-    this.showContact = !this.showContact;
+    this.contact.set(_contact);
   }
 
   setDocType(_docTypeIdx: DocumentType) {
     if (DocumentType.INVOICE === _docTypeIdx) {
-      this.showContact = true;
-      this.permitToggleContact = false;
+      
     } else {
-      this.permitToggleContact = true;
+      
     }
   }
 
@@ -567,8 +564,13 @@ export class PaymentComponent implements OnInit, OnDestroy {
   }
 
   assignContact() {
-    this.dialog.open(AssignContactDialogComponent, {
+     let ref = this.dialog.open(AssignContactDialogComponent, {
       data: this.note,
+    })
+    ref.afterClosed().subscribe({
+      next: (contact: Contact | undefined) => {
+        this.contact.set(contact);
+      },
     })
   }
 }

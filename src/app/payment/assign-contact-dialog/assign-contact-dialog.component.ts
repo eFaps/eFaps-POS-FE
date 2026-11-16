@@ -1,9 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, inject, viewChild } from "@angular/core";
 import { MatButton } from "@angular/material/button";
-import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from "@angular/material/dialog";
+import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from "@angular/material/dialog";
 import { Contact } from "@efaps/pos-library";
 import { ContactComponent } from "@shared/contact/contact.component";
-
+import { CreateContactComponent } from "@shared/create-contact/create-contact.component";
+import {MatAccordion, MatExpansionPanel, MatExpansionPanelContent, MatExpansionPanelHeader, MatExpansionPanelTitle} from '@angular/material/expansion';
 @Component({
   imports: [
     MatDialogActions,
@@ -11,20 +12,47 @@ import { ContactComponent } from "@shared/contact/contact.component";
     MatDialogTitle,
     MatDialogClose,
     MatButton,
-    ContactComponent
+    ContactComponent,
+    CreateContactComponent,
+    MatExpansionPanel,
+    MatExpansionPanelContent,
+    MatExpansionPanelHeader,
+    MatExpansionPanelTitle,
+    MatAccordion
   ],
   selector: "app-assign-contact-dialog",
   styleUrl: "./assign-contact-dialog.component.scss",
   templateUrl: "./assign-contact-dialog.component.html",
 })
 export class AssignContactDialogComponent {
+  private dialogRef = inject<MatDialogRef<AssignContactDialogComponent>>(MatDialogRef);
+  private createContactComp = viewChild(CreateContactComponent);
+  private openPanelKey: string = "existing" ;
 
+  private contact: Contact | undefined;
 
   submit() {
-
+    if (this.openPanelKey == "new") {
+        this.createContactComp()!.submit()
+    } else {
+      this.dialogRef.close(this.contact)
+    }
   }
 
   selectContact(contact: Contact) {
-    console.log(contact)
+    if (this.openPanelKey == "existing") {
+    }
+    this.contact = contact
+  }
+
+  panelOpened(key: string) {
+      this.openPanelKey = key;
+  }
+
+  valid() : boolean{
+    if (this.openPanelKey == "existing") {
+      return true
+    }
+    return this.createContactComp()?.contactForm.valid!
   }
 }

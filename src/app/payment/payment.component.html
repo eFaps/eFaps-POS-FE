@@ -1,10 +1,12 @@
 <div class="content">
   <div class="doc-wrapper">
     <div class="leftwrapper">
-      @if (showContact) {
-        <app-contact (contactSelected)="selectContact($event)" [contact]="contact"></app-contact>
+      @if (contact()) {
+        <div class="contact">
+          <span>Cliente: </span>
+          <span>{{ "IDTYPE." + contact().idType | translate }}: {{ contact().idNumber}} - {{contact().name}}</span>
+        </div>
       }
-      <div> <button matButton="filled" (click)="assignContact()">Cliente</button></div>
       <div>
         <mat-radio-group class="docType-radio-group" [(ngModel)]="docType">
           @for (type of docTypes; track type; let idx = $index) {
@@ -16,12 +18,7 @@
             </mat-radio-button>
           }
         </mat-radio-group>
-        <mat-button-toggle
-          [value]="showContact"
-          (change)="toggleContact()"
-          [disabled]="!permitToggleContact"
-          >{{ showContact ? "Desc." : "Cliente" }}</mat-button-toggle
-        >
+        <button matButton="filled" (click)="assignContact()">Cliente</button>
         <div class="balance">
           @if (balance) {
             <span i18n>Balance - {{ balance.number }}</span>

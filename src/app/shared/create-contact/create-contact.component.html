@@ -1,0 +1,31 @@
+<form [formGroup]="contactForm">
+    <mat-form-field>
+        <mat-select i18n-placeholder="@@documentIdType" placeholder="Document Type" formControlName="idType">
+            @for (idType of idTypes; track idType) {
+            <mat-option [value]="idType">
+                {{ "IDTYPE." + idType | translate }}
+            </mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    @if (showTaxpayerQuery) {
+    <app-taxpayer-query (result)="onTaxpayerQuery($event)"></app-taxpayer-query>
+    }
+    @if (showDNIQuery) {
+    <app-dniquery (result)="onDNIQuery($event)"></app-dniquery>
+    }
+    <mat-form-field>
+        <mat-label i18n="@@documentId">ID</mat-label>
+        <input matInput formControlName="idNumber" autocomplete="off" class="left" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label i18n="@@contactName">Name</mat-label>
+        <input matInput formControlName="name" autocomplete="off" class="left" />
+    </mat-form-field>
+    @if (useEmail) {
+    <mat-form-field>
+        <mat-label i18n="@@contactEmail">Email</mat-label>
+        <input matInput formControlName="email" autocomplete="off" class="left" />
+    </mat-form-field>
+    }
+</form>

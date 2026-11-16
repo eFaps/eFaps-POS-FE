@@ -75,8 +75,8 @@
             "scripts": [],
             "fileReplacements": [
               {
-                "replace": "@app/util/translate-file-loader.ts",
-                "with": "@app/util/translate-file-loader.noop.ts"
+                "replace": "src/app/util/translate-file-loader.ts",
+                "with": "src/app/util/translate-file-loader.noop.ts"
               }
             ],
             "aot": false,
@@ -106,8 +106,8 @@
                   "with": "src/environments/environment.prod.ts"
                 },
                 {
-                  "replace": "@app/util/translate-file-loader.ts",
-                  "with": "@app/util/translate-file-loader.noop.ts"
+                  "replace": "src/app/util/translate-file-loader.ts",
+                  "with": "src/app/util/translate-file-loader.noop.ts"
                 }
               ]
             },
