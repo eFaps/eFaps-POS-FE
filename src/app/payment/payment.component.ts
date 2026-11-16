@@ -63,11 +63,11 @@ import {
 } from "../shared/employee-dialog/employee-dialog.component";
 import { NoteDialogComponent } from "../shared/note-dialog/note-dialog.component";
 import { PrintDialogComponent } from "../shared/print-dialog/print-dialog.component";
+import { AssignContactDialogComponent } from "./assign-contact-dialog/assign-contact-dialog.component";
 import { DiscountComponent } from "./discount/discount.component";
 import { PaymentTypeComponent } from "./payment-type/payment-type.component";
 import { SuccessDialogComponent } from "./success-dialog/success-dialog.component";
 import { PAYABLE_ACTIVATENOTE, PAYMENT_REQUIRE } from "@app/util/keys";
-import { AssignContactDialogComponent } from "./assign-contact-dialog/assign-contact-dialog.component";
 
 @Component({
   selector: "app-payment",
@@ -138,14 +138,13 @@ export class PaymentComponent implements OnInit, OnDestroy {
   change = 0;
   docType: DocumentType = DocumentType.RECEIPT;
   docTypes: DocumentType[] = [];
-  
+
   contact = signal<Contact | undefined>(undefined);
 
   workspaceOid!: string;
   balance!: Balance;
   note: string | undefined;
-  
-  
+
   allowPrintPreliminary = true;
   allowAssignSeller = true;
   activateNote = true;
@@ -178,7 +177,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
               this.contactService
                 .getContact(this.document.contactOid)
                 .subscribe({
-                  next: (contact) => (this.contact.set(contact)),
+                  next: (contact) => this.contact.set(contact),
                 });
             }
           }
@@ -470,9 +469,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   setDocType(_docTypeIdx: DocumentType) {
     if (DocumentType.INVOICE === _docTypeIdx) {
-      
     } else {
-      
     }
   }
 
@@ -564,13 +561,13 @@ export class PaymentComponent implements OnInit, OnDestroy {
   }
 
   assignContact() {
-     let ref = this.dialog.open(AssignContactDialogComponent, {
+    let ref = this.dialog.open(AssignContactDialogComponent, {
       data: this.note,
-    })
+    });
     ref.afterClosed().subscribe({
       next: (contact: Contact | undefined) => {
         this.contact.set(contact);
       },
-    })
+    });
   }
 }

@@ -4,7 +4,10 @@
       @if (contact()) {
         <div class="contact">
           <span>Cliente: </span>
-          <span>{{ "IDTYPE." + contact().idType | translate }}: {{ contact().idNumber}} - {{contact().name}}</span>
+          <span
+            >{{ "IDTYPE." + contact().idType | translate }}: {{ contact().idNumber }} -
+            {{ contact().name }}</span
+          >
         </div>
       }
       <div>

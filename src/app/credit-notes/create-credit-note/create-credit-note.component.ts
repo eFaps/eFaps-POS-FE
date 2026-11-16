@@ -49,7 +49,6 @@ import { SuccessDialogComponent } from "../success-dialog/success-dialog.compone
 import { CREDITNOTE_PERMITPARTIAL } from "@app/util/keys";
 import { ConfirmDialogComponent } from "@shared/confirm-dialog/confirm-dialog.component";
 
-
 interface Reason {
   key: string;
   label: string;

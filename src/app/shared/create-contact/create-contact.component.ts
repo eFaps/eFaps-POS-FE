@@ -1,20 +1,34 @@
 import { CdkScrollable } from "@angular/cdk/scrolling";
 import { HttpContext } from "@angular/common/http";
 import { Component, inject, output } from "@angular/core";
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
 import { MatButton } from "@angular/material/button";
 import { MatDialogTitle } from "@angular/material/dialog";
 import { MatFormField, MatLabel } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
 import { MatOption, MatSelect } from "@angular/material/select";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { CONTACT_ACTIVATE_EMAIL } from "@app/util/keys";
-import { ConfigService, Contact, ContactService, DNI, IdentificationType, IGNORED_STATUSES, RUC } from "@efaps/pos-library";
+import {
+  ConfigService,
+  Contact,
+  ContactService,
+  DNI,
+  IdentificationType,
+  IGNORED_STATUSES,
+  RUC,
+} from "@efaps/pos-library";
 import { TranslatePipe } from "@ngx-translate/core";
-import { DNIQueryComponent } from "@shared/dniquery/dniquery.component";
-import { TaxpayerQueryComponent } from "@shared/taxpayer-query/taxpayer-query.component";
 import { EnumValues } from "enum-values";
 import { LocalStorageService } from "ngx-localstorage";
+
+import { CONTACT_ACTIVATE_EMAIL } from "@app/util/keys";
+import { DNIQueryComponent } from "@shared/dniquery/dniquery.component";
+import { TaxpayerQueryComponent } from "@shared/taxpayer-query/taxpayer-query.component";
 
 @Component({
   imports: [
@@ -36,13 +50,11 @@ import { LocalStorageService } from "ngx-localstorage";
   templateUrl: "./create-contact.component.html",
 })
 export class CreateContactComponent {
-
   private configService = inject(ConfigService);
   private contactService = inject(ContactService);
   private fb = inject(FormBuilder);
   private snackBar = inject(MatSnackBar);
   private readonly storageService = inject(LocalStorageService);
-  
 
   readonly contactCreated = output<Contact>();
 
@@ -182,4 +194,3 @@ export class CreateContactComponent {
     this.storageService.set("virtKeyboard", value);
   }
 }
-

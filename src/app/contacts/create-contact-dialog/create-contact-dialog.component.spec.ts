@@ -22,28 +22,16 @@ import {
   PosConfigToken,
   WorkspaceService,
 } from "@efaps/pos-library";
-import { TranslatePipe, TranslateService } from "@ngx-translate/core";
+import {
+  provideTranslateService,
+  TranslatePipe,
+  TranslateService,
+} from "@ngx-translate/core";
 import { MockDirective, MockPipe } from "ng-mocks";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { CreateContactDialogComponent } from "./create-contact-dialog.component";
-
-class TranslateServiceStub {
-  get() {
-    return new Observable((observer) => {
-      observer.next("");
-    });
-  }
-}
-
-class ConfigServiceStub {
-  getSystemConfig() {
-    return new Observable((observer) => {
-      observer.next("");
-    });
-  }
-}
 
 describe("CreateContactDialogComponent", () => {
   let component: CreateContactDialogComponent;
@@ -69,9 +57,8 @@ describe("CreateContactDialogComponent", () => {
         { provide: MAT_DIALOG_DATA, useValue: [] },
         { provide: LiveAnnouncer, useValue: {} },
         { provide: PosConfigToken, useValue: {} },
-        { provide: TranslateService, useClass: TranslateServiceStub },
-        { provide: ConfigService, useClass: ConfigServiceStub },
         { provide: ContactService, useValue: {} },
+        provideTranslateService({ fallbackLang: "en" }),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
