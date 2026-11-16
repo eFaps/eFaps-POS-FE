@@ -40,7 +40,7 @@ export class AssignContactDialogComponent {
   private dialogRef =
     inject<MatDialogRef<AssignContactDialogComponent>>(MatDialogRef);
   private createContactComp = viewChild(CreateContactComponent);
-  private openPanelKey: string = "existing";
+  private openPanelKey = "existing";
 
   private contact: Contact | undefined;
 

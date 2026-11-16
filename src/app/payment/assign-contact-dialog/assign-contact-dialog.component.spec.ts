@@ -1,15 +1,16 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { PosConfigToken } from "@efaps/pos-library";
+import { ConfigService, PosConfigToken } from "@efaps/pos-library";
 import {
   provideTranslateService,
   TranslatePipe,
-  TranslateService,
 } from "@ngx-translate/core";
 import { MockPipe } from "ng-mocks";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { AssignContactDialogComponent } from "./assign-contact-dialog.component";
+
+
 
 describe("AssignContactDialogComponent", () => {
   let component: AssignContactDialogComponent;
@@ -19,6 +20,7 @@ describe("AssignContactDialogComponent", () => {
     await TestBed.configureTestingModule({
       imports: [AssignContactDialogComponent, MockPipe(TranslatePipe)],
       providers: [
+        ConfigService,
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] },
         { provide: PosConfigToken, useValue: {} },
