@@ -9,6 +9,8 @@ import { MockPipe } from "ng-mocks";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { AssignContactDialogComponent } from "./assign-contact-dialog.component";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import { provideHttpClientTesting } from "@angular/common/http/testing";
 
 
 
@@ -25,6 +27,8 @@ describe("AssignContactDialogComponent", () => {
         { provide: MAT_DIALOG_DATA, useValue: [] },
         { provide: PosConfigToken, useValue: {} },
         provideTranslateService({ fallbackLang: "en" }),
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
       ],
     }).compileComponents();
 
