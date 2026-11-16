@@ -25,15 +25,17 @@ import {
   MatTableDataSource,
 } from "@angular/material/table";
 import { Router } from "@angular/router";
+
 import {
   PageRequest,
   Stocktaking,
   StocktakingEntry,
   StocktakingService,
 } from "@efaps/pos-library";
+import { ConfirmDialogComponent } from "@shared/confirm-dialog/confirm-dialog.component";
 import { merge, tap } from "rxjs";
 
-import { ConfirmDialogComponent } from "src/app/shared/confirm-dialog/confirm-dialog.component";
+
 
 @Component({
   selector: "app-stocktaking-entry-table",

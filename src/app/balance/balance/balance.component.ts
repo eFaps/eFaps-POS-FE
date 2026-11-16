@@ -34,7 +34,7 @@ import { BalanceSummaryComponent } from "../balance-summary/balance-summary.comp
 import { CashEntryDialogComponent } from "../cash-entry-dialog/cash-entry-dialog.component";
 import { DocumentListComponent } from "../document-list/document-list.component";
 import { OpeningBalanceDialogComponent } from "../opening-balance-dialog/opening-balance-dialog.component";
-import { BALANCE_ACTIVATE_CASHENTRY } from "src/app/util/keys";
+import { BALANCE_ACTIVATE_CASHENTRY } from "@app/util/keys";
 
 @Component({
   selector: "app-balance",

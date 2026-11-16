@@ -9,7 +9,7 @@ import { MockComponent } from "ng-mocks";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { ContactDialogComponent } from "./contact-dialog.component";
-import { ContactComponent } from "src/app/shared/contact/contact.component";
+import { ContactComponent } from "@shared//contact/contact.component";
 
 describe("ContactDialogComponent", () => {
   let component: ContactDialogComponent;

@@ -23,7 +23,7 @@ import { Contact } from "@efaps/pos-library";
 import { LocalStorageService } from "ngx-localstorage";
 
 import { ContactComponent } from "../../shared/contact/contact.component";
-import { CreateContactDialogComponent } from "src/app/contacts/create-contact-dialog/create-contact-dialog.component";
+import { CreateContactDialogComponent } from "@app/contacts/create-contact-dialog/create-contact-dialog.component";
 
 @Component({
   selector: "app-contact-dialog",

@@ -33,7 +33,7 @@ import { TranslatePipe } from "@ngx-translate/core";
 import { debounceTime, merge, tap } from "rxjs";
 
 import { ProductComponent } from "../../shared/product/product.component";
-import { KeyboardDirective } from "src/app/services/keyboard.directive";
+import { KeyboardDirective } from "@app/services/keyboard.directive";
 
 @Component({
   selector: "app-producttable",

@@ -28,7 +28,7 @@ import {
 import { TranslatePipe } from "@ngx-translate/core";
 
 import { AbstractProductSelector } from "../../abstract-product-selector";
-import { KeypadService, PosSyncService } from "src/app/services";
+import { KeypadService, PosSyncService } from "@app/services";
 
 @Component({
   selector: "app-products-element",

@@ -46,8 +46,9 @@ import clone from "just-clone";
 import { DocumentComponent } from "../../shared/document/document.component";
 import { AddPaymentDialogComponent } from "../add-payment-dialog/add-payment-dialog.component";
 import { SuccessDialogComponent } from "../success-dialog/success-dialog.component";
-import { ConfirmDialogComponent } from "src/app/shared/confirm-dialog/confirm-dialog.component";
-import { CREDITNOTE_PERMITPARTIAL } from "src/app/util/keys";
+import { CREDITNOTE_PERMITPARTIAL } from "@app/util/keys";
+import { ConfirmDialogComponent } from "@shared/confirm-dialog/confirm-dialog.component";
+
 
 interface Reason {
   key: string;

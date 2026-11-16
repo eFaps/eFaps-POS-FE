@@ -10,7 +10,7 @@ import {
   ChangeDetectionStrategy,
 } from "@angular/core";
 
-import { KeyboardService } from "src/app/services/keyboard.service";
+import { KeyboardService } from "@app/services/keyboard.service";
 
 @Component({
   selector: "app-keyboard",

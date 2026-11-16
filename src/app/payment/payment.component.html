@@ -4,6 +4,7 @@
       @if (showContact) {
         <app-contact (contactSelected)="selectContact($event)" [contact]="contact"></app-contact>
       }
+      <div> <button matButton="filled" (click)="assignContact()">Cliente</button></div>
       <div>
         <mat-radio-group class="docType-radio-group" [(ngModel)]="docType">
           @for (type of docTypes; track type; let idx = $index) {

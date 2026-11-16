@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Assignar / Actualizar Contacto</h2>
+<mat-dialog-content>
+  <app-contact (contactSelected)="selectContact($event)"></app-contact>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="submit()">Enviar</button>
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

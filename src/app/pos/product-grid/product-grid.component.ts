@@ -33,7 +33,7 @@ import { Subscription } from "rxjs";
 import { AbstractProductSelector } from "../abstract-product-selector";
 import { GridElementComponent } from "./grid-element/grid-element.component";
 import { ProductsElementComponent } from "./products-element/products-element.component";
-import { KeypadService, PosSyncService } from "src/app/services";
+import { KeypadService, PosSyncService } from "@app/services";
 
 @Component({
   selector: "app-product-grid",

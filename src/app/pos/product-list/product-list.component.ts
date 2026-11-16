@@ -49,7 +49,7 @@ import { debounceTime } from "rxjs/operators";
 import { KeypadService } from "../../services";
 import { ProductComponent } from "../../shared/product/product.component";
 import { AbstractProductSelector } from "../abstract-product-selector";
-import { PosSyncService } from "src/app/services/pos-sync.service";
+import { PosSyncService } from "@app/services/pos-sync.service";
 
 @Component({
   selector: "app-product-list",

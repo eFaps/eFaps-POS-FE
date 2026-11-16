@@ -65,7 +65,8 @@ import { PrintDialogComponent } from "../shared/print-dialog/print-dialog.compon
 import { DiscountComponent } from "./discount/discount.component";
 import { PaymentTypeComponent } from "./payment-type/payment-type.component";
 import { SuccessDialogComponent } from "./success-dialog/success-dialog.component";
-import { PAYABLE_ACTIVATENOTE, PAYMENT_REQUIRE } from "src/app/util/keys";
+import { PAYABLE_ACTIVATENOTE, PAYMENT_REQUIRE } from "@app/util/keys";
+import { AssignContactDialogComponent } from "./assign-contact-dialog/assign-contact-dialog.component";
 
 @Component({
   selector: "app-payment",
@@ -563,5 +564,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
   set selectedPaymentTypeItem(value: number) {
     this._selectedPaymentTypeItem = value;
     this.storageService.set("selectedPaymentTypeItem", value);
+  }
+
+  assignContact() {
+    this.dialog.open(AssignContactDialogComponent, {
+      data: this.note,
+    })
   }
 }
