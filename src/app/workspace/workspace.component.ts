@@ -1,7 +1,8 @@
 import {
   Component,
   OnInit,
-  inject
+  inject,
+  signal
 } from "@angular/core";
 import {
   MatCard,
@@ -28,15 +29,15 @@ export class WorkspaceComponent implements OnInit {
   private workspaceService = inject(WorkspaceService);
   private posService = inject(PosService);
 
-  workspaces: Workspace[] = [];
-  poss: Pos[] = [];
+  workspaces = signal<Workspace[]>([]);
+  poss = signal<Pos[]>([]);
 
   ngOnInit() {
     this.workspaceService.getWorkspaces().subscribe((data) => {
-      this.workspaces = data;
+      this.workspaces.set(data);
     });
     this.posService.getPoss().subscribe((data) => {
-      this.poss = data;
+      this.poss.set(data);
     });
   }
 
@@ -46,7 +47,7 @@ export class WorkspaceComponent implements OnInit {
   }
 
   getPosName(_workspace: Workspace): string {
-    const ret = this.poss.find((pos) => pos.oid === _workspace.posOid);
+    const ret = this.poss().find((pos) => pos.oid === _workspace.posOid);
     return ret ? ret.name : "";
   }
 }

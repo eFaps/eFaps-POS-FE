@@ -2,4 +2,7 @@
   padding: 5px;
   display: flex;
   gap: 10px;
+  mat-card {
+    cursor: pointer;
+  }
 }
