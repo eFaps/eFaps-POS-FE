@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewChild,
   inject,
-  ChangeDetectionStrategy,
+  signal,
 } from "@angular/core";
 import {
   FormBuilder,
@@ -44,7 +44,6 @@ import { KeyboardService } from "../services/keyboard.service";
 @Component({
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatCard,
     MatCardContent,
@@ -72,8 +71,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   private readonly storageService = inject(LocalStorageService);
 
   private subscription: Subscription = new Subscription();
-  companies: Company[] = [];
-  users: User[] = [];
+  companies = signal<Company[]>([]);
+  users = signal<User[]>([]);
   loginForm: FormGroup;
   loading = false;
   hiddenUser = true;
@@ -99,23 +98,23 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.setCompany(this.companyService.currentCompany!);
       this.subscription.add(
         this.companyService.getCompanies().subscribe({
-          next: (companies) => (this.companies = companies),
+          next: companies => this.companies.set(companies),
         }),
       );
     } else {
       this.subscription.add(
         this.companyService.getCompanies().subscribe({
           next: (companies) => {
-            this.companies = companies;
+            this.companies.set(companies);
             if (companies.length == 1) {
-              this.setCompany(this.companies[0]);
+              this.setCompany(this.companies()[0]);
             } else if (companies.length > 1) {
               this.showCompanySelection = true;
             } else {
               this.subscription.add(
                 this.userService
                   .getUsers()
-                  .subscribe((data) => (this.users = data)),
+                  .subscribe((data) => (this.users.set(data))),
               );
             }
           },
@@ -171,10 +170,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   setCompany(company: Company) {
-    this.users = [];
+    this.users.set([]);
     this.companyService.setCurrentCompany(company);
     this.showCompanySelection = false;
-    this.userService.getUsers().subscribe((data) => (this.users = data));
+    this.userService.getUsers().subscribe((data) => (this.users.set(data)));
   }
 
   showCompanies() {

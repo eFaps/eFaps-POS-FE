@@ -4,5 +4,8 @@
   gap: 10px;
   mat-card {
     cursor: pointer;
+    &.active {
+      background-color: var(--mat-sys-primary-container);
+    }
   }
 }

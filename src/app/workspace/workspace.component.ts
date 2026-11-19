@@ -29,6 +29,7 @@ export class WorkspaceComponent implements OnInit {
   private workspaceService = inject(WorkspaceService);
   private posService = inject(PosService);
 
+  currentWorkspace = this.workspaceService.current();
   workspaces = signal<Workspace[]>([]);
   poss = signal<Pos[]>([]);
 
@@ -41,13 +42,22 @@ export class WorkspaceComponent implements OnInit {
     });
   }
 
-  select(_workspace: Workspace) {
-    this.workspaceService.setCurrent(_workspace);
+  select(workspace: Workspace) {
+    this.workspaceService.setCurrent(workspace);
     this.router.navigate(["/pos"]);
   }
 
-  getPosName(_workspace: Workspace): string {
-    const ret = this.poss().find((pos) => pos.oid === _workspace.posOid);
+  getPosName(workspace: Workspace): string {
+    const ret = this.poss().find((pos) => pos.oid === workspace.posOid);
     return ret ? ret.name : "";
+  }
+
+  isActive(ws: Workspace): boolean {
+
+   if (this.currentWorkspace) {
+    return this.currentWorkspace.oid == ws.oid
+   }
+   return false
+
   }
 }

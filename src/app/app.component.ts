@@ -7,6 +7,8 @@ import {
   inject,
   OnInit,
   ChangeDetectionStrategy,
+  ApplicationConfig,
+  provideAppInitializer,
 } from "@angular/core";
 import { MatIconButton } from "@angular/material/button";
 import { MatIcon, MatIconRegistry } from "@angular/material/icon";
@@ -40,6 +42,9 @@ import { LocalStorageService } from "ngx-localstorage";
 
 import { KeyboardComponent } from "./shared/keyboard/keyboard.component";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
+
+
+
 
 @Component({
   selector: "app-root",
@@ -107,7 +112,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
     this.hotkeysService.add(
       new Hotkey(
         "shift+f1",
-        (event: KeyboardEvent): boolean => {
+        (_event: KeyboardEvent): boolean => {
           console.log("Typed hotkey");
           this.router.navigate(["/pos"]);
           return false;
@@ -119,7 +124,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
     this.hotkeysService.add(
       new Hotkey(
         "shift+f2",
-        (event: KeyboardEvent): boolean => {
+        (_event: KeyboardEvent): boolean => {
           console.log("Typed hotkey");
           this.router.navigate(["/orders"]);
           return false;
@@ -137,13 +142,13 @@ export class AppComponent implements OnInit, AfterViewChecked {
         data ? (this.company = data.label) : (this.company = null),
     });
 
-    this.workspaceService.currentWorkspace.subscribe((_data) => {
-      if (_data) {
-        this.workspace = _data.name;
+    this.workspaceService.currentWorkspace.subscribe((ws) => {
+      if (ws) {
+        this.workspace = ws.name;
         this.spots = this.workspaceService.showSpots();
         this.inventory = this.workspaceService.showInventory();
-        this.allowPayment = _data.docTypes && _data.docTypes.length > 0;
-        this.showRemote = hasFlag(_data, WorkspaceFlag.remote);
+        this.allowPayment = ws.docTypes && ws.docTypes.length > 0;
+        this.showRemote = hasFlag(ws, WorkspaceFlag.remote);
       } else {
         this.workspace = "";
         this.spots = false;

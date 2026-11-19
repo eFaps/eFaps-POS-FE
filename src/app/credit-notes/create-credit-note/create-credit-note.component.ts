@@ -136,16 +136,16 @@ export class CreateCreditNoteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.balanceService.currentBalance.subscribe((balance) => {
-      if (balance) {
-        this.balance = balance;
-      } else {
+    const currentBalance = this.balanceService.current() 
+    if (currentBalance) {
+      this.balance = currentBalance;
+    } else {
         this.snackBar.open("No hay una balance actual", undefined, {
           duration: 3000,
         });
         this.router.navigate(["/"]);
-      }
-    });
+    }
+    
     this.workspaceService.currentWorkspace.subscribe((ws) => {
       if (ws) {
         this.workspaceOid = ws.oid;

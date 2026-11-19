@@ -1,7 +1,7 @@
 @if (showCompanySelection) {
   <div class="companies">
     <div class="pos-companiesgrid">
-      @for (company of companies; track company) {
+      @for (company of companies(); track company) {
         <mat-card appearance="outlined" class="pos-companycard" (click)="setCompany(company)">
           <mat-card-content>
             <svg-icon src="./assets/enterprise.svg" class="logo"></svg-icon>
@@ -14,7 +14,7 @@
 }
 <div class="usergrid-wrapper">
   <div class="pos-usergrid" [style.display]="!hiddenUser ? 'none' : 'flex'">
-    @for (user of users; track user) {
+    @for (user of users(); track user) {
       <mat-card
         appearance="outlined"
         class="pos-usercard"
