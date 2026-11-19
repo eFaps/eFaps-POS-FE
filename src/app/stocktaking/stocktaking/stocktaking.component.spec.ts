@@ -22,7 +22,7 @@ import { StocktakingComponent } from "./stocktaking.component";
 
 class ActivatedRouteStub {
   params = new Observable((observer) => {
-    observer.next({})
+    observer.next({});
   });
 }
 

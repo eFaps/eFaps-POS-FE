@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnInit,
-  inject,
-  signal
-} from "@angular/core";
+import { Component, OnInit, inject, signal } from "@angular/core";
 import {
   MatCard,
   MatCardContent,
@@ -53,11 +48,9 @@ export class WorkspaceComponent implements OnInit {
   }
 
   isActive(ws: Workspace): boolean {
-
-   if (this.currentWorkspace) {
-    return this.currentWorkspace.oid == ws.oid
-   }
-   return false
-
+    if (this.currentWorkspace) {
+      return this.currentWorkspace.oid == ws.oid;
+    }
+    return false;
   }
 }

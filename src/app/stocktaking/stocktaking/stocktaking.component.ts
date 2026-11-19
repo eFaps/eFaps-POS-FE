@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  inject
-} from "@angular/core";
+import { Component, OnInit, ViewChild, inject } from "@angular/core";
 import {
   FormBuilder,
   FormControl,

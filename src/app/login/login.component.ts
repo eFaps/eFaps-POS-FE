@@ -98,7 +98,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.setCompany(this.companyService.currentCompany!);
       this.subscription.add(
         this.companyService.getCompanies().subscribe({
-          next: companies => this.companies.set(companies),
+          next: (companies) => this.companies.set(companies),
         }),
       );
     } else {
@@ -114,7 +114,7 @@ export class LoginComponent implements OnInit, OnDestroy {
               this.subscription.add(
                 this.userService
                   .getUsers()
-                  .subscribe((data) => (this.users.set(data))),
+                  .subscribe((data) => this.users.set(data)),
               );
             }
           },
@@ -173,7 +173,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.users.set([]);
     this.companyService.setCurrentCompany(company);
     this.showCompanySelection = false;
-    this.userService.getUsers().subscribe((data) => (this.users.set(data)));
+    this.userService.getUsers().subscribe((data) => this.users.set(data));
   }
 
   showCompanies() {

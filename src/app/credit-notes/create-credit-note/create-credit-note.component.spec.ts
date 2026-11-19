@@ -3,13 +3,14 @@ import {
   withInterceptorsFromDi,
 } from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
-import { provideZonelessChangeDetection } from "@angular/core";
+import { provideZonelessChangeDetection, signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { ActivatedRoute, provideRouter } from "@angular/router";
 import {
+  Balance,
   BalanceService,
   ConfigService,
   CreditNote,
@@ -53,7 +54,7 @@ class DocumentServiceStub {
     return new Observable();
   }
 
-  creditNoteEmitValidity(): Observable<any> {
+  creditNoteEmitValidity(): Observable<unknown> {
     return new Observable();
   }
 }
@@ -61,6 +62,7 @@ class BalanceServiceStub {
   currentBalance = new Observable((observer) => {
     observer.next({ number: "test" });
   });
+  current = signal<Balance | undefined>(undefined);
 }
 class WorkspaceServiceStub {
   currentWorkspace = new Observable((observer) => {

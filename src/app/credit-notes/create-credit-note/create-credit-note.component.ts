@@ -114,12 +114,12 @@ export class CreateCreditNoteComponent implements OnInit {
 
   sourceDocument!: Payable;
   creditNote!: CreditNote;
-  balance!: Balance;
+  balance: Balance | undefined;
   payment = true;
   payments = signal<Payment[]>([]);
   PaymentType = PaymentType;
   workspaceOid!: string;
-  print: boolean = false;
+  print = false;
   permitPartial = false;
   validating = signal<boolean>(true);
   emitable = signal<boolean>(false);
@@ -136,16 +136,16 @@ export class CreateCreditNoteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const currentBalance = this.balanceService.current() 
+    const currentBalance = this.balanceService.current();
     if (currentBalance) {
       this.balance = currentBalance;
     } else {
-        this.snackBar.open("No hay una balance actual", undefined, {
-          duration: 3000,
-        });
-        this.router.navigate(["/"]);
+      this.snackBar.open("No hay una balance actual", undefined, {
+        duration: 3000,
+      });
+      this.router.navigate(["/"]);
     }
-    
+
     this.workspaceService.currentWorkspace.subscribe((ws) => {
       if (ws) {
         this.workspaceOid = ws.oid;
@@ -187,7 +187,7 @@ export class CreateCreditNoteComponent implements OnInit {
 
   private canBeEmited() {
     this.documentService
-      .creditNoteEmitValidity({ sourceOid: this.sourceDocument.oid!! })
+      .creditNoteEmitValidity({ sourceOid: this.sourceDocument.oid! })
       .subscribe({
         next: (response) => {
           this.emitable.set(response.valid);
@@ -197,35 +197,37 @@ export class CreateCreditNoteComponent implements OnInit {
   }
 
   initCreditNote() {
-    this.creditNote = {
-      ...clone(this.sourceDocument),
-      balanceOid: this.balance.oid ? this.balance.oid : this.balance.id,
-      type: "CREDITNOTE",
-      sourceDocOid: "",
-      payments: [],
-      id: null,
-      oid: null,
-      number: null,
-    };
-    this.sourceDocument.payments.forEach((payment) => {
-      payment.amount = -payment.amount;
+    if (this.balance) {
+      this.creditNote = {
+        ...clone(this.sourceDocument),
+        balanceOid: this.balance.oid ? this.balance.oid : this.balance.id,
+        type: "CREDITNOTE",
+        sourceDocOid: "",
+        payments: [],
+        id: null,
+        oid: null,
+        number: null,
+      };
+      this.sourceDocument.payments.forEach((payment) => {
+        payment.amount = -payment.amount;
 
-      this.payments.update((current) => {
-        current.push(payment);
-        return [...current];
+        this.payments.update((current) => {
+          current.push(payment);
+          return [...current];
+        });
       });
-    });
+    }
   }
 
   createCreditNote() {
-    var total = this.creditNote.crossTotal;
-    var paymentAmount = this.payments().reduce(
+    const total = this.creditNote.crossTotal;
+    const paymentAmount = this.payments().reduce(
       (accumulator, current) => accumulator + current.amount,
       0,
     );
 
     if (this.payment && total + paymentAmount != 0) {
-      let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
         data: {
           title: "Verificar",
           msg: `Suma de pagos (${paymentAmount}) y monto de la Nota de Credito (${total}) no coinciden!`,
@@ -296,7 +298,7 @@ export class CreateCreditNoteComponent implements OnInit {
     this.payments().forEach((payment) => {
       amount = amount + payment.amount;
     });
-    let dialogRef = this.dialog.open(AddPaymentDialogComponent, {
+    const dialogRef = this.dialog.open(AddPaymentDialogComponent, {
       data: amount,
     });
     dialogRef.afterClosed().subscribe({
@@ -321,11 +323,13 @@ export class CreateCreditNoteComponent implements OnInit {
 
   private calculate() {
     this.calculatorService
-      .calculateDoc(this.creditNote, this.sourceDocument.id!!)
+      .calculateDoc(this.creditNote, this.sourceDocument.id!)
       .subscribe({
         next: (doc) => {
           this.payments.update((current) => {
-            if (current.length == 1) [(current[0].amount = -doc.crossTotal)];
+            if (current.length == 1) {
+              current[0].amount = -doc.crossTotal;
+            }
             return [...current];
           });
         },
@@ -373,7 +377,7 @@ export class CreateCreditNoteComponent implements OnInit {
       : this._creditNoteReasons.filter((reason) => reason.partial == false);
   }
 
-  onSelectionChange(selectionChange: StepperSelectionEvent) {
+  onSelectionChange(_event: StepperSelectionEvent) {
     this.activatePartial.set(
       this.permitPartial && this.reasonFormGroup.value.creditNoteReason.partial,
     );

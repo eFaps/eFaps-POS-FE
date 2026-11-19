@@ -43,9 +43,6 @@ import { LocalStorageService } from "ngx-localstorage";
 import { KeyboardComponent } from "./shared/keyboard/keyboard.component";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
 
-
-
-
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",

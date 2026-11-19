@@ -1,6 +1,6 @@
-import { provideZonelessChangeDetection } from "@angular/core";
+import { provideZonelessChangeDetection, signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { PosService, WorkspaceService } from "@efaps/pos-library";
+import { PosService, Workspace, WorkspaceService } from "@efaps/pos-library";
 import { Observable } from "rxjs";
 import { beforeEach, describe, expect, it } from "vitest";
 
@@ -20,6 +20,7 @@ class WorkspaceServiceStub {
       observer.next([]);
     });
   }
+  current = signal<Workspace | undefined>(undefined);
 }
 describe("WorkspaceComponent", () => {
   let component: WorkspaceComponent;
