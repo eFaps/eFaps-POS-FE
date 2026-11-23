@@ -186,8 +186,12 @@ export class CreateCreditNoteComponent implements OnInit {
   }
 
   private canBeEmited() {
+    const sourceOid =
+      this.sourceDocument.oid != null
+        ? this.sourceDocument.oid
+        : this.sourceDocument.id!;
     this.documentService
-      .creditNoteEmitValidity({ sourceOid: this.sourceDocument.oid! })
+      .creditNoteEmitValidity({ sourceOid: sourceOid })
       .subscribe({
         next: (response) => {
           this.emitable.set(response.valid);
